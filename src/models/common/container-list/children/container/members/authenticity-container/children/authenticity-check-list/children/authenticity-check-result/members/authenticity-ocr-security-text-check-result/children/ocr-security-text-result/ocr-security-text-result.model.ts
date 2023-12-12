@@ -1,8 +1,8 @@
 import { IsDefined, IsEnum, IsIn, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IRectangleCoordinates, RectangleCoordinates } from '~src/models/common/rectangle-coordinates'
-import { AuthenticityResultType, CheckDiagnose, CheckResult, Critical, Light } from '~src/consts'
+import { IRectangleCoordinates, RectangleCoordinates } from 'models/common/rectangle-coordinates'
+import { AuthenticityResultType, CheckDiagnose, CheckResult, Critical, Light } from 'consts'
 
 
 export interface IOCRSecurityTextResult {

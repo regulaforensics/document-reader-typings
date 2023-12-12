@@ -1,7 +1,7 @@
 import { IsArray, IsDefined, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IRectangleCoordinates, RectangleCoordinates } from '~src/models/common/rectangle-coordinates'
+import { IRectangleCoordinates, RectangleCoordinates } from 'models/common/rectangle-coordinates'
 import { ISymbolCandidate, SymbolCandidate } from './children'
 
 

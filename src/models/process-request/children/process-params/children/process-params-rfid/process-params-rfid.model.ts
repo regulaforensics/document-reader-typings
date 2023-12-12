@@ -1,7 +1,7 @@
 import { IsEnum, IsOptional } from 'class-validator'
 import { Expose } from 'class-transformer'
 
-import { ParsingNotificationCodes } from '~src/consts'
+import { ParsingNotificationCodes } from 'consts'
 
 
 export interface IProcessParamsRfid {

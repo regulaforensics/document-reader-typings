@@ -1,10 +1,10 @@
 import { IsDefined, IsEnum, IsInt, IsOptional, IsString, Min, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { ProcessingStatus, RfidLocation } from '~/src/consts'
-import { IsStringObjectRecord } from '~/src/validators'
-import { DocReaderTypeError } from '~src/errors'
-import { ContainerList, IContainerList } from '~src/models/common'
+import { ProcessingStatus, RfidLocation } from 'consts'
+import { IsStringObjectRecord } from 'validators'
+import { DocReaderTypeError } from 'errors'
+import { ContainerList, IContainerList } from 'models/common'
 import { ITransactionInfo, TransactionInfo } from './children'
 
 

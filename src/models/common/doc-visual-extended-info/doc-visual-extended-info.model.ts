@@ -1,5 +1,6 @@
 import { IsDefined, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
+
 import { DocVisualExtendedField, IDocVisualExtendedField } from './children'
 
 

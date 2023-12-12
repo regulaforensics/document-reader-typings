@@ -1,6 +1,6 @@
 import { TransformFnParams } from 'class-transformer/types/interfaces'
 
-import { AuthenticityResultType } from '~src/consts'
+import { AuthenticityResultType } from 'consts'
 import {
   AuthenticityFiberCheckResult,
   AuthenticityIdentCheckResult,

@@ -1,8 +1,8 @@
 import { IsEnum, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { OneCandidate } from '~src/models/common/one-candidate'
-import { DocumentTypeRecognitionResult } from '~src/consts'
+import { OneCandidate } from 'models/common/one-candidate'
+import { DocumentTypeRecognitionResult } from 'consts'
 
 
 export interface IDocumentTypesCandidatesList {

@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "outDir": "./dist",
+    "declaration": true,
+    "declarationDir": "./dist/types",
     "lib": [
       "es6",
       "DOM",
@@ -17,7 +20,7 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "isolatedModules": true,
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "rootDir": "./src",
     "module": "es6",
     "target": "es2017",
@@ -28,9 +31,14 @@
     "typeRoots": [
       "./types",
       "./node_modules/@types"
-    ],
-    "paths": {
-      "~*": ["./*"]
+    ]
+  },
+  "tsc-alias": {
+    "verbose": false,
+    "resolveFullPaths": true,
+    "fileExtensions": {
+      "inputGlob": "{js,jsx,mjs}",
+      "outputCheck": ["js", "json", "jsx", "mjs"]
     }
   },
   "exclude": ["examples"],

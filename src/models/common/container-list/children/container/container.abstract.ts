@@ -1,4 +1,4 @@
-import { ResultType } from '~src/consts'
+import { ResultType } from 'consts'
 
 
 export abstract class ContainerAbstract {

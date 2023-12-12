@@ -1,7 +1,7 @@
 import { IsArray, IsInt, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { ImageData } from '~src/models/common/image-data'
+import { ImageData } from 'models/common/image-data'
 
 
 export interface IRawImageContainerList {

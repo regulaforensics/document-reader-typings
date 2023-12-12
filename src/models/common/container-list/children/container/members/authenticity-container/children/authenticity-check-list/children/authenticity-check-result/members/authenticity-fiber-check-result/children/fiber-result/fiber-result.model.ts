@@ -1,8 +1,8 @@
 import { IsArray, IsDefined, IsEnum, IsIn, IsInt, IsNumber, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IRectangleCoordinates, RectangleCoordinates } from '~src/models/common/rectangle-coordinates'
-import { AuthenticityResultType, CheckDiagnose, CheckResult, Light } from '~src/consts'
+import { IRectangleCoordinates, RectangleCoordinates } from 'models/common/rectangle-coordinates'
+import { AuthenticityResultType, CheckDiagnose, CheckResult, Light } from 'consts'
 
 
 export interface IFiberResult {

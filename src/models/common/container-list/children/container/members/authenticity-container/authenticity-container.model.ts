@@ -1,7 +1,7 @@
 import { IsDefined, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { DocReaderTypeError } from '~src/errors'
+import { DocReaderTypeError } from 'errors'
 import { ContainerAbstract } from '../../container.abstract'
 import { AuthenticityCheckList, IAuthenticityCheckList } from './children'
 

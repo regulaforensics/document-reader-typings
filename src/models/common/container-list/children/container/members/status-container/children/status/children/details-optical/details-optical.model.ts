@@ -1,7 +1,7 @@
 import { IsDefined, IsEnum, IsInt } from 'class-validator'
 import { Expose } from 'class-transformer'
 
-import { CheckResult } from '~src/consts'
+import { CheckResult } from 'consts'
 
 
 export interface IDetailsOptical {

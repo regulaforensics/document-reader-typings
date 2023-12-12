@@ -4,7 +4,7 @@
   "name": "@regulaforensics/document-reader-typings",
   "description": "Document Reader API typings",
   "scripts": {
-
+    "build": "rimraf dist && tsc && tsc-alias -p tsconfig.json"
   },
   "repository": {
     "type": "git",
@@ -17,11 +17,13 @@
     "reflect-metadata": "^0.1.14"
   },
   "devDependencies": {
-    "@parcel/packager-ts": "^2.10.3",
-    "@parcel/transformer-typescript-types": "^2.10.3",
-    "parcel": "^2.10.3",
-    "typescript": "^5.2.2"
+    "rimraf": "^5.0.5",
+    "tsc-alias": "^1.8.8",
+    "typescript": "^5.3.3"
   },
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/types/index.d.ts",
   "keywords": [
     "document-reader-typings",
     "document reader",
