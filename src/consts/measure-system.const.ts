@@ -1,0 +1,10 @@
+export enum MeasureSystem {
+  /**
+  * Metric system of measurement, where things are measured in meters and grams
+  */
+  METRIC = 0,
+  /**
+  * Imperial System of Measurement, where things are measured in feet, inches and pounds
+  */
+  IMPERIAL = 1
+}

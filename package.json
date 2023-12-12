@@ -1,0 +1,37 @@
+{
+  "version": "0.0.1",
+  "author": "Regula Forensics, Inc.",
+  "name": "@regulaforensics/document-reader-typings",
+  "description": "Document Reader API typings",
+  "scripts": {
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:regulaforensics/document-reader-typings.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
+    "reflect-metadata": "^0.1.14"
+  },
+  "devDependencies": {
+    "@parcel/packager-ts": "^2.10.3",
+    "@parcel/transformer-typescript-types": "^2.10.3",
+    "parcel": "^2.10.3",
+    "typescript": "^5.2.2"
+  },
+  "keywords": [
+    "document-reader-typings",
+    "document reader",
+    "document recognition",
+    "regulaforensics",
+    "regula",
+    "regulaforensics",
+    "regula document reader typings",
+    "regula document reader types",
+    "regula document reader typescript",
+    "regula document reader ts"
+  ]
+}
