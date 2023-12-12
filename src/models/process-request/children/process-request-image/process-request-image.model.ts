@@ -1,8 +1,8 @@
 import { IsEnum, IsInt, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IImageData, ImageData } from '~/src/distinct/models/common'
-import { Light } from '~src/distinct/consts'
+import { IImageData, ImageData } from '~/src/models/common'
+import { Light } from '~src/consts'
 
 
 export interface IProcessRequestImage {

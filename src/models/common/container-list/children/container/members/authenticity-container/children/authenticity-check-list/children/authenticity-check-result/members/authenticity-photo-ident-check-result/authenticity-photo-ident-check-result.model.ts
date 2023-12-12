@@ -1,7 +1,7 @@
 import { IsArray, IsDefined, IsEnum, IsIn, ValidateNested } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { AuthenticityResultType, CheckResult } from '~src/distinct/consts'
+import { AuthenticityResultType, CheckResult } from '~src/consts'
 import { AuthenticityCheckResultAbstract } from '../../authenticity-check-result.abstract'
 import { IPhotoIdentResult, PhotoIdentResult } from './children'
 

@@ -1,9 +1,9 @@
 import { IsDefined, IsOptional, IsString, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { IsStringObjectRecord } from '~/src/distinct/validators'
-import { DocReaderTypeError } from '~src/distinct/errors'
-import { ContainerList, IContainerList } from '~src/distinct/models/common'
+import { IsStringObjectRecord } from '~/src/validators'
+import { DocReaderTypeError } from '~src/errors'
+import { ContainerList, IContainerList } from '~src/models/common'
 import {
   IProcessParams,
   IProcessRequestImage,

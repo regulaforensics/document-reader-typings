@@ -1,9 +1,9 @@
 import { IsArray, IsDefined, IsEnum, IsIn, IsInt, IsNumber, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IRectangleCoordinates, RectangleCoordinates } from '~src/distinct/models/common/rectangle-coordinates'
-import { IImageData, ImageData } from '~src/distinct/models/common/image-data'
-import { AuthenticityResultType, CheckDiagnose, CheckResult, Light } from '~src/distinct/consts'
+import { IRectangleCoordinates, RectangleCoordinates } from '~src/models/common/rectangle-coordinates'
+import { IImageData, ImageData } from '~src/models/common/image-data'
+import { AuthenticityResultType, CheckDiagnose, CheckResult, Light } from '~src/consts'
 import { IRawImageContainerList, RawImageContainerList } from './children'
 
 

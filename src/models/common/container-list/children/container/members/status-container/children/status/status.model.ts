@@ -1,7 +1,7 @@
 import { IsDefined, IsEnum, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { CheckResult } from '~src/distinct/consts'
+import { CheckResult } from '~src/consts'
 import { DetailsRFID, IDetailsRFID, DetailsOptical, IDetailsOptical } from './children'
 
 

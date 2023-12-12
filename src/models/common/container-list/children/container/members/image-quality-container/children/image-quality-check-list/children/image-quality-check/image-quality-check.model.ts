@@ -1,7 +1,7 @@
 import { IsEnum, IsNumber, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { CheckResult, ImageQualityCheckType, SecurityFeatureType } from '~src/distinct/consts'
+import { CheckResult, ImageQualityCheckType, SecurityFeatureType } from '~src/consts'
 import { AreaArray, IAreaArray } from './children'
 
 

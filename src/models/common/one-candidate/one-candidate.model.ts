@@ -1,7 +1,7 @@
 import { IsEnum, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { RfidLocation } from '~src/distinct/consts'
+import { RfidLocation } from '~src/consts'
 import { FDSIDList, IFDSIDList } from './children'
 
 

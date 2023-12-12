@@ -1,8 +1,8 @@
 import { IsEnum, IsInt, IsNumber, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { DocumentFormat } from '~src/distinct/consts'
-import { Point } from '~src/distinct/models/common/point'
+import { DocumentFormat } from '~src/consts'
+import { Point } from '~src/models/common/point'
 
 
 export interface IDocumentPosition {

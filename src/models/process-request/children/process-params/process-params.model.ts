@@ -21,8 +21,8 @@ import {
   Scenario,
   TextFieldType,
   TextPostProcessing
-} from '~src/distinct/consts'
-import { IsStringObjectRecord } from '~src/distinct/validators'
+} from '~src/consts'
+import { IsStringObjectRecord } from '~src/validators'
 import {
   FaceApi,
   IFaceApi,

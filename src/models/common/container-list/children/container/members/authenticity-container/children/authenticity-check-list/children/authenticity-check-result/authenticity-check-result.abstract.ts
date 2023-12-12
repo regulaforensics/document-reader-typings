@@ -1,4 +1,4 @@
-import { AuthenticityResultType, CheckResult } from '~src/distinct/consts'
+import { AuthenticityResultType, CheckResult } from '~src/consts'
 
 
 export abstract class AuthenticityCheckResultAbstract {

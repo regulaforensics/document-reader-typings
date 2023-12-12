@@ -1,9 +1,9 @@
 import { IsDefined, IsEnum, IsNumber, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { GraphicFieldType } from '~src/distinct/consts'
-import { IImageData, ImageData } from '~src/distinct/models/common/image-data'
-import { IRectangleCoordinates, RectangleCoordinates } from '~src/distinct/models/common/rectangle-coordinates'
+import { GraphicFieldType } from '~src/consts'
+import { IImageData, ImageData } from '~src/models/common/image-data'
+import { IRectangleCoordinates, RectangleCoordinates } from '~src/models/common/rectangle-coordinates'
 
 
 export interface IGraphicField {

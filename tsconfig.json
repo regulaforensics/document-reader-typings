@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "es6",
+      "DOM",
+      "es2017",
+      "esnext"
+    ],
+    "allowJs": true,
+    "checkJs": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "strictNullChecks": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "rootDir": "./src",
+    "module": "es6",
+    "target": "es2017",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "resolveJsonModule": true,
+    "typeRoots": [
+      "./types",
+      "./node_modules/@types"
+    ],
+    "paths": {
+      "~*": ["./*"]
+    }
+  },
+  "exclude": ["examples"],
+  "include": [
+    "src",
+    "tests",
+    "./types/globals.d.ts"
+  ]
+}

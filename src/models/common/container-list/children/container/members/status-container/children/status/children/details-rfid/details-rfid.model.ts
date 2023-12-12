@@ -1,7 +1,7 @@
 import { IsDefined, IsEnum } from 'class-validator'
 import { Expose } from 'class-transformer'
 
-import { CheckResult } from '~src/distinct/consts'
+import { CheckResult } from '~src/consts'
 
 
 export interface IDetailsRFID {

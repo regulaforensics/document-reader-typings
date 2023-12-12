@@ -1,7 +1,7 @@
 import { IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IPoint, Point } from '~src/distinct/models/common/point'
+import { IPoint, Point } from '~src/models/common/point'
 
 
 export interface IPointArray {

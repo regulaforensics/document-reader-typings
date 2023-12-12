@@ -1,8 +1,8 @@
 import { IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { DocReaderTypeError } from '~src/distinct/errors'
-import { OneCandidate } from '~src/distinct/models/common/one-candidate'
+import { DocReaderTypeError } from '~src/errors'
+import { OneCandidate } from '~src/models/common/one-candidate'
 import { ContainerAbstract } from '../../container.abstract'
 
 

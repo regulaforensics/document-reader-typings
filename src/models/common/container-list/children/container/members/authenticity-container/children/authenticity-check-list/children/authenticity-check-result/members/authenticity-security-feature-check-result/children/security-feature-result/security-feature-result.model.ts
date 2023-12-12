@@ -1,8 +1,8 @@
 import { IsDefined, IsEnum, IsIn, IsNumber, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { AreaContainer, IAreaContainer } from '~src/distinct/models/common/area-container'
-import { IRectangleCoordinates, RectangleCoordinates } from '~src/distinct/models/common/rectangle-coordinates'
+import { AreaContainer, IAreaContainer } from '~src/models/common/area-container'
+import { IRectangleCoordinates, RectangleCoordinates } from '~src/models/common/rectangle-coordinates'
 import {
   AuthenticityResultType,
   CheckDiagnose,
@@ -10,7 +10,7 @@ import {
   Critical,
   SecurityFeatureType,
   Visibility
-} from '~src/distinct/consts'
+} from '~src/consts'
 
 
 export interface ISecurityFeatureResult {

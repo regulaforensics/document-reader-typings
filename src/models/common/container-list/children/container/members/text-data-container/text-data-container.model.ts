@@ -1,9 +1,9 @@
 import { IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { DocReaderTypeError } from '~src/distinct/errors'
+import { DocReaderTypeError } from '~src/errors'
 import { ContainerAbstract } from '../../container.abstract'
-import { DocVisualExtendedInfo, IDocVisualExtendedInfo } from '~src/distinct/models/common/doc-visual-extended-info'
+import { DocVisualExtendedInfo, IDocVisualExtendedInfo } from '~src/models/common/doc-visual-extended-info'
 
 
 export interface ITextDataContainer extends ContainerAbstract {

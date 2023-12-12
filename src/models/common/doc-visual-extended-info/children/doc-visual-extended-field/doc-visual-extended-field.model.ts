@@ -1,9 +1,9 @@
 import { IsDefined, IsEnum, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { LCID, TextFieldType } from '~src/distinct/consts'
-import { IStringRecognitionResult, StringRecognitionResult } from '~src/distinct/models/common/string-recognition-result'
-import { IRectangleCoordinates, RectangleCoordinates } from '~src/distinct/models/common/rectangle-coordinates'
+import { LCID, TextFieldType } from '~src/consts'
+import { IStringRecognitionResult, StringRecognitionResult } from '~src/models/common/string-recognition-result'
+import { IRectangleCoordinates, RectangleCoordinates } from '~src/models/common/rectangle-coordinates'
 
 
 export interface IDocVisualExtendedField {

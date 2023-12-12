@@ -1,8 +1,8 @@
 import { IsDefined, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { DocReaderTypeError } from '~src/distinct/errors'
-import { ImageData } from '~src/distinct/models/common/image-data'
+import { DocReaderTypeError } from '~src/errors'
+import { ImageData } from '~src/models/common/image-data'
 import { ContainerAbstract } from '../../container.abstract'
 
 

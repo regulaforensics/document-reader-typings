@@ -1,7 +1,7 @@
 import { IsDefined, IsEnum, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { GraphicFieldType } from '~src/distinct/consts'
+import { GraphicFieldType } from '~src/consts'
 import { IImagesFieldValue, ImagesFieldValue } from './children'
 
 
