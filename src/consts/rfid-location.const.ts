@@ -7,10 +7,12 @@ export enum RfidLocation {
   * There is no RFID chip in the document
   */
   NONE = 0,
+
   /**
   * The RFID chip is located in the document data page
   */
   MAIN_PAGE = 1,
+
   /**
   * The RFID chip is located in the back page or inlay of the document
   */

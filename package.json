@@ -1,10 +1,11 @@
 {
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Regula Forensics, Inc.",
   "name": "@regulaforensics/document-reader-typings",
   "description": "Document Reader API typings",
   "scripts": {
-    "build": "rimraf dist && tsc && tsc-alias -p tsconfig.json"
+    "build": "rimraf dist && tsc && tsc-alias -p tsconfig.json",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,10 @@
     "reflect-metadata": "^0.1.14"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.11",
+    "jest": "^29.7.0",
     "rimraf": "^5.0.5",
+    "ts-jest": "^29.1.1",
     "tsc-alias": "^1.8.8",
     "typescript": "^5.3.3"
   },

@@ -2,6 +2,7 @@ import { IsArray, IsBoolean, IsDefined, IsEnum, IsNumber, IsOptional, IsString }
 import { Expose } from 'class-transformer'
 
 import { DocumentFormat, DocumentType } from 'consts'
+import { Default } from 'decorators'
 
 
 export interface IFDSIDList {
@@ -15,6 +16,7 @@ export interface IFDSIDList {
   dCountryName?: string
   dStateCode?: string
   dStateName?: string
+  isDeprecated: boolean
 }
 
 export class FDSIDList implements IFDSIDList {
@@ -68,4 +70,10 @@ export class FDSIDList implements IFDSIDList {
   @IsOptional()
   @IsString()
   dStateName?: string
+
+  @Expose()
+  @IsDefined()
+  @IsBoolean()
+  @Default(false)
+  isDeprecated: boolean
 }

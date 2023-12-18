@@ -17,6 +17,7 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "strictNullChecks": true,
+    "removeComments": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "isolatedModules": true,
@@ -41,10 +42,9 @@
       "outputCheck": ["js", "json", "jsx", "mjs"]
     }
   },
-  "exclude": ["examples"],
+  "exclude": ["tests"],
   "include": [
     "src",
-    "tests",
     "./types/globals.d.ts"
   ]
 }

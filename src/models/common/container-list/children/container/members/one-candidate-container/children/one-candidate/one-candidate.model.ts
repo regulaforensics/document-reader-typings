@@ -8,6 +8,7 @@ import { FDSIDList, IFDSIDList } from './children'
 export interface IOneCandidate {
   DocumentName?: string
   ID?: number
+
   P?: number
   RFID_Presence?: RfidLocation
   FDSIDList?: IFDSIDList

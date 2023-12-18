@@ -1,10 +1,11 @@
+export * from './lights'
+
 export * from './authenticity-result-type.const'
 export * from './check-diagnose.const'
 export * from './check-result.const'
 export * from './critical.const'
 export * from './document-format.const'
 export * from './document-type.const'
-export * from './document-type-recognition-result.const'
 export * from './graphic-field-type.const'
 export * from './image-quality-check-type.const'
 export * from './lcid.const'

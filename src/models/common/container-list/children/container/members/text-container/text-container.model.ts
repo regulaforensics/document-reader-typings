@@ -1,9 +1,11 @@
-import { IsDefined, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
+import { IsDefined, IsEnum, IsInt, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from 'errors'
+import { Light } from 'consts'
+import { Default } from 'decorators'
 import { ContainerAbstract } from '../../container.abstract'
-import { Text, IText } from './children'
+import { IText, Text } from './children'
 
 
 export interface ITextContainer extends ContainerAbstract {
@@ -11,25 +13,39 @@ export interface ITextContainer extends ContainerAbstract {
 }
 
 export class TextContainer extends ContainerAbstract implements ITextContainer {
+  /**
+  * Lighting scheme code for the given result (used only for images)
+  * @type {Light}
+  */
   @Expose()
-  @IsOptional()
-  @IsInt()
-  buf_length?: number
+  @IsDefined()
+  @IsEnum(Light)
+  @Default(Light.OFF)
+  light: Light
 
+  /** @internal */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsInt()
-  light?: number
+  @Default(0)
+  list_idx: number
 
+  /**
+  * Page index (when working with multi-page document)
+  * @type {number}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsInt()
-  list_idx?: number
+  @Default(0)
+  page_idx: number
 
+  /** @internal */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsInt()
-  page_idx?: number
+  @Default(0)
+  buf_length: number
 
   @Expose()
   @IsDefined()
