@@ -1,7 +1,7 @@
 import { IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IRectangleCoordinates, RectangleCoordinates } from '~src/distinct/models/common/rectangle-coordinates'
+import { IRectangleCoordinates, RectangleCoordinates } from 'models/common/rectangle-coordinates'
 import { IPointArray, PointArray } from './children'
 
 

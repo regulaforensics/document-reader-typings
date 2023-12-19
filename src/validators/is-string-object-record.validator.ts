@@ -1,6 +1,6 @@
 import { registerDecorator, ValidationArguments, ValidationOptions } from 'class-validator'
 
-import { isObject } from '~/src/distinct/helpers'
+import { isObject } from 'helpers'
 
 
 export const IsStringObjectRecord = (validationOptions?: ValidationOptions): PropertyDecorator =>

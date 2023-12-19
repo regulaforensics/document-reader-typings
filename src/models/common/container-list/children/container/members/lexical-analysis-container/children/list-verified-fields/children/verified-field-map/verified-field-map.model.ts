@@ -1,7 +1,7 @@
 import { IsArray, IsEnum, IsOptional, IsString } from 'class-validator'
 import { Expose } from 'class-transformer'
 
-import { LCID, TextFieldType, VerificationResult } from '~src/distinct/consts'
+import { LCID, TextFieldType, VerificationResult } from 'consts'
 
 
 export interface IVerifiedFieldMap {

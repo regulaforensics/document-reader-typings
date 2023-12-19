@@ -1,8 +1,8 @@
 import { IsDefined, IsEnum, IsInt, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { Light, Source } from '~src/distinct/consts'
-import { IRectangleCoordinates, IRfidOrigin, RectangleCoordinates, RfidOrigin } from '~src/distinct/models/common'
+import { Light, Source } from 'consts'
+import { IRectangleCoordinates, IRfidOrigin, RectangleCoordinates, RfidOrigin } from 'models/common'
 
 
 export interface IImagesFieldValue {

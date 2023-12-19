@@ -1,7 +1,7 @@
 import { IsDefined, IsEnum, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { CheckResult } from '~src/distinct/consts'
+import { CheckResult } from 'consts'
 import { ITextAvailableSource, ITextField, TextAvailableSource, TextField } from './children'
 
 

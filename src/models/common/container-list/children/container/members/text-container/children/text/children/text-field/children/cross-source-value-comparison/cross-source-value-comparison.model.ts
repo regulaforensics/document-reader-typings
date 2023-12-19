@@ -1,7 +1,7 @@
 import { IsDefined, IsEnum } from 'class-validator'
 import { Expose } from 'class-transformer'
 
-import { CheckResult, Source } from '~src/distinct/consts'
+import { CheckResult, Source } from 'consts'
 
 
 export interface ICrossSourceValueComparison {

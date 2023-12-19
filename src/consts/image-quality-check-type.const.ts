@@ -1,34 +1,50 @@
+/**
+* Enumeration contains possible values of input image quality check result type.
+* @enum {number}
+*/
 export enum ImageQualityCheckType {
   /**
-  * Signals glare presence on the image
+  * Glare presence on the image
   */
-  ImageGlares = 0,
+  IMAGE_GLARES = 0,
+
   /**
-  * Signals whether image is in focus
+  * Image is in focus
   */
-  ImageFocus = 1,
+  IMAGE_FOCUS = 1,
+
   /**
-  * Signals if image resolution is below threshold
+  * If image resolution is below threshold
   */
-  ImageResolution = 2,
+  IMAGE_RESOLUTION = 2,
+
   /**
-  * Signals if image is colorless
+  * Image is colorless
   */
-  ImageColorness = 3,
+  IMAGE_COLORNESS = 3,
+
   /**
-  * Signals if document in the image has prespective distortion above threshold
+  * Document in the image has prespective distortion above threshold
   */
-  Perspective = 4,
+  PERSPECTIVE = 4,
+
   /**
-  * Signals if document is not fully present in the image
+  * If the whole document page is completely within the image
   */
-  Bounds = 5,
+  BOUNDS = 5,
+
   /**
-  * Signals if an image is captured from screen
+  * If the image is captured from screen
   */
-  ScreenCapture = 6,
+  SCREEN_CAPTURE = 6,
+
   /**
-  * Signals if the portrait is present
+  * If the portrait is present
   */
-  Portrait = 7
+  PORTRAIT = 7,
+
+  /**
+  * If the document contains handwritten text in the scanned fields
+  */
+  HANDWRITTEN = 8
 }

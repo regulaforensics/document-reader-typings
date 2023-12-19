@@ -1,7 +1,9 @@
-import { IsDefined, IsInt, IsOptional, IsString, validateSync } from 'class-validator'
+import { IsDefined, IsEnum, IsInt, IsString, validateSync } from 'class-validator'
 import { Expose, plainToClass } from 'class-transformer'
 
-import { DocReaderTypeError } from '~src/distinct/errors'
+import { DocReaderTypeError } from 'errors'
+import { Light } from 'consts'
+import { Default } from 'decorators'
 import { ContainerAbstract } from '../../container.abstract'
 
 
@@ -10,25 +12,39 @@ export interface IEncryptedRCLContainer extends ContainerAbstract {
 }
 
 export class EncryptedRCLContainer extends ContainerAbstract implements IEncryptedRCLContainer {
+  /**
+  * Lighting scheme code for the given result (used only for images)
+  * @type {Light}
+  */
   @Expose()
-  @IsOptional()
-  @IsInt()
-  buf_length?: number
+  @IsDefined()
+  @IsEnum(Light)
+  @Default(Light.OFF)
+  light: Light
 
+  /** @internal */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsInt()
-  light?: number
+  @Default(0)
+  list_idx: number
 
+  /**
+  * Page index (when working with multi-page document)
+  * @type {number}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsInt()
-  list_idx?: number
+  @Default(0)
+  page_idx: number
 
+  /** @internal */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsInt()
-  page_idx?: number
+  @Default(0)
+  buf_length: number
 
   @Expose()
   @IsDefined()
