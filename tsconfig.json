@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
+    "target": "ES2022",
+    "module": "es6",
     "outDir": "./dist",
     "declaration": true,
     "declarationDir": "./dist/types",
     "lib": [
-      "es6",
+      "ES2020",
       "DOM",
-      "es2017",
-      "esnext"
+      "DOM.Iterable"
     ],
     "allowJs": true,
     "checkJs": false,
@@ -20,11 +21,10 @@
     "removeComments": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
+    "useDefineForClassFields": false,
     "isolatedModules": true,
     "baseUrl": "./src",
     "rootDir": "./src",
-    "module": "es6",
-    "target": "es2017",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
