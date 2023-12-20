@@ -2,7 +2,8 @@ import { IsDefined, IsEnum, IsInt, IsNumber, IsOptional, IsString, ValidateNeste
 import { Expose, Type } from 'class-transformer'
 
 import { Light, Source } from 'consts'
-import { IRectangleCoordinates, IRfidOrigin, RectangleCoordinates, RfidOrigin } from 'models/common'
+import { IRfidOrigin, RfidOrigin } from 'models/common/rfid-origin'
+import { IRectangleCoordinates, RectangleCoordinates } from 'models/common/rectangle-coordinates'
 
 
 export interface IImagesFieldValue {

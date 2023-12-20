@@ -4,7 +4,7 @@ import fs from 'fs'
 import { ProcessResponse } from '../src'
 
 
-const DIRECTORY = path.join(__dirname, 'test-data')
+const DIRECTORY = String(process.env.WHOLE_RESPONSE_JSONS_DIR)
 
 describe('testing whole response', () => {
   const isDirectoryExists = fs.existsSync(DIRECTORY)
