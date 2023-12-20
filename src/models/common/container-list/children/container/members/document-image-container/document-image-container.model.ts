@@ -1,10 +1,10 @@
 import { IsDefined, IsEnum, IsInt, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { DocReaderTypeError } from 'errors'
-import { Light } from 'consts'
-import { Default } from 'decorators'
-import { ImageData } from 'models/common/image-data'
+import { DocReaderTypeError } from '@/errors'
+import { Light } from '@/consts'
+import { Default } from '@/decorators'
+import { ImageData } from '@/models/common/image-data'
 import { ContainerAbstract } from '../../container.abstract'
 
 

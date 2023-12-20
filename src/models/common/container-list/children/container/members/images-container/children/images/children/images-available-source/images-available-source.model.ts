@@ -1,7 +1,7 @@
 import { IsDefined, IsEnum, IsNumber, IsOptional } from 'class-validator'
 import { Expose } from 'class-transformer'
 
-import { Source } from 'consts'
+import { Source } from '@/consts'
 
 
 export interface IImagesAvailableSource {

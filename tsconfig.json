@@ -1,10 +1,8 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "es6",
-    "outDir": "./dist",
-    "declaration": true,
-    "declarationDir": "./dist/types",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "lib": [
       "ES2020",
       "DOM",
@@ -16,15 +14,14 @@
     "esModuleInterop": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
     "strictNullChecks": true,
     "removeComments": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "useDefineForClassFields": false,
     "isolatedModules": true,
-    "baseUrl": "./src",
-    "rootDir": "./src",
+    "baseUrl": "./",
+    "rootDir": "./",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
@@ -32,19 +29,14 @@
     "typeRoots": [
       "./types",
       "./node_modules/@types"
-    ]
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    },
   },
-  "tsc-alias": {
-    "verbose": false,
-    "resolveFullPaths": true,
-    "fileExtensions": {
-      "inputGlob": "{js,jsx,mjs}",
-      "outputCheck": ["js", "json", "jsx", "mjs"]
-    }
-  },
-  "exclude": ["tests"],
-  "include": [
-    "src",
-    "./types/globals.d.ts"
+  "exclude": ["tests", "tools"],
+  "include": ["src"],
+  "references": [
+    { "path": "./tsconfig.node.json" }
   ]
 }

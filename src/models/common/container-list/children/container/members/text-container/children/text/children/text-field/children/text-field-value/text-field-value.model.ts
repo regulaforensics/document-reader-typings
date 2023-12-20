@@ -1,9 +1,9 @@
 import { IsDefined, IsEnum, IsInt, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IRectangleCoordinates, RectangleCoordinates } from 'models/common/rectangle-coordinates'
-import { IRfidOrigin, RfidOrigin } from 'models/common/rfid-origin'
-import { Source } from 'consts'
+import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { IRfidOrigin, RfidOrigin } from '@/models/common/rfid-origin'
+import { Source } from '@/consts'
 import { IOriginalSymbol, OriginalSymbol } from './children'
 
 

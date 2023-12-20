@@ -1,8 +1,8 @@
 import { IsArray, IsBoolean, IsDefined, IsEnum, IsNumber, IsOptional, IsString } from 'class-validator'
 import { Expose } from 'class-transformer'
 
-import { DocumentFormat, DocumentType } from 'consts'
-import { Default } from 'decorators'
+import { DocumentFormat, DocumentType } from '@/consts'
+import { Default } from '@/decorators'
 
 
 export interface IFDSIDList {

@@ -1,6 +1,6 @@
 import { TransformFnParams } from 'class-transformer/types/interfaces'
 
-import { ResultType } from 'consts'
+import { ResultType } from '@/consts'
 import { IStatusContainer, ITextContainer, StatusContainer, TextContainer } from './members'
 
 

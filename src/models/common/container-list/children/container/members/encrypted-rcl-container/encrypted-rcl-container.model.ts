@@ -1,9 +1,9 @@
 import { IsDefined, IsEnum, IsInt, IsString, validateSync } from 'class-validator'
 import { Expose, plainToClass } from 'class-transformer'
 
-import { DocReaderTypeError } from 'errors'
-import { Light } from 'consts'
-import { Default } from 'decorators'
+import { DocReaderTypeError } from '@/errors'
+import { Light } from '@/consts'
+import { Default } from '@/decorators'
 import { ContainerAbstract } from '../../container.abstract'
 
 

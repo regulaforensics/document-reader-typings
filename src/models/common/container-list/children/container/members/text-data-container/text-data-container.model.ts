@@ -1,10 +1,10 @@
 import { IsDefined, IsEnum, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { DocReaderTypeError } from 'errors'
-import { Light } from 'consts'
-import { Default } from 'decorators'
-import { DocVisualExtendedInfo, IDocVisualExtendedInfo } from 'models/common/doc-visual-extended-info'
+import { DocReaderTypeError } from '@/errors'
+import { Light } from '@/consts'
+import { Default } from '@/decorators'
+import { DocVisualExtendedInfo, IDocVisualExtendedInfo } from '@/models/common/doc-visual-extended-info'
 import { ContainerAbstract } from '../../container.abstract'
 
 

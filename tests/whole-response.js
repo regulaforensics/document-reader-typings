@@ -23,6 +23,7 @@ if (!isDirectoryExists) {
 const files = fs.readdirSync(DIRECTORY)
 
 files.forEach((file) => {
+  console.log(`Checking file ${file}...`)
   const filePath = path.join(DIRECTORY, file)
   const fileContent = fs.readFileSync(filePath, 'utf-8')
 
