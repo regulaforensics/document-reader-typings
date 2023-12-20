@@ -1,9 +1,9 @@
 import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { DocReaderTypeError } from 'errors'
-import { Light, ResultType } from 'consts'
-import { Default } from 'decorators'
+import { DocReaderTypeError } from '@/errors'
+import { Light, ResultType } from '@/consts'
+import { Default } from '@/decorators'
 import { ContainerAbstract } from '../../container.abstract'
 import { DocBarCodeInfoFieldsList, IDocBarCodeInfoFieldsList } from './children'
 

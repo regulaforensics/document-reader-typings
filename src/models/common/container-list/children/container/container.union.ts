@@ -1,73 +1,36 @@
 import { TransformFnParams } from 'class-transformer/types/interfaces'
 
-import {
-  AuthenticityCheckListContainer,
-  OneCandidateContainer,
-  DocBarCodeInfoContainer,
-  DocumentImageContainer,
-  DocumentPositionContainer,
-  DocumentTypesCandidatesContainer,
-  EncryptedRCLContainer,
-  GraphicsContainer,
-  IAuthenticityCheckListContainer,
-  IOneCandidateContainer,
-  IDocBarCodeInfoContainer,
-  IDocumentImageContainer,
-  IDocumentPositionContainer,
-  IDocumentTypesCandidatesContainer,
-  IEncryptedRCLContainer,
-  IGraphicsContainer,
-  IImageQualityContainer,
-  IImagesContainer,
-  ILexicalAnalysisContainer,
-  ILicenseContainer,
-  ImageQualityContainer,
-  ImagesContainer,
-  IStatusContainer,
-  ITextContainer,
-  ITextDataContainer,
-  LexicalAnalysisContainer,
-  LicenseContainer,
-  StatusContainer,
-  TextContainer,
-  TextDataContainer
-} from './members'
+import { ResultType } from '@/consts'
+import { IStatusContainer, ITextContainer, StatusContainer, TextContainer } from './members'
 
 
 export type ContainerUnion =
-  AuthenticityCheckListContainer |
-  DocBarCodeInfoContainer |
-  DocumentImageContainer |
-  DocumentPositionContainer |
-  DocumentTypesCandidatesContainer |
-  EncryptedRCLContainer |
-  GraphicsContainer |
-  ImageQualityContainer |
-  ImagesContainer |
-  LexicalAnalysisContainer |
-  LicenseContainer |
-  OneCandidateContainer |
   StatusContainer |
-  TextContainer |
-  TextDataContainer
+  TextContainer
 
 export type IContainerUnion =
-  IAuthenticityCheckListContainer |
-  IDocBarCodeInfoContainer |
-  IDocumentImageContainer |
-  IDocumentPositionContainer |
-  IDocumentTypesCandidatesContainer |
-  IEncryptedRCLContainer |
-  IGraphicsContainer |
-  IImageQualityContainer |
-  IImagesContainer |
-  ILexicalAnalysisContainer |
-  ILicenseContainer |
-  IOneCandidateContainer |
   IStatusContainer |
-  ITextContainer |
-  ITextDataContainer
+  ITextContainer
 
 export namespace ContainerUnion {
-  export const transform = ({ value }: TransformFnParams) => StatusContainer.fromPlain(value)
+  export const transform = (data: TransformFnParams) => {
+    const { value } = data
+
+    const result: ContainerUnion[] = []
+
+    if (!Array.isArray(value)) {
+      return result
+    }
+
+    for (const item of value) {
+      switch (item?.result_type) {
+        case ResultType.STATUS:
+          result.push(StatusContainer.fromPlain(item))
+        break
+      }
+    }
+
+
+    return result
+  }
 }

@@ -1,7 +1,7 @@
 import { IsDefined, IsEnum, IsOptional, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { CheckResult, LCID, TextFieldType } from 'consts'
+import { CheckResult, LCID, TextFieldType } from '@/consts'
 import {
   CrossSourceValueComparison,
   ICrossSourceValueComparison,

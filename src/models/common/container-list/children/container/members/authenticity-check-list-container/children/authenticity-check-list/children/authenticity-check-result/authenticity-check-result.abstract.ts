@@ -1,4 +1,4 @@
-import { AuthenticityResultType, CheckResult } from 'consts'
+import { AuthenticityResultType, CheckResult } from '@/consts'
 
 
 export abstract class AuthenticityCheckResultAbstract {

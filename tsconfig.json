@@ -1,13 +1,12 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
-    "declaration": true,
-    "declarationDir": "./dist/types",
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "lib": [
-      "es6",
+      "ES2020",
       "DOM",
-      "es2017",
-      "esnext"
+      "DOM.Iterable"
     ],
     "allowJs": true,
     "checkJs": false,
@@ -15,16 +14,14 @@
     "esModuleInterop": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
     "strictNullChecks": true,
     "removeComments": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
+    "useDefineForClassFields": false,
     "isolatedModules": true,
-    "baseUrl": "./src",
-    "rootDir": "./src",
-    "module": "es6",
-    "target": "es2017",
+    "baseUrl": "./",
+    "rootDir": "./",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
@@ -32,19 +29,14 @@
     "typeRoots": [
       "./types",
       "./node_modules/@types"
-    ]
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    },
   },
-  "tsc-alias": {
-    "verbose": false,
-    "resolveFullPaths": true,
-    "fileExtensions": {
-      "inputGlob": "{js,jsx,mjs}",
-      "outputCheck": ["js", "json", "jsx", "mjs"]
-    }
-  },
-  "exclude": ["tests"],
-  "include": [
-    "src",
-    "./types/globals.d.ts"
+  "exclude": ["tests", "tools"],
+  "include": ["src"],
+  "references": [
+    { "path": "./tsconfig.node.json" }
   ]
 }

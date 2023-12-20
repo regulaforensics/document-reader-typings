@@ -1,4 +1,4 @@
-import { Light, ResultType } from 'consts'
+import { Light, ResultType } from '@/consts'
 
 
 export abstract class ContainerAbstract {

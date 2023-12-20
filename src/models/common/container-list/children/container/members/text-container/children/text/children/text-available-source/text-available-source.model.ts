@@ -1,7 +1,7 @@
 import { IsDefined, IsEnum, IsInt, IsOptional } from 'class-validator'
 import { Expose } from 'class-transformer'
 
-import { CheckResult, Source } from 'consts'
+import { CheckResult, Source } from '@/consts'
 
 
 export interface ITextAvailableSource {
