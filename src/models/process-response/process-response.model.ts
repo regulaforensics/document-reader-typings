@@ -63,7 +63,7 @@ export class ProcessResponse implements IProcessResponse {
   @Min(0)
   elapsedTime?: number
 
-  static fromPlain = (input: unknown): ProcessResponse | never => plainToClass(ProcessResponse, input)
+  static fromPlain = (input: unknown): ProcessResponse | never => plainToClass(ProcessResponse, input, { strategy: 'excludeAll' })
 
   static isValid = (instance: ProcessResponse): true | never => {
     const errors = validateSync(instance)

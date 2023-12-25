@@ -1,15 +1,15 @@
-import { IsDefined, IsEnum, IsInt, ValidateNested, validateSync } from 'class-validator'
+import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Light } from '@/consts'
+import { Light, ResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { ContainerAbstract } from '../../container.abstract'
-import { IText, Text } from './children'
+import { ITextResult, TextResult } from './children'
 
 
 export interface ITextContainer extends ContainerAbstract {
-  Text: IText
+  Text: ITextResult
 }
 
 export class TextContainer extends ContainerAbstract implements ITextContainer {
@@ -47,13 +47,25 @@ export class TextContainer extends ContainerAbstract implements ITextContainer {
   @Default(0)
   buf_length: number
 
+  /**
+  * Result type stored in this container (one of ResultType identifiers)
+  * @type {ResultType.TEXT}
+  */
+  @Expose()
+  @IsDefined()
+  @IsEnum(ResultType)
+  @IsIn([
+    ResultType.TEXT,
+  ])
+  result_type: ResultType.TEXT
+
   @Expose()
   @IsDefined()
   @ValidateNested()
-  @Type(() => Text)
-  Text: Text
+  @Type(() => TextResult)
+  Text: TextResult
 
-  static fromPlain = (input: unknown) => plainToClass(TextContainer, input)
+  static fromPlain = (input: unknown) => plainToClass(TextContainer, input, { strategy: 'excludeAll' })
 
   static isValid = (instance: TextContainer): true | never => {
     const errors = validateSync(instance)

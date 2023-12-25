@@ -5,11 +5,15 @@ import { DocReaderTypeError } from '@/errors'
 import { Light, ResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { ContainerAbstract } from '../../container.abstract'
-import { DocBarCodeInfoFieldsList, IDocBarCodeInfoFieldsList } from './children'
+import { DocBarCodeInfo, IDocBarCodeInfo } from './children'
 
 
 export interface IDocBarCodeInfoContainer extends ContainerAbstract {
-  DocBarCodeInfo?: IDocBarCodeInfoFieldsList
+  /**
+  * Structure serves for storing and passing to the user application of results of bar-codes areas search on the
+  * scanned document page and their reading in binary non-formatted code.
+  */
+  DocBarCodeInfo?: IDocBarCodeInfo
 }
 
 export class DocBarCodeInfoContainer extends ContainerAbstract implements IDocBarCodeInfoContainer {
@@ -59,11 +63,15 @@ export class DocBarCodeInfoContainer extends ContainerAbstract implements IDocBa
   ])
   result_type: ResultType.BAR_CODES
 
+  /**
+  * Structure serves for storing and passing to the user application of results of bar-codes areas search on the
+  * scanned document page and their reading in binary non-formatted code.
+  */
   @Expose()
   @IsOptional()
   @ValidateNested()
-  @Type(() => DocBarCodeInfoFieldsList)
-  DocBarCodeInfo?: DocBarCodeInfoFieldsList
+  @Type(() => DocBarCodeInfo)
+  DocBarCodeInfo?: DocBarCodeInfo
 
   static fromPlain = (input: unknown) => plainToClass(DocBarCodeInfoContainer, input)
 

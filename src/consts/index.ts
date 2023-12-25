@@ -1,6 +1,10 @@
 export * from './lights'
 
 export * from './authenticity-result-type.const'
+export * from './bar-code-detection-type.const'
+export * from './bar-code-module-type.const'
+export * from './bar-code-result-codes.const'
+export * from './bar-code-type.const'
 export * from './check-diagnose.const'
 export * from './check-result.const'
 export * from './critical.const'
