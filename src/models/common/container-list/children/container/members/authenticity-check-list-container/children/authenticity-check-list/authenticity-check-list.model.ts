@@ -17,7 +17,7 @@ export class AuthenticityCheckList implements IAuthenticityCheckList {
 
   @Expose()
   @ValidateNested({ each: true })
-  @Transform(AuthenticityCheckResultUnion.transform)
+  @Transform(({ obj }) => AuthenticityCheckResultUnion.transformList(obj.List), { toClassOnly: true })
   @IsArray()
   List: AuthenticityCheckResultUnion[]
 }

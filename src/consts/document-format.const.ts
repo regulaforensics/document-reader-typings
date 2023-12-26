@@ -4,6 +4,11 @@
 */
 export enum DocumentFormat {
   /**
+  * Unknown document format
+  */
+  UNKNOWN = -1,
+
+  /**
   * ID1 document format
   */
   ID1 = 0,

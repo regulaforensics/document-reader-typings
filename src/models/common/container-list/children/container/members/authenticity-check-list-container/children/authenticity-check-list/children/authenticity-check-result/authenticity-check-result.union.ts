@@ -1,6 +1,5 @@
-import { TransformFnParams } from 'class-transformer/types/interfaces'
-
 import { AuthenticityResultType } from '@/consts'
+import { isObject } from '@/helpers'
 import {
   AuthenticityFiberCheckResult,
   AuthenticityIdentCheckResult,
@@ -13,7 +12,6 @@ import {
   IAuthenticityPhotoIdentCheckResult,
   IAuthenticitySecurityFeatureCheckResult
 } from './members'
-import { AuthenticityCheckResultAbstract } from './authenticity-check-result.abstract'
 
 
 export type AuthenticityCheckResultUnion =
@@ -31,11 +29,15 @@ export type IAuthenticityCheckResultUnion =
   IAuthenticitySecurityFeatureCheckResult
 
 export namespace AuthenticityCheckResultUnion {
-  export const transform = ({ value }: TransformFnParams) => {
+  export const transformList = (items: unknown[]) => {
     const result: AuthenticityCheckResultUnion[] = []
-    const items: AuthenticityCheckResultAbstract[] = value
 
-    items.forEach((item: AuthenticityCheckResultAbstract) => {
+    items.forEach((item) => {
+      if (!isObject(item) || !item.hasOwnProperty('Type')) {
+        return
+      }
+
+      // @ts-ignore
       const { Type } = item
 
       switch (Type) {

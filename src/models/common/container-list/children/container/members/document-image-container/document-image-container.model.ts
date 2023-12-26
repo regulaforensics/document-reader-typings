@@ -9,6 +9,9 @@ import { ContainerAbstract } from '../../container.abstract'
 
 
 export interface IDocumentImageContainer extends ContainerAbstract {
+  /**
+  * Structure is used for storing a graphic image
+  */
   RawImageContainer: ImageData
 }
 
@@ -47,6 +50,9 @@ export class DocumentImageContainer extends ContainerAbstract implements IDocume
   @Default(0)
   buf_length: number
 
+  /**
+  * Structure is used for storing a graphic image
+  */
   @Expose()
   @IsDefined()
   @ValidateNested()

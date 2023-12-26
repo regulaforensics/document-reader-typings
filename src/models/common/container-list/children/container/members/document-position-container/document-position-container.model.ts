@@ -4,12 +4,15 @@ import { Expose, plainToClass, Type } from 'class-transformer'
 import { DocReaderTypeError } from '@/errors'
 import { Light } from '@/consts'
 import { Default } from '@/decorators'
+import { BoundsResult, IBoundsResult } from '@/models/common/bounds-result'
 import { ContainerAbstract } from '../../container.abstract'
-import { DocumentPosition, IDocumentPosition } from './children'
 
 
 export interface IDocumentPositionContainer extends ContainerAbstract {
-  DocumentPosition?: IDocumentPosition
+  /**
+  * Document position
+  */
+  DocumentPosition: IBoundsResult
 }
 
 export class DocumentPositionContainer extends ContainerAbstract implements IDocumentPositionContainer {
@@ -47,11 +50,14 @@ export class DocumentPositionContainer extends ContainerAbstract implements IDoc
   @Default(0)
   buf_length: number
 
+  /**
+  * Document position
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @ValidateNested()
-  @Type(() => DocumentPosition)
-  DocumentPosition?: DocumentPosition
+  @Type(() => BoundsResult)
+  DocumentPosition: BoundsResult
 
   static fromPlain = (input: unknown) => plainToClass(DocumentPositionContainer, input)
 

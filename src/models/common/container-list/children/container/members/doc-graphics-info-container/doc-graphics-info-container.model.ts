@@ -1,18 +1,18 @@
-import { IsDefined, IsEnum, IsInt, ValidateNested, validateSync } from 'class-validator'
+import { IsDefined, IsEnum, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { Light } from '@/consts'
 import { Default } from '@/decorators'
 import { ContainerAbstract } from '../../container.abstract'
-import { IImageQualityCheckList, ImageQualityCheckList } from './children'
+import { DocGraphicsInfo, IDocGraphicsInfo } from './children'
 
 
-export interface IImageQualityContainer extends ContainerAbstract {
-  ImageQualityCheckList: IImageQualityCheckList
+export interface IDocGraphicsInfoContainer extends ContainerAbstract {
+  DocGraphicsInfo?: IDocGraphicsInfo
 }
 
-export class ImageQualityContainer extends ContainerAbstract implements IImageQualityContainer {
+export class DocGraphicsInfoContainer extends ContainerAbstract implements IDocGraphicsInfoContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {Light}
@@ -48,18 +48,18 @@ export class ImageQualityContainer extends ContainerAbstract implements IImageQu
   buf_length: number
 
   @Expose()
-  @IsDefined()
+  @IsOptional()
   @ValidateNested()
-  @Type(() => ImageQualityCheckList)
-  ImageQualityCheckList: ImageQualityCheckList
+  @Type(() => DocGraphicsInfo)
+  DocGraphicsInfo?: DocGraphicsInfo
 
-  static fromPlain = (input: unknown) => plainToClass(ImageQualityContainer, input)
+  static fromPlain = (input: unknown) => plainToClass(DocGraphicsInfoContainer, input)
 
-  static isValid = (instance: ImageQualityContainer): true | never => {
+  static isValid = (instance: DocGraphicsInfoContainer): true | never => {
     const errors = validateSync(instance)
 
     if (errors.length) {
-      throw new DocReaderTypeError('ImageQualityContainer validation error: the data received does not match model structure!', errors)
+      throw new DocReaderTypeError('DocGraphicsInfoContainer validation error: the data received does not match model structure!', errors)
     }
 
     return true

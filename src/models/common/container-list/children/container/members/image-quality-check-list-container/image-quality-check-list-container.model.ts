@@ -1,18 +1,18 @@
-import { IsDefined, IsEnum, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
+import { IsDefined, IsEnum, IsInt, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { Light } from '@/consts'
 import { Default } from '@/decorators'
 import { ContainerAbstract } from '../../container.abstract'
-import { GraphicFieldsList, IGraphicFieldsList } from './children'
+import { IImageQualityCheckList, ImageQualityCheckList } from './children'
 
 
-export interface IGraphicsContainer extends ContainerAbstract {
-  DocGraphicsInfo?: IGraphicFieldsList
+export interface IImageQualityCheckListContainer extends ContainerAbstract {
+  ImageQualityCheckList: IImageQualityCheckList
 }
 
-export class GraphicsContainer extends ContainerAbstract implements IGraphicsContainer {
+export class ImageQualityCheckListContainer extends ContainerAbstract implements IImageQualityCheckListContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {Light}
@@ -48,18 +48,18 @@ export class GraphicsContainer extends ContainerAbstract implements IGraphicsCon
   buf_length: number
 
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @ValidateNested()
-  @Type(() => GraphicFieldsList)
-  DocGraphicsInfo?: GraphicFieldsList
+  @Type(() => ImageQualityCheckList)
+  ImageQualityCheckList: ImageQualityCheckList
 
-  static fromPlain = (input: unknown) => plainToClass(GraphicsContainer, input)
+  static fromPlain = (input: unknown) => plainToClass(ImageQualityCheckListContainer, input)
 
-  static isValid = (instance: GraphicsContainer): true | never => {
+  static isValid = (instance: ImageQualityCheckListContainer): true | never => {
     const errors = validateSync(instance)
 
     if (errors.length) {
-      throw new DocReaderTypeError('GraphicsContainer validation error: the data received does not match model structure!', errors)
+      throw new DocReaderTypeError('ImageQualityCheckListContainer validation error: the data received does not match model structure!', errors)
     }
 
     return true

@@ -19,6 +19,6 @@ export class ContainerList implements IContainerList {
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })
-  @Transform(ContainerUnion.transform)
+  @Transform(({ obj }) => ContainerUnion.transformList(obj.List), { toClassOnly: true })
   List: ContainerUnion[]
 }

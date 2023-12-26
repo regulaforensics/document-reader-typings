@@ -1,8 +1,6 @@
-import { TransformFnParams } from 'class-transformer/types/interfaces'
-
 import { ResultType } from '@/consts'
 import { IStatusContainer, ITextContainer, StatusContainer, TextContainer } from './members'
-import * as process from 'process'
+import { isObject } from '@/helpers'
 
 
 export type ContainerUnion =
@@ -14,17 +12,22 @@ export type IContainerUnion =
   ITextContainer
 
 export namespace ContainerUnion {
-  export const transform = (data: TransformFnParams) => {
-    const { obj } = data
-    const value = obj.List
+  export const transformList = (items: unknown[]) => {
     const result: ContainerUnion[] = []
 
-    if (!Array.isArray(value)) {
+    if (!Array.isArray(items)) {
       return result
     }
 
-    for (const item of value) {
-      switch (item?.result_type) {
+    for (const item of items) {
+      if (!isObject(item) || !item.hasOwnProperty('result_type')) {
+        continue
+      }
+
+      // @ts-ignore
+      const { result_type } = item
+
+      switch (result_type) {
         case ResultType.STATUS:
           result.push(StatusContainer.fromPlain(item))
         break
@@ -33,7 +36,6 @@ export namespace ContainerUnion {
         break
       }
     }
-
 
     return result
   }
