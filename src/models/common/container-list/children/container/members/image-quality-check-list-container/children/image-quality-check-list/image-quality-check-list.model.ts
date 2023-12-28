@@ -6,16 +6,33 @@ import { IImageQualityCheck, ImageQualityCheck } from './children'
 
 
 export interface IImageQualityCheckList {
+  /**
+  * Overall check result
+  * @type {CheckResult}
+  */
   result: CheckResult
+
+  /**
+  * Array of single check result pointers
+  * @type {IImageQualityCheck[]}
+  */
   List: IImageQualityCheck[]
 }
 
 export class ImageQualityCheckList implements IImageQualityCheckList {
+  /**
+  * Overall check result
+  * @type {CheckResult}
+  */
   @Expose()
   @IsDefined()
   @IsEnum(CheckResult)
   result: CheckResult
 
+  /**
+  * Array of single check result pointers
+  * @type {ImageQualityCheck[]}
+  */
   @Expose()
   @IsDefined()
   @ValidateNested({ each: true })

@@ -9,22 +9,26 @@ import { DocGraphicField } from '../../doc-graphic-field.abstract'
 export interface IDocGraphicFieldRfid extends DocGraphicField {
   /**
   * Data group
+  * @type {RfidDataGroupTypeTag}
   */
   RFID_OriginDG: RfidDataGroupTypeTag
 
   /**
   * Record index of the source of the image with biometric information
   * in the datagroup
+  * @type {number}
   */
   RFID_OriginDGTag: number
 
   /**
   * Index of the sample in the biometric data record
+  * @type {number}
   */
   RFID_OriginTagEntry: number
 
   /**
   * Index of the biometric data sample
+  * @type {number}
   */
   RFID_OriginEntryView: number
 }
@@ -32,6 +36,7 @@ export interface IDocGraphicFieldRfid extends DocGraphicField {
 export class DocGraphicFieldRfid extends DocGraphicField implements IDocGraphicFieldRfid {
   /**
   * Graphic field logical type
+  * @type {GraphicFieldType}
   */
   @Expose()
   @IsDefined()
@@ -40,6 +45,7 @@ export class DocGraphicFieldRfid extends DocGraphicField implements IDocGraphicF
 
   /**
   * Graphic field symbolic name
+  * @type {string}
   */
   @Expose()
   @IsDefined()
@@ -48,6 +54,7 @@ export class DocGraphicFieldRfid extends DocGraphicField implements IDocGraphicF
 
   /**
   * Image data
+  * @type {ImageData}
   */
   @Expose()
   @IsDefined()
@@ -57,6 +64,7 @@ export class DocGraphicFieldRfid extends DocGraphicField implements IDocGraphicF
 
   /**
   * Data group
+  * @type {RfidDataGroupTypeTag}
   */
   @Expose()
   @IsDefined()
@@ -66,6 +74,7 @@ export class DocGraphicFieldRfid extends DocGraphicField implements IDocGraphicF
   /**
   * Record index of the source of the image with biometric information
   * in the datagroup
+  * @type {number}
   */
   @Expose()
   @IsDefined()
@@ -74,6 +83,7 @@ export class DocGraphicFieldRfid extends DocGraphicField implements IDocGraphicF
 
   /**
   * Index of the sample in the biometric data record
+  * @type {number}
   */
   @Expose()
   @IsDefined()
@@ -82,11 +92,18 @@ export class DocGraphicFieldRfid extends DocGraphicField implements IDocGraphicF
 
   /**
   * Index of the biometric data sample
+  * @type {number}
   */
   @Expose()
   @IsDefined()
   @IsInt()
   RFID_OriginEntryView: number
 
+  /**
+  * Create new instance of DocGraphicFieldRfid from plain object
+  *
+  * @param {unknown} input - plain object
+  * @return {DocGraphicFieldRfid}
+  */
   static fromPlain = (input: unknown): DocGraphicFieldRfid => plainToClass(DocGraphicFieldRfid, input)
 }

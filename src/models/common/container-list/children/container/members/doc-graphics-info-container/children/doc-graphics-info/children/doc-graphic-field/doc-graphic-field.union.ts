@@ -11,6 +11,12 @@ export type IDocGraphicFieldUnion =
   IDocGraphicFieldRfid
 
 export namespace DocGraphicFieldUnion {
+  /**
+  * Transform list of items to list of DocGraphicFieldUnion
+  *
+  * @param {unknown[]} items - list of items
+  * @returns {DocGraphicFieldUnion[]}
+  */
   export const transformList = (items: unknown[]) => {
     const result: DocGraphicFieldUnion[] = []
 

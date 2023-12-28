@@ -3,7 +3,7 @@ import { Expose, Type } from 'class-transformer'
 
 import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
 import { IImageData, ImageData } from '@/models/common/image-data'
-import { AreaContainer, IAreaContainer } from '@/models/common/area-container'
+import { AreaArray, IAreaArray } from '@/models/common/area-array'
 import { AuthenticityResultType, CheckDiagnose, CheckResult, Light, SecurityFeatureType } from '@/consts'
 
 
@@ -27,7 +27,7 @@ export interface IIdentResult {
   Image?: IImageData
   EtalonImage?: IImageData
   PercentValue?: number
-  AreaList?: IAreaContainer
+  AreaList?: IAreaArray
 }
 
 export class IdentResult implements IIdentResult {
@@ -103,6 +103,6 @@ export class IdentResult implements IIdentResult {
   @Expose()
   @IsOptional()
   @ValidateNested()
-  @Type(() => AreaContainer)
-  AreaList?: AreaContainer
+  @Type(() => AreaArray)
+  AreaList?: AreaArray
 }

@@ -1,7 +1,7 @@
 import { IsDefined, IsEnum, IsIn, IsNumber, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { AreaContainer, IAreaContainer } from '@/models/common/area-container'
+import { AreaArray, IAreaArray } from '@/models/common/area-array'
 import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
 import {
   AuthenticityResultType,
@@ -31,7 +31,7 @@ export interface ISecurityFeatureResult {
   ElementRect?: IRectangleCoordinates
   Visibility?: Visibility
   CriticalFlag?: Critical
-  AreaList?: IAreaContainer
+  AreaList?: IAreaArray
   Reserved2?: number
 }
 
@@ -97,8 +97,8 @@ export class SecurityFeatureResult implements ISecurityFeatureResult {
   @Expose()
   @IsOptional()
   @ValidateNested()
-  @Type(() => AreaContainer)
-  AreaList?: AreaContainer
+  @Type(() => AreaArray)
+  AreaList?: AreaArray
 
   @Expose()
   @IsOptional()

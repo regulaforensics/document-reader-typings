@@ -11,11 +11,13 @@ import { IDocBarCodeField, DocBarCodeField } from './children'
 export interface IDocBarCodeInfo {
   /**
   * Number of pArrayFields array elements
+  * @type {number}
   */
   nFields: number
 
   /**
   * Array of separate bar-codes reading results
+  * @type {IDocBarCodeField[]}
   */
   pArrayFields: IDocBarCodeField[]
 }
@@ -23,6 +25,7 @@ export interface IDocBarCodeInfo {
 export class DocBarCodeInfo implements IDocBarCodeInfo {
   /**
   * Number of pArrayFields array elements
+  * @type {number}
   */
   @Expose()
   @IsDefined()
@@ -31,6 +34,7 @@ export class DocBarCodeInfo implements IDocBarCodeInfo {
 
   /**
   * Array of separate bar-codes reading results
+  * @type {IDocBarCodeField[]}
   */
   @Expose()
   @IsDefined()

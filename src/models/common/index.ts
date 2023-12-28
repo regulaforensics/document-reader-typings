@@ -1,4 +1,4 @@
-export * from './area-container'
+export * from './area-array'
 export * from './container-list'
 export * from './doc-visual-extended-info'
 export * from './image-data'

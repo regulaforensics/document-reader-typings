@@ -71,13 +71,14 @@ export class StatusContainer extends ContainerAbstract implements IStatusContain
 
   /**
   * Transform plain object to StatusContainer instance.
-  * @param input {unknown}
+  * @param {unknown} input - plain object
+  * @returns {StatusContainer}
   */
   static fromPlain = (input: unknown) => plainToClass(StatusContainer, input, { strategy: 'excludeAll' })
 
   /**
   * Validate instance of StatusContainer for conformance with the schema.
-  * @param instance
+  * @param {StatusContainer} instance - instance of StatusContainer
   * @throws {DocReaderTypeError}
   * @returns {true} if object satisfies StatusContainer schema
   */

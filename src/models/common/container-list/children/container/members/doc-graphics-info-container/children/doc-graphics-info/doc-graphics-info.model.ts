@@ -11,6 +11,7 @@ import { DocGraphicFieldUnion, IDocGraphicFieldUnion } from './children'
 export interface IDocGraphicsInfo {
   /**
   * Array of images
+  * @type {IDocGraphicFieldUnion[]}
   */
   pArrayFields: IDocGraphicFieldUnion[]
 }
@@ -18,6 +19,7 @@ export interface IDocGraphicsInfo {
 export class DocGraphicsInfo implements IDocGraphicsInfo {
   /**
   * Array of images
+  * @type {DocGraphicFieldUnion[]}
   */
   @Expose()
   @IsDefined()

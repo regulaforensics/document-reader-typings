@@ -51,8 +51,21 @@ export class EncryptedRCLContainer extends ContainerAbstract implements IEncrypt
   @IsString()
   EncryptedRCL: string
 
-  static fromPlain = (input: unknown) => plainToClass(EncryptedRCLContainer, input)
+  /**
+  * Creates an instance of EncryptedRCLContainer from plain
+  *
+  * @param {unknown} input - plain object
+  * @returns {EncryptedRCLContainer}
+  */
+  static fromPlain = (input: unknown): EncryptedRCLContainer => plainToClass(EncryptedRCLContainer, input)
 
+  /**
+  * Check if the given instance of EncryptedRCLContainer is valid
+  *
+  * @param {EncryptedRCLContainer} instance - instance to check
+  * @throws {DocReaderTypeError}
+  * @returns {true | never}
+  */
   static isValid = (instance: EncryptedRCLContainer): true | never => {
     const errors = validateSync(instance)
 

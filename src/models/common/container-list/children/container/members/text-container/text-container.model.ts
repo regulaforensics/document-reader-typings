@@ -65,8 +65,21 @@ export class TextContainer extends ContainerAbstract implements ITextContainer {
   @Type(() => TextResult)
   Text: TextResult
 
-  static fromPlain = (input: unknown) => plainToClass(TextContainer, input, { strategy: 'excludeAll' })
+  /**
+  * Creates an instance of TextContainer from plain object
+  *
+  * @param {unknown} input - plain object
+  * @returns {TextContainer}
+  */
+  static fromPlain = (input: unknown): TextContainer => plainToClass(TextContainer, input, { strategy: 'excludeAll' })
 
+  /**
+  * Check if the given instance of TextContainer is valid
+  *
+  * @param {TextContainer} instance - instance of TextContainer to validate
+  * @throws {DocReaderTypeError}
+  * @returns {true | never}
+  */
   static isValid = (instance: TextContainer): true | never => {
     const errors = validateSync(instance)
 

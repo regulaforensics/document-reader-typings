@@ -59,8 +59,21 @@ export class DocumentPositionContainer extends ContainerAbstract implements IDoc
   @Type(() => BoundsResult)
   DocumentPosition: BoundsResult
 
-  static fromPlain = (input: unknown) => plainToClass(DocumentPositionContainer, input)
+  /**
+  * Create new instance of DocumentPositionContainer from plain object
+  *
+  * @param {unknown} input - plain object
+  * @return {DocumentPositionContainer}
+  */
+  static fromPlain = (input: unknown): DocumentPositionContainer => plainToClass(DocumentPositionContainer, input)
 
+  /**
+  * Check if the given instance of DocumentPositionContainer is valid
+  *
+  * @param {DocumentPositionContainer} instance - instance of DocumentPositionContainer to validate
+  * @throws {DocReaderTypeError} - if DocumentPositionContainer is not valid
+  * @return {true | never} - true if DocumentPositionContainer is valid, never otherwise
+  */
   static isValid = (instance: DocumentPositionContainer): true | never => {
     const errors = validateSync(instance)
 

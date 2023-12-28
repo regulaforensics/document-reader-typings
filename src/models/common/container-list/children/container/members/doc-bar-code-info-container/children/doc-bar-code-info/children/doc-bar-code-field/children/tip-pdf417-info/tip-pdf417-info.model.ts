@@ -6,31 +6,37 @@ import { Default } from '@/decorators'
 export interface ITipPDF417Info {
   /**
   * Code decoding rotation angle (in radians)
+  * @type {number}
   */
   Angle: number
 
   /**
   * Number of columns in the bar-code
+  * @type {number}
   */
   bcColumn: number
 
   /**
   * BarCode error correction level
+  * @type {number}
   */
   bcErrorLevel: number
 
   /**
   * Number of rows in a bar-code
+  * @type {number}
   */
   bcRow: number
 
   /**
   * Width of the minimum bar-code element on the image, in pixels
+  * @type {number}
   */
   minX: number
 
   /**
   * Height of the minimum bar-code element on the image, in pixels
+  * @type {number}
   */
   minY: number
 }
@@ -38,6 +44,7 @@ export interface ITipPDF417Info {
 export class TipPDF417Info implements ITipPDF417Info {
   /**
   * Code decoding rotation angle (in radians)
+  * @type {number}
   */
   @Expose()
   @IsDefined()
@@ -47,6 +54,7 @@ export class TipPDF417Info implements ITipPDF417Info {
 
   /**
   * Number of columns in the bar-code
+  * @type {number}
   */
   @Expose()
   @IsDefined()
@@ -56,6 +64,7 @@ export class TipPDF417Info implements ITipPDF417Info {
 
   /**
   * BarCode error correction level
+  * @type {number}
   */
   @Expose()
   @IsDefined()
@@ -65,6 +74,7 @@ export class TipPDF417Info implements ITipPDF417Info {
 
   /**
   * Number of rows in a bar-code
+  * @type {number}
   */
   @Expose()
   @IsDefined()
@@ -74,6 +84,7 @@ export class TipPDF417Info implements ITipPDF417Info {
 
   /**
   * Width of the minimum bar-code element on the image, in pixels
+  * @type {number}
   */
   @Expose()
   @IsOptional()
@@ -83,6 +94,7 @@ export class TipPDF417Info implements ITipPDF417Info {
 
   /**
   * Height of the minimum bar-code element on the image, in pixels
+  * @type {number}
   */
   @Expose()
   @IsOptional()

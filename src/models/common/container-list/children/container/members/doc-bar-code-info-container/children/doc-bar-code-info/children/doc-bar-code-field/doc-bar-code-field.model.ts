@@ -10,41 +10,49 @@ import { TipPDF417Info, TipDecodeModule, ITipPDF417Info, ITipDecodeModule } from
 export interface IDocBarCodeField {
   /**
   * BarCode rotation angle (in radians)
+  * @type {number}
   */
   bcAngle_DETECT: number
 
   /**
   * BarCode reading result
+  * @type {BarCodeResultCodes}
   */
   bcCodeResult: BarCodeResultCodes
 
   /**
   * Number of read bar-code modules
+  * @type {number}
   */
   bcCountModule: number
 
   /**
   * Results of reading data from a bar-code modules
+  * @type {ITipDecodeModule[]}
   */
   bcDataModule: ITipDecodeModule[]
 
   /**
   * Information on PDF417 code parameters (only for PDF417)
+  * @type {ITipPDF417Info}
   */
   bcPDF417INFO?: ITipPDF417Info
 
   /**
   * BarCode area coordinates on the image
+  * @type {IRectangleCoordinates}
   */
   bcROI_DETECT: IRectangleCoordinates
 
   /**
   * Decoded bar-code type
+  * @type {BarCodeType}
   */
   bcType_DECODE: BarCodeType
 
   /**
   * Type of the detected bar-code
+  * @type {BarCodeDetectionType}
   */
   bcType_DETECT: BarCodeDetectionType
 
@@ -67,6 +75,7 @@ export interface IDocBarCodeField {
 export class DocBarCodeField implements IDocBarCodeField {
   /**
   * BarCode rotation angle (in radians)
+  * @type {number}
   */
   @Expose()
   @IsDefined()
@@ -76,6 +85,7 @@ export class DocBarCodeField implements IDocBarCodeField {
 
   /**
   * BarCode reading result
+  * @type {BarCodeResultCodes}
   */
   @Expose()
   @IsDefined()
@@ -85,6 +95,7 @@ export class DocBarCodeField implements IDocBarCodeField {
 
   /**
   * Number of read bar-code modules
+  * @type {number}
   */
   @Expose()
   @IsDefined()
@@ -93,6 +104,7 @@ export class DocBarCodeField implements IDocBarCodeField {
 
   /**
   * Results of reading data from a bar-code modules
+  * @type {ITipDecodeModule[]}
   */
   @Expose()
   @IsDefined()
@@ -104,6 +116,7 @@ export class DocBarCodeField implements IDocBarCodeField {
 
   /**
   * Information on PDF417 code parameters (only for PDF417)
+  * @type {ITipPDF417Info}
   */
   @Expose()
   @IsOptional()
@@ -113,6 +126,7 @@ export class DocBarCodeField implements IDocBarCodeField {
 
   /**
   * BarCode area coordinates on the image
+  * @type {IRectangleCoordinates}
   */
   @Expose()
   @IsDefined()
@@ -122,6 +136,7 @@ export class DocBarCodeField implements IDocBarCodeField {
 
   /**
   * Decoded bar-code type
+  * @type {BarCodeType}
   */
   @Expose()
   @IsDefined()
@@ -131,6 +146,7 @@ export class DocBarCodeField implements IDocBarCodeField {
 
   /**
   * Type of the detected bar-code
+  * @type {BarCodeDetectionType}
   */
   @Expose()
   @IsDefined()
@@ -143,19 +159,19 @@ export class DocBarCodeField implements IDocBarCodeField {
   */
   @Expose()
   @IsOptional()
-  bcReserved1?: number
+  bcReserved1?: unknown
 
   /**
   * @internal
   */
   @Expose()
   @IsOptional()
-  bcReserved2?: number
+  bcReserved2?: unknown
 
   /**
   * @internal
   */
   @Expose()
   @IsOptional()
-  bcReserved3?: number
+  bcReserved3?: unknown
 }

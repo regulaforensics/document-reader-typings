@@ -10,6 +10,7 @@ import { DocGraphicField } from '../../doc-graphic-field.abstract'
 export interface IDocGraphicFieldRect extends DocGraphicField {
   /**
   * Field area coordinates on the general image
+  * @type {IRectangleCoordinates}
   */
   FieldRect: IRectangleCoordinates
 }
@@ -17,6 +18,7 @@ export interface IDocGraphicFieldRect extends DocGraphicField {
 export class DocGraphicFieldRect extends DocGraphicField implements IDocGraphicFieldRect {
   /**
   * Graphic field logical type
+  * @type {GraphicFieldType}
   */
   @Expose()
   @IsDefined()
@@ -25,6 +27,7 @@ export class DocGraphicFieldRect extends DocGraphicField implements IDocGraphicF
 
   /**
   * Graphic field symbolic name
+  * @type {string}
   */
   @Expose()
   @IsDefined()
@@ -33,6 +36,7 @@ export class DocGraphicFieldRect extends DocGraphicField implements IDocGraphicF
 
   /**
   * Image data
+  * @type {ImageData}
   */
   @Expose()
   @IsDefined()
@@ -42,6 +46,7 @@ export class DocGraphicFieldRect extends DocGraphicField implements IDocGraphicF
 
   /**
   * Field area coordinates on the general image
+  * @type {RectangleCoordinates}
   */
   @Expose()
   @IsDefined()
@@ -49,5 +54,11 @@ export class DocGraphicFieldRect extends DocGraphicField implements IDocGraphicF
   @Type(() => RectangleCoordinates)
   FieldRect: RectangleCoordinates
 
+  /**
+  * Create new instance of DocGraphicFieldRect from plain object
+  *
+  * @param {unknown} input - plain object
+  * @return {DocGraphicFieldRect}
+  */
   static fromPlain = (input: unknown): DocGraphicFieldRect => plainToClass(DocGraphicFieldRect, input)
 }

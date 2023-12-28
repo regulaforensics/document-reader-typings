@@ -59,8 +59,21 @@ export class DocumentImageContainer extends ContainerAbstract implements IDocume
   @Type(() => ImageData)
   RawImageContainer: ImageData
 
-  static fromPlain = (input: unknown) => plainToClass(DocumentImageContainer, input)
+  /**
+  * Creates an instance of DocumentImageContainer from plain object
+  *
+  * @param {unknown} input - plain object
+  * @returns {DocumentImageContainer}
+  */
+  static fromPlain = (input: unknown): DocumentImageContainer => plainToClass(DocumentImageContainer, input)
 
+  /**
+  * Check if the given instance is valid DocumentImageContainer
+  *
+  * @param {DocumentImageContainer} instance - instance to check
+  * @throws {DocReaderTypeError}
+  * @returns {true | never}
+  */
   static isValid = (instance: DocumentImageContainer): true | never => {
     const errors = validateSync(instance)
 

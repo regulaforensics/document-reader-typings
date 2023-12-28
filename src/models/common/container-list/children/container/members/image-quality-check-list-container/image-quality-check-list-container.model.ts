@@ -53,8 +53,21 @@ export class ImageQualityCheckListContainer extends ContainerAbstract implements
   @Type(() => ImageQualityCheckList)
   ImageQualityCheckList: ImageQualityCheckList
 
-  static fromPlain = (input: unknown) => plainToClass(ImageQualityCheckListContainer, input)
+  /**
+  * Creates an instance of ImageQualityCheckListContainer from plain object
+  *
+  * @param {unknown} input - plain object
+  * @returns {ImageQualityCheckListContainer}
+  */
+  static fromPlain = (input: unknown): ImageQualityCheckListContainer => plainToClass(ImageQualityCheckListContainer, input)
 
+  /**
+  * Check if the given instance of ImageQualityCheckListContainer is valid
+  *
+  * @param {ImageQualityCheckListContainer} instance - instance of ImageQualityCheckListContainer to be checked
+  * @throws {DocReaderTypeError}
+  * @returns {true | never}
+  */
   static isValid = (instance: ImageQualityCheckListContainer): true | never => {
     const errors = validateSync(instance)
 

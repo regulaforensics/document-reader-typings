@@ -65,8 +65,21 @@ export class OneCandidateContainer extends ContainerAbstract implements IOneCand
   @Type(() => OneCandidate)
   OneCandidate?: OneCandidate
 
-  static fromPlain = (input: unknown) => plainToClass(OneCandidateContainer, input)
+  /**
+  * Creates an instance of OneCandidateContainer from plain object
+  *
+  * @param {unknown} input - plain object
+  * @returns {OneCandidateContainer}
+  */
+  static fromPlain = (input: unknown): OneCandidateContainer => plainToClass(OneCandidateContainer, input)
 
+  /**
+  * Check if the given instance of OneCandidateContainer is valid
+  *
+  * @param {OneCandidateContainer} instance - instance of OneCandidateContainer to validate
+  * @throws {DocReaderTypeError} - if the given instance of OneCandidateContainer is not valid
+  * @returns {true | never} - true if OneCandidateContainer is valid
+  */
   static isValid = (instance: OneCandidateContainer): true | never => {
     const errors = validateSync(instance)
 

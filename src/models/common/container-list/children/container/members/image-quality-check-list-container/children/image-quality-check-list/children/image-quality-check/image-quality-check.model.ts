@@ -1,54 +1,118 @@
-import { IsEnum, IsNumber, IsOptional, ValidateNested } from 'class-validator'
+import { IsDefined, IsEnum, IsInt, IsNumber, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
 import { CheckResult, ImageQualityCheckType, SecurityFeatureType } from '@/consts'
-import { AreaArray, IAreaArray } from './children'
+import { AreaArray, IAreaArray } from '@/models/common/area-array'
+import { Default } from '@/decorators'
 
 
 export interface IImageQualityCheck {
-  type?: ImageQualityCheckType
-  result?: CheckResult
-  featureType?: SecurityFeatureType
-  areas?: IAreaArray
-  mean?: number
-  std_dev?: number
-  probability?: number
+  /**
+  * Check result type
+  * @type {ImageQualityCheckType}
+  */
+  type: ImageQualityCheckType
+
+  /**
+  * Check result
+  * @type {CheckResult}
+  */
+  result: CheckResult
+
+  /**
+  * Security feature type
+  * @type {SecurityFeatureType}
+  */
+  featureType: SecurityFeatureType
+
+  /**
+  * Anomalous image areas
+  * @type {IAreaArray}
+  */
+  areas: IAreaArray
+
+  /**
+  * Check mean value
+  * @type {number}
+  */
+  mean: number
+
+  /**
+  * Check deviation value
+  * @type {number}
+  */
+  std_dev: number
+
+  /**
+  * Check probability value
+  * @type {number}
+  */
+  probability: number
 }
 
 export class ImageQualityCheck implements IImageQualityCheck {
+  /**
+  * Check result type
+  * @type {ImageQualityCheckType}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsEnum(ImageQualityCheckType)
-  type?: ImageQualityCheckType
+  type: ImageQualityCheckType
 
+  /**
+  * Check result
+  * @type {CheckResult}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsEnum(CheckResult)
-  result?: CheckResult
+  result: CheckResult
 
+  /**
+  * Security feature type
+  * @type {SecurityFeatureType}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsEnum(SecurityFeatureType)
-  featureType?: SecurityFeatureType
+  @Default(SecurityFeatureType.BLANK)
+  featureType: SecurityFeatureType
 
+  /**
+  * Anomalous image areas
+  * @type {AreaArray}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @ValidateNested()
   @Type(() => AreaArray)
-  areas?: AreaArray
+  areas: AreaArray
 
+  /**
+  * Check mean value
+  * @type {number}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsNumber()
-  mean?: number
+  mean: number
 
+  /**
+  * Check deviation value
+  * @type {number}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsNumber()
-  std_dev?: number
+  std_dev: number
 
+  /**
+  * Check probability value
+  * @type {number}
+  */
   @Expose()
-  @IsOptional()
-  @IsNumber()
-  probability?: number
+  @IsDefined()
+  @IsInt()
+  probability: number
 }

@@ -73,8 +73,21 @@ export class DocBarCodeInfoContainer extends ContainerAbstract implements IDocBa
   @Type(() => DocBarCodeInfo)
   DocBarCodeInfo?: DocBarCodeInfo
 
-  static fromPlain = (input: unknown) => plainToClass(DocBarCodeInfoContainer, input)
+  /**
+  * Creates an instance of DocBarCodeInfoContainer from plain object
+  *
+  * @param {unknown} input - plain object
+  * @returns {DocBarCodeInfoContainer}
+  */
+  static fromPlain = (input: unknown): DocBarCodeInfoContainer => plainToClass(DocBarCodeInfoContainer, input)
 
+  /**
+  * Check if the given instance is a valid DocBarCodeInfoContainer
+  *
+  * @param {DocBarCodeInfoContainer} instance - instance to check
+  * @throws {DocReaderTypeError}
+  * @returns {true | never}
+  */
   static isValid = (instance: DocBarCodeInfoContainer): true | never => {
     const errors = validateSync(instance)
 

@@ -53,8 +53,21 @@ export class DocGraphicsInfoContainer extends ContainerAbstract implements IDocG
   @Type(() => DocGraphicsInfo)
   DocGraphicsInfo?: DocGraphicsInfo
 
-  static fromPlain = (input: unknown) => plainToClass(DocGraphicsInfoContainer, input)
+  /**
+  * Creates an instance of DocGraphicsInfoContainer from plain object
+  *
+  * @param {unknown} input - plain object
+  * @returns {DocGraphicsInfoContainer}
+  */
+  static fromPlain = (input: unknown): DocGraphicsInfoContainer => plainToClass(DocGraphicsInfoContainer, input)
 
+  /**
+  * Check if the given instance is valid DocGraphicsInfoContainer
+  *
+  * @param {DocGraphicsInfoContainer} instance - instance to check
+  * @throws {DocReaderTypeError}
+  * @returns {true | never}
+  */
   static isValid = (instance: DocGraphicsInfoContainer): true | never => {
     const errors = validateSync(instance)
 

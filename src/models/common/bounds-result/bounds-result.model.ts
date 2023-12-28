@@ -12,51 +12,61 @@ import { Default } from '@/decorators'
 export interface IBoundsResult {
   /**
   * Document format
+  * @type {DocumentFormat}
   */
   docFormat: DocumentFormat
 
   /**
   * Document width
+  * @type {number}
   */
   Width: number
 
   /**
   * Document height
+  * @type {number}
   */
   Height: number
 
   /**
   * Document center coordinates
+  * @type {Point}
   */
   Center: Point
 
   /**
   * Document rotation angle
+  * @type {number}
   */
   Angle: number
 
   /**
   * Document left bottom corner coordinates
+  * @type {Point}
   */
   LeftBottom: Point
 
   /**
   * Document left top corner coordinates
+  * @type {Point}
   */
   LeftTop: Point
 
   /**
   * Document right bottom corner coordinates
+  * @type {Point}
   */
   RightBottom: Point
 
   /**
   * Document right top corner coordinates
+  * @type {Point}
   */
   RightTop: Point
 
   /**
   * Resolution in dots per inch
+  * @type {number}
   */
   Dpi: number
 }
@@ -64,6 +74,7 @@ export interface IBoundsResult {
 export class BoundsResult implements IBoundsResult {
   /**
   * Document format
+  * @type {DocumentFormat}
   */
   @Expose()
   @IsDefined()
@@ -73,6 +84,7 @@ export class BoundsResult implements IBoundsResult {
 
   /**
   * Document width
+  * @type {number}
   */
   @Expose()
   @IsDefined()
@@ -82,6 +94,7 @@ export class BoundsResult implements IBoundsResult {
 
   /**
   * Document height
+  * @type {number}
   */
   @Expose()
   @IsDefined()
@@ -91,6 +104,7 @@ export class BoundsResult implements IBoundsResult {
 
   /**
   * Document center coordinates
+  * @type {Point}
   */
   @Expose()
   @IsDefined()
@@ -100,6 +114,7 @@ export class BoundsResult implements IBoundsResult {
 
   /**
   * Document rotation angle
+  * @type {number}
   */
   @Expose()
   @IsDefined()
@@ -109,6 +124,7 @@ export class BoundsResult implements IBoundsResult {
 
   /**
   * Document left bottom corner coordinates
+  * @type {Point}
   */
   @Expose()
   @IsDefined()
@@ -118,6 +134,7 @@ export class BoundsResult implements IBoundsResult {
 
   /**
   * Document left top corner coordinates
+  * @type {Point}
   */
   @Expose()
   @IsDefined()
@@ -127,6 +144,7 @@ export class BoundsResult implements IBoundsResult {
 
   /**
   * Document right bottom corner coordinates
+  * @type {Point}
   */
   @Expose()
   @IsDefined()
@@ -136,6 +154,7 @@ export class BoundsResult implements IBoundsResult {
 
   /**
   * Document right top corner coordinates
+  * @type {Point}
   */
   @Expose()
   @IsDefined()
@@ -145,6 +164,7 @@ export class BoundsResult implements IBoundsResult {
 
   /**
   * Resolution in dots per inch
+  * @type {number}
   */
   @Expose()
   @IsDefined()

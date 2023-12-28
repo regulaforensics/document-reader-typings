@@ -70,8 +70,21 @@ export class AuthenticityCheckListContainer extends ContainerAbstract implements
   @Type(() => AuthenticityCheckList)
   AuthenticityCheckList: AuthenticityCheckList
 
-  static fromPlain = (input: unknown) => plainToClass(AuthenticityCheckListContainer, input)
+  /**
+  * Create new instance of AuthenticityCheckListContainer from plain object
+  *
+  * @param {unknown} input - plain object
+  * @returns {AuthenticityCheckListContainer}
+  */
+  static fromPlain = (input: unknown): AuthenticityCheckListContainer => plainToClass(AuthenticityCheckListContainer, input)
 
+  /**
+  * Check if the given instance is a valid AuthenticityCheckListContainer
+  *
+  * @param {AuthenticityCheckListContainer} instance - instance to check
+  * @throws {DocReaderTypeError}
+  * @returns {true | never}
+  */
   static isValid = (instance: AuthenticityCheckListContainer): true | never => {
     const errors = validateSync(instance)
 

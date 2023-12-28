@@ -51,8 +51,21 @@ export class LicenseContainer extends ContainerAbstract implements ILicenseConta
   @IsString()
   License: string
 
-  static fromPlain = (input: unknown) => plainToClass(LicenseContainer, input)
+  /**
+  * Creates an instance of LicenseContainer from plain object
+  *
+  * @param {unknown} input - plain object
+  * @returns {LicenseContainer}
+  */
+  static fromPlain = (input: unknown): LicenseContainer => plainToClass(LicenseContainer, input)
 
+  /**
+  * Check if the given instance of LicenseContainer is valid
+  *
+  * @param {LicenseContainer} instance - instance of LicenseContainer to be checked
+  * @throws {DocReaderTypeError} - if the given instance of LicenseContainer is not valid
+  * @returns {true | never} - true if the given instance of LicenseContainer is valid
+  */
   static isValid = (instance: LicenseContainer): true | never => {
     const errors = validateSync(instance)
 
