@@ -19,7 +19,7 @@ import {
   MRZFormat,
   Result,
   Scenario,
-  TextFieldType,
+  VisualFieldType,
   TextPostProcessing
 } from '@/consts'
 import { IsStringObjectRecord } from '@/validators'
@@ -46,7 +46,7 @@ export interface IProcessParams {
   resultTypeOutput?: Result[]
   doublePageSpread?: boolean
   generateDoublePageSpreadImage?: boolean
-  fieldTypesFilter?: TextFieldType[]
+  fieldTypesFilter?: VisualFieldType[]
   dateFormat?: string
   measureSystem?: MeasureSystem
   imageDpiOutMax?: number
@@ -143,8 +143,8 @@ export class ProcessParams implements IProcessParams {
 
   @Expose()
   @IsOptional()
-  @IsEnum(TextFieldType, { each: true })
-  fieldTypesFilter?: TextFieldType[]
+  @IsEnum(VisualFieldType, { each: true })
+  fieldTypesFilter?: VisualFieldType[]
 
   @Expose()
   @IsOptional()

@@ -4,10 +4,10 @@ import { isLights } from './is-lights.helper'
 
 /**
 * Get lights array from value
-* @param {number} value
-* @returns {Array<Lights>} array
+* @param {number} value - value
+* @returns {Array<Lights>}
 */
-function getLightsArray(value: number): Lights[] {
+export const getLightsArray = (value: number): Lights[] => {
   const result: Lights[] = []
 
   for (const light in Lights) {

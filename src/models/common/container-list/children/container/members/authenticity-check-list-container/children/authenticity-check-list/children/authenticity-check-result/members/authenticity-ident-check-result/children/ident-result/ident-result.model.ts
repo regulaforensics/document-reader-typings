@@ -4,21 +4,21 @@ import { Expose, Type } from 'class-transformer'
 import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
 import { IImageData, ImageData } from '@/models/common/image-data'
 import { AreaArray, IAreaArray } from '@/models/common/area-array'
-import { AuthenticityResultType, CheckDiagnose, CheckResult, Light, SecurityFeatureType } from '@/consts'
+import { Authenticity, CheckDiagnose, CheckResult, Light, SecurityFeatureType } from '@/consts'
 
 
 export interface IIdentResult {
   Type:
-    AuthenticityResultType.IMAGE_PATTERN |
-    AuthenticityResultType.IR_VISIBILITY |
-    AuthenticityResultType.OVI |
-    AuthenticityResultType.IR_LUMINESCENCE |
-    AuthenticityResultType.PORTRAIT_COMPARISON |
-    AuthenticityResultType.KINEGRAM |
-    AuthenticityResultType.LETTER_SCREEN |
-    AuthenticityResultType.HOLOGRAM_DETECTION |
-    AuthenticityResultType.FINGERPRINT_COMPARISON |
-    AuthenticityResultType.LIVENESS
+    Authenticity.IMAGE_PATTERN |
+    Authenticity.IR_VISIBILITY |
+    Authenticity.OVI |
+    Authenticity.IR_LUMINESCENCE |
+    Authenticity.PORTRAIT_COMPARISON |
+    Authenticity.KINEGRAM |
+    Authenticity.LETTER_SCREEN |
+    Authenticity.HOLOGRAM_DETECTION |
+    Authenticity.FINGERPRINT_COMPARISON |
+    Authenticity.LIVENESS
   ElementResult?: CheckResult
   ElementDiagnose?: CheckDiagnose
   ElementType?: SecurityFeatureType
@@ -34,28 +34,28 @@ export class IdentResult implements IIdentResult {
   @Expose()
   @IsDefined()
   @IsIn([
-    AuthenticityResultType.IMAGE_PATTERN,
-    AuthenticityResultType.IR_VISIBILITY,
-    AuthenticityResultType.OVI,
-    AuthenticityResultType.IR_LUMINESCENCE,
-    AuthenticityResultType.PORTRAIT_COMPARISON,
-    AuthenticityResultType.KINEGRAM,
-    AuthenticityResultType.LETTER_SCREEN,
-    AuthenticityResultType.HOLOGRAM_DETECTION,
-    AuthenticityResultType.FINGERPRINT_COMPARISON,
-    AuthenticityResultType.LIVENESS
+    Authenticity.IMAGE_PATTERN,
+    Authenticity.IR_VISIBILITY,
+    Authenticity.OVI,
+    Authenticity.IR_LUMINESCENCE,
+    Authenticity.PORTRAIT_COMPARISON,
+    Authenticity.KINEGRAM,
+    Authenticity.LETTER_SCREEN,
+    Authenticity.HOLOGRAM_DETECTION,
+    Authenticity.FINGERPRINT_COMPARISON,
+    Authenticity.LIVENESS
   ])
-  @IsEnum(AuthenticityResultType)
-  Type: AuthenticityResultType.IMAGE_PATTERN |
-    AuthenticityResultType.IR_VISIBILITY |
-    AuthenticityResultType.OVI |
-    AuthenticityResultType.IR_LUMINESCENCE |
-    AuthenticityResultType.PORTRAIT_COMPARISON |
-    AuthenticityResultType.KINEGRAM |
-    AuthenticityResultType.LETTER_SCREEN |
-    AuthenticityResultType.HOLOGRAM_DETECTION |
-    AuthenticityResultType.FINGERPRINT_COMPARISON |
-    AuthenticityResultType.LIVENESS
+  @IsEnum(Authenticity)
+  Type: Authenticity.IMAGE_PATTERN |
+    Authenticity.IR_VISIBILITY |
+    Authenticity.OVI |
+    Authenticity.IR_LUMINESCENCE |
+    Authenticity.PORTRAIT_COMPARISON |
+    Authenticity.KINEGRAM |
+    Authenticity.LETTER_SCREEN |
+    Authenticity.HOLOGRAM_DETECTION |
+    Authenticity.FINGERPRINT_COMPARISON |
+    Authenticity.LIVENESS
 
   @Expose()
   @IsOptional()

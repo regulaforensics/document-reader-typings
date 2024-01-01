@@ -1,15 +1,15 @@
 import { ResultType } from '@/consts'
-import { IStatusContainer, ITextContainer, StatusContainer, TextContainer } from './members'
+import { IStatusContainer, ITextResultContainer, StatusContainer, TextResultContainer } from './members'
 import { isObject } from '@/helpers'
 
 
 export type ContainerUnion =
   StatusContainer |
-  TextContainer
+  TextResultContainer
 
 export type IContainerUnion =
   IStatusContainer |
-  ITextContainer
+  ITextResultContainer
 
 export namespace ContainerUnion {
   export const transformList = (items: unknown[]) => {
@@ -32,7 +32,7 @@ export namespace ContainerUnion {
           result.push(StatusContainer.fromPlain(item))
         break
         case ResultType.TEXT:
-          result.push(TextContainer.fromPlain(item))
+          result.push(TextResultContainer.fromPlain(item))
         break
       }
     }

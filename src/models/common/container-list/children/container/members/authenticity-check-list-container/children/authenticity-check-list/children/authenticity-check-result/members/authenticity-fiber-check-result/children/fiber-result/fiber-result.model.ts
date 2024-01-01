@@ -2,11 +2,11 @@ import { IsArray, IsDefined, IsEnum, IsIn, IsInt, IsNumber, IsOptional, Validate
 import { Expose, Type } from 'class-transformer'
 
 import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
-import { AuthenticityResultType, CheckDiagnose, CheckResult, Light } from '@/consts'
+import { Authenticity, CheckDiagnose, CheckResult, Light } from '@/consts'
 
 
 export interface IFiberResult {
-  Type: AuthenticityResultType.UV_FIBERS | AuthenticityResultType.UV_BACKGROUND
+  Type: Authenticity.UV_FIBERS | Authenticity.UV_BACKGROUND
   ElementResult?: CheckResult
   ElementDiagnose?: CheckDiagnose
   RectCount?: number
@@ -23,9 +23,9 @@ export interface IFiberResult {
 export class FiberResult implements IFiberResult {
   @Expose()
   @IsDefined()
-  @IsIn([AuthenticityResultType.UV_FIBERS, AuthenticityResultType.UV_BACKGROUND])
-  @IsEnum(AuthenticityResultType)
-  Type: AuthenticityResultType.UV_FIBERS | AuthenticityResultType.UV_BACKGROUND
+  @IsIn([Authenticity.UV_FIBERS, Authenticity.UV_BACKGROUND])
+  @IsEnum(Authenticity)
+  Type: Authenticity.UV_FIBERS | Authenticity.UV_BACKGROUND
 
   @Expose()
   @IsOptional()

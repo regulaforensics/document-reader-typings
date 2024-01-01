@@ -1,23 +1,23 @@
 import { IsArray, IsDefined, IsEnum, IsIn, ValidateNested } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { AuthenticityResultType, CheckResult } from '@/consts'
+import { Authenticity, CheckResult } from '@/consts'
 import { AuthenticityCheckResultAbstract } from '../../authenticity-check-result.abstract'
 import { ISecurityFeatureResult, SecurityFeatureResult } from './children'
 
 
 export interface IAuthenticitySecurityFeatureCheckResult extends AuthenticityCheckResultAbstract {
   Type:
-    AuthenticityResultType.UV_LUMINESCENCE |
-    AuthenticityResultType.IR_B900 |
-    AuthenticityResultType.AXIAL_PROTECTION |
-    AuthenticityResultType.PHOTO_EMBED_TYPE |
-    AuthenticityResultType.HOLOGRAMS |
-    AuthenticityResultType.PHOTO_AREA |
-    AuthenticityResultType.BARCODE_FORMAT_CHECK |
-    AuthenticityResultType.EXTENDED_OCR_CHECK |
-    AuthenticityResultType.EXTENDED_MRZ_CHECK |
-    AuthenticityResultType.STATUS_ONLY
+    Authenticity.UV_LUMINESCENCE |
+    Authenticity.IR_B900 |
+    Authenticity.AXIAL_PROTECTION |
+    Authenticity.PHOTO_EMBED_TYPE |
+    Authenticity.HOLOGRAMS |
+    Authenticity.PHOTO_AREA |
+    Authenticity.BARCODE_FORMAT_CHECK |
+    Authenticity.EXTENDED_OCR_CHECK |
+    Authenticity.EXTENDED_MRZ_CHECK |
+    Authenticity.STATUS_ONLY
   Result: CheckResult
   List: ISecurityFeatureResult[]
 }
@@ -26,29 +26,29 @@ export class AuthenticitySecurityFeatureCheckResult extends AuthenticityCheckRes
   @Expose()
   @IsDefined()
   @IsIn([
-    AuthenticityResultType.UV_LUMINESCENCE,
-    AuthenticityResultType.IR_B900,
-    AuthenticityResultType.AXIAL_PROTECTION,
-    AuthenticityResultType.PHOTO_EMBED_TYPE,
-    AuthenticityResultType.HOLOGRAMS,
-    AuthenticityResultType.PHOTO_AREA,
-    AuthenticityResultType.BARCODE_FORMAT_CHECK,
-    AuthenticityResultType.EXTENDED_OCR_CHECK,
-    AuthenticityResultType.EXTENDED_MRZ_CHECK,
-    AuthenticityResultType.STATUS_ONLY
+    Authenticity.UV_LUMINESCENCE,
+    Authenticity.IR_B900,
+    Authenticity.AXIAL_PROTECTION,
+    Authenticity.PHOTO_EMBED_TYPE,
+    Authenticity.HOLOGRAMS,
+    Authenticity.PHOTO_AREA,
+    Authenticity.BARCODE_FORMAT_CHECK,
+    Authenticity.EXTENDED_OCR_CHECK,
+    Authenticity.EXTENDED_MRZ_CHECK,
+    Authenticity.STATUS_ONLY
   ])
-  @IsEnum(AuthenticityResultType)
+  @IsEnum(Authenticity)
   Type:
-    AuthenticityResultType.UV_LUMINESCENCE |
-    AuthenticityResultType.IR_B900 |
-    AuthenticityResultType.AXIAL_PROTECTION |
-    AuthenticityResultType.PHOTO_EMBED_TYPE |
-    AuthenticityResultType.HOLOGRAMS |
-    AuthenticityResultType.PHOTO_AREA |
-    AuthenticityResultType.BARCODE_FORMAT_CHECK |
-    AuthenticityResultType.EXTENDED_OCR_CHECK |
-    AuthenticityResultType.EXTENDED_MRZ_CHECK |
-    AuthenticityResultType.STATUS_ONLY
+    Authenticity.UV_LUMINESCENCE |
+    Authenticity.IR_B900 |
+    Authenticity.AXIAL_PROTECTION |
+    Authenticity.PHOTO_EMBED_TYPE |
+    Authenticity.HOLOGRAMS |
+    Authenticity.PHOTO_AREA |
+    Authenticity.BARCODE_FORMAT_CHECK |
+    Authenticity.EXTENDED_OCR_CHECK |
+    Authenticity.EXTENDED_MRZ_CHECK |
+    Authenticity.STATUS_ONLY
 
   @Expose()
   @IsDefined()

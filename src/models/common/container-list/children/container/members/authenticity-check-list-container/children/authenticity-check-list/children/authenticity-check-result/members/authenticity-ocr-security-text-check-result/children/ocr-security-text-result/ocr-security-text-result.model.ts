@@ -2,11 +2,11 @@ import { IsDefined, IsEnum, IsIn, IsNumber, IsOptional, IsString, ValidateNested
 import { Expose, Type } from 'class-transformer'
 
 import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
-import { AuthenticityResultType, CheckDiagnose, CheckResult, Critical, Light } from '@/consts'
+import { Authenticity, CheckDiagnose, CheckResult, Critical, Light } from '@/consts'
 
 
 export interface IOCRSecurityTextResult {
-  Type: AuthenticityResultType.OCR_SECURITY_TEXT
+  Type: Authenticity.OCR_SECURITY_TEXT
   ElementResult?: CheckResult
   ElementDiagnose?: CheckDiagnose
   CriticalFlag?: Critical
@@ -24,9 +24,9 @@ export interface IOCRSecurityTextResult {
 export class OCRSecurityTextResult implements IOCRSecurityTextResult {
   @Expose()
   @IsDefined()
-  @IsIn([AuthenticityResultType.OCR_SECURITY_TEXT])
-  @IsEnum(AuthenticityResultType)
-  Type: AuthenticityResultType.OCR_SECURITY_TEXT
+  @IsIn([Authenticity.OCR_SECURITY_TEXT])
+  @IsEnum(Authenticity)
+  Type: Authenticity.OCR_SECURITY_TEXT
 
   @Expose()
   @IsOptional()

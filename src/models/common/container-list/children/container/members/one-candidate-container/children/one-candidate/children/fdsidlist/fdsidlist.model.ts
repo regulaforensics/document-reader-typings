@@ -1,4 +1,4 @@
-import { IsArray, IsBoolean, IsDefined, IsEnum, IsNumber, IsOptional, IsString } from 'class-validator'
+import { IsArray, IsBoolean, IsDefined, IsEnum, IsInt, IsOptional, IsString, MaxLength } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 import { DocumentFormat, DocumentType } from '@/consts'
@@ -6,71 +6,186 @@ import { Default } from '@/decorators'
 
 
 export interface IFDSIDList {
-  ICAOCode?: string
-  List?: number[]
-  dType?: DocumentType
-  dFormat?: DocumentFormat
-  dMRZ?: boolean
-  dDescription?: string
-  dYear?: string
-  dCountryName?: string
+  /**
+  * Document issuing country ICAO code
+  * @type {string}
+  */
+  ICAOCode: string
+
+  /**
+  * Number of elements in the List
+  * @type {number}
+  */
+  Count: number
+
+  /**
+  * Array of IRS document identifiers
+  * @type {number[]}
+  */
+  List: number[]
+
+  /**
+  * Document type
+  * @type {DocumentType}
+  */
+  dType: DocumentType
+
+  /**
+  * Document format
+  * @type {DocumentFormat}
+  */
+  dFormat: DocumentFormat
+
+  /**
+  * Flag for MRZ presence on document
+  * @type {boolean}
+  */
+  dMRZ: boolean
+
+  /**
+  * Document description text
+  * @type {string}
+  */
+  dDescription: string
+
+  /**
+  * Document issue year
+  * @type {string}
+  */
+  dYear: string
+
+  /**
+  * Document issuing country name
+  * @type {string}
+  */
+  dCountryName: string
+
+  /**
+  * Document issuing country state code
+  * @type {string|undefined}
+  */
   dStateCode?: string
+
+  /**
+  * Document issuing country state name
+  * @type {string|undefined}
+  */
   dStateName?: string
+
+  /**
+  * Whether the document is deprecated
+  * @type {boolean}
+  */
   isDeprecated: boolean
 }
 
 export class FDSIDList implements IFDSIDList {
+  /**
+  * Document issuing country ICAO code
+  * @type {string}
+  */
   @Expose()
   @IsString()
-  @IsOptional()
-  ICAOCode?: string
+  @MaxLength(4)
+  @IsDefined()
+  ICAOCode: string
 
+  /**
+  * Number of elements in the List
+  * @type {number}
+  */
+  @Expose()
+  @IsDefined()
+  @IsInt()
+  Count: number
+
+  /**
+  * Array of IRS document identifiers
+  * @type {number[]}
+  */
   @Expose()
   @IsDefined()
   @IsArray()
-  @IsNumber({}, { each: true })
-  List?: number[]
+  @IsInt({ each: true })
+  List: number[]
 
+  /**
+  * Document type
+  * @type {DocumentType}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsEnum(DocumentType)
-  dType?: DocumentType
+  dType: DocumentType
 
+  /**
+  * Document format
+  * @type {DocumentFormat}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsEnum(DocumentFormat)
-  dFormat?: DocumentFormat
+  dFormat: DocumentFormat
 
+  /**
+  * Flag for MRZ presence on document
+  * @type {boolean}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsBoolean()
-  dMRZ?: boolean
+  @Default(false)
+  dMRZ: boolean
 
+  /**
+  * Document description text
+  * @type {string}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsString()
-  dDescription?: string
+  dDescription: string
 
+  /**
+  * Document issue year
+  * @type {string}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsString()
-  dYear?: string
+  dYear: string
 
+  /**
+  * Document issuing country name
+  * @type {string}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsString()
-  dCountryName?: string
+  dCountryName: string
 
+  /**
+  * Document issuing country state code
+  * @type {string|undefined}
+  */
   @Expose()
   @IsOptional()
   @IsString()
   dStateCode?: string
 
+  /**
+  * Document issuing country state name
+  * @type {string|undefined}
+  */
   @Expose()
   @IsOptional()
   @IsString()
   dStateName?: string
 
+  /**
+  * Whether the document is deprecated
+  * @type {boolean}
+  */
   @Expose()
   @IsDefined()
   @IsBoolean()

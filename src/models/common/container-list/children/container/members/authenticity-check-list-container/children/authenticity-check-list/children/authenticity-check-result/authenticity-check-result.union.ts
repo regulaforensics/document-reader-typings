@@ -1,4 +1,4 @@
-import { AuthenticityResultType } from '@/consts'
+import { Authenticity } from '@/consts'
 import { isObject } from '@/helpers'
 import {
   AuthenticityFiberCheckResult,
@@ -41,43 +41,43 @@ export namespace AuthenticityCheckResultUnion {
       const { Type } = item
 
       switch (Type) {
-        case AuthenticityResultType.UV_FIBERS:
-        case AuthenticityResultType.UV_BACKGROUND:
+        case Authenticity.UV_FIBERS:
+        case Authenticity.UV_BACKGROUND:
           result.push(AuthenticityFiberCheckResult.fromPlain(item))
           break
 
-        case AuthenticityResultType.IMAGE_PATTERN:
-        case AuthenticityResultType.IR_VISIBILITY:
-        case AuthenticityResultType.OVI:
-        case AuthenticityResultType.IR_LUMINESCENCE:
-        case AuthenticityResultType.PORTRAIT_COMPARISON:
-        case AuthenticityResultType.KINEGRAM:
-        case AuthenticityResultType.LETTER_SCREEN:
-        case AuthenticityResultType.HOLOGRAM_DETECTION:
-        case AuthenticityResultType.FINGERPRINT_COMPARISON:
-        case AuthenticityResultType.LIVENESS:
+        case Authenticity.IMAGE_PATTERN:
+        case Authenticity.IR_VISIBILITY:
+        case Authenticity.OVI:
+        case Authenticity.IR_LUMINESCENCE:
+        case Authenticity.PORTRAIT_COMPARISON:
+        case Authenticity.KINEGRAM:
+        case Authenticity.LETTER_SCREEN:
+        case Authenticity.HOLOGRAM_DETECTION:
+        case Authenticity.FINGERPRINT_COMPARISON:
+        case Authenticity.LIVENESS:
           result.push(AuthenticityIdentCheckResult.fromPlain(item))
           break
 
-        case AuthenticityResultType.OCR_SECURITY_TEXT:
+        case Authenticity.OCR_SECURITY_TEXT:
           result.push(AuthenticityOCRSecurityTextCheckResult.fromPlain(item))
           break
 
-        case AuthenticityResultType.IPI:
-        case AuthenticityResultType.IR_PHOTO:
+        case Authenticity.IPI:
+        case Authenticity.IR_PHOTO:
           result.push(AuthenticityPhotoIdentCheckResult.fromPlain(item))
           break
 
-        case AuthenticityResultType.UV_LUMINESCENCE:
-        case AuthenticityResultType.IR_B900:
-        case AuthenticityResultType.AXIAL_PROTECTION:
-        case AuthenticityResultType.PHOTO_EMBED_TYPE:
-        case AuthenticityResultType.HOLOGRAMS:
-        case AuthenticityResultType.PHOTO_AREA:
-        case AuthenticityResultType.BARCODE_FORMAT_CHECK:
-        case AuthenticityResultType.EXTENDED_OCR_CHECK:
-        case AuthenticityResultType.EXTENDED_MRZ_CHECK:
-        case AuthenticityResultType.STATUS_ONLY:
+        case Authenticity.UV_LUMINESCENCE:
+        case Authenticity.IR_B900:
+        case Authenticity.AXIAL_PROTECTION:
+        case Authenticity.PHOTO_EMBED_TYPE:
+        case Authenticity.HOLOGRAMS:
+        case Authenticity.PHOTO_AREA:
+        case Authenticity.BARCODE_FORMAT_CHECK:
+        case Authenticity.EXTENDED_OCR_CHECK:
+        case Authenticity.EXTENDED_MRZ_CHECK:
+        case Authenticity.STATUS_ONLY:
           result.push(AuthenticitySecurityFeatureCheckResult.fromPlain(item))
           break
       }

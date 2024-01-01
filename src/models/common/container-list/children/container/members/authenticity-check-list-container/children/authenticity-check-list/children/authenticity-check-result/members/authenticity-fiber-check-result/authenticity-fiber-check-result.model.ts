@@ -1,13 +1,13 @@
 import { IsArray, IsDefined, IsEnum, IsIn, ValidateNested } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { AuthenticityResultType, CheckResult } from '@/consts'
+import { Authenticity, CheckResult } from '@/consts'
 import { AuthenticityCheckResultAbstract } from '../../authenticity-check-result.abstract'
 import { FiberResult, IFiberResult } from './children'
 
 
 export interface IAuthenticityFiberCheckResult extends AuthenticityCheckResultAbstract {
-  Type: AuthenticityResultType.UV_FIBERS | AuthenticityResultType.UV_BACKGROUND
+  Type: Authenticity.UV_FIBERS | Authenticity.UV_BACKGROUND
   Result: CheckResult
   List: IFiberResult[]
 }
@@ -15,9 +15,9 @@ export interface IAuthenticityFiberCheckResult extends AuthenticityCheckResultAb
 export class AuthenticityFiberCheckResult extends AuthenticityCheckResultAbstract implements IAuthenticityFiberCheckResult {
   @Expose()
   @IsDefined()
-  @IsIn([AuthenticityResultType.UV_FIBERS, AuthenticityResultType.UV_BACKGROUND])
-  @IsEnum(AuthenticityResultType)
-  Type: AuthenticityResultType.UV_FIBERS | AuthenticityResultType.UV_BACKGROUND
+  @IsIn([Authenticity.UV_FIBERS, Authenticity.UV_BACKGROUND])
+  @IsEnum(Authenticity)
+  Type: Authenticity.UV_FIBERS | Authenticity.UV_BACKGROUND
 
   @Expose()
   @IsDefined()

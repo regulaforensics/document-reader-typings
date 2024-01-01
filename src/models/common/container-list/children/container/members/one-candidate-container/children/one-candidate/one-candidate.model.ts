@@ -1,67 +1,228 @@
-import { IsEnum, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
+import { IsBoolean, IsDefined, IsEnum, IsInt, IsNumber, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { RfidLocation } from '@/consts'
+import { Authenticity, getAuthenticityArray, getLightsArray, Lights, RfidPresence } from '@/consts'
+import { Default } from '@/decorators'
 import { FDSIDList, IFDSIDList } from './children'
 
 
 export interface IOneCandidate {
-  DocumentName?: string
-  ID?: number
+  /**
+  * Document name
+  * @type {string}
+  */
+  DocumentName: string
 
-  P?: number
-  RFID_Presence?: RfidLocation
-  FDSIDList?: IFDSIDList
-  NecessaryLights?: number
-  CheckAuthenticity?: number
-  UVExp?: number
-  AuthenticityNecessaryLights?: number
+  /**
+  * Document type numeric code
+  * @type {number}
+  */
+  ID: number
+
+  /**
+  * Estimation of correct recognition probability when analyzing the given document type
+  * @type {number}
+  */
+  P: number
+
+  /**
+  * true if the document of the given type is rotated by 180 degrees
+  * @type {boolean}
+  */
+  Rotated180: boolean
+
+  /**
+  * Combination of identifiers of necessary lighting schemes to perform OCR for the given document type
+  * @type {number}
+  */
+  NecessaryLights: number
+
+  /**
+  * Presence of RFID-chip in the document
+  * @type {RfidPresence}
+  */
+  RFID_Presence: RfidPresence
+
+  /**
+  * Set of authenticity check options provided for the given document type
+  * @type {number}
+  */
+  CheckAuthenticity: number
+
+  /**
+  * Camera exposure value necessary when obtaining document images of the given type for UV lighting scheme
+  * @type {number}
+  */
+  UVExp: number
+
+  /**
+  * Camera exposure value necessary when obtaining document images of the given type for AXIAL lighting scheme
+  * @type {number}
+  */
+  OVIExp: number
+
+  /**
+  * Combination of identifiers of necessary lighting schemes
+  * @see {Lights} to perform authenticity check for the
+  * given document type
+  * @type {number}
+  */
+  AuthenticityNecessaryLights: number
+
+  /**
+  * Pointer to TFDSIDList structure containing additional
+  * document information and its link to IRS
+  * @type {IFDSIDList}
+  */
+  FDSIDList: IFDSIDList
 }
 
 export class OneCandidate implements IOneCandidate {
+  /**
+  * Document name
+  * @type {string}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsString()
-  DocumentName?: string
+  DocumentName: string
 
+  /**
+  * Document type numeric code
+  * @type {number}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
+  @IsInt()
+  ID: number
+
+  /**
+  * Estimation of correct recognition probability when analyzing the given document type
+  * @type {number}
+  */
+  @Expose()
+  @IsDefined()
   @IsNumber()
-  ID?: number
+  P: number
 
+  /**
+  * true if the document of the given type is rotated by 180 degrees
+  * @type {boolean}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
+  @IsBoolean()
+  @Default(false)
+  Rotated180: boolean
+
+  /**
+  * Combination of identifiers of necessary lighting schemes to perform OCR for the given document type
+  * @type {number}
+  */
+  @Expose()
+  @IsDefined()
   @IsNumber()
-  P?: number
+  NecessaryLights: number
 
+  /**
+  * Presence of RFID-chip in the document
+  * @type {RfidPresence}
+  */
   @Expose()
-  @IsOptional()
-  @IsEnum(RfidLocation)
-  RFID_Presence?: RfidLocation
+  @IsDefined()
+  @IsEnum(RfidPresence)
+  @Default(RfidPresence.NONE)
+  RFID_Presence: RfidPresence
 
+  /**
+  * Set of authenticity check options provided for the given document type
+  * @type {number}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
+  @IsInt()
+  @Default(0)
+  CheckAuthenticity: number
+
+  /**
+  * Camera exposure value necessary when obtaining document images of the given type for UV lighting scheme
+  * @type {number}
+  */
+  @Expose()
+  @IsDefined()
+  @IsNumber()
+  UVExp: number
+
+  /**
+  * Camera exposure value necessary when obtaining document images of the given type for AXIAL lighting scheme
+  * @type {number}
+  */
+  @Expose()
+  @IsDefined()
+  @IsNumber()
+  OVIExp: number
+
+  /**
+  * Combination of identifiers of necessary lighting schemes
+  * @see {Lights} to perform authenticity check for the
+  * given document type
+  * @type {number}
+  */
+  @Expose()
+  @IsDefined()
+  @IsNumber()
+  AuthenticityNecessaryLights: number
+
+  /**
+  * Pointer to TFDSIDList structure containing additional
+  * document information and its link to IRS
+  * @type {FDSIDList}
+  */
+  @Expose()
+  @IsDefined()
   @ValidateNested()
   @Type(() => FDSIDList)
-  FDSIDList?: FDSIDList
+  FDSIDList: FDSIDList
 
-  @Expose()
-  @IsOptional()
-  @IsNumber()
-  NecessaryLights?: number
+  /**
+  * Get necessary lights
+  *
+  * @param {OneCandidate | number} instance - instance of OneCandidate or number (NecessaryLights value)
+  * @returns {Lights[]} - array of Lights
+  */
+  static getNecessaryLights = (instance: OneCandidate | number): Lights[] => {
+    if (typeof instance === 'number') {
+      return getLightsArray(instance)
+    }
 
-  @Expose()
-  @IsOptional()
-  @IsNumber()
-  CheckAuthenticity?: number
+    return getLightsArray(instance.NecessaryLights)
+  }
 
-  @Expose()
-  @IsOptional()
-  @IsNumber()
-  UVExp?: number
+  /**
+  * Get authenticity
+  *
+  * @param {OneCandidate | number} instance - instance of OneCandidate or number
+  * @returns {Authenticity[]} - array of Authenticity
+  */
+  static getCheckAuthenticity = (instance: OneCandidate | number): Authenticity[] => {
+    if (typeof instance === 'number') {
+      return getAuthenticityArray(instance)
+    }
 
-  @Expose()
-  @IsOptional()
-  @IsNumber()
-  AuthenticityNecessaryLights?: number
+    return getAuthenticityArray(instance.CheckAuthenticity)
+  }
+
+  /**
+  * Get authenticity necessary lights
+  *
+  * @param {OneCandidate | number} instance - instance of OneCandidate or number
+  * @returns {Lights[]} - array of Lights
+  */
+  static getAuthenticityNecessaryLights = (instance: OneCandidate | number): Lights[] => {
+    if (typeof instance === 'number') {
+      return getLightsArray(instance)
+    }
+
+    return getLightsArray(instance.AuthenticityNecessaryLights)
+  }
 }
