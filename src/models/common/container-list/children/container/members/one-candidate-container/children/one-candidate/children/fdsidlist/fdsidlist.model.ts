@@ -1,7 +1,7 @@
 import { IsArray, IsBoolean, IsDefined, IsEnum, IsInt, IsOptional, IsString, MaxLength } from 'class-validator'
 import { Expose } from 'class-transformer'
 
-import { DocumentFormat, DocumentType } from '@/consts'
+import { DocFormat, DocType } from '@/consts'
 import { Default } from '@/decorators'
 
 
@@ -26,15 +26,15 @@ export interface IFDSIDList {
 
   /**
   * Document type
-  * @type {DocumentType}
+  * @type {DocType}
   */
-  dType: DocumentType
+  dType: DocType
 
   /**
   * Document format
-  * @type {DocumentFormat}
+  * @type {DocFormat}
   */
-  dFormat: DocumentFormat
+  dFormat: DocFormat
 
   /**
   * Flag for MRZ presence on document
@@ -111,21 +111,21 @@ export class FDSIDList implements IFDSIDList {
 
   /**
   * Document type
-  * @type {DocumentType}
+  * @type {DocType}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(DocumentType)
-  dType: DocumentType
+  @IsEnum(DocType)
+  dType: DocType
 
   /**
   * Document format
-  * @type {DocumentFormat}
+  * @type {DocFormat}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(DocumentFormat)
-  dFormat: DocumentFormat
+  @IsEnum(DocFormat)
+  dFormat: DocFormat
 
   /**
   * Flag for MRZ presence on document

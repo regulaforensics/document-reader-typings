@@ -3,7 +3,7 @@ import { Expose, Type } from 'class-transformer'
 
 import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
 import { IImageData, ImageData } from '@/models/common/image-data'
-import { Authenticity, CheckDiagnose, CheckResult, Light } from '@/consts'
+import { Authenticity, CheckDiagnose, CheckResult, Lights } from '@/consts'
 import { IRawImageContainerList, RawImageContainerList } from './children'
 
 
@@ -11,7 +11,7 @@ export interface IPhotoIdentResult {
   Type: Authenticity.IPI | Authenticity.IR_PHOTO
   ElementResult?: CheckResult
   ElementDiagnose?: CheckDiagnose
-  LightIndex?: Light
+  LightIndex?: Lights
   Area?: IRectangleCoordinates
   SourceImage?: IImageData
   ResultImages?: IRawImageContainerList
@@ -41,8 +41,8 @@ export class PhotoIdentResult implements IPhotoIdentResult {
 
   @Expose()
   @IsOptional()
-  @IsEnum(Light)
-  LightIndex?: Light
+  @IsEnum(Lights)
+  LightIndex?: Lights
 
   @Expose()
   @IsOptional()

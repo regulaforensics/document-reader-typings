@@ -4,7 +4,7 @@ import { Expose, Type } from 'class-transformer'
 import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
 import { IImageData, ImageData } from '@/models/common/image-data'
 import { AreaArray, IAreaArray } from '@/models/common/area-array'
-import { Authenticity, CheckDiagnose, CheckResult, Light, SecurityFeatureType } from '@/consts'
+import { Authenticity, CheckDiagnose, CheckResult, Lights, SecurityFeatureType } from '@/consts'
 
 
 export interface IIdentResult {
@@ -22,7 +22,7 @@ export interface IIdentResult {
   ElementResult?: CheckResult
   ElementDiagnose?: CheckDiagnose
   ElementType?: SecurityFeatureType
-  LightIndex?: Light
+  LightIndex?: Lights
   Area?: IRectangleCoordinates
   Image?: IImageData
   EtalonImage?: IImageData
@@ -74,8 +74,8 @@ export class IdentResult implements IIdentResult {
 
   @Expose()
   @IsOptional()
-  @IsEnum(Light)
-  LightIndex?: Light
+  @IsEnum(Lights)
+  LightIndex?: Lights
 
   @Expose()
   @IsOptional()

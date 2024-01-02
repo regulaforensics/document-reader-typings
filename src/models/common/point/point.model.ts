@@ -7,11 +7,13 @@ import { Default } from '@/decorators'
 export interface IPoint {
   /**
   * X coordinate
+  * @type {number}
   */
   x: number
 
   /**
   * Y coordinate
+  * @type {number}
   */
   y: number
 }
@@ -19,6 +21,7 @@ export interface IPoint {
 export class Point implements IPoint {
   /**
   * X coordinate
+  * @param {number} [x=0]
   */
   @Expose()
   @IsDefined()
@@ -28,6 +31,7 @@ export class Point implements IPoint {
 
   /**
   * Y coordinate
+  * @param {number} [y=0]
   */
   @Expose()
   @IsOptional()

@@ -1,6 +1,5 @@
 /**
 * 0 - result is negative; 1 - result is positive; 2 - сheck was not performed
-* @export
 * @enum {number}
 */
 export enum CheckResult {

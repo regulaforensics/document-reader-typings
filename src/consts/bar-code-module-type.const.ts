@@ -1,5 +1,6 @@
 /**
 * Enumeration contains identifiers determining bar-code module type
+* @enum {number}
 */
 export enum BarCodeModuleType {
   /**

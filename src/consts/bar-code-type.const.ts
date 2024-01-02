@@ -1,5 +1,6 @@
 /**
 * Enumeration representing various bar-code types.
+* @enum {number}
 */
 export enum BarCodeType {
   /**

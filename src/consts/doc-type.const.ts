@@ -2,7 +2,7 @@
 * Possible values for document types
 * @enum {number}
 */
-export enum DocumentType {
+export enum DocType {
   /**
   * Not defined
   */

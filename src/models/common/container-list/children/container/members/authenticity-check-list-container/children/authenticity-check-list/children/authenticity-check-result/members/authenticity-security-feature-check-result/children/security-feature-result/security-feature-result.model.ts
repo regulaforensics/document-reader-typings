@@ -7,7 +7,7 @@ import {
   Authenticity,
   CheckDiagnose,
   CheckResult,
-  Critical,
+  SecurityCriticalFlag,
   SecurityFeatureType,
   Visibility
 } from '@/consts'
@@ -30,7 +30,7 @@ export interface ISecurityFeatureResult {
   ElementType?: SecurityFeatureType
   ElementRect?: IRectangleCoordinates
   Visibility?: Visibility
-  CriticalFlag?: Critical
+  CriticalFlag?: SecurityCriticalFlag
   AreaList?: IAreaArray
   Reserved2?: number
 }
@@ -91,8 +91,8 @@ export class SecurityFeatureResult implements ISecurityFeatureResult {
 
   @Expose()
   @IsOptional()
-  @IsEnum(Critical)
-  CriticalFlag?: Critical
+  @IsEnum(SecurityCriticalFlag)
+  CriticalFlag?: SecurityCriticalFlag
 
   @Expose()
   @IsOptional()

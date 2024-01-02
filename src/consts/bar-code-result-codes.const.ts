@@ -1,5 +1,6 @@
 /**
 * Enumeration containing identifiers determining bar-code data reading result.
+* @enum {number}
 */
 export enum BarCodeResultCodes {
   /**

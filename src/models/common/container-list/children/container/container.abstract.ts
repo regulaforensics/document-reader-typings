@@ -1,12 +1,12 @@
-import { Light, ResultType } from '@/consts'
+import { getLightsArray, Lights, ResultType } from '@/consts'
 
 
 export abstract class ContainerAbstract {
   /**
   * Lighting scheme code for the given result (used only for images)
-  * @type {Light}
+  * @type {number}
   */
-  light: Light
+  light: number
 
   /** @internal */
   list_idx: number
@@ -25,4 +25,18 @@ export abstract class ContainerAbstract {
   * @type {ResultType}
   */
   result_type: ResultType
+
+  /**
+  * Get lighting scheme
+  *
+  * @param {DocumentPositionContainer|number} input - input
+  * @returns {Lights[]}
+  */
+  static getLightingScheme = (input: ContainerAbstract | number): Lights[] => {
+    if (typeof input === 'number') {
+      return getLightsArray(input)
+    }
+
+    return getLightsArray(input.light)
+  }
 }

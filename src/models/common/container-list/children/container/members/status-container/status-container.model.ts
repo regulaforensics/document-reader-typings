@@ -2,7 +2,7 @@ import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'cl
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Light, ResultType } from '@/consts'
+import { Lights, ResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { ContainerAbstract } from '../../container.abstract'
 import { IStatus, Status } from './children'
@@ -15,13 +15,13 @@ export interface IStatusContainer extends ContainerAbstract {
 export class StatusContainer extends ContainerAbstract implements IStatusContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
-  * @type {Light}
+  * @type {number}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(Light)
-  @Default(Light.OFF)
-  light: Light
+  @IsInt()
+  @Default(Lights.OFF)
+  light: number
 
   /** @internal */
   @Expose()

@@ -2,7 +2,7 @@ import { IsArray, IsDefined, IsEnum, IsIn, IsInt, IsNumber, IsOptional, Validate
 import { Expose, Type } from 'class-transformer'
 
 import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
-import { Authenticity, CheckDiagnose, CheckResult, Light } from '@/consts'
+import { Authenticity, CheckDiagnose, CheckResult, Lights } from '@/consts'
 
 
 export interface IFiberResult {
@@ -11,7 +11,7 @@ export interface IFiberResult {
   ElementDiagnose?: CheckDiagnose
   RectCount?: number
   ExpectedCount?: number
-  LightValue?: Light
+  LightValue?: Lights
   LightDisp?: number
   RectArray?: IRectangleCoordinates[]
   Width?: number[]
@@ -49,8 +49,8 @@ export class FiberResult implements IFiberResult {
 
   @Expose()
   @IsOptional()
-  @IsEnum(Light)
-  LightValue?: Light
+  @IsEnum(Lights)
+  LightValue?: Lights
 
   @Expose()
   @IsOptional()

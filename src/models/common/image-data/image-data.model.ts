@@ -5,6 +5,7 @@ import { Expose } from 'class-transformer'
 export interface IImageData {
   /**
   * Image data in base64 format
+  * @type {string}
   */
   image: string
 }
@@ -12,6 +13,7 @@ export interface IImageData {
 export class ImageData implements IImageData {
   /**
   * Image data in base64 format
+  * @type {string}
   */
   @Expose()
   @IsString()

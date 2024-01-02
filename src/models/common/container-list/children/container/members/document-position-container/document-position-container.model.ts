@@ -1,8 +1,8 @@
-import { IsDefined, IsEnum, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
+import { IsDefined, IsInt, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Light } from '@/consts'
+import { Lights } from '@/consts'
 import { Default } from '@/decorators'
 import { BoundsResult, IBoundsResult } from '@/models/common/bounds-result'
 import { ContainerAbstract } from '../../container.abstract'
@@ -18,13 +18,13 @@ export interface IDocumentPositionContainer extends ContainerAbstract {
 export class DocumentPositionContainer extends ContainerAbstract implements IDocumentPositionContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
-  * @type {Light}
+  * @type {number}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(Light)
-  @Default(Light.OFF)
-  light: Light
+  @IsInt()
+  @Default(Lights.OFF)
+  light: number
 
   /** @internal */
   @Expose()

@@ -4,7 +4,7 @@
 import { IsDefined, IsEnum, IsInt, IsNumber, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { DocumentFormat } from '@/consts'
+import { DocFormat } from '@/consts'
 import { Point } from '@/models/common/point'
 import { Default } from '@/decorators'
 
@@ -12,9 +12,9 @@ import { Default } from '@/decorators'
 export interface IBoundsResult {
   /**
   * Document format
-  * @type {DocumentFormat}
+  * @type {DocFormat}
   */
-  docFormat: DocumentFormat
+  docFormat: DocFormat
 
   /**
   * Document width
@@ -74,13 +74,13 @@ export interface IBoundsResult {
 export class BoundsResult implements IBoundsResult {
   /**
   * Document format
-  * @type {DocumentFormat}
+  * @type {DocFormat}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(DocumentFormat)
-  @Default(DocumentFormat.UNKNOWN)
-  docFormat: DocumentFormat
+  @IsEnum(DocFormat)
+  @Default(DocFormat.UNKNOWN)
+  docFormat: DocFormat
 
   /**
   * Document width

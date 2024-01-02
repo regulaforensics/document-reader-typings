@@ -5,21 +5,25 @@ import { Expose } from 'class-transformer'
 export interface IRectangleCoordinates {
   /**
   * Left
+  * @type {number}
   */
   left: number
 
   /**
   * Top
+  * @type {number}
   */
   top: number
 
   /**
   * Right
+  * @type {number}
   */
   right: number
 
   /**
   * Bottom
+  * @type {number}
   */
   bottom: number
 }
@@ -27,6 +31,7 @@ export interface IRectangleCoordinates {
 export class RectangleCoordinates implements IRectangleCoordinates {
   /**
   * Left
+  * @param {number}
   */
   @Expose()
   @IsDefined()
@@ -35,6 +40,7 @@ export class RectangleCoordinates implements IRectangleCoordinates {
 
   /**
   * Top
+  * @param {number}
   */
   @Expose()
   @IsDefined()
@@ -43,6 +49,7 @@ export class RectangleCoordinates implements IRectangleCoordinates {
 
   /**
   * Right
+  * @param {number}
   */
   @Expose()
   @IsDefined()
@@ -51,6 +58,7 @@ export class RectangleCoordinates implements IRectangleCoordinates {
 
   /**
   * Bottom
+  * @param {number}
   */
   @Expose()
   @IsDefined()

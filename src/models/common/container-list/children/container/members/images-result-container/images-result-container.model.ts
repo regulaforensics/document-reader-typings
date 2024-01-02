@@ -1,11 +1,11 @@
-import { IsDefined, IsEnum, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
+import { IsDefined, IsInt, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Light } from '@/consts'
+import { Lights } from '@/consts'
 import { Default } from '@/decorators'
 import { ContainerAbstract } from '../../container.abstract'
-import { ImagesResult, IImagesResult } from './children'
+import { IImagesResult, ImagesResult } from './children'
 
 
 export interface IImagesResultContainer extends ContainerAbstract {
@@ -19,13 +19,13 @@ export interface IImagesResultContainer extends ContainerAbstract {
 export class ImagesResultContainer extends ContainerAbstract implements IImagesResultContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
-  * @type {Light}
+  * @type {number}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(Light)
-  @Default(Light.OFF)
-  light: Light
+  @IsInt()
+  @Default(Lights.OFF)
+  light: number
 
   /** @internal */
   @Expose()

@@ -1,7 +1,7 @@
 import { IsDefined, IsEnum, IsInt, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { Light, Source } from '@/consts'
+import { Lights, Source } from '@/consts'
 import { IRfidOrigin, RfidOrigin } from '@/models/common/rfid-origin'
 import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
 
@@ -39,9 +39,9 @@ export interface IImageFieldValue {
 
   /**
   * Light index
-  * @type {Light}
+  * @type {Lights}
   */
-  lightIndex: Light
+  lightIndex: Lights
 
   /**
   * Field rectangular area
@@ -65,6 +65,7 @@ export interface IImageFieldValue {
 export class ImageFieldValue implements IImageFieldValue {
   /**
   * Image file in Base64 representation
+  * @type {string}
   */
   @Expose()
   @IsDefined()
@@ -73,6 +74,7 @@ export class ImageFieldValue implements IImageFieldValue {
 
   /**
   * Original image file in Base64 representation
+  * @type {string}
   */
   @Expose()
   @IsDefined()
@@ -81,6 +83,7 @@ export class ImageFieldValue implements IImageFieldValue {
 
   /**
   * Source
+  * @type {Source}
   */
   @Expose()
   @IsDefined()
@@ -89,6 +92,7 @@ export class ImageFieldValue implements IImageFieldValue {
 
   /**
   * Container type
+  * @type {number}
   */
   @Expose()
   @IsDefined()
@@ -97,6 +101,7 @@ export class ImageFieldValue implements IImageFieldValue {
 
   /**
   * Page index
+  * @type {number}
   */
   @Expose()
   @IsDefined()
@@ -105,14 +110,16 @@ export class ImageFieldValue implements IImageFieldValue {
 
   /**
   * Light index
+  * @type {Lights}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(Light)
-  lightIndex: Light
+  @IsEnum(Lights)
+  lightIndex: Lights
 
   /**
   * Field rectangular area
+  * @type {IRectangleCoordinates}
   */
   @Expose()
   @IsDefined()
@@ -122,6 +129,7 @@ export class ImageFieldValue implements IImageFieldValue {
 
   /**
   * Field source from electronic document
+  * @type {IRfidOrigin|undefined}
   */
   @Expose()
   @IsOptional()
@@ -131,6 +139,7 @@ export class ImageFieldValue implements IImageFieldValue {
 
   /**
   * Original page index
+  * @type {number|undefined}
   */
   @Expose()
   @IsOptional()

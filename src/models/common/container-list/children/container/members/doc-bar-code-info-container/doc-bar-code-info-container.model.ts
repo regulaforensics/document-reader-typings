@@ -2,7 +2,7 @@ import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSyn
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Light, ResultType } from '@/consts'
+import { Lights, ResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { ContainerAbstract } from '../../container.abstract'
 import { DocBarCodeInfo, IDocBarCodeInfo } from './children'
@@ -19,13 +19,13 @@ export interface IDocBarCodeInfoContainer extends ContainerAbstract {
 export class DocBarCodeInfoContainer extends ContainerAbstract implements IDocBarCodeInfoContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
-  * @type {Light}
+  * @type {number}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(Light)
-  @Default(Light.OFF)
-  light: Light
+  @IsInt()
+  @Default(Lights.OFF)
+  light: number
 
   /** @internal */
   @Expose()

@@ -12,8 +12,8 @@ import {
 import { Expose, Type } from 'class-transformer'
 
 import {
-  DocumentFormat,
-  DocumentType,
+  DocFormat,
+  DocType,
   LogLevel,
   MeasureSystem,
   MRZFormat,
@@ -63,7 +63,7 @@ export interface IProcessParams {
   returnCroppedBarcode?: boolean
   imageQa?: IImageQA
   respectImageQuality?: boolean
-  forceDocFormat?: DocumentFormat
+  forceDocFormat?: DocFormat
   noGraphics?: boolean
   documentAreaMin?: number
   depersonalizeLog?: boolean
@@ -77,7 +77,7 @@ export interface IProcessParams {
   convertCase?: TextPostProcessing
   splitNames?: boolean
   disablePerforationOCR?: boolean
-  documentGroupFilter?: DocumentType[]
+  documentGroupFilter?: DocType[]
   processAuth?: number
   deviceId?: number
   deviceType?: number
@@ -231,8 +231,8 @@ export class ProcessParams implements IProcessParams {
 
   @Expose()
   @IsOptional()
-  @IsEnum(DocumentFormat)
-  forceDocFormat?: DocumentFormat
+  @IsEnum(DocFormat)
+  forceDocFormat?: DocFormat
 
   @Expose()
   @IsBoolean()
@@ -301,8 +301,8 @@ export class ProcessParams implements IProcessParams {
 
   @Expose()
   @IsOptional()
-  @IsEnum(DocumentType, { each: true })
-  documentGroupFilter?: DocumentType[]
+  @IsEnum(DocType, { each: true })
+  documentGroupFilter?: DocType[]
 
   @Expose()
   @IsOptional()
