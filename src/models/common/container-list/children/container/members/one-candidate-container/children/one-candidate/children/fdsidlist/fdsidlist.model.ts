@@ -1,11 +1,11 @@
 import { IsArray, IsBoolean, IsDefined, IsEnum, IsInt, IsOptional, IsString, MaxLength } from 'class-validator'
 import { Expose } from 'class-transformer'
 
-import { DocFormat, DocType } from '@/consts'
+import { eDocFormat, eDocType } from '@/consts'
 import { Default } from '@/decorators'
 
 
-export interface IFDSIDList {
+export interface iFDSIDList {
   /**
   * Document issuing country ICAO code
   * @type {string}
@@ -26,15 +26,15 @@ export interface IFDSIDList {
 
   /**
   * Document type
-  * @type {DocType}
+  * @type {eDocType}
   */
-  dType: DocType
+  dType: eDocType
 
   /**
   * Document format
-  * @type {DocFormat}
+  * @type {eDocFormat}
   */
-  dFormat: DocFormat
+  dFormat: eDocFormat
 
   /**
   * Flag for MRZ presence on document
@@ -79,7 +79,7 @@ export interface IFDSIDList {
   isDeprecated: boolean
 }
 
-export class FDSIDList implements IFDSIDList {
+export class FDSIDList implements iFDSIDList {
   /**
   * Document issuing country ICAO code
   * @type {string}
@@ -111,21 +111,21 @@ export class FDSIDList implements IFDSIDList {
 
   /**
   * Document type
-  * @type {DocType}
+  * @type {eDocType}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(DocType)
-  dType: DocType
+  @IsEnum(eDocType)
+  dType: eDocType
 
   /**
   * Document format
-  * @type {DocFormat}
+  * @type {eDocFormat}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(DocFormat)
-  dFormat: DocFormat
+  @IsEnum(eDocFormat)
+  dFormat: eDocFormat
 
   /**
   * Flag for MRZ presence on document

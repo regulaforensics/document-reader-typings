@@ -12,58 +12,58 @@ import {
 import { Expose, Type } from 'class-transformer'
 
 import {
-  DocFormat,
-  DocType,
-  LogLevel,
-  MeasureSystem,
-  MRZFormat,
-  Result,
-  Scenario,
-  VisualFieldType,
-  TextPostProcessing
+  eDocFormat,
+  eDocType,
+  eLogLevel,
+  eMeasureSystem,
+  eMRZFormat,
+  eResult,
+  eScenario,
+  eVisualFieldType,
+  eTextPostProcessing
 } from '@/consts'
 import { IsStringObjectRecord } from '@/validators'
 import {
   FaceApi,
-  IFaceApi,
-  IImageQA,
+  iFaceApi,
+  iImageQA,
   ImageQA,
-  IPerDocumentConfig,
-  IProcessParamsRfid,
+  iPerDocumentConfig,
+  iProcessParamsRfid,
   PerDocumentConfig,
   ProcessParamsRfid
 } from './children'
 
 
-export interface IProcessParams {
+export interface iProcessParams {
   oneShotIdentification?: boolean
   useFaceApi?: boolean
-  faceApi?: IFaceApi
+  faceApi?: iFaceApi
   doDetectCan?: boolean
   imageOutputMaxHeight?: number
   imageOutputMaxWidth?: number
-  scenario: Scenario
-  resultTypeOutput?: Result[]
+  scenario: eScenario
+  resultTypeOutput?: eResult[]
   doublePageSpread?: boolean
   generateDoublePageSpreadImage?: boolean
-  fieldTypesFilter?: VisualFieldType[]
+  fieldTypesFilter?: eVisualFieldType[]
   dateFormat?: string
-  measureSystem?: MeasureSystem
+  measureSystem?: eMeasureSystem
   imageDpiOutMax?: number
   alreadyCropped?: boolean
   customParams?: Record<string, object>
-  config?: IPerDocumentConfig[]
+  config?: iPerDocumentConfig[]
   log?: boolean
-  logLevel?: LogLevel
+  logLevel?: eLogLevel
   forceDocID?: number
   matchTextFieldMask?: boolean
   fastDocDetect?: boolean
   updateOCRValidityByGlare?: boolean
   checkRequiredTextFields?: boolean
   returnCroppedBarcode?: boolean
-  imageQa?: IImageQA
+  imageQa?: iImageQA
   respectImageQuality?: boolean
-  forceDocFormat?: DocFormat
+  forceDocFormat?: eDocFormat
   noGraphics?: boolean
   documentAreaMin?: number
   depersonalizeLog?: boolean
@@ -71,23 +71,23 @@ export interface IProcessParams {
   shiftExpiryDate?: number
   minimalHolderAge?: number
   returnUncroppedImage?: boolean
-  mrzFormatsFilter?: MRZFormat[]
+  mrzFormatsFilter?: eMRZFormat[]
   forceReadMrzBeforeLocate?: boolean
   parseBarcodes?: boolean
-  convertCase?: TextPostProcessing
+  convertCase?: eTextPostProcessing
   splitNames?: boolean
   disablePerforationOCR?: boolean
-  documentGroupFilter?: DocType[]
+  documentGroupFilter?: eDocType[]
   processAuth?: number
   deviceId?: number
   deviceType?: number
   deviceTypeHex?: string
   ignoreDeviceIdFromImage?: boolean
   documentIdList?: number[]
-  rfid?: IProcessParamsRfid
+  rfid?: iProcessParamsRfid
 }
 
-export class ProcessParams implements IProcessParams {
+export class ProcessParams implements iProcessParams {
   @Expose()
   @IsBoolean()
   @IsOptional()
@@ -123,13 +123,13 @@ export class ProcessParams implements IProcessParams {
 
   @Expose()
   @IsDefined()
-  @IsEnum(Scenario)
-  scenario: Scenario
+  @IsEnum(eScenario)
+  scenario: eScenario
 
   @Expose()
   @IsOptional()
-  @IsEnum(Result, { each: true })
-  resultTypeOutput?: Result[]
+  @IsEnum(eResult, { each: true })
+  resultTypeOutput?: eResult[]
 
   @Expose()
   @IsBoolean()
@@ -143,8 +143,8 @@ export class ProcessParams implements IProcessParams {
 
   @Expose()
   @IsOptional()
-  @IsEnum(VisualFieldType, { each: true })
-  fieldTypesFilter?: VisualFieldType[]
+  @IsEnum(eVisualFieldType, { each: true })
+  fieldTypesFilter?: eVisualFieldType[]
 
   @Expose()
   @IsOptional()
@@ -153,8 +153,8 @@ export class ProcessParams implements IProcessParams {
 
   @Expose()
   @IsOptional()
-  @IsEnum(MeasureSystem)
-  measureSystem?: MeasureSystem
+  @IsEnum(eMeasureSystem)
+  measureSystem?: eMeasureSystem
 
   @Expose()
   @IsOptional()
@@ -185,8 +185,8 @@ export class ProcessParams implements IProcessParams {
 
   @Expose()
   @IsOptional()
-  @IsEnum(LogLevel)
-  logLevel?: LogLevel
+  @IsEnum(eLogLevel)
+  logLevel?: eLogLevel
 
   @Expose()
   @IsOptional()
@@ -231,8 +231,8 @@ export class ProcessParams implements IProcessParams {
 
   @Expose()
   @IsOptional()
-  @IsEnum(DocFormat)
-  forceDocFormat?: DocFormat
+  @IsEnum(eDocFormat)
+  forceDocFormat?: eDocFormat
 
   @Expose()
   @IsBoolean()
@@ -271,8 +271,8 @@ export class ProcessParams implements IProcessParams {
 
   @Expose()
   @IsOptional()
-  @IsEnum(MRZFormat, { each: true })
-  mrzFormatsFilter?: MRZFormat[]
+  @IsEnum(eMRZFormat, { each: true })
+  mrzFormatsFilter?: eMRZFormat[]
 
   @Expose()
   @IsBoolean()
@@ -286,8 +286,8 @@ export class ProcessParams implements IProcessParams {
 
   @Expose()
   @IsOptional()
-  @IsEnum(TextPostProcessing)
-  convertCase?: TextPostProcessing
+  @IsEnum(eTextPostProcessing)
+  convertCase?: eTextPostProcessing
 
   @Expose()
   @IsBoolean()
@@ -301,8 +301,8 @@ export class ProcessParams implements IProcessParams {
 
   @Expose()
   @IsOptional()
-  @IsEnum(DocType, { each: true })
-  documentGroupFilter?: DocType[]
+  @IsEnum(eDocType, { each: true })
+  documentGroupFilter?: eDocType[]
 
   @Expose()
   @IsOptional()

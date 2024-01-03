@@ -2,7 +2,7 @@ import { IsDefined, IsNumber } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 
-export interface IRfidOrigin {
+export interface iRfidOrigin {
   /**
   * Data group number
   * @type {number}
@@ -28,7 +28,7 @@ export interface IRfidOrigin {
   entryView: number
 }
 
-export class RfidOrigin implements IRfidOrigin {
+export class RfidOrigin implements iRfidOrigin {
   /**
   * Data group number
   * @type {number}

@@ -1,10 +1,10 @@
 import { IsArray, IsDefined, IsInt, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { ISymbolResult, SymbolResult } from './children'
+import { iSymbolResult, SymbolResult } from './children'
 
 
-export interface IStringResultSDK {
+export interface iStringResultSDK {
   /**
   * Number of StringResult array elements
   * @type {number}
@@ -18,12 +18,12 @@ export interface IStringResultSDK {
 
   /**
   * Array of separate characters recognition results
-  * @type {ISymbolResult[]}
+  * @type {iSymbolResult[]}
   */
-  StringResult: ISymbolResult[]
+  StringResult: iSymbolResult[]
 }
 
-export class StringResultSDK implements IStringResultSDK {
+export class StringResultSDK implements iStringResultSDK {
   /**
   * Number of StringResult array elements
   * @type {number}

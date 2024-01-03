@@ -3,8 +3,9 @@
 * Constants with prefix RFDGT_ correspond to the informational data groups of ePassport
 * application, with prefix RFDGT_EID_ – those of eID application, with prefix RFDGT_EDL_ –
 * eDL application
+* @enum {number}
 */
-export enum RfidDataGroupTypeTag {
+export enum eRfidDataGroupTypeTag {
   /**
   * Common Data Group Type
   */

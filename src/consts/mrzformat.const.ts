@@ -1,4 +1,4 @@
-export enum MRZFormat {
+export enum eMRZFormat {
   /**
   * 1x30
   */

@@ -2,7 +2,7 @@
 * Locale id. Used to tag same typed fields declared in several languages. For example: name can be provided in both native and latin variants. Based on Microsoft locale id (https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).
 * @enum {number}
 */
-export enum LCID {
+export enum eLCID {
   /**
   * Latin
   */
@@ -127,6 +127,11 @@ export enum LCID {
   * Bulgarian
   */
   BULGARIAN = 1026,
+
+  /**
+  * Burmese
+  */
+  BURMESE = 1109,
 
   /**
   * Catalan
@@ -404,6 +409,11 @@ export enum LCID {
   KAZAKH = 1087,
 
   /**
+  * Khmer
+  */
+  KHMER = 1107,
+
+  /**
   * Konkani
   */
   KONKANI = 1111,
@@ -437,6 +447,11 @@ export enum LCID {
   * Malay (Brunei Darussalam)
   */
   MALAY_BRUNEI_DARUSSALAM = 2110,
+
+  /**
+  * Maltese
+  */
+  MALTESE = 1082,
 
   /**
   * Marathi

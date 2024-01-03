@@ -1,39 +1,39 @@
 import { IsDefined, IsEnum } from 'class-validator'
 import { Expose } from 'class-transformer'
 
-import { CheckResult, Source } from '@/consts'
+import { eCheckResult, eSource } from '@/consts'
 
 
-export interface ITextValidity {
+export interface iTextValidity {
   /**
   * Source name
-  * @type {Source}
+  * @type {eSource}
   */
-  source: Source
+  source: eSource
 
   /**
   * Validity status
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  status: CheckResult
+  status: eCheckResult
 }
 
-export class TextValidity implements ITextValidity {
+export class TextValidity implements iTextValidity {
   /**
   * Source name
-  * @type {Source}
+  * @type {eSource}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(Source)
-  source: Source
+  @IsEnum(eSource)
+  source: eSource
 
   /**
   * Validity status
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  status: CheckResult
+  @IsEnum(eCheckResult)
+  status: eCheckResult
 }

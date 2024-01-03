@@ -1,39 +1,44 @@
 import { IsDefined, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IImageSource, IImageField, ImageSource, ImageField } from './children'
+import { iImageSource, iImageField, ImageSource, ImageField } from './children'
 
 
-export interface IImagesResult {
+export interface iImagesResult {
   /**
   * Fields count
   * @type {number}
+  * @memberof iImagesResult
   */
   fieldCount: number
 
   /**
   * Available sources count
   * @type {number}
+  * @memberof iImagesResult
   */
   availableSourceCount: number
 
   /**
   * Available sources list
-  * @type {IImageSource[]}
+  * @type {iImageSource[]}
+  * @memberof iImagesResult
   */
-  availableSourceList: IImageSource[]
+  availableSourceList: iImageSource[]
 
   /**
   * Fields list
-  * @type {IImageField[]}
+  * @type {iImageField[]}
+  * @memberof iImagesResult
   */
-  fieldList: IImageField[]
+  fieldList: iImageField[]
 }
 
-export class ImagesResult implements IImagesResult {
+export class ImagesResult implements iImagesResult {
   /**
   * Fields count
   * @type {number}
+  * @memberof ImagesResult
   */
   @Expose()
   @IsDefined()
@@ -43,6 +48,7 @@ export class ImagesResult implements IImagesResult {
   /**
   * Available sources count
   * @type {number}
+  * @memberof ImagesResult
   */
   @Expose()
   @IsDefined()
@@ -52,6 +58,7 @@ export class ImagesResult implements IImagesResult {
   /**
   * Available sources list
   * @type {ImageSource[]}
+  * @memberof ImagesResult
   */
   @Expose()
   @IsDefined()
@@ -62,6 +69,7 @@ export class ImagesResult implements IImagesResult {
   /**
   * Fields list
   * @type {ImageField[]}
+  * @memberof ImagesResult
   */
   @Expose()
   @IsDefined()

@@ -1,28 +1,28 @@
 import { IsDefined, IsEnum, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { CheckResult } from '@/consts'
-import { ITextSource, ITextField, TextSource, TextField } from './children'
+import { eCheckResult } from '@/consts'
+import { iTextSource, iTextField, TextSource, TextField } from './children'
 
 
-export interface ITextResult {
+export interface iTextResult {
   /**
   * Status
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  status: CheckResult
+  status: eCheckResult
 
   /**
   * Validity status
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  validityStatus: CheckResult
+  validityStatus: eCheckResult
 
   /**
   * Comparison status
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  comparisonStatus: CheckResult
+  comparisonStatus: eCheckResult
 
   /**
   * Date format
@@ -32,44 +32,44 @@ export interface ITextResult {
 
   /**
   * Fields list
-  * @type {ITextField[]}
+  * @type {iTextField[]}
   */
-  fieldList: ITextField[]
+  fieldList: iTextField[]
 
   /**
   * Sources list
-  * @type {ITextSource[]}
+  * @type {iTextSource[]}
   */
-  availableSourceList: ITextSource[]
+  availableSourceList: iTextSource[]
 }
 
-export class TextResult implements ITextResult {
+export class TextResult implements iTextResult {
   /**
   * Status
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  status: CheckResult
+  @IsEnum(eCheckResult)
+  status: eCheckResult
 
   /**
   * Validity status
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  validityStatus: CheckResult
+  @IsEnum(eCheckResult)
+  validityStatus: eCheckResult
 
   /**
   * Comparison status
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  comparisonStatus: CheckResult
+  @IsEnum(eCheckResult)
+  comparisonStatus: eCheckResult
 
   /**
   * Date format

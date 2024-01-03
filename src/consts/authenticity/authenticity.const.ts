@@ -2,7 +2,7 @@
 * Enumeration describes available authenticity checks: https://docs.regulaforensics.com/develop/doc-reader-sdk/web-service/development/enums/authenticity-result-type/.
 * @enum {number}
 */
-export enum Authenticity {
+export enum eAuthenticity {
   /**
   * No authenticity control procedure
   */

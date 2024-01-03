@@ -1,30 +1,30 @@
 import { IsArray, IsDefined, IsEnum, IsInt, IsOptional, IsString, ValidateNested } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { LCID, VisualFieldType } from '@/consts'
-import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
-import { IStringResultSDK, StringResultSDK } from '../../children'
-import { DocVisualExtendedFieldAbstract } from '../../doc-visual-extended-field.abstract'
+import { eLCID, eVisualFieldType } from '@/consts'
+import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { iStringResultSDK, StringResultSDK } from '../../children'
+import { aDocVisualExtendedField } from '../../doc-visual-extended-field.abstract'
 
 
-export interface IDocVisualExtendedField3 extends DocVisualExtendedFieldAbstract {
+export interface iDocVisualExtendedField3 extends aDocVisualExtendedField {
   /**
   * Field logical type
-  * @type {VisualFieldType}
+  * @type {eVisualFieldType}
   */
-  wFieldType: VisualFieldType
+  wFieldType: eVisualFieldType
 
   /**
   * ID of language-culture to differentiate one field of the same type from another
-  * @type {LCID}
+  * @type {eLCID}
   */
-  wLCID: LCID
+  wLCID: eLCID
 
   /**
   * Field rectangular area coordinates on the image
-  * @type {IRectangleCoordinates}
+  * @type {iRectangleCoordinates}
   */
-  FieldRect: IRectangleCoordinates
+  FieldRect: iRectangleCoordinates
 
   /**
   * Field symbolic name (null-terminated string)
@@ -40,9 +40,9 @@ export interface IDocVisualExtendedField3 extends DocVisualExtendedFieldAbstract
 
   /**
   * Array of separate strings of multiline text field recognition results
-  * @type {IStringResultSDK[]}
+  * @type {iStringResultSDK[]}
   */
-  StringsResult: IStringResultSDK[]
+  StringsResult: iStringResultSDK[]
 
   /**
   * Buf_Text text string length
@@ -84,24 +84,24 @@ export interface IDocVisualExtendedField3 extends DocVisualExtendedFieldAbstract
 }
 
 
-export class DocVisualExtendedField3 extends DocVisualExtendedFieldAbstract implements IDocVisualExtendedField3 {
+export class DocVisualExtendedField3 extends aDocVisualExtendedField implements iDocVisualExtendedField3 {
   /**
   * Field logical type
-  * @type {VisualFieldType}
+  * @type {eVisualFieldType}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(VisualFieldType)
-  wFieldType: VisualFieldType
+  @IsEnum(eVisualFieldType)
+  wFieldType: eVisualFieldType
 
   /**
   * ID of language-culture to differentiate one field of the same type from another
-  * @type {LCID}
+  * @type {eLCID}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(LCID)
-  wLCID: LCID
+  @IsEnum(eLCID)
+  wLCID: eLCID
 
   /**
   * Field rectangular area coordinates on the image
@@ -133,7 +133,7 @@ export class DocVisualExtendedField3 extends DocVisualExtendedFieldAbstract impl
 
   /**
   * Array of separate strings of multiline text field recognition results
-  * @type {IStringResultSDK[]}
+  * @type {iStringResultSDK[]}
   */
   @Expose()
   @IsDefined()

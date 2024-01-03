@@ -1,4 +1,4 @@
-import { Lights } from '../lights.const'
+import { eLights } from '../lights.const'
 
 
 /**
@@ -7,4 +7,4 @@ import { Lights } from '../lights.const'
 * @param {any} lights
 * @returns {boolean} isLights
 */
-export const isLights = (lights: any): lights is Lights => Object.values(Lights).includes(lights)
+export const isLights = (lights: any): lights is eLights => Object.values(eLights).includes(lights)

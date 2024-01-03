@@ -1,82 +1,82 @@
 import { IsDefined, IsEnum, IsIn, IsNumber, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { AreaArray, IAreaArray } from '@/models/common/area-array'
-import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { AreaArray, iAreaArray } from '@/models/common/area-array'
+import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
 import {
-  Authenticity,
-  CheckDiagnose,
-  CheckResult,
-  SecurityCriticalFlag,
-  SecurityFeatureType,
-  Visibility
+  eAuthenticity,
+  eCheckDiagnose,
+  eCheckResult,
+  eSecurityCriticalFlag,
+  eSecurityFeatureType,
+  eIRVisibilityFlag
 } from '@/consts'
 
 
-export interface ISecurityFeatureResult {
+export interface iSecurityFeatureResult {
   Type:
-    Authenticity.UV_LUMINESCENCE |
-    Authenticity.IR_B900 |
-    Authenticity.AXIAL_PROTECTION |
-    Authenticity.PHOTO_EMBED_TYPE |
-    Authenticity.HOLOGRAMS |
-    Authenticity.PHOTO_AREA |
-    Authenticity.BARCODE_FORMAT_CHECK |
-    Authenticity.EXTENDED_OCR_CHECK |
-    Authenticity.EXTENDED_MRZ_CHECK |
-    Authenticity.STATUS_ONLY
-  ElementResult?: CheckResult
-  ElementDiagnose?: CheckDiagnose
-  ElementType?: SecurityFeatureType
-  ElementRect?: IRectangleCoordinates
-  Visibility?: Visibility
-  CriticalFlag?: SecurityCriticalFlag
-  AreaList?: IAreaArray
+    eAuthenticity.UV_LUMINESCENCE |
+    eAuthenticity.IR_B900 |
+    eAuthenticity.AXIAL_PROTECTION |
+    eAuthenticity.PHOTO_EMBED_TYPE |
+    eAuthenticity.HOLOGRAMS |
+    eAuthenticity.PHOTO_AREA |
+    eAuthenticity.BARCODE_FORMAT_CHECK |
+    eAuthenticity.EXTENDED_OCR_CHECK |
+    eAuthenticity.EXTENDED_MRZ_CHECK |
+    eAuthenticity.STATUS_ONLY
+  ElementResult?: eCheckResult
+  ElementDiagnose?: eCheckDiagnose
+  ElementType?: eSecurityFeatureType
+  ElementRect?: iRectangleCoordinates
+  Visibility?: eIRVisibilityFlag
+  CriticalFlag?: eSecurityCriticalFlag
+  AreaList?: iAreaArray
   Reserved2?: number
 }
 
-export class SecurityFeatureResult implements ISecurityFeatureResult {
+export class SecurityFeatureResult implements iSecurityFeatureResult {
   @Expose()
   @IsDefined()
   @IsIn([
-    Authenticity.UV_LUMINESCENCE,
-    Authenticity.IR_B900,
-    Authenticity.AXIAL_PROTECTION,
-    Authenticity.PHOTO_EMBED_TYPE,
-    Authenticity.HOLOGRAMS,
-    Authenticity.PHOTO_AREA,
-    Authenticity.BARCODE_FORMAT_CHECK,
-    Authenticity.EXTENDED_OCR_CHECK,
-    Authenticity.EXTENDED_MRZ_CHECK,
-    Authenticity.STATUS_ONLY
+    eAuthenticity.UV_LUMINESCENCE,
+    eAuthenticity.IR_B900,
+    eAuthenticity.AXIAL_PROTECTION,
+    eAuthenticity.PHOTO_EMBED_TYPE,
+    eAuthenticity.HOLOGRAMS,
+    eAuthenticity.PHOTO_AREA,
+    eAuthenticity.BARCODE_FORMAT_CHECK,
+    eAuthenticity.EXTENDED_OCR_CHECK,
+    eAuthenticity.EXTENDED_MRZ_CHECK,
+    eAuthenticity.STATUS_ONLY
   ])
-  @IsEnum(Authenticity)
+  @IsEnum(eAuthenticity)
   Type:
-    Authenticity.UV_LUMINESCENCE |
-    Authenticity.IR_B900 |
-    Authenticity.AXIAL_PROTECTION |
-    Authenticity.PHOTO_EMBED_TYPE |
-    Authenticity.HOLOGRAMS |
-    Authenticity.PHOTO_AREA |
-    Authenticity.BARCODE_FORMAT_CHECK |
-    Authenticity.EXTENDED_OCR_CHECK |
-    Authenticity.EXTENDED_MRZ_CHECK |
-    Authenticity.STATUS_ONLY
+    eAuthenticity.UV_LUMINESCENCE |
+    eAuthenticity.IR_B900 |
+    eAuthenticity.AXIAL_PROTECTION |
+    eAuthenticity.PHOTO_EMBED_TYPE |
+    eAuthenticity.HOLOGRAMS |
+    eAuthenticity.PHOTO_AREA |
+    eAuthenticity.BARCODE_FORMAT_CHECK |
+    eAuthenticity.EXTENDED_OCR_CHECK |
+    eAuthenticity.EXTENDED_MRZ_CHECK |
+    eAuthenticity.STATUS_ONLY
 
   @Expose()
   @IsOptional()
-  @IsEnum(CheckResult)
-  ElementResult?: CheckResult
+  @IsEnum(eCheckResult)
+  ElementResult?: eCheckResult
 
   @Expose()
   @IsOptional()
-  @IsEnum(CheckDiagnose)
-  ElementDiagnose?: CheckDiagnose
+  @IsEnum(eCheckDiagnose)
+  ElementDiagnose?: eCheckDiagnose
 
   @Expose()
   @IsOptional()
-  @IsEnum(SecurityFeatureType)
-  ElementType?: SecurityFeatureType
+  @IsEnum(eSecurityFeatureType)
+  ElementType?: eSecurityFeatureType
 
   @Expose()
   @IsOptional()
@@ -86,13 +86,13 @@ export class SecurityFeatureResult implements ISecurityFeatureResult {
 
   @Expose()
   @IsOptional()
-  @IsEnum(Visibility)
-  Visibility?: Visibility
+  @IsEnum(eIRVisibilityFlag)
+  Visibility?: eIRVisibilityFlag
 
   @Expose()
   @IsOptional()
-  @IsEnum(SecurityCriticalFlag)
-  CriticalFlag?: SecurityCriticalFlag
+  @IsEnum(eSecurityCriticalFlag)
+  CriticalFlag?: eSecurityCriticalFlag
 
   @Expose()
   @IsOptional()

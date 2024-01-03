@@ -1,44 +1,52 @@
 import { IsDefined, IsEnum, IsNumber, IsString } from 'class-validator'
 import { Expose } from 'class-transformer'
 
-import { BarCodeModuleType } from '@/consts'
+import { eBarCodeModuleType } from '@/consts'
 import { Default } from '@/decorators'
 
 
-export interface ITipDecodeModule {
+export interface iTipDecodeModule {
   /**
   * Read module data
   * @type {string}
+  * @memberof iTipDecodeModule
   */
   mData: string
 
   /**
   * Number of significant elements of mData
   * @type {number}
+  * @memberof iTipDecodeModule
   */
   mLength: number
 
   /**
   * @internal
+  * @type {unknown}
+  * @memberof iTipDecodeModule
   */
   mReserved1?: unknown
 
   /**
   * @internal
+  * @type {unknown}
+  * @memberof iTipDecodeModule
   */
   mReserver2?: unknown
 
   /**
   * Module type
-  * @type {BarCodeModuleType}
+  * @type {eBarCodeModuleType}
+  * @memberof iTipDecodeModule
   */
-  mType: BarCodeModuleType
+  mType: eBarCodeModuleType
 }
 
-export class TipDecodeModule implements ITipDecodeModule {
+export class TipDecodeModule implements iTipDecodeModule {
   /**
   * Read module data
   * @type {string}
+  * @memberof TipDecodeModule
   */
   @Expose()
   @IsDefined()
@@ -48,6 +56,7 @@ export class TipDecodeModule implements ITipDecodeModule {
   /**
   * Number of significant elements of mData
   * @type {number}
+  * @memberof TipDecodeModule
   */
   @Expose()
   @IsDefined()
@@ -56,23 +65,28 @@ export class TipDecodeModule implements ITipDecodeModule {
 
   /**
   * @internal
+  * @type {unknown}
+  * @memberof TipDecodeModule
   */
   @Expose()
-  mReserved1?: number
+  mReserved1?: unknown
 
   /**
   * @internal
+   * @type {unknown}
+   * @memberof TipDecodeModule
   */
   @Expose()
-  mReserver2?: number
+  mReserver2?: unknown
 
   /**
   * Module type
-  * @type {BarCodeModuleType}
+  * @type {eBarCodeModuleType}
+  * @memberof TipDecodeModule
   */
   @Expose()
   @IsDefined()
-  @IsEnum(BarCodeModuleType)
-  @Default(BarCodeModuleType.ALL)
-  mType: BarCodeModuleType
+  @IsEnum(eBarCodeModuleType)
+  @Default(eBarCodeModuleType.ALL)
+  mType: eBarCodeModuleType
 }

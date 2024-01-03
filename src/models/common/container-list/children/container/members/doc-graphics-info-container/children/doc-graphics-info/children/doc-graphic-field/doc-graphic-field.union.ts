@@ -1,24 +1,24 @@
-import { DocGraphicFieldRect, DocGraphicFieldRfid, IDocGraphicFieldRect, IDocGraphicFieldRfid } from './members'
+import { DocGraphicFieldRect, DocGraphicFieldRfid, iDocGraphicFieldRect, iDocGraphicFieldRfid } from './members'
 import { isObject } from '@/helpers'
 
 
-export type DocGraphicFieldUnion =
+export type uDocGraphicField =
   DocGraphicFieldRect |
   DocGraphicFieldRfid
 
-export type IDocGraphicFieldUnion =
-  IDocGraphicFieldRect |
-  IDocGraphicFieldRfid
+export type iuDocGraphicField =
+  iDocGraphicFieldRect |
+  iDocGraphicFieldRfid
 
-export namespace DocGraphicFieldUnion {
+export namespace uDocGraphicField {
   /**
   * Transform list of items to list of DocGraphicFieldUnion
   *
   * @param {unknown[]} items - list of items
-  * @returns {DocGraphicFieldUnion[]}
+  * @returns {uDocGraphicField[]}
   */
   export const transformList = (items: unknown[]) => {
-    const result: DocGraphicFieldUnion[] = []
+    const result: uDocGraphicField[] = []
 
     if (!Array.isArray(items)) {
       return result

@@ -2,7 +2,15 @@ import { IsBoolean, IsInt, IsNumber, IsOptional } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 
-export interface IImageQA {
+export interface iImageQA {
+  /**
+  * Set the threshold for an actual document brightness below which the check fails
+  *
+  * @type {number}
+  * @memberof iImageQA
+  */
+  brightnessThreshold?: number
+
   dpiThreshold?: number
   angleThreshold?: number
   focusCheck?: boolean
@@ -12,7 +20,18 @@ export interface IImageQA {
   documentPositionIndent?: number
 }
 
-export class ImageQA implements IImageQA {
+export class ImageQA implements iImageQA {
+  /**
+  * Set the threshold for an actual document brightness below which the check fails
+  *
+  * @type {number}
+  * @memberof iImageQA
+  */
+  @Expose()
+  @IsOptional()
+  @IsNumber()
+  brightnessThreshold?: number
+
   @Expose()
   @IsOptional()
   @IsInt()

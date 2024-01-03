@@ -5,27 +5,30 @@
 import { IsArray, IsDefined, IsInt, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IDocBarCodeField, DocBarCodeField } from './children'
+import { iDocBarCodeField, DocBarCodeField } from './children'
 
 
-export interface IDocBarCodeInfo {
+export interface iDocBarCodeInfo {
   /**
   * Number of pArrayFields array elements
   * @type {number}
+  * @memberof iDocBarCodeInfo
   */
   nFields: number
 
   /**
   * Array of separate bar-codes reading results
-  * @type {IDocBarCodeField[]}
+  * @type {iDocBarCodeField[]}
+  * @memberof iDocBarCodeInfo
   */
-  pArrayFields: IDocBarCodeField[]
+  pArrayFields: iDocBarCodeField[]
 }
 
-export class DocBarCodeInfo implements IDocBarCodeInfo {
+export class DocBarCodeInfo implements iDocBarCodeInfo {
   /**
   * Number of pArrayFields array elements
   * @type {number}
+  * @memberof DocBarCodeInfo
   */
   @Expose()
   @IsDefined()
@@ -34,7 +37,8 @@ export class DocBarCodeInfo implements IDocBarCodeInfo {
 
   /**
   * Array of separate bar-codes reading results
-  * @type {IDocBarCodeField[]}
+  * @type {iDocBarCodeField[]}
+  * @memberof DocBarCodeInfo
   */
   @Expose()
   @IsDefined()

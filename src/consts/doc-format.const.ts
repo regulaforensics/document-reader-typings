@@ -2,7 +2,7 @@
 * Defining the geometric format of documents in accordance with ISO / IEC 7810
 * @enum {number}
 */
-export enum DocFormat {
+export enum eDocFormat {
   /**
   * Unknown document format
   */

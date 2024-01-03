@@ -1,26 +1,26 @@
 import { IsEnum, IsInt, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IImageData, ImageData } from '@/models/common'
-import { Lights } from '@/consts'
+import { iImageData, ImageData } from '@/models/common'
+import { eLights } from '@/consts'
 
 
-export interface IProcessRequestImage {
-  ImageData: IImageData
-  light?: Lights
+export interface iProcessRequestImage {
+  ImageData: iImageData
+  light?: eLights
   page_idx?: number
 }
 
-export class ProcessRequestImage implements IProcessRequestImage {
+export class ProcessRequestImage implements iProcessRequestImage {
   @Expose()
   @ValidateNested()
   @Type(() => ImageData)
   ImageData: ImageData
 
   @Expose()
-  @IsEnum(Lights)
+  @IsEnum(eLights)
   @IsOptional()
-  light?: Lights
+  light?: eLights
 
   @Expose()
   @IsInt()

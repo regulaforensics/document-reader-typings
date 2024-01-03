@@ -3,7 +3,7 @@
 * text field comparasing from the different sources.
 * @enum {number}
 */
-export enum CheckDiagnose {
+export enum eCheckDiagnose {
   /**
   * Check was not performed
   */

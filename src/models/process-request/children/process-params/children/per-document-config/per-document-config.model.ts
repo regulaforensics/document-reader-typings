@@ -2,12 +2,12 @@ import { IsInt, IsOptional } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 
-export interface IPerDocumentConfig {
+export interface iPerDocumentConfig {
   docID?: number[]
   excludeAuthChecks?: number
 }
 
-export class PerDocumentConfig implements IPerDocumentConfig {
+export class PerDocumentConfig implements iPerDocumentConfig {
   @Expose()
   @IsOptional()
   @IsInt({ each: true })

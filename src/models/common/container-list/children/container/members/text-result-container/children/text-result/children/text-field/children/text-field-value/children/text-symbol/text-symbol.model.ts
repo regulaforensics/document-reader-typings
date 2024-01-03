@@ -1,11 +1,11 @@
 import { IsDefined, IsInt, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
 import { Default } from '@/decorators'
 
 
-export interface ITextSymbol {
+export interface iTextSymbol {
   /**
   * Symbol code
   * @type {number}
@@ -20,12 +20,12 @@ export interface ITextSymbol {
 
   /**
   * Symbol rectangular area
-  * @type {IRectangleCoordinates}
+  * @type {iRectangleCoordinates}
   */
-  rect?: IRectangleCoordinates
+  rect?: iRectangleCoordinates
 }
 
-export class TextSymbol implements ITextSymbol {
+export class TextSymbol implements iTextSymbol {
   /**
   * Symbol code
   * @type {number}

@@ -1,59 +1,59 @@
 import { IsArray, IsDefined, IsEnum, IsIn, ValidateNested } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { Authenticity, CheckResult } from '@/consts'
-import { AuthenticityCheckResultAbstract } from '../../authenticity-check-result.abstract'
-import { IdentResult, IIdentResult } from './children'
+import { eAuthenticity, eCheckResult } from '@/consts'
+import { aAuthenticityCheckResult } from '../../authenticity-check-result.abstract'
+import { IdentResult, iIdentResult } from './children'
 
 
-export interface IAuthenticityIdentCheckResult extends AuthenticityCheckResultAbstract {
+export interface iAuthenticityIdentCheckResult extends aAuthenticityCheckResult {
   Type:
-    Authenticity.IMAGE_PATTERN |
-    Authenticity.IR_VISIBILITY |
-    Authenticity.OVI |
-    Authenticity.IR_LUMINESCENCE |
-    Authenticity.PORTRAIT_COMPARISON |
-    Authenticity.KINEGRAM |
-    Authenticity.LETTER_SCREEN |
-    Authenticity.HOLOGRAM_DETECTION |
-    Authenticity.FINGERPRINT_COMPARISON |
-    Authenticity.LIVENESS
-  Result: CheckResult
-  List: IIdentResult[]
+    eAuthenticity.IMAGE_PATTERN |
+    eAuthenticity.IR_VISIBILITY |
+    eAuthenticity.OVI |
+    eAuthenticity.IR_LUMINESCENCE |
+    eAuthenticity.PORTRAIT_COMPARISON |
+    eAuthenticity.KINEGRAM |
+    eAuthenticity.LETTER_SCREEN |
+    eAuthenticity.HOLOGRAM_DETECTION |
+    eAuthenticity.FINGERPRINT_COMPARISON |
+    eAuthenticity.LIVENESS
+  Result: eCheckResult
+  List: iIdentResult[]
 }
 
-export class AuthenticityIdentCheckResult extends AuthenticityCheckResultAbstract implements IAuthenticityIdentCheckResult {
+export class AuthenticityIdentCheckResult extends aAuthenticityCheckResult implements iAuthenticityIdentCheckResult {
   @Expose()
   @IsDefined()
   @IsIn([
-    Authenticity.IMAGE_PATTERN,
-    Authenticity.IR_VISIBILITY,
-    Authenticity.OVI,
-    Authenticity.IR_LUMINESCENCE,
-    Authenticity.PORTRAIT_COMPARISON,
-    Authenticity.KINEGRAM,
-    Authenticity.LETTER_SCREEN,
-    Authenticity.HOLOGRAM_DETECTION,
-    Authenticity.FINGERPRINT_COMPARISON,
-    Authenticity.LIVENESS
+    eAuthenticity.IMAGE_PATTERN,
+    eAuthenticity.IR_VISIBILITY,
+    eAuthenticity.OVI,
+    eAuthenticity.IR_LUMINESCENCE,
+    eAuthenticity.PORTRAIT_COMPARISON,
+    eAuthenticity.KINEGRAM,
+    eAuthenticity.LETTER_SCREEN,
+    eAuthenticity.HOLOGRAM_DETECTION,
+    eAuthenticity.FINGERPRINT_COMPARISON,
+    eAuthenticity.LIVENESS
   ])
-  @IsEnum(Authenticity)
+  @IsEnum(eAuthenticity)
   Type:
-    Authenticity.IMAGE_PATTERN |
-    Authenticity.IR_VISIBILITY |
-    Authenticity.OVI |
-    Authenticity.IR_LUMINESCENCE |
-    Authenticity.PORTRAIT_COMPARISON |
-    Authenticity.KINEGRAM |
-    Authenticity.LETTER_SCREEN |
-    Authenticity.HOLOGRAM_DETECTION |
-    Authenticity.FINGERPRINT_COMPARISON |
-    Authenticity.LIVENESS
+    eAuthenticity.IMAGE_PATTERN |
+    eAuthenticity.IR_VISIBILITY |
+    eAuthenticity.OVI |
+    eAuthenticity.IR_LUMINESCENCE |
+    eAuthenticity.PORTRAIT_COMPARISON |
+    eAuthenticity.KINEGRAM |
+    eAuthenticity.LETTER_SCREEN |
+    eAuthenticity.HOLOGRAM_DETECTION |
+    eAuthenticity.FINGERPRINT_COMPARISON |
+    eAuthenticity.LIVENESS
 
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  Result: CheckResult
+  @IsEnum(eCheckResult)
+  Result: eCheckResult
 
   @Expose()
   @IsDefined()

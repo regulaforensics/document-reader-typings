@@ -1,1 +1,1 @@
-export abstract class DocVisualExtendedFieldAbstract {}
+export abstract class aDocVisualExtendedField {}

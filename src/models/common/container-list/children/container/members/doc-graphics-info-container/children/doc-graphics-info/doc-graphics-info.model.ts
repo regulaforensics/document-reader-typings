@@ -5,25 +5,27 @@
 import { IsDefined, ValidateNested } from 'class-validator'
 import { Expose, Transform } from 'class-transformer'
 
-import { DocGraphicFieldUnion, IDocGraphicFieldUnion } from './children'
+import { uDocGraphicField, iuDocGraphicField } from './children'
 
 
-export interface IDocGraphicsInfo {
+export interface iDocGraphicsInfo {
   /**
   * Array of images
-  * @type {IDocGraphicFieldUnion[]}
+  * @type {iuDocGraphicField[]}
+  * @memberof iDocGraphicsInfo
   */
-  pArrayFields: IDocGraphicFieldUnion[]
+  pArrayFields: iuDocGraphicField[]
 }
 
-export class DocGraphicsInfo implements IDocGraphicsInfo {
+export class DocGraphicsInfo implements iDocGraphicsInfo {
   /**
   * Array of images
-  * @type {DocGraphicFieldUnion[]}
+  * @type {uDocGraphicField[]}
+  * @memberof DocGraphicsInfo
   */
   @Expose()
   @IsDefined()
   @ValidateNested({ each: true })
-  @Transform(({ obj }) => DocGraphicFieldUnion.transformList(obj.pArrayFields), { toClassOnly: true })
-  pArrayFields: DocGraphicFieldUnion[]
+  @Transform(({ obj }) => uDocGraphicField.transformList(obj.pArrayFields), { toClassOnly: true })
+  pArrayFields: uDocGraphicField[]
 }

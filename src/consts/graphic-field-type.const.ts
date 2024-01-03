@@ -3,7 +3,7 @@
 * the graphic data obtained while reading document filling fields or bar-codes
 * @enum {number}
 */
-export enum GraphicFieldType {
+export enum eGraphicFieldType {
   /**
   * Document holder photo
   */

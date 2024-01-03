@@ -2,28 +2,32 @@ import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'cl
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Lights, ResultType } from '@/consts'
+import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
-import { ContainerAbstract } from '../../container.abstract'
-import { AuthenticityCheckList, IAuthenticityCheckList } from './children'
+import { aContainer } from '../../container.abstract'
+import { AuthenticityCheckList, iAuthenticityCheckList } from './children'
 
 
-export interface IAuthenticityCheckListContainer extends ContainerAbstract {
-  AuthenticityCheckList: IAuthenticityCheckList
+export interface iAuthenticityCheckListContainer extends aContainer {
+  AuthenticityCheckList: iAuthenticityCheckList
 }
 
-export class AuthenticityCheckListContainer extends ContainerAbstract implements IAuthenticityCheckListContainer {
+export class AuthenticityCheckListContainer extends aContainer implements iAuthenticityCheckListContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
+  * @memberof AuthenticityCheckListContainer
   */
   @Expose()
   @IsDefined()
   @IsInt()
-  @Default(Lights.OFF)
+  @Default(eLights.OFF)
   light: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @memberof AuthenticityCheckListContainer
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -33,6 +37,7 @@ export class AuthenticityCheckListContainer extends ContainerAbstract implements
   /**
   * Page index (when working with multi-page document)
   * @type {number}
+  * @memberof AuthenticityCheckListContainer
   */
   @Expose()
   @IsDefined()
@@ -40,7 +45,10 @@ export class AuthenticityCheckListContainer extends ContainerAbstract implements
   @Default(0)
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @memberof AuthenticityCheckListContainer
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -49,20 +57,21 @@ export class AuthenticityCheckListContainer extends ContainerAbstract implements
 
   /**
   * Result type stored in this container (one of ResultType identifiers)
-  * @type {ResultType.AUTHENTICITY | ResultType.FINGER_PRINT_COMPARISON | ResultType.PORTRAIT_COMPARISON}
+  * @type {eResultType.AUTHENTICITY | eResultType.FINGER_PRINT_COMPARISON | eResultType.PORTRAIT_COMPARISON}
+  * @memberof AuthenticityCheckListContainer
   */
   @Expose()
   @IsDefined()
-  @IsEnum(ResultType)
+  @IsEnum(eResultType)
   @IsIn([
-    ResultType.AUTHENTICITY,
-    ResultType.FINGER_PRINT_COMPARISON,
-    ResultType.PORTRAIT_COMPARISON
+    eResultType.AUTHENTICITY,
+    eResultType.FINGER_PRINT_COMPARISON,
+    eResultType.PORTRAIT_COMPARISON
   ])
   result_type:
-    ResultType.AUTHENTICITY |
-    ResultType.FINGER_PRINT_COMPARISON |
-    ResultType.PORTRAIT_COMPARISON
+    eResultType.AUTHENTICITY |
+    eResultType.FINGER_PRINT_COMPARISON |
+    eResultType.PORTRAIT_COMPARISON
 
   @Expose()
   @IsDefined()

@@ -1,19 +1,19 @@
 import { IsDefined, IsEnum, IsInt, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
-import { IRfidOrigin, RfidOrigin } from '@/models/common/rfid-origin'
-import { CheckResult, Source } from '@/consts'
+import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { iRfidOrigin, RfidOrigin } from '@/models/common/rfid-origin'
+import { eCheckResult, eSource } from '@/consts'
 import { Default } from '@/decorators'
-import { ITextSymbol, TextSymbol } from './children'
+import { iTextSymbol, TextSymbol } from './children'
 
 
-export interface ITextFieldValue {
+export interface iTextFieldValue {
   /**
   * Source
-  * @type {Source}
+  * @type {eSource}
   */
-  source: Source
+  source: eSource
 
   /**
   * Field value in current provision of information format
@@ -29,9 +29,9 @@ export interface ITextFieldValue {
 
   /**
   * Original validity
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  originalValidity: CheckResult
+  originalValidity: eCheckResult
 
   /**
   * Page index
@@ -41,15 +41,15 @@ export interface ITextFieldValue {
 
   /**
   * Field rectangular area
-  * @type {IRectangleCoordinates}
+  * @type {iRectangleCoordinates}
   */
-  fieldRect?: IRectangleCoordinates
+  fieldRect?: iRectangleCoordinates
 
   /**
   * Field source from electronic document
-  * @type {IRfidOrigin}
+  * @type {iRfidOrigin}
   */
-  rfidOrigin?: IRfidOrigin
+  rfidOrigin?: iRfidOrigin
 
   /**
   * Field recognition probability
@@ -59,20 +59,20 @@ export interface ITextFieldValue {
 
   /**
   * Original symbols
-  * @type {ITextSymbol[]}
+  * @type {iTextSymbol[]}
   */
-  originalSymbols?: ITextSymbol[]
+  originalSymbols?: iTextSymbol[]
 }
 
-export class TextFieldValue implements ITextFieldValue {
+export class TextFieldValue implements iTextFieldValue {
   /**
   * Source
-  * @type {Source}
+  * @type {eSource}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(Source)
-  source: Source
+  @IsEnum(eSource)
+  source: eSource
 
   /**
   * Field value in current provision of information format
@@ -94,12 +94,12 @@ export class TextFieldValue implements ITextFieldValue {
 
   /**
   * Original validity
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  originalValidity: CheckResult
+  @IsEnum(eCheckResult)
+  originalValidity: eCheckResult
 
   /**
   * Page index

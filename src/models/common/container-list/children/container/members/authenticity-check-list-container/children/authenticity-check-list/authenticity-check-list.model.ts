@@ -1,15 +1,15 @@
 import { IsArray, IsInt, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Transform } from 'class-transformer'
 
-import { AuthenticityCheckResultUnion, IAuthenticityCheckResultUnion } from './children'
+import { uAuthenticityCheckResult, iuAuthenticityCheckResult } from './children'
 
 
-export interface IAuthenticityCheckList {
+export interface iAuthenticityCheckList {
   Count?: number
-  List: IAuthenticityCheckResultUnion[]
+  List: iuAuthenticityCheckResult[]
 }
 
-export class AuthenticityCheckList implements IAuthenticityCheckList {
+export class AuthenticityCheckList implements iAuthenticityCheckList {
   @Expose()
   @IsOptional()
   @IsInt()
@@ -17,7 +17,7 @@ export class AuthenticityCheckList implements IAuthenticityCheckList {
 
   @Expose()
   @ValidateNested({ each: true })
-  @Transform(({ obj }) => AuthenticityCheckResultUnion.transformList(obj.List), { toClassOnly: true })
+  @Transform(({ obj }) => uAuthenticityCheckResult.transformList(obj.List), { toClassOnly: true })
   @IsArray()
-  List: AuthenticityCheckResultUnion[]
+  List: uAuthenticityCheckResult[]
 }

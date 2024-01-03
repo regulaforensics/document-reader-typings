@@ -2,7 +2,7 @@
 * Enumeration representing the type of the detected bar-code.
 * @enum {number}
 */
-export enum BarCodeDetectionType {
+export enum eBarCodeDetectionType {
   /**
   * Linear (one-dimensional) bar-code
   */

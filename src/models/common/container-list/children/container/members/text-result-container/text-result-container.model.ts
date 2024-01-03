@@ -2,17 +2,17 @@ import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'cl
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Lights, ResultType } from '@/consts'
+import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
-import { ContainerAbstract } from '../../container.abstract'
-import { ITextResult, TextResult } from './children'
+import { aContainer } from '../../container.abstract'
+import { iTextResult, TextResult } from './children'
 
 
-export interface ITextResultContainer extends ContainerAbstract {
-  Text: ITextResult
+export interface iTextResultContainer extends aContainer {
+  Text: iTextResult
 }
 
-export class TextResultContainer extends ContainerAbstract implements ITextResultContainer {
+export class TextResultContainer extends aContainer implements iTextResultContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
@@ -20,7 +20,7 @@ export class TextResultContainer extends ContainerAbstract implements ITextResul
   @Expose()
   @IsDefined()
   @IsInt()
-  @Default(Lights.OFF)
+  @Default(eLights.OFF)
   light: number
 
   /** @internal */
@@ -49,15 +49,15 @@ export class TextResultContainer extends ContainerAbstract implements ITextResul
 
   /**
   * Result type stored in this container (one of ResultType identifiers)
-  * @type {ResultType.TEXT}
+  * @type {eResultType.TEXT}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(ResultType)
+  @IsEnum(eResultType)
   @IsIn([
-    ResultType.TEXT,
+    eResultType.TEXT,
   ])
-  result_type: ResultType.TEXT
+  result_type: eResultType.TEXT
 
   @Expose()
   @IsDefined()

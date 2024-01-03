@@ -2,7 +2,7 @@
 * Enumeration contains a flag of visibility of the security element in IR range.
 * @enum {number}
 */
-export enum Visibility {
+export enum eIRVisibilityFlag {
   /**
   * Invisible
   */

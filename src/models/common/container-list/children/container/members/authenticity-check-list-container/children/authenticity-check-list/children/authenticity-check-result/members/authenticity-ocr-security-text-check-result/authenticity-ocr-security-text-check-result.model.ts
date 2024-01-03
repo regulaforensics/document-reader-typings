@@ -1,28 +1,28 @@
 import { IsArray, IsDefined, IsEnum, IsIn, ValidateNested } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { Authenticity, CheckResult } from '@/consts'
-import { AuthenticityCheckResultAbstract } from '../../authenticity-check-result.abstract'
-import { IOCRSecurityTextResult, OCRSecurityTextResult } from './children'
+import { eAuthenticity, eCheckResult } from '@/consts'
+import { aAuthenticityCheckResult } from '../../authenticity-check-result.abstract'
+import { iOCRSecurityTextResult, OCRSecurityTextResult } from './children'
 
 
-export interface IAuthenticityOCRSecurityTextCheckResult extends AuthenticityCheckResultAbstract {
-  Type: Authenticity.OCR_SECURITY_TEXT
-  Result: CheckResult
-  List: IOCRSecurityTextResult[]
+export interface iAuthenticityOCRSecurityTextCheckResult extends aAuthenticityCheckResult {
+  Type: eAuthenticity.OCR_SECURITY_TEXT
+  Result: eCheckResult
+  List: iOCRSecurityTextResult[]
 }
 
-export class AuthenticityOCRSecurityTextCheckResult extends AuthenticityCheckResultAbstract implements IAuthenticityOCRSecurityTextCheckResult {
+export class AuthenticityOCRSecurityTextCheckResult extends aAuthenticityCheckResult implements iAuthenticityOCRSecurityTextCheckResult {
   @Expose()
   @IsDefined()
-  @IsIn([Authenticity.OCR_SECURITY_TEXT])
-  @IsEnum(Authenticity)
-  Type: Authenticity.OCR_SECURITY_TEXT
+  @IsIn([eAuthenticity.OCR_SECURITY_TEXT])
+  @IsEnum(eAuthenticity)
+  Type: eAuthenticity.OCR_SECURITY_TEXT
 
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  Result: CheckResult
+  @IsEnum(eCheckResult)
+  Result: eCheckResult
 
   @Expose()
   @IsDefined()

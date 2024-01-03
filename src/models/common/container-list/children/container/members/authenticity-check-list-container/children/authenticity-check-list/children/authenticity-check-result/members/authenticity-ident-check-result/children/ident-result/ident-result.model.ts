@@ -1,81 +1,81 @@
 import { IsDefined, IsEnum, IsIn, IsNumber, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
-import { IImageData, ImageData } from '@/models/common/image-data'
-import { AreaArray, IAreaArray } from '@/models/common/area-array'
-import { Authenticity, CheckDiagnose, CheckResult, Lights, SecurityFeatureType } from '@/consts'
+import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { iImageData, ImageData } from '@/models/common/image-data'
+import { AreaArray, iAreaArray } from '@/models/common/area-array'
+import { eAuthenticity, eCheckDiagnose, eCheckResult, eLights, eSecurityFeatureType } from '@/consts'
 
 
-export interface IIdentResult {
+export interface iIdentResult {
   Type:
-    Authenticity.IMAGE_PATTERN |
-    Authenticity.IR_VISIBILITY |
-    Authenticity.OVI |
-    Authenticity.IR_LUMINESCENCE |
-    Authenticity.PORTRAIT_COMPARISON |
-    Authenticity.KINEGRAM |
-    Authenticity.LETTER_SCREEN |
-    Authenticity.HOLOGRAM_DETECTION |
-    Authenticity.FINGERPRINT_COMPARISON |
-    Authenticity.LIVENESS
-  ElementResult?: CheckResult
-  ElementDiagnose?: CheckDiagnose
-  ElementType?: SecurityFeatureType
-  LightIndex?: Lights
-  Area?: IRectangleCoordinates
-  Image?: IImageData
-  EtalonImage?: IImageData
+    eAuthenticity.IMAGE_PATTERN |
+    eAuthenticity.IR_VISIBILITY |
+    eAuthenticity.OVI |
+    eAuthenticity.IR_LUMINESCENCE |
+    eAuthenticity.PORTRAIT_COMPARISON |
+    eAuthenticity.KINEGRAM |
+    eAuthenticity.LETTER_SCREEN |
+    eAuthenticity.HOLOGRAM_DETECTION |
+    eAuthenticity.FINGERPRINT_COMPARISON |
+    eAuthenticity.LIVENESS
+  ElementResult?: eCheckResult
+  ElementDiagnose?: eCheckDiagnose
+  ElementType?: eSecurityFeatureType
+  LightIndex?: eLights
+  Area?: iRectangleCoordinates
+  Image?: iImageData
+  EtalonImage?: iImageData
   PercentValue?: number
-  AreaList?: IAreaArray
+  AreaList?: iAreaArray
 }
 
-export class IdentResult implements IIdentResult {
+export class IdentResult implements iIdentResult {
   @Expose()
   @IsDefined()
   @IsIn([
-    Authenticity.IMAGE_PATTERN,
-    Authenticity.IR_VISIBILITY,
-    Authenticity.OVI,
-    Authenticity.IR_LUMINESCENCE,
-    Authenticity.PORTRAIT_COMPARISON,
-    Authenticity.KINEGRAM,
-    Authenticity.LETTER_SCREEN,
-    Authenticity.HOLOGRAM_DETECTION,
-    Authenticity.FINGERPRINT_COMPARISON,
-    Authenticity.LIVENESS
+    eAuthenticity.IMAGE_PATTERN,
+    eAuthenticity.IR_VISIBILITY,
+    eAuthenticity.OVI,
+    eAuthenticity.IR_LUMINESCENCE,
+    eAuthenticity.PORTRAIT_COMPARISON,
+    eAuthenticity.KINEGRAM,
+    eAuthenticity.LETTER_SCREEN,
+    eAuthenticity.HOLOGRAM_DETECTION,
+    eAuthenticity.FINGERPRINT_COMPARISON,
+    eAuthenticity.LIVENESS
   ])
-  @IsEnum(Authenticity)
-  Type: Authenticity.IMAGE_PATTERN |
-    Authenticity.IR_VISIBILITY |
-    Authenticity.OVI |
-    Authenticity.IR_LUMINESCENCE |
-    Authenticity.PORTRAIT_COMPARISON |
-    Authenticity.KINEGRAM |
-    Authenticity.LETTER_SCREEN |
-    Authenticity.HOLOGRAM_DETECTION |
-    Authenticity.FINGERPRINT_COMPARISON |
-    Authenticity.LIVENESS
+  @IsEnum(eAuthenticity)
+  Type: eAuthenticity.IMAGE_PATTERN |
+    eAuthenticity.IR_VISIBILITY |
+    eAuthenticity.OVI |
+    eAuthenticity.IR_LUMINESCENCE |
+    eAuthenticity.PORTRAIT_COMPARISON |
+    eAuthenticity.KINEGRAM |
+    eAuthenticity.LETTER_SCREEN |
+    eAuthenticity.HOLOGRAM_DETECTION |
+    eAuthenticity.FINGERPRINT_COMPARISON |
+    eAuthenticity.LIVENESS
 
   @Expose()
   @IsOptional()
-  @IsEnum(CheckResult)
-  ElementResult?: CheckResult
+  @IsEnum(eCheckResult)
+  ElementResult?: eCheckResult
 
   @Expose()
   @IsOptional()
-  @IsEnum(CheckDiagnose)
-  ElementDiagnose?: CheckDiagnose
+  @IsEnum(eCheckDiagnose)
+  ElementDiagnose?: eCheckDiagnose
 
   @Expose()
   @IsOptional()
-  @IsEnum(SecurityFeatureType)
-  ElementType?: SecurityFeatureType
+  @IsEnum(eSecurityFeatureType)
+  ElementType?: eSecurityFeatureType
 
   @Expose()
   @IsOptional()
-  @IsEnum(Lights)
-  LightIndex?: Lights
+  @IsEnum(eLights)
+  LightIndex?: eLights
 
   @Expose()
   @IsOptional()

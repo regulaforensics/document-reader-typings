@@ -1,112 +1,112 @@
 import { IsDefined, IsEnum, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { CheckResult } from '@/consts'
+import { eCheckResult } from '@/consts'
 import { Default } from '@/decorators'
-import { DetailsRFID, IDetailsRFID, DetailsOptical, IDetailsOptical } from './children'
+import { DetailsRFID, iDetailsRFID, DetailsOptical, iDetailsOptical } from './children'
 
 
 /**
 * Interface for Status.
 * Status of the document check.
 */
-export interface IStatus {
+export interface iStatus {
   /**
   * The summary of all checks, one of the CheckResult enumeration values.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  overallStatus: CheckResult
+  overallStatus: eCheckResult
 
   /**
   * The summary of all optical checks.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  optical: CheckResult
+  optical: eCheckResult
 
   /**
   * The comparison status for portrait in the document against the live or external image.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  portrait: CheckResult
+  portrait: eCheckResult
 
   /**
   * The summary of all RFID checks.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  rfid: CheckResult
+  rfid: eCheckResult
 
   /**
   * The verification status for the document data against the database.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  stopList: CheckResult
+  stopList: eCheckResult
 
   /**
   * Details of RFID check.
-  * @type {IDetailsRFID}
+  * @type {iDetailsRFID}
   */
-  detailsRFID?: IDetailsRFID
+  detailsRFID?: iDetailsRFID
 
   /**
   * Details of optical check.
-  * @type {IDetailsOptical}
+  * @type {iDetailsOptical}
   */
-  detailsOptical: IDetailsOptical
+  detailsOptical: iDetailsOptical
 }
 
 /**
 * Status of the document check.
 */
-export class Status implements IStatus {
+export class Status implements iStatus {
   /**
   * The summary of all checks, one of the CheckResult enumeration values.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  @Default(CheckResult.WAS_NOT_DONE)
-  overallStatus: CheckResult
+  @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
+  overallStatus: eCheckResult
 
   /**
   * The summary of all optical checks.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  @Default(CheckResult.WAS_NOT_DONE)
-  optical: CheckResult
+  @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
+  optical: eCheckResult
 
   /**
   * The comparison status for portrait in the document against the live or external image.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  @Default(CheckResult.WAS_NOT_DONE)
-  portrait: CheckResult
+  @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
+  portrait: eCheckResult
 
   /**
   * The summary of all RFID checks.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  @Default(CheckResult.WAS_NOT_DONE)
-  rfid: CheckResult
+  @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
+  rfid: eCheckResult
 
   /**
   * The verification status for the document data against the database.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  @Default(CheckResult.WAS_NOT_DONE)
-  stopList: CheckResult
+  @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
+  stopList: eCheckResult
 
   /**
   * Details of RFID check.

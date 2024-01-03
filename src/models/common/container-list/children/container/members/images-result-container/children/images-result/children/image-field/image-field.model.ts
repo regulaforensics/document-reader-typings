@@ -1,40 +1,45 @@
 import { IsDefined, IsEnum, IsInt, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { GraphicFieldType } from '@/consts'
-import { IImageFieldValue, ImageFieldValue } from './children'
+import { eGraphicFieldType } from '@/consts'
+import { iImageFieldValue, ImageFieldValue } from './children'
 
 
-export interface IImageField {
+export interface iImageField {
   /**
   * Field name
   * @type {string}
+  * @memberof iImageField
   */
   fieldName: string
 
   /**
   * Field type
-  * @type {GraphicFieldType}
+  * @type {eGraphicFieldType}
+  * @memberof iImageField
   */
-  fieldType: GraphicFieldType
+  fieldType: eGraphicFieldType
 
   /**
   * Field value list
-  * @type {IImageFieldValue[]}
+  * @type {iImageFieldValue[]}
+  * @memberof iImageField
   */
-  valueList: IImageFieldValue[]
+  valueList: iImageFieldValue[]
 
   /**
   * Field value count
   * @type {number}
+  * @memberof iImageField
   */
   valueCount: number
 }
 
-export class ImageField implements IImageField {
+export class ImageField implements iImageField {
   /**
   * Field name
   * @type {string}
+  * @memberof ImageField
   */
   @Expose()
   @IsDefined()
@@ -43,16 +48,18 @@ export class ImageField implements IImageField {
 
   /**
   * Field type
-  * @type {GraphicFieldType}
+  * @type {eGraphicFieldType}
+  * @memberof ImageField
   */
   @Expose()
   @IsDefined()
-  @IsEnum(GraphicFieldType)
-  fieldType: GraphicFieldType
+  @IsEnum(eGraphicFieldType)
+  fieldType: eGraphicFieldType
 
   /**
   * Field value list
   * @type {ImageFieldValue[]}
+  * @memberof ImageField
   */
   @Expose()
   @IsDefined()
@@ -63,6 +70,7 @@ export class ImageField implements IImageField {
   /**
   * Field value count
   * @type {number}
+  * @memberof ImageField
   */
   @Expose()
   @IsDefined()

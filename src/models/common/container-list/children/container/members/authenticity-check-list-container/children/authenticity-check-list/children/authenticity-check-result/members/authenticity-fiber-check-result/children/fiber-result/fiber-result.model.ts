@@ -1,41 +1,41 @@
 import { IsArray, IsDefined, IsEnum, IsIn, IsInt, IsNumber, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
-import { Authenticity, CheckDiagnose, CheckResult, Lights } from '@/consts'
+import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { eAuthenticity, eCheckDiagnose, eCheckResult, eLights } from '@/consts'
 
 
-export interface IFiberResult {
-  Type: Authenticity.UV_FIBERS | Authenticity.UV_BACKGROUND
-  ElementResult?: CheckResult
-  ElementDiagnose?: CheckDiagnose
+export interface iFiberResult {
+  Type: eAuthenticity.UV_FIBERS | eAuthenticity.UV_BACKGROUND
+  ElementResult?: eCheckResult
+  ElementDiagnose?: eCheckDiagnose
   RectCount?: number
   ExpectedCount?: number
-  LightValue?: Lights
+  LightValue?: eLights
   LightDisp?: number
-  RectArray?: IRectangleCoordinates[]
+  RectArray?: iRectangleCoordinates[]
   Width?: number[]
   Length?: number[]
   Area?: number[]
   ColorValues?: number[]
 }
 
-export class FiberResult implements IFiberResult {
+export class FiberResult implements iFiberResult {
   @Expose()
   @IsDefined()
-  @IsIn([Authenticity.UV_FIBERS, Authenticity.UV_BACKGROUND])
-  @IsEnum(Authenticity)
-  Type: Authenticity.UV_FIBERS | Authenticity.UV_BACKGROUND
+  @IsIn([eAuthenticity.UV_FIBERS, eAuthenticity.UV_BACKGROUND])
+  @IsEnum(eAuthenticity)
+  Type: eAuthenticity.UV_FIBERS | eAuthenticity.UV_BACKGROUND
 
   @Expose()
   @IsOptional()
-  @IsEnum(CheckResult)
-  ElementResult?: CheckResult
+  @IsEnum(eCheckResult)
+  ElementResult?: eCheckResult
 
   @Expose()
   @IsOptional()
-  @IsEnum(CheckDiagnose)
-  ElementDiagnose?: CheckDiagnose
+  @IsEnum(eCheckDiagnose)
+  ElementDiagnose?: eCheckDiagnose
 
   @Expose()
   @IsOptional()
@@ -49,8 +49,8 @@ export class FiberResult implements IFiberResult {
 
   @Expose()
   @IsOptional()
-  @IsEnum(Lights)
-  LightValue?: Lights
+  @IsEnum(eLights)
+  LightValue?: eLights
 
   @Expose()
   @IsOptional()

@@ -3,10 +3,10 @@ import {
   DocVisualExtendedField2,
   DocVisualExtendedField3,
   DocVisualExtendedField4,
-  IDocVisualExtendedField1,
-  IDocVisualExtendedField2,
-  IDocVisualExtendedField3,
-  IDocVisualExtendedField4,
+  iDocVisualExtendedField1,
+  iDocVisualExtendedField2,
+  iDocVisualExtendedField3,
+  iDocVisualExtendedField4,
 } from './members'
 import { isObject } from '@/helpers'
 
@@ -16,24 +16,24 @@ import { isObject } from '@/helpers'
 * support all possible variants.
 * You can distinguish them from each other using instanceof operator.
 * For example:
-*  const item: DocVisualExtendedFieldUnion = ...
+*  const item: uDocVisualExtendedField = ...
 *  if (item instanceof DocVisualExtendedField1) {
 *    // do something
 *  }
 */
-export type DocVisualExtendedFieldUnion =
+export type uDocVisualExtendedField =
   DocVisualExtendedField1 |
   DocVisualExtendedField2 |
   DocVisualExtendedField3 |
   DocVisualExtendedField4
 
-export type IDocVisualExtendedFieldUnion =
-  IDocVisualExtendedField1 |
-  IDocVisualExtendedField2 |
-  IDocVisualExtendedField3 |
-  IDocVisualExtendedField4
+export type iuDocVisualExtendedField =
+  iDocVisualExtendedField1 |
+  iDocVisualExtendedField2 |
+  iDocVisualExtendedField3 |
+  iDocVisualExtendedField4
 
-export namespace DocVisualExtendedFieldUnion {
+export namespace uDocVisualExtendedField {
   export const transformList = (list: unknown[]) => list.map(item => transform(item))
 
   export const transform = (item: unknown) => {

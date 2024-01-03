@@ -1,16 +1,16 @@
 import { IsEnum, IsOptional } from 'class-validator'
 import { Expose } from 'class-transformer'
 
-import { ParsingNotificationCodes } from '@/consts'
+import { eParsingNotificationCodes } from '@/consts'
 
 
-export interface IProcessParamsRfid {
-  paSensitiveCodesDisable?: ParsingNotificationCodes[]
+export interface iProcessParamsRfid {
+  paSensitiveCodesDisable?: eParsingNotificationCodes[]
 }
 
-export class ProcessParamsRfid implements IProcessParamsRfid {
+export class ProcessParamsRfid implements iProcessParamsRfid {
   @Expose()
   @IsOptional()
-  @IsEnum(ParsingNotificationCodes, { each: true })
-  paSensitiveCodesDisable?: ParsingNotificationCodes[]
+  @IsEnum(eParsingNotificationCodes, { each: true })
+  paSensitiveCodesDisable?: eParsingNotificationCodes[]
 }

@@ -1,23 +1,26 @@
-import { IImageData } from '@/models/common/image-data'
-import { GraphicFieldType } from '@/consts'
+import { iImageData } from '@/models/common/image-data'
+import { eGraphicFieldType } from '@/consts'
 
 
-export abstract class DocGraphicField {
+export abstract class aDocGraphicField {
   /**
   * Graphic field logical type
-  * @type {GraphicFieldType}
+  * @type {eGraphicFieldType}
+  * @memberof aDocGraphicField
   */
-  FieldType: GraphicFieldType
+  FieldType: eGraphicFieldType
 
   /**
   * Graphic field symbolic name
   * @type {string}
+  * @memberof aDocGraphicField
   */
   FieldName: string
 
   /**
   * Image data
-  * @type {IImageData}
+  * @type {iImageData}
+  * @memberof aDocGraphicField
   */
-  image: IImageData
+  image: iImageData
 }

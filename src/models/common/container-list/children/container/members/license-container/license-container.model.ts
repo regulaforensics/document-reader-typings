@@ -2,27 +2,32 @@ import { IsDefined, IsInt, IsString, validateSync } from 'class-validator'
 import { Expose, plainToClass } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Lights } from '@/consts'
+import { eLights } from '@/consts'
 import { Default } from '@/decorators'
-import { ContainerAbstract } from '../../container.abstract'
+import { aContainer } from '../../container.abstract'
 
 
-export interface ILicenseContainer extends ContainerAbstract {
+export interface iLicenseContainer extends aContainer {
   License: string
 }
 
-export class LicenseContainer extends ContainerAbstract implements ILicenseContainer {
+export class LicenseContainer extends aContainer implements iLicenseContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
+  * @memberof LicenseContainer
   */
   @Expose()
   @IsDefined()
   @IsInt()
-  @Default(Lights.OFF)
+  @Default(eLights.OFF)
   light: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  * @memberof LicenseContainer
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -32,6 +37,7 @@ export class LicenseContainer extends ContainerAbstract implements ILicenseConta
   /**
   * Page index (when working with multi-page document)
   * @type {number}
+  * @memberof LicenseContainer
   */
   @Expose()
   @IsDefined()
@@ -39,7 +45,11 @@ export class LicenseContainer extends ContainerAbstract implements ILicenseConta
   @Default(0)
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  * @memberof LicenseContainer
+  */
   @Expose()
   @IsDefined()
   @IsInt()

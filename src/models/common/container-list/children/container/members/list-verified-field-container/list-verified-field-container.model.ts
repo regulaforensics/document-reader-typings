@@ -2,28 +2,33 @@ import { IsDefined, IsInt, IsOptional, ValidateNested, validateSync } from 'clas
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Lights } from '@/consts'
+import { eLights } from '@/consts'
 import { Default } from '@/decorators'
-import { ContainerAbstract } from '../../container.abstract'
-import { IListVerifiedFields, ListVerifiedFields } from './children'
+import { aContainer } from '../../container.abstract'
+import { iListVerifiedFields, ListVerifiedFields } from './children'
 
 
-export interface IListVerifiedFieldContainer extends ContainerAbstract {
-  ListVerifiedFields?: IListVerifiedFields
+export interface iListVerifiedFieldContainer extends aContainer {
+  ListVerifiedFields?: iListVerifiedFields
 }
 
-export class ListVerifiedFieldContainer extends ContainerAbstract implements IListVerifiedFieldContainer {
+export class ListVerifiedFieldContainer extends aContainer implements iListVerifiedFieldContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
+  * @memberof ListVerifiedFieldContainer
   */
   @Expose()
   @IsDefined()
   @IsInt()
-  @Default(Lights.OFF)
+  @Default(eLights.OFF)
   light: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  * @memberof ListVerifiedFieldContainer
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -33,6 +38,7 @@ export class ListVerifiedFieldContainer extends ContainerAbstract implements ILi
   /**
   * Page index (when working with multi-page document)
   * @type {number}
+  * @memberof ListVerifiedFieldContainer
   */
   @Expose()
   @IsDefined()
@@ -40,7 +46,11 @@ export class ListVerifiedFieldContainer extends ContainerAbstract implements ILi
   @Default(0)
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  * @memberof ListVerifiedFieldContainer
+  */
   @Expose()
   @IsDefined()
   @IsInt()

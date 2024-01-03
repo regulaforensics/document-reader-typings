@@ -2,32 +2,36 @@ import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSyn
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Lights, ResultType } from '@/consts'
+import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
-import { ContainerAbstract } from '../../container.abstract'
-import { DocBarCodeInfo, IDocBarCodeInfo } from './children'
+import { aContainer } from '../../container.abstract'
+import { DocBarCodeInfo, iDocBarCodeInfo } from './children'
 
 
-export interface IDocBarCodeInfoContainer extends ContainerAbstract {
+export interface iDocBarCodeInfoContainer extends aContainer {
   /**
   * Structure serves for storing and passing to the user application of results of bar-codes areas search on the
   * scanned document page and their reading in binary non-formatted code.
   */
-  DocBarCodeInfo?: IDocBarCodeInfo
+  DocBarCodeInfo?: iDocBarCodeInfo
 }
 
-export class DocBarCodeInfoContainer extends ContainerAbstract implements IDocBarCodeInfoContainer {
+export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeInfoContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
+  * @memberof DocBarCodeInfoContainer
   */
   @Expose()
   @IsDefined()
   @IsInt()
-  @Default(Lights.OFF)
+  @Default(eLights.OFF)
   light: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @memberof DocBarCodeInfoContainer
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -37,6 +41,7 @@ export class DocBarCodeInfoContainer extends ContainerAbstract implements IDocBa
   /**
   * Page index (when working with multi-page document)
   * @type {number}
+  * @memberof DocBarCodeInfoContainer
   */
   @Expose()
   @IsDefined()
@@ -44,7 +49,10 @@ export class DocBarCodeInfoContainer extends ContainerAbstract implements IDocBa
   @Default(0)
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @memberof DocBarCodeInfoContainer
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -53,19 +61,22 @@ export class DocBarCodeInfoContainer extends ContainerAbstract implements IDocBa
 
   /**
   * Result type stored in this container (one of ResultType identifiers)
-  * @type {ResultType.BAR_CODES}
+  * @type {eResultType.BAR_CODES}
+  * @memberof DocBarCodeInfoContainer
   */
   @Expose()
   @IsDefined()
-  @IsEnum(ResultType)
+  @IsEnum(eResultType)
   @IsIn([
-    ResultType.BAR_CODES,
+    eResultType.BAR_CODES,
   ])
-  result_type: ResultType.BAR_CODES
+  result_type: eResultType.BAR_CODES
 
   /**
   * Structure serves for storing and passing to the user application of results of bar-codes areas search on the
   * scanned document page and their reading in binary non-formatted code.
+  * @type {DocBarCodeInfo}
+  * @memberof DocBarCodeInfoContainer
   */
   @Expose()
   @IsOptional()

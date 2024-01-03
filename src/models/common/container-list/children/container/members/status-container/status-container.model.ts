@@ -2,17 +2,17 @@ import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'cl
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Lights, ResultType } from '@/consts'
+import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
-import { ContainerAbstract } from '../../container.abstract'
-import { IStatus, Status } from './children'
+import { aContainer } from '../../container.abstract'
+import { iStatus, Status } from './children'
 
 
-export interface IStatusContainer extends ContainerAbstract {
-  Status: IStatus
+export interface iStatusContainer extends aContainer {
+  Status: iStatus
 }
 
-export class StatusContainer extends ContainerAbstract implements IStatusContainer {
+export class StatusContainer extends aContainer implements iStatusContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
@@ -20,7 +20,7 @@ export class StatusContainer extends ContainerAbstract implements IStatusContain
   @Expose()
   @IsDefined()
   @IsInt()
-  @Default(Lights.OFF)
+  @Default(eLights.OFF)
   light: number
 
   /** @internal */
@@ -49,15 +49,15 @@ export class StatusContainer extends ContainerAbstract implements IStatusContain
 
   /**
   * Result type stored in this container (one of ResultType identifiers)
-  * @type {ResultType.STATUS}
+  * @type {eResultType.STATUS}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(ResultType)
+  @IsEnum(eResultType)
   @IsIn([
-    ResultType.STATUS,
+    eResultType.STATUS,
   ])
-  result_type: ResultType.STATUS
+  result_type: eResultType.STATUS
 
   /**
   * Status container content

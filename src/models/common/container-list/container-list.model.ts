@@ -1,15 +1,15 @@
 import { IsArray, IsDefined, IsInt, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Transform } from 'class-transformer'
 
-import { ContainerUnion, IContainerUnion } from './children'
+import { iuContainer, uContainer } from './children'
 
 
-export interface IContainerList {
+export interface iContainerList {
   Count?: number
-  List: IContainerUnion[]
+  List: iuContainer[]
 }
 
-export class ContainerList implements IContainerList {
+export class ContainerList implements iContainerList {
   @Expose()
   @IsOptional()
   @IsInt()
@@ -19,6 +19,6 @@ export class ContainerList implements IContainerList {
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })
-  @Transform(({ obj }) => ContainerUnion.transformList(obj.List), { toClassOnly: true })
-  List: ContainerUnion[]
+  @Transform(({ obj }) => uContainer.transformList(obj.List), { toClassOnly: true })
+  List: uContainer[]
 }

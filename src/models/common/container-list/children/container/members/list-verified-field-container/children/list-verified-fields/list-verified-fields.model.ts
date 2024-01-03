@@ -1,27 +1,30 @@
-import { IsArray, IsDefined, IsInt, IsOptional, ValidateNested } from 'class-validator'
+import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IVerifiedFieldMap, VerifiedFieldMap } from './children'
+import { iVerifiedFieldMap, VerifiedFieldMap } from './children'
 
 
-export interface IListVerifiedFields {
+export interface iListVerifiedFields {
   /**
   * Number of pFieldMaps array elements
   * @type {number}
+  * @memberof iListVerifiedFields
   */
   Count: number
 
   /**
   * Array of results of document filling text fields’ data analysis
-  * @type {IVerifiedFieldMap[]}
+  * @type {iVerifiedFieldMap[]}
+  * @memberof iListVerifiedFields
   */
-  pFieldMaps: IVerifiedFieldMap[]
+  pFieldMaps: iVerifiedFieldMap[]
 }
 
-export class ListVerifiedFields implements IListVerifiedFields {
+export class ListVerifiedFields implements iListVerifiedFields {
   /**
   * Number of pFieldMaps array elements
   * @type {number}
+  * @memberof ListVerifiedFields
   */
   @Expose()
   @IsDefined()
@@ -30,7 +33,8 @@ export class ListVerifiedFields implements IListVerifiedFields {
 
   /**
   * Array of results of document filling text fields’ data analysis
-  * @type {IVerifiedFieldMap[]}
+  * @type {iVerifiedFieldMap[]}
+  * @memberof ListVerifiedFields
   */
   @Expose()
   @IsDefined()

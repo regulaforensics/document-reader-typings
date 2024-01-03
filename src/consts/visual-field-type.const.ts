@@ -2,7 +2,7 @@
 * Enum contains identifiers that determine the logical type of text data obtained while reading MRZ, document filling fields, and barcodes.
 * @enum {number}
 */
-export enum VisualFieldType {
+export enum eVisualFieldType {
   /**
   * Document class code
   */

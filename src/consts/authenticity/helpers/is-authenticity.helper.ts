@@ -1,4 +1,4 @@
-import { Authenticity } from '../authenticity.const'
+import { eAuthenticity } from '../authenticity.const'
 
 
 /**
@@ -7,5 +7,5 @@ import { Authenticity } from '../authenticity.const'
 * @param {any} authenticity
 * @returns {boolean}
 */
-export const isAuthenticity = (authenticity: any): authenticity is Authenticity =>
-  Object.values(Authenticity).includes(authenticity)
+export const isAuthenticity = (authenticity: any): authenticity is eAuthenticity =>
+  Object.values(eAuthenticity).includes(authenticity)

@@ -1,19 +1,72 @@
-import { ResultType } from '@/consts'
-import { IStatusContainer, ITextResultContainer, StatusContainer, TextResultContainer } from './members'
+import { eResultType } from '@/consts'
+import {
+  AuthenticityCheckListContainer,
+  DocBarCodeInfoContainer,
+  DocGraphicsInfoContainer,
+  DocumentImageContainer,
+  DocumentPositionContainer,
+  EncryptedRCLContainer,
+  iAuthenticityCheckListContainer,
+  iDocBarCodeInfoContainer,
+  iDocGraphicsInfoContainer,
+  iDocumentImageContainer,
+  iDocumentPositionContainer,
+  iEncryptedRCLContainer,
+  iImageQualityCheckListContainer,
+  iImagesResultContainer,
+  iLicenseContainer,
+  iListVerifiedFieldContainer,
+  ImageQualityCheckListContainer,
+  ImagesResultContainer,
+  iOneCandidateContainer,
+  iStatusContainer,
+  iTextDataContainer,
+  iTextResultContainer,
+  LicenseContainer,
+  ListVerifiedFieldContainer,
+  OneCandidateContainer,
+  StatusContainer,
+  TextDataContainer,
+  TextResultContainer
+} from './members'
 import { isObject } from '@/helpers'
 
 
-export type ContainerUnion =
+export type uContainer =
+  AuthenticityCheckListContainer |
+  DocBarCodeInfoContainer |
+  DocGraphicsInfoContainer |
+  DocumentImageContainer |
+  DocumentPositionContainer |
+  EncryptedRCLContainer |
+  ImageQualityCheckListContainer |
+  ImagesResultContainer |
+  LicenseContainer |
+  ListVerifiedFieldContainer |
+  OneCandidateContainer |
   StatusContainer |
+  TextDataContainer |
   TextResultContainer
 
-export type IContainerUnion =
-  IStatusContainer |
-  ITextResultContainer
+export type iuContainer =
+  iAuthenticityCheckListContainer |
+  iDocBarCodeInfoContainer |
+  iDocGraphicsInfoContainer |
+  iDocumentImageContainer |
+  iDocumentPositionContainer |
+  iEncryptedRCLContainer |
+  iImageQualityCheckListContainer |
+  iImagesResultContainer |
+  iLicenseContainer |
+  iListVerifiedFieldContainer |
+  iOneCandidateContainer |
+  iStatusContainer |
+  iTextDataContainer |
+  iTextResultContainer
 
-export namespace ContainerUnion {
+export namespace uContainer {
   export const transformList = (items: unknown[]) => {
-    const result: ContainerUnion[] = []
+    const result: uContainer[] = []
 
     if (!Array.isArray(items)) {
       return result
@@ -28,10 +81,10 @@ export namespace ContainerUnion {
       const { result_type } = item
 
       switch (result_type) {
-        case ResultType.STATUS:
+        case eResultType.STATUS:
           result.push(StatusContainer.fromPlain(item))
         break
-        case ResultType.TEXT:
+        case eResultType.TEXT:
           result.push(TextResultContainer.fromPlain(item))
         break
       }

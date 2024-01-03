@@ -1,86 +1,98 @@
 import { IsBoolean, IsDefined, IsEnum, IsInt, IsNumber, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { Authenticity, getAuthenticityArray, getLightsArray, Lights, RfidPresence } from '@/consts'
+import { eAuthenticity, getAuthenticityArray, getLightsArray, eLights, eRfidPresence } from '@/consts'
 import { Default } from '@/decorators'
-import { FDSIDList, IFDSIDList } from './children'
+import { FDSIDList, iFDSIDList } from './children'
 
 
-export interface IOneCandidate {
+export interface iOneCandidate {
   /**
   * Document name
   * @type {string}
+  * @memberof iOneCandidate
   */
   DocumentName: string
 
   /**
   * Document type numeric code
   * @type {number}
+  * @memberof iOneCandidate
   */
   ID: number
 
   /**
   * Estimation of correct recognition probability when analyzing the given document type
   * @type {number}
+  * @memberof iOneCandidate
   */
   P: number
 
   /**
   * true if the document of the given type is rotated by 180 degrees
   * @type {boolean}
+  * @memberof iOneCandidate
   */
   Rotated180: boolean
 
   /**
   * Combination of identifiers of necessary lighting schemes to perform OCR for the given document type
   * @type {number}
+  * @memberof iOneCandidate
   */
   NecessaryLights: number
 
   /**
   * Presence of RFID-chip in the document
-  * @type {RfidPresence}
+  * @type {eRfidPresence}
+  * @memberof iOneCandidate
   */
-  RFID_Presence: RfidPresence
+  RFID_Presence: eRfidPresence
 
   /**
   * Set of authenticity check options provided for the given document type
   * @type {number}
+  * @memberof iOneCandidate
   */
   CheckAuthenticity: number
 
   /**
   * Camera exposure value necessary when obtaining document images of the given type for UV lighting scheme
   * @type {number}
+  * @memberof iOneCandidate
   */
   UVExp: number
 
   /**
   * Camera exposure value necessary when obtaining document images of the given type for AXIAL lighting scheme
   * @type {number}
+  * @memberof iOneCandidate
   */
   OVIExp: number
 
   /**
   * Combination of identifiers of necessary lighting schemes
-  * @see {Lights} to perform authenticity check for the
+  * @see {eLights} to perform authenticity check for the
   * given document type
   * @type {number}
+  * @memberof iOneCandidate
   */
   AuthenticityNecessaryLights: number
 
   /**
   * Pointer to TFDSIDList structure containing additional
   * document information and its link to IRS
-  * @type {IFDSIDList}
+  * @type {iFDSIDList}
+  * @memberof iOneCandidate
   */
-  FDSIDList: IFDSIDList
+  FDSIDList: iFDSIDList
 }
 
-export class OneCandidate implements IOneCandidate {
+export class OneCandidate implements iOneCandidate {
   /**
   * Document name
   * @type {string}
+  * @memberof OneCandidate
   */
   @Expose()
   @IsDefined()
@@ -90,6 +102,7 @@ export class OneCandidate implements IOneCandidate {
   /**
   * Document type numeric code
   * @type {number}
+  * @memberof OneCandidate
   */
   @Expose()
   @IsDefined()
@@ -99,6 +112,7 @@ export class OneCandidate implements IOneCandidate {
   /**
   * Estimation of correct recognition probability when analyzing the given document type
   * @type {number}
+  * @memberof OneCandidate
   */
   @Expose()
   @IsDefined()
@@ -108,6 +122,7 @@ export class OneCandidate implements IOneCandidate {
   /**
   * true if the document of the given type is rotated by 180 degrees
   * @type {boolean}
+  * @memberof OneCandidate
   */
   @Expose()
   @IsDefined()
@@ -118,6 +133,7 @@ export class OneCandidate implements IOneCandidate {
   /**
   * Combination of identifiers of necessary lighting schemes to perform OCR for the given document type
   * @type {number}
+  * @memberof OneCandidate
   */
   @Expose()
   @IsDefined()
@@ -126,17 +142,19 @@ export class OneCandidate implements IOneCandidate {
 
   /**
   * Presence of RFID-chip in the document
-  * @type {RfidPresence}
+  * @type {eRfidPresence}
+  * @memberof OneCandidate
   */
   @Expose()
   @IsDefined()
-  @IsEnum(RfidPresence)
-  @Default(RfidPresence.NONE)
-  RFID_Presence: RfidPresence
+  @IsEnum(eRfidPresence)
+  @Default(eRfidPresence.NONE)
+  RFID_Presence: eRfidPresence
 
   /**
   * Set of authenticity check options provided for the given document type
   * @type {number}
+  * @memberof OneCandidate
   */
   @Expose()
   @IsDefined()
@@ -147,6 +165,7 @@ export class OneCandidate implements IOneCandidate {
   /**
   * Camera exposure value necessary when obtaining document images of the given type for UV lighting scheme
   * @type {number}
+  * @memberof OneCandidate
   */
   @Expose()
   @IsDefined()
@@ -156,6 +175,7 @@ export class OneCandidate implements IOneCandidate {
   /**
   * Camera exposure value necessary when obtaining document images of the given type for AXIAL lighting scheme
   * @type {number}
+  * @memberof OneCandidate
   */
   @Expose()
   @IsDefined()
@@ -164,9 +184,10 @@ export class OneCandidate implements IOneCandidate {
 
   /**
   * Combination of identifiers of necessary lighting schemes
-  * @see {Lights} to perform authenticity check for the
+  * @see {eLights} to perform authenticity check for the
   * given document type
   * @type {number}
+  * @memberof OneCandidate
   */
   @Expose()
   @IsDefined()
@@ -177,6 +198,7 @@ export class OneCandidate implements IOneCandidate {
   * Pointer to TFDSIDList structure containing additional
   * document information and its link to IRS
   * @type {FDSIDList}
+  * @memberof OneCandidate
   */
   @Expose()
   @IsDefined()
@@ -188,9 +210,9 @@ export class OneCandidate implements IOneCandidate {
   * Get necessary lights
   *
   * @param {OneCandidate | number} instance - instance of OneCandidate or number (NecessaryLights value)
-  * @returns {Lights[]} - array of Lights
+  * @returns {eLights[]} - array of Lights
   */
-  static getNecessaryLights = (instance: OneCandidate | number): Lights[] => {
+  static getNecessaryLights = (instance: OneCandidate | number): eLights[] => {
     if (typeof instance === 'number') {
       return getLightsArray(instance)
     }
@@ -202,9 +224,9 @@ export class OneCandidate implements IOneCandidate {
   * Get authenticity
   *
   * @param {OneCandidate | number} instance - instance of OneCandidate or number
-  * @returns {Authenticity[]} - array of Authenticity
+  * @returns {eAuthenticity[]} - array of Authenticity
   */
-  static getCheckAuthenticity = (instance: OneCandidate | number): Authenticity[] => {
+  static getCheckAuthenticity = (instance: OneCandidate | number): eAuthenticity[] => {
     if (typeof instance === 'number') {
       return getAuthenticityArray(instance)
     }
@@ -216,9 +238,9 @@ export class OneCandidate implements IOneCandidate {
   * Get authenticity necessary lights
   *
   * @param {OneCandidate | number} instance - instance of OneCandidate or number
-  * @returns {Lights[]} - array of Lights
+  * @returns {eLights[]} - array of Lights
   */
-  static getAuthenticityNecessaryLights = (instance: OneCandidate | number): Lights[] => {
+  static getAuthenticityNecessaryLights = (instance: OneCandidate | number): eLights[] => {
     if (typeof instance === 'number') {
       return getLightsArray(instance)
     }

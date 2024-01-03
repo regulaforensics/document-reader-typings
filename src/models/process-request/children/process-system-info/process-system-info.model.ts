@@ -2,12 +2,12 @@ import { IsOptional, IsString } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 
-export interface IProcessSystemInfo {
+export interface iProcessSystemInfo {
   license?: string
   recaptcha_token?: string
 }
 
-export class ProcessSystemInfo implements IProcessSystemInfo {
+export class ProcessSystemInfo implements iProcessSystemInfo {
   @Expose()
   @IsOptional()
   @IsString()

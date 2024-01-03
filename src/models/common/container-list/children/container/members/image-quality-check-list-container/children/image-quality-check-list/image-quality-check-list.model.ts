@@ -1,37 +1,41 @@
 import { IsDefined, IsEnum, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { CheckResult } from '@/consts'
-import { IImageQualityCheck, ImageQualityCheck } from './children'
+import { eCheckResult } from '@/consts'
+import { iImageQualityCheck, ImageQualityCheck } from './children'
 
 
-export interface IImageQualityCheckList {
+export interface iImageQualityCheckList {
   /**
   * Overall check result
-  * @type {CheckResult}
+  * @type {eCheckResult}
+  * @memberof iImageQualityCheckList
   */
-  result: CheckResult
+  result: eCheckResult
 
   /**
   * Array of single check result pointers
-  * @type {IImageQualityCheck[]}
+  * @type {iImageQualityCheck[]}
+  * @memberof iImageQualityCheckList
   */
-  List: IImageQualityCheck[]
+  List: iImageQualityCheck[]
 }
 
-export class ImageQualityCheckList implements IImageQualityCheckList {
+export class ImageQualityCheckList implements iImageQualityCheckList {
   /**
   * Overall check result
-  * @type {CheckResult}
+  * @type {eCheckResult}
+  * @memberof ImageQualityCheckList
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  result: CheckResult
+  @IsEnum(eCheckResult)
+  result: eCheckResult
 
   /**
   * Array of single check result pointers
   * @type {ImageQualityCheck[]}
+  * @memberof ImageQualityCheckList
   */
   @Expose()
   @IsDefined()

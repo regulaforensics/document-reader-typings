@@ -1,54 +1,54 @@
 import { IsDefined, IsEnum } from 'class-validator'
 import { Expose } from 'class-transformer'
 
-import { CheckResult, Source } from '@/consts'
+import { eCheckResult, eSource } from '@/consts'
 
 
-export interface ITextComparison {
+export interface iTextComparison {
   /**
   * Source left
-  * @type {Source}
+  * @type {eSource}
   */
-  sourceLeft: Source
+  sourceLeft: eSource
 
   /**
   * Source right
-  * @type {Source}
+  * @type {eSource}
   */
-  sourceRight: Source
+  sourceRight: eSource
 
   /**
   * Comparison status
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  status: CheckResult
+  status: eCheckResult
 }
 
-export class TextComparison implements ITextComparison {
+export class TextComparison implements iTextComparison {
   /**
   * Source left
-  * @type {Source}
+  * @type {eSource}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(Source)
-  sourceLeft: Source
+  @IsEnum(eSource)
+  sourceLeft: eSource
 
   /**
   * Source right
-  * @type {Source}
+  * @type {eSource}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(Source)
-  sourceRight: Source
+  @IsEnum(eSource)
+  sourceRight: eSource
 
   /**
   * Comparison status
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  status: CheckResult
+  @IsEnum(eCheckResult)
+  status: eCheckResult
 }

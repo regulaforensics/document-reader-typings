@@ -2,28 +2,33 @@ import { IsDefined, IsInt, IsOptional, ValidateNested, validateSync } from 'clas
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Lights } from '@/consts'
+import { eLights } from '@/consts'
 import { Default } from '@/decorators'
-import { ContainerAbstract } from '../../container.abstract'
-import { DocGraphicsInfo, IDocGraphicsInfo } from './children'
+import { aContainer } from '../../container.abstract'
+import { DocGraphicsInfo, iDocGraphicsInfo } from './children'
 
 
-export interface IDocGraphicsInfoContainer extends ContainerAbstract {
-  DocGraphicsInfo?: IDocGraphicsInfo
+export interface iDocGraphicsInfoContainer extends aContainer {
+  DocGraphicsInfo?: iDocGraphicsInfo
 }
 
-export class DocGraphicsInfoContainer extends ContainerAbstract implements IDocGraphicsInfoContainer {
+export class DocGraphicsInfoContainer extends aContainer implements iDocGraphicsInfoContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
+  * @memberof DocGraphicsInfoContainer
   */
   @Expose()
   @IsDefined()
   @IsInt()
-  @Default(Lights.OFF)
+  @Default(eLights.OFF)
   light: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  * @memberof DocGraphicsInfoContainer
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -33,6 +38,7 @@ export class DocGraphicsInfoContainer extends ContainerAbstract implements IDocG
   /**
   * Page index (when working with multi-page document)
   * @type {number}
+  * @memberof DocGraphicsInfoContainer
   */
   @Expose()
   @IsDefined()
@@ -40,7 +46,11 @@ export class DocGraphicsInfoContainer extends ContainerAbstract implements IDocG
   @Default(0)
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  * @memberof DocGraphicsInfoContainer
+  */
   @Expose()
   @IsDefined()
   @IsInt()

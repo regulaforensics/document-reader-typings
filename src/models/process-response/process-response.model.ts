@@ -1,34 +1,34 @@
 import { IsDefined, IsEnum, IsInt, IsOptional, IsString, Min, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { ProcessingStatus, RfidPresence } from '@/consts'
+import { eProcessingStatus, eRfidPresence } from '@/consts'
 import { IsStringObjectRecord } from '@/validators'
 import { DocReaderTypeError } from '@/errors'
-import { ContainerList, IContainerList } from '@/models/common'
-import { ITransactionInfo, TransactionInfo } from './children'
+import { ContainerList, iContainerList } from '@/models/common'
+import { iTransactionInfo, TransactionInfo } from './children'
 
 
-export interface IProcessResponse {
-  ChipPage?: RfidPresence
-  ProcessingFinished: ProcessingStatus
-  ContainerList: IContainerList
-  TransactionInfo: ITransactionInfo
+export interface iProcessResponse {
+  ChipPage?: eRfidPresence
+  ProcessingFinished: eProcessingStatus
+  ContainerList: iContainerList
+  TransactionInfo: iTransactionInfo
   log?: string
   passBackObject?: Record<string, object>
   morePagesAvailable?: number
   elapsedTime?: number
 }
 
-export class ProcessResponse implements IProcessResponse {
+export class ProcessResponse implements iProcessResponse {
   @Expose()
   @IsOptional()
-  @IsEnum(RfidPresence)
-  ChipPage?: RfidPresence
+  @IsEnum(eRfidPresence)
+  ChipPage?: eRfidPresence
 
   @Expose()
   @IsDefined()
-  @IsEnum(ProcessingStatus)
-  ProcessingFinished: ProcessingStatus
+  @IsEnum(eProcessingStatus)
+  ProcessingFinished: eProcessingStatus
 
   @Expose()
   @ValidateNested()

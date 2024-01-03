@@ -2,7 +2,7 @@
 * Enumeration contains identifiers determining verification and comparison of text fields.
 * @enum {number}
 */
-export enum FieldVerificationResult {
+export enum eFieldVerificationResult {
   /**
   * Comparison result unknown
   */

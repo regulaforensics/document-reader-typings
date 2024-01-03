@@ -2,28 +2,33 @@ import { IsDefined, IsInt, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Lights } from '@/consts'
+import { eLights } from '@/consts'
 import { Default } from '@/decorators'
-import { ContainerAbstract } from '../../container.abstract'
-import { IImageQualityCheckList, ImageQualityCheckList } from './children'
+import { aContainer } from '../../container.abstract'
+import { iImageQualityCheckList, ImageQualityCheckList } from './children'
 
 
-export interface IImageQualityCheckListContainer extends ContainerAbstract {
-  ImageQualityCheckList: IImageQualityCheckList
+export interface iImageQualityCheckListContainer extends aContainer {
+  ImageQualityCheckList: iImageQualityCheckList
 }
 
-export class ImageQualityCheckListContainer extends ContainerAbstract implements IImageQualityCheckListContainer {
+export class ImageQualityCheckListContainer extends aContainer implements iImageQualityCheckListContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
+  * @memberof ImageQualityCheckListContainer
   */
   @Expose()
   @IsDefined()
   @IsInt()
-  @Default(Lights.OFF)
+  @Default(eLights.OFF)
   light: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  * @memberof ImageQualityCheckListContainer
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -33,6 +38,7 @@ export class ImageQualityCheckListContainer extends ContainerAbstract implements
   /**
   * Page index (when working with multi-page document)
   * @type {number}
+  * @memberof ImageQualityCheckListContainer
   */
   @Expose()
   @IsDefined()
@@ -40,7 +46,11 @@ export class ImageQualityCheckListContainer extends ContainerAbstract implements
   @Default(0)
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  * @memberof ImageQualityCheckListContainer
+  */
   @Expose()
   @IsDefined()
   @IsInt()

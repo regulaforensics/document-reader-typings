@@ -1,17 +1,17 @@
 import { IsDefined, IsEnum, IsIn, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
-import { Authenticity, CheckDiagnose, CheckResult, SecurityCriticalFlag, Lights } from '@/consts'
+import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { eAuthenticity, eCheckDiagnose, eCheckResult, eSecurityCriticalFlag, eLights } from '@/consts'
 
 
-export interface IOCRSecurityTextResult {
-  Type: Authenticity.OCR_SECURITY_TEXT
-  ElementResult?: CheckResult
-  ElementDiagnose?: CheckDiagnose
-  CriticalFlag?: SecurityCriticalFlag
-  LightType?: Lights
-  FieldRect?: IRectangleCoordinates
+export interface iOCRSecurityTextResult {
+  Type: eAuthenticity.OCR_SECURITY_TEXT
+  ElementResult?: eCheckResult
+  ElementDiagnose?: eCheckDiagnose
+  CriticalFlag?: eSecurityCriticalFlag
+  LightType?: eLights
+  FieldRect?: iRectangleCoordinates
   EtalonResultType?: number
   EtalonFieldType?: number
   EtalonLightType?: number
@@ -21,32 +21,32 @@ export interface IOCRSecurityTextResult {
   Reserved2?: number
 }
 
-export class OCRSecurityTextResult implements IOCRSecurityTextResult {
+export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   @Expose()
   @IsDefined()
-  @IsIn([Authenticity.OCR_SECURITY_TEXT])
-  @IsEnum(Authenticity)
-  Type: Authenticity.OCR_SECURITY_TEXT
+  @IsIn([eAuthenticity.OCR_SECURITY_TEXT])
+  @IsEnum(eAuthenticity)
+  Type: eAuthenticity.OCR_SECURITY_TEXT
 
   @Expose()
   @IsOptional()
-  @IsEnum(CheckResult)
-  ElementResult?: CheckResult
+  @IsEnum(eCheckResult)
+  ElementResult?: eCheckResult
 
   @Expose()
   @IsOptional()
-  @IsEnum(CheckDiagnose)
-  ElementDiagnose?: CheckDiagnose
+  @IsEnum(eCheckDiagnose)
+  ElementDiagnose?: eCheckDiagnose
 
   @Expose()
   @IsOptional()
-  @IsEnum(SecurityCriticalFlag)
-  CriticalFlag?: SecurityCriticalFlag
+  @IsEnum(eSecurityCriticalFlag)
+  CriticalFlag?: eSecurityCriticalFlag
 
   @Expose()
   @IsOptional()
-  @IsEnum(Lights)
-  LightType?: Lights
+  @IsEnum(eLights)
+  LightType?: eLights
 
   @Expose()
   @IsOptional()

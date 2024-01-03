@@ -1,8 +1,8 @@
 /**
- * Determines the presence and location of an RFID chip in a document. 0 - no rfid chip; 1 - chip is located in the document data page; 2 - chip is located in the back page or inlay of the document
- * @export
- */
-export enum RfidPresence {
+* Determines the presence and location of an RFID chip in a document. 0 - no rfid chip; 1 - chip is located in the document data page; 2 - chip is located in the back page or inlay of the document
+* @export
+*/
+export enum eRfidPresence {
   /**
   * There is no RFID chip in the document
   */

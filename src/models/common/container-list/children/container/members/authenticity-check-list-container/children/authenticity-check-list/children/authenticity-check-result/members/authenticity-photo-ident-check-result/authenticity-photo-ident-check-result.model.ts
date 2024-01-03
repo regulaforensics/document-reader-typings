@@ -1,28 +1,28 @@
 import { IsArray, IsDefined, IsEnum, IsIn, ValidateNested } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { Authenticity, CheckResult } from '@/consts'
-import { AuthenticityCheckResultAbstract } from '../../authenticity-check-result.abstract'
-import { IPhotoIdentResult, PhotoIdentResult } from './children'
+import { eAuthenticity, eCheckResult } from '@/consts'
+import { aAuthenticityCheckResult } from '../../authenticity-check-result.abstract'
+import { iPhotoIdentResult, PhotoIdentResult } from './children'
 
 
-export interface IAuthenticityPhotoIdentCheckResult extends AuthenticityCheckResultAbstract {
-  Type: Authenticity.IPI | Authenticity.IR_PHOTO
-  Result: CheckResult
-  List: IPhotoIdentResult[]
+export interface iAuthenticityPhotoIdentCheckResult extends aAuthenticityCheckResult {
+  Type: eAuthenticity.IPI | eAuthenticity.IR_PHOTO
+  Result: eCheckResult
+  List: iPhotoIdentResult[]
 }
 
-export class AuthenticityPhotoIdentCheckResult extends AuthenticityCheckResultAbstract implements IAuthenticityPhotoIdentCheckResult {
+export class AuthenticityPhotoIdentCheckResult extends aAuthenticityCheckResult implements iAuthenticityPhotoIdentCheckResult {
   @Expose()
   @IsDefined()
-  @IsIn([Authenticity.IPI, Authenticity.IR_PHOTO])
-  @IsEnum(Authenticity)
-  Type: Authenticity.IPI | Authenticity.IR_PHOTO
+  @IsIn([eAuthenticity.IPI, eAuthenticity.IR_PHOTO])
+  @IsEnum(eAuthenticity)
+  Type: eAuthenticity.IPI | eAuthenticity.IR_PHOTO
 
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  Result: CheckResult
+  @IsEnum(eCheckResult)
+  Result: eCheckResult
 
   @Expose()
   @IsDefined()

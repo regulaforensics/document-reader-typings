@@ -1,15 +1,15 @@
 import { IsArray, IsInt, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { ImageData } from '@/models/common/image-data'
+import { iImageData, ImageData } from '@/models/common/image-data'
 
 
-export interface IRawImageContainerList {
+export interface iRawImageContainerList {
   Count?: number
-  Images?: ImageData[]
+  Images?: iImageData[]
 }
 
-export class RawImageContainerList implements IRawImageContainerList {
+export class RawImageContainerList implements iRawImageContainerList {
   @Expose()
   @IsOptional()
   @IsInt()

@@ -1,43 +1,43 @@
 import { IsDefined, IsEnum, IsInt } from 'class-validator'
 import { Expose } from 'class-transformer'
 
-import { CheckResult } from '@/consts'
+import { eCheckResult } from '@/consts'
 
 
 /**
 * Interface for DetailsOptical model.
 * The summary of all optical checks.
 */
-export interface IDetailsOptical {
+export interface iDetailsOptical {
   /**
   * The summary of all optical checks.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  overallStatus: CheckResult
+  overallStatus: eCheckResult
 
   /**
   * The check status if document type was recognized or not.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  docType: CheckResult
+  docType: eCheckResult
 
   /**
   * The document validity period verification status.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  expiry: CheckResult
+  expiry: eCheckResult
 
   /**
   * The input images quality verification status.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  imageQA: CheckResult
+  imageQA: eCheckResult
 
   /**
   * MRZ verification: values validity, dates, checkdigits verification.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  mrz: CheckResult
+  mrz: eCheckResult
 
   /**
   * The number of scanned document pages, integer.
@@ -47,65 +47,65 @@ export interface IDetailsOptical {
 
   /**
   * The authenticity verification status.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  security: CheckResult
+  security: eCheckResult
 
   /**
   * Text fields valitity: values validity for specific fields, cross-comparison of values from different sources, dates & checkdigits verification.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  text: CheckResult
+  text: eCheckResult
 }
 
 /**
 * The summary of all optical checks.
 */
-export class DetailsOptical implements IDetailsOptical {
+export class DetailsOptical implements iDetailsOptical {
   /**
   * The summary of all optical checks.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  overallStatus: CheckResult
+  @IsEnum(eCheckResult)
+  overallStatus: eCheckResult
 
   /**
   * The check status if document type was recognized or not.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  docType: CheckResult
+  @IsEnum(eCheckResult)
+  docType: eCheckResult
 
   /**
   * The document validity period verification status.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  expiry: CheckResult
+  @IsEnum(eCheckResult)
+  expiry: eCheckResult
 
   /**
   * The input images quality verification status.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  imageQA: CheckResult
+  @IsEnum(eCheckResult)
+  imageQA: eCheckResult
 
   /**
   * MRZ verification: values validity, dates, checkdigits verification.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  mrz: CheckResult
+  @IsEnum(eCheckResult)
+  mrz: eCheckResult
 
   /**
   * The number of scanned document pages, integer.
@@ -118,19 +118,19 @@ export class DetailsOptical implements IDetailsOptical {
 
   /**
   * The authenticity verification status.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  security: CheckResult
+  @IsEnum(eCheckResult)
+  security: eCheckResult
 
   /**
   * Text fields valitity: values validity for specific fields, cross-comparison of values from different sources, dates & checkdigits verification.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  text: CheckResult
+  @IsEnum(eCheckResult)
+  text: eCheckResult
 }

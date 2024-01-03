@@ -1,23 +1,23 @@
 import { IsDefined, IsEnum, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { CheckResult, LCID, VisualFieldType } from '@/consts'
+import { eCheckResult, eLCID, eVisualFieldType } from '@/consts'
 import {
   TextComparison,
-  ITextComparison,
-  ITextValidity,
-  ITextFieldValue,
+  iTextComparison,
+  iTextValidity,
+  iTextFieldValue,
   TextValidity,
   TextFieldValue
 } from './children'
 
 
-export interface ITextField {
+export interface iTextField {
   /**
   * Field type
-  * @type {VisualFieldType}
+  * @type {eVisualFieldType}
   */
-  fieldType: VisualFieldType
+  fieldType: eVisualFieldType
 
   /**
   * Field name
@@ -27,9 +27,9 @@ export interface ITextField {
 
   /**
   * LCID code
-  * @type {LCID}
+  * @type {eLCID}
   */
-  lcid: LCID
+  lcid: eLCID
 
   /**
   * LCID name
@@ -39,21 +39,21 @@ export interface ITextField {
 
   /**
   * Field status
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  status: CheckResult
+  status: eCheckResult
 
   /**
   * Comparison status
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  comparisonStatus: CheckResult
+  comparisonStatus: eCheckResult
 
   /**
   * Comparison results list
-  * @type {ITextComparison[]}
+  * @type {iTextComparison[]}
   */
-  comparisonList: ITextComparison[]
+  comparisonList: iTextComparison[]
 
   /**
   * Field value
@@ -63,32 +63,32 @@ export interface ITextField {
 
   /**
   * Values list
-  * @type {ITextFieldValue[]}
+  * @type {iTextFieldValue[]}
   */
-  valueList: ITextFieldValue[]
+  valueList: iTextFieldValue[]
 
   /**
   * Validity status
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  validityStatus: CheckResult
+  validityStatus: eCheckResult
 
   /**
   * Validity results list
-  * @type {ITextValidity[]}
+  * @type {iTextValidity[]}
   */
-  validityList: ITextValidity[]
+  validityList: iTextValidity[]
 }
 
-export class TextField implements ITextField {
+export class TextField implements iTextField {
   /**
   * Field type
-  * @type {VisualFieldType}
+  * @type {eVisualFieldType}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(VisualFieldType)
-  fieldType: VisualFieldType
+  @IsEnum(eVisualFieldType)
+  fieldType: eVisualFieldType
 
   /**
   * Field name
@@ -101,12 +101,12 @@ export class TextField implements ITextField {
 
   /**
   * LCID code
-  * @type {LCID}
+  * @type {eLCID}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(LCID)
-  lcid: LCID
+  @IsEnum(eLCID)
+  lcid: eLCID
 
   /**
   * LCID name
@@ -119,21 +119,21 @@ export class TextField implements ITextField {
 
   /**
   * Field status
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  status: CheckResult
+  @IsEnum(eCheckResult)
+  status: eCheckResult
 
   /**
   * Comparison status
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  comparisonStatus: CheckResult
+  @IsEnum(eCheckResult)
+  comparisonStatus: eCheckResult
 
   /**
   * Comparison results list
@@ -166,12 +166,12 @@ export class TextField implements ITextField {
 
   /**
   * Validity status
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  validityStatus: CheckResult
+  @IsEnum(eCheckResult)
+  validityStatus: eCheckResult
 
   /**
   * Validity results list

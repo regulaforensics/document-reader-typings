@@ -2,28 +2,33 @@ import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSyn
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Lights, ResultType } from '@/consts'
+import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { OneCandidate } from './children'
-import { ContainerAbstract } from '../../container.abstract'
+import { aContainer } from '../../container.abstract'
 
 
-export interface IOneCandidateContainer extends ContainerAbstract {
+export interface iOneCandidateContainer extends aContainer {
   OneCandidate?: OneCandidate
 }
 
-export class OneCandidateContainer extends ContainerAbstract implements IOneCandidateContainer {
+export class OneCandidateContainer extends aContainer implements iOneCandidateContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
+  * @memberof OneCandidateContainer
   */
   @Expose()
   @IsDefined()
   @IsInt()
-  @Default(Lights.OFF)
+  @Default(eLights.OFF)
   light: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  * @memberof OneCandidateContainer
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -33,6 +38,7 @@ export class OneCandidateContainer extends ContainerAbstract implements IOneCand
   /**
   * Page index (when working with multi-page document)
   * @type {number}
+  * @memberof OneCandidateContainer
   */
   @Expose()
   @IsDefined()
@@ -40,7 +46,11 @@ export class OneCandidateContainer extends ContainerAbstract implements IOneCand
   @Default(0)
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  * @memberof OneCandidateContainer
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -49,15 +59,16 @@ export class OneCandidateContainer extends ContainerAbstract implements IOneCand
 
   /**
   * Result type stored in this container (one of ResultType identifiers)
-  * @type {ResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE}
+  * @type {eResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE}
+  * @memberof OneCandidateContainer
   */
   @Expose()
   @IsDefined()
-  @IsEnum(ResultType)
+  @IsEnum(eResultType)
   @IsIn([
-    ResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE,
+    eResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE,
   ])
-  result_type: ResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE
+  result_type: eResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE
 
   @Expose()
   @IsOptional()

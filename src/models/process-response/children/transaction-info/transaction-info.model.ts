@@ -2,14 +2,14 @@ import { IsOptional, IsString } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 
-export interface ITransactionInfo {
+export interface iTransactionInfo {
   ComputerName?: string
   DateTime?: string
   TransactionID?: string
   UserName?: string
 }
 
-export class TransactionInfo implements ITransactionInfo {
+export class TransactionInfo implements iTransactionInfo {
   @Expose()
   @IsOptional()
   @IsString()

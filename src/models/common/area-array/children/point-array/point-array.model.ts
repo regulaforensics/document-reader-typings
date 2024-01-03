@@ -1,21 +1,23 @@
 import { IsArray, IsDefined, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IPoint, Point } from '@/models/common/point'
+import { iPoint, Point } from '@/models/common/point'
 
 
-export interface IPointArray {
+export interface iPointArray {
   /**
   * Array of coordinates of points
-  * @type {IPoint[]}
+  * @type {iPoint[]}
+  * @memberof iPointArray
   */
-  PointsList: IPoint[]
+  PointsList: iPoint[]
 }
 
-export class PointArray implements IPointArray {
+export class PointArray implements iPointArray {
   /**
   * Array of coordinates of points
-  * @type {IPoint[]}
+  * @type {iPoint[]}
+  * @memberof iPointArray
   */
   @Expose()
   @IsDefined()

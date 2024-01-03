@@ -2,31 +2,38 @@ import { IsDefined, IsInt, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Lights } from '@/consts'
+import { eLights } from '@/consts'
 import { Default } from '@/decorators'
-import { BoundsResult, IBoundsResult } from '@/models/common/bounds-result'
-import { ContainerAbstract } from '../../container.abstract'
+import { BoundsResult, iBoundsResult } from '@/models/common/bounds-result'
+import { aContainer } from '../../container.abstract'
 
 
-export interface IDocumentPositionContainer extends ContainerAbstract {
+export interface iDocumentPositionContainer extends aContainer {
   /**
   * Document position
+  * @type {iBoundsResult}
+  * @memberof iDocumentPositionContainer
   */
-  DocumentPosition: IBoundsResult
+  DocumentPosition: iBoundsResult
 }
 
-export class DocumentPositionContainer extends ContainerAbstract implements IDocumentPositionContainer {
+export class DocumentPositionContainer extends aContainer implements iDocumentPositionContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
+  * @memberof DocumentPositionContainer
   */
   @Expose()
   @IsDefined()
   @IsInt()
-  @Default(Lights.OFF)
+  @Default(eLights.OFF)
   light: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  * @memberof DocumentPositionContainer
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -36,6 +43,7 @@ export class DocumentPositionContainer extends ContainerAbstract implements IDoc
   /**
   * Page index (when working with multi-page document)
   * @type {number}
+  * @memberof DocumentPositionContainer
   */
   @Expose()
   @IsDefined()
@@ -43,7 +51,11 @@ export class DocumentPositionContainer extends ContainerAbstract implements IDoc
   @Default(0)
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  * @memberof DocumentPositionContainer
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -52,6 +64,8 @@ export class DocumentPositionContainer extends ContainerAbstract implements IDoc
 
   /**
   * Document position
+  * @type {BoundsResult}
+  * @memberof DocumentPositionContainer
   */
   @Expose()
   @IsDefined()

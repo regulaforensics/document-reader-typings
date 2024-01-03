@@ -2,13 +2,13 @@ import { IsNumber, IsOptional } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 
-export interface IFaceApiSearch {
+export interface iFaceApiSearch {
   limit?: number
   threshold?: number
   group_ids?: number[]
 }
 
-export class FaceApiSearch implements IFaceApiSearch {
+export class FaceApiSearch implements iFaceApiSearch {
   @Expose()
   @IsOptional()
   @IsNumber()

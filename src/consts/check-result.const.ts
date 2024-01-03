@@ -2,7 +2,7 @@
 * 0 - result is negative; 1 - result is positive; 2 - сheck was not performed
 * @enum {number}
 */
-export enum CheckResult {
+export enum eCheckResult {
   /**
   * Check was performed and result is NEGATIVE
   */

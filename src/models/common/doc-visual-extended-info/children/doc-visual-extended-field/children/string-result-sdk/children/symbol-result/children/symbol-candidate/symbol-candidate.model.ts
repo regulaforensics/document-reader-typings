@@ -2,7 +2,7 @@ import { IsDefined, IsInt, IsNumber, IsOptional } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 
-export interface ISymbolCandidate {
+export interface iSymbolCandidate {
   /**
   * ASCII symbol code
   * @type {number}
@@ -21,7 +21,7 @@ export interface ISymbolCandidate {
   Reserved?: unknown
 }
 
-export class SymbolCandidate implements ISymbolCandidate {
+export class SymbolCandidate implements iSymbolCandidate {
   /**
   * ASCII symbol code
   * @type {number}

@@ -3,29 +3,29 @@ import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { IsStringObjectRecord } from '@/validators'
 import { DocReaderTypeError } from '@/errors'
-import { ContainerList, IContainerList } from '@/models/common'
+import { ContainerList, iContainerList } from '@/models/common'
 import {
-  IProcessParams,
-  IProcessRequestImage,
-  IProcessSystemInfo,
+  iProcessParams,
+  iProcessRequestImage,
+  iProcessSystemInfo,
   ProcessParams,
   ProcessRequestImage,
   ProcessSystemInfo
 } from './children'
 
 
-export interface IProcessRequest {
+export interface iProcessRequest {
   tag?: string
-  processParam: IProcessParams
-  List?: IProcessRequestImage[]
+  processParam: iProcessParams
+  List?: iProcessRequestImage[]
   livePortrait?: string
   extPortrait?: string
-  ContainerList?: IContainerList
-  systemInfo?: IProcessSystemInfo
+  ContainerList?: iContainerList
+  systemInfo?: iProcessSystemInfo
   passBackObject?: Record<string, object>
 }
 
-export class ProcessRequest implements IProcessRequest {
+export class ProcessRequest implements iProcessRequest {
   @Expose()
   @IsString()
   @IsOptional()

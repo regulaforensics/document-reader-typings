@@ -2,7 +2,7 @@
 * Enumeration representing various bar-code types.
 * @enum {number}
 */
-export enum BarCodeType {
+export enum eBarCodeType {
   /**
   * Unknown type
   */

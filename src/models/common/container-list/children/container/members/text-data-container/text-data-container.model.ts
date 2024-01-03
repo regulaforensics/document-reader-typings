@@ -2,17 +2,17 @@ import { IsDefined, IsInt, IsOptional, ValidateNested, validateSync } from 'clas
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Lights } from '@/consts'
+import { eLights } from '@/consts'
 import { Default } from '@/decorators'
-import { DocVisualExtendedInfo, IDocVisualExtendedInfo } from '@/models/common/doc-visual-extended-info'
-import { ContainerAbstract } from '../../container.abstract'
+import { DocVisualExtendedInfo, iDocVisualExtendedInfo } from '@/models/common/doc-visual-extended-info'
+import { aContainer } from '../../container.abstract'
 
 
-export interface ITextDataContainer extends ContainerAbstract {
-  DocVisualExtendedInfo?: IDocVisualExtendedInfo
+export interface iTextDataContainer extends aContainer {
+  DocVisualExtendedInfo?: iDocVisualExtendedInfo
 }
 
-export class TextDataContainer extends ContainerAbstract implements ITextDataContainer {
+export class TextDataContainer extends aContainer implements iTextDataContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
@@ -20,7 +20,7 @@ export class TextDataContainer extends ContainerAbstract implements ITextDataCon
   @Expose()
   @IsDefined()
   @IsInt()
-  @Default(Lights.OFF)
+  @Default(eLights.OFF)
   light: number
 
   /** @internal */

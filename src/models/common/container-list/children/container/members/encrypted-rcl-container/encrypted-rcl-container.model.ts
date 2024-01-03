@@ -2,27 +2,32 @@ import { IsDefined, IsInt, IsString, validateSync } from 'class-validator'
 import { Expose, plainToClass } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Lights } from '@/consts'
+import { eLights } from '@/consts'
 import { Default } from '@/decorators'
-import { ContainerAbstract } from '../../container.abstract'
+import { aContainer } from '../../container.abstract'
 
 
-export interface IEncryptedRCLContainer extends ContainerAbstract {
+export interface iEncryptedRCLContainer extends aContainer {
   EncryptedRCL: string
 }
 
-export class EncryptedRCLContainer extends ContainerAbstract implements IEncryptedRCLContainer {
+export class EncryptedRCLContainer extends aContainer implements iEncryptedRCLContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
+  * @memberof EncryptedRCLContainer
   */
   @Expose()
   @IsDefined()
   @IsInt()
-  @Default(Lights.OFF)
+  @Default(eLights.OFF)
   light: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  * @memberof EncryptedRCLContainer
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -32,6 +37,7 @@ export class EncryptedRCLContainer extends ContainerAbstract implements IEncrypt
   /**
   * Page index (when working with multi-page document)
   * @type {number}
+  * @memberof EncryptedRCLContainer
   */
   @Expose()
   @IsDefined()
@@ -39,7 +45,11 @@ export class EncryptedRCLContainer extends ContainerAbstract implements IEncrypt
   @Default(0)
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  * @memberof EncryptedRCLContainer
+  */
   @Expose()
   @IsDefined()
   @IsInt()

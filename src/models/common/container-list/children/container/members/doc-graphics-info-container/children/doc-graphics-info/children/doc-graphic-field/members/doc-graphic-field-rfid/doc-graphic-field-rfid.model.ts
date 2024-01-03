@@ -1,51 +1,57 @@
 import { IsDefined, IsEnum, IsInt, IsString, ValidateNested } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { GraphicFieldType, RfidDataGroupTypeTag } from '@/consts'
+import { eGraphicFieldType, eRfidDataGroupTypeTag } from '@/consts'
 import { ImageData } from '@/models/common/image-data'
-import { DocGraphicField } from '../../doc-graphic-field.abstract'
+import { aDocGraphicField } from '../../doc-graphic-field.abstract'
 
 
-export interface IDocGraphicFieldRfid extends DocGraphicField {
+export interface iDocGraphicFieldRfid extends aDocGraphicField {
   /**
   * Data group
-  * @type {RfidDataGroupTypeTag}
+  * @type {eRfidDataGroupTypeTag}
+  * @memberof iDocGraphicFieldRfid
   */
-  RFID_OriginDG: RfidDataGroupTypeTag
+  RFID_OriginDG: eRfidDataGroupTypeTag
 
   /**
   * Record index of the source of the image with biometric information
   * in the datagroup
   * @type {number}
+  * @memberof iDocGraphicFieldRfid
   */
   RFID_OriginDGTag: number
 
   /**
   * Index of the sample in the biometric data record
   * @type {number}
+  * @memberof iDocGraphicFieldRfid
   */
   RFID_OriginTagEntry: number
 
   /**
   * Index of the biometric data sample
   * @type {number}
+  * @memberof iDocGraphicFieldRfid
   */
   RFID_OriginEntryView: number
 }
 
-export class DocGraphicFieldRfid extends DocGraphicField implements IDocGraphicFieldRfid {
+export class DocGraphicFieldRfid extends aDocGraphicField implements iDocGraphicFieldRfid {
   /**
   * Graphic field logical type
-  * @type {GraphicFieldType}
+  * @type {eGraphicFieldType}
+  * @memberof DocGraphicFieldRfid
   */
   @Expose()
   @IsDefined()
-  @IsEnum(GraphicFieldType)
-  FieldType: GraphicFieldType
+  @IsEnum(eGraphicFieldType)
+  FieldType: eGraphicFieldType
 
   /**
   * Graphic field symbolic name
   * @type {string}
+  * @memberof DocGraphicFieldRfid
   */
   @Expose()
   @IsDefined()
@@ -55,6 +61,7 @@ export class DocGraphicFieldRfid extends DocGraphicField implements IDocGraphicF
   /**
   * Image data
   * @type {ImageData}
+  * @memberof DocGraphicFieldRfid
   */
   @Expose()
   @IsDefined()
@@ -64,17 +71,19 @@ export class DocGraphicFieldRfid extends DocGraphicField implements IDocGraphicF
 
   /**
   * Data group
-  * @type {RfidDataGroupTypeTag}
+  * @type {eRfidDataGroupTypeTag}
+  * @memberof DocGraphicFieldRfid
   */
   @Expose()
   @IsDefined()
-  @IsEnum(RfidDataGroupTypeTag)
-  RFID_OriginDG: RfidDataGroupTypeTag
+  @IsEnum(eRfidDataGroupTypeTag)
+  RFID_OriginDG: eRfidDataGroupTypeTag
 
   /**
   * Record index of the source of the image with biometric information
   * in the datagroup
   * @type {number}
+  * @memberof DocGraphicFieldRfid
   */
   @Expose()
   @IsDefined()
@@ -84,6 +93,7 @@ export class DocGraphicFieldRfid extends DocGraphicField implements IDocGraphicF
   /**
   * Index of the sample in the biometric data record
   * @type {number}
+  * @memberof DocGraphicFieldRfid
   */
   @Expose()
   @IsDefined()
@@ -93,6 +103,7 @@ export class DocGraphicFieldRfid extends DocGraphicField implements IDocGraphicF
   /**
   * Index of the biometric data sample
   * @type {number}
+  * @memberof DocGraphicFieldRfid
   */
   @Expose()
   @IsDefined()

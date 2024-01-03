@@ -2,32 +2,38 @@ import { IsDefined, IsInt, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Lights } from '@/consts'
+import { eLights } from '@/consts'
 import { Default } from '@/decorators'
-import { ContainerAbstract } from '../../container.abstract'
-import { IImagesResult, ImagesResult } from './children'
+import { aContainer } from '../../container.abstract'
+import { iImagesResult, ImagesResult } from './children'
 
 
-export interface IImagesResultContainer extends ContainerAbstract {
+export interface iImagesResultContainer extends aContainer {
   /**
   * Images result
-  * @type {IImagesResult}
+  * @type {iImagesResult}
+  * @memberof iImagesResultContainer
   */
-  Images: IImagesResult
+  Images: iImagesResult
 }
 
-export class ImagesResultContainer extends ContainerAbstract implements IImagesResultContainer {
+export class ImagesResultContainer extends aContainer implements iImagesResultContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
+  * @memberof ImagesResultContainer
   */
   @Expose()
   @IsDefined()
   @IsInt()
-  @Default(Lights.OFF)
+  @Default(eLights.OFF)
   light: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  * @memberof ImagesResultContainer
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -37,6 +43,7 @@ export class ImagesResultContainer extends ContainerAbstract implements IImagesR
   /**
   * Page index (when working with multi-page document)
   * @type {number}
+  * @memberof ImagesResultContainer
   */
   @Expose()
   @IsDefined()
@@ -44,7 +51,11 @@ export class ImagesResultContainer extends ContainerAbstract implements IImagesR
   @Default(0)
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  * @memberof ImagesResultContainer
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -54,6 +65,7 @@ export class ImagesResultContainer extends ContainerAbstract implements IImagesR
   /**
   * Images result
   * @type {ImagesResult}
+  * @memberof ImagesResultContainer
   */
   @Expose()
   @IsDefined()

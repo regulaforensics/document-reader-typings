@@ -1,13 +1,13 @@
 import { IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { FaceApiSearch, IFaceApiSearch } from './children'
+import { FaceApiSearch, iFaceApiSearch } from './children'
 
 
-export interface IFaceApi {
+export interface iFaceApi {
   url?: string
   mode?: string
-  search?: IFaceApiSearch
+  search?: iFaceApiSearch
   threshold?: number
   serviceTimeout?: number
   proxy?: string
@@ -15,7 +15,7 @@ export interface IFaceApi {
   proxy_type?: number
 }
 
-export class FaceApi implements IFaceApi {
+export class FaceApi implements iFaceApi {
   @Expose()
   @IsOptional()
   @IsString()

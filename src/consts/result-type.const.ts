@@ -121,7 +121,7 @@ enum eRPRM_ResultType_Internal
 * Enumeration describes available container types.
 * @enum {number}
 */
-export enum ResultType {
+export enum eResultType {
   /**
   * Result type for StatusContainer
   */

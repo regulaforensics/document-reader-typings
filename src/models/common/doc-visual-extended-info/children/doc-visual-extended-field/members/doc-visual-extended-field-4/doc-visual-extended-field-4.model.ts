@@ -1,29 +1,29 @@
 import { IsArray, IsDefined, IsEnum, IsInt, IsOptional, IsString, ValidateNested } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { LCID, RfidDataGroupTypeTag, VisualFieldType } from '@/consts'
-import { IStringResultSDK, StringResultSDK } from '../../children'
-import { DocVisualExtendedFieldAbstract } from '../../doc-visual-extended-field.abstract'
+import { eLCID, eRfidDataGroupTypeTag, eVisualFieldType } from '@/consts'
+import { iStringResultSDK, StringResultSDK } from '../../children'
+import { aDocVisualExtendedField } from '../../doc-visual-extended-field.abstract'
 
 
-export interface IDocVisualExtendedField4 extends DocVisualExtendedFieldAbstract {
+export interface iDocVisualExtendedField4 extends aDocVisualExtendedField {
   /**
   * Field logical type
-  * @type {VisualFieldType}
+  * @type {eVisualFieldType}
   */
-  wFieldType: VisualFieldType
+  wFieldType: eVisualFieldType
 
   /**
   * ID of language-culture to differentiate one field of the same type from another
-  * @type {LCID}
+  * @type {eLCID}
   */
-  wLCID: LCID
+  wLCID: eLCID
 
     /**
   * Data group
-  * @type {RfidDataGroupTypeTag}
+  * @type {eRfidDataGroupTypeTag}
   */
-  RFID_OriginDG: RfidDataGroupTypeTag
+  RFID_OriginDG: eRfidDataGroupTypeTag
 
   /**
   * @internal
@@ -55,9 +55,9 @@ export interface IDocVisualExtendedField4 extends DocVisualExtendedFieldAbstract
 
   /**
   * Array of separate strings of multiline text field recognition results
-  * @type {IStringResultSDK[]}
+  * @type {iStringResultSDK[]}
   */
-  StringsResult: IStringResultSDK[]
+  StringsResult: iStringResultSDK[]
 
   /**
   * Buf_Text text string length
@@ -99,33 +99,33 @@ export interface IDocVisualExtendedField4 extends DocVisualExtendedFieldAbstract
 }
 
 
-export class DocVisualExtendedField4 extends DocVisualExtendedFieldAbstract implements IDocVisualExtendedField4 {
+export class DocVisualExtendedField4 extends aDocVisualExtendedField implements iDocVisualExtendedField4 {
   /**
   * Field logical type
-  * @type {VisualFieldType}
+  * @type {eVisualFieldType}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(VisualFieldType)
-  wFieldType: VisualFieldType
+  @IsEnum(eVisualFieldType)
+  wFieldType: eVisualFieldType
 
   /**
   * ID of language-culture to differentiate one field of the same type from another
-  * @type {LCID}
+  * @type {eLCID}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(LCID)
-  wLCID: LCID
+  @IsEnum(eLCID)
+  wLCID: eLCID
 
   /**
   * Data group
-  * @type {RfidDataGroupTypeTag}
+  * @type {eRfidDataGroupTypeTag}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(RfidDataGroupTypeTag)
-  RFID_OriginDG: RfidDataGroupTypeTag
+  @IsEnum(eRfidDataGroupTypeTag)
+  RFID_OriginDG: eRfidDataGroupTypeTag
 
   /**
   * @internal
@@ -170,7 +170,7 @@ export class DocVisualExtendedField4 extends DocVisualExtendedFieldAbstract impl
 
   /**
   * Array of separate strings of multiline text field recognition results
-  * @type {IStringResultSDK[]}
+  * @type {iStringResultSDK[]}
   */
   @Expose()
   @IsDefined()

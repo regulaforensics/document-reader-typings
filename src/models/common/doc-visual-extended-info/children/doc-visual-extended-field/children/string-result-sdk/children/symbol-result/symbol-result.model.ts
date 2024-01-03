@@ -1,16 +1,16 @@
 import { IsArray, IsDefined, IsInt, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
-import { ISymbolCandidate, SymbolCandidate } from './children'
+import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { iSymbolCandidate, SymbolCandidate } from './children'
 
 
-export interface ISymbolResult {
+export interface iSymbolResult {
   /**
   * Borders of area occupied by the symbol on the image
-  * @type {IRectangleCoordinates}
+  * @type {iRectangleCoordinates}
   */
-  SymbolRect: IRectangleCoordinates
+  SymbolRect: iRectangleCoordinates
 
   /**
   * Number of significant elements of ListOfCandidates array
@@ -21,9 +21,9 @@ export interface ISymbolResult {
   /**
   * Array of candidate symbols. Sorted by descending of probability
   * of recognition (the first element has the highest probability)
-  * @type {ISymbolCandidate[]}
+  * @type {iSymbolCandidate[]}
   */
-  ListOfCandidates: ISymbolCandidate[]
+  ListOfCandidates: iSymbolCandidate[]
 
   /**
   * @internal
@@ -31,10 +31,10 @@ export interface ISymbolResult {
   Reserved?: unknown
 }
 
-export class SymbolResult implements ISymbolResult {
+export class SymbolResult implements iSymbolResult {
   /**
   * Borders of area occupied by the symbol on the image
-  * @type {IRectangleCoordinates}
+  * @type {iRectangleCoordinates}
   */
   @Expose()
   @IsDefined()
@@ -54,7 +54,7 @@ export class SymbolResult implements ISymbolResult {
   /**
   * Array of candidate symbols. Sorted by descending of probability
   * of recognition (the first element has the highest probability)
-  * @type {ISymbolCandidate[]}
+  * @type {iSymbolCandidate[]}
   */
   @Expose()
   @IsDefined()

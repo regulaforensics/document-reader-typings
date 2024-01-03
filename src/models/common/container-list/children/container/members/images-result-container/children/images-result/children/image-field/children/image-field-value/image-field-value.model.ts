@@ -1,71 +1,81 @@
 import { IsDefined, IsEnum, IsInt, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { Lights, Source } from '@/consts'
-import { IRfidOrigin, RfidOrigin } from '@/models/common/rfid-origin'
-import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { eLights, eSource } from '@/consts'
+import { iRfidOrigin, RfidOrigin } from '@/models/common/rfid-origin'
+import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
 
 
-export interface IImageFieldValue {
+export interface iImageFieldValue {
   /**
   * Image file in Base64 representation
   * @type {string}
+  * @memberof iImageFieldValue
   */
   value: string
 
   /**
   * Original image file in Base64 representation
   * @type {string}
+  * @memberof iImageFieldValue
   */
   originalValue: string
 
   /**
   * Source
-  * @type {Source}
+  * @type {eSource}
+  * @memberof iImageFieldValue
   */
-  source: Source
+  source: eSource
 
   /**
   * Container type
   * @type {number}
+  * @memberof iImageFieldValue
   */
   containerType: number
 
   /**
   * Page index
   * @type {number}
+  * @memberof iImageFieldValue
   */
   pageIndex: number
 
   /**
   * Light index
-  * @type {Lights}
+  * @type {eLights}
+  * @memberof iImageFieldValue
   */
-  lightIndex: Lights
+  lightIndex: eLights
 
   /**
   * Field rectangular area
-  * @type {IRectangleCoordinates}
+  * @type {iRectangleCoordinates}
+  * @memberof iImageFieldValue
   */
-  fieldRect: IRectangleCoordinates
+  fieldRect: iRectangleCoordinates
 
   /**
   * Field source from electronic document
-  * @type {IRfidOrigin|undefined}
+  * @type {iRfidOrigin|undefined}
+  * @memberof iImageFieldValue
   */
-  rfidOrigin?: IRfidOrigin
+  rfidOrigin?: iRfidOrigin
 
   /**
   * Original page index
   * @type {number|undefined}
+  * @memberof iImageFieldValue
   */
   originalPageIndex?: number
 }
 
-export class ImageFieldValue implements IImageFieldValue {
+export class ImageFieldValue implements iImageFieldValue {
   /**
   * Image file in Base64 representation
   * @type {string}
+  * @memberof ImageFieldValue
   */
   @Expose()
   @IsDefined()
@@ -75,6 +85,7 @@ export class ImageFieldValue implements IImageFieldValue {
   /**
   * Original image file in Base64 representation
   * @type {string}
+  * @memberof ImageFieldValue
   */
   @Expose()
   @IsDefined()
@@ -83,16 +94,18 @@ export class ImageFieldValue implements IImageFieldValue {
 
   /**
   * Source
-  * @type {Source}
+  * @type {eSource}
+  * @memberof ImageFieldValue
   */
   @Expose()
   @IsDefined()
-  @IsEnum(Source)
-  source: Source
+  @IsEnum(eSource)
+  source: eSource
 
   /**
   * Container type
   * @type {number}
+  * @memberof ImageFieldValue
   */
   @Expose()
   @IsDefined()
@@ -102,6 +115,7 @@ export class ImageFieldValue implements IImageFieldValue {
   /**
   * Page index
   * @type {number}
+  * @memberof ImageFieldValue
   */
   @Expose()
   @IsDefined()
@@ -110,16 +124,18 @@ export class ImageFieldValue implements IImageFieldValue {
 
   /**
   * Light index
-  * @type {Lights}
+  * @type {eLights}
+  * @memberof ImageFieldValue
   */
   @Expose()
   @IsDefined()
-  @IsEnum(Lights)
-  lightIndex: Lights
+  @IsEnum(eLights)
+  lightIndex: eLights
 
   /**
   * Field rectangular area
-  * @type {IRectangleCoordinates}
+  * @type {iRectangleCoordinates}
+  * @memberof ImageFieldValue
   */
   @Expose()
   @IsDefined()
@@ -129,7 +145,8 @@ export class ImageFieldValue implements IImageFieldValue {
 
   /**
   * Field source from electronic document
-  * @type {IRfidOrigin|undefined}
+  * @type {iRfidOrigin|undefined}
+  * @memberof ImageFieldValue
   */
   @Expose()
   @IsOptional()
@@ -140,6 +157,7 @@ export class ImageFieldValue implements IImageFieldValue {
   /**
   * Original page index
   * @type {number|undefined}
+  * @memberof ImageFieldValue
   */
   @Expose()
   @IsOptional()
