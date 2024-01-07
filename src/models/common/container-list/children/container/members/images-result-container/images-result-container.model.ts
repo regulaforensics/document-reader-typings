@@ -12,7 +12,6 @@ export interface iImagesResultContainer extends aContainer {
   /**
   * Images result
   * @type {iImagesResult}
-  * @memberof iImagesResultContainer
   */
   Images: iImagesResult
 }
@@ -21,7 +20,6 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
-  * @memberof ImagesResultContainer
   */
   @Expose()
   @IsDefined()
@@ -32,7 +30,6 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   /**
   * @internal
   * @type {number}
-  * @memberof ImagesResultContainer
   */
   @Expose()
   @IsDefined()
@@ -43,7 +40,6 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   /**
   * Page index (when working with multi-page document)
   * @type {number}
-  * @memberof ImagesResultContainer
   */
   @Expose()
   @IsDefined()
@@ -54,7 +50,6 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   /**
   * @internal
   * @type {number}
-  * @memberof ImagesResultContainer
   */
   @Expose()
   @IsDefined()
@@ -65,7 +60,6 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   /**
   * Images result
   * @type {ImagesResult}
-  * @memberof ImagesResultContainer
   */
   @Expose()
   @IsDefined()

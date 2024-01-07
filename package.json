@@ -1,12 +1,13 @@
 {
-  "version": "0.0.13",
+  "version": "0.0.14",
   "author": "Regula Forensics, Inc.",
   "name": "@regulaforensics/document-reader-typings",
   "description": "Document Reader API typings",
   "license": "MIT",
   "scripts": {
     "build": "vite build",
-    "test": "jest"
+    "test": "jest",
+    "docs": "typedoc --out docs src"
   },
   "dependencies": {
     "class-transformer": "^0.5.1",
@@ -23,6 +24,7 @@
     "jest": "^29.7.0",
     "lodash": "^4.17.21",
     "ts-jest": "^29.1.1",
+    "typedoc": "^0.25.6",
     "typescript": "^5.3.3",
     "vite": "^5.0.10",
     "vite-plugin-dts": "^3.7.0",

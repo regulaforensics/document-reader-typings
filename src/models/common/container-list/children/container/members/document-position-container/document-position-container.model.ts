@@ -12,7 +12,6 @@ export interface iDocumentPositionContainer extends aContainer {
   /**
   * Document position
   * @type {iBoundsResult}
-  * @memberof iDocumentPositionContainer
   */
   DocumentPosition: iBoundsResult
 }
@@ -21,7 +20,6 @@ export class DocumentPositionContainer extends aContainer implements iDocumentPo
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
-  * @memberof DocumentPositionContainer
   */
   @Expose()
   @IsDefined()
@@ -32,7 +30,6 @@ export class DocumentPositionContainer extends aContainer implements iDocumentPo
   /**
   * @internal
   * @type {number}
-  * @memberof DocumentPositionContainer
   */
   @Expose()
   @IsDefined()
@@ -43,7 +40,6 @@ export class DocumentPositionContainer extends aContainer implements iDocumentPo
   /**
   * Page index (when working with multi-page document)
   * @type {number}
-  * @memberof DocumentPositionContainer
   */
   @Expose()
   @IsDefined()
@@ -54,7 +50,6 @@ export class DocumentPositionContainer extends aContainer implements iDocumentPo
   /**
   * @internal
   * @type {number}
-  * @memberof DocumentPositionContainer
   */
   @Expose()
   @IsDefined()
@@ -65,7 +60,6 @@ export class DocumentPositionContainer extends aContainer implements iDocumentPo
   /**
   * Document position
   * @type {BoundsResult}
-  * @memberof DocumentPositionContainer
   */
   @Expose()
   @IsDefined()

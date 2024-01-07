@@ -23,7 +23,10 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   @Default(eLights.OFF)
   light: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -40,7 +43,10 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   @Default(0)
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  */
   @Expose()
   @IsDefined()
   @IsInt()

@@ -10,49 +10,42 @@ export interface iImageQualityCheck {
   /**
   * Check result type
   * @type {eImageQualityCheckType}
-  * @memberof iImageQualityCheck
   */
   type: eImageQualityCheckType
 
   /**
   * Check result
   * @type {eCheckResult}
-  * @memberof iImageQualityCheck
   */
   result: eCheckResult
 
   /**
   * Security feature type
   * @type {eSecurityFeatureType}
-  * @memberof iImageQualityCheck
   */
   featureType: eSecurityFeatureType
 
   /**
   * Anomalous image areas
   * @type {iAreaArray}
-  * @memberof iImageQualityCheck
   */
   areas: iAreaArray
 
   /**
   * Check mean value
   * @type {number}
-  * @memberof iImageQualityCheck
   */
   mean: number
 
   /**
   * Check deviation value
   * @type {number}
-  * @memberof iImageQualityCheck
   */
   std_dev: number
 
   /**
   * Check probability value
   * @type {number}
-  * @memberof iImageQualityCheck
   */
   probability: number
 }
@@ -61,7 +54,6 @@ export class ImageQualityCheck implements iImageQualityCheck {
   /**
   * Check result type
   * @type {eImageQualityCheckType}
-  * @memberof ImageQualityCheck
   */
   @Expose()
   @IsDefined()
@@ -71,7 +63,6 @@ export class ImageQualityCheck implements iImageQualityCheck {
   /**
   * Check result
   * @type {eCheckResult}
-  * @memberof ImageQualityCheck
   */
   @Expose()
   @IsDefined()
@@ -81,7 +72,6 @@ export class ImageQualityCheck implements iImageQualityCheck {
   /**
   * Security feature type
   * @type {eSecurityFeatureType}
-  * @memberof ImageQualityCheck
   */
   @Expose()
   @IsDefined()
@@ -92,7 +82,6 @@ export class ImageQualityCheck implements iImageQualityCheck {
   /**
   * Anomalous image areas
   * @type {AreaArray}
-  * @memberof ImageQualityCheck
   */
   @Expose()
   @IsDefined()
@@ -103,7 +92,6 @@ export class ImageQualityCheck implements iImageQualityCheck {
   /**
   * Check mean value
   * @type {number}
-  * @memberof ImageQualityCheck
   */
   @Expose()
   @IsDefined()
@@ -113,7 +101,6 @@ export class ImageQualityCheck implements iImageQualityCheck {
   /**
   * Check deviation value
   * @type {number}
-  * @memberof ImageQualityCheck
   */
   @Expose()
   @IsDefined()
@@ -123,7 +110,6 @@ export class ImageQualityCheck implements iImageQualityCheck {
   /**
   * Check probability value
   * @type {number}
-  * @memberof ImageQualityCheck
   */
   @Expose()
   @IsDefined()

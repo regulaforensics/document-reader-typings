@@ -11,7 +11,6 @@ export interface iDocGraphicFieldRect extends aDocGraphicField {
   /**
   * Field area coordinates on the general image
   * @type {iRectangleCoordinates}
-  * @memberof iDocGraphicFieldRect
   */
   FieldRect: iRectangleCoordinates
 }
@@ -20,7 +19,6 @@ export class DocGraphicFieldRect extends aDocGraphicField implements iDocGraphic
   /**
   * Graphic field logical type
   * @type {eGraphicFieldType}
-  * @memberof DocGraphicFieldRect
   */
   @Expose()
   @IsDefined()
@@ -30,7 +28,6 @@ export class DocGraphicFieldRect extends aDocGraphicField implements iDocGraphic
   /**
   * Graphic field symbolic name
   * @type {string}
-  * @memberof DocGraphicFieldRect
   */
   @Expose()
   @IsDefined()
@@ -40,7 +37,6 @@ export class DocGraphicFieldRect extends aDocGraphicField implements iDocGraphic
   /**
   * Image data
   * @type {ImageData}
-  * @memberof DocGraphicFieldRect
   */
   @Expose()
   @IsDefined()
@@ -51,7 +47,6 @@ export class DocGraphicFieldRect extends aDocGraphicField implements iDocGraphic
   /**
   * Field area coordinates on the general image
   * @type {RectangleCoordinates}
-  * @memberof DocGraphicFieldRect
   */
   @Expose()
   @IsDefined()

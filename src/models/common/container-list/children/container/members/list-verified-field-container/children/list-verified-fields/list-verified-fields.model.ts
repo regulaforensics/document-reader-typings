@@ -8,14 +8,12 @@ export interface iListVerifiedFields {
   /**
   * Number of pFieldMaps array elements
   * @type {number}
-  * @memberof iListVerifiedFields
   */
   Count: number
 
   /**
   * Array of results of document filling text fields’ data analysis
   * @type {iVerifiedFieldMap[]}
-  * @memberof iListVerifiedFields
   */
   pFieldMaps: iVerifiedFieldMap[]
 }
@@ -24,7 +22,6 @@ export class ListVerifiedFields implements iListVerifiedFields {
   /**
   * Number of pFieldMaps array elements
   * @type {number}
-  * @memberof ListVerifiedFields
   */
   @Expose()
   @IsDefined()
@@ -34,7 +31,6 @@ export class ListVerifiedFields implements iListVerifiedFields {
   /**
   * Array of results of document filling text fields’ data analysis
   * @type {iVerifiedFieldMap[]}
-  * @memberof ListVerifiedFields
   */
   @Expose()
   @IsDefined()

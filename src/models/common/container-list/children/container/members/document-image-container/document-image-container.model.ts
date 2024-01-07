@@ -12,7 +12,6 @@ export interface iDocumentImageContainer extends aContainer {
   /**
   * Structure is used for storing a graphic image
   * @type {ImageData}
-  * @memberof iDocumentImageContainer
   */
   RawImageContainer: ImageData
 }
@@ -21,7 +20,6 @@ export class DocumentImageContainer extends aContainer implements iDocumentImage
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
-  * @memberof DocumentImageContainer
   */
   @Expose()
   @IsDefined()
@@ -32,7 +30,6 @@ export class DocumentImageContainer extends aContainer implements iDocumentImage
   /**
   * @internal
   * @type {number}
-  * @memberof DocumentImageContainer
   */
   @Expose()
   @IsDefined()
@@ -43,7 +40,6 @@ export class DocumentImageContainer extends aContainer implements iDocumentImage
   /**
   * Page index (when working with multi-page document)
   * @type {number}
-  * @memberof DocumentImageContainer
   */
   @Expose()
   @IsDefined()
@@ -54,7 +50,6 @@ export class DocumentImageContainer extends aContainer implements iDocumentImage
   /**
   * @internal
   * @type {number}
-  * @memberof DocumentImageContainer
   */
   @Expose()
   @IsDefined()
@@ -65,7 +60,6 @@ export class DocumentImageContainer extends aContainer implements iDocumentImage
   /**
   * Structure is used for storing a graphic image
   * @type {ImageData}
-  * @memberof DocumentImageContainer
   */
   @Expose()
   @IsDefined()

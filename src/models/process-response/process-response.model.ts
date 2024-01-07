@@ -30,6 +30,10 @@ export class ProcessResponse implements iProcessResponse {
   @IsEnum(eProcessingStatus)
   ProcessingFinished: eProcessingStatus
 
+  /**
+  * List of containers with results
+  * @type {ContainerList}
+  */
   @Expose()
   @ValidateNested()
   @Type(() => ContainerList)

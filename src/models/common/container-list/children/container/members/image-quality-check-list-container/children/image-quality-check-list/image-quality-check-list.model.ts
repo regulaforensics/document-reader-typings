@@ -9,14 +9,12 @@ export interface iImageQualityCheckList {
   /**
   * Overall check result
   * @type {eCheckResult}
-  * @memberof iImageQualityCheckList
   */
   result: eCheckResult
 
   /**
   * Array of single check result pointers
   * @type {iImageQualityCheck[]}
-  * @memberof iImageQualityCheckList
   */
   List: iImageQualityCheck[]
 }
@@ -25,7 +23,6 @@ export class ImageQualityCheckList implements iImageQualityCheckList {
   /**
   * Overall check result
   * @type {eCheckResult}
-  * @memberof ImageQualityCheckList
   */
   @Expose()
   @IsDefined()
@@ -35,7 +32,6 @@ export class ImageQualityCheckList implements iImageQualityCheckList {
   /**
   * Array of single check result pointers
   * @type {ImageQualityCheck[]}
-  * @memberof ImageQualityCheckList
   */
   @Expose()
   @IsDefined()

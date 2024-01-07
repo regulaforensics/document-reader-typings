@@ -6,6 +6,11 @@ import { iuContainer, uContainer } from './children'
 
 export interface iContainerList {
   Count?: number
+
+  /**
+  * List of containers with results
+  * @type {iuContainer[]}
+  */
   List: iuContainer[]
 }
 
@@ -15,6 +20,10 @@ export class ContainerList implements iContainerList {
   @IsInt()
   Count?: number
 
+  /**
+  * List of containers with results
+  * @type {uContainer[]}
+  */
   @Expose()
   @IsDefined()
   @IsArray()

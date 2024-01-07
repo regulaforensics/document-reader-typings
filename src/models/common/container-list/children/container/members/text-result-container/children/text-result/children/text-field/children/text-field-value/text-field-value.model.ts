@@ -122,6 +122,7 @@ export class TextFieldValue implements iTextFieldValue {
 
   /**
   * Field source from electronic document
+  * @type {RfidOrigin}
   */
   @Expose()
   @IsOptional()
@@ -131,6 +132,7 @@ export class TextFieldValue implements iTextFieldValue {
 
   /**
   * Field recognition probability
+  * @type {number}
   */
   @Expose()
   @IsDefined()
@@ -140,6 +142,7 @@ export class TextFieldValue implements iTextFieldValue {
 
   /**
   * Original symbols
+  * @type {TextSymbol[]}
   */
   @Expose()
   @IsOptional()

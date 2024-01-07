@@ -5,48 +5,48 @@ import { eBarCodeModuleType } from '@/consts'
 import { Default } from '@/decorators'
 
 
+/**
+* Structure is used for storing the results of one bar-code module reading.
+*/
 export interface iTipDecodeModule {
   /**
   * Read module data
   * @type {string}
-  * @memberof iTipDecodeModule
   */
   mData: string
 
   /**
   * Number of significant elements of mData
   * @type {number}
-  * @memberof iTipDecodeModule
   */
   mLength: number
 
   /**
   * @internal
   * @type {unknown}
-  * @memberof iTipDecodeModule
   */
   mReserved1?: unknown
 
   /**
   * @internal
   * @type {unknown}
-  * @memberof iTipDecodeModule
   */
   mReserver2?: unknown
 
   /**
   * Module type
   * @type {eBarCodeModuleType}
-  * @memberof iTipDecodeModule
   */
   mType: eBarCodeModuleType
 }
 
+/**
+* Structure is used for storing the results of one bar-code module reading.
+*/
 export class TipDecodeModule implements iTipDecodeModule {
   /**
   * Read module data
   * @type {string}
-  * @memberof TipDecodeModule
   */
   @Expose()
   @IsDefined()
@@ -56,7 +56,6 @@ export class TipDecodeModule implements iTipDecodeModule {
   /**
   * Number of significant elements of mData
   * @type {number}
-  * @memberof TipDecodeModule
   */
   @Expose()
   @IsDefined()
@@ -66,15 +65,13 @@ export class TipDecodeModule implements iTipDecodeModule {
   /**
   * @internal
   * @type {unknown}
-  * @memberof TipDecodeModule
   */
   @Expose()
   mReserved1?: unknown
 
   /**
   * @internal
-   * @type {unknown}
-   * @memberof TipDecodeModule
+  * @type {unknown}
   */
   @Expose()
   mReserver2?: unknown
@@ -82,7 +79,6 @@ export class TipDecodeModule implements iTipDecodeModule {
   /**
   * Module type
   * @type {eBarCodeModuleType}
-  * @memberof TipDecodeModule
   */
   @Expose()
   @IsDefined()

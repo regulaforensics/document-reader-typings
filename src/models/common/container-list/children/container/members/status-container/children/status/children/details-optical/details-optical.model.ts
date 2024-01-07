@@ -52,7 +52,8 @@ export interface iDetailsOptical {
   security: eCheckResult
 
   /**
-  * Text fields valitity: values validity for specific fields, cross-comparison of values from different sources, dates & checkdigits verification.
+  * Text fields valitity: values validity for specific fields, cross-comparison of values from different sources,
+  * dates & checkdigits verification.
   * @type {eCheckResult}
   */
   text: eCheckResult
@@ -126,7 +127,8 @@ export class DetailsOptical implements iDetailsOptical {
   security: eCheckResult
 
   /**
-  * Text fields valitity: values validity for specific fields, cross-comparison of values from different sources, dates & checkdigits verification.
+  * Text fields valitity: values validity for specific fields, cross-comparison of values from different sources,
+  * dates & checkdigits verification.
   * @type {eCheckResult}
   */
   @Expose()

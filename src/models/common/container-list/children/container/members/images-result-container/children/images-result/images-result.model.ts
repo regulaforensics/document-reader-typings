@@ -8,28 +8,24 @@ export interface iImagesResult {
   /**
   * Fields count
   * @type {number}
-  * @memberof iImagesResult
   */
   fieldCount: number
 
   /**
   * Available sources count
   * @type {number}
-  * @memberof iImagesResult
   */
   availableSourceCount: number
 
   /**
   * Available sources list
   * @type {iImageSource[]}
-  * @memberof iImagesResult
   */
   availableSourceList: iImageSource[]
 
   /**
   * Fields list
   * @type {iImageField[]}
-  * @memberof iImagesResult
   */
   fieldList: iImageField[]
 }
@@ -38,7 +34,6 @@ export class ImagesResult implements iImagesResult {
   /**
   * Fields count
   * @type {number}
-  * @memberof ImagesResult
   */
   @Expose()
   @IsDefined()
@@ -48,7 +43,6 @@ export class ImagesResult implements iImagesResult {
   /**
   * Available sources count
   * @type {number}
-  * @memberof ImagesResult
   */
   @Expose()
   @IsDefined()
@@ -58,7 +52,6 @@ export class ImagesResult implements iImagesResult {
   /**
   * Available sources list
   * @type {ImageSource[]}
-  * @memberof ImagesResult
   */
   @Expose()
   @IsDefined()
@@ -69,7 +62,6 @@ export class ImagesResult implements iImagesResult {
   /**
   * Fields list
   * @type {ImageField[]}
-  * @memberof ImagesResult
   */
   @Expose()
   @IsDefined()

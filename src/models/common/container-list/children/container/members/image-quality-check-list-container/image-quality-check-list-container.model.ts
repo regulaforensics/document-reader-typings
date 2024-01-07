@@ -16,7 +16,6 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
-  * @memberof ImageQualityCheckListContainer
   */
   @Expose()
   @IsDefined()
@@ -27,7 +26,6 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
   /**
   * @internal
   * @type {number}
-  * @memberof ImageQualityCheckListContainer
   */
   @Expose()
   @IsDefined()
@@ -38,7 +36,6 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
   /**
   * Page index (when working with multi-page document)
   * @type {number}
-  * @memberof ImageQualityCheckListContainer
   */
   @Expose()
   @IsDefined()
@@ -49,7 +46,6 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
   /**
   * @internal
   * @type {number}
-  * @memberof ImageQualityCheckListContainer
   */
   @Expose()
   @IsDefined()

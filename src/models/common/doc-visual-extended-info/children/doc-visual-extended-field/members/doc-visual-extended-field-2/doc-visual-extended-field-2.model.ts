@@ -21,6 +21,7 @@ export interface iDocVisualExtendedField2 extends aDocVisualExtendedField {
 
   /**
   * @internal
+  * @type {unknown}
   */
   RFID_OriginDGTag?: unknown
 
@@ -32,6 +33,7 @@ export interface iDocVisualExtendedField2 extends aDocVisualExtendedField {
 
   /**
   * @internal
+  * @type {unknown}
   */
   RFID_OriginEntryView?: unknown
 
@@ -68,30 +70,34 @@ export interface iDocVisualExtendedField2 extends aDocVisualExtendedField {
 
   /**
   * @internal
+  * @type {unknown}
   */
   FieldMask?: unknown
 
   /**
   * @internal
+  * @type {unknown}
   */
   Validity?: unknown
 
   /**
   * @internal
+  * @type {unknown}
   */
   InComparison?: unknown
 
   /**
   * @internal
+  * @type {unknown}
   */
   Reserved2?: unknown
 
   /**
   * @internal
+  * @type {unknown}
   */
   Reserved3?: unknown
 }
-
 
 export class DocVisualExtendedField2 extends aDocVisualExtendedField implements iDocVisualExtendedField2 {
   /**
@@ -114,6 +120,7 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
 
   /**
   * @internal
+  * @type {unknown}
   */
   @Expose()
   @IsOptional()
@@ -130,6 +137,7 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
 
   /**
   * @internal
+  * @type {unknown}
   */
   @Expose()
   @IsOptional()
@@ -185,6 +193,7 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
 
   /**
   * @internal
+  * @type {unknown}
   */
   @Expose()
   @IsOptional()
@@ -192,6 +201,7 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
 
   /**
   * @internal
+  * @type {unknown}
   */
   @Expose()
   @IsOptional()
@@ -199,6 +209,7 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
 
   /**
   * @internal
+  * @type {unknown}
   */
   @Expose()
   @IsOptional()
@@ -206,6 +217,7 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
 
   /**
   * @internal
+  * @type {unknown}
   */
   @Expose()
   @IsOptional()
@@ -213,6 +225,7 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
 
   /**
   * @internal
+  * @type {unknown}
   */
   @Expose()
   @IsOptional()

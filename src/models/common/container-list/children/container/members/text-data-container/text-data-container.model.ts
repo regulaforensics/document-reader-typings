@@ -23,7 +23,10 @@ export class TextDataContainer extends aContainer implements iTextDataContainer 
   @Default(eLights.OFF)
   light: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -40,7 +43,10 @@ export class TextDataContainer extends aContainer implements iTextDataContainer 
   @Default(0)
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  */
   @Expose()
   @IsDefined()
   @IsInt()

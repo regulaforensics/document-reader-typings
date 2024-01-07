@@ -4,20 +4,24 @@ import { Expose, Type } from 'class-transformer'
 import { iPoint, Point } from '@/models/common/point'
 
 
+/**
+* Structure serves for storage areas
+*/
 export interface iPointArray {
   /**
   * Array of coordinates of points
   * @type {iPoint[]}
-  * @memberof iPointArray
   */
   PointsList: iPoint[]
 }
 
+/**
+* Structure serves for storage areas
+*/
 export class PointArray implements iPointArray {
   /**
   * Array of coordinates of points
   * @type {iPoint[]}
-  * @memberof iPointArray
   */
   @Expose()
   @IsDefined()

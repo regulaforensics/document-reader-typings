@@ -5,34 +5,36 @@ import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rec
 import { iPointArray, PointArray } from './children'
 
 
+/**
+* Structure serves for storage areas and contours.
+*/
 export interface iAreaArray {
   /**
   * Number of elements in List and Points
   * @type {number}
-  * @memberof iAreaArray
   */
   Count: number
 
   /**
   * Array of areas
   * @type {iRectangleCoordinates[]}
-  * @memberof iAreaArray
   */
   List: iRectangleCoordinates[]
 
   /**
   * Array of points
   * @type {iPointArray[]}
-  * @memberof iAreaArray
   */
   Points: iPointArray[]
 }
 
+/**
+* Structure serves for storage areas and contours.
+*/
 export class AreaArray implements iAreaArray {
   /**
   * Number of elements in List and Points
   * @type {number}
-  * @memberof iAreaArray
   */
   @Expose()
   @IsDefined()
@@ -42,7 +44,6 @@ export class AreaArray implements iAreaArray {
   /**
   * Array of areas
   * @type {iRectangleCoordinates[]}
-  * @memberof iAreaArray
   */
   @Expose()
   @IsDefined()
@@ -54,7 +55,6 @@ export class AreaArray implements iAreaArray {
   /**
   * Array of points
   * @type {iPointArray[]}
-  * @memberof iAreaArray
   */
   @Expose()
   @IsDefined()

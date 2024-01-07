@@ -10,63 +10,54 @@ export interface iImageFieldValue {
   /**
   * Image file in Base64 representation
   * @type {string}
-  * @memberof iImageFieldValue
   */
   value: string
 
   /**
   * Original image file in Base64 representation
   * @type {string}
-  * @memberof iImageFieldValue
   */
   originalValue: string
 
   /**
   * Source
   * @type {eSource}
-  * @memberof iImageFieldValue
   */
   source: eSource
 
   /**
   * Container type
   * @type {number}
-  * @memberof iImageFieldValue
   */
   containerType: number
 
   /**
   * Page index
   * @type {number}
-  * @memberof iImageFieldValue
   */
   pageIndex: number
 
   /**
   * Light index
   * @type {eLights}
-  * @memberof iImageFieldValue
   */
   lightIndex: eLights
 
   /**
   * Field rectangular area
   * @type {iRectangleCoordinates}
-  * @memberof iImageFieldValue
   */
   fieldRect: iRectangleCoordinates
 
   /**
   * Field source from electronic document
   * @type {iRfidOrigin|undefined}
-  * @memberof iImageFieldValue
   */
   rfidOrigin?: iRfidOrigin
 
   /**
   * Original page index
   * @type {number|undefined}
-  * @memberof iImageFieldValue
   */
   originalPageIndex?: number
 }
@@ -75,7 +66,6 @@ export class ImageFieldValue implements iImageFieldValue {
   /**
   * Image file in Base64 representation
   * @type {string}
-  * @memberof ImageFieldValue
   */
   @Expose()
   @IsDefined()
@@ -85,7 +75,6 @@ export class ImageFieldValue implements iImageFieldValue {
   /**
   * Original image file in Base64 representation
   * @type {string}
-  * @memberof ImageFieldValue
   */
   @Expose()
   @IsDefined()
@@ -95,7 +84,6 @@ export class ImageFieldValue implements iImageFieldValue {
   /**
   * Source
   * @type {eSource}
-  * @memberof ImageFieldValue
   */
   @Expose()
   @IsDefined()
@@ -105,7 +93,6 @@ export class ImageFieldValue implements iImageFieldValue {
   /**
   * Container type
   * @type {number}
-  * @memberof ImageFieldValue
   */
   @Expose()
   @IsDefined()
@@ -115,7 +102,6 @@ export class ImageFieldValue implements iImageFieldValue {
   /**
   * Page index
   * @type {number}
-  * @memberof ImageFieldValue
   */
   @Expose()
   @IsDefined()
@@ -125,7 +111,6 @@ export class ImageFieldValue implements iImageFieldValue {
   /**
   * Light index
   * @type {eLights}
-  * @memberof ImageFieldValue
   */
   @Expose()
   @IsDefined()
@@ -135,7 +120,6 @@ export class ImageFieldValue implements iImageFieldValue {
   /**
   * Field rectangular area
   * @type {iRectangleCoordinates}
-  * @memberof ImageFieldValue
   */
   @Expose()
   @IsDefined()
@@ -146,7 +130,6 @@ export class ImageFieldValue implements iImageFieldValue {
   /**
   * Field source from electronic document
   * @type {iRfidOrigin|undefined}
-  * @memberof ImageFieldValue
   */
   @Expose()
   @IsOptional()
@@ -157,7 +140,6 @@ export class ImageFieldValue implements iImageFieldValue {
   /**
   * Original page index
   * @type {number|undefined}
-  * @memberof ImageFieldValue
   */
   @Expose()
   @IsOptional()

@@ -1,4 +1,5 @@
 .idea
+docs
 
 .env
 tests/test-data/

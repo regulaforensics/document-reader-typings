@@ -32,20 +32,78 @@ import {
 import { isObject } from '@/helpers'
 
 
+/**
+* Union of all containers
+*/
 export type uContainer =
+  /**
+  * List of authenticity checks
+  */
   AuthenticityCheckListContainer |
+
+  /**
+  * List of barcodes found on the document
+  */
   DocBarCodeInfoContainer |
+
+  /**
+  * List of graphic fields found on the document
+  */
   DocGraphicsInfoContainer |
+
+  /**
+  * Document image
+  */
   DocumentImageContainer |
+
+  /**
+  * Document position on the image
+  */
   DocumentPositionContainer |
+
+  /**
+  * Encrypted result of authenticity check
+  */
   EncryptedRCLContainer |
+
+  /**
+  * List of image quality checks
+  */
   ImageQualityCheckListContainer |
+
+  /**
+  * List of images found on the document
+  */
   ImagesResultContainer |
+
+  /**
+  * List of licenses
+  */
   LicenseContainer |
+
+  /**
+   * List of verified fields
+   */
   ListVerifiedFieldContainer |
+
+  /**
+   * One candidate
+   */
   OneCandidateContainer |
+
+  /**
+   * Status
+   */
   StatusContainer |
+
+  /**
+   * Text data
+   */
   TextDataContainer |
+
+  /**
+   * Text result
+   */
   TextResultContainer
 
 export type iuContainer =

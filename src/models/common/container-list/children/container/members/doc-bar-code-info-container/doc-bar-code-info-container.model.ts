@@ -20,7 +20,6 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
-  * @memberof DocBarCodeInfoContainer
   */
   @Expose()
   @IsDefined()
@@ -30,7 +29,6 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
 
   /**
   * @internal
-  * @memberof DocBarCodeInfoContainer
   */
   @Expose()
   @IsDefined()
@@ -41,7 +39,6 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   /**
   * Page index (when working with multi-page document)
   * @type {number}
-  * @memberof DocBarCodeInfoContainer
   */
   @Expose()
   @IsDefined()
@@ -51,7 +48,6 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
 
   /**
   * @internal
-  * @memberof DocBarCodeInfoContainer
   */
   @Expose()
   @IsDefined()
@@ -62,7 +58,6 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   /**
   * Result type stored in this container (one of ResultType identifiers)
   * @type {eResultType.BAR_CODES}
-  * @memberof DocBarCodeInfoContainer
   */
   @Expose()
   @IsDefined()
@@ -76,7 +71,6 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   * Structure serves for storing and passing to the user application of results of bar-codes areas search on the
   * scanned document page and their reading in binary non-formatted code.
   * @type {DocBarCodeInfo}
-  * @memberof DocBarCodeInfoContainer
   */
   @Expose()
   @IsOptional()

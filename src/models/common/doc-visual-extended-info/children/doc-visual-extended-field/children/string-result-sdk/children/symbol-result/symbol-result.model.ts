@@ -27,6 +27,7 @@ export interface iSymbolResult {
 
   /**
   * @internal
+  * @type {unknown}
   */
   Reserved?: unknown
 }
@@ -65,6 +66,7 @@ export class SymbolResult implements iSymbolResult {
 
   /**
   * @internal
+  * @type {unknown}
   */
   @Expose()
   @IsOptional()

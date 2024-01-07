@@ -16,7 +16,6 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
-  * @memberof OneCandidateContainer
   */
   @Expose()
   @IsDefined()
@@ -27,7 +26,6 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   /**
   * @internal
   * @type {number}
-  * @memberof OneCandidateContainer
   */
   @Expose()
   @IsDefined()
@@ -38,7 +36,6 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   /**
   * Page index (when working with multi-page document)
   * @type {number}
-  * @memberof OneCandidateContainer
   */
   @Expose()
   @IsDefined()
@@ -49,7 +46,6 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   /**
   * @internal
   * @type {number}
-  * @memberof OneCandidateContainer
   */
   @Expose()
   @IsDefined()
@@ -60,7 +56,6 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   /**
   * Result type stored in this container (one of ResultType identifiers)
   * @type {eResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE}
-  * @memberof OneCandidateContainer
   */
   @Expose()
   @IsDefined()

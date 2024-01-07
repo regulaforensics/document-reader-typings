@@ -16,7 +16,6 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
-  * @memberof DocGraphicsInfoContainer
   */
   @Expose()
   @IsDefined()
@@ -27,7 +26,6 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   /**
   * @internal
   * @type {number}
-  * @memberof DocGraphicsInfoContainer
   */
   @Expose()
   @IsDefined()
@@ -38,7 +36,6 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   /**
   * Page index (when working with multi-page document)
   * @type {number}
-  * @memberof DocGraphicsInfoContainer
   */
   @Expose()
   @IsDefined()
@@ -49,7 +46,6 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   /**
   * @internal
   * @type {number}
-  * @memberof DocGraphicsInfoContainer
   */
   @Expose()
   @IsDefined()

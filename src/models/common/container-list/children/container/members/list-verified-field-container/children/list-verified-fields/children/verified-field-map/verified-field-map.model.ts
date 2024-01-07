@@ -8,14 +8,12 @@ export interface iVerifiedFieldMap {
   /**
   * Text field logical type
   * @type {eVisualFieldType}
-  * @memberof iVerifiedFieldMap
   */
   wFieldType: eVisualFieldType
 
   /**
   * ID of language-culture to differentiate one field of the same type from another
   * @type {eLCID}
-  * @memberof iVerifiedFieldMap
   */
   wLCID: eLCID
 
@@ -23,7 +21,6 @@ export interface iVerifiedFieldMap {
   * Field data obtained through MRZ reading
   * Results of reading of multiline field lines are separated by ‘^’ symbol.
   * @type {string}
-  * @memberof iVerifiedFieldMap
   */
   Field_MRZ?: string
 
@@ -31,7 +28,6 @@ export interface iVerifiedFieldMap {
   * Field data obtained through document filling text fields reading
   * Results of reading of multiline field lines are separated by ‘^’ symbol.
   * @type {string}
-  * @memberof iVerifiedFieldMap
   */
   Field_Visual?: string
 
@@ -39,7 +35,6 @@ export interface iVerifiedFieldMap {
   * Field data obtained through bar-codes reading
   * Results of reading of multiline field lines are separated by ‘^’ symbol.
   * @type {string}
-  * @memberof iVerifiedFieldMap
   */
   Field_Barcode?: string
 
@@ -47,14 +42,12 @@ export interface iVerifiedFieldMap {
   * Field data obtained through RFID-chip memory reading
   * Results of reading of multiline field lines are separated by ‘^’ symbol.
   * @type {string}
-  * @memberof iVerifiedFieldMap
   */
   Field_RFID?: string
 
   /**
   * Verification results matrix
   * @type {[eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult]}
-  * @memberof iVerifiedFieldMap
   */
   Matrix: [
     eFieldVerificationResult, // MRZ data verification result
@@ -74,7 +67,6 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   /**
   * Text field logical type
   * @type {eVisualFieldType}
-  * @memberof VerifiedFieldMap
   */
   @Expose()
   @IsDefined()
@@ -84,7 +76,6 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   /**
   * ID of language-culture to differentiate one field of the same type from another
   * @type {eLCID}
-  * @memberof VerifiedFieldMap
   */
   @Expose()
   @IsOptional()
@@ -95,7 +86,6 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   * Field data obtained through MRZ reading
   * Results of reading of multiline field lines are separated by ‘^’ symbol.
   * @type {string}
-  * @memberof VerifiedFieldMap
   */
   @Expose()
   @IsOptional()
@@ -106,7 +96,6 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   * Field data obtained through document filling text fields reading
   * Results of reading of multiline field lines are separated by ‘^’ symbol.
   * @type {string}
-  * @memberof VerifiedFieldMap
   */
   @Expose()
   @IsOptional()
@@ -117,7 +106,6 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   * Field data obtained through bar-codes reading
   * Results of reading of multiline field lines are separated by ‘^’ symbol.
   * @type {string}
-  * @memberof VerifiedFieldMap
   */
   @Expose()
   @IsOptional()
@@ -128,7 +116,6 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   * Field data obtained through RFID-chip memory reading
   * Results of reading of multiline field lines are separated by ‘^’ symbol.
   * @type {string}
-  * @memberof VerifiedFieldMap
   */
   @Expose()
   @IsOptional()
@@ -138,7 +125,6 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   /**
   * Verification results matrix
   * @type {[eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult]}
-  * @memberof VerifiedFieldMap
   */
   @Expose()
   @IsDefined()

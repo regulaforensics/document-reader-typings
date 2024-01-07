@@ -8,14 +8,12 @@ export interface iImageSource {
   /**
   * Container type
   * @type {number}
-  * @memberof iImageSource
   */
   containerType: number
 
   /**
   * Source
   * @type {eSource}
-  * @memberof iImageSource
   */
   source: eSource
 }
@@ -24,7 +22,6 @@ export class ImageSource implements iImageSource {
   /**
   * Container type
   * @type {number}
-  * @memberof ImageSource
   */
   @Expose()
   @IsDefined()
@@ -34,7 +31,6 @@ export class ImageSource implements iImageSource {
   /**
   * Source
   * @type {eSource}
-  * @memberof ImageSource
   */
   @Expose()
   @IsDefined()

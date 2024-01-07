@@ -16,7 +16,6 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
-  * @memberof ListVerifiedFieldContainer
   */
   @Expose()
   @IsDefined()
@@ -27,7 +26,6 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   /**
   * @internal
   * @type {number}
-  * @memberof ListVerifiedFieldContainer
   */
   @Expose()
   @IsDefined()
@@ -38,7 +36,6 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   /**
   * Page index (when working with multi-page document)
   * @type {number}
-  * @memberof ListVerifiedFieldContainer
   */
   @Expose()
   @IsDefined()
@@ -49,7 +46,6 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   /**
   * @internal
   * @type {number}
-  * @memberof ListVerifiedFieldContainer
   */
   @Expose()
   @IsDefined()

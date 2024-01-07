@@ -15,7 +15,6 @@ export class EncryptedRCLContainer extends aContainer implements iEncryptedRCLCo
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
-  * @memberof EncryptedRCLContainer
   */
   @Expose()
   @IsDefined()
@@ -26,7 +25,6 @@ export class EncryptedRCLContainer extends aContainer implements iEncryptedRCLCo
   /**
   * @internal
   * @type {number}
-  * @memberof EncryptedRCLContainer
   */
   @Expose()
   @IsDefined()
@@ -37,7 +35,6 @@ export class EncryptedRCLContainer extends aContainer implements iEncryptedRCLCo
   /**
   * Page index (when working with multi-page document)
   * @type {number}
-  * @memberof EncryptedRCLContainer
   */
   @Expose()
   @IsDefined()
@@ -48,7 +45,6 @@ export class EncryptedRCLContainer extends aContainer implements iEncryptedRCLCo
   /**
   * @internal
   * @type {number}
-  * @memberof EncryptedRCLContainer
   */
   @Expose()
   @IsDefined()

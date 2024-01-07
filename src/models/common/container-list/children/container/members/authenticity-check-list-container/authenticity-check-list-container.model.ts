@@ -16,7 +16,6 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
-  * @memberof AuthenticityCheckListContainer
   */
   @Expose()
   @IsDefined()
@@ -26,7 +25,6 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
 
   /**
   * @internal
-  * @memberof AuthenticityCheckListContainer
   */
   @Expose()
   @IsDefined()
@@ -37,7 +35,6 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   /**
   * Page index (when working with multi-page document)
   * @type {number}
-  * @memberof AuthenticityCheckListContainer
   */
   @Expose()
   @IsDefined()
@@ -47,7 +44,6 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
 
   /**
   * @internal
-  * @memberof AuthenticityCheckListContainer
   */
   @Expose()
   @IsDefined()
@@ -58,7 +54,6 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   /**
   * Result type stored in this container (one of ResultType identifiers)
   * @type {eResultType.AUTHENTICITY | eResultType.FINGER_PRINT_COMPARISON | eResultType.PORTRAIT_COMPARISON}
-  * @memberof AuthenticityCheckListContainer
   */
   @Expose()
   @IsDefined()

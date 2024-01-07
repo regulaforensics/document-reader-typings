@@ -13,6 +13,7 @@ export interface iStringResultSDK {
 
   /**
   * @internal
+  * @type {unknown}
   */
   Reserved?: unknown
 
@@ -35,6 +36,7 @@ export class StringResultSDK implements iStringResultSDK {
 
   /**
   * @internal
+  * @type {unknown}
   */
   @Expose()
   @IsOptional()

@@ -10,7 +10,6 @@ export interface iDocGraphicFieldRfid extends aDocGraphicField {
   /**
   * Data group
   * @type {eRfidDataGroupTypeTag}
-  * @memberof iDocGraphicFieldRfid
   */
   RFID_OriginDG: eRfidDataGroupTypeTag
 
@@ -18,21 +17,18 @@ export interface iDocGraphicFieldRfid extends aDocGraphicField {
   * Record index of the source of the image with biometric information
   * in the datagroup
   * @type {number}
-  * @memberof iDocGraphicFieldRfid
   */
   RFID_OriginDGTag: number
 
   /**
   * Index of the sample in the biometric data record
   * @type {number}
-  * @memberof iDocGraphicFieldRfid
   */
   RFID_OriginTagEntry: number
 
   /**
   * Index of the biometric data sample
   * @type {number}
-  * @memberof iDocGraphicFieldRfid
   */
   RFID_OriginEntryView: number
 }
@@ -41,7 +37,6 @@ export class DocGraphicFieldRfid extends aDocGraphicField implements iDocGraphic
   /**
   * Graphic field logical type
   * @type {eGraphicFieldType}
-  * @memberof DocGraphicFieldRfid
   */
   @Expose()
   @IsDefined()
@@ -51,7 +46,6 @@ export class DocGraphicFieldRfid extends aDocGraphicField implements iDocGraphic
   /**
   * Graphic field symbolic name
   * @type {string}
-  * @memberof DocGraphicFieldRfid
   */
   @Expose()
   @IsDefined()
@@ -61,7 +55,6 @@ export class DocGraphicFieldRfid extends aDocGraphicField implements iDocGraphic
   /**
   * Image data
   * @type {ImageData}
-  * @memberof DocGraphicFieldRfid
   */
   @Expose()
   @IsDefined()
@@ -72,7 +65,6 @@ export class DocGraphicFieldRfid extends aDocGraphicField implements iDocGraphic
   /**
   * Data group
   * @type {eRfidDataGroupTypeTag}
-  * @memberof DocGraphicFieldRfid
   */
   @Expose()
   @IsDefined()
@@ -83,7 +75,6 @@ export class DocGraphicFieldRfid extends aDocGraphicField implements iDocGraphic
   * Record index of the source of the image with biometric information
   * in the datagroup
   * @type {number}
-  * @memberof DocGraphicFieldRfid
   */
   @Expose()
   @IsDefined()
@@ -93,7 +84,6 @@ export class DocGraphicFieldRfid extends aDocGraphicField implements iDocGraphic
   /**
   * Index of the sample in the biometric data record
   * @type {number}
-  * @memberof DocGraphicFieldRfid
   */
   @Expose()
   @IsDefined()
@@ -103,7 +93,6 @@ export class DocGraphicFieldRfid extends aDocGraphicField implements iDocGraphic
   /**
   * Index of the biometric data sample
   * @type {number}
-  * @memberof DocGraphicFieldRfid
   */
   @Expose()
   @IsDefined()

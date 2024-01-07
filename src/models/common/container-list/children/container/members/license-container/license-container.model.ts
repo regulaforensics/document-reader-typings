@@ -15,7 +15,6 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
-  * @memberof LicenseContainer
   */
   @Expose()
   @IsDefined()
@@ -26,7 +25,6 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
   /**
   * @internal
   * @type {number}
-  * @memberof LicenseContainer
   */
   @Expose()
   @IsDefined()
@@ -37,7 +35,6 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
   /**
   * Page index (when working with multi-page document)
   * @type {number}
-  * @memberof LicenseContainer
   */
   @Expose()
   @IsDefined()
@@ -48,7 +45,6 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
   /**
   * @internal
   * @type {number}
-  * @memberof LicenseContainer
   */
   @Expose()
   @IsDefined()

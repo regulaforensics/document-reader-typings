@@ -59,26 +59,31 @@ export interface iDocVisualExtendedField3 extends aDocVisualExtendedField {
 
   /**
   * @internal
+  * @type {unknown}
   */
   FieldMask?: unknown
 
   /**
   * @internal
+  * @type {unknown}
   */
   Validity?: unknown
 
   /**
   * @internal
+  * @type {unknown}
   */
   InComparison?: unknown
 
   /**
   * @internal
+  * @type {unknown}
   */
   Reserved2?: unknown
 
   /**
   * @internal
+  * @type {unknown}
   */
   Reserved3?: unknown
 }
@@ -163,6 +168,7 @@ export class DocVisualExtendedField3 extends aDocVisualExtendedField implements 
 
   /**
   * @internal
+  * @type {unknown}
   */
   @Expose()
   @IsOptional()
@@ -170,6 +176,7 @@ export class DocVisualExtendedField3 extends aDocVisualExtendedField implements 
 
   /**
   * @internal
+  * @type {unknown}
   */
   @Expose()
   @IsOptional()
@@ -177,6 +184,7 @@ export class DocVisualExtendedField3 extends aDocVisualExtendedField implements 
 
   /**
   * @internal
+  * @type {unknown}
   */
   @Expose()
   @IsOptional()
@@ -184,6 +192,7 @@ export class DocVisualExtendedField3 extends aDocVisualExtendedField implements 
 
   /**
   * @internal
+  * @type {unknown}
   */
   @Expose()
   @IsOptional()
@@ -191,6 +200,7 @@ export class DocVisualExtendedField3 extends aDocVisualExtendedField implements 
 
   /**
   * @internal
+  * @type {unknown}
   */
   @Expose()
   @IsOptional()

@@ -12,7 +12,6 @@ export interface iDocGraphicsInfo {
   /**
   * Array of images
   * @type {iuDocGraphicField[]}
-  * @memberof iDocGraphicsInfo
   */
   pArrayFields: iuDocGraphicField[]
 }
@@ -21,7 +20,6 @@ export class DocGraphicsInfo implements iDocGraphicsInfo {
   /**
   * Array of images
   * @type {uDocGraphicField[]}
-  * @memberof DocGraphicsInfo
   */
   @Expose()
   @IsDefined()

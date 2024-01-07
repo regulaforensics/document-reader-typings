@@ -17,6 +17,7 @@ export interface iSymbolCandidate {
 
   /**
   * @internal
+  * @type {unknown}
   */
   Reserved?: unknown
 }
@@ -42,6 +43,7 @@ export class SymbolCandidate implements iSymbolCandidate {
 
   /**
   * @internal
+  * @type {unknown}
   */
   @Expose()
   @IsOptional()

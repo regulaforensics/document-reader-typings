@@ -7,7 +7,6 @@ export interface iImageQA {
   * Set the threshold for an actual document brightness below which the check fails
   *
   * @type {number}
-  * @memberof iImageQA
   */
   brightnessThreshold?: number
 
@@ -25,7 +24,6 @@ export class ImageQA implements iImageQA {
   * Set the threshold for an actual document brightness below which the check fails
   *
   * @type {number}
-  * @memberof iImageQA
   */
   @Expose()
   @IsOptional()

@@ -1,0 +1,8 @@
+{
+  "excludeNotDocumented": true,
+  "excludeNotDocumentedKinds": [
+    "Constructor",
+    "ConstructorSignature"
+  ],
+  "includeVersion": true
+}
