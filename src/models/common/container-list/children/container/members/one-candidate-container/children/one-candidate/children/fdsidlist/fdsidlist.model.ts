@@ -5,6 +5,10 @@ import { eDocFormat, eDocType } from '@/consts'
 import { Default } from '@/decorators'
 
 
+/**
+* Structure serves for storing additional document information and its link to
+* IRS document or documents
+*/
 export interface iFDSIDList {
   /**
   * Document issuing country ICAO code
@@ -79,6 +83,10 @@ export interface iFDSIDList {
   isDeprecated: boolean
 }
 
+/**
+* Structure serves for storing additional document information and its link to
+* IRS document or documents
+*/
 export class FDSIDList implements iFDSIDList {
   /**
   * Document issuing country ICAO code

@@ -1,19 +1,19 @@
-import { IsArray, IsInt, IsOptional, ValidateNested } from 'class-validator'
+import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Transform } from 'class-transformer'
 
-import { uAuthenticityCheckResult, iuAuthenticityCheckResult } from './children'
+import { iuAuthenticityCheckResult, uAuthenticityCheckResult } from './children'
 
 
 export interface iAuthenticityCheckList {
-  Count?: number
+  Count: number
   List: iuAuthenticityCheckResult[]
 }
 
 export class AuthenticityCheckList implements iAuthenticityCheckList {
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsInt()
-  Count?: number
+  Count: number
 
   @Expose()
   @ValidateNested({ each: true })

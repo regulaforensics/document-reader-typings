@@ -43,7 +43,7 @@ export interface iStatus {
 
   /**
   * Details of RFID check.
-  * @type {iDetailsRFID}
+  * @type {iDetailsRFID|undefined}
   */
   detailsRFID?: iDetailsRFID
 
@@ -110,7 +110,7 @@ export class Status implements iStatus {
 
   /**
   * Details of RFID check.
-  * @type {DetailsRFID}
+  * @type {DetailsRFID|undefined}
   */
   @Expose()
   @IsOptional()

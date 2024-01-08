@@ -2,6 +2,9 @@ import { IsDefined, IsNumber } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 
+/**
+* Structure is used for electronic document data source description
+*/
 export interface iRfidOrigin {
   /**
   * Data group number
@@ -28,6 +31,9 @@ export interface iRfidOrigin {
   entryView: number
 }
 
+/**
+* Structure is used for electronic document data source description
+*/
 export class RfidOrigin implements iRfidOrigin {
   /**
   * Data group number

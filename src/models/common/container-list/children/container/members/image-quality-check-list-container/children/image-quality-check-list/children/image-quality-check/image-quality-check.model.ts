@@ -6,6 +6,9 @@ import { AreaArray, iAreaArray } from '@/models/common/area-array'
 import { Default } from '@/decorators'
 
 
+/**
+* Structure is used for storing input image quality check result
+*/
 export interface iImageQualityCheck {
   /**
   * Check result type
@@ -50,6 +53,9 @@ export interface iImageQualityCheck {
   probability: number
 }
 
+/**
+* Structure is used for storing input image quality check result
+*/
 export class ImageQualityCheck implements iImageQualityCheck {
   /**
   * Check result type

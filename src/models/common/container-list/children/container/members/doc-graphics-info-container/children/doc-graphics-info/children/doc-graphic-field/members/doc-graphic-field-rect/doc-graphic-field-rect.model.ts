@@ -3,18 +3,24 @@ import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { eGraphicFieldType } from '@/consts'
 import { ImageData } from '@/models/common/image-data'
-import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { iRect, Rect } from '@/models/common/rect'
 import { aDocGraphicField } from '../../doc-graphic-field.abstract'
 
 
+/**
+* Information about one graphic field, which is a rectangle
+*/
 export interface iDocGraphicFieldRect extends aDocGraphicField {
   /**
   * Field area coordinates on the general image
-  * @type {iRectangleCoordinates}
+  * @type {iRect}
   */
-  FieldRect: iRectangleCoordinates
+  FieldRect: iRect
 }
 
+/**
+* Information about one graphic field, which is a rectangle
+*/
 export class DocGraphicFieldRect extends aDocGraphicField implements iDocGraphicFieldRect {
   /**
   * Graphic field logical type
@@ -46,13 +52,13 @@ export class DocGraphicFieldRect extends aDocGraphicField implements iDocGraphic
 
   /**
   * Field area coordinates on the general image
-  * @type {RectangleCoordinates}
+  * @type {Rect}
   */
   @Expose()
   @IsDefined()
   @ValidateNested()
-  @Type(() => RectangleCoordinates)
-  FieldRect: RectangleCoordinates
+  @Type(() => Rect)
+  FieldRect: Rect
 
   /**
   * Create new instance of DocGraphicFieldRect from plain object

@@ -5,6 +5,9 @@ import { eGraphicFieldType } from '@/consts'
 import { iImageFieldValue, ImageFieldValue } from './children'
 
 
+/**
+* Used for provision of one image or graphic field
+*/
 export interface iImageField {
   /**
   * Field name
@@ -31,6 +34,9 @@ export interface iImageField {
   valueCount: number
 }
 
+/**
+* Used for provision of one image or graphic field
+*/
 export class ImageField implements iImageField {
   /**
   * Field name

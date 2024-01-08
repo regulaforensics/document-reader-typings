@@ -1,7 +1,7 @@
 import { IsArray, IsDefined, IsEnum, IsNumber, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common'
+import { iRect, Rect } from '@/models/common'
 import { Default } from '@/decorators'
 import { eBarCodeDetectionType, eBarCodeResultCodes, eBarCodeType } from '@/consts'
 import { TipPDF417Info, TipDecodeModule, iTipPDF417Info, iTipDecodeModule } from './children'
@@ -38,15 +38,15 @@ export interface iDocBarCodeField {
 
   /**
   * Information on PDF417 code parameters (only for PDF417)
-  * @type {iTipPDF417Info}
+  * @type {iTipPDF417Info|undefined}
   */
   bcPDF417INFO?: iTipPDF417Info
 
   /**
   * BarCode area coordinates on the image
-  * @type {iRectangleCoordinates}
+  * @type {iRect}
   */
-  bcROI_DETECT: iRectangleCoordinates
+  bcROI_DETECT: iRect
 
   /**
   * Decoded bar-code type
@@ -124,7 +124,7 @@ export class DocBarCodeField implements iDocBarCodeField {
 
   /**
   * Information on PDF417 code parameters (only for PDF417)
-  * @type {TipPDF417Info}
+  * @type {TipPDF417Info|undefined}
   */
   @Expose()
   @IsOptional()
@@ -134,13 +134,13 @@ export class DocBarCodeField implements iDocBarCodeField {
 
   /**
   * BarCode area coordinates on the image
-  * @type {RectangleCoordinates}
+  * @type {Rect}
   */
   @Expose()
   @IsDefined()
   @ValidateNested()
-  @Type(() => RectangleCoordinates)
-  bcROI_DETECT: RectangleCoordinates
+  @Type(() => Rect)
+  bcROI_DETECT: Rect
 
   /**
   * Decoded bar-code type

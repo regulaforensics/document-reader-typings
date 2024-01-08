@@ -4,6 +4,9 @@ import { Expose } from 'class-transformer'
 import { eCheckResult, eSource } from '@/consts'
 
 
+/**
+* Used for comparison of text results
+*/
 export interface iTextComparison {
   /**
   * Source left
@@ -24,6 +27,9 @@ export interface iTextComparison {
   status: eCheckResult
 }
 
+/**
+* Used for comparison of text results
+*/
 export class TextComparison implements iTextComparison {
   /**
   * Source left

@@ -2,7 +2,7 @@ import { IsDefined, IsEnum, IsIn, IsNumber, IsOptional, ValidateNested } from 'c
 import { Expose, Type } from 'class-transformer'
 
 import { AreaArray, iAreaArray } from '@/models/common/area-array'
-import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { iRect, Rect } from '@/models/common/rect'
 import {
   eAuthenticity,
   eCheckDiagnose,
@@ -28,7 +28,7 @@ export interface iSecurityFeatureResult {
   ElementResult?: eCheckResult
   ElementDiagnose?: eCheckDiagnose
   ElementType?: eSecurityFeatureType
-  ElementRect?: iRectangleCoordinates
+  ElementRect?: iRect
   Visibility?: eIRVisibilityFlag
   CriticalFlag?: eSecurityCriticalFlag
   AreaList?: iAreaArray
@@ -81,8 +81,8 @@ export class SecurityFeatureResult implements iSecurityFeatureResult {
   @Expose()
   @IsOptional()
   @ValidateNested()
-  @Type(() => RectangleCoordinates)
-  ElementRect?: RectangleCoordinates
+  @Type(() => Rect)
+  ElementRect?: Rect
 
   @Expose()
   @IsOptional()

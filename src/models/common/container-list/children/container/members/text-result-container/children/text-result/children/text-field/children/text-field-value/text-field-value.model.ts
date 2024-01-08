@@ -1,13 +1,16 @@
 import { IsDefined, IsEnum, IsInt, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { iRect, Rect } from '@/models/common/rect'
 import { iRfidOrigin, RfidOrigin } from '@/models/common/rfid-origin'
 import { eCheckResult, eSource } from '@/consts'
 import { Default } from '@/decorators'
 import { iTextSymbol, TextSymbol } from './children'
 
 
+/**
+* Used for storing text field values
+*/
 export interface iTextFieldValue {
   /**
   * Source
@@ -23,7 +26,7 @@ export interface iTextFieldValue {
 
   /**
   * Field original value
-  * @type {string}
+  * @type {string|undefined}
   */
   originalValue?: string
 
@@ -41,13 +44,13 @@ export interface iTextFieldValue {
 
   /**
   * Field rectangular area
-  * @type {iRectangleCoordinates}
+  * @type {iRect|undefined}
   */
-  fieldRect?: iRectangleCoordinates
+  fieldRect?: iRect
 
   /**
   * Field source from electronic document
-  * @type {iRfidOrigin}
+  * @type {iRfidOrigin|undefined}
   */
   rfidOrigin?: iRfidOrigin
 
@@ -59,11 +62,14 @@ export interface iTextFieldValue {
 
   /**
   * Original symbols
-  * @type {iTextSymbol[]}
+  * @type {iTextSymbol[]|undefined}
   */
   originalSymbols?: iTextSymbol[]
 }
 
+/**
+* Used for storing text field values
+*/
 export class TextFieldValue implements iTextFieldValue {
   /**
   * Source
@@ -85,7 +91,7 @@ export class TextFieldValue implements iTextFieldValue {
 
   /**
   * Field original value
-  * @type {string}
+  * @type {string|undefined}
   */
   @Expose()
   @IsOptional()
@@ -112,17 +118,17 @@ export class TextFieldValue implements iTextFieldValue {
 
   /**
   * Field rectangular area
-  * @type {RectangleCoordinates}
+  * @type {Rect|undefined}
   */
   @Expose()
   @IsOptional()
   @ValidateNested()
-  @Type(() => RectangleCoordinates)
-  fieldRect?: RectangleCoordinates
+  @Type(() => Rect)
+  fieldRect?: Rect
 
   /**
   * Field source from electronic document
-  * @type {RfidOrigin}
+  * @type {RfidOrigin|undefined}
   */
   @Expose()
   @IsOptional()
@@ -142,7 +148,7 @@ export class TextFieldValue implements iTextFieldValue {
 
   /**
   * Original symbols
-  * @type {TextSymbol[]}
+  * @type {TextSymbol[]|undefined}
   */
   @Expose()
   @IsOptional()

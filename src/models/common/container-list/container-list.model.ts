@@ -1,11 +1,15 @@
-import { IsArray, IsDefined, IsInt, IsOptional, ValidateNested } from 'class-validator'
+import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Transform } from 'class-transformer'
 
 import { iuContainer, uContainer } from './children'
 
 
 export interface iContainerList {
-  Count?: number
+  /**
+  * Number of containers with results
+  * @type {number}
+  */
+  Count: number
 
   /**
   * List of containers with results
@@ -16,9 +20,9 @@ export interface iContainerList {
 
 export class ContainerList implements iContainerList {
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsInt()
-  Count?: number
+  Count: number
 
   /**
   * List of containers with results

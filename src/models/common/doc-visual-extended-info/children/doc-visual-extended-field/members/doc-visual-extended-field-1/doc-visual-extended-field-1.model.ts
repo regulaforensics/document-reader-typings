@@ -1,12 +1,16 @@
-import { IsArray, IsDefined, IsEnum, IsInt, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
+import { IsArray, IsDefined, IsEnum, IsInt, IsOptional, IsString, ValidateNested } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { eVisualFieldType } from '@/consts'
-import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { iRect, Rect } from '@/models/common/rect'
 import { iStringResultSDK, StringResultSDK } from '../../children'
 import { aDocVisualExtendedField } from '../../doc-visual-extended-field.abstract'
 
 
+/**
+* Structure and serves for storing information from one text data field.
+* Variant with field logical type and field rectangular area coordinates on the image.
+*/
 export interface iDocVisualExtendedField1 extends aDocVisualExtendedField {
   /**
   * Field logical type
@@ -16,9 +20,9 @@ export interface iDocVisualExtendedField1 extends aDocVisualExtendedField {
 
   /**
   * Field rectangular area coordinates on the image
-  * @type {iRectangleCoordinates}
+  * @type {iRect}
   */
-  FieldRect: iRectangleCoordinates
+  FieldRect: iRect
 
   /**
   * Field symbolic name (null-terminated string)
@@ -82,7 +86,10 @@ export interface iDocVisualExtendedField1 extends aDocVisualExtendedField {
   Reserved3?: unknown
 }
 
-
+/**
+* Structure and serves for storing information from one text data field.
+* Variant with field logical type and field rectangular area coordinates on the image.
+*/
 export class DocVisualExtendedField1 extends aDocVisualExtendedField implements iDocVisualExtendedField1 {
   /**
   * Field logical type
@@ -95,13 +102,13 @@ export class DocVisualExtendedField1 extends aDocVisualExtendedField implements 
 
   /**
   * Field rectangular area coordinates on the image
-  * @type {RectangleCoordinates}
+  * @type {Rect}
   */
   @Expose()
   @IsDefined()
   @ValidateNested()
-  @Type(() => RectangleCoordinates)
-  FieldRect: RectangleCoordinates
+  @Type(() => Rect)
+  FieldRect: Rect
 
   /**
   * Field symbolic name (null-terminated string)
@@ -123,7 +130,7 @@ export class DocVisualExtendedField1 extends aDocVisualExtendedField implements 
 
   /**
   * Array of separate strings of multiline text field recognition results
-  * @type {iStringResultSDK[]}
+  * @type {StringResultSDK[]}
   */
   @Expose()
   @IsDefined()

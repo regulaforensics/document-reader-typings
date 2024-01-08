@@ -1,7 +1,7 @@
 import { IsDefined, IsEnum, IsIn, IsNumber, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { iRect, Rect } from '@/models/common/rect'
 import { iImageData, ImageData } from '@/models/common/image-data'
 import { AreaArray, iAreaArray } from '@/models/common/area-array'
 import { eAuthenticity, eCheckDiagnose, eCheckResult, eLights, eSecurityFeatureType } from '@/consts'
@@ -23,7 +23,7 @@ export interface iIdentResult {
   ElementDiagnose?: eCheckDiagnose
   ElementType?: eSecurityFeatureType
   LightIndex?: eLights
-  Area?: iRectangleCoordinates
+  Area?: iRect
   Image?: iImageData
   EtalonImage?: iImageData
   PercentValue?: number
@@ -80,8 +80,8 @@ export class IdentResult implements iIdentResult {
   @Expose()
   @IsOptional()
   @ValidateNested()
-  @Type(() => RectangleCoordinates)
-  Area?: RectangleCoordinates
+  @Type(() => Rect)
+  Area?: Rect
 
   @Expose()
   @IsOptional()

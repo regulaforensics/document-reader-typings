@@ -5,6 +5,9 @@ import { eCheckResult } from '@/consts'
 import { iTextSource, iTextField, TextSource, TextField } from './children'
 
 
+/**
+* Used for storing text result
+*/
 export interface iTextResult {
   /**
   * Status
@@ -43,6 +46,9 @@ export interface iTextResult {
   availableSourceList: iTextSource[]
 }
 
+/**
+* Used for storing text result
+*/
 export class TextResult implements iTextResult {
   /**
   * Status

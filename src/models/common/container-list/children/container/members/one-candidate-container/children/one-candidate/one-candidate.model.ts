@@ -6,6 +6,9 @@ import { Default } from '@/decorators'
 import { FDSIDList, iFDSIDList } from './children'
 
 
+/**
+* Contains information on one candidate document when determining the document type
+*/
 export interface iOneCandidate {
   /**
   * Document name
@@ -77,6 +80,9 @@ export interface iOneCandidate {
   FDSIDList: iFDSIDList
 }
 
+/**
+* Contains information on one candidate document when determining the document type
+*/
 export class OneCandidate implements iOneCandidate {
   /**
   * Document name

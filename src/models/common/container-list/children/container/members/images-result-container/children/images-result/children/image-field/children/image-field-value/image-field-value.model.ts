@@ -3,9 +3,12 @@ import { Expose, Type } from 'class-transformer'
 
 import { eLights, eSource } from '@/consts'
 import { iRfidOrigin, RfidOrigin } from '@/models/common/rfid-origin'
-import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { iRect, Rect } from '@/models/common/rect'
 
 
+/**
+* Image representation
+*/
 export interface iImageFieldValue {
   /**
   * Image file in Base64 representation
@@ -45,9 +48,9 @@ export interface iImageFieldValue {
 
   /**
   * Field rectangular area
-  * @type {iRectangleCoordinates}
+  * @type {iRect}
   */
-  fieldRect: iRectangleCoordinates
+  fieldRect: iRect
 
   /**
   * Field source from electronic document
@@ -62,6 +65,9 @@ export interface iImageFieldValue {
   originalPageIndex?: number
 }
 
+/**
+* Image representation
+*/
 export class ImageFieldValue implements iImageFieldValue {
   /**
   * Image file in Base64 representation
@@ -119,17 +125,17 @@ export class ImageFieldValue implements iImageFieldValue {
 
   /**
   * Field rectangular area
-  * @type {iRectangleCoordinates}
+  * @type {Rect}
   */
   @Expose()
   @IsDefined()
   @ValidateNested()
-  @Type(() => RectangleCoordinates)
-  fieldRect: RectangleCoordinates
+  @Type(() => Rect)
+  fieldRect: Rect
 
   /**
   * Field source from electronic document
-  * @type {iRfidOrigin|undefined}
+  * @type {RfidOrigin|undefined}
   */
   @Expose()
   @IsOptional()

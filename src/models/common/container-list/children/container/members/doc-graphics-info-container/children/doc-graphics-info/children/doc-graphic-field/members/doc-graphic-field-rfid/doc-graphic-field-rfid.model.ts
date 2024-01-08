@@ -6,6 +6,9 @@ import { ImageData } from '@/models/common/image-data'
 import { aDocGraphicField } from '../../doc-graphic-field.abstract'
 
 
+/**
+* Information about one graphic field, which is a RFID
+*/
 export interface iDocGraphicFieldRfid extends aDocGraphicField {
   /**
   * Data group
@@ -33,6 +36,9 @@ export interface iDocGraphicFieldRfid extends aDocGraphicField {
   RFID_OriginEntryView: number
 }
 
+/**
+* Information about one graphic field, which is a RFID
+*/
 export class DocGraphicFieldRfid extends aDocGraphicField implements iDocGraphicFieldRfid {
   /**
   * Graphic field logical type

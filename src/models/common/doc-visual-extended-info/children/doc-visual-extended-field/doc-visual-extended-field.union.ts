@@ -12,6 +12,7 @@ import { isObject } from '@/helpers'
 
 
 /**
+* Union of all possible variants of DocVisualExtendedField.
 * In typescript you can't have multiple unions inside a class (as in C), so we are forced to make one union that will
 * support all possible variants.
 * You can distinguish them from each other using instanceof operator.
@@ -27,12 +28,18 @@ export type uDocVisualExtendedField =
   DocVisualExtendedField3 |
   DocVisualExtendedField4
 
+/**
+* Union of all possible variants of DocVisualExtendedField in plain object form.
+*/
 export type iuDocVisualExtendedField =
   iDocVisualExtendedField1 |
   iDocVisualExtendedField2 |
   iDocVisualExtendedField3 |
   iDocVisualExtendedField4
 
+/**
+* Union of all possible variants of DocVisualExtendedField in plain object form.
+*/
 export namespace uDocVisualExtendedField {
   export const transformList = (list: unknown[]) => list.map(item => transform(item))
 

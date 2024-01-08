@@ -12,6 +12,7 @@ export interface iDocBarCodeInfoContainer extends aContainer {
   /**
   * Structure serves for storing and passing to the user application of results of bar-codes areas search on the
   * scanned document page and their reading in binary non-formatted code.
+  * @type {iDocBarCodeInfo|undefined}
   */
   DocBarCodeInfo?: iDocBarCodeInfo
 }
@@ -70,7 +71,7 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   /**
   * Structure serves for storing and passing to the user application of results of bar-codes areas search on the
   * scanned document page and their reading in binary non-formatted code.
-  * @type {DocBarCodeInfo}
+  * @type {DocBarCodeInfo|undefined}
   */
   @Expose()
   @IsOptional()

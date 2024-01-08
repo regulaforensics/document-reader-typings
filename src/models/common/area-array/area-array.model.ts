@@ -1,7 +1,7 @@
 import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { iRect, Rect } from '@/models/common/rect'
 import { iPointArray, PointArray } from './children'
 
 
@@ -17,9 +17,9 @@ export interface iAreaArray {
 
   /**
   * Array of areas
-  * @type {iRectangleCoordinates[]}
+  * @type {iRect[]}
   */
-  List: iRectangleCoordinates[]
+  List: iRect[]
 
   /**
   * Array of points
@@ -43,18 +43,18 @@ export class AreaArray implements iAreaArray {
 
   /**
   * Array of areas
-  * @type {iRectangleCoordinates[]}
+  * @type {Rect[]}
   */
   @Expose()
   @IsDefined()
   @ValidateNested({ each: true })
   @IsArray()
-  @Type(() => RectangleCoordinates)
-  List: RectangleCoordinates[]
+  @Type(() => Rect)
+  List: Rect[]
 
   /**
   * Array of points
-  * @type {iPointArray[]}
+  * @type {PointArray[]}
   */
   @Expose()
   @IsDefined()

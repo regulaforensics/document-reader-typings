@@ -1,21 +1,30 @@
-/**
-* Model serves for storing graphic results of document filling area
-* and bar-codes reading
-*/
-import { IsDefined, ValidateNested } from 'class-validator'
+import { IsDefined, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Transform } from 'class-transformer'
 
 import { uDocGraphicField, iuDocGraphicField } from './children'
 
 
+/**
+* Model serves for storing graphic results of document filling area and bar-codes reading
+*/
 export interface iDocGraphicsInfo {
   /**
   * Array of images
   * @type {iuDocGraphicField[]}
   */
   pArrayFields: iuDocGraphicField[]
+
+  /**
+  * Number of pArrayFields array elements
+  * @type {number}
+  */
+  nFields: number
 }
 
+/**
+* Model serves for storing graphic results of document filling area
+* and bar-codes reading
+*/
 export class DocGraphicsInfo implements iDocGraphicsInfo {
   /**
   * Array of images
@@ -26,4 +35,13 @@ export class DocGraphicsInfo implements iDocGraphicsInfo {
   @ValidateNested({ each: true })
   @Transform(({ obj }) => uDocGraphicField.transformList(obj.pArrayFields), { toClassOnly: true })
   pArrayFields: uDocGraphicField[]
+
+  /**
+  * Number of pArrayFields array elements
+  * @type {number}
+  */
+  @Expose()
+  @IsDefined()
+  @IsInt()
+  nFields: number
 }

@@ -4,6 +4,9 @@ import { Expose } from 'class-transformer'
 import { Default } from '@/decorators'
 
 
+/**
+* Point coordinates
+*/
 export interface iPoint {
   /**
   * X coordinate
@@ -18,6 +21,9 @@ export interface iPoint {
   y: number
 }
 
+/**
+* Point coordinates
+*/
 export class Point implements iPoint {
   /**
   * X coordinate

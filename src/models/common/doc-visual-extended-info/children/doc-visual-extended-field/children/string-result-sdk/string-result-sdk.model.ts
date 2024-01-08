@@ -4,6 +4,9 @@ import { Expose, Type } from 'class-transformer'
 import { iSymbolResult, SymbolResult } from './children'
 
 
+/**
+* Structure describes a result of recognition of one line of the document multiline text field
+*/
 export interface iStringResultSDK {
   /**
   * Number of StringResult array elements
@@ -24,6 +27,9 @@ export interface iStringResultSDK {
   StringResult: iSymbolResult[]
 }
 
+/**
+* Structure describes a result of recognition of one line of the document multiline text field
+*/
 export class StringResultSDK implements iStringResultSDK {
   /**
   * Number of StringResult array elements

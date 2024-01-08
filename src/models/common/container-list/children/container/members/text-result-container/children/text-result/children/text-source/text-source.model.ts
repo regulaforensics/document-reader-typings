@@ -4,6 +4,9 @@ import { Expose } from 'class-transformer'
 import { eCheckResult, eSource } from '@/consts'
 
 
+/**
+* Used for description of text data source
+*/
 export interface iTextSource {
   /**
   * Source name
@@ -19,11 +22,14 @@ export interface iTextSource {
 
   /**
   * Container type
-  * @type {number}
+  * @type {number|undefined}
   */
   containerType?: number
 }
 
+/**
+* Used for description of text data source
+*/
 export class TextSource implements iTextSource {
   /**
   * Source name
@@ -45,7 +51,7 @@ export class TextSource implements iTextSource {
 
   /**
   * Container type
-  * @type {number}
+  * @type {number|undefined}
   */
   @Expose()
   @IsOptional()

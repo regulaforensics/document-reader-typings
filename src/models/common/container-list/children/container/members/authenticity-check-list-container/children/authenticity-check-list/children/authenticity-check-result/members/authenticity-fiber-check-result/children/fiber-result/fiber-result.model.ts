@@ -1,7 +1,7 @@
 import { IsArray, IsDefined, IsEnum, IsIn, IsInt, IsNumber, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { iRect, Rect } from '@/models/common/rect'
 import { eAuthenticity, eCheckDiagnose, eCheckResult, eLights } from '@/consts'
 
 
@@ -13,7 +13,7 @@ export interface iFiberResult {
   ExpectedCount?: number
   LightValue?: eLights
   LightDisp?: number
-  RectArray?: iRectangleCoordinates[]
+  RectArray?: iRect[]
   Width?: number[]
   Length?: number[]
   Area?: number[]
@@ -61,8 +61,8 @@ export class FiberResult implements iFiberResult {
   @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
-  @Type(() => RectangleCoordinates)
-  RectArray?: RectangleCoordinates[]
+  @Type(() => Rect)
+  RectArray?: Rect[]
 
   @Expose()
   @IsOptional()

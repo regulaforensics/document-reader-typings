@@ -4,6 +4,9 @@ import { Expose } from 'class-transformer'
 import { eSource } from '@/consts'
 
 
+/**
+* Used for graphic information source description
+*/
 export interface iImageSource {
   /**
   * Container type
@@ -18,6 +21,9 @@ export interface iImageSource {
   source: eSource
 }
 
+/**
+* Used for graphic information source description
+*/
 export class ImageSource implements iImageSource {
   /**
   * Container type

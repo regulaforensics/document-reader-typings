@@ -1,7 +1,7 @@
 import { IsDefined, IsEnum, IsIn, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { iRect, Rect } from '@/models/common/rect'
 import { eAuthenticity, eCheckDiagnose, eCheckResult, eSecurityCriticalFlag, eLights } from '@/consts'
 
 
@@ -11,7 +11,7 @@ export interface iOCRSecurityTextResult {
   ElementDiagnose?: eCheckDiagnose
   CriticalFlag?: eSecurityCriticalFlag
   LightType?: eLights
-  FieldRect?: iRectangleCoordinates
+  FieldRect?: iRect
   EtalonResultType?: number
   EtalonFieldType?: number
   EtalonLightType?: number
@@ -51,8 +51,8 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   @Expose()
   @IsOptional()
   @ValidateNested()
-  @Type(() => RectangleCoordinates)
-  FieldRect?: RectangleCoordinates
+  @Type(() => Rect)
+  FieldRect?: Rect
 
   @Expose()
   @IsOptional()

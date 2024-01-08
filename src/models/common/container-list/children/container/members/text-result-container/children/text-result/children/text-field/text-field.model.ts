@@ -12,6 +12,9 @@ import {
 } from './children'
 
 
+/**
+* Used for storing text field.
+*/
 export interface iTextField {
   /**
   * Field type
@@ -80,6 +83,9 @@ export interface iTextField {
   validityList: iTextValidity[]
 }
 
+/**
+* Used for storing text field.
+*/
 export class TextField implements iTextField {
   /**
   * Field type

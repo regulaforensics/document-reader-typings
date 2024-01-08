@@ -1,16 +1,19 @@
 import { IsArray, IsDefined, IsInt, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { iRect, Rect } from '@/models/common/rect'
 import { iSymbolCandidate, SymbolCandidate } from './children'
 
 
+/**
+* Structure describes the recognition result of one character from the document text field
+*/
 export interface iSymbolResult {
   /**
   * Borders of area occupied by the symbol on the image
-  * @type {iRectangleCoordinates}
+  * @type {iRect}
   */
-  SymbolRect: iRectangleCoordinates
+  SymbolRect: iRect
 
   /**
   * Number of significant elements of ListOfCandidates array
@@ -32,16 +35,19 @@ export interface iSymbolResult {
   Reserved?: unknown
 }
 
+/**
+* Structure describes the recognition result of one character from the document text field
+*/
 export class SymbolResult implements iSymbolResult {
   /**
   * Borders of area occupied by the symbol on the image
-  * @type {iRectangleCoordinates}
+  * @type {Rect}
   */
   @Expose()
   @IsDefined()
   @ValidateNested()
-  @Type(() => RectangleCoordinates)
-  SymbolRect: RectangleCoordinates
+  @Type(() => Rect)
+  SymbolRect: Rect
 
   /**
   * Number of significant elements of ListOfCandidates array
@@ -55,7 +61,7 @@ export class SymbolResult implements iSymbolResult {
   /**
   * Array of candidate symbols. Sorted by descending of probability
   * of recognition (the first element has the highest probability)
-  * @type {iSymbolCandidate[]}
+  * @type {SymbolCandidate[]}
   */
   @Expose()
   @IsDefined()

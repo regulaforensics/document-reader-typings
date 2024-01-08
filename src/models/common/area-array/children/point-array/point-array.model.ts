@@ -21,7 +21,7 @@ export interface iPointArray {
 export class PointArray implements iPointArray {
   /**
   * Array of coordinates of points
-  * @type {iPoint[]}
+  * @type {Point[]}
   */
   @Expose()
   @IsDefined()

@@ -4,6 +4,9 @@ import { Expose } from 'class-transformer'
 import { eCheckResult, eSource } from '@/consts'
 
 
+/**
+* Structure is used for storing specified source text field validity results
+*/
 export interface iTextValidity {
   /**
   * Source name
@@ -18,6 +21,9 @@ export interface iTextValidity {
   status: eCheckResult
 }
 
+/**
+* Structure is used for storing specified source text field validity results
+*/
 export class TextValidity implements iTextValidity {
   /**
   * Source name

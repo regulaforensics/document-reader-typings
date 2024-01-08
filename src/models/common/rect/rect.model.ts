@@ -2,7 +2,10 @@ import { IsDefined, IsNumber } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 
-export interface iRectangleCoordinates {
+/**
+* Rectangle coordinates
+*/
+export interface iRect {
   /**
   * Left
   * @type {number}
@@ -28,7 +31,10 @@ export interface iRectangleCoordinates {
   bottom: number
 }
 
-export class RectangleCoordinates implements iRectangleCoordinates {
+/**
+* Rectangle coordinates
+*/
+export class Rect implements iRect {
   /**
   * Left
   * @param {number}

@@ -1,10 +1,13 @@
 import { IsDefined, IsInt, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { iRect, Rect } from '@/models/common/rect'
 import { Default } from '@/decorators'
 
 
+/**
+* Used for storing symbol reading result
+*/
 export interface iTextSymbol {
   /**
   * Symbol code
@@ -20,11 +23,14 @@ export interface iTextSymbol {
 
   /**
   * Symbol rectangular area
-  * @type {iRectangleCoordinates}
+  * @type {iRect|undefined}
   */
-  rect?: iRectangleCoordinates
+  rect?: iRect
 }
 
+/**
+* Used for storing symbol reading result
+*/
 export class TextSymbol implements iTextSymbol {
   /**
   * Symbol code
@@ -47,11 +53,11 @@ export class TextSymbol implements iTextSymbol {
 
   /**
   * Symbol rectangular area
-  * @type {RectangleCoordinates}
+  * @type {Rect|undefined}
   */
   @Expose()
   @IsOptional()
   @ValidateNested()
-  @Type(() => RectangleCoordinates)
-  rect?: RectangleCoordinates
+  @Type(() => Rect)
+  rect?: Rect
 }

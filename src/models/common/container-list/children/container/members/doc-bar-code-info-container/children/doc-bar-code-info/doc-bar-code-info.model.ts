@@ -37,7 +37,7 @@ export class DocBarCodeInfo implements iDocBarCodeInfo {
 
   /**
   * Array of separate bar-codes reading results
-  * @type {iDocBarCodeField[]}
+  * @type {DocBarCodeField[]}
   */
   @Expose()
   @IsDefined()

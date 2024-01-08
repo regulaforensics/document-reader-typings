@@ -1,7 +1,7 @@
 import { IsArray, IsDefined, IsEnum, IsIn, IsInt, IsNumber, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { iRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { iRect, Rect } from '@/models/common/rect'
 import { iImageData, ImageData } from '@/models/common/image-data'
 import { eAuthenticity, eCheckDiagnose, eCheckResult, eLights } from '@/consts'
 import { iRawImageContainerList, RawImageContainerList } from './children'
@@ -12,7 +12,7 @@ export interface iPhotoIdentResult {
   ElementResult?: eCheckResult
   ElementDiagnose?: eCheckDiagnose
   LightIndex?: eLights
-  Area?: iRectangleCoordinates
+  Area?: iRect
   SourceImage?: iImageData
   ResultImages?: iRawImageContainerList
   FieldTypesCount?: number
@@ -47,8 +47,8 @@ export class PhotoIdentResult implements iPhotoIdentResult {
   @Expose()
   @IsOptional()
   @ValidateNested()
-  @Type(() => RectangleCoordinates)
-  Area?: RectangleCoordinates
+  @Type(() => Rect)
+  Area?: Rect
 
   @Expose()
   @IsOptional()

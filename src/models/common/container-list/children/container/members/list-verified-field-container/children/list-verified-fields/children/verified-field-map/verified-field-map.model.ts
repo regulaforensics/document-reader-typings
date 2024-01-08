@@ -4,6 +4,10 @@ import { Expose } from 'class-transformer'
 import { eLCID, eVisualFieldType, eFieldVerificationResult } from '@/consts'
 
 
+/**
+* Contains information on results of comparing data obtained from different sources for
+* the same logical type of field
+*/
 export interface iVerifiedFieldMap {
   /**
   * Text field logical type
@@ -20,28 +24,28 @@ export interface iVerifiedFieldMap {
   /**
   * Field data obtained through MRZ reading
   * Results of reading of multiline field lines are separated by ‘^’ symbol.
-  * @type {string}
+  * @type {string|undefined}
   */
   Field_MRZ?: string
 
   /**
   * Field data obtained through document filling text fields reading
   * Results of reading of multiline field lines are separated by ‘^’ symbol.
-  * @type {string}
+  * @type {string|undefined}
   */
   Field_Visual?: string
 
   /**
   * Field data obtained through bar-codes reading
   * Results of reading of multiline field lines are separated by ‘^’ symbol.
-  * @type {string}
+  * @type {string|undefined}
   */
   Field_Barcode?: string
 
   /**
   * Field data obtained through RFID-chip memory reading
   * Results of reading of multiline field lines are separated by ‘^’ symbol.
-  * @type {string}
+  * @type {string|undefined}
   */
   Field_RFID?: string
 
@@ -63,6 +67,10 @@ export interface iVerifiedFieldMap {
   ]
 }
 
+/**
+* Contains information on results of comparing data obtained from different sources for
+* the same logical type of field
+*/
 export class VerifiedFieldMap implements iVerifiedFieldMap {
   /**
   * Text field logical type
@@ -85,7 +93,7 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   /**
   * Field data obtained through MRZ reading
   * Results of reading of multiline field lines are separated by ‘^’ symbol.
-  * @type {string}
+  * @type {string|undefined}
   */
   @Expose()
   @IsOptional()
@@ -95,7 +103,7 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   /**
   * Field data obtained through document filling text fields reading
   * Results of reading of multiline field lines are separated by ‘^’ symbol.
-  * @type {string}
+  * @type {string|undefined}
   */
   @Expose()
   @IsOptional()
@@ -105,7 +113,7 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   /**
   * Field data obtained through bar-codes reading
   * Results of reading of multiline field lines are separated by ‘^’ symbol.
-  * @type {string}
+  * @type {string|undefined}
   */
   @Expose()
   @IsOptional()
@@ -115,7 +123,7 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   /**
   * Field data obtained through RFID-chip memory reading
   * Results of reading of multiline field lines are separated by ‘^’ symbol.
-  * @type {string}
+  * @type {string|undefined}
   */
   @Expose()
   @IsOptional()

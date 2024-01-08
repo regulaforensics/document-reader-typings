@@ -1,7 +1,10 @@
-import { IsDefined, IsInt, IsNumber, IsOptional } from 'class-validator'
+import { IsDefined, IsInt, IsNumber, IsOptional, Max, Min } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 
+/**
+* Structure describes one candidate for character recognition
+*/
 export interface iSymbolCandidate {
   /**
   * ASCII symbol code
@@ -22,6 +25,9 @@ export interface iSymbolCandidate {
   Reserved?: unknown
 }
 
+/**
+* Structure describes one candidate for character recognition
+*/
 export class SymbolCandidate implements iSymbolCandidate {
   /**
   * ASCII symbol code
@@ -39,6 +45,8 @@ export class SymbolCandidate implements iSymbolCandidate {
   @Expose()
   @IsDefined()
   @IsNumber()
+  @Min(0)
+  @Max(100)
   SymbolProbability: number
 
   /**

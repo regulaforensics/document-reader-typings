@@ -6,6 +6,10 @@ import { iStringResultSDK, StringResultSDK } from '../../children'
 import { aDocVisualExtendedField } from '../../doc-visual-extended-field.abstract'
 
 
+/**
+* Structure and serves for storing information from one text data field.
+* Variant with field logical type, ID of language-culture and RFID data.
+*/
 export interface iDocVisualExtendedField4 extends aDocVisualExtendedField {
   /**
   * Field logical type
@@ -105,7 +109,10 @@ export interface iDocVisualExtendedField4 extends aDocVisualExtendedField {
   Reserved3?: unknown
 }
 
-
+/**
+* Structure and serves for storing information from one text data field.
+* Variant with field logical type, ID of language-culture and RFID data.
+*/
 export class DocVisualExtendedField4 extends aDocVisualExtendedField implements iDocVisualExtendedField4 {
   /**
   * Field logical type
@@ -179,7 +186,7 @@ export class DocVisualExtendedField4 extends aDocVisualExtendedField implements 
 
   /**
   * Array of separate strings of multiline text field recognition results
-  * @type {iStringResultSDK[]}
+  * @type {StringResultSDK[]}
   */
   @Expose()
   @IsDefined()

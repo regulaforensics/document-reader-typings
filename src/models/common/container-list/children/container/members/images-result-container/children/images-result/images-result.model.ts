@@ -4,6 +4,9 @@ import { Expose, Type } from 'class-transformer'
 import { iImageSource, iImageField, ImageSource, ImageField } from './children'
 
 
+/**
+* Structure is used for representation of all graphic results
+*/
 export interface iImagesResult {
   /**
   * Fields count
@@ -30,6 +33,9 @@ export interface iImagesResult {
   fieldList: iImageField[]
 }
 
+/**
+* Structure is used for representation of all graphic results
+*/
 export class ImagesResult implements iImagesResult {
   /**
   * Fields count
