@@ -3,7 +3,7 @@
 * reader possibilities, specifying lighting schemes for scanning etc.
 * @enum {number}
 */
-export enum Lights {
+export enum eLights {
   /**
   * Lighting schemes are off
   */

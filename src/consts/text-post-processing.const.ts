@@ -2,7 +2,7 @@
 * Text post processing
 * @enum {number}
 */
-export enum TextPostProcessing {
+export enum eTextPostProcessing {
   /**
   * Do not change
   */

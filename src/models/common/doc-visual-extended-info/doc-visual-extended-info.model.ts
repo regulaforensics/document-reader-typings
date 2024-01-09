@@ -1,17 +1,47 @@
-import { IsDefined, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
+import { Expose, Transform } from 'class-transformer'
 
-import { DocVisualExtendedField, IDocVisualExtendedField } from './children'
+import { iuDocVisualExtendedField, uDocVisualExtendedField } from './children'
 
 
-export interface IDocVisualExtendedInfo {
-  pArrayFields: IDocVisualExtendedField[]
+/**
+* Structure serves for storing text results of MRZ, document filling and bar-codes reading
+*/
+export interface iDocVisualExtendedInfo {
+  /**
+  * Number of pArrayFields array elements
+  * @type {number}
+  */
+  nFields: number
+
+  /**
+  * Array of structures containing logically divided text data
+  * @type {iuDocVisualExtendedField[]}
+  */
+  pArrayFields: iuDocVisualExtendedField[]
 }
 
-export class DocVisualExtendedInfo implements IDocVisualExtendedInfo {
+/**
+* Structure serves for storing text results of MRZ, document filling and bar-codes reading
+*/
+export class DocVisualExtendedInfo implements iDocVisualExtendedInfo {
+  /**
+  * Number of pArrayFields array elements
+  * @type {number}
+  */
   @Expose()
   @IsDefined()
+  @IsInt()
+  nFields: number
+
+  /**
+  * Array of structures containing logically divided text data
+  * @type {uDocVisualExtendedField[]}
+  */
+  @Expose()
+  @IsDefined()
+  @IsArray()
   @ValidateNested({ each: true })
-  @Type(() => DocVisualExtendedField)
-  pArrayFields: DocVisualExtendedField[]
+  @Transform(({ obj }) => uDocVisualExtendedField.transformList(obj.pArrayFields), { toClassOnly: true })
+  pArrayFields: uDocVisualExtendedField[]
 }

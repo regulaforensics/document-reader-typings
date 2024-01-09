@@ -2,28 +2,41 @@ import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'cl
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Light, ResultType } from '@/consts'
+import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
-import { ContainerAbstract } from '../../container.abstract'
-import { IStatus, Status } from './children'
+import { aContainer } from '../../container.abstract'
+import { iStatus, Status } from './children'
 
 
-export interface IStatusContainer extends ContainerAbstract {
-  Status: IStatus
+/**
+* Container for iStatus
+*/
+export interface iStatusContainer extends aContainer {
+  /**
+  * Status of the document check.
+  * @type {iStatus}
+  */
+  Status: iStatus
 }
 
-export class StatusContainer extends ContainerAbstract implements IStatusContainer {
+/**
+* Container for Status
+*/
+export class StatusContainer extends aContainer implements iStatusContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
-  * @type {Light}
+  * @type {number}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(Light)
-  @Default(Light.OFF)
-  light: Light
+  @IsInt()
+  @Default(eLights.OFF)
+  light: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -40,7 +53,10 @@ export class StatusContainer extends ContainerAbstract implements IStatusContain
   @Default(0)
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -49,18 +65,18 @@ export class StatusContainer extends ContainerAbstract implements IStatusContain
 
   /**
   * Result type stored in this container (one of ResultType identifiers)
-  * @type {ResultType.STATUS}
+  * @type {eResultType.STATUS}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(ResultType)
+  @IsEnum(eResultType)
   @IsIn([
-    ResultType.STATUS,
+    eResultType.STATUS,
   ])
-  result_type: ResultType.STATUS
+  result_type: eResultType.STATUS
 
   /**
-  * Status container content
+  * Status of the document check.
   * @type {Status}
   */
   @Expose()
@@ -71,13 +87,14 @@ export class StatusContainer extends ContainerAbstract implements IStatusContain
 
   /**
   * Transform plain object to StatusContainer instance.
-  * @param input {unknown}
+  * @param {unknown} input - plain object
+  * @returns {StatusContainer}
   */
-  static fromPlain = (input: unknown) => plainToClass(StatusContainer, input)
+  static fromPlain = (input: unknown) => plainToClass(StatusContainer, input, { strategy: 'excludeAll' })
 
   /**
   * Validate instance of StatusContainer for conformance with the schema.
-  * @param instance
+  * @param {StatusContainer} instance - instance of StatusContainer
   * @throws {DocReaderTypeError}
   * @returns {true} if object satisfies StatusContainer schema
   */

@@ -1,131 +1,131 @@
 import { IsDefined, IsEnum } from 'class-validator'
 import { Expose } from 'class-transformer'
 
-import { CheckResult } from '@/consts'
+import { eCheckResult } from '@/consts'
 
 
 /**
 * Interface for DetailsRFID model.
 * The summary of all RFID checks.
 */
-export interface IDetailsRFID {
+export interface iDetailsRFID {
   /**
   * The summary of all RFID checks.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  overallStatus: CheckResult
+  overallStatus: eCheckResult
 
   /**
   * The Active Authentication status.
   * @see {@link https://docs.regulaforensics.com/develop/doc-reader-sdk/overview/security-mechanisms-for-electronic-documents/#active-authentication}
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  AA: CheckResult
+  AA: eCheckResult
 
   /**
   * The Basic Access Control status
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  BAC: CheckResult
+  BAC: eCheckResult
 
   /**
   * The Chip Authentication status.
   * @see {@link https://docs.regulaforensics.com/develop/doc-reader-sdk/overview/security-mechanisms-for-electronic-documents/#chip-authentication}
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  CA: CheckResult
+  CA: eCheckResult
 
   /**
   * The Passive Authentication status.
   * @see {@link https://docs.regulaforensics.com/develop/doc-reader-sdk/overview/security-mechanisms-for-electronic-documents/#passive-authentication}
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  PA: CheckResult
+  PA: eCheckResult
 
   /**
   * The Password Authenticated Connection Establishment status.
   * @see {@link https://docs.regulaforensics.com/develop/doc-reader-sdk/overview/security-mechanisms-for-electronic-documents/#password-authenticated-connection-establishment}
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  PACE: CheckResult
+  PACE: eCheckResult
 
   /**
   * The Terminal Authentication status.
   * @see {@link https://docs.regulaforensics.com/develop/doc-reader-sdk/overview/security-mechanisms-for-electronic-documents/#terminal-authentication}
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
-  TA: CheckResult
+  TA: eCheckResult
 }
 
 /**
 * The summary of all RFID checks.
 */
-export class DetailsRFID implements IDetailsRFID {
+export class DetailsRFID implements iDetailsRFID {
   /**
   * The summary of all RFID checks.
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  overallStatus: CheckResult
+  @IsEnum(eCheckResult)
+  overallStatus: eCheckResult
 
   /**
   * The Active Authentication status.
   * @see {@link https://docs.regulaforensics.com/develop/doc-reader-sdk/overview/security-mechanisms-for-electronic-documents/#active-authentication}
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  AA: CheckResult
+  @IsEnum(eCheckResult)
+  AA: eCheckResult
 
   /**
   * The Basic Access Control status
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  BAC: CheckResult
+  @IsEnum(eCheckResult)
+  BAC: eCheckResult
 
   /**
   * The Chip Authentication status.
   * @see {@link https://docs.regulaforensics.com/develop/doc-reader-sdk/overview/security-mechanisms-for-electronic-documents/#chip-authentication}
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  CA: CheckResult
+  @IsEnum(eCheckResult)
+  CA: eCheckResult
 
   /**
   * The Passive Authentication status.
   * @see {@link https://docs.regulaforensics.com/develop/doc-reader-sdk/overview/security-mechanisms-for-electronic-documents/#passive-authentication}
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  PA: CheckResult
+  @IsEnum(eCheckResult)
+  PA: eCheckResult
 
   /**
   * The Password Authenticated Connection Establishment status.
   * @see {@link https://docs.regulaforensics.com/develop/doc-reader-sdk/overview/security-mechanisms-for-electronic-documents/#password-authenticated-connection-establishment}
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  PACE: CheckResult
+  @IsEnum(eCheckResult)
+  PACE: eCheckResult
 
   /**
   * The Terminal Authentication status.
   * @see {@link https://docs.regulaforensics.com/develop/doc-reader-sdk/overview/security-mechanisms-for-electronic-documents/#terminal-authentication}
-  * @type {CheckResult}
+  * @type {eCheckResult}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(CheckResult)
-  TA: CheckResult
+  @IsEnum(eCheckResult)
+  TA: eCheckResult
 }

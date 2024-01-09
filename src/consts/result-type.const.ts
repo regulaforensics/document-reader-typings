@@ -121,7 +121,18 @@ enum eRPRM_ResultType_Internal
 * Enumeration describes available container types.
 * @enum {number}
 */
-export enum ResultType {
+export enum eResultType {
+  /**
+  * Result type for StatusContainer
+  */
+  STATUS = 33,
+
+  /**
+  * Result type for TextContainer
+  */
+  TEXT = 36,
+
+  // todo: check below
   // AuthenticityCheckListContainer
   AUTHENTICITY = 20,
   PORTRAIT_COMPARISON = 34,
@@ -132,9 +143,6 @@ export enum ResultType {
 
   // OneCandidateContainer
   CHOSEN_DOCUMENT_TYPE_CANDIDATE = 9,
-
-  // StatusContainer
-  STATUS = 33,
 
 
 

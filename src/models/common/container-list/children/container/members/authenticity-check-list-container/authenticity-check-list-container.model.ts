@@ -2,28 +2,30 @@ import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'cl
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Light, ResultType } from '@/consts'
+import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
-import { ContainerAbstract } from '../../container.abstract'
-import { AuthenticityCheckList, IAuthenticityCheckList } from './children'
+import { aContainer } from '../../container.abstract'
+import { AuthenticityCheckList, iAuthenticityCheckList } from './children'
 
 
-export interface IAuthenticityCheckListContainer extends ContainerAbstract {
-  AuthenticityCheckList: IAuthenticityCheckList
+export interface iAuthenticityCheckListContainer extends aContainer {
+  AuthenticityCheckList: iAuthenticityCheckList
 }
 
-export class AuthenticityCheckListContainer extends ContainerAbstract implements IAuthenticityCheckListContainer {
+export class AuthenticityCheckListContainer extends aContainer implements iAuthenticityCheckListContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
-  * @type {Light}
+  * @type {number}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(Light)
-  @Default(Light.OFF)
-  light: Light
+  @IsInt()
+  @Default(eLights.OFF)
+  light: number
 
-  /** @internal */
+  /**
+  * @internal
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -40,7 +42,9 @@ export class AuthenticityCheckListContainer extends ContainerAbstract implements
   @Default(0)
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -49,20 +53,20 @@ export class AuthenticityCheckListContainer extends ContainerAbstract implements
 
   /**
   * Result type stored in this container (one of ResultType identifiers)
-  * @type {ResultType.AUTHENTICITY | ResultType.FINGER_PRINT_COMPARISON | ResultType.PORTRAIT_COMPARISON}
+  * @type {eResultType.AUTHENTICITY | eResultType.FINGER_PRINT_COMPARISON | eResultType.PORTRAIT_COMPARISON}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(ResultType)
+  @IsEnum(eResultType)
   @IsIn([
-    ResultType.AUTHENTICITY,
-    ResultType.FINGER_PRINT_COMPARISON,
-    ResultType.PORTRAIT_COMPARISON
+    eResultType.AUTHENTICITY,
+    eResultType.FINGER_PRINT_COMPARISON,
+    eResultType.PORTRAIT_COMPARISON
   ])
   result_type:
-    ResultType.AUTHENTICITY |
-    ResultType.FINGER_PRINT_COMPARISON |
-    ResultType.PORTRAIT_COMPARISON
+    eResultType.AUTHENTICITY |
+    eResultType.FINGER_PRINT_COMPARISON |
+    eResultType.PORTRAIT_COMPARISON
 
   @Expose()
   @IsDefined()
@@ -70,8 +74,21 @@ export class AuthenticityCheckListContainer extends ContainerAbstract implements
   @Type(() => AuthenticityCheckList)
   AuthenticityCheckList: AuthenticityCheckList
 
-  static fromPlain = (input: unknown) => plainToClass(AuthenticityCheckListContainer, input)
+  /**
+  * Create new instance of AuthenticityCheckListContainer from plain object
+  *
+  * @param {unknown} input - plain object
+  * @returns {AuthenticityCheckListContainer}
+  */
+  static fromPlain = (input: unknown): AuthenticityCheckListContainer => plainToClass(AuthenticityCheckListContainer, input)
 
+  /**
+  * Check if the given instance is a valid AuthenticityCheckListContainer
+  *
+  * @param {AuthenticityCheckListContainer} instance - instance to check
+  * @throws {DocReaderTypeError}
+  * @returns {true | never}
+  */
   static isValid = (instance: AuthenticityCheckListContainer): true | never => {
     const errors = validateSync(instance)
 

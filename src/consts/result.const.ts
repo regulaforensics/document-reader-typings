@@ -2,7 +2,7 @@
 * Enumeration contains a pool of constants which determine the type of resulting data formed during the data scanning and processing cycle and passed to the user application.
 * @enum {number}
 */
-export enum Result {
+export enum eResult {
   /**
   * Contains cropped and rotated with perspective compensation image of document. Single input image can contain multiple document side/pages, which will be returned as separated results. Most of coordinates in other types defined on that image
   */

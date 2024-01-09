@@ -2,7 +2,7 @@
 * Enumeration contains identifiers determining type of features for a document authenticity checks.
 * @enum {number}
 */
-export enum SecurityFeatureType {
+export enum eSecurityFeatureType {
   /**
   * Blank element
   */

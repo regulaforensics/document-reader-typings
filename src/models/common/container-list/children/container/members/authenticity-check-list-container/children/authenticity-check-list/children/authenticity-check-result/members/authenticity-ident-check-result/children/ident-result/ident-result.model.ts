@@ -1,87 +1,87 @@
 import { IsDefined, IsEnum, IsIn, IsNumber, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
-import { IImageData, ImageData } from '@/models/common/image-data'
-import { AreaContainer, IAreaContainer } from '@/models/common/area-container'
-import { AuthenticityResultType, CheckDiagnose, CheckResult, Light, SecurityFeatureType } from '@/consts'
+import { iRect, Rect } from '@/models/common/rect'
+import { iImageData, ImageData } from '@/models/common/image-data'
+import { AreaArray, iAreaArray } from '@/models/common/area-array'
+import { eAuthenticity, eCheckDiagnose, eCheckResult, eLights, eSecurityFeatureType } from '@/consts'
 
 
-export interface IIdentResult {
+export interface iIdentResult {
   Type:
-    AuthenticityResultType.IMAGE_PATTERN |
-    AuthenticityResultType.IR_VISIBILITY |
-    AuthenticityResultType.OVI |
-    AuthenticityResultType.IR_LUMINESCENCE |
-    AuthenticityResultType.PORTRAIT_COMPARISON |
-    AuthenticityResultType.KINEGRAM |
-    AuthenticityResultType.LETTER_SCREEN |
-    AuthenticityResultType.HOLOGRAM_DETECTION |
-    AuthenticityResultType.FINGERPRINT_COMPARISON |
-    AuthenticityResultType.LIVENESS
-  ElementResult?: CheckResult
-  ElementDiagnose?: CheckDiagnose
-  ElementType?: SecurityFeatureType
-  LightIndex?: Light
-  Area?: IRectangleCoordinates
-  Image?: IImageData
-  EtalonImage?: IImageData
+    eAuthenticity.IMAGE_PATTERN |
+    eAuthenticity.IR_VISIBILITY |
+    eAuthenticity.OVI |
+    eAuthenticity.IR_LUMINESCENCE |
+    eAuthenticity.PORTRAIT_COMPARISON |
+    eAuthenticity.KINEGRAM |
+    eAuthenticity.LETTER_SCREEN |
+    eAuthenticity.HOLOGRAM_DETECTION |
+    eAuthenticity.FINGERPRINT_COMPARISON |
+    eAuthenticity.LIVENESS
+  ElementResult?: eCheckResult
+  ElementDiagnose?: eCheckDiagnose
+  ElementType?: eSecurityFeatureType
+  LightIndex?: eLights
+  Area?: iRect
+  Image?: iImageData
+  EtalonImage?: iImageData
   PercentValue?: number
-  AreaList?: IAreaContainer
+  AreaList?: iAreaArray
 }
 
-export class IdentResult implements IIdentResult {
+export class IdentResult implements iIdentResult {
   @Expose()
   @IsDefined()
   @IsIn([
-    AuthenticityResultType.IMAGE_PATTERN,
-    AuthenticityResultType.IR_VISIBILITY,
-    AuthenticityResultType.OVI,
-    AuthenticityResultType.IR_LUMINESCENCE,
-    AuthenticityResultType.PORTRAIT_COMPARISON,
-    AuthenticityResultType.KINEGRAM,
-    AuthenticityResultType.LETTER_SCREEN,
-    AuthenticityResultType.HOLOGRAM_DETECTION,
-    AuthenticityResultType.FINGERPRINT_COMPARISON,
-    AuthenticityResultType.LIVENESS
+    eAuthenticity.IMAGE_PATTERN,
+    eAuthenticity.IR_VISIBILITY,
+    eAuthenticity.OVI,
+    eAuthenticity.IR_LUMINESCENCE,
+    eAuthenticity.PORTRAIT_COMPARISON,
+    eAuthenticity.KINEGRAM,
+    eAuthenticity.LETTER_SCREEN,
+    eAuthenticity.HOLOGRAM_DETECTION,
+    eAuthenticity.FINGERPRINT_COMPARISON,
+    eAuthenticity.LIVENESS
   ])
-  @IsEnum(AuthenticityResultType)
-  Type: AuthenticityResultType.IMAGE_PATTERN |
-    AuthenticityResultType.IR_VISIBILITY |
-    AuthenticityResultType.OVI |
-    AuthenticityResultType.IR_LUMINESCENCE |
-    AuthenticityResultType.PORTRAIT_COMPARISON |
-    AuthenticityResultType.KINEGRAM |
-    AuthenticityResultType.LETTER_SCREEN |
-    AuthenticityResultType.HOLOGRAM_DETECTION |
-    AuthenticityResultType.FINGERPRINT_COMPARISON |
-    AuthenticityResultType.LIVENESS
+  @IsEnum(eAuthenticity)
+  Type: eAuthenticity.IMAGE_PATTERN |
+    eAuthenticity.IR_VISIBILITY |
+    eAuthenticity.OVI |
+    eAuthenticity.IR_LUMINESCENCE |
+    eAuthenticity.PORTRAIT_COMPARISON |
+    eAuthenticity.KINEGRAM |
+    eAuthenticity.LETTER_SCREEN |
+    eAuthenticity.HOLOGRAM_DETECTION |
+    eAuthenticity.FINGERPRINT_COMPARISON |
+    eAuthenticity.LIVENESS
 
   @Expose()
   @IsOptional()
-  @IsEnum(CheckResult)
-  ElementResult?: CheckResult
+  @IsEnum(eCheckResult)
+  ElementResult?: eCheckResult
 
   @Expose()
   @IsOptional()
-  @IsEnum(CheckDiagnose)
-  ElementDiagnose?: CheckDiagnose
+  @IsEnum(eCheckDiagnose)
+  ElementDiagnose?: eCheckDiagnose
 
   @Expose()
   @IsOptional()
-  @IsEnum(SecurityFeatureType)
-  ElementType?: SecurityFeatureType
+  @IsEnum(eSecurityFeatureType)
+  ElementType?: eSecurityFeatureType
 
   @Expose()
   @IsOptional()
-  @IsEnum(Light)
-  LightIndex?: Light
+  @IsEnum(eLights)
+  LightIndex?: eLights
 
   @Expose()
   @IsOptional()
   @ValidateNested()
-  @Type(() => RectangleCoordinates)
-  Area?: RectangleCoordinates
+  @Type(() => Rect)
+  Area?: Rect
 
   @Expose()
   @IsOptional()
@@ -103,6 +103,6 @@ export class IdentResult implements IIdentResult {
   @Expose()
   @IsOptional()
   @ValidateNested()
-  @Type(() => AreaContainer)
-  AreaList?: AreaContainer
+  @Type(() => AreaArray)
+  AreaList?: AreaArray
 }

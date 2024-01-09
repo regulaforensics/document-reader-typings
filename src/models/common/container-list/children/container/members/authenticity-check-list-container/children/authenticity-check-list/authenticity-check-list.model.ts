@@ -1,23 +1,23 @@
-import { IsArray, IsInt, IsOptional, ValidateNested } from 'class-validator'
+import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Transform } from 'class-transformer'
 
-import { AuthenticityCheckResultUnion, IAuthenticityCheckResultUnion } from './children'
+import { iuAuthenticityCheckResult, uAuthenticityCheckResult } from './children'
 
 
-export interface IAuthenticityCheckList {
-  Count?: number
-  List: IAuthenticityCheckResultUnion[]
+export interface iAuthenticityCheckList {
+  Count: number
+  List: iuAuthenticityCheckResult[]
 }
 
-export class AuthenticityCheckList implements IAuthenticityCheckList {
+export class AuthenticityCheckList implements iAuthenticityCheckList {
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsInt()
-  Count?: number
+  Count: number
 
   @Expose()
   @ValidateNested({ each: true })
-  @Transform(AuthenticityCheckResultUnion.transform)
+  @Transform(({ obj }) => uAuthenticityCheckResult.transformList(obj.List), { toClassOnly: true })
   @IsArray()
-  List: AuthenticityCheckResultUnion[]
+  List: uAuthenticityCheckResult[]
 }

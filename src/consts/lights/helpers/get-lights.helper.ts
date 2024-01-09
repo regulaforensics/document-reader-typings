@@ -1,19 +1,20 @@
-import { Lights } from '../lights.const'
+import { eLights } from '../lights.const'
 import { isLights } from './is-lights.helper'
 
 
 /**
 * Get lights array from value
-* @param {number} value
-* @returns {Array<Lights>} array
+* @param {number} value - value
+* @returns {eLights[]}
 */
-function getLightsArray(value: number): Lights[] {
-  const result: Lights[] = []
+export const getLightsArray = (value: number): eLights[] => {
+  const result: eLights[] = []
 
-  for (const light in Lights) {
-    if (isNaN(Number(light))) {
+  for (const light in eLights) {
+    const index = Number(light)
 
-      const lightValue = Lights[light]
+    if (!isNaN(index)) {
+      const lightValue = eLights[index]
 
       if (isLights(lightValue) && (value & lightValue) === lightValue) {
         result.push(lightValue)

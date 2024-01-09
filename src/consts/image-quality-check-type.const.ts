@@ -2,7 +2,7 @@
 * Enumeration contains possible values of input image quality check result type.
 * @enum {number}
 */
-export enum ImageQualityCheckType {
+export enum eImageQualityCheckType {
   /**
   * Glare presence on the image
   */

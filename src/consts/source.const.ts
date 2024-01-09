@@ -2,7 +2,7 @@
 * Document data sources.
 * @enum {string}
 */
-export enum Source {
+export enum eSource {
   /**
   * Machine readable zone (MRZ)
   */

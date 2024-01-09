@@ -1,29 +1,42 @@
-import { IsDefined, IsEnum, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
+import { IsDefined, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Light } from '@/consts'
+import { eLights } from '@/consts'
 import { Default } from '@/decorators'
-import { DocVisualExtendedInfo, IDocVisualExtendedInfo } from '@/models/common/doc-visual-extended-info'
-import { ContainerAbstract } from '../../container.abstract'
+import { DocVisualExtendedInfo, iDocVisualExtendedInfo } from '@/models/common/doc-visual-extended-info'
+import { aContainer } from '../../container.abstract'
 
 
-export interface ITextDataContainer extends ContainerAbstract {
-  DocVisualExtendedInfo?: IDocVisualExtendedInfo
+/**
+* Container for iDocVisualExtendedInfo
+*/
+export interface iTextDataContainer extends aContainer {
+  /**
+  * Structure serves for storing text results of MRZ, document filling and bar-codes reading
+  * @type {iDocVisualExtendedInfo|undefined}
+  */
+  DocVisualExtendedInfo?: iDocVisualExtendedInfo
 }
 
-export class TextDataContainer extends ContainerAbstract implements ITextDataContainer {
+/**
+* Container for DocVisualExtendedInfo
+*/
+export class TextDataContainer extends aContainer implements iTextDataContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
-  * @type {Light}
+  * @type {number}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(Light)
-  @Default(Light.OFF)
-  light: Light
+  @IsInt()
+  @Default(eLights.OFF)
+  light: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -40,21 +53,41 @@ export class TextDataContainer extends ContainerAbstract implements ITextDataCon
   @Default(0)
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  */
   @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
   buf_length: number
 
+  /**
+  * Structure serves for storing text results of MRZ, document filling and bar-codes reading
+  * @type {DocVisualExtendedInfo|undefined}
+  */
   @Expose()
   @IsOptional()
   @ValidateNested()
   @Type(() => DocVisualExtendedInfo)
   DocVisualExtendedInfo?: DocVisualExtendedInfo
 
-  static fromPlain = (input: unknown) => plainToClass(TextDataContainer, input)
+  /**
+  * Creates an instance of TextDataContainer from plain object
+  *
+  * @param {unknown} input - plain object
+  * @returns {TextDataContainer}
+  */
+  static fromPlain = (input: unknown): TextDataContainer => plainToClass(TextDataContainer, input)
 
+  /**
+  * Check if the given instance of TextDataContainer is valid
+  *
+  * @param {TextDataContainer} instance - instance of TextDataContainer to be checked
+  * @throws {DocReaderTypeError}
+  * @returns {true | never}
+  */
   static isValid = (instance: TextDataContainer): true | never => {
     const errors = validateSync(instance)
 

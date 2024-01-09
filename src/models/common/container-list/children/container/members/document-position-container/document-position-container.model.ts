@@ -1,29 +1,42 @@
-import { IsDefined, IsEnum, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
+import { IsDefined, IsInt, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Light } from '@/consts'
+import { eLights } from '@/consts'
 import { Default } from '@/decorators'
-import { ContainerAbstract } from '../../container.abstract'
-import { DocumentPosition, IDocumentPosition } from './children'
+import { BoundsResult, iBoundsResult } from '@/models/common/bounds-result'
+import { aContainer } from '../../container.abstract'
 
 
-export interface IDocumentPositionContainer extends ContainerAbstract {
-  DocumentPosition?: IDocumentPosition
+/**
+* Container for iBoundsResult
+*/
+export interface iDocumentPositionContainer extends aContainer {
+  /**
+  * Document position
+  * @type {iBoundsResult}
+  */
+  DocumentPosition: iBoundsResult
 }
 
-export class DocumentPositionContainer extends ContainerAbstract implements IDocumentPositionContainer {
+/**
+* Container for BoundsResult
+*/
+export class DocumentPositionContainer extends aContainer implements iDocumentPositionContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
-  * @type {Light}
+  * @type {number}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(Light)
-  @Default(Light.OFF)
-  light: Light
+  @IsInt()
+  @Default(eLights.OFF)
+  light: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -40,21 +53,41 @@ export class DocumentPositionContainer extends ContainerAbstract implements IDoc
   @Default(0)
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  */
   @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
   buf_length: number
 
+  /**
+  * Document position
+  * @type {BoundsResult}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @ValidateNested()
-  @Type(() => DocumentPosition)
-  DocumentPosition?: DocumentPosition
+  @Type(() => BoundsResult)
+  DocumentPosition: BoundsResult
 
-  static fromPlain = (input: unknown) => plainToClass(DocumentPositionContainer, input)
+  /**
+  * Create new instance of DocumentPositionContainer from plain object
+  *
+  * @param {unknown} input - plain object
+  * @return {DocumentPositionContainer}
+  */
+  static fromPlain = (input: unknown): DocumentPositionContainer => plainToClass(DocumentPositionContainer, input)
 
+  /**
+  * Check if the given instance of DocumentPositionContainer is valid
+  *
+  * @param {DocumentPositionContainer} instance - instance of DocumentPositionContainer to validate
+  * @throws {DocReaderTypeError} - if DocumentPositionContainer is not valid
+  * @return {true | never} - true if DocumentPositionContainer is valid, never otherwise
+  */
   static isValid = (instance: DocumentPositionContainer): true | never => {
     const errors = validateSync(instance)
 

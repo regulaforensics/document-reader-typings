@@ -2,7 +2,7 @@
 * Enumeration contains identificators which determinate the level of logs detalization.
 * @enum {string}
 */
-export enum LogLevel {
+export enum eLogLevel {
   /**
   * Fatal error
   */
