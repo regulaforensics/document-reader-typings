@@ -7,10 +7,20 @@ import { Default } from '@/decorators'
 import { aContainer } from '../../container.abstract'
 
 
+/**
+* Container for EncryptedRCL base64 string
+*/
 export interface iEncryptedRCLContainer extends aContainer {
+  /**
+  * EncryptedRCL base64 string
+  * @type {string}
+  */
   EncryptedRCL: string
 }
 
+/**
+* Container for EncryptedRCL
+*/
 export class EncryptedRCLContainer extends aContainer implements iEncryptedRCLContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
@@ -52,6 +62,10 @@ export class EncryptedRCLContainer extends aContainer implements iEncryptedRCLCo
   @Default(0)
   buf_length: number
 
+  /**
+  * EncryptedRCL base64 string
+  * @type {string}
+  */
   @Expose()
   @IsDefined()
   @IsString()

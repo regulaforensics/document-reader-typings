@@ -8,10 +8,22 @@ import { aContainer } from '../../container.abstract'
 import { iListVerifiedFields, ListVerifiedFields } from './children'
 
 
+/**
+* Container for iListVerifiedFields
+*/
 export interface iListVerifiedFieldContainer extends aContainer {
+  /**
+  * Structure serves for storing the results of comparing the MRZ
+  * text data, document filling area data, bar-codes data and data retrieved from RFID-chip
+  * memory (used together with RFID-Chip Reader SDK) and passing it to the user application
+  * @type {iListVerifiedFields|undefined}
+  */
   ListVerifiedFields?: iListVerifiedFields
 }
 
+/**
+* Container for ListVerifiedFields
+*/
 export class ListVerifiedFieldContainer extends aContainer implements iListVerifiedFieldContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
@@ -53,6 +65,12 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   @Default(0)
   buf_length: number
 
+  /**
+  * Structure serves for storing the results of comparing the MRZ
+  * text data, document filling area data, bar-codes data and data retrieved from RFID-chip
+  * memory (used together with RFID-Chip Reader SDK) and passing it to the user application
+  * @type {ListVerifiedFields|undefined}
+  */
   @Expose()
   @IsOptional()
   @ValidateNested()

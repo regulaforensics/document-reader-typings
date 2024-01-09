@@ -8,14 +8,20 @@ import { aContainer } from '../../container.abstract'
 import { iImagesResult, ImagesResult } from './children'
 
 
+/**
+* Container for iImagesResult
+*/
 export interface iImagesResultContainer extends aContainer {
   /**
-  * Images result
+  * Used for representation of all graphic results
   * @type {iImagesResult}
   */
   Images: iImagesResult
 }
 
+/**
+* Container for ImagesResult
+*/
 export class ImagesResultContainer extends aContainer implements iImagesResultContainer {
   /**
   * Lighting scheme code for the given result (used only for images)

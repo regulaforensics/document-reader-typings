@@ -41,8 +41,20 @@ export type iuDocVisualExtendedField =
 * Union of all possible variants of DocVisualExtendedField in plain object form.
 */
 export namespace uDocVisualExtendedField {
+  /**
+  * Transform list of unknown items to list of uDocVisualExtendedField
+  * @internal
+  * @param {unknown[]} list - list of unknown items
+  * @returns {uDocVisualExtendedField[]}
+  */
   export const transformList = (list: unknown[]) => list.map(item => transform(item))
 
+  /**
+  * Transform unknown item to uDocVisualExtendedField
+  * @internal
+  * @param {unknown} item - unknown item
+  * @returns {uDocVisualExtendedField}
+  */
   export const transform = (item: unknown) => {
     if (isObject(item)) {
       if (item.hasOwnProperty('FieldType') && item.hasOwnProperty('FieldRect')) {

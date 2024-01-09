@@ -4,14 +4,24 @@ import { Expose, plainToClass, Type } from 'class-transformer'
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
-import { OneCandidate } from './children'
+import { iOneCandidate, OneCandidate } from './children'
 import { aContainer } from '../../container.abstract'
 
 
+/**
+* Container for iOneCandidate
+*/
 export interface iOneCandidateContainer extends aContainer {
-  OneCandidate?: OneCandidate
+  /**
+  * Contains information on one candidate document when determining the document type
+  * @type {iOneCandidate|undefined}
+  */
+  OneCandidate?: iOneCandidate
 }
 
+/**
+* Container for OneCandidate
+*/
 export class OneCandidateContainer extends aContainer implements iOneCandidateContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
@@ -65,6 +75,10 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   ])
   result_type: eResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE
 
+  /**
+  * Contains information on one candidate document when determining the document type
+  * @type {OneCandidate|undefined}
+  */
   @Expose()
   @IsOptional()
   @ValidateNested()

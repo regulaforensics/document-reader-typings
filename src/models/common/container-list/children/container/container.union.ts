@@ -62,7 +62,7 @@ export type uContainer =
   DocumentPositionContainer |
 
   /**
-  * Encrypted result of authenticity check
+  * Encrypted RCL container
   */
   EncryptedRCLContainer |
 
@@ -77,52 +77,116 @@ export type uContainer =
   ImagesResultContainer |
 
   /**
-  * List of licenses
+  * License container
   */
   LicenseContainer |
 
   /**
-   * List of verified fields
-   */
+  * List of verified fields
+  */
   ListVerifiedFieldContainer |
 
   /**
-   * One candidate
-   */
+  * One candidate
+  */
   OneCandidateContainer |
 
   /**
-   * Status
-   */
+  * Status
+  */
   StatusContainer |
 
   /**
-   * Text data
-   */
+  * Text data
+  */
   TextDataContainer |
 
   /**
-   * Text result
-   */
+  * Text result
+  */
   TextResultContainer
 
+/**
+* Union of all interfaces of containers
+*/
 export type iuContainer =
+  /**
+  * List of authenticity checks
+  */
   iAuthenticityCheckListContainer |
+
+  /**
+  * List of barcodes found on the document
+  */
   iDocBarCodeInfoContainer |
+
+  /**
+  * List of graphic fields found on the document
+  */
   iDocGraphicsInfoContainer |
+
+  /**
+  * Document image
+  */
   iDocumentImageContainer |
+
+  /**
+  * Document position on the image
+  */
   iDocumentPositionContainer |
+
+  /**
+  * Encrypted RCL container
+  */
   iEncryptedRCLContainer |
+
+  /**
+  * List of image quality checks
+  */
   iImageQualityCheckListContainer |
+
+  /**
+  * List of images found on the document
+  */
   iImagesResultContainer |
+
+  /**
+  * License container
+  */
   iLicenseContainer |
+
+  /**
+  * List of verified fields
+  */
   iListVerifiedFieldContainer |
+
+  /**
+  * One candidate
+  */
   iOneCandidateContainer |
+
+  /**
+  * Status
+  */
   iStatusContainer |
+
+  /**
+  * Text data
+  */
   iTextDataContainer |
+
+  /**
+  * Text result
+  */
   iTextResultContainer
 
 export namespace uContainer {
+  /**
+  * Transform list of unknown items to list of containers
+  * @internal
+  * @param {unknown[]} items - list of unknown items
+  * @returns {uContainer[]} - list of containers
+  */
   export const transformList = (items: unknown[]) => {
     const result: uContainer[] = []
 

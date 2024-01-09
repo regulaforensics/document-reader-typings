@@ -8,10 +8,20 @@ import { aContainer } from '../../container.abstract'
 import { iStatus, Status } from './children'
 
 
+/**
+* Container for iStatus
+*/
 export interface iStatusContainer extends aContainer {
+  /**
+  * Status of the document check.
+  * @type {iStatus}
+  */
   Status: iStatus
 }
 
+/**
+* Container for Status
+*/
 export class StatusContainer extends aContainer implements iStatusContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
@@ -66,7 +76,7 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   result_type: eResultType.STATUS
 
   /**
-  * Status container content
+  * Status of the document check.
   * @type {Status}
   */
   @Expose()

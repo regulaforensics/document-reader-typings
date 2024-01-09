@@ -22,7 +22,7 @@ export type iuDocGraphicField =
 export namespace uDocGraphicField {
   /**
   * Transform list of items to list of DocGraphicFieldUnion
-  *
+  * @internal
   * @param {unknown[]} items - list of items
   * @returns {uDocGraphicField[]}
   */

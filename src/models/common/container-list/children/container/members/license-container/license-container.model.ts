@@ -7,10 +7,20 @@ import { Default } from '@/decorators'
 import { aContainer } from '../../container.abstract'
 
 
+/**
+* Container for License base64 string
+*/
 export interface iLicenseContainer extends aContainer {
+  /**
+  * License base64 encoded string
+  * @type {string}
+  */
   License: string
 }
 
+/**
+* Container for License
+*/
 export class LicenseContainer extends aContainer implements iLicenseContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
@@ -52,6 +62,10 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
   @Default(0)
   buf_length: number
 
+  /**
+  * License base64 encoded string
+  * @type {string}
+  */
   @Expose()
   @IsDefined()
   @IsString()

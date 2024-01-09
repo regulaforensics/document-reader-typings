@@ -8,6 +8,9 @@ import { aContainer } from '../../container.abstract'
 import { DocBarCodeInfo, iDocBarCodeInfo } from './children'
 
 
+/**
+* Container for iDocBarCodeInfo
+*/
 export interface iDocBarCodeInfoContainer extends aContainer {
   /**
   * Structure serves for storing and passing to the user application of results of bar-codes areas search on the
@@ -17,6 +20,9 @@ export interface iDocBarCodeInfoContainer extends aContainer {
   DocBarCodeInfo?: iDocBarCodeInfo
 }
 
+/**
+* Container for DocBarCodeInfo
+*/
 export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeInfoContainer {
   /**
   * Lighting scheme code for the given result (used only for images)

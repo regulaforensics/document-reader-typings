@@ -29,12 +29,22 @@ export interface iProcessResponse {
   */
   ContainerList: iContainerList
 
+  /**
+  * Transaction info
+  * @type {iTransactionInfo}
+  */
   TransactionInfo: iTransactionInfo
 
-
+  /**
+  * Base64 encoded transaction processing log
+  * @type {string|undefined}
+  */
   log?: string
 
-
+  /**
+  * Free-form object provided in request. See passBackObject property of ProcessRequest.
+  * @type {Record<string, object>|undefined}
+  */
   passBackObject?: Record<string, object>
 
   /**
@@ -81,17 +91,29 @@ export class ProcessResponse implements iProcessResponse {
   @Type(() => ContainerList)
   ContainerList: ContainerList
 
+  /**
+  * Transaction info
+  * @type {TransactionInfo}
+  */
   @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => TransactionInfo)
   TransactionInfo: TransactionInfo
 
+  /**
+  * Base64 encoded transaction processing log
+  * @type {string|undefined}
+  */
   @Expose()
   @IsOptional()
   @IsString()
   log?: string
 
+  /**
+  * Free-form object provided in request. See passBackObject property of ProcessRequest.
+  * @type {Record<string, object>|undefined}
+  */
   @Expose()
   @IsOptional()
   @IsStringObjectRecord()

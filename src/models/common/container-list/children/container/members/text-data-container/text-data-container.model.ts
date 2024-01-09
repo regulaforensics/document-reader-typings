@@ -8,10 +8,20 @@ import { DocVisualExtendedInfo, iDocVisualExtendedInfo } from '@/models/common/d
 import { aContainer } from '../../container.abstract'
 
 
+/**
+* Container for iDocVisualExtendedInfo
+*/
 export interface iTextDataContainer extends aContainer {
+  /**
+  * Structure serves for storing text results of MRZ, document filling and bar-codes reading
+  * @type {iDocVisualExtendedInfo|undefined}
+  */
   DocVisualExtendedInfo?: iDocVisualExtendedInfo
 }
 
+/**
+* Container for DocVisualExtendedInfo
+*/
 export class TextDataContainer extends aContainer implements iTextDataContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
@@ -53,6 +63,10 @@ export class TextDataContainer extends aContainer implements iTextDataContainer 
   @Default(0)
   buf_length: number
 
+  /**
+  * Structure serves for storing text results of MRZ, document filling and bar-codes reading
+  * @type {DocVisualExtendedInfo|undefined}
+  */
   @Expose()
   @IsOptional()
   @ValidateNested()

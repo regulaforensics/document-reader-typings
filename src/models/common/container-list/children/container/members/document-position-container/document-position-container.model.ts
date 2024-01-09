@@ -8,6 +8,9 @@ import { BoundsResult, iBoundsResult } from '@/models/common/bounds-result'
 import { aContainer } from '../../container.abstract'
 
 
+/**
+* Container for iBoundsResult
+*/
 export interface iDocumentPositionContainer extends aContainer {
   /**
   * Document position
@@ -16,6 +19,9 @@ export interface iDocumentPositionContainer extends aContainer {
   DocumentPosition: iBoundsResult
 }
 
+/**
+* Container for BoundsResult
+*/
 export class DocumentPositionContainer extends aContainer implements iDocumentPositionContainer {
   /**
   * Lighting scheme code for the given result (used only for images)

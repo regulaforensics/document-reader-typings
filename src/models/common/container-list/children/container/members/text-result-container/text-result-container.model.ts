@@ -8,10 +8,20 @@ import { aContainer } from '../../container.abstract'
 import { iTextResult, TextResult } from './children'
 
 
+/**
+* Container for iTextResult
+*/
 export interface iTextResultContainer extends aContainer {
+  /**
+  * Text result
+  * @type {iTextResult}
+  */
   Text: iTextResult
 }
 
+/**
+* Container for TextResult
+*/
 export class TextResultContainer extends aContainer implements iTextResultContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
@@ -65,6 +75,10 @@ export class TextResultContainer extends aContainer implements iTextResultContai
   ])
   result_type: eResultType.TEXT
 
+  /**
+  * Text result
+  * @type {TextResult}
+  */
   @Expose()
   @IsDefined()
   @ValidateNested()

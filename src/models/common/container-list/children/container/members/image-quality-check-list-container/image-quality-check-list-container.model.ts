@@ -8,10 +8,20 @@ import { aContainer } from '../../container.abstract'
 import { iImageQualityCheckList, ImageQualityCheckList } from './children'
 
 
+/**
+* Container for iImageQualityCheckList
+*/
 export interface iImageQualityCheckListContainer extends aContainer {
+  /**
+  * Used for storing input image quality check results list
+  * @type {iImageQualityCheckList}
+  */
   ImageQualityCheckList: iImageQualityCheckList
 }
 
+/**
+* Container for ImageQualityCheckList
+*/
 export class ImageQualityCheckListContainer extends aContainer implements iImageQualityCheckListContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
@@ -53,6 +63,10 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
   @Default(0)
   buf_length: number
 
+  /**
+  * Used for storing input image quality check results list
+  * @type {ImageQualityCheckList}
+  */
   @Expose()
   @IsDefined()
   @ValidateNested()

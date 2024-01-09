@@ -8,10 +8,20 @@ import { aContainer } from '../../container.abstract'
 import { DocGraphicsInfo, iDocGraphicsInfo } from './children'
 
 
+/**
+* Container for iDocGraphicsInfo
+*/
 export interface iDocGraphicsInfoContainer extends aContainer {
+  /**
+  * Model serves for storing graphic results of document filling area and bar-codes reading
+  * @type {iDocGraphicsInfo|undefined}
+  */
   DocGraphicsInfo?: iDocGraphicsInfo
 }
 
+/**
+* Container for DocGraphicsInfo
+*/
 export class DocGraphicsInfoContainer extends aContainer implements iDocGraphicsInfoContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
@@ -53,6 +63,10 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   @Default(0)
   buf_length: number
 
+  /**
+  * Model serves for storing graphic results of document filling area and bar-codes reading
+  * @type {DocGraphicsInfo|undefined}
+  */
   @Expose()
   @IsOptional()
   @ValidateNested()

@@ -29,6 +29,12 @@ export type iuAuthenticityCheckResult =
   iAuthenticitySecurityFeatureCheckResult
 
 export namespace uAuthenticityCheckResult {
+  /**
+  * Transform list of unknown items to list of uAuthenticityCheckResult
+  * @internal
+  * @param {unknown[]} items - list of unknown items
+  * @returns {uAuthenticityCheckResult[]} - list of uAuthenticityCheckResult
+  */
   export const transformList = (items: unknown[]) => {
     const result: uAuthenticityCheckResult[] = []
 

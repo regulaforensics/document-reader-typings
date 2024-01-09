@@ -4,18 +4,24 @@ import { Expose, plainToClass, Type } from 'class-transformer'
 import { DocReaderTypeError } from '@/errors'
 import { eLights } from '@/consts'
 import { Default } from '@/decorators'
-import { ImageData } from '@/models/common/image-data'
+import { iImageData, ImageData } from '@/models/common/image-data'
 import { aContainer } from '../../container.abstract'
 
 
+/**
+* Container for iImageData
+*/
 export interface iDocumentImageContainer extends aContainer {
   /**
   * Structure is used for storing a graphic image
-  * @type {ImageData}
+  * @type {iImageData}
   */
-  RawImageContainer: ImageData
+  RawImageContainer: iImageData
 }
 
+/**
+* Container for ImageData
+*/
 export class DocumentImageContainer extends aContainer implements iDocumentImageContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
