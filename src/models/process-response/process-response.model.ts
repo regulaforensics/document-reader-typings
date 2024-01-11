@@ -141,9 +141,20 @@ export class ProcessResponse implements iProcessResponse {
   @Default(0)
   elapsedTime: number
 
+  /**
+  * Creates an instance of ProcessResponse from plain object
+  * @param {unknown} input - plain object
+  * @returns {ProcessResponse}
+  */
   static fromPlain = (input: unknown): ProcessResponse | never => plainToClass(ProcessResponse, input, { strategy: 'excludeAll' })
 
-  static isValid = (instance: ProcessResponse): true | never => {
+  /**
+  * Check if the given instance of ProcessResponse is valid
+  * @param {ProcessResponse} instance - instance of ProcessResponse to be checked
+  * @throws {DocReaderTypeError} - if the given instance is not valid
+  * @returns {true | never}
+  */
+  static validate = (instance: ProcessResponse): true | never => {
     const errors = validateSync(instance)
 
     if (errors.length) {

@@ -9,6 +9,11 @@ import { iStatus, Status } from './children'
 
 
 /**
+* Result type of StatusContainer
+*/
+export type tStatusContainerResultType = eResultType.STATUS
+
+/**
 * Container for iStatus
 */
 export interface iStatusContainer extends aContainer {
@@ -17,6 +22,12 @@ export interface iStatusContainer extends aContainer {
   * @type {iStatus}
   */
   Status: iStatus
+
+  /**
+  * Result type stored in this container
+  * @type {tStatusContainerResultType}
+  */
+  result_type: tStatusContainerResultType
 }
 
 /**
@@ -64,16 +75,14 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   buf_length: number
 
   /**
-  * Result type stored in this container (one of ResultType identifiers)
-  * @type {eResultType.STATUS}
+  * Result type stored in this container
+  * @type {tStatusContainerResultType}
   */
   @Expose()
   @IsDefined()
   @IsEnum(eResultType)
-  @IsIn([
-    eResultType.STATUS,
-  ])
-  result_type: eResultType.STATUS
+  @IsIn([eResultType.STATUS])
+  result_type: tStatusContainerResultType
 
   /**
   * Status of the document check.
@@ -98,7 +107,7 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   * @throws {DocReaderTypeError}
   * @returns {true} if object satisfies StatusContainer schema
   */
-  static isValid = (instance: StatusContainer): true | never => {
+  static validate = (instance: StatusContainer): true | never => {
     const errors = validateSync(instance)
 
     if (errors.length) {

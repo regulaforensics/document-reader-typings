@@ -8,10 +8,35 @@ import { aContainer } from '../../container.abstract'
 import { AuthenticityCheckList, iAuthenticityCheckList } from './children'
 
 
+/**
+* Result type of AuthenticityCheckListContainer
+*/
+export type tAuthenticityCheckListContainerResultType =
+  eResultType.AUTHENTICITY |
+  eResultType.FINGER_PRINT_COMPARISON |
+  eResultType.PORTRAIT_COMPARISON
+
+/**
+* Container for iAuthenticityCheckList
+*/
 export interface iAuthenticityCheckListContainer extends aContainer {
+  /**
+  * Structure serves for storing the result of document authenticity check using the images for different lighting
+  * schemes and passing it to the user application.
+  * @type {iAuthenticityCheckList}
+  */
   AuthenticityCheckList: iAuthenticityCheckList
+
+  /**
+  * Result type stored in this container
+  * @type {tAuthenticityCheckListContainerResultType}
+  */
+  result_type: tAuthenticityCheckListContainerResultType
 }
 
+/**
+* Container for iAuthenticityCheckList
+*/
 export class AuthenticityCheckListContainer extends aContainer implements iAuthenticityCheckListContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
@@ -52,8 +77,8 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   buf_length: number
 
   /**
-  * Result type stored in this container (one of ResultType identifiers)
-  * @type {eResultType.AUTHENTICITY | eResultType.FINGER_PRINT_COMPARISON | eResultType.PORTRAIT_COMPARISON}
+  * Result type stored in this container
+  * @type {tAuthenticityCheckListContainerResultType}
   */
   @Expose()
   @IsDefined()
@@ -63,11 +88,13 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
     eResultType.FINGER_PRINT_COMPARISON,
     eResultType.PORTRAIT_COMPARISON
   ])
-  result_type:
-    eResultType.AUTHENTICITY |
-    eResultType.FINGER_PRINT_COMPARISON |
-    eResultType.PORTRAIT_COMPARISON
+  result_type: tAuthenticityCheckListContainerResultType
 
+  /**
+  * Structure serves for storing the result of document authenticity check using the images for different lighting
+  * schemes and passing it to the user application.
+  * @type {AuthenticityCheckList}
+  */
   @Expose()
   @IsDefined()
   @ValidateNested()
@@ -89,7 +116,7 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   * @throws {DocReaderTypeError}
   * @returns {true | never}
   */
-  static isValid = (instance: AuthenticityCheckListContainer): true | never => {
+  static validate = (instance: AuthenticityCheckListContainer): true | never => {
     const errors = validateSync(instance)
 
     if (errors.length) {

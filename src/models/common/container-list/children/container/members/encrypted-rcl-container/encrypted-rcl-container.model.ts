@@ -1,11 +1,16 @@
-import { IsDefined, IsInt, IsString, validateSync } from 'class-validator'
+import { IsDefined, IsEnum, IsIn, IsInt, IsString, validateSync } from 'class-validator'
 import { Expose, plainToClass } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { eLights } from '@/consts'
+import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { aContainer } from '../../container.abstract'
 
+
+/**
+* Result type of EncryptedRCLContainer
+*/
+export type tEncryptedRCLContainerResultType = eResultType.ENCRYPTED_RCL
 
 /**
 * Container for EncryptedRCL base64 string
@@ -16,6 +21,12 @@ export interface iEncryptedRCLContainer extends aContainer {
   * @type {string}
   */
   EncryptedRCL: string
+
+  /**
+  * Result type stored in this container
+  * @type {tEncryptedRCLContainerResultType}
+  */
+  result_type: tEncryptedRCLContainerResultType
 }
 
 /**
@@ -63,6 +74,16 @@ export class EncryptedRCLContainer extends aContainer implements iEncryptedRCLCo
   buf_length: number
 
   /**
+  * Result type stored in this container
+  * @type {tEncryptedRCLContainerResultType}
+  */
+  @Expose()
+  @IsDefined()
+  @IsEnum(eResultType)
+  @IsIn([eResultType.ENCRYPTED_RCL])
+  result_type: tEncryptedRCLContainerResultType
+
+  /**
   * EncryptedRCL base64 string
   * @type {string}
   */
@@ -86,7 +107,7 @@ export class EncryptedRCLContainer extends aContainer implements iEncryptedRCLCo
   * @throws {DocReaderTypeError}
   * @returns {true | never}
   */
-  static isValid = (instance: EncryptedRCLContainer): true | never => {
+  static validate = (instance: EncryptedRCLContainer): true | never => {
     const errors = validateSync(instance)
 
     if (errors.length) {

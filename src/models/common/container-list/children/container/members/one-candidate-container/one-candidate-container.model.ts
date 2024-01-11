@@ -9,6 +9,11 @@ import { aContainer } from '../../container.abstract'
 
 
 /**
+* Result type of OneCandidateContainer
+*/
+export type tOneCandidateContainerResultType = eResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE
+
+/**
 * Container for iOneCandidate
 */
 export interface iOneCandidateContainer extends aContainer {
@@ -17,6 +22,12 @@ export interface iOneCandidateContainer extends aContainer {
   * @type {iOneCandidate|undefined}
   */
   OneCandidate?: iOneCandidate
+
+  /**
+  * Result type stored in this container
+  * @type {tOneCandidateContainerResultType}
+  */
+  result_type: tOneCandidateContainerResultType
 }
 
 /**
@@ -64,16 +75,14 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   buf_length: number
 
   /**
-  * Result type stored in this container (one of ResultType identifiers)
-  * @type {eResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE}
+  * Result type stored in this container
+  * @type {tOneCandidateContainerResultType}
   */
   @Expose()
   @IsDefined()
   @IsEnum(eResultType)
-  @IsIn([
-    eResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE,
-  ])
-  result_type: eResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE
+  @IsIn([eResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE])
+  result_type: tOneCandidateContainerResultType
 
   /**
   * Contains information on one candidate document when determining the document type
@@ -100,7 +109,7 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   * @throws {DocReaderTypeError} - if the given instance of OneCandidateContainer is not valid
   * @returns {true | never} - true if OneCandidateContainer is valid
   */
-  static isValid = (instance: OneCandidateContainer): true | never => {
+  static validate = (instance: OneCandidateContainer): true | never => {
     const errors = validateSync(instance)
 
     if (errors.length) {

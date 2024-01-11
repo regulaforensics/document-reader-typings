@@ -146,9 +146,20 @@ export class ProcessRequest implements iProcessRequest {
   @IsStringObjectRecord()
   passBackObject?: Record<string, object>
 
+  /**
+  * Creates an instance of ProcessRequest from plain object
+  * @param {unknown} input - plain object
+  * @returns {ProcessRequest}
+  */
   static fromPlain = (input: unknown): ProcessRequest => plainToClass(ProcessRequest, input)
 
-  static isValid = (instance: ProcessRequest): true | never => {
+  /**
+  * Check if the given instance of ProcessRequest is valid
+  * @param {ProcessRequest} instance - instance of ProcessRequest to be checked
+  * @throws {DocReaderTypeError} - if the given instance is not valid
+  * @returns {true | never}
+  */
+  static validate = (instance: ProcessRequest): true | never => {
     const errors = validateSync(instance)
 
     if (errors.length) {

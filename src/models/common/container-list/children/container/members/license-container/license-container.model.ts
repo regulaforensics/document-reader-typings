@@ -1,11 +1,16 @@
-import { IsDefined, IsInt, IsString, validateSync } from 'class-validator'
+import { IsDefined, IsEnum, IsIn, IsInt, IsString, validateSync } from 'class-validator'
 import { Expose, plainToClass } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { eLights } from '@/consts'
+import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { aContainer } from '../../container.abstract'
 
+
+/**
+* Result type of LicenseContainer
+*/
+export type tLicenseContainerResultType = eResultType.LICENSE
 
 /**
 * Container for License base64 string
@@ -16,6 +21,12 @@ export interface iLicenseContainer extends aContainer {
   * @type {string}
   */
   License: string
+
+  /**
+  * Result type stored in this container
+  * @type {tLicenseContainerResultType}
+  */
+  result_type: tLicenseContainerResultType
 }
 
 /**
@@ -63,6 +74,16 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
   buf_length: number
 
   /**
+  * Result type stored in this container
+  * @type {tLicenseContainerResultType}
+  */
+  @Expose()
+  @IsDefined()
+  @IsEnum(eResultType)
+  @IsIn([eResultType.LICENSE])
+  result_type: tLicenseContainerResultType
+
+  /**
   * License base64 encoded string
   * @type {string}
   */
@@ -86,7 +107,7 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
   * @throws {DocReaderTypeError} - if the given instance of LicenseContainer is not valid
   * @returns {true | never} - true if the given instance of LicenseContainer is valid
   */
-  static isValid = (instance: LicenseContainer): true | never => {
+  static validate = (instance: LicenseContainer): true | never => {
     const errors = validateSync(instance)
 
     if (errors.length) {

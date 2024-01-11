@@ -39,7 +39,7 @@ describe('testing ProcessResponse', () => {
     test(`file '${file}' should be a valid ProcessResponse`, () => {
       const processResponse = ProcessResponse.fromPlain(response)
 
-      expect(() => ProcessResponse.isValid(processResponse)).not.toThrow()
+      expect(() => ProcessResponse.validate(processResponse)).not.toThrow()
     })
   })
 })

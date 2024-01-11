@@ -1,12 +1,17 @@
-import { IsDefined, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
+import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { eLights } from '@/consts'
+import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { aContainer } from '../../container.abstract'
 import { iListVerifiedFields, ListVerifiedFields } from './children'
 
+
+/**
+* Result type of ListVerifiedFieldContainer
+*/
+export type tListVerifiedFieldContainerResultType = eResultType.LEXICAL_ANALYSIS
 
 /**
 * Container for iListVerifiedFields
@@ -19,6 +24,12 @@ export interface iListVerifiedFieldContainer extends aContainer {
   * @type {iListVerifiedFields|undefined}
   */
   ListVerifiedFields?: iListVerifiedFields
+
+  /**
+  * Result type stored in this container
+  * @type {tListVerifiedFieldContainerResultType}
+  */
+  result_type: tListVerifiedFieldContainerResultType
 }
 
 /**
@@ -66,6 +77,16 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   buf_length: number
 
   /**
+  * Result type stored in this container
+  * @type {tListVerifiedFieldContainerResultType}
+  */
+  @Expose()
+  @IsDefined()
+  @IsEnum(eResultType)
+  @IsIn([eResultType.LEXICAL_ANALYSIS])
+  result_type: tListVerifiedFieldContainerResultType
+
+  /**
   * Structure serves for storing the results of comparing the MRZ
   * text data, document filling area data, bar-codes data and data retrieved from RFID-chip
   * memory (used together with RFID-Chip Reader SDK) and passing it to the user application
@@ -92,7 +113,7 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   * @throws {DocReaderTypeError} - if the given instance of LexicalAnalysisContainer is not valid
   * @return {true | never} - true if the given instance of LexicalAnalysisContainer is valid
   */
-  static isValid = (instance: ListVerifiedFieldContainer): true | never => {
+  static validate = (instance: ListVerifiedFieldContainer): true | never => {
     const errors = validateSync(instance)
 
     if (errors.length) {

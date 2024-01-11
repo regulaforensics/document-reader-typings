@@ -1,12 +1,22 @@
-import { IsDefined, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
+import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { eLights } from '@/consts'
+import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { aContainer } from '../../container.abstract'
 import { DocGraphicsInfo, iDocGraphicsInfo } from './children'
 
+
+/**
+* Result type of DocGraphicsInfoContainer
+*/
+export type tDocGraphicsInfoContainerResultType =
+  eResultType.GRAPHICS |
+  eResultType.BARCODES_IMAGE_DATA |
+  eResultType.LIVE_PORTRAIT |
+  eResultType.EXT_PORTRAIT |
+  eResultType.FINGERPRINTS
 
 /**
 * Container for iDocGraphicsInfo
@@ -17,6 +27,12 @@ export interface iDocGraphicsInfoContainer extends aContainer {
   * @type {iDocGraphicsInfo|undefined}
   */
   DocGraphicsInfo?: iDocGraphicsInfo
+
+  /**
+  * Result type stored in this container
+  * @type {tDocGraphicsInfoContainerResultType}
+  */
+  result_type: tDocGraphicsInfoContainerResultType
 }
 
 /**
@@ -64,6 +80,22 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   buf_length: number
 
   /**
+  * Result type stored in this container
+  * @type {tDocGraphicsInfoContainerResultType}
+  */
+  @Expose()
+  @IsDefined()
+  @IsEnum(eResultType)
+  @IsIn([
+    eResultType.GRAPHICS,
+    eResultType.BARCODES_IMAGE_DATA,
+    eResultType.LIVE_PORTRAIT,
+    eResultType.EXT_PORTRAIT,
+    eResultType.FINGERPRINTS,
+  ])
+  result_type: tDocGraphicsInfoContainerResultType
+
+  /**
   * Model serves for storing graphic results of document filling area and bar-codes reading
   * @type {DocGraphicsInfo|undefined}
   */
@@ -88,7 +120,7 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   * @throws {DocReaderTypeError}
   * @returns {true | never}
   */
-  static isValid = (instance: DocGraphicsInfoContainer): true | never => {
+  static validate = (instance: DocGraphicsInfoContainer): true | never => {
     const errors = validateSync(instance)
 
     if (errors.length) {

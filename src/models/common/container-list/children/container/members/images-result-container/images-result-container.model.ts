@@ -1,12 +1,17 @@
-import { IsDefined, IsInt, ValidateNested, validateSync } from 'class-validator'
+import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { eLights } from '@/consts'
+import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { aContainer } from '../../container.abstract'
 import { iImagesResult, ImagesResult } from './children'
 
+
+/**
+* Result type of ImagesResultContainer
+*/
+export type tImagesResultContainerResultType = eResultType.IMAGES
 
 /**
 * Container for iImagesResult
@@ -17,6 +22,12 @@ export interface iImagesResultContainer extends aContainer {
   * @type {iImagesResult}
   */
   Images: iImagesResult
+
+  /**
+  * Result type stored in this container
+  * @type {tImagesResultContainerResultType}
+  */
+  result_type: tImagesResultContainerResultType
 }
 
 /**
@@ -64,6 +75,16 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   buf_length: number
 
   /**
+  * Result type stored in this container
+  * @type {tImagesResultContainerResultType}
+  */
+  @Expose()
+  @IsDefined()
+  @IsEnum(eResultType)
+  @IsIn([eResultType.IMAGES])
+  result_type: tImagesResultContainerResultType
+
+  /**
   * Images result
   * @type {ImagesResult}
   */
@@ -88,7 +109,7 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   * @throws {DocReaderTypeError}
   * @returns {true | never}
   */
-  static isValid = (instance: ImagesResultContainer): true | never => {
+  static validate = (instance: ImagesResultContainer): true | never => {
     const errors = validateSync(instance)
 
     if (errors.length) {

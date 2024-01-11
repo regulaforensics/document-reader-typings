@@ -9,6 +9,11 @@ import { iTextResult, TextResult } from './children'
 
 
 /**
+* Result type of TextResultContainer
+*/
+export type tTextResultContainerResultType = eResultType.TEXT
+
+/**
 * Container for iTextResult
 */
 export interface iTextResultContainer extends aContainer {
@@ -17,6 +22,12 @@ export interface iTextResultContainer extends aContainer {
   * @type {iTextResult}
   */
   Text: iTextResult
+
+  /**
+  * Result type stored in this container
+  * @type {tTextResultContainerResultType}
+  */
+  result_type: tTextResultContainerResultType
 }
 
 /**
@@ -64,8 +75,8 @@ export class TextResultContainer extends aContainer implements iTextResultContai
   buf_length: number
 
   /**
-  * Result type stored in this container (one of ResultType identifiers)
-  * @type {eResultType.TEXT}
+  * Result type stored in this container
+  * @type {tTextResultContainerResultType}
   */
   @Expose()
   @IsDefined()
@@ -73,7 +84,7 @@ export class TextResultContainer extends aContainer implements iTextResultContai
   @IsIn([
     eResultType.TEXT,
   ])
-  result_type: eResultType.TEXT
+  result_type: tTextResultContainerResultType
 
   /**
   * Text result
@@ -100,7 +111,7 @@ export class TextResultContainer extends aContainer implements iTextResultContai
   * @throws {DocReaderTypeError}
   * @returns {true | never}
   */
-  static isValid = (instance: TextResultContainer): true | never => {
+  static validate = (instance: TextResultContainer): true | never => {
     const errors = validateSync(instance)
 
     if (errors.length) {

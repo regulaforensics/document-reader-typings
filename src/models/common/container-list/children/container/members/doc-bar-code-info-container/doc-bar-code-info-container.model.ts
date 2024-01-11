@@ -9,6 +9,11 @@ import { DocBarCodeInfo, iDocBarCodeInfo } from './children'
 
 
 /**
+* Result type of DocBarCodeInfoContainer
+*/
+export type tDocBarCodeInfoContainerResultType = eResultType.BARCODES
+
+/**
 * Container for iDocBarCodeInfo
 */
 export interface iDocBarCodeInfoContainer extends aContainer {
@@ -18,6 +23,12 @@ export interface iDocBarCodeInfoContainer extends aContainer {
   * @type {iDocBarCodeInfo|undefined}
   */
   DocBarCodeInfo?: iDocBarCodeInfo
+
+  /**
+  * Result type stored in this container
+  * @type {tDocBarCodeInfoContainerResultType}
+  */
+  result_type: tDocBarCodeInfoContainerResultType
 }
 
 /**
@@ -63,16 +74,16 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   buf_length: number
 
   /**
-  * Result type stored in this container (one of ResultType identifiers)
-  * @type {eResultType.BAR_CODES}
+  * Result type stored in this container
+  * @type {tDocBarCodeInfoContainerResultType}
   */
   @Expose()
   @IsDefined()
   @IsEnum(eResultType)
   @IsIn([
-    eResultType.BAR_CODES,
+    eResultType.BARCODES,
   ])
-  result_type: eResultType.BAR_CODES
+  result_type: tDocBarCodeInfoContainerResultType
 
   /**
   * Structure serves for storing and passing to the user application of results of bar-codes areas search on the
@@ -100,7 +111,7 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   * @throws {DocReaderTypeError}
   * @returns {true | never}
   */
-  static isValid = (instance: DocBarCodeInfoContainer): true | never => {
+  static validate = (instance: DocBarCodeInfoContainer): true | never => {
     const errors = validateSync(instance)
 
     if (errors.length) {

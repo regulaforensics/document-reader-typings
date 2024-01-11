@@ -14,6 +14,10 @@ import {
 } from './members'
 
 
+/**
+* Structure serves for storing the results of a single type
+* document authenticity check
+*/
 export type uAuthenticityCheckResult =
   AuthenticityFiberCheckResult |
   AuthenticityIdentCheckResult |
@@ -21,6 +25,10 @@ export type uAuthenticityCheckResult =
   AuthenticityPhotoIdentCheckResult |
   AuthenticitySecurityFeatureCheckResult
 
+/**
+* Structure serves for storing the results of a single type
+* document authenticity check
+*/
 export type iuAuthenticityCheckResult =
   iAuthenticityFiberCheckResult |
   iAuthenticityIdentCheckResult |
@@ -28,6 +36,10 @@ export type iuAuthenticityCheckResult =
   iAuthenticityPhotoIdentCheckResult |
   iAuthenticitySecurityFeatureCheckResult
 
+/**
+* Structure serves for storing the results of a single type
+* document authenticity check
+*/
 export namespace uAuthenticityCheckResult {
   /**
   * Transform list of unknown items to list of uAuthenticityCheckResult
