@@ -12,8 +12,9 @@ const SCORE_SHIFT = 3
 * @param {ProcessResponse} input
 * @returns {any}
 */
-export const getNameSurnameLcid = (input: ProcessResponse): RNameSurnameLCID => {
-  const result: RNameSurnameLCID = new RNameSurnameLCID()
+export const getNameSurnameLcid = (input: ProcessResponse) => {
+  return null
+  /*const result: RNameSurnameLCID = new RNameSurnameLCID()
 
   const textContainer: TextResultContainer | undefined = input.ContainerList.List
     .find((i) => i instanceof TextResultContainer)
@@ -78,6 +79,6 @@ export const getNameSurnameLcid = (input: ProcessResponse): RNameSurnameLCID => 
           checkResult: field.status,
           value: `${surname.value} ${field.value}`
         })
-      })
+      })*/
 
 }

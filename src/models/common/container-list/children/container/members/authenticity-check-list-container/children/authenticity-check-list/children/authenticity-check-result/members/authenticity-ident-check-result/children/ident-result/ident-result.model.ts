@@ -7,7 +7,25 @@ import { AreaArray, iAreaArray } from '@/models/common/area-array'
 import { eAuthenticity, eCheckDiagnose, eCheckResult, eLights, eSecurityFeatureType } from '@/consts'
 
 
+/**
+* Structure serves for storing the result of a single security element of following type checking
+*/
 export interface iIdentResult {
+  /**
+   * Type of the performed check
+   * @type {
+   *   eAuthenticity.IMAGE_PATTERN |
+   *   eAuthenticity.IR_VISIBILITY |
+   *   eAuthenticity.OVI |
+   *   eAuthenticity.IR_LUMINESCENCE |
+   *   eAuthenticity.PORTRAIT_COMPARISON |
+   *   eAuthenticity.KINEGRAM |
+   *   eAuthenticity.LETTER_SCREEN |
+   *   eAuthenticity.HOLOGRAM_DETECTION |
+   *   eAuthenticity.FINGERPRINT_COMPARISON |
+   *   eAuthenticity.LIVENESS
+   * }
+   */
   Type:
     eAuthenticity.IMAGE_PATTERN |
     eAuthenticity.IR_VISIBILITY |
@@ -19,18 +37,81 @@ export interface iIdentResult {
     eAuthenticity.HOLOGRAM_DETECTION |
     eAuthenticity.FINGERPRINT_COMPARISON |
     eAuthenticity.LIVENESS
-  ElementResult?: eCheckResult
-  ElementDiagnose?: eCheckDiagnose
-  ElementType?: eSecurityFeatureType
-  LightIndex?: eLights
-  Area?: iRect
-  Image?: iImageData
-  EtalonImage?: iImageData
-  PercentValue?: number
+
+  /**
+  * Element responsible for the results of the checks
+  * @type {eCheckResult}
+  */
+  ElementResult: eCheckResult
+
+  /**
+  * Element with which errors are checked
+  * @type {eCheckDiagnose}
+  */
+  ElementDiagnose: eCheckDiagnose
+
+  /**
+  * Lighting scheme identifier
+  * @type {eLights}
+  */
+  LightIndex: eLights
+
+  /**
+  * Checked fragment area coordinates
+  * @type {iRect}
+  */
+  Area: iRect
+
+  /**
+  * Located image fragment
+  * @type {iImageData}
+  */
+  Image: iImageData
+
+  /**
+  * Expected image pattern
+  * @type {iImageData}
+  */
+  EtalonImage: iImageData
+
+  /**
+  * Identity percent of the etalon and sample image
+  * @type {number}
+  */
+  PercentValue: number
+
+  /**
+   * Element with which errors are checked
+   * @type {eSecurityFeatureType}
+   */
+  ElementType: eSecurityFeatureType
+
+  /**
+  * List of located areas
+  * @type {iAreaArray}
+  */
   AreaList?: iAreaArray
 }
 
+/**
+* Structure serves for storing the result of a single security element of following type checking
+*/
 export class IdentResult implements iIdentResult {
+  /**
+  * Type of the performed check
+  * @type {
+  *   eAuthenticity.IMAGE_PATTERN |
+  *   eAuthenticity.IR_VISIBILITY |
+  *   eAuthenticity.OVI |
+  *   eAuthenticity.IR_LUMINESCENCE |
+  *   eAuthenticity.PORTRAIT_COMPARISON |
+  *   eAuthenticity.KINEGRAM |
+  *   eAuthenticity.LETTER_SCREEN |
+  *   eAuthenticity.HOLOGRAM_DETECTION |
+  *   eAuthenticity.FINGERPRINT_COMPARISON |
+  *   eAuthenticity.LIVENESS
+  * }
+  */
   @Expose()
   @IsDefined()
   @IsIn([
