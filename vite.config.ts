@@ -13,7 +13,10 @@ export default defineConfig({
       entry: path.resolve(__dirname, './src/index.ts'),
       formats: ['es', 'cjs'],
       fileName: 'index'
-    }
+    },
+    terserOptions: {
+      keep_classnames: true,
+    },
   },
   resolve: {
     alias: {
