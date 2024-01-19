@@ -14,9 +14,10 @@ export default defineConfig({
       formats: ['es', 'cjs'],
       fileName: 'index'
     },
-    terserOptions: {
-      keep_classnames: true,
-    },
+  },
+  esbuild: {
+    minifyIdentifiers: false,
+    keepNames: true,
   },
   resolve: {
     alias: {
