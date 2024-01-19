@@ -2,7 +2,7 @@
 * The enumeration contains the scenarios' identifiers.
 * @enum {string}
 */
-export enum Scenario {
+export enum eScenario {
   /**
   * Processing scenario for obtaining MRZ data
   */

@@ -1,104 +1,104 @@
 import { IsDefined, IsEnum, IsIn, IsNumber, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { AreaContainer, IAreaContainer } from '@/models/common/area-container'
-import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
+import { AreaArray, iAreaArray } from '@/models/common/area-array'
+import { iRect, Rect } from '@/models/common/rect'
 import {
-  AuthenticityResultType,
-  CheckDiagnose,
-  CheckResult,
-  Critical,
-  SecurityFeatureType,
-  Visibility
+  eAuthenticity,
+  eCheckDiagnose,
+  eCheckResult,
+  eSecurityCriticalFlag,
+  eSecurityFeatureType,
+  eIRVisibilityFlag
 } from '@/consts'
 
 
-export interface ISecurityFeatureResult {
+export interface iSecurityFeatureResult {
   Type:
-    AuthenticityResultType.UV_LUMINESCENCE |
-    AuthenticityResultType.IR_B900 |
-    AuthenticityResultType.AXIAL_PROTECTION |
-    AuthenticityResultType.PHOTO_EMBED_TYPE |
-    AuthenticityResultType.HOLOGRAMS |
-    AuthenticityResultType.PHOTO_AREA |
-    AuthenticityResultType.BARCODE_FORMAT_CHECK |
-    AuthenticityResultType.EXTENDED_OCR_CHECK |
-    AuthenticityResultType.EXTENDED_MRZ_CHECK |
-    AuthenticityResultType.STATUS_ONLY
-  ElementResult?: CheckResult
-  ElementDiagnose?: CheckDiagnose
-  ElementType?: SecurityFeatureType
-  ElementRect?: IRectangleCoordinates
-  Visibility?: Visibility
-  CriticalFlag?: Critical
-  AreaList?: IAreaContainer
+    eAuthenticity.UV_LUMINESCENCE |
+    eAuthenticity.IR_B900 |
+    eAuthenticity.AXIAL_PROTECTION |
+    eAuthenticity.PHOTO_EMBED_TYPE |
+    eAuthenticity.HOLOGRAMS |
+    eAuthenticity.PHOTO_AREA |
+    eAuthenticity.BARCODE_FORMAT_CHECK |
+    eAuthenticity.EXTENDED_OCR_CHECK |
+    eAuthenticity.EXTENDED_MRZ_CHECK |
+    eAuthenticity.STATUS_ONLY
+  ElementResult?: eCheckResult
+  ElementDiagnose?: eCheckDiagnose
+  ElementType?: eSecurityFeatureType
+  ElementRect?: iRect
+  Visibility?: eIRVisibilityFlag
+  CriticalFlag?: eSecurityCriticalFlag
+  AreaList?: iAreaArray
   Reserved2?: number
 }
 
-export class SecurityFeatureResult implements ISecurityFeatureResult {
+export class SecurityFeatureResult implements iSecurityFeatureResult {
   @Expose()
   @IsDefined()
   @IsIn([
-    AuthenticityResultType.UV_LUMINESCENCE,
-    AuthenticityResultType.IR_B900,
-    AuthenticityResultType.AXIAL_PROTECTION,
-    AuthenticityResultType.PHOTO_EMBED_TYPE,
-    AuthenticityResultType.HOLOGRAMS,
-    AuthenticityResultType.PHOTO_AREA,
-    AuthenticityResultType.BARCODE_FORMAT_CHECK,
-    AuthenticityResultType.EXTENDED_OCR_CHECK,
-    AuthenticityResultType.EXTENDED_MRZ_CHECK,
-    AuthenticityResultType.STATUS_ONLY
+    eAuthenticity.UV_LUMINESCENCE,
+    eAuthenticity.IR_B900,
+    eAuthenticity.AXIAL_PROTECTION,
+    eAuthenticity.PHOTO_EMBED_TYPE,
+    eAuthenticity.HOLOGRAMS,
+    eAuthenticity.PHOTO_AREA,
+    eAuthenticity.BARCODE_FORMAT_CHECK,
+    eAuthenticity.EXTENDED_OCR_CHECK,
+    eAuthenticity.EXTENDED_MRZ_CHECK,
+    eAuthenticity.STATUS_ONLY
   ])
-  @IsEnum(AuthenticityResultType)
+  @IsEnum(eAuthenticity)
   Type:
-    AuthenticityResultType.UV_LUMINESCENCE |
-    AuthenticityResultType.IR_B900 |
-    AuthenticityResultType.AXIAL_PROTECTION |
-    AuthenticityResultType.PHOTO_EMBED_TYPE |
-    AuthenticityResultType.HOLOGRAMS |
-    AuthenticityResultType.PHOTO_AREA |
-    AuthenticityResultType.BARCODE_FORMAT_CHECK |
-    AuthenticityResultType.EXTENDED_OCR_CHECK |
-    AuthenticityResultType.EXTENDED_MRZ_CHECK |
-    AuthenticityResultType.STATUS_ONLY
+    eAuthenticity.UV_LUMINESCENCE |
+    eAuthenticity.IR_B900 |
+    eAuthenticity.AXIAL_PROTECTION |
+    eAuthenticity.PHOTO_EMBED_TYPE |
+    eAuthenticity.HOLOGRAMS |
+    eAuthenticity.PHOTO_AREA |
+    eAuthenticity.BARCODE_FORMAT_CHECK |
+    eAuthenticity.EXTENDED_OCR_CHECK |
+    eAuthenticity.EXTENDED_MRZ_CHECK |
+    eAuthenticity.STATUS_ONLY
 
   @Expose()
   @IsOptional()
-  @IsEnum(CheckResult)
-  ElementResult?: CheckResult
+  @IsEnum(eCheckResult)
+  ElementResult?: eCheckResult
 
   @Expose()
   @IsOptional()
-  @IsEnum(CheckDiagnose)
-  ElementDiagnose?: CheckDiagnose
+  @IsEnum(eCheckDiagnose)
+  ElementDiagnose?: eCheckDiagnose
 
   @Expose()
   @IsOptional()
-  @IsEnum(SecurityFeatureType)
-  ElementType?: SecurityFeatureType
-
-  @Expose()
-  @IsOptional()
-  @ValidateNested()
-  @Type(() => RectangleCoordinates)
-  ElementRect?: RectangleCoordinates
-
-  @Expose()
-  @IsOptional()
-  @IsEnum(Visibility)
-  Visibility?: Visibility
-
-  @Expose()
-  @IsOptional()
-  @IsEnum(Critical)
-  CriticalFlag?: Critical
+  @IsEnum(eSecurityFeatureType)
+  ElementType?: eSecurityFeatureType
 
   @Expose()
   @IsOptional()
   @ValidateNested()
-  @Type(() => AreaContainer)
-  AreaList?: AreaContainer
+  @Type(() => Rect)
+  ElementRect?: Rect
+
+  @Expose()
+  @IsOptional()
+  @IsEnum(eIRVisibilityFlag)
+  Visibility?: eIRVisibilityFlag
+
+  @Expose()
+  @IsOptional()
+  @IsEnum(eSecurityCriticalFlag)
+  CriticalFlag?: eSecurityCriticalFlag
+
+  @Expose()
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => AreaArray)
+  AreaList?: AreaArray
 
   @Expose()
   @IsOptional()

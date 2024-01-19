@@ -2,28 +2,52 @@ import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSyn
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Light, ResultType } from '@/consts'
+import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
-import { ContainerAbstract } from '../../container.abstract'
-import { DocBarCodeInfoFieldsList, IDocBarCodeInfoFieldsList } from './children'
+import { aContainer } from '../../container.abstract'
+import { DocBarCodeInfo, iDocBarCodeInfo } from './children'
 
 
-export interface IDocBarCodeInfoContainer extends ContainerAbstract {
-  DocBarCodeInfo?: IDocBarCodeInfoFieldsList
+/**
+* Result type of DocBarCodeInfoContainer
+*/
+export type tDocBarCodeInfoContainerResultType = eResultType.BARCODES
+
+/**
+* Container for iDocBarCodeInfo
+*/
+export interface iDocBarCodeInfoContainer extends aContainer {
+  /**
+  * Structure serves for storing and passing to the user application of results of bar-codes areas search on the
+  * scanned document page and their reading in binary non-formatted code.
+  * @type {iDocBarCodeInfo|undefined}
+  */
+  DocBarCodeInfo?: iDocBarCodeInfo
+
+  /**
+  * Result type stored in this container
+  * @type {tDocBarCodeInfoContainerResultType}
+  */
+  result_type: tDocBarCodeInfoContainerResultType
 }
 
-export class DocBarCodeInfoContainer extends ContainerAbstract implements IDocBarCodeInfoContainer {
+/**
+* Container for DocBarCodeInfo
+*/
+export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeInfoContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
-  * @type {Light}
+  * @type {number}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(Light)
-  @Default(Light.OFF)
-  light: Light
+  @IsInt()
+  @Default(eLights.OFF)
+  light: number
 
-  /** @internal */
+  /**
+  * @internal
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -40,7 +64,9 @@ export class DocBarCodeInfoContainer extends ContainerAbstract implements IDocBa
   @Default(0)
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -48,26 +74,44 @@ export class DocBarCodeInfoContainer extends ContainerAbstract implements IDocBa
   buf_length: number
 
   /**
-  * Result type stored in this container (one of ResultType identifiers)
-  * @type {ResultType.BAR_CODES}
+  * Result type stored in this container
+  * @type {tDocBarCodeInfoContainerResultType}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(ResultType)
+  @IsEnum(eResultType)
   @IsIn([
-    ResultType.BAR_CODES,
+    eResultType.BARCODES,
   ])
-  result_type: ResultType.BAR_CODES
+  result_type: tDocBarCodeInfoContainerResultType
 
+  /**
+  * Structure serves for storing and passing to the user application of results of bar-codes areas search on the
+  * scanned document page and their reading in binary non-formatted code.
+  * @type {DocBarCodeInfo|undefined}
+  */
   @Expose()
   @IsOptional()
   @ValidateNested()
-  @Type(() => DocBarCodeInfoFieldsList)
-  DocBarCodeInfo?: DocBarCodeInfoFieldsList
+  @Type(() => DocBarCodeInfo)
+  DocBarCodeInfo?: DocBarCodeInfo
 
-  static fromPlain = (input: unknown) => plainToClass(DocBarCodeInfoContainer, input)
+  /**
+  * Creates an instance of DocBarCodeInfoContainer from plain object
+  *
+  * @param {unknown} input - plain object
+  * @returns {DocBarCodeInfoContainer}
+  */
+  static fromPlain = (input: unknown): DocBarCodeInfoContainer => plainToClass(DocBarCodeInfoContainer, input)
 
-  static isValid = (instance: DocBarCodeInfoContainer): true | never => {
+  /**
+  * Check if the given instance is a valid DocBarCodeInfoContainer
+  *
+  * @param {DocBarCodeInfoContainer} instance - instance to check
+  * @throws {DocReaderTypeError}
+  * @returns {true | never}
+  */
+  static validate = (instance: DocBarCodeInfoContainer): true | never => {
     const errors = validateSync(instance)
 
     if (errors.length) {

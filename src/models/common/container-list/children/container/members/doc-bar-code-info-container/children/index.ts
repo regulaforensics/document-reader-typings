@@ -1,1 +1,1 @@
-export * from './doc-bar-code-info-fields-list'
+export * from './doc-bar-code-info'

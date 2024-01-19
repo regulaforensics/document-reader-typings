@@ -1,0 +1,37 @@
+{
+  "plugin": ["typedoc-plugin-coverage"],
+  "requiredToBeDocumented": [
+    "Project",
+    "Module",
+    "Namespace",
+    "Enum",
+    "EnumMember",
+    "Variable",
+    "Function",
+    "Class",
+    "Interface",
+    "Constructor",
+    "Property",
+    "Method",
+    "CallSignature",
+    "IndexSignature",
+    "ConstructorSignature",
+    "Parameter",
+    "TypeLiteral",
+    "TypeParameter",
+    "Accessor",
+    "GetSignature",
+    "SetSignature",
+    "TypeAlias",
+    "Reference"
+  ],
+  "excludeNotDocumented": false,
+  "excludeNotDocumentedKinds": [
+    "Constructor",
+    "ConstructorSignature"
+  ],
+  "includeVersion": true,
+  "defaultCategory": "Types",
+  "categoryOrder": ["Types", "*"],
+  "categorizeByGroup": true
+}

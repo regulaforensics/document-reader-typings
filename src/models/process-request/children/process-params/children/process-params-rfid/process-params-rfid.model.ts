@@ -1,16 +1,30 @@
 import { IsEnum, IsOptional } from 'class-validator'
 import { Expose } from 'class-transformer'
 
-import { ParsingNotificationCodes } from '@/consts'
+import { eParsingNotificationCodes } from '@/consts'
 
 
-export interface IProcessParamsRfid {
-  paSensitiveCodesDisable?: ParsingNotificationCodes[]
+/**
+* Params for the RFID chip data reprocessing
+*/
+export interface iProcessParamsRfid {
+  /**
+  * A list of notification codes that should be ignored during passive authentication (PA)
+  * @type {eParsingNotificationCodes[]|undefined}
+  */
+  paSensitiveCodesDisable?: eParsingNotificationCodes[]
 }
 
-export class ProcessParamsRfid implements IProcessParamsRfid {
+/**
+* Params for the RFID chip data reprocessing
+*/
+export class ProcessParamsRfid implements iProcessParamsRfid {
+  /**
+  * A list of notification codes that should be ignored during passive authentication (PA)
+  * @type {eParsingNotificationCodes[]|undefined}
+  */
   @Expose()
   @IsOptional()
-  @IsEnum(ParsingNotificationCodes, { each: true })
-  paSensitiveCodesDisable?: ParsingNotificationCodes[]
+  @IsEnum(eParsingNotificationCodes, { each: true })
+  paSensitiveCodesDisable?: eParsingNotificationCodes[]
 }

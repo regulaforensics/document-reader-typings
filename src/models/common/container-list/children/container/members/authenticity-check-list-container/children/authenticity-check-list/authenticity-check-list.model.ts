@@ -1,23 +1,48 @@
-import { IsArray, IsInt, IsOptional, ValidateNested } from 'class-validator'
+import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Transform } from 'class-transformer'
 
-import { AuthenticityCheckResultUnion, IAuthenticityCheckResultUnion } from './children'
+import { iuAuthenticityCheckResult, uAuthenticityCheckResult } from './children'
 
 
-export interface IAuthenticityCheckList {
-  Count?: number
-  List: IAuthenticityCheckResultUnion[]
+/**
+* Structure serves for storing the result of document authenticity check using the images for different lighting
+* schemes and passing it to the user application.
+*/
+export interface iAuthenticityCheckList {
+  /**
+  * Number of elements in the list
+  * @type {number}
+  */
+  Count: number
+
+  /**
+  * Array of data structures with the results of performing of different document authenticity checks
+  * @type {iuAuthenticityCheckResult[]}
+  */
+  List: iuAuthenticityCheckResult[]
 }
 
-export class AuthenticityCheckList implements IAuthenticityCheckList {
+/**
+* Structure serves for storing the result of document authenticity check using the images for different lighting
+* schemes and passing it to the user application.
+*/
+export class AuthenticityCheckList implements iAuthenticityCheckList {
+  /**
+  * Number of elements in the list
+  * @type {number}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsInt()
-  Count?: number
+  Count: number
 
+  /**
+  * Array of data structures with the results of performing of different document authenticity checks
+  * @type {iuAuthenticityCheckResult[]}
+  */
   @Expose()
   @ValidateNested({ each: true })
-  @Transform(AuthenticityCheckResultUnion.transform)
+  @Transform(({ obj }) => uAuthenticityCheckResult.transformList(obj.List), { toClassOnly: true })
   @IsArray()
-  List: AuthenticityCheckResultUnion[]
+  List: uAuthenticityCheckResult[]
 }

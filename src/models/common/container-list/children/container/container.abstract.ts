@@ -1,14 +1,16 @@
-import { Light, ResultType } from '@/consts'
+import { getLightsArray, eLights, eResultType } from '@/consts'
 
 
-export abstract class ContainerAbstract {
+export abstract class aContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
-  * @type {Light}
+  * @type {number}
   */
-  light: Light
+  light: number
 
-  /** @internal */
+  /**
+  * @internal
+  */
   list_idx: number
 
   /**
@@ -17,12 +19,28 @@ export abstract class ContainerAbstract {
   */
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  */
   buf_length: number
 
   /**
   * Result type stored in this container (one of ResultType identifiers)
-  * @type {ResultType}
+  * @type {eResultType}
   */
-  result_type: ResultType
+  result_type: eResultType
+
+  /**
+  * Get lighting scheme
+  *
+  * @param {DocumentPositionContainer|number} input - input
+  * @returns {eLights[]}
+  */
+  static getLightingScheme = (input: aContainer | number): eLights[] => {
+    if (typeof input === 'number') {
+      return getLightsArray(input)
+    }
+
+    return getLightsArray(input.light)
+  }
 }

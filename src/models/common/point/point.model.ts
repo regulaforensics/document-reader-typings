@@ -1,20 +1,47 @@
-import { IsNumber, IsOptional } from 'class-validator'
+import { IsDefined, IsNumber, IsOptional } from 'class-validator'
 import { Expose } from 'class-transformer'
 
+import { Default } from '@/decorators'
 
-export interface IPoint {
-  x?: number
-  y?: number
+
+/**
+* Point coordinates
+*/
+export interface iPoint {
+  /**
+  * X coordinate
+  * @type {number}
+  */
+  x: number
+
+  /**
+  * Y coordinate
+  * @type {number}
+  */
+  y: number
 }
 
-export class Point implements IPoint {
+/**
+* Point coordinates
+*/
+export class Point implements iPoint {
+  /**
+  * X coordinate
+  * @param {number} [x=0]
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsNumber()
-  x?: number
+  @Default(0)
+  x: number
 
+  /**
+  * Y coordinate
+  * @param {number} [y=0]
+  */
   @Expose()
   @IsOptional()
   @IsNumber()
-  y?: number
+  @Default(0)
+  y: number
 }

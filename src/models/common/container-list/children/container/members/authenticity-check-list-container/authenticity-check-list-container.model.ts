@@ -2,28 +2,55 @@ import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'cl
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Light, ResultType } from '@/consts'
+import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
-import { ContainerAbstract } from '../../container.abstract'
-import { AuthenticityCheckList, IAuthenticityCheckList } from './children'
+import { aContainer } from '../../container.abstract'
+import { AuthenticityCheckList, iAuthenticityCheckList } from './children'
 
 
-export interface IAuthenticityCheckListContainer extends ContainerAbstract {
-  AuthenticityCheckList: IAuthenticityCheckList
+/**
+* Result type of AuthenticityCheckListContainer
+*/
+export type tAuthenticityCheckListContainerResultType =
+  eResultType.AUTHENTICITY |
+  eResultType.FINGER_PRINT_COMPARISON |
+  eResultType.PORTRAIT_COMPARISON
+
+/**
+* Container for iAuthenticityCheckList
+*/
+export interface iAuthenticityCheckListContainer extends aContainer {
+  /**
+  * Structure serves for storing the result of document authenticity check using the images for different lighting
+  * schemes and passing it to the user application.
+  * @type {iAuthenticityCheckList}
+  */
+  AuthenticityCheckList: iAuthenticityCheckList
+
+  /**
+  * Result type stored in this container
+  * @type {tAuthenticityCheckListContainerResultType}
+  */
+  result_type: tAuthenticityCheckListContainerResultType
 }
 
-export class AuthenticityCheckListContainer extends ContainerAbstract implements IAuthenticityCheckListContainer {
+/**
+* Container for iAuthenticityCheckList
+*/
+export class AuthenticityCheckListContainer extends aContainer implements iAuthenticityCheckListContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
-  * @type {Light}
+  * @type {number}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(Light)
-  @Default(Light.OFF)
-  light: Light
+  @IsInt()
+  @Default(eLights.OFF)
+  light: number
 
-  /** @internal */
+  /**
+  * @internal
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -40,7 +67,9 @@ export class AuthenticityCheckListContainer extends ContainerAbstract implements
   @Default(0)
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -48,31 +77,46 @@ export class AuthenticityCheckListContainer extends ContainerAbstract implements
   buf_length: number
 
   /**
-  * Result type stored in this container (one of ResultType identifiers)
-  * @type {ResultType.AUTHENTICITY | ResultType.FINGER_PRINT_COMPARISON | ResultType.PORTRAIT_COMPARISON}
+  * Result type stored in this container
+  * @type {tAuthenticityCheckListContainerResultType}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(ResultType)
+  @IsEnum(eResultType)
   @IsIn([
-    ResultType.AUTHENTICITY,
-    ResultType.FINGER_PRINT_COMPARISON,
-    ResultType.PORTRAIT_COMPARISON
+    eResultType.AUTHENTICITY,
+    eResultType.FINGER_PRINT_COMPARISON,
+    eResultType.PORTRAIT_COMPARISON
   ])
-  result_type:
-    ResultType.AUTHENTICITY |
-    ResultType.FINGER_PRINT_COMPARISON |
-    ResultType.PORTRAIT_COMPARISON
+  result_type: tAuthenticityCheckListContainerResultType
 
+  /**
+  * Structure serves for storing the result of document authenticity check using the images for different lighting
+  * schemes and passing it to the user application.
+  * @type {AuthenticityCheckList}
+  */
   @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => AuthenticityCheckList)
   AuthenticityCheckList: AuthenticityCheckList
 
-  static fromPlain = (input: unknown) => plainToClass(AuthenticityCheckListContainer, input)
+  /**
+  * Create new instance of AuthenticityCheckListContainer from plain object
+  *
+  * @param {unknown} input - plain object
+  * @returns {AuthenticityCheckListContainer}
+  */
+  static fromPlain = (input: unknown): AuthenticityCheckListContainer => plainToClass(AuthenticityCheckListContainer, input)
 
-  static isValid = (instance: AuthenticityCheckListContainer): true | never => {
+  /**
+  * Check if the given instance is a valid AuthenticityCheckListContainer
+  *
+  * @param {AuthenticityCheckListContainer} instance - instance to check
+  * @throws {DocReaderTypeError}
+  * @returns {true | never}
+  */
+  static validate = (instance: AuthenticityCheckListContainer): true | never => {
     const errors = validateSync(instance)
 
     if (errors.length) {

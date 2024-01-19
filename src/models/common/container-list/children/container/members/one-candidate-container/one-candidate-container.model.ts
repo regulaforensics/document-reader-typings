@@ -2,28 +2,52 @@ import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSyn
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Light, ResultType } from '@/consts'
+import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
-import { OneCandidate } from './children'
-import { ContainerAbstract } from '../../container.abstract'
+import { iOneCandidate, OneCandidate } from './children'
+import { aContainer } from '../../container.abstract'
 
 
-export interface IOneCandidateContainer extends ContainerAbstract {
-  OneCandidate?: OneCandidate
+/**
+* Result type of OneCandidateContainer
+*/
+export type tOneCandidateContainerResultType = eResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE
+
+/**
+* Container for iOneCandidate
+*/
+export interface iOneCandidateContainer extends aContainer {
+  /**
+  * Contains information on one candidate document when determining the document type
+  * @type {iOneCandidate|undefined}
+  */
+  OneCandidate?: iOneCandidate
+
+  /**
+  * Result type stored in this container
+  * @type {tOneCandidateContainerResultType}
+  */
+  result_type: tOneCandidateContainerResultType
 }
 
-export class OneCandidateContainer extends ContainerAbstract implements IOneCandidateContainer {
+/**
+* Container for OneCandidate
+*/
+export class OneCandidateContainer extends aContainer implements iOneCandidateContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
-  * @type {Light}
+  * @type {number}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(Light)
-  @Default(Light.OFF)
-  light: Light
+  @IsInt()
+  @Default(eLights.OFF)
+  light: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -40,7 +64,10 @@ export class OneCandidateContainer extends ContainerAbstract implements IOneCand
   @Default(0)
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -48,26 +75,41 @@ export class OneCandidateContainer extends ContainerAbstract implements IOneCand
   buf_length: number
 
   /**
-  * Result type stored in this container (one of ResultType identifiers)
-  * @type {ResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE}
+  * Result type stored in this container
+  * @type {tOneCandidateContainerResultType}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(ResultType)
-  @IsIn([
-    ResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE,
-  ])
-  result_type: ResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE
+  @IsEnum(eResultType)
+  @IsIn([eResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE])
+  result_type: tOneCandidateContainerResultType
 
+  /**
+  * Contains information on one candidate document when determining the document type
+  * @type {OneCandidate|undefined}
+  */
   @Expose()
   @IsOptional()
   @ValidateNested()
   @Type(() => OneCandidate)
   OneCandidate?: OneCandidate
 
-  static fromPlain = (input: unknown) => plainToClass(OneCandidateContainer, input)
+  /**
+  * Creates an instance of OneCandidateContainer from plain object
+  *
+  * @param {unknown} input - plain object
+  * @returns {OneCandidateContainer}
+  */
+  static fromPlain = (input: unknown): OneCandidateContainer => plainToClass(OneCandidateContainer, input)
 
-  static isValid = (instance: OneCandidateContainer): true | never => {
+  /**
+  * Check if the given instance of OneCandidateContainer is valid
+  *
+  * @param {OneCandidateContainer} instance - instance of OneCandidateContainer to validate
+  * @throws {DocReaderTypeError} - if the given instance of OneCandidateContainer is not valid
+  * @returns {true | never} - true if OneCandidateContainer is valid
+  */
+  static validate = (instance: OneCandidateContainer): true | never => {
     const errors = validateSync(instance)
 
     if (errors.length) {

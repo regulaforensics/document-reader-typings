@@ -2,7 +2,7 @@
 * The constants of the enumeration identify the system for measuring distances and weight.
 * @enum {number}
 */
-export enum MeasureSystem {
+export enum eMeasureSystem {
   /**
   * Metric system of measurement, where things are measured in meters and grams
   */

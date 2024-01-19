@@ -1,28 +1,52 @@
-import { IsDefined, IsEnum, IsInt, IsString, validateSync } from 'class-validator'
+import { IsDefined, IsEnum, IsIn, IsInt, IsString, validateSync } from 'class-validator'
 import { Expose, plainToClass } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { Light } from '@/consts'
+import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
-import { ContainerAbstract } from '../../container.abstract'
+import { aContainer } from '../../container.abstract'
 
 
-export interface ILicenseContainer extends ContainerAbstract {
+/**
+* Result type of LicenseContainer
+*/
+export type tLicenseContainerResultType = eResultType.LICENSE
+
+/**
+* Container for License base64 string
+*/
+export interface iLicenseContainer extends aContainer {
+  /**
+  * License base64 encoded string
+  * @type {string}
+  */
   License: string
+
+  /**
+  * Result type stored in this container
+  * @type {tLicenseContainerResultType}
+  */
+  result_type: tLicenseContainerResultType
 }
 
-export class LicenseContainer extends ContainerAbstract implements ILicenseContainer {
+/**
+* Container for License
+*/
+export class LicenseContainer extends aContainer implements iLicenseContainer {
   /**
   * Lighting scheme code for the given result (used only for images)
-  * @type {Light}
+  * @type {number}
   */
   @Expose()
   @IsDefined()
-  @IsEnum(Light)
-  @Default(Light.OFF)
-  light: Light
+  @IsInt()
+  @Default(eLights.OFF)
+  light: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  */
   @Expose()
   @IsDefined()
   @IsInt()
@@ -39,21 +63,51 @@ export class LicenseContainer extends ContainerAbstract implements ILicenseConta
   @Default(0)
   page_idx: number
 
-  /** @internal */
+  /**
+  * @internal
+  * @type {number}
+  */
   @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
   buf_length: number
 
+  /**
+  * Result type stored in this container
+  * @type {tLicenseContainerResultType}
+  */
+  @Expose()
+  @IsDefined()
+  @IsEnum(eResultType)
+  @IsIn([eResultType.LICENSE])
+  result_type: tLicenseContainerResultType
+
+  /**
+  * License base64 encoded string
+  * @type {string}
+  */
   @Expose()
   @IsDefined()
   @IsString()
   License: string
 
-  static fromPlain = (input: unknown) => plainToClass(LicenseContainer, input)
+  /**
+  * Creates an instance of LicenseContainer from plain object
+  *
+  * @param {unknown} input - plain object
+  * @returns {LicenseContainer}
+  */
+  static fromPlain = (input: unknown): LicenseContainer => plainToClass(LicenseContainer, input)
 
-  static isValid = (instance: LicenseContainer): true | never => {
+  /**
+  * Check if the given instance of LicenseContainer is valid
+  *
+  * @param {LicenseContainer} instance - instance of LicenseContainer to be checked
+  * @throws {DocReaderTypeError} - if the given instance of LicenseContainer is not valid
+  * @returns {true | never} - true if the given instance of LicenseContainer is valid
+  */
+  static validate = (instance: LicenseContainer): true | never => {
     const errors = validateSync(instance)
 
     if (errors.length) {

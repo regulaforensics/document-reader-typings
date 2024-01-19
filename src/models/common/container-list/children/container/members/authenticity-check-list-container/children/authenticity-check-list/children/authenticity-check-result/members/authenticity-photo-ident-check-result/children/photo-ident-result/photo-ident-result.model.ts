@@ -1,20 +1,20 @@
 import { IsArray, IsDefined, IsEnum, IsIn, IsInt, IsNumber, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { IRectangleCoordinates, RectangleCoordinates } from '@/models/common/rectangle-coordinates'
-import { IImageData, ImageData } from '@/models/common/image-data'
-import { AuthenticityResultType, CheckDiagnose, CheckResult, Light } from '@/consts'
-import { IRawImageContainerList, RawImageContainerList } from './children'
+import { iRect, Rect } from '@/models/common/rect'
+import { iImageData, ImageData } from '@/models/common/image-data'
+import { eAuthenticity, eCheckDiagnose, eCheckResult, eLights } from '@/consts'
+import { iRawImageContainerList, RawImageContainerList } from './children'
 
 
-export interface IPhotoIdentResult {
-  Type: AuthenticityResultType.IPI | AuthenticityResultType.IR_PHOTO
-  ElementResult?: CheckResult
-  ElementDiagnose?: CheckDiagnose
-  LightIndex?: Light
-  Area?: IRectangleCoordinates
-  SourceImage?: IImageData
-  ResultImages?: IRawImageContainerList
+export interface iPhotoIdentResult {
+  Type: eAuthenticity.IPI | eAuthenticity.IR_PHOTO
+  ElementResult?: eCheckResult
+  ElementDiagnose?: eCheckDiagnose
+  LightIndex?: eLights
+  Area?: iRect
+  SourceImage?: iImageData
+  ResultImages?: iRawImageContainerList
   FieldTypesCount?: number
   FieldTypesList?: number[]
   Step?: number
@@ -22,33 +22,33 @@ export interface IPhotoIdentResult {
   Reserved3?: number
 }
 
-export class PhotoIdentResult implements IPhotoIdentResult {
+export class PhotoIdentResult implements iPhotoIdentResult {
   @Expose()
   @IsDefined()
-  @IsIn([AuthenticityResultType.IPI, AuthenticityResultType.IR_PHOTO])
-  @IsEnum(AuthenticityResultType)
-  Type: AuthenticityResultType.IPI | AuthenticityResultType.IR_PHOTO
+  @IsIn([eAuthenticity.IPI, eAuthenticity.IR_PHOTO])
+  @IsEnum(eAuthenticity)
+  Type: eAuthenticity.IPI | eAuthenticity.IR_PHOTO
 
   @Expose()
   @IsOptional()
-  @IsEnum(CheckResult)
-  ElementResult?: CheckResult
+  @IsEnum(eCheckResult)
+  ElementResult?: eCheckResult
 
   @Expose()
   @IsOptional()
-  @IsEnum(CheckDiagnose)
-  ElementDiagnose?: CheckDiagnose
+  @IsEnum(eCheckDiagnose)
+  ElementDiagnose?: eCheckDiagnose
 
   @Expose()
   @IsOptional()
-  @IsEnum(Light)
-  LightIndex?: Light
+  @IsEnum(eLights)
+  LightIndex?: eLights
 
   @Expose()
   @IsOptional()
   @ValidateNested()
-  @Type(() => RectangleCoordinates)
-  Area?: RectangleCoordinates
+  @Type(() => Rect)
+  Area?: Rect
 
   @Expose()
   @IsOptional()

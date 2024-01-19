@@ -1,81 +1,101 @@
-import { TransformFnParams } from 'class-transformer/types/interfaces'
-
-import { AuthenticityResultType } from '@/consts'
+import { eAuthenticity } from '@/consts'
+import { isObject } from '@/helpers'
 import {
   AuthenticityFiberCheckResult,
   AuthenticityIdentCheckResult,
   AuthenticityOCRSecurityTextCheckResult,
   AuthenticityPhotoIdentCheckResult,
   AuthenticitySecurityFeatureCheckResult,
-  IAuthenticityFiberCheckResult,
-  IAuthenticityIdentCheckResult,
-  IAuthenticityOCRSecurityTextCheckResult,
-  IAuthenticityPhotoIdentCheckResult,
-  IAuthenticitySecurityFeatureCheckResult
+  iAuthenticityFiberCheckResult,
+  iAuthenticityIdentCheckResult,
+  iAuthenticityOCRSecurityTextCheckResult,
+  iAuthenticityPhotoIdentCheckResult,
+  iAuthenticitySecurityFeatureCheckResult
 } from './members'
-import { AuthenticityCheckResultAbstract } from './authenticity-check-result.abstract'
 
 
-export type AuthenticityCheckResultUnion =
+/**
+* Structure serves for storing the results of a single type
+* document authenticity check
+*/
+export type uAuthenticityCheckResult =
   AuthenticityFiberCheckResult |
   AuthenticityIdentCheckResult |
   AuthenticityOCRSecurityTextCheckResult |
   AuthenticityPhotoIdentCheckResult |
   AuthenticitySecurityFeatureCheckResult
 
-export type IAuthenticityCheckResultUnion =
-  IAuthenticityFiberCheckResult |
-  IAuthenticityIdentCheckResult |
-  IAuthenticityOCRSecurityTextCheckResult |
-  IAuthenticityPhotoIdentCheckResult |
-  IAuthenticitySecurityFeatureCheckResult
+/**
+* Structure serves for storing the results of a single type
+* document authenticity check
+*/
+export type iuAuthenticityCheckResult =
+  iAuthenticityFiberCheckResult |
+  iAuthenticityIdentCheckResult |
+  iAuthenticityOCRSecurityTextCheckResult |
+  iAuthenticityPhotoIdentCheckResult |
+  iAuthenticitySecurityFeatureCheckResult
 
-export namespace AuthenticityCheckResultUnion {
-  export const transform = ({ value }: TransformFnParams) => {
-    const result: AuthenticityCheckResultUnion[] = []
-    const items: AuthenticityCheckResultAbstract[] = value
+/**
+* Structure serves for storing the results of a single type
+* document authenticity check
+*/
+export namespace uAuthenticityCheckResult {
+  /**
+  * Transform list of unknown items to list of uAuthenticityCheckResult
+  * @internal
+  * @param {unknown[]} items - list of unknown items
+  * @returns {uAuthenticityCheckResult[]} - list of uAuthenticityCheckResult
+  */
+  export const transformList = (items: unknown[]) => {
+    const result: uAuthenticityCheckResult[] = []
 
-    items.forEach((item: AuthenticityCheckResultAbstract) => {
+    items.forEach((item) => {
+      if (!isObject(item) || !item.hasOwnProperty('Type')) {
+        return
+      }
+
+      // @ts-ignore
       const { Type } = item
 
       switch (Type) {
-        case AuthenticityResultType.UV_FIBERS:
-        case AuthenticityResultType.UV_BACKGROUND:
+        case eAuthenticity.UV_FIBERS:
+        case eAuthenticity.UV_BACKGROUND:
           result.push(AuthenticityFiberCheckResult.fromPlain(item))
           break
 
-        case AuthenticityResultType.IMAGE_PATTERN:
-        case AuthenticityResultType.IR_VISIBILITY:
-        case AuthenticityResultType.OVI:
-        case AuthenticityResultType.IR_LUMINESCENCE:
-        case AuthenticityResultType.PORTRAIT_COMPARISON:
-        case AuthenticityResultType.KINEGRAM:
-        case AuthenticityResultType.LETTER_SCREEN:
-        case AuthenticityResultType.HOLOGRAM_DETECTION:
-        case AuthenticityResultType.FINGERPRINT_COMPARISON:
-        case AuthenticityResultType.LIVENESS:
+        case eAuthenticity.IMAGE_PATTERN:
+        case eAuthenticity.IR_VISIBILITY:
+        case eAuthenticity.OVI:
+        case eAuthenticity.IR_LUMINESCENCE:
+        case eAuthenticity.PORTRAIT_COMPARISON:
+        case eAuthenticity.KINEGRAM:
+        case eAuthenticity.LETTER_SCREEN:
+        case eAuthenticity.HOLOGRAM_DETECTION:
+        case eAuthenticity.FINGERPRINT_COMPARISON:
+        case eAuthenticity.LIVENESS:
           result.push(AuthenticityIdentCheckResult.fromPlain(item))
           break
 
-        case AuthenticityResultType.OCR_SECURITY_TEXT:
+        case eAuthenticity.OCR_SECURITY_TEXT:
           result.push(AuthenticityOCRSecurityTextCheckResult.fromPlain(item))
           break
 
-        case AuthenticityResultType.IPI:
-        case AuthenticityResultType.IR_PHOTO:
+        case eAuthenticity.IPI:
+        case eAuthenticity.IR_PHOTO:
           result.push(AuthenticityPhotoIdentCheckResult.fromPlain(item))
           break
 
-        case AuthenticityResultType.UV_LUMINESCENCE:
-        case AuthenticityResultType.IR_B900:
-        case AuthenticityResultType.AXIAL_PROTECTION:
-        case AuthenticityResultType.PHOTO_EMBED_TYPE:
-        case AuthenticityResultType.HOLOGRAMS:
-        case AuthenticityResultType.PHOTO_AREA:
-        case AuthenticityResultType.BARCODE_FORMAT_CHECK:
-        case AuthenticityResultType.EXTENDED_OCR_CHECK:
-        case AuthenticityResultType.EXTENDED_MRZ_CHECK:
-        case AuthenticityResultType.STATUS_ONLY:
+        case eAuthenticity.UV_LUMINESCENCE:
+        case eAuthenticity.IR_B900:
+        case eAuthenticity.AXIAL_PROTECTION:
+        case eAuthenticity.PHOTO_EMBED_TYPE:
+        case eAuthenticity.HOLOGRAMS:
+        case eAuthenticity.PHOTO_AREA:
+        case eAuthenticity.BARCODE_FORMAT_CHECK:
+        case eAuthenticity.EXTENDED_OCR_CHECK:
+        case eAuthenticity.EXTENDED_MRZ_CHECK:
+        case eAuthenticity.STATUS_ONLY:
           result.push(AuthenticitySecurityFeatureCheckResult.fromPlain(item))
           break
       }
