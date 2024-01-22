@@ -4,6 +4,7 @@ import { Expose, plainToClass, Type } from 'class-transformer'
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
+import { ProcessResponse } from '@/models'
 import { aContainer } from '../../container.abstract'
 import { DocBarCodeInfo, iDocBarCodeInfo } from './children'
 
@@ -12,6 +13,14 @@ import { DocBarCodeInfo, iDocBarCodeInfo } from './children'
 * Result type of DocBarCodeInfoContainer
 */
 export type tDocBarCodeInfoContainerResultType = eResultType.BARCODES
+
+/**
+* Result type of DocBarCodeInfoContainer
+* @type {tDocBarCodeInfoContainerResultType[]}
+*/
+export const DocBarCodeInfoContainerResultTypes: tDocBarCodeInfoContainerResultType[] = [
+  eResultType.BARCODES,
+]
 
 /**
 * Container for iDocBarCodeInfo
@@ -80,9 +89,7 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   @Expose()
   @IsDefined()
   @IsEnum(eResultType)
-  @IsIn([
-    eResultType.BARCODES,
-  ])
+  @IsIn(DocBarCodeInfoContainerResultTypes)
   result_type: tDocBarCodeInfoContainerResultType
 
   /**
@@ -103,6 +110,23 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   * @returns {DocBarCodeInfoContainer}
   */
   static fromPlain = (input: unknown): DocBarCodeInfoContainer => plainToClass(DocBarCodeInfoContainer, input)
+
+  /**
+  * Get DocBarCodeInfoContainer from ProcessResponse
+  * @param {ProcessResponse} input - ProcessResponse object
+  * @returns {DocBarCodeInfoContainer[]}
+  */
+  static fromProcessResponse = (input: ProcessResponse): DocBarCodeInfoContainer[] => {
+    const { ContainerList } = input
+
+    if (!ContainerList) {
+      return []
+    }
+
+    return ContainerList.List.filter((container): container is DocBarCodeInfoContainer =>
+      DocBarCodeInfoContainerResultTypes.includes(<tDocBarCodeInfoContainerResultType>container.result_type)
+    )
+  }
 
   /**
   * Check if the given instance is a valid DocBarCodeInfoContainer

@@ -6,12 +6,21 @@ import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { iImageData, ImageData } from '@/models/common/image-data'
 import { aContainer } from '../../container.abstract'
+import { ProcessResponse } from '@/models'
 
 
 /**
 * Result type of RawImageContainer
 */
 export type tRawImageContainerResultType = eResultType.RAW_UNCROPPED_IMAGE
+
+/**
+* Result type of RawImageContainer
+* @type {tRawImageContainerResultType[]}
+*/
+export const RawImageContainerResultTypes: tRawImageContainerResultType[] = [
+  eResultType.RAW_UNCROPPED_IMAGE,
+]
 
 /**
 * Container for iImageData
@@ -84,7 +93,7 @@ export class RawImageContainer extends aContainer implements iRawImageContainer 
   @Expose()
   @IsDefined()
   @IsEnum(eResultType)
-  @IsIn([eResultType.RAW_UNCROPPED_IMAGE])
+  @IsIn(RawImageContainerResultTypes)
   result_type: tRawImageContainerResultType
 
   /**
@@ -104,6 +113,19 @@ export class RawImageContainer extends aContainer implements iRawImageContainer 
   * @returns {RawImageContainer}
   */
   static fromPlain = (input: unknown): RawImageContainer => plainToClass(RawImageContainer, input)
+
+  /**
+  * Get RawImageContainer from ProcessResponse
+  * @param {ProcessResponse} input - ProcessResponse object
+  * @returns {RawImageContainer[]}
+  */
+  static fromProcessResponse = (input: ProcessResponse): RawImageContainer[] => {
+    const { ContainerList } = input
+
+    return ContainerList.List.filter((container): container is RawImageContainer =>
+      RawImageContainerResultTypes.includes(<tRawImageContainerResultType>container.result_type)
+    )
+  }
 
   /**
   * Check if the given instance is valid RawImageContainer

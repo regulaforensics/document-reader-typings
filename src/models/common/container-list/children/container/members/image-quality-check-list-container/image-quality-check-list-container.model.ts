@@ -6,12 +6,21 @@ import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { aContainer } from '../../container.abstract'
 import { iImageQualityCheckList, ImageQualityCheckList } from './children'
+import { ProcessResponse } from '@/models'
 
 
 /**
 * Result type of ImageQualityCheckListContainer
 */
 export type tImageQualityCheckListContainerResultType = eResultType.INPUT_IMAGE_QUALITY
+
+/**
+* Result type of ImageQualityCheckListContainer
+* @type {tImageQualityCheckListContainerResultType[]}
+*/
+export const ImageQualityCheckListContainerResultTypes: tImageQualityCheckListContainerResultType[] = [
+  eResultType.INPUT_IMAGE_QUALITY,
+]
 
 /**
 * Container for iImageQualityCheckList
@@ -81,7 +90,7 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
   @Expose()
   @IsDefined()
   @IsEnum(eResultType)
-  @IsIn([eResultType.INPUT_IMAGE_QUALITY])
+  @IsIn(ImageQualityCheckListContainerResultTypes)
   result_type: tImageQualityCheckListContainerResultType
 
   /**
@@ -101,6 +110,19 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
   * @returns {ImageQualityCheckListContainer}
   */
   static fromPlain = (input: unknown): ImageQualityCheckListContainer => plainToClass(ImageQualityCheckListContainer, input)
+
+  /**
+  * Get ImageQualityCheckListContainer from ProcessResponse
+  * @param {ProcessResponse} input - ProcessResponse object
+  * @returns {ImageQualityCheckListContainer[]}
+  */
+  static fromProcessResponse = (input: ProcessResponse): ImageQualityCheckListContainer[] => {
+    const { ContainerList } = input
+
+    return ContainerList.List.filter((container): container is ImageQualityCheckListContainer =>
+      ImageQualityCheckListContainerResultTypes.includes(<tImageQualityCheckListContainerResultType>container.result_type)
+    )
+  }
 
   /**
   * Check if the given instance of ImageQualityCheckListContainer is valid

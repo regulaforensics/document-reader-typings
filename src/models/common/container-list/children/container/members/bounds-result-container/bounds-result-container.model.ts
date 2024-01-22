@@ -4,6 +4,7 @@ import { Expose, plainToClass, Type } from 'class-transformer'
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
+import { ProcessResponse } from '@/models'
 import { BoundsResult, iBoundsResult } from '@/models/common/bounds-result'
 import { aContainer } from '../../container.abstract'
 
@@ -12,6 +13,16 @@ import { aContainer } from '../../container.abstract'
 * Result type of BoundsResultContainer
 */
 export type tBoundsResultContainerResultType = eResultType.DOCUMENT_POSITION | eResultType.MRZ_POSITION | eResultType.BARCODE_POSITION
+
+/**
+* Result type of BoundsResultContainer
+* @type {tBoundsResultContainerResultType[]}
+*/
+export const BoundsResultContainerResultTypes: tBoundsResultContainerResultType[]= [
+  eResultType.DOCUMENT_POSITION,
+  eResultType.MRZ_POSITION,
+  eResultType.BARCODE_POSITION
+]
 
 /**
 * Container for iBoundsResult
@@ -81,11 +92,7 @@ export class BoundsResultContainer extends aContainer implements iBoundsResultCo
   @Expose()
   @IsDefined()
   @IsEnum(eResultType)
-  @IsIn([
-    eResultType.DOCUMENT_POSITION,
-    eResultType.MRZ_POSITION,
-    eResultType.BARCODE_POSITION
-  ])
+  @IsIn(BoundsResultContainerResultTypes)
   result_type: tBoundsResultContainerResultType
 
   /**
@@ -105,6 +112,22 @@ export class BoundsResultContainer extends aContainer implements iBoundsResultCo
   * @return {BoundsResultContainer}
   */
   static fromPlain = (input: unknown): BoundsResultContainer => plainToClass(BoundsResultContainer, input)
+
+  /**
+  * Get list of BoundsResultContainer from ProcessResponse
+  * @param {ProcessResponse} input - ProcessResponse object
+  * @returns {BoundsResultContainer[]}
+  */
+  static fromProcessResponse = (input: ProcessResponse): BoundsResultContainer[] => {
+    const { ContainerList } = input
+
+    if (!Array.isArray(ContainerList)) {
+      return []
+    }
+
+    return ContainerList.List.filter((container): container is BoundsResultContainer =>
+      BoundsResultContainerResultTypes.includes(<tBoundsResultContainerResultType>container.result_type))
+  }
 
   /**
   * Check if the given instance of BoundsResultContainer is valid
