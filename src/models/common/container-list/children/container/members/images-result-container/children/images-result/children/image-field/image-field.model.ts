@@ -3,6 +3,7 @@ import { Expose, Type } from 'class-transformer'
 
 import { eGraphicFieldType } from '@/consts'
 import { iImageFieldValue, ImageFieldValue } from './children'
+import { ImagesResultContainer } from '@/models'
 
 
 /**
@@ -74,4 +75,26 @@ export class ImageField implements iImageField {
   @IsDefined()
   @IsInt()
   valueCount: number
+
+  /**
+  * Get field from containers
+  * @param {ImagesResultContainer[]} containers
+  * @param {eGraphicFieldType} fieldType
+  * @returns {ImageField[]}
+  */
+  static fromContainers = (containers: ImagesResultContainer[], fieldType: eGraphicFieldType): ImageField[] => {
+    const result: ImageField[] = []
+
+    containers.forEach(container => {
+      const { Images } = container
+
+      Images.fieldList.forEach(field => {
+        if (field.fieldType === fieldType) {
+          result.push(field)
+        }
+      })
+    })
+
+    return result
+  }
 }

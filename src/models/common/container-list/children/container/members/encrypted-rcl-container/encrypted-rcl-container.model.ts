@@ -5,12 +5,21 @@ import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { aContainer } from '../../container.abstract'
+import { ProcessResponse } from '@/models'
 
 
 /**
 * Result type of EncryptedRCLContainer
 */
 export type tEncryptedRCLContainerResultType = eResultType.ENCRYPTED_RCL
+
+/**
+* Result type of EncryptedRCLContainer
+* @type {tEncryptedRCLContainerResultType[]}
+*/
+export const EncryptedRCLContainerResultTypes: tEncryptedRCLContainerResultType[] = [
+  eResultType.ENCRYPTED_RCL,
+]
 
 /**
 * Container for EncryptedRCL base64 string
@@ -80,7 +89,7 @@ export class EncryptedRCLContainer extends aContainer implements iEncryptedRCLCo
   @Expose()
   @IsDefined()
   @IsEnum(eResultType)
-  @IsIn([eResultType.ENCRYPTED_RCL])
+  @IsIn(EncryptedRCLContainerResultTypes)
   result_type: tEncryptedRCLContainerResultType
 
   /**
@@ -99,6 +108,19 @@ export class EncryptedRCLContainer extends aContainer implements iEncryptedRCLCo
   * @returns {EncryptedRCLContainer}
   */
   static fromPlain = (input: unknown): EncryptedRCLContainer => plainToClass(EncryptedRCLContainer, input)
+
+  /**
+  * Get EncryptedRCLContainer from ProcessResponse
+  * @param {ProcessResponse} input - ProcessResponse object
+  * @returns {EncryptedRCLContainer[]}
+  */
+  static fromProcessResponse = (input: ProcessResponse): EncryptedRCLContainer[] => {
+    const { ContainerList } = input
+
+    return ContainerList.List.filter((container): container is EncryptedRCLContainer =>
+      EncryptedRCLContainerResultTypes.includes(<tEncryptedRCLContainerResultType>container.result_type)
+    )
+  }
 
   /**
   * Check if the given instance of EncryptedRCLContainer is valid

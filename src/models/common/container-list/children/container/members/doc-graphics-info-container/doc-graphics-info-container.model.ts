@@ -6,6 +6,7 @@ import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { aContainer } from '../../container.abstract'
 import { DocGraphicsInfo, iDocGraphicsInfo } from './children'
+import { ProcessResponse } from '@/models'
 
 
 /**
@@ -17,6 +18,18 @@ export type tDocGraphicsInfoContainerResultType =
   eResultType.LIVE_PORTRAIT |
   eResultType.EXT_PORTRAIT |
   eResultType.FINGERPRINTS
+
+/**
+* Result type of DocGraphicsInfoContainer
+* @type {tDocGraphicsInfoContainerResultType[]}
+*/
+export const DocGraphicsInfoContainerResultTypes: tDocGraphicsInfoContainerResultType[] = [
+  eResultType.GRAPHICS,
+  eResultType.BARCODES_IMAGE_DATA,
+  eResultType.LIVE_PORTRAIT,
+  eResultType.EXT_PORTRAIT,
+  eResultType.FINGERPRINTS,
+]
 
 /**
 * Container for iDocGraphicsInfo
@@ -86,13 +99,7 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   @Expose()
   @IsDefined()
   @IsEnum(eResultType)
-  @IsIn([
-    eResultType.GRAPHICS,
-    eResultType.BARCODES_IMAGE_DATA,
-    eResultType.LIVE_PORTRAIT,
-    eResultType.EXT_PORTRAIT,
-    eResultType.FINGERPRINTS,
-  ])
+  @IsIn(DocGraphicsInfoContainerResultTypes)
   result_type: tDocGraphicsInfoContainerResultType
 
   /**
@@ -112,6 +119,19 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   * @returns {DocGraphicsInfoContainer}
   */
   static fromPlain = (input: unknown): DocGraphicsInfoContainer => plainToClass(DocGraphicsInfoContainer, input)
+
+  /**
+  * Get DocGraphicsInfoContainer from ProcessResponse
+  * @param {ProcessResponse} input - ProcessResponse object
+  * @returns {DocGraphicsInfoContainer[]}
+  */
+  static fromProcessResponse = (input: ProcessResponse): DocGraphicsInfoContainer[] => {
+    const { ContainerList } = input
+
+    return ContainerList.List.filter((container): container is DocGraphicsInfoContainer =>
+      DocGraphicsInfoContainerResultTypes.includes(<tDocGraphicsInfoContainerResultType>container.result_type)
+    )
+  }
 
   /**
   * Check if the given instance is valid DocGraphicsInfoContainer
