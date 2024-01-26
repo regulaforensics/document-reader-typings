@@ -79,23 +79,23 @@ export class ImageField implements iImageField {
   /**
   * Get field from containers
   * @param {ImagesResultContainer[]} containers
-  * @param {eGraphicFieldType|undefined} fieldType
+  * @param {eGraphicFieldType[]|undefined} fieldTypes
   * @returns {ImageField[]}
   */
-  static fromContainers = (containers: ImagesResultContainer[], fieldType?: eGraphicFieldType): ImageField[] => {
+  static fromContainers = (containers: ImagesResultContainer[], fieldTypes?: eGraphicFieldType[]): ImageField[] => {
     const result: ImageField[] = []
 
     containers.forEach(container => {
       const { Images } = container
 
       Images.fieldList.forEach(field => {
-        if (!fieldType) {
+        if (!fieldTypes) {
           result.push(field)
 
           return
         }
 
-        if (field.fieldType === fieldType) {
+        if (fieldTypes.includes(field.fieldType)) {
           result.push(field)
         }
       })
