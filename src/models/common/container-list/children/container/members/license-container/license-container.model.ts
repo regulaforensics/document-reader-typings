@@ -5,12 +5,21 @@ import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { aContainer } from '../../container.abstract'
+import { ProcessResponse } from '@/models'
 
 
 /**
 * Result type of LicenseContainer
 */
 export type tLicenseContainerResultType = eResultType.LICENSE
+
+/**
+* Result type of LicenseContainer
+* @type {tLicenseContainerResultType[]}
+*/
+export const LicenseContainerResultTypes: tLicenseContainerResultType[] = [
+  eResultType.LICENSE,
+]
 
 /**
 * Container for License base64 string
@@ -80,7 +89,7 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
   @Expose()
   @IsDefined()
   @IsEnum(eResultType)
-  @IsIn([eResultType.LICENSE])
+  @IsIn(LicenseContainerResultTypes)
   result_type: tLicenseContainerResultType
 
   /**
@@ -99,6 +108,19 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
   * @returns {LicenseContainer}
   */
   static fromPlain = (input: unknown): LicenseContainer => plainToClass(LicenseContainer, input)
+
+  /**
+  * Get LicenseContainer from ProcessResponse
+  * @param {ProcessResponse} input - ProcessResponse object
+  * @returns {LicenseContainer[]}
+  */
+  static fromProcessResponse = (input: ProcessResponse): LicenseContainer[] => {
+    const { ContainerList } = input
+
+    return ContainerList.List.filter((container): container is LicenseContainer =>
+      LicenseContainerResultTypes.includes(<tLicenseContainerResultType>container.result_type)
+    )
+  }
 
   /**
   * Check if the given instance of LicenseContainer is valid

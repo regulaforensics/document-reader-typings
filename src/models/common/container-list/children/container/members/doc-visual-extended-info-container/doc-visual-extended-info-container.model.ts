@@ -6,6 +6,7 @@ import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { DocVisualExtendedInfo, iDocVisualExtendedInfo } from '@/models/common/doc-visual-extended-info'
 import { aContainer } from '../../container.abstract'
+import { ProcessResponse } from '@/models'
 
 
 /**
@@ -16,6 +17,17 @@ export type tDocVisualExtendedInfoContainerResultType =
   eResultType.MRZ_OCR_EXTENDED |
   eResultType.BARCODES_TEXT_DATA |
   eResultType.MAGNETIC_STRIPE_TEXT_DATA
+
+/**
+* Result type of DocVisualExtendedInfoContainer
+* @type {tDocVisualExtendedInfoContainerResultType[]}
+*/
+export const DocVisualExtendedInfoContainerResultTypes: tDocVisualExtendedInfoContainerResultType[] = [
+  eResultType.VISUAL_OCR_EXTENDED,
+  eResultType.MRZ_OCR_EXTENDED,
+  eResultType.BARCODES_TEXT_DATA,
+  eResultType.MAGNETIC_STRIPE_TEXT_DATA,
+]
 
 /**
 * Container for iDocVisualExtendedInfo
@@ -85,12 +97,7 @@ export class DocVisualExtendedInfoContainer extends aContainer implements iDocVi
   @Expose()
   @IsDefined()
   @IsEnum(eResultType)
-  @IsIn([
-    eResultType.VISUAL_OCR_EXTENDED,
-    eResultType.MRZ_OCR_EXTENDED,
-    eResultType.BARCODES_TEXT_DATA,
-    eResultType.MAGNETIC_STRIPE_TEXT_DATA,
-  ])
+  @IsIn(DocVisualExtendedInfoContainerResultTypes)
   result_type: tDocVisualExtendedInfoContainerResultType
 
   /**
@@ -110,6 +117,19 @@ export class DocVisualExtendedInfoContainer extends aContainer implements iDocVi
   * @returns {DocVisualExtendedInfoContainer}
   */
   static fromPlain = (input: unknown): DocVisualExtendedInfoContainer => plainToClass(DocVisualExtendedInfoContainer, input)
+
+  /**
+  * Get DocVisualExtendedInfoContainer from ProcessResponse
+  * @param {ProcessResponse} input - ProcessResponse object
+  * @returns {DocVisualExtendedInfoContainer[]}
+  */
+  static fromProcessResponse = (input: ProcessResponse): DocVisualExtendedInfoContainer[] => {
+    const { ContainerList } = input
+
+    return ContainerList.List.filter((container): container is DocVisualExtendedInfoContainer =>
+      DocVisualExtendedInfoContainerResultTypes.includes(<tDocVisualExtendedInfoContainerResultType>container.result_type)
+    )
+  }
 
   /**
   * Check if the given instance of DocVisualExtendedInfoContainer is valid

@@ -6,12 +6,21 @@ import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { aContainer } from '../../container.abstract'
 import { iListVerifiedFields, ListVerifiedFields } from './children'
+import { ProcessResponse } from '@/models'
 
 
 /**
 * Result type of ListVerifiedFieldContainer
 */
 export type tListVerifiedFieldContainerResultType = eResultType.LEXICAL_ANALYSIS
+
+/**
+* Result type of ListVerifiedFieldContainer
+* @type {tListVerifiedFieldContainerResultType[]}
+*/
+export const ListVerifiedFieldContainerResultTypes: tListVerifiedFieldContainerResultType[] = [
+  eResultType.LEXICAL_ANALYSIS,
+]
 
 /**
 * Container for iListVerifiedFields
@@ -83,7 +92,7 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   @Expose()
   @IsDefined()
   @IsEnum(eResultType)
-  @IsIn([eResultType.LEXICAL_ANALYSIS])
+  @IsIn(ListVerifiedFieldContainerResultTypes)
   result_type: tListVerifiedFieldContainerResultType
 
   /**
@@ -105,6 +114,19 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   * @return {ListVerifiedFieldContainer}
   */
   static fromPlain = (input: unknown): ListVerifiedFieldContainer => plainToClass(ListVerifiedFieldContainer, input)
+
+  /**
+  * Get ListVerifiedFieldContainer from ProcessResponse
+  * @param {ProcessResponse} input - ProcessResponse object
+  * @return {ListVerifiedFieldContainer[]}
+  */
+  static fromProcessResponse = (input: ProcessResponse): ListVerifiedFieldContainer[] => {
+    const { ContainerList } = input
+
+    return ContainerList.List.filter((container): container is ListVerifiedFieldContainer =>
+      ListVerifiedFieldContainerResultTypes.includes(<tListVerifiedFieldContainerResultType>container.result_type)
+    )
+  }
 
   /**
   * Check if the given instance of LexicalAnalysisContainer is valid

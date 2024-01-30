@@ -6,12 +6,21 @@ import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { aContainer } from '../../container.abstract'
 import { iTextResult, TextResult } from './children'
+import { ProcessResponse } from '@/models'
 
 
 /**
 * Result type of TextResultContainer
 */
 export type tTextResultContainerResultType = eResultType.TEXT
+
+/**
+* Result type of TextResultContainer
+* @type {tTextResultContainerResultType[]}
+*/
+export const TextResultContainerResultTypes: tTextResultContainerResultType[] = [
+  eResultType.TEXT,
+]
 
 /**
 * Container for iTextResult
@@ -81,9 +90,7 @@ export class TextResultContainer extends aContainer implements iTextResultContai
   @Expose()
   @IsDefined()
   @IsEnum(eResultType)
-  @IsIn([
-    eResultType.TEXT,
-  ])
+  @IsIn(TextResultContainerResultTypes)
   result_type: tTextResultContainerResultType
 
   /**
@@ -103,6 +110,19 @@ export class TextResultContainer extends aContainer implements iTextResultContai
   * @returns {TextResultContainer}
   */
   static fromPlain = (input: unknown): TextResultContainer => plainToClass(TextResultContainer, input, { strategy: 'excludeAll' })
+
+  /**
+  * Get TextResultContainer from ProcessResponse
+  * @param {ProcessResponse} input - ProcessResponse object
+  * @returns {TextResultContainer[]}
+  */
+  static fromProcessResponse = (input: ProcessResponse): TextResultContainer[] => {
+    const { ContainerList } = input
+
+    return ContainerList.List.filter((container): container is TextResultContainer =>
+      TextResultContainerResultTypes.includes(<tTextResultContainerResultType>container.result_type)
+    )
+  }
 
   /**
   * Check if the given instance of TextContainer is valid

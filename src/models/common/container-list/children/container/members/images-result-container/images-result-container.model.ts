@@ -6,12 +6,21 @@ import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { aContainer } from '../../container.abstract'
 import { iImagesResult, ImagesResult } from './children'
+import { ProcessResponse } from '@/models'
 
 
 /**
 * Result type of ImagesResultContainer
 */
 export type tImagesResultContainerResultType = eResultType.IMAGES
+
+/**
+* Result type of ImagesResultContainer
+* @type {tImagesResultContainerResultType[]}
+*/
+export const ImagesResultContainerResultTypes: tImagesResultContainerResultType[] = [
+  eResultType.IMAGES,
+]
 
 /**
 * Container for iImagesResult
@@ -81,7 +90,7 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   @Expose()
   @IsDefined()
   @IsEnum(eResultType)
-  @IsIn([eResultType.IMAGES])
+  @IsIn(ImagesResultContainerResultTypes)
   result_type: tImagesResultContainerResultType
 
   /**
@@ -100,7 +109,20 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   * @param {unknown} input - plain object
   * @returns {ImagesResultContainer}
   */
-  static fromPlain = (input: unknown) => plainToClass(ImagesResultContainer, input)
+  static fromPlain = (input: unknown): ImagesResultContainer => plainToClass(ImagesResultContainer, input)
+
+  /**
+  * Get ImagesResultContainer from ProcessResponse
+  * @param {ProcessResponse} input - ProcessResponse object
+  * @returns {ImagesResultContainer[]}
+  */
+  static fromProcessResponse = (input: ProcessResponse): ImagesResultContainer[] => {
+    const { ContainerList } = input
+
+    return ContainerList.List.filter((container): container is ImagesResultContainer =>
+      ImagesResultContainerResultTypes.includes(<tImagesResultContainerResultType>container.result_type)
+    )
+  }
 
   /**
   * Check if the given instance satisfies the ImagesResultContainer interface

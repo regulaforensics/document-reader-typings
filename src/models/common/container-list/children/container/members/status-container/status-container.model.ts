@@ -6,12 +6,21 @@ import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { aContainer } from '../../container.abstract'
 import { iStatus, Status } from './children'
+import { ProcessResponse } from '@/models'
 
 
 /**
 * Result type of StatusContainer
 */
 export type tStatusContainerResultType = eResultType.STATUS
+
+/**
+* Result type of StatusContainer
+* @type {tStatusContainerResultType[]}
+*/
+export const StatusContainerResultTypes: tStatusContainerResultType[] = [
+  eResultType.STATUS,
+]
 
 /**
 * Container for iStatus
@@ -81,7 +90,7 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   @Expose()
   @IsDefined()
   @IsEnum(eResultType)
-  @IsIn([eResultType.STATUS])
+  @IsIn(StatusContainerResultTypes)
   result_type: tStatusContainerResultType
 
   /**
@@ -99,7 +108,20 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   * @param {unknown} input - plain object
   * @returns {StatusContainer}
   */
-  static fromPlain = (input: unknown) => plainToClass(StatusContainer, input, { strategy: 'excludeAll' })
+  static fromPlain = (input: unknown): StatusContainer => plainToClass(StatusContainer, input, { strategy: 'excludeAll' })
+
+  /**
+  * Get array of StatusContainer from ProcessResponse
+  * @param {ProcessResponse} input - instance of ProcessResponse
+  * @returns {StatusContainer[]}
+  */
+  static fromProcessResponse = (input: ProcessResponse): StatusContainer[] => {
+    const { ContainerList } = input
+
+    return ContainerList.List.filter((container): container is StatusContainer =>
+      StatusContainerResultTypes.includes(<tStatusContainerResultType>container.result_type)
+    )
+  }
 
   /**
   * Validate instance of StatusContainer for conformance with the schema.

@@ -6,12 +6,21 @@ import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { iOneCandidate, OneCandidate } from './children'
 import { aContainer } from '../../container.abstract'
+import { ProcessResponse } from '@/models'
 
 
 /**
 * Result type of OneCandidateContainer
 */
 export type tOneCandidateContainerResultType = eResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE
+
+/**
+* Result type of OneCandidateContainer
+* @type {tOneCandidateContainerResultType[]}
+*/
+export const OneCandidateContainerResultTypes: tOneCandidateContainerResultType[] = [
+  eResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE,
+]
 
 /**
 * Container for iOneCandidate
@@ -81,7 +90,7 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   @Expose()
   @IsDefined()
   @IsEnum(eResultType)
-  @IsIn([eResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE])
+  @IsIn(OneCandidateContainerResultTypes)
   result_type: tOneCandidateContainerResultType
 
   /**
@@ -101,6 +110,19 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   * @returns {OneCandidateContainer}
   */
   static fromPlain = (input: unknown): OneCandidateContainer => plainToClass(OneCandidateContainer, input)
+
+  /**
+  * Get OneCandidateContainer from ProcessResponse
+  * @param {ProcessResponse} input - ProcessResponse object
+  * @returns {OneCandidateContainer[]}
+  */
+  static fromProcessResponse = (input: ProcessResponse): OneCandidateContainer[] => {
+    const { ContainerList } = input
+
+    return ContainerList.List.filter((container): container is OneCandidateContainer =>
+      OneCandidateContainerResultTypes.includes(<tOneCandidateContainerResultType>container.result_type)
+    )
+  }
 
   /**
   * Check if the given instance of OneCandidateContainer is valid

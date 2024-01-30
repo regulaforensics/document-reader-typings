@@ -5,6 +5,7 @@ import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
 import { aContainer } from '../../container.abstract'
+import { ProcessResponse } from '@/models'
 import { AuthenticityCheckList, iAuthenticityCheckList } from './children'
 
 
@@ -15,6 +16,16 @@ export type tAuthenticityCheckListContainerResultType =
   eResultType.AUTHENTICITY |
   eResultType.FINGER_PRINT_COMPARISON |
   eResultType.PORTRAIT_COMPARISON
+
+/**
+* Result type of AuthenticityCheckListContainer
+* @type {tAuthenticityCheckListContainerResultType[]}
+*/
+export const AuthenticityCheckListContainerResultTypes: tAuthenticityCheckListContainerResultType[] = [
+  eResultType.AUTHENTICITY,
+  eResultType.FINGER_PRINT_COMPARISON,
+  eResultType.PORTRAIT_COMPARISON
+]
 
 /**
 * Container for iAuthenticityCheckList
@@ -83,11 +94,7 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   @Expose()
   @IsDefined()
   @IsEnum(eResultType)
-  @IsIn([
-    eResultType.AUTHENTICITY,
-    eResultType.FINGER_PRINT_COMPARISON,
-    eResultType.PORTRAIT_COMPARISON
-  ])
+  @IsIn(AuthenticityCheckListContainerResultTypes)
   result_type: tAuthenticityCheckListContainerResultType
 
   /**
@@ -108,6 +115,22 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   * @returns {AuthenticityCheckListContainer}
   */
   static fromPlain = (input: unknown): AuthenticityCheckListContainer => plainToClass(AuthenticityCheckListContainer, input)
+
+  /**
+  * Get list of AuthenticityCheckListContainer from ProcessResponse
+  * @param {ProcessResponse} input - ProcessResponse with containers
+  * @returns {AuthenticityCheckListContainer[]}
+  */
+  static fromProcessResponse = (input: ProcessResponse): AuthenticityCheckListContainer[] => {
+    const { ContainerList } = input
+
+    if (!ContainerList) {
+      return []
+    }
+
+    return ContainerList.List.filter((container): container is AuthenticityCheckListContainer =>
+      AuthenticityCheckListContainerResultTypes.includes(<tAuthenticityCheckListContainerResultType>container.result_type))
+  }
 
   /**
   * Check if the given instance is a valid AuthenticityCheckListContainer

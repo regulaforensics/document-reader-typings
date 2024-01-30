@@ -10,6 +10,7 @@ import {
   TextValidity,
   TextFieldValue
 } from './children'
+import { TextResultContainer } from '@/models'
 
 
 /**
@@ -188,4 +189,26 @@ export class TextField implements iTextField {
   @ValidateNested({ each: true })
   @Type(() => TextValidity)
   validityList: TextValidity[]
+
+  /**
+  * Get text fields from containers
+  * @param {TextResultContainer[]} containers
+  * @param {eVisualFieldType} fieldType
+  * @returns {TextField[]}
+  */
+  static fromContainers = (containers: TextResultContainer[], fieldType: eVisualFieldType): TextField[] => {
+    const result: TextField[] = []
+
+    containers.forEach(container => {
+      const { Text } = container
+
+      Text.fieldList.forEach(field => {
+        if (field.fieldType === fieldType) {
+          result.push(field)
+        }
+      })
+    })
+
+    return result
+  }
 }
