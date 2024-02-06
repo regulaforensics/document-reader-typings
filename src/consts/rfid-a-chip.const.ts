@@ -29,5 +29,8 @@ export enum eRfidAChip {
   */
   MIFARE_DES_FIRE = 4,
 
-  MifareProX = 5,
+  /**
+  * MIFARE® ProX or SmartMX xD(T)
+  */
+  MIFARE_PROX = 5,
 }
