@@ -51,6 +51,12 @@ export interface iIdentResult {
   ElementDiagnose: eCheckDiagnose
 
   /**
+  * Element with which errors are checked
+  * @type {eSecurityFeatureType}
+  */
+  ElementType: eSecurityFeatureType
+
+  /**
   * Lighting scheme identifier
   * @type {eLights}
   */
@@ -79,12 +85,6 @@ export interface iIdentResult {
   * @type {number}
   */
   PercentValue: number
-
-  /**
-   * Element with which errors are checked
-   * @type {eSecurityFeatureType}
-   */
-  ElementType: eSecurityFeatureType
 
   /**
   * List of located areas
@@ -138,49 +138,85 @@ export class IdentResult implements iIdentResult {
     eAuthenticity.FINGERPRINT_COMPARISON |
     eAuthenticity.LIVENESS
 
+  /**
+  * Element responsible for the results of the checks
+  * @type {eCheckResult}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsEnum(eCheckResult)
-  ElementResult?: eCheckResult
+  ElementResult: eCheckResult
 
+  /**
+  * Element with which errors are checked
+  * @type {eCheckDiagnose}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsEnum(eCheckDiagnose)
-  ElementDiagnose?: eCheckDiagnose
+  ElementDiagnose: eCheckDiagnose
 
+  /**
+  * Element with which errors are checked
+  * @type {eSecurityFeatureType}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsEnum(eSecurityFeatureType)
-  ElementType?: eSecurityFeatureType
+  ElementType: eSecurityFeatureType
 
+  /**
+  * Lighting scheme identifier
+  * @type {eLights}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsEnum(eLights)
-  LightIndex?: eLights
+  LightIndex: eLights
 
+  /**
+  * Checked fragment area coordinates
+  * @type {Rect}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @ValidateNested()
   @Type(() => Rect)
-  Area?: Rect
+  Area: Rect
 
+  /**
+  * Located image fragment
+  * @type {ImageData}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @ValidateNested()
   @Type(() => ImageData)
-  Image?: ImageData
+  Image: ImageData
 
+  /**
+  * Expected image pattern
+  * @type {ImageData}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @ValidateNested()
   @Type(() => ImageData)
-  EtalonImage?: ImageData
+  EtalonImage: ImageData
 
+  /**
+  * Identity percent of the etalon and sample image
+  * @type {number}
+  */
   @Expose()
   @IsOptional()
   @IsNumber()
-  PercentValue?: number
+  PercentValue: number
 
+  /**
+  * List of located areas
+  * @type {iAreaArray|undefined}
+  */
   @Expose()
   @IsOptional()
   @ValidateNested()

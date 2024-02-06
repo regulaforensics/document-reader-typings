@@ -6,14 +6,13 @@ import {
   IsEnum,
   IsIn,
   IsInt,
-  IsNumber,
   ValidateNested,
   validateSync
 } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { iRect, Rect } from '@/models/common/rect'
-import { eAuthenticity, eCheckDiagnose, eCheckResult, eLights } from '@/consts'
+import { eAuthenticity, eCheckDiagnose, eCheckResult } from '@/consts'
 import { Default } from '@/decorators'
 import { DocReaderTypeError } from '@/errors'
 

@@ -146,4 +146,31 @@ export enum eResultType {
   * Result type for TextResultContainer
   */
   TEXT = 36,
+
+  /**
+  * A list of binary data arrays, which are an exact
+  * copy of the data stored in the memory of RFID-chip, without any additional formatting
+  */
+  RFID_RAW_DATA = 101,
+
+  /**
+  * List of logically selected document filling fields that contain text information
+  */
+  RFID_TEXT_DATA = 102,
+
+  /**
+  * List of logically selected document filling fields that contain graphics information
+  */
+  RFID_IMAGE_DATA = 103,
+
+  /**
+  * List of structures, corresponding to different types of data. They do not contain service information used when formatting
+  * to record in the chip memory
+  */
+  RFID_BINARY_DATA = 104,
+
+  /**
+  * List of binary data arrays, which are an exact copy of the graphic files stored in the memory of RFID-chip
+  */
+  RFID_ORIGINAL_GRAPHICS = 105,
 }

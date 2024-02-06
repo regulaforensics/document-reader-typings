@@ -2,7 +2,7 @@
 * The enumeration contains possible values of notification codes returned during the RFID chip processing.
 * @enum {number}
 */
-export enum eParsingNotificationCodes {
+export enum eLDSParsingNotificationCodes {
   /**
   * ASN certificate: Incorrect version
   */

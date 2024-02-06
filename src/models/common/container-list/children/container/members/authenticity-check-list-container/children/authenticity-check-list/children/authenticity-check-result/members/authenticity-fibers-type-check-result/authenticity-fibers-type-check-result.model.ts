@@ -7,9 +7,7 @@ import { FibersType, iFibersType } from './children'
 
 
 /**
-* Structure serves for storing the results of a single type
-* document authenticity check.
-* For eAuthenticity.UV_FIBERS
+* Container for FibersType
 */
 export interface iAuthenticityFibersTypeCheckResult extends aAuthenticityCheckResult {
   /**
@@ -38,9 +36,7 @@ export interface iAuthenticityFibersTypeCheckResult extends aAuthenticityCheckRe
 }
 
 /**
-* Structure serves for storing the results of a single type
-* document authenticity check.
-* For eAuthenticity.UV_FIBERS
+* Container for FibersType
 */
 export class AuthenticityFibersTypeCheckResult extends aAuthenticityCheckResult implements iAuthenticityFibersTypeCheckResult {
   /**
