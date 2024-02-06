@@ -1,5 +1,5 @@
 {
-  "version": "0.0.24",
+  "version": "0.0.25",
   "author": "Regula Forensics, Inc.",
   "name": "@regulaforensics/document-reader-typings",
   "description": "Document Reader API typings",

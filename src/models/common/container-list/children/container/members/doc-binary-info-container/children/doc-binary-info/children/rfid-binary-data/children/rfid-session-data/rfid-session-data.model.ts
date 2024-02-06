@@ -2,7 +2,14 @@ import { IsDefined, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
 import { Default } from '@/decorators'
-import { iRfidAccessControlInfo, iRfidApplication, RfidAccessControlInfo, RfidApplication, } from './children'
+import {
+  iRfidAccessControlInfo,
+  iRfidApplication,
+  iRfidCardPropertiesExt,
+  RfidAccessControlInfo,
+  RfidApplication,
+  RfidCardPropertiesExt,
+} from './children'
 
 /**
 * Structure is used to describe the results of work with the SDK within the context of the current communication
@@ -21,6 +28,13 @@ export interface iRfidSessionData {
   * @type {iRfidAccessControlInfo[]}
   */
   AccessControls: iRfidAccessControlInfo[]
+
+  /**
+  * Structure is used to store extended information about the characteristics of the RFID-chip located in the scope
+  * of the reader
+  * @type {iRfidCardPropertiesExt}
+  */
+  CardProperties: iRfidCardPropertiesExt
 }
 
 /**
@@ -50,4 +64,15 @@ export class RfidSessionData implements iRfidSessionData {
   @Type(() => RfidAccessControlInfo)
   @Default([])
   AccessControls: RfidAccessControlInfo[]
+
+  /**
+  * Structure is used to store extended information about the characteristics of the RFID-chip located in the scope
+  * of the reader
+  * @type {RfidCardPropertiesExt}
+  */
+  @Expose()
+  @IsDefined()
+  @ValidateNested()
+  @Type(() => RfidCardPropertiesExt)
+  CardProperties: RfidCardPropertiesExt
 }
