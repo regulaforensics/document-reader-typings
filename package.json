@@ -1,5 +1,5 @@
 {
-  "version": "0.0.23",
+  "version": "0.0.25",
   "author": "Regula Forensics, Inc.",
   "name": "@regulaforensics/document-reader-typings",
   "description": "Document Reader API typings",
@@ -16,11 +16,11 @@
   },
   "devDependencies": {
     "@types/deep-diff": "^1.0.5",
-    "@types/jest": "^29.5.11",
+    "@types/jest": "^29.5.12",
     "@types/lodash": "^4.14.202",
-    "@types/node": "^20.11.7",
+    "@types/node": "^20.11.16",
     "deep-diff": "^1.0.2",
-    "dotenv": "^16.3.1",
+    "dotenv": "^16.4.1",
     "jest": "^29.7.0",
     "lodash": "^4.17.21",
     "ts-jest": "^29.1.2",

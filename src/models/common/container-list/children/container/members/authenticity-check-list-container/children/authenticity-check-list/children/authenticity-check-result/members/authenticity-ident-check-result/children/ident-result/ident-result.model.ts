@@ -7,7 +7,25 @@ import { AreaArray, iAreaArray } from '@/models/common/area-array'
 import { eAuthenticity, eCheckDiagnose, eCheckResult, eLights, eSecurityFeatureType } from '@/consts'
 
 
+/**
+* Structure serves for storing the result of a single security element of following type checking
+*/
 export interface iIdentResult {
+  /**
+   * Type of the performed check
+   * @type {
+   *   eAuthenticity.IMAGE_PATTERN |
+   *   eAuthenticity.IR_VISIBILITY |
+   *   eAuthenticity.OVI |
+   *   eAuthenticity.IR_LUMINESCENCE |
+   *   eAuthenticity.PORTRAIT_COMPARISON |
+   *   eAuthenticity.KINEGRAM |
+   *   eAuthenticity.LETTER_SCREEN |
+   *   eAuthenticity.HOLOGRAM_DETECTION |
+   *   eAuthenticity.FINGERPRINT_COMPARISON |
+   *   eAuthenticity.LIVENESS
+   * }
+   */
   Type:
     eAuthenticity.IMAGE_PATTERN |
     eAuthenticity.IR_VISIBILITY |
@@ -19,18 +37,81 @@ export interface iIdentResult {
     eAuthenticity.HOLOGRAM_DETECTION |
     eAuthenticity.FINGERPRINT_COMPARISON |
     eAuthenticity.LIVENESS
-  ElementResult?: eCheckResult
-  ElementDiagnose?: eCheckDiagnose
-  ElementType?: eSecurityFeatureType
-  LightIndex?: eLights
-  Area?: iRect
-  Image?: iImageData
-  EtalonImage?: iImageData
-  PercentValue?: number
+
+  /**
+  * Element responsible for the results of the checks
+  * @type {eCheckResult}
+  */
+  ElementResult: eCheckResult
+
+  /**
+  * Element with which errors are checked
+  * @type {eCheckDiagnose}
+  */
+  ElementDiagnose: eCheckDiagnose
+
+  /**
+  * Element with which errors are checked
+  * @type {eSecurityFeatureType}
+  */
+  ElementType: eSecurityFeatureType
+
+  /**
+  * Lighting scheme identifier
+  * @type {eLights}
+  */
+  LightIndex: eLights
+
+  /**
+  * Checked fragment area coordinates
+  * @type {iRect}
+  */
+  Area: iRect
+
+  /**
+  * Located image fragment
+  * @type {iImageData}
+  */
+  Image: iImageData
+
+  /**
+  * Expected image pattern
+  * @type {iImageData}
+  */
+  EtalonImage: iImageData
+
+  /**
+  * Identity percent of the etalon and sample image
+  * @type {number}
+  */
+  PercentValue: number
+
+  /**
+  * List of located areas
+  * @type {iAreaArray}
+  */
   AreaList?: iAreaArray
 }
 
+/**
+* Structure serves for storing the result of a single security element of following type checking
+*/
 export class IdentResult implements iIdentResult {
+  /**
+  * Type of the performed check
+  * @type {
+  *   eAuthenticity.IMAGE_PATTERN |
+  *   eAuthenticity.IR_VISIBILITY |
+  *   eAuthenticity.OVI |
+  *   eAuthenticity.IR_LUMINESCENCE |
+  *   eAuthenticity.PORTRAIT_COMPARISON |
+  *   eAuthenticity.KINEGRAM |
+  *   eAuthenticity.LETTER_SCREEN |
+  *   eAuthenticity.HOLOGRAM_DETECTION |
+  *   eAuthenticity.FINGERPRINT_COMPARISON |
+  *   eAuthenticity.LIVENESS
+  * }
+  */
   @Expose()
   @IsDefined()
   @IsIn([
@@ -57,49 +138,85 @@ export class IdentResult implements iIdentResult {
     eAuthenticity.FINGERPRINT_COMPARISON |
     eAuthenticity.LIVENESS
 
+  /**
+  * Element responsible for the results of the checks
+  * @type {eCheckResult}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsEnum(eCheckResult)
-  ElementResult?: eCheckResult
+  ElementResult: eCheckResult
 
+  /**
+  * Element with which errors are checked
+  * @type {eCheckDiagnose}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsEnum(eCheckDiagnose)
-  ElementDiagnose?: eCheckDiagnose
+  ElementDiagnose: eCheckDiagnose
 
+  /**
+  * Element with which errors are checked
+  * @type {eSecurityFeatureType}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsEnum(eSecurityFeatureType)
-  ElementType?: eSecurityFeatureType
+  ElementType: eSecurityFeatureType
 
+  /**
+  * Lighting scheme identifier
+  * @type {eLights}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsEnum(eLights)
-  LightIndex?: eLights
+  LightIndex: eLights
 
+  /**
+  * Checked fragment area coordinates
+  * @type {Rect}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @ValidateNested()
   @Type(() => Rect)
-  Area?: Rect
+  Area: Rect
 
+  /**
+  * Located image fragment
+  * @type {ImageData}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @ValidateNested()
   @Type(() => ImageData)
-  Image?: ImageData
+  Image: ImageData
 
+  /**
+  * Expected image pattern
+  * @type {ImageData}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @ValidateNested()
   @Type(() => ImageData)
-  EtalonImage?: ImageData
+  EtalonImage: ImageData
 
+  /**
+  * Identity percent of the etalon and sample image
+  * @type {number}
+  */
   @Expose()
   @IsOptional()
   @IsNumber()
-  PercentValue?: number
+  PercentValue: number
 
+  /**
+  * List of located areas
+  * @type {iAreaArray|undefined}
+  */
   @Expose()
   @IsOptional()
   @ValidateNested()

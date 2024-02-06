@@ -80,6 +80,7 @@ export enum eAuthenticity {
 
   /**
   * UV background check
+  * @internal
   */
   UV_BACKGROUND = 16384,
 

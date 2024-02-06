@@ -1,16 +1,18 @@
 import { eResultType } from '@/consts'
 import {
   AuthenticityCheckListContainer,
-  DocBarCodeInfoContainer,
-  DocGraphicsInfoContainer,
-  RawImageContainer,
   BoundsResultContainer,
+  DocBarCodeInfoContainer,
+  DocBinaryInfoContainer,
+  DocGraphicsInfoContainer,
+  DocVisualExtendedInfoContainer,
   EncryptedRCLContainer,
   iAuthenticityCheckListContainer,
-  iDocBarCodeInfoContainer,
-  iDocGraphicsInfoContainer,
-  iRawImageContainer,
   iBoundsResultContainer,
+  iDocBarCodeInfoContainer,
+  iDocBinaryInfoContainer,
+  iDocGraphicsInfoContainer,
+  iDocVisualExtendedInfoContainer,
   iEncryptedRCLContainer,
   iImageQualityCheckListContainer,
   iImagesResultContainer,
@@ -19,14 +21,14 @@ import {
   ImageQualityCheckListContainer,
   ImagesResultContainer,
   iOneCandidateContainer,
+  iRawImageContainer,
   iStatusContainer,
-  iDocVisualExtendedInfoContainer,
   iTextResultContainer,
   LicenseContainer,
   ListVerifiedFieldContainer,
   OneCandidateContainer,
+  RawImageContainer,
   StatusContainer,
-  DocVisualExtendedInfoContainer,
   TextResultContainer
 } from './members'
 import { isObject } from '@/helpers'
@@ -45,6 +47,11 @@ export type uContainer =
   * List of barcodes found on the document
   */
   DocBarCodeInfoContainer |
+
+  /**
+  * List of RFID binary data
+  */
+  DocBinaryInfoContainer |
 
   /**
   * List of graphic fields found on the document
@@ -119,6 +126,11 @@ export type iuContainer =
   * List of barcodes found on the document
   */
   iDocBarCodeInfoContainer |
+
+  /**
+  * List of RFID binary data
+  */
+  iDocBinaryInfoContainer |
 
   /**
   * List of graphic fields found on the document
@@ -216,17 +228,22 @@ export namespace uContainer {
         case eResultType.BARCODES:
           result.push(DocBarCodeInfoContainer.fromPlain(item))
           break
+        case eResultType.RFID_BINARY_DATA:
+          result.push(DocBinaryInfoContainer.fromPlain(item))
+          break
         case eResultType.GRAPHICS:
         case eResultType.BARCODES_IMAGE_DATA:
         case eResultType.LIVE_PORTRAIT:
         case eResultType.EXT_PORTRAIT:
         case eResultType.FINGERPRINTS:
+        case eResultType.RFID_IMAGE_DATA:
           result.push(DocGraphicsInfoContainer.fromPlain(item))
           break
         case eResultType.VISUAL_OCR_EXTENDED:
         case eResultType.MRZ_OCR_EXTENDED:
         case eResultType.BARCODES_TEXT_DATA:
         case eResultType.MAGNETIC_STRIPE_TEXT_DATA:
+        case eResultType.RFID_TEXT_DATA:
           result.push(DocVisualExtendedInfoContainer.fromPlain(item))
           break
         case eResultType.ENCRYPTED_RCL:

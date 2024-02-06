@@ -2,25 +2,98 @@ import { IsDefined, IsEnum, IsIn, IsNumber, IsOptional, IsString, ValidateNested
 import { Expose, Type } from 'class-transformer'
 
 import { iRect, Rect } from '@/models/common/rect'
-import { eAuthenticity, eCheckDiagnose, eCheckResult, eSecurityCriticalFlag, eLights } from '@/consts'
+import { eAuthenticity, eCheckDiagnose, eCheckResult, eSecurityCriticalFlag, eLights, eResultType } from '@/consts'
 
 
+/**
+* Serves for storing the result of a latent text OCR and its
+* comparison with an alternative source of corresponding textual data for a single image
+* fragment
+*/
 export interface iOCRSecurityTextResult {
   Type: eAuthenticity.OCR_SECURITY_TEXT
-  ElementResult?: eCheckResult
-  ElementDiagnose?: eCheckDiagnose
-  CriticalFlag?: eSecurityCriticalFlag
-  LightType?: eLights
-  FieldRect?: iRect
-  EtalonResultType?: number
-  EtalonFieldType?: number
-  EtalonLightType?: number
-  SecurityTextResultOCR?: string
-  EtalonResultOCR?: string
-  Reserved1?: number
-  Reserved2?: number
+
+  /**
+  * Element responsible for the results of the checks
+  * @type {eCheckResult}
+  */
+  ElementResult: eCheckResult
+
+  /**
+  * Element with which errors are checked
+  * @type {eCheckDiagnose}
+  */
+  ElementDiagnose: eCheckDiagnose
+
+  /**
+  * Flag of element’s importance
+  * @type {eSecurityCriticalFlag}
+  */
+  CriticalFlag: eSecurityCriticalFlag
+
+  /**
+  * Light scheme
+  * @type {eLights}
+  */
+  LightType: eLights
+
+  /**
+  * Field area’s coordinates
+  * @type {iRect}
+  */
+  FieldRect: iRect
+
+  /**
+  * Alternative data source; allowed values from
+  * @type {eResultType.MRZ_OCR_EXTENDED | eResultType.VISUAL_OCR_EXTENDED | eResultType.BARCODES_TEXT_DATA}
+  */
+  EtalonResultType: eResultType.MRZ_OCR_EXTENDED | eResultType.VISUAL_OCR_EXTENDED | eResultType.BARCODES_TEXT_DATA
+
+  /**
+  * TODO: eRPRMFieldType
+  */
+  EtalonFieldType: number
+
+  /**
+  * Pattern field light scheme
+  * @type {number}
+  */
+  EtalonLightType: number
+
+  /**
+  * Pattern field area’s coordinates
+  * @type {iRect}
+  */
+  EtalonFieldRect: iRect
+
+  /**
+  * Field OCR result
+  * @type {string}
+  */
+  SecurityTextResultOCR: string
+
+  /**
+  * Pattern field OCR result
+  * @type {string}
+  */
+  EtalonResultOCR: string
+
+  /**
+  * @internal
+  */
+  Reserved1?: unknown
+
+  /**
+  * @internal
+  */
+  Reserved2?: unknown
 }
 
+/**
+* Serves for storing the result of a latent text OCR and its
+* comparison with an alternative source of corresponding textual data for a single image
+* fragment
+*/
 export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   @Expose()
   @IsDefined()
@@ -28,64 +101,115 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   @IsEnum(eAuthenticity)
   Type: eAuthenticity.OCR_SECURITY_TEXT
 
+  /**
+  * Element responsible for the results of the checks
+  * @type {eCheckResult}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsEnum(eCheckResult)
-  ElementResult?: eCheckResult
+  ElementResult: eCheckResult
 
+  /**
+  * Element with which errors are checked
+  * @type {eCheckDiagnose}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsEnum(eCheckDiagnose)
-  ElementDiagnose?: eCheckDiagnose
+  ElementDiagnose: eCheckDiagnose
 
+  /**
+  * Flag of element’s importance
+  * @type {eSecurityCriticalFlag}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsEnum(eSecurityCriticalFlag)
-  CriticalFlag?: eSecurityCriticalFlag
+  CriticalFlag: eSecurityCriticalFlag
 
+  /**
+  * Light scheme
+  * @type {eLights}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsEnum(eLights)
-  LightType?: eLights
+  LightType: eLights
 
+  /**
+  * Field area’s coordinates
+  * @type {Rect}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @ValidateNested()
   @Type(() => Rect)
-  FieldRect?: Rect
+  FieldRect: Rect
 
+  /**
+  * Alternative data source; allowed values from
+  * @type {eResultType.MRZ_OCR_EXTENDED | eResultType.VISUAL_OCR_EXTENDED | eResultType.BARCODES_TEXT_DATA}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
+  @IsIn([eResultType.MRZ_OCR_EXTENDED, eResultType.VISUAL_OCR_EXTENDED, eResultType.BARCODES_TEXT_DATA])
+  EtalonResultType: eResultType.MRZ_OCR_EXTENDED | eResultType.VISUAL_OCR_EXTENDED | eResultType.BARCODES_TEXT_DATA
+
+  /**
+  * TODO: eRPRMFieldType
+  */
+  @Expose()
+  @IsDefined()
   @IsNumber()
-  EtalonResultType?: number
+  EtalonFieldType: number
 
+  /**
+  * Pattern field light scheme
+  * @type {number}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsNumber()
-  EtalonFieldType?: number
+  EtalonLightType: number
 
+  /**
+  * Pattern field area’s coordinates
+  * @type {Rect}
+  */
   @Expose()
-  @IsOptional()
-  @IsNumber()
-  EtalonLightType?: number
+  @IsDefined()
+  @ValidateNested()
+  @Type(() => Rect)
+  EtalonFieldRect: Rect
 
+  /**
+  * Field OCR result
+  * @type {string}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsString()
-  SecurityTextResultOCR?: string
+  SecurityTextResultOCR: string
 
+  /**
+  * Pattern field OCR result
+  * @type {string}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsString()
-  EtalonResultOCR?: string
+  EtalonResultOCR: string
 
+  /**
+  * @internal
+  */
   @Expose()
-  @IsOptional()
-  @IsNumber()
   Reserved1?: number
 
+  /**
+  * @internal
+  */
   @Expose()
-  @IsOptional()
-  @IsNumber()
   Reserved2?: number
 }
