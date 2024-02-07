@@ -1,7 +1,8 @@
-import { IsDefined, ValidateNested } from 'class-validator'
+import { IsDefined, IsIn, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
 import { Default } from '@/decorators'
+import { eRfidErrorCodes } from '@/consts'
 import {
   iRfidAccessControlInfo,
   iRfidApplication,
@@ -15,7 +16,7 @@ import {
 * Structure is used to describe the results of work with the SDK within the context of the current communication
 * session with electronic document
 */
-export interface iRfidSessionData {
+export interface iRfidSession {
   /**
   * List of containers to store information about the involved applications of electronic document
   * @type {iRfidApplication[]}
@@ -35,13 +36,31 @@ export interface iRfidSessionData {
   * @type {iRfidCardPropertiesExt}
   */
   CardProperties: iRfidCardPropertiesExt
+
+  /**
+  * Sign of support of RFID-chip for extended length commands of reading
+  * @type {eRfidErrorCodes.ERROR_NOT_PERFORMED | eRfidErrorCodes.ERROR_NOT_AVAILABLE | eRfidErrorCodes.ERROR_NO_ERROR}
+  */
+  ExtLeSupport: eRfidErrorCodes.ERROR_NOT_PERFORMED | eRfidErrorCodes.ERROR_NOT_AVAILABLE | eRfidErrorCodes.ERROR_NO_ERROR
+
+  /**
+  * Time of processing, milliseconds
+  * @type {number}
+  */
+  ProcessTime: number
+
+  /**
+  * List of containers to store information about the read files of the root Master File
+  * @type {any[]}
+  */
+  RootFiles: any[]
 }
 
 /**
 * Structure is used to describe the results of work with the SDK within the context of the current communication
 * session with electronic document
 */
-export class RfidSessionData implements iRfidSessionData {
+export class RfidSession implements iRfidSession {
   /**
   * List of containers to store information about the involved applications of electronic document
   * @type {RfidApplication[]}
@@ -75,4 +94,36 @@ export class RfidSessionData implements iRfidSessionData {
   @ValidateNested()
   @Type(() => RfidCardPropertiesExt)
   CardProperties: RfidCardPropertiesExt
+
+  /**
+  * Sign of support of RFID-chip for extended length commands of reading
+  * @type {eRfidErrorCodes.ERROR_NOT_PERFORMED | eRfidErrorCodes.ERROR_NOT_AVAILABLE | eRfidErrorCodes.ERROR_NO_ERROR}
+  */
+  @Expose()
+  @IsDefined()
+  @IsIn([
+    eRfidErrorCodes.ERROR_NOT_PERFORMED,
+    eRfidErrorCodes.ERROR_NOT_AVAILABLE,
+    eRfidErrorCodes.ERROR_NO_ERROR
+  ])
+  @Default(eRfidErrorCodes.ERROR_NO_ERROR)
+  ExtLeSupport: eRfidErrorCodes.ERROR_NOT_PERFORMED | eRfidErrorCodes.ERROR_NOT_AVAILABLE | eRfidErrorCodes.ERROR_NO_ERROR
+
+  /**
+  * Time of processing, milliseconds
+  * @type {number}
+  */
+  @Expose()
+  @IsDefined()
+  @IsInt()
+  ProcessTime: number
+
+  /**
+  * List of containers to store information about the read files of the root Master File
+  * @type {any[]}
+  */
+  @Expose()
+  @Default([])
+  RootFiles: any[]
+
 }

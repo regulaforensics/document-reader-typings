@@ -1,7 +1,7 @@
 import { IsDefined, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { iRfidDG1, iRfidSessionData, RfidDG1, RfidSessionData } from './children'
+import { iRfidDG1, iRfidSession, RfidDG1, RfidSession } from './children'
 
 
 /**
@@ -18,9 +18,9 @@ export interface iBinaryData {
   /**
   * Structure is used to describe the results of work with the SDK within the context of the current communication
   * session with electronic document
-  * @type {iRfidSessionData}
+  * @type {iRfidSession}
   */
-  RFID_Session_Data: iRfidSessionData
+  RFID_Session_Data: iRfidSession
 }
 
 /**
@@ -41,11 +41,11 @@ export class BinaryData implements iBinaryData {
   /**
   * Structure is used to describe the results of work with the SDK within the context of the current communication
   * session with electronic document
-  * @type {RfidSessionData}
+  * @type {RfidSession}
   */
   @Expose()
   @IsDefined()
   @ValidateNested()
-  @Type(() => RfidSessionData)
-  RFID_Session_Data: RfidSessionData
+  @Type(() => RfidSession)
+  RFID_Session_Data: RfidSession
 }

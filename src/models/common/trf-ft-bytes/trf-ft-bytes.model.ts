@@ -1,4 +1,4 @@
-import { IsDefined, IsIn } from 'class-validator'
+import { IsBase64, IsDefined, IsIn, IsInt, IsString } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 import { eGraphicFieldType, eLDSParsingErrorCodes, eLDSParsingNotificationCodes, eVisualFieldType } from '@/consts'
@@ -63,11 +63,18 @@ export class TrfFtBytes implements iTrfFtBytes {
   * Length of Data array
   * @type {number}
   */
+  @Expose()
+  @IsDefined()
+  @IsInt()
   Length: number
 
   /**
   * Binary data array. Base64 encoded.
   * @type {string}
   */
+  @Expose()
+  @IsDefined()
+  @IsString()
+  @IsBase64()
   Data: string
 }

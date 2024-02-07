@@ -48,6 +48,7 @@ export class TrfFtString implements iTrfFtString {
   @Expose()
   @IsDefined()
   @IsIn([...Object.values(eGraphicFieldType), ...Object.values(eVisualFieldType)])
+  @Default(eGraphicFieldType.OTHER)
   Type: eGraphicFieldType | eVisualFieldType
 
   /**
