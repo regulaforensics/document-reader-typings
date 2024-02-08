@@ -11,6 +11,7 @@ import {
   eSecurityFeatureType,
   eIRVisibilityFlag
 } from '@/consts'
+import { Default } from '@/decorators'
 
 
 export interface iSecurityFeatureResult {
@@ -66,16 +67,19 @@ export class SecurityFeatureResult implements iSecurityFeatureResult {
   @Expose()
   @IsOptional()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   ElementResult?: eCheckResult
 
   @Expose()
   @IsOptional()
   @IsEnum(eCheckDiagnose)
+  @Default(eCheckDiagnose.UNKNOWN)
   ElementDiagnose?: eCheckDiagnose
 
   @Expose()
   @IsOptional()
   @IsEnum(eSecurityFeatureType)
+  @Default(eSecurityFeatureType.BLANK)
   ElementType?: eSecurityFeatureType
 
   @Expose()
@@ -92,6 +96,7 @@ export class SecurityFeatureResult implements iSecurityFeatureResult {
   @Expose()
   @IsOptional()
   @IsEnum(eSecurityCriticalFlag)
+  @Default(eSecurityCriticalFlag.NOT_CRITICAL)
   CriticalFlag?: eSecurityCriticalFlag
 
   @Expose()

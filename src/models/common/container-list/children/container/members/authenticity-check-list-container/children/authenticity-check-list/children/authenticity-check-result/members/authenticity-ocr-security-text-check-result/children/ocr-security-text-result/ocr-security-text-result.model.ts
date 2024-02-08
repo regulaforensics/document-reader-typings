@@ -1,8 +1,9 @@
-import { IsDefined, IsEnum, IsIn, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
+import { IsDefined, IsEnum, IsIn, IsNumber, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
+import { Default } from '@/decorators'
 import { iRect, Rect } from '@/models/common/rect'
-import { eAuthenticity, eCheckDiagnose, eCheckResult, eSecurityCriticalFlag, eLights, eResultType } from '@/consts'
+import { eAuthenticity, eCheckDiagnose, eCheckResult, eLights, eResultType, eSecurityCriticalFlag } from '@/consts'
 
 
 /**
@@ -108,6 +109,7 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   ElementResult: eCheckResult
 
   /**
@@ -117,6 +119,7 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckDiagnose)
+  @Default(eCheckDiagnose.UNKNOWN)
   ElementDiagnose: eCheckDiagnose
 
   /**
@@ -126,6 +129,7 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   @Expose()
   @IsDefined()
   @IsEnum(eSecurityCriticalFlag)
+  @Default(eSecurityCriticalFlag.NOT_CRITICAL)
   CriticalFlag: eSecurityCriticalFlag
 
   /**
@@ -135,6 +139,7 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   @Expose()
   @IsDefined()
   @IsEnum(eLights)
+  @Default(eLights.OFF)
   LightType: eLights
 
   /**

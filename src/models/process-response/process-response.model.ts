@@ -1,4 +1,14 @@
-import { IsDefined, IsEnum, IsInt, IsOptional, IsString, Min, ValidateNested, validateSync } from 'class-validator'
+import {
+  IsBase64,
+  IsDefined,
+  IsEnum,
+  IsInt,
+  IsOptional,
+  IsString,
+  Min,
+  ValidateNested,
+  validateSync
+} from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { eProcessingStatus, eRfidPresence } from '@/consts'
@@ -108,6 +118,7 @@ export class ProcessResponse implements iProcessResponse {
   @Expose()
   @IsOptional()
   @IsString()
+  @IsBase64()
   log?: string
 
   /**

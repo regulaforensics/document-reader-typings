@@ -136,6 +136,7 @@ export class FibersType implements iFibersType {
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => Rect)
+  @Default([])
   RectArray: Rect[]
 
   /**
@@ -146,6 +147,7 @@ export class FibersType implements iFibersType {
   @IsDefined()
   @IsArray()
   @IsInt({ each: true })
+  @Default([])
   Width: number[]
 
   /**
@@ -156,6 +158,7 @@ export class FibersType implements iFibersType {
   @IsDefined()
   @IsArray()
   @IsInt({ each: true })
+  @Default([])
   Length: number[]
 
   /**
@@ -166,6 +169,7 @@ export class FibersType implements iFibersType {
   @IsDefined()
   @IsArray()
   @IsInt({ each: true })
+  @Default([])
   Area: number[]
 
   /**

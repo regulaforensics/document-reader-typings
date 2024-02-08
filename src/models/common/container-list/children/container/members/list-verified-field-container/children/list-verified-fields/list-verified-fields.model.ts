@@ -1,6 +1,7 @@
 import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
+import { Default } from '@/decorators'
 import { iVerifiedFieldMap, VerifiedFieldMap } from './children'
 
 
@@ -47,5 +48,6 @@ export class ListVerifiedFields implements iListVerifiedFields {
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => VerifiedFieldMap)
+  @Default([])
   pFieldMaps: VerifiedFieldMap[]
 }

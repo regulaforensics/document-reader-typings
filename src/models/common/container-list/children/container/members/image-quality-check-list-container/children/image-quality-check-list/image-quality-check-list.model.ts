@@ -1,8 +1,9 @@
-import { IsDefined, IsEnum, IsInt, ValidateNested } from 'class-validator'
+import { IsArray, IsDefined, IsEnum, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
 import { eCheckResult } from '@/consts'
 import { iImageQualityCheck, ImageQualityCheck } from './children'
+import { Default } from '@/decorators'
 
 
 /**
@@ -49,6 +50,8 @@ export class ImageQualityCheckList implements iImageQualityCheckList {
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => ImageQualityCheck)
+  @IsArray()
+  @Default([])
   List: ImageQualityCheck[]
 
   /**

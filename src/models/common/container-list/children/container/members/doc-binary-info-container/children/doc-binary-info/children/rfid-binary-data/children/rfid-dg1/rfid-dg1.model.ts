@@ -128,6 +128,7 @@ export class RfidDG1 implements iRfidDG1 {
   @Expose()
   @IsDefined()
   @IsEnum(eDocFormat)
+  @Default(eDocFormat.UNKNOWN)
   DocumentID: eDocFormat
 
   /**

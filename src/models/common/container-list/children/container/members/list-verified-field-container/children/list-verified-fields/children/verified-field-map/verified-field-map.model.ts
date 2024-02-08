@@ -2,6 +2,7 @@ import { ArrayMaxSize, ArrayMinSize, IsArray, IsDefined, IsEnum, IsOptional, IsS
 import { Expose } from 'class-transformer'
 
 import { eLCID, eVisualFieldType, eFieldVerificationResult } from '@/consts'
+import { Default } from '@/decorators'
 
 
 /**
@@ -79,6 +80,7 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   @Expose()
   @IsDefined()
   @IsEnum(eVisualFieldType)
+  @Default(eVisualFieldType.OTHER)
   wFieldType: eVisualFieldType
 
   /**
@@ -88,6 +90,7 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   @Expose()
   @IsOptional()
   @IsEnum(eLCID)
+  @Default(eLCID.LATIN)
   wLCID: eLCID
 
   /**

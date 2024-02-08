@@ -2,6 +2,7 @@ import { IsArray, IsDefined, IsEnum, IsIn, IsInt, ValidateNested } from 'class-v
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { eAuthenticity, eCheckResult } from '@/consts'
+import { Default } from '@/decorators'
 import { aAuthenticityCheckResult } from '../../authenticity-check-result.abstract'
 import { FibersType, iFibersType } from './children'
 
@@ -56,6 +57,7 @@ export class AuthenticityFibersTypeCheckResult extends aAuthenticityCheckResult 
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   Result: eCheckResult
 
   /**
@@ -67,6 +69,7 @@ export class AuthenticityFibersTypeCheckResult extends aAuthenticityCheckResult 
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => FibersType)
+  @Default([])
   List: FibersType[]
 
   /**

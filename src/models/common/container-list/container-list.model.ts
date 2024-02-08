@@ -1,6 +1,7 @@
 import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Transform } from 'class-transformer'
 
+import { Default } from '@/decorators'
 import { iuContainer, uContainer } from './children'
 
 
@@ -33,5 +34,6 @@ export class ContainerList implements iContainerList {
   @IsArray()
   @ValidateNested({ each: true })
   @Transform(({ obj }) => uContainer.transformList(obj.List), { toClassOnly: true })
+  @Default([])
   List: uContainer[]
 }

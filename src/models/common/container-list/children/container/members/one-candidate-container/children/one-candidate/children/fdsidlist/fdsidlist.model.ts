@@ -115,6 +115,7 @@ export class FDSIDList implements iFDSIDList {
   @IsDefined()
   @IsArray()
   @IsInt({ each: true })
+  @Default([])
   List: number[]
 
   /**
@@ -124,6 +125,7 @@ export class FDSIDList implements iFDSIDList {
   @Expose()
   @IsDefined()
   @IsEnum(eDocType)
+  @Default(eDocType.NOT_DEFINED)
   dType: eDocType
 
   /**

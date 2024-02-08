@@ -1,15 +1,21 @@
-import { IsDefined, IsIn, IsInt, ValidateNested } from 'class-validator'
+import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
 import { Default } from '@/decorators'
-import { eRfidErrorCodes } from '@/consts'
+import { eRfidAuthenticationProcedureType, eRfidErrorCodes } from '@/consts'
 import {
   iRfidAccessControlInfo,
+  iRfidAccessKey,
   iRfidApplication,
   iRfidCardPropertiesExt,
+  iRfidSecurityObject,
+  iRfidTerminal,
   RfidAccessControlInfo,
+  RfidAccessKey,
   RfidApplication,
   RfidCardPropertiesExt,
+  RfidSecurityObject,
+  RfidTerminal,
 } from './children'
 
 /**
@@ -17,6 +23,35 @@ import {
 * session with electronic document
 */
 export interface iRfidSession {
+  /**
+  * Sign of virtual session when working with loaded data from a previous communication session
+  * with the electronic document
+  * @type {any}
+  * @internal
+  */
+  VirtualMode: any
+
+  /**
+  * Text SDKVersion value in format 'A.B' (e.g. "3.1")
+  * @type {any}
+  * @internal
+  */
+  SDKVersion: any
+
+  /**
+  * Text DriverVersion value in format ‘A.B.C.D’ (e.g. "6.2.5.4")
+  * @type {any}
+  * @internal
+  */
+  DriverVersion: any
+
+  /**
+  * Text FirmwareVersion value in format 'A.B' (e.g. "5.19")
+  * @type {any}
+  * @internal
+  */
+  FirmwareVersion: any
+
   /**
   * List of containers to store information about the involved applications of electronic document
   * @type {iRfidApplication[]}
@@ -54,6 +89,42 @@ export interface iRfidSession {
   * @type {any[]}
   */
   RootFiles: any[]
+
+  /**
+  * Total number of bytes transmitted to the RFID-chip during the whole session
+  * @type {number}
+  */
+  TotalBytesSent: number
+
+  /**
+  * Total number of bytes received from the RFID-chip during the whole session
+  * @type {number}
+  */
+  TotalBytesReceived: number
+
+  /**
+  * Used secure data access key
+  * @type {iRfidAccessKey}
+  */
+  Session_key: iRfidAccessKey
+
+  /**
+  * Terminal configuration
+  * @type {iRfidTerminal}
+  */
+  Session_terminal: iRfidTerminal
+
+  /**
+  * Type of performed document authentication procedure
+  * @type {eRfidAuthenticationProcedureType}
+  */
+  Session_procedure: eRfidAuthenticationProcedureType
+
+  /**
+  * List of containers to store information about the detected document security objects
+  * @type {iRfidSecurityObject[]}
+  */
+  SecurityObjects: iRfidSecurityObject[]
 }
 
 /**
@@ -61,6 +132,39 @@ export interface iRfidSession {
 * session with electronic document
 */
 export class RfidSession implements iRfidSession {
+  /**
+  * Sign of virtual session when working with loaded data from a previous communication session
+  * with the electronic document
+  * @type {any}
+  * @internal
+  */
+  @Expose()
+  VirtualMode: any
+
+  /**
+  * Text SDKVersion value in format 'A.B' (e.g. "3.1")
+  * @type {any}
+  * @internal
+  */
+  @Expose()
+  SDKVersion: any
+
+  /**
+  * Text DriverVersion value in format ‘A.B.C.D’ (e.g. "6.2.5.4")
+  * @type {any}
+  * @internal
+  */
+  @Expose()
+  DriverVersion: any
+
+  /**
+  * Text FirmwareVersion value in format 'A.B' (e.g. "5.19")
+  * @type {any}
+  * @internal
+  */
+  @Expose()
+  FirmwareVersion: any
+
   /**
   * List of containers to store information about the involved applications of electronic document
   * @type {RfidApplication[]}
@@ -126,4 +230,61 @@ export class RfidSession implements iRfidSession {
   @Default([])
   RootFiles: any[]
 
+  /**
+  * Total number of bytes transmitted to the RFID-chip during the whole session
+  * @type {number}
+  */
+  @Expose()
+  @IsDefined()
+  @IsInt()
+  TotalBytesSent: number
+
+  /**
+  * Total number of bytes received from the RFID-chip during the whole session
+  * @type {number}
+  */
+  @Expose()
+  @IsDefined()
+  @IsInt()
+  TotalBytesReceived: number
+
+  /**
+  * Used secure data access key
+  * @type {RfidAccessKey}
+  */
+  @Expose()
+  @IsDefined()
+  @ValidateNested()
+  @Type(() => RfidAccessKey)
+  Session_key: RfidAccessKey
+
+  /**
+  * Terminal configuration
+  * @type {RfidTerminal}
+  */
+  @Expose()
+  @IsDefined()
+  @ValidateNested()
+  @Type(() => RfidTerminal)
+  Session_terminal: RfidTerminal
+
+  /**
+  * Type of performed document authentication procedure
+  * @type {eRfidAuthenticationProcedureType}
+  */
+  @Expose()
+  @IsDefined()
+  @IsEnum(eRfidAuthenticationProcedureType)
+  @Default(eRfidAuthenticationProcedureType.UNDEFINED)
+  Session_procedure: eRfidAuthenticationProcedureType
+
+  /**
+  * List of containers to store information about the detected document security objects
+  * @type {RfidSecurityObject[]}
+  */
+  @Expose()
+  @IsDefined()
+  @ValidateNested({ each: true })
+  @Type(() => RfidSecurityObject)
+  SecurityObjects: RfidSecurityObject[]
 }

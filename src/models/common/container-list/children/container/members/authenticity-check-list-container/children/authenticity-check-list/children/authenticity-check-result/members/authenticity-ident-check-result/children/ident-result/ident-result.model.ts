@@ -1,6 +1,7 @@
 import { IsDefined, IsEnum, IsIn, IsNumber, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
+import { Default } from '@/decorators'
 import { iRect, Rect } from '@/models/common/rect'
 import { iImageData, ImageData } from '@/models/common/image-data'
 import { AreaArray, iAreaArray } from '@/models/common/area-array'
@@ -145,6 +146,7 @@ export class IdentResult implements iIdentResult {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   ElementResult: eCheckResult
 
   /**
@@ -154,6 +156,7 @@ export class IdentResult implements iIdentResult {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckDiagnose)
+  @Default(eCheckDiagnose.UNKNOWN)
   ElementDiagnose: eCheckDiagnose
 
   /**
@@ -163,6 +166,7 @@ export class IdentResult implements iIdentResult {
   @Expose()
   @IsDefined()
   @IsEnum(eSecurityFeatureType)
+  @Default(eSecurityFeatureType.BLANK)
   ElementType: eSecurityFeatureType
 
   /**
@@ -172,6 +176,7 @@ export class IdentResult implements iIdentResult {
   @Expose()
   @IsDefined()
   @IsEnum(eLights)
+  @Default(eLights.OFF)
   LightIndex: eLights
 
   /**

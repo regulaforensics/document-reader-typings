@@ -151,6 +151,7 @@ export class RfidCardPropertiesExt implements iRfidCardPropertiesExt {
   @Expose()
   @IsDefined()
   @IsEnum(eRfidAChip)
+  @Default(eRfidAChip.UNKNOWN)
   ChipType_A: eRfidAChip
 
   /**

@@ -1,7 +1,8 @@
-import { IsDefined, IsInt, ValidateNested } from 'class-validator'
+import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { iImageSource, iImageField, ImageSource, ImageField } from './children'
+import { Default } from '@/decorators'
+import { iImageField, iImageSource, ImageField, ImageSource } from './children'
 
 
 /**
@@ -63,6 +64,8 @@ export class ImagesResult implements iImagesResult {
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => ImageSource)
+  @IsArray()
+  @Default([])
   availableSourceList: ImageSource[]
 
   /**
@@ -73,5 +76,7 @@ export class ImagesResult implements iImagesResult {
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => ImageField)
+  @IsArray()
+  @Default([])
   fieldList: ImageField[]
 }

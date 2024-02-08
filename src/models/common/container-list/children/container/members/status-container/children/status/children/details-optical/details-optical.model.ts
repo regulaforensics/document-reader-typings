@@ -2,6 +2,7 @@ import { IsDefined, IsEnum, IsInt } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 import { eCheckResult } from '@/consts'
+import { Default } from '@/decorators'
 
 
 /**
@@ -70,6 +71,7 @@ export class DetailsOptical implements iDetailsOptical {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   overallStatus: eCheckResult
 
   /**
@@ -79,6 +81,7 @@ export class DetailsOptical implements iDetailsOptical {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   docType: eCheckResult
 
   /**
@@ -88,6 +91,7 @@ export class DetailsOptical implements iDetailsOptical {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   expiry: eCheckResult
 
   /**
@@ -97,6 +101,7 @@ export class DetailsOptical implements iDetailsOptical {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   imageQA: eCheckResult
 
   /**
@@ -106,6 +111,7 @@ export class DetailsOptical implements iDetailsOptical {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   mrz: eCheckResult
 
   /**
@@ -124,6 +130,7 @@ export class DetailsOptical implements iDetailsOptical {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   security: eCheckResult
 
   /**
@@ -134,5 +141,6 @@ export class DetailsOptical implements iDetailsOptical {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   text: eCheckResult
 }

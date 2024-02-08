@@ -2,6 +2,7 @@ import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
 import { iRect, Rect } from '@/models/common/rect'
+import { Default } from '@/decorators'
 import { iPointArray, PointArray } from './children'
 
 
@@ -50,6 +51,7 @@ export class AreaArray implements iAreaArray {
   @ValidateNested({ each: true })
   @IsArray()
   @Type(() => Rect)
+  @Default([])
   List: Rect[]
 
   /**
@@ -61,5 +63,6 @@ export class AreaArray implements iAreaArray {
   @ValidateNested({ each: true })
   @IsArray()
   @Type(() => PointArray)
+  @Default([])
   Points: PointArray[]
 }

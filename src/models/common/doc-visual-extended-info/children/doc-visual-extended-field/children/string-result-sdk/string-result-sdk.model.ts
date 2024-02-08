@@ -2,6 +2,7 @@ import { IsArray, IsDefined, IsInt, IsOptional, ValidateNested } from 'class-val
 import { Expose, Type } from 'class-transformer'
 
 import { iSymbolResult, SymbolResult } from './children'
+import { Default } from '@/decorators'
 
 
 /**
@@ -57,5 +58,6 @@ export class StringResultSDK implements iStringResultSDK {
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => SymbolResult)
+  @Default([])
   StringResult: SymbolResult[]
 }

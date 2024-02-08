@@ -1,4 +1,4 @@
-import { IsInt, IsOptional } from 'class-validator'
+import { IsArray, IsInt, IsOptional } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 
@@ -30,6 +30,7 @@ export class PerDocumentConfig implements iPerDocumentConfig {
   @Expose()
   @IsOptional()
   @IsInt({ each: true })
+  @IsArray()
   docID?: number[]
 
   /**

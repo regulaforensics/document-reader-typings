@@ -32,7 +32,7 @@ export class RfidAttributeData implements iRfidAttributeData {
   Type: string
 
   /**
-  * Contents of the identifier in the format "S1 (S2)", where S1 – attribute name, S2 – identifier (OID string);
+  * Attribute binary data. Base64 encoded.
   * @type {string}
   */
   @Expose()

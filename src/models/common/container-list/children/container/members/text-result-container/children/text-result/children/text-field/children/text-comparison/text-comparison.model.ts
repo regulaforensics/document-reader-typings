@@ -2,6 +2,7 @@ import { IsDefined, IsEnum } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 import { eCheckResult, eSource } from '@/consts'
+import { Default } from '@/decorators'
 
 
 /**
@@ -56,5 +57,6 @@ export class TextComparison implements iTextComparison {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   status: eCheckResult
 }

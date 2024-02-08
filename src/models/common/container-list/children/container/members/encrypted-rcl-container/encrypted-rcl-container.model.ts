@@ -1,4 +1,4 @@
-import { IsDefined, IsEnum, IsIn, IsInt, IsString, validateSync } from 'class-validator'
+import { IsBase64, IsDefined, IsEnum, IsIn, IsInt, IsString, validateSync } from 'class-validator'
 import { Expose, plainToClass } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
@@ -99,6 +99,7 @@ export class EncryptedRCLContainer extends aContainer implements iEncryptedRCLCo
   @Expose()
   @IsDefined()
   @IsString()
+  @IsBase64()
   EncryptedRCL: string
 
   /**

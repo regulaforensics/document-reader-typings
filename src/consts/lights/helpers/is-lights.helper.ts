@@ -2,8 +2,7 @@ import { eLights } from '../lights.const'
 
 
 /**
-* Check if value is Lights
-*
+* Check if value is eLights
 * @param {any} lights
 * @returns {boolean} isLights
 */

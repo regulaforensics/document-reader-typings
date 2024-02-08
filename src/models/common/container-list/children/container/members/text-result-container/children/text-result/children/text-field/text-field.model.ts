@@ -1,16 +1,17 @@
-import { IsDefined, IsEnum, IsString, ValidateNested } from 'class-validator'
+import { IsArray, IsDefined, IsEnum, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
 import { eCheckResult, eLCID, eVisualFieldType } from '@/consts'
-import {
-  TextComparison,
-  iTextComparison,
-  iTextValidity,
-  iTextFieldValue,
-  TextValidity,
-  TextFieldValue
-} from './children'
 import { TextResultContainer } from '@/models'
+import { Default } from '@/decorators'
+import {
+  iTextComparison,
+  iTextFieldValue,
+  iTextValidity,
+  TextComparison,
+  TextFieldValue,
+  TextValidity
+} from './children'
 
 
 /**
@@ -113,6 +114,7 @@ export class TextField implements iTextField {
   @Expose()
   @IsDefined()
   @IsEnum(eLCID)
+  @Default(eLCID.LATIN)
   lcid: eLCID
 
   /**
@@ -131,6 +133,7 @@ export class TextField implements iTextField {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   status: eCheckResult
 
   /**
@@ -140,6 +143,7 @@ export class TextField implements iTextField {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   comparisonStatus: eCheckResult
 
   /**
@@ -150,6 +154,8 @@ export class TextField implements iTextField {
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => TextComparison)
+  @Default([])
+  @IsArray()
   comparisonList: TextComparison[]
 
   /**
@@ -169,6 +175,8 @@ export class TextField implements iTextField {
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => TextFieldValue)
+  @Default([])
+  @IsArray()
   valueList: TextFieldValue[]
 
   /**
@@ -178,6 +186,7 @@ export class TextField implements iTextField {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   validityStatus: eCheckResult
 
   /**
@@ -188,6 +197,8 @@ export class TextField implements iTextField {
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => TextValidity)
+  @Default([])
+  @IsArray()
   validityList: TextValidity[]
 
   /**

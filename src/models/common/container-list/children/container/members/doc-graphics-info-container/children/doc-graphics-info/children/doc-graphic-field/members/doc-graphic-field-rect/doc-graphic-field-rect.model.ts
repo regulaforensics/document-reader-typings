@@ -2,6 +2,7 @@ import { IsDefined, IsEnum, IsString, ValidateNested } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { eGraphicFieldType } from '@/consts'
+import { Default } from '@/decorators'
 import { ImageData } from '@/models/common/image-data'
 import { iRect, Rect } from '@/models/common/rect'
 import { aDocGraphicField } from '../../doc-graphic-field.abstract'
@@ -29,6 +30,7 @@ export class DocGraphicFieldRect extends aDocGraphicField implements iDocGraphic
   @Expose()
   @IsDefined()
   @IsEnum(eGraphicFieldType)
+  @Default(eGraphicFieldType.OTHER)
   FieldType: eGraphicFieldType
 
   /**

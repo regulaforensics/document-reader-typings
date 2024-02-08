@@ -53,6 +53,7 @@ export class RfidAccessControlInfo implements iRfidAccessControlInfo {
   @Expose()
   @IsDefined()
   @IsEnum(eRfidAccessControlProcedureType)
+  @Default(eRfidAccessControlProcedureType.UNDEFINED)
   Type: eRfidAccessControlProcedureType
 
   /**

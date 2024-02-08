@@ -1,4 +1,4 @@
-import { IsEnum, IsOptional } from 'class-validator'
+import { IsArray, IsEnum, IsOptional } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 import { eLDSParsingNotificationCodes } from '@/consts'
@@ -26,5 +26,6 @@ export class ProcessParamsRfid implements iProcessParamsRfid {
   @Expose()
   @IsOptional()
   @IsEnum(eLDSParsingNotificationCodes, { each: true })
+  @IsArray()
   paSensitiveCodesDisable?: eLDSParsingNotificationCodes[]
 }

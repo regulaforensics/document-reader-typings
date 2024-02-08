@@ -2,8 +2,9 @@ import { IsArray, IsDefined, IsEnum, IsIn, IsInt, ValidateNested } from 'class-v
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { eAuthenticity, eCheckResult } from '@/consts'
-import { aAuthenticityCheckResult } from '../../authenticity-check-result.abstract'
+import { Default } from '@/decorators'
 import { IdentResult, iIdentResult } from './children'
+import { aAuthenticityCheckResult } from '../../authenticity-check-result.abstract'
 
 
 /**
@@ -109,6 +110,7 @@ export class AuthenticityIdentCheckResult extends aAuthenticityCheckResult imple
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   Result: eCheckResult
 
   /**
@@ -120,6 +122,7 @@ export class AuthenticityIdentCheckResult extends aAuthenticityCheckResult imple
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => IdentResult)
+  @Default([])
   List: IdentResult[]
 
   /**

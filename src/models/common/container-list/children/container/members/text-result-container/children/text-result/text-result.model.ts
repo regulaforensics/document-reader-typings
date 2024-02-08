@@ -1,8 +1,9 @@
-import { IsDefined, IsEnum, IsString, ValidateNested } from 'class-validator'
+import { IsArray, IsDefined, IsEnum, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
 import { eCheckResult } from '@/consts'
-import { iTextSource, iTextField, TextSource, TextField } from './children'
+import { Default } from '@/decorators'
+import { iTextField, iTextSource, TextField, TextSource } from './children'
 
 
 /**
@@ -57,6 +58,7 @@ export class TextResult implements iTextResult {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   status: eCheckResult
 
   /**
@@ -66,6 +68,7 @@ export class TextResult implements iTextResult {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   validityStatus: eCheckResult
 
   /**
@@ -75,6 +78,7 @@ export class TextResult implements iTextResult {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   comparisonStatus: eCheckResult
 
   /**
@@ -94,6 +98,8 @@ export class TextResult implements iTextResult {
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => TextField)
+  @Default([])
+  @IsArray()
   fieldList: TextField[]
 
   /**
@@ -104,5 +110,7 @@ export class TextResult implements iTextResult {
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => TextSource)
+  @Default([])
+  @IsArray()
   availableSourceList: TextSource[]
 }

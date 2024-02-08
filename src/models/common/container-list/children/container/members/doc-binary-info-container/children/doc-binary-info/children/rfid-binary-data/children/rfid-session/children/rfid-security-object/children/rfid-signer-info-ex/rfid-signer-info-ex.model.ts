@@ -1,4 +1,4 @@
-import { IsArray, IsDefined, IsEnum, IsIn, IsNumber, IsString, ValidateNested } from 'class-validator'
+import { IsArray, IsBase64, IsDefined, IsEnum, IsIn, IsNumber, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
 import { eLDSParsingErrorCodes, eRfidErrorCodes } from '@/consts'
@@ -196,6 +196,7 @@ export class RfidSignerInfoEx implements iRfidSignerInfoEx {
   @Type(() => RfidCertificateEx)
   @ValidateNested({ each: true })
   @IsArray()
+  @Default([])
   CertificateChain: RfidCertificateEx[]
 
   /**
@@ -205,6 +206,7 @@ export class RfidSignerInfoEx implements iRfidSignerInfoEx {
   @Expose()
   @IsDefined()
   @IsString()
+  @IsBase64()
   DataToHash: string
 
   /**
@@ -216,5 +218,6 @@ export class RfidSignerInfoEx implements iRfidSignerInfoEx {
   @IsDefined()
   @IsEnum(eLDSParsingErrorCodes, { each: true })
   @Default([])
+  @IsArray()
   Notifications: eLDSParsingErrorCodes[]
 }

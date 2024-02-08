@@ -2,6 +2,7 @@ import { IsArray, IsDefined, IsInt, IsOptional, ValidateNested } from 'class-val
 import { Expose, Type } from 'class-transformer'
 
 import { iRect, Rect } from '@/models/common/rect'
+import { Default } from '@/decorators'
 import { iSymbolCandidate, SymbolCandidate } from './children'
 
 
@@ -68,6 +69,7 @@ export class SymbolResult implements iSymbolResult {
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => SymbolCandidate)
+  @Default([])
   ListOfCandidates: SymbolCandidate[]
 
   /**

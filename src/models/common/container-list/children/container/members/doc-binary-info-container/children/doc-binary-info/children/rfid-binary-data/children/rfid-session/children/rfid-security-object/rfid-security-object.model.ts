@@ -1,4 +1,4 @@
-import { IsDefined, IsEnum, IsInt, IsNumber, IsString } from 'class-validator'
+import { IsArray, IsDefined, IsEnum, IsInt, IsNumber, IsString } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
 import { eLDSParsingErrorCodes } from '@/consts'
@@ -81,6 +81,7 @@ export class RfidSecurityObject implements iRfidSecurityObject {
   @IsDefined()
   @IsEnum(eLDSParsingErrorCodes, { each: true })
   @Default([])
+  @IsArray()
   Notifications: eLDSParsingErrorCodes[]
 
   /**
@@ -90,5 +91,7 @@ export class RfidSecurityObject implements iRfidSecurityObject {
   @Expose()
   @IsDefined()
   @Type(() => RfidSignerInfoEx)
+  @IsArray()
+  @Default([])
   SignerInfos: RfidSignerInfoEx[]
 }
