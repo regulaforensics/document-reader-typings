@@ -73,6 +73,7 @@ export class ImageQualityCheck implements iImageQualityCheck {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   result: eCheckResult
 
   /**

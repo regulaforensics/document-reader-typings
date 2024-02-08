@@ -1,4 +1,4 @@
-import { IsDefined, IsEnum, IsInt, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
+import { IsArray, IsDefined, IsEnum, IsInt, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
 import { iRect, Rect } from '@/models/common/rect'
@@ -105,6 +105,7 @@ export class TextFieldValue implements iTextFieldValue {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   originalValidity: eCheckResult
 
   /**
@@ -154,5 +155,6 @@ export class TextFieldValue implements iTextFieldValue {
   @IsOptional()
   @ValidateNested({ each: true })
   @Type(() => TextSymbol)
+  @IsArray()
   originalSymbols?: TextSymbol[]
 }

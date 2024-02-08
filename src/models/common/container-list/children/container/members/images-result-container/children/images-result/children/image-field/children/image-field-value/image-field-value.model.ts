@@ -1,9 +1,10 @@
-import { IsDefined, IsEnum, IsInt, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
+import { IsBase64, IsDefined, IsEnum, IsInt, IsOptional, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
 import { eLights, eSource } from '@/consts'
 import { iRfidOrigin, RfidOrigin } from '@/models/common/rfid-origin'
 import { iRect, Rect } from '@/models/common/rect'
+import { Default } from '@/decorators'
 
 
 /**
@@ -76,6 +77,7 @@ export class ImageFieldValue implements iImageFieldValue {
   @Expose()
   @IsDefined()
   @IsString()
+  @IsBase64()
   value: string
 
   /**
@@ -85,6 +87,7 @@ export class ImageFieldValue implements iImageFieldValue {
   @Expose()
   @IsDefined()
   @IsString()
+  @IsBase64()
   originalValue: string
 
   /**
@@ -121,6 +124,7 @@ export class ImageFieldValue implements iImageFieldValue {
   @Expose()
   @IsDefined()
   @IsEnum(eLights)
+  @Default(eLights.OFF)
   lightIndex: eLights
 
   /**

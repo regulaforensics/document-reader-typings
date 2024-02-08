@@ -1,6 +1,7 @@
 export * from './authenticity-check-list-container'
 export * from './bounds-result-container'
 export * from './doc-bar-code-info-container'
+export * from './doc-binary-info-container'
 export * from './doc-graphics-info-container'
 export * from './doc-visual-extended-info-container'
 export * from './encrypted-rcl-container'

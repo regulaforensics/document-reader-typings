@@ -2,6 +2,7 @@ import { IsArray, IsDefined, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
 import { iPoint, Point } from '@/models/common/point'
+import { Default } from '@/decorators'
 
 
 /**
@@ -28,5 +29,6 @@ export class PointArray implements iPointArray {
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => Point)
+  @Default([])
   PointsList: Point[]
 }

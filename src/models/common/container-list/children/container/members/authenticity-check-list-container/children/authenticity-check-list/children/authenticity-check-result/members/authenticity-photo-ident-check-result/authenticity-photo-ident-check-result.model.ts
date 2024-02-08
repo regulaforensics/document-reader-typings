@@ -2,6 +2,7 @@ import { IsArray, IsDefined, IsEnum, IsIn, ValidateNested } from 'class-validato
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { eAuthenticity, eCheckResult } from '@/consts'
+import { Default } from '@/decorators'
 import { aAuthenticityCheckResult } from '../../authenticity-check-result.abstract'
 import { iPhotoIdentResult, PhotoIdentResult } from './children'
 
@@ -22,6 +23,7 @@ export class AuthenticityPhotoIdentCheckResult extends aAuthenticityCheckResult 
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   Result: eCheckResult
 
   @Expose()
@@ -29,6 +31,7 @@ export class AuthenticityPhotoIdentCheckResult extends aAuthenticityCheckResult 
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => PhotoIdentResult)
+  @Default([])
   List: PhotoIdentResult[]
 
   static fromPlain = (plain: unknown): AuthenticityPhotoIdentCheckResult => plainToClass(AuthenticityPhotoIdentCheckResult, plain)

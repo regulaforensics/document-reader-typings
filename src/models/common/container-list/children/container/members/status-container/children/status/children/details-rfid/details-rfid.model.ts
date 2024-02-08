@@ -2,6 +2,7 @@ import { IsDefined, IsEnum } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 import { eCheckResult } from '@/consts'
+import { Default } from '@/decorators'
 
 
 /**
@@ -68,6 +69,7 @@ export class DetailsRFID implements iDetailsRFID {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   overallStatus: eCheckResult
 
   /**
@@ -78,6 +80,7 @@ export class DetailsRFID implements iDetailsRFID {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   AA: eCheckResult
 
   /**
@@ -87,6 +90,7 @@ export class DetailsRFID implements iDetailsRFID {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   BAC: eCheckResult
 
   /**
@@ -97,6 +101,7 @@ export class DetailsRFID implements iDetailsRFID {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   CA: eCheckResult
 
   /**
@@ -107,6 +112,7 @@ export class DetailsRFID implements iDetailsRFID {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   PA: eCheckResult
 
   /**
@@ -117,6 +123,7 @@ export class DetailsRFID implements iDetailsRFID {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   PACE: eCheckResult
 
   /**
@@ -127,5 +134,6 @@ export class DetailsRFID implements iDetailsRFID {
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   TA: eCheckResult
 }

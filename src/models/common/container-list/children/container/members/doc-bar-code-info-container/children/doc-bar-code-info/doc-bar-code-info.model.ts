@@ -2,6 +2,7 @@ import { IsArray, IsDefined, IsInt, IsOptional, ValidateNested } from 'class-val
 import { Expose, Type } from 'class-transformer'
 
 import { iDocBarCodeField, DocBarCodeField } from './children'
+import { Default } from '@/decorators'
 
 /**
 * Structure serves for storing and passing to the user application of results of bar-codes areas search on the scanned
@@ -44,5 +45,6 @@ export class DocBarCodeInfo implements iDocBarCodeInfo {
   @ValidateNested({ each: true })
   @Type(() => DocBarCodeField)
   @IsArray()
+  @Default([])
   pArrayFields: DocBarCodeField[]
 }

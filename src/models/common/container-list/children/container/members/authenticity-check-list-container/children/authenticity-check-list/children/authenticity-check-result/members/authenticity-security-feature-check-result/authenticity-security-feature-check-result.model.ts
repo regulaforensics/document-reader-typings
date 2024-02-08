@@ -2,6 +2,7 @@ import { IsArray, IsDefined, IsEnum, IsIn, ValidateNested } from 'class-validato
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { eAuthenticity, eCheckResult } from '@/consts'
+import { Default } from '@/decorators'
 import { aAuthenticityCheckResult } from '../../authenticity-check-result.abstract'
 import { iSecurityFeatureResult, SecurityFeatureResult } from './children'
 
@@ -53,6 +54,7 @@ export class AuthenticitySecurityFeatureCheckResult extends aAuthenticityCheckRe
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
+  @Default(eCheckResult.WAS_NOT_DONE)
   Result: eCheckResult
 
   @Expose()
@@ -60,6 +62,7 @@ export class AuthenticitySecurityFeatureCheckResult extends aAuthenticityCheckRe
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => SecurityFeatureResult)
+  @Default([])
   List: SecurityFeatureResult[]
 
   static fromPlain = (plain: unknown): AuthenticitySecurityFeatureCheckResult => plainToClass(AuthenticitySecurityFeatureCheckResult, plain)

@@ -2,6 +2,7 @@ import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Transform } from 'class-transformer'
 
 import { iuDocVisualExtendedField, uDocVisualExtendedField } from './children'
+import { Default } from '@/decorators'
 
 
 /**
@@ -43,5 +44,6 @@ export class DocVisualExtendedInfo implements iDocVisualExtendedInfo {
   @IsArray()
   @ValidateNested({ each: true })
   @Transform(({ obj }) => uDocVisualExtendedField.transformList(obj.pArrayFields), { toClassOnly: true })
+  @Default([])
   pArrayFields: uDocVisualExtendedField[]
 }

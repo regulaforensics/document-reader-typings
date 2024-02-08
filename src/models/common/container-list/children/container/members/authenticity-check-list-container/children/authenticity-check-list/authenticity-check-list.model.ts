@@ -1,6 +1,7 @@
 import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Transform } from 'class-transformer'
 
+import { Default } from '@/decorators'
 import { iuAuthenticityCheckResult, uAuthenticityCheckResult } from './children'
 
 
@@ -44,5 +45,6 @@ export class AuthenticityCheckList implements iAuthenticityCheckList {
   @ValidateNested({ each: true })
   @Transform(({ obj }) => uAuthenticityCheckResult.transformList(obj.List), { toClassOnly: true })
   @IsArray()
+  @Default([])
   List: uAuthenticityCheckResult[]
 }

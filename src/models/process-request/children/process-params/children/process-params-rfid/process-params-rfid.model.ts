@@ -1,7 +1,7 @@
-import { IsEnum, IsOptional } from 'class-validator'
+import { IsArray, IsEnum, IsOptional } from 'class-validator'
 import { Expose } from 'class-transformer'
 
-import { eParsingNotificationCodes } from '@/consts'
+import { eLDSParsingNotificationCodes } from '@/consts'
 
 
 /**
@@ -10,9 +10,9 @@ import { eParsingNotificationCodes } from '@/consts'
 export interface iProcessParamsRfid {
   /**
   * A list of notification codes that should be ignored during passive authentication (PA)
-  * @type {eParsingNotificationCodes[]|undefined}
+  * @type {eLDSParsingNotificationCodes[]|undefined}
   */
-  paSensitiveCodesDisable?: eParsingNotificationCodes[]
+  paSensitiveCodesDisable?: eLDSParsingNotificationCodes[]
 }
 
 /**
@@ -21,10 +21,11 @@ export interface iProcessParamsRfid {
 export class ProcessParamsRfid implements iProcessParamsRfid {
   /**
   * A list of notification codes that should be ignored during passive authentication (PA)
-  * @type {eParsingNotificationCodes[]|undefined}
+  * @type {eLDSParsingNotificationCodes[]|undefined}
   */
   @Expose()
   @IsOptional()
-  @IsEnum(eParsingNotificationCodes, { each: true })
-  paSensitiveCodesDisable?: eParsingNotificationCodes[]
+  @IsEnum(eLDSParsingNotificationCodes, { each: true })
+  @IsArray()
+  paSensitiveCodesDisable?: eLDSParsingNotificationCodes[]
 }

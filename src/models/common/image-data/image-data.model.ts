@@ -1,4 +1,4 @@
-import { IsDefined, IsString } from 'class-validator'
+import { IsBase64, IsDefined, IsString } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 
@@ -24,5 +24,6 @@ export class ImageData implements iImageData {
   @Expose()
   @IsString()
   @IsDefined()
+  @IsBase64()
   image: string
 }

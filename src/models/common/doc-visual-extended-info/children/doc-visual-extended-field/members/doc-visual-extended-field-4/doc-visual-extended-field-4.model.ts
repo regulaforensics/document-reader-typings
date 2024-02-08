@@ -4,6 +4,7 @@ import { Expose, plainToClass, Type } from 'class-transformer'
 import { eLCID, eRfidDataGroupTypeTag, eVisualFieldType } from '@/consts'
 import { iStringResultSDK, StringResultSDK } from '../../children'
 import { aDocVisualExtendedField } from '../../doc-visual-extended-field.abstract'
+import { Default } from '@/decorators'
 
 
 /**
@@ -193,6 +194,7 @@ export class DocVisualExtendedField4 extends aDocVisualExtendedField implements 
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => StringResultSDK)
+  @Default([])
   StringsResult: StringResultSDK[]
 
   /**

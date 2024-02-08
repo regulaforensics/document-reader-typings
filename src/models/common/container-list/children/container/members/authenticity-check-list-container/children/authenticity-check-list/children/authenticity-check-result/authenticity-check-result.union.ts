@@ -1,12 +1,12 @@
 import { eAuthenticity } from '@/consts'
 import { isObject } from '@/helpers'
 import {
-  AuthenticityFiberCheckResult,
+  AuthenticityFibersTypeCheckResult,
   AuthenticityIdentCheckResult,
   AuthenticityOCRSecurityTextCheckResult,
   AuthenticityPhotoIdentCheckResult,
   AuthenticitySecurityFeatureCheckResult,
-  iAuthenticityFiberCheckResult,
+  iAuthenticityFibersTypeCheckResult,
   iAuthenticityIdentCheckResult,
   iAuthenticityOCRSecurityTextCheckResult,
   iAuthenticityPhotoIdentCheckResult,
@@ -19,7 +19,7 @@ import {
 * document authenticity check
 */
 export type uAuthenticityCheckResult =
-  AuthenticityFiberCheckResult |
+  AuthenticityFibersTypeCheckResult |
   AuthenticityIdentCheckResult |
   AuthenticityOCRSecurityTextCheckResult |
   AuthenticityPhotoIdentCheckResult |
@@ -30,7 +30,7 @@ export type uAuthenticityCheckResult =
 * document authenticity check
 */
 export type iuAuthenticityCheckResult =
-  iAuthenticityFiberCheckResult |
+  iAuthenticityFibersTypeCheckResult |
   iAuthenticityIdentCheckResult |
   iAuthenticityOCRSecurityTextCheckResult |
   iAuthenticityPhotoIdentCheckResult |
@@ -61,7 +61,7 @@ export namespace uAuthenticityCheckResult {
       switch (Type) {
         case eAuthenticity.UV_FIBERS:
         case eAuthenticity.UV_BACKGROUND:
-          result.push(AuthenticityFiberCheckResult.fromPlain(item))
+          result.push(AuthenticityFibersTypeCheckResult.fromPlain(item))
           break
 
         case eAuthenticity.IMAGE_PATTERN:

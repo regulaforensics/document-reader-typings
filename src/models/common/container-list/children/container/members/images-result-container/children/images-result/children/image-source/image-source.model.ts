@@ -1,4 +1,4 @@
-import { IsDefined, IsEnum, IsNumber, IsOptional } from 'class-validator'
+import { IsDefined, IsEnum, IsNumber } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 import { eSource } from '@/consts'

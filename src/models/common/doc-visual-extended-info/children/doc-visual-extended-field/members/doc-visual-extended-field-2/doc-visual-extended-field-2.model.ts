@@ -2,6 +2,7 @@ import { IsArray, IsDefined, IsEnum, IsInt, IsOptional, IsString, ValidateNested
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { eRfidDataGroupTypeTag, eVisualFieldType } from '@/consts'
+import { Default } from '@/decorators'
 import { iStringResultSDK, StringResultSDK } from '../../children'
 import { aDocVisualExtendedField } from '../../doc-visual-extended-field.abstract'
 
@@ -178,6 +179,7 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => StringResultSDK)
+  @Default([])
   StringsResult: StringResultSDK[]
 
   /**

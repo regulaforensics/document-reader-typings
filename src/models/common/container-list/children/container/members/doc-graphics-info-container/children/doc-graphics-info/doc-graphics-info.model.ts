@@ -1,7 +1,8 @@
-import { IsDefined, IsInt, ValidateNested } from 'class-validator'
+import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Transform } from 'class-transformer'
 
 import { uDocGraphicField, iuDocGraphicField } from './children'
+import { Default } from '@/decorators'
 
 
 /**
@@ -34,6 +35,8 @@ export class DocGraphicsInfo implements iDocGraphicsInfo {
   @IsDefined()
   @ValidateNested({ each: true })
   @Transform(({ obj }) => uDocGraphicField.transformList(obj.pArrayFields), { toClassOnly: true })
+  @IsArray()
+  @Default([])
   pArrayFields: uDocGraphicField[]
 
   /**
