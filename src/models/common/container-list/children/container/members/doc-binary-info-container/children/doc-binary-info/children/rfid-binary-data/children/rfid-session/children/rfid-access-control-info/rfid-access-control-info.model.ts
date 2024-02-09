@@ -63,7 +63,7 @@ export class RfidAccessControlInfo implements iRfidAccessControlInfo {
   @Expose()
   @IsDefined()
   @IsEnum(eRfidErrorCodes)
-  @Default(eRfidErrorCodes.ERROR_NO_ERROR)
+  @Default(eRfidErrorCodes.ERROR_NOT_PERFORMED)
   Status: eRfidErrorCodes
 
   /**
