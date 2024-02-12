@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -114,14 +114,23 @@ export class TextResultContainer extends aContainer implements iTextResultContai
   /**
   * Get TextResultContainer from ProcessResponse
   * @param {ProcessResponse} input - ProcessResponse object
-  * @returns {TextResultContainer[]}
+  * @param {boolean} asPlain - if true, returns plain object
+  * @returns {(TextResultContainer|iTextResultContainer)[]}
   */
-  static fromProcessResponse = (input: ProcessResponse): TextResultContainer[] => {
+  static fromProcessResponse(input: ProcessResponse, asPlain: true): iTextResultContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: false): TextResultContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (TextResultContainer|iTextResultContainer)[] {
     const { ContainerList } = input
 
-    return ContainerList.List.filter((container): container is TextResultContainer =>
+    const result = ContainerList.List.filter((container): container is TextResultContainer =>
       TextResultContainerResultTypes.includes(<tTextResultContainerResultType>container.result_type)
     )
+
+    if (asPlain) {
+      return result.map((container) => instanceToPlain(container) as iTextResultContainer)
+    }
+
+    return result
   }
 
   /**

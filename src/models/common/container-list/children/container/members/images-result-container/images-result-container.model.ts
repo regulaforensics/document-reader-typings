@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -114,14 +114,23 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   /**
   * Get ImagesResultContainer from ProcessResponse
   * @param {ProcessResponse} input - ProcessResponse object
-  * @returns {ImagesResultContainer[]}
+  * @param {boolean} asPlain - return as plain object
+  * @returns {(ImagesResultContainer|iImagesResultContainer)[]}
   */
-  static fromProcessResponse = (input: ProcessResponse): ImagesResultContainer[] => {
+  static fromProcessResponse(input: ProcessResponse, asPlain: true): iImagesResultContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: false): ImagesResultContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (ImagesResultContainer|iImagesResultContainer)[] {
     const { ContainerList } = input
 
-    return ContainerList.List.filter((container): container is ImagesResultContainer =>
+    const result = ContainerList.List.filter((container): container is ImagesResultContainer =>
       ImagesResultContainerResultTypes.includes(<tImagesResultContainerResultType>container.result_type)
     )
+
+    if (asPlain) {
+      return result.map((container) => instanceToPlain(container) as iImagesResultContainer)
+    }
+
+    return result
   }
 
   /**

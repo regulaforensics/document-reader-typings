@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -118,14 +118,19 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   /**
   * Get ListVerifiedFieldContainer from ProcessResponse
   * @param {ProcessResponse} input - ProcessResponse object
-  * @return {ListVerifiedFieldContainer[]}
+  * @param {boolean} asPlain - return as plain object
+  * @return {(ListVerifiedFieldContainer|iListVerifiedFieldContainer)[]}
   */
-  static fromProcessResponse = (input: ProcessResponse): ListVerifiedFieldContainer[] => {
+  static fromProcessResponse(input: ProcessResponse, asPlain: true): iListVerifiedFieldContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: false): ListVerifiedFieldContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (ListVerifiedFieldContainer|iListVerifiedFieldContainer)[] {
     const { ContainerList } = input
 
-    return ContainerList.List.filter((container): container is ListVerifiedFieldContainer =>
+    const result =  ContainerList.List.filter((container): container is ListVerifiedFieldContainer =>
       ListVerifiedFieldContainerResultTypes.includes(<tListVerifiedFieldContainerResultType>container.result_type)
     )
+
+    return asPlain ? result.map((container) => instanceToPlain(container) as iListVerifiedFieldContainer) : result
   }
 
   /**

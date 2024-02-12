@@ -1,8 +1,9 @@
-import { IsDefined, IsEnum, IsString } from 'class-validator'
-import { Expose } from 'class-transformer'
+import { IsDefined, IsEnum, IsString, ValidateNested } from 'class-validator'
+import { Expose, Type } from 'class-transformer'
 
 import { eRfidApplicationType, eRfidErrorCodes } from '@/consts'
 import { Default } from '@/decorators'
+import { iRfidDataFile, RfidDataFile } from './children'
 
 /**
 * Structure is used to describe the contents of a single LDS application and their analysis within the context
@@ -44,6 +45,12 @@ export interface iRfidApplication {
   * @type {string}
   */
   DataHashAlgorithm: string
+
+  /**
+  * List of containers to store information about the read files of the application
+  * @type {iRfidDataFile[]}
+  */
+  Files: iRfidDataFile[]
 }
 
 /**
@@ -68,7 +75,7 @@ export class RfidApplication implements iRfidApplication {
   @Expose()
   @IsDefined()
   @IsEnum(eRfidErrorCodes)
-  @Default(eRfidErrorCodes.ERROR_NO_ERROR)
+  @Default(eRfidErrorCodes.ERROR_NOT_PERFORMED)
   Status: eRfidErrorCodes
 
   /**
@@ -106,4 +113,15 @@ export class RfidApplication implements iRfidApplication {
   @IsDefined()
   @IsString()
   DataHashAlgorithm: string
+
+  /**
+  * List of containers to store information about the read files of the application
+  * @type {RfidDataFile[]}
+  */
+  @Expose()
+  @IsDefined()
+  @Type(() => RfidDataFile)
+  @ValidateNested({ each: true })
+  @Default([])
+  Files: RfidDataFile[]
 }

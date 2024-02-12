@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -123,14 +123,21 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   /**
   * Get DocGraphicsInfoContainer from ProcessResponse
   * @param {ProcessResponse} input - ProcessResponse object
-  * @returns {DocGraphicsInfoContainer[]}
+  * @param {boolean} asPlain - return DocGraphicsInfoContainer as plain object
+  * @returns {(DocGraphicsInfoContainer | iDocGraphicsInfoContainer)[]}
   */
-  static fromProcessResponse = (input: ProcessResponse): DocGraphicsInfoContainer[] => {
+  static fromProcessResponse(input: ProcessResponse, asPlain: true): iDocGraphicsInfoContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: false): DocGraphicsInfoContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (DocGraphicsInfoContainer | iDocGraphicsInfoContainer)[] {
     const { ContainerList } = input
 
-    return ContainerList.List.filter((container): container is DocGraphicsInfoContainer =>
+    const result =  ContainerList.List.filter((container): container is DocGraphicsInfoContainer =>
       DocGraphicsInfoContainerResultTypes.includes(<tDocGraphicsInfoContainerResultType>container.result_type)
     )
+
+    return asPlain
+      ? result.map((container) => instanceToPlain(container) as iDocGraphicsInfoContainer)
+      : result
   }
 
   /**

@@ -1,5 +1,5 @@
-import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -114,18 +114,25 @@ export class DocBinaryInfoContainer extends aContainer implements iDocBinaryInfo
   /**
   * Get DocBinaryInfoContainer from ProcessResponse
   * @param {ProcessResponse} input - ProcessResponse object
-  * @returns {DocBinaryInfoContainer[]}
+  * @param {boolean} asPlain - return as plain object
+  * @returns {(iDocBinaryInfoContainer | DocBinaryInfoContainer)[]}
   */
-  static fromProcessResponse = (input: ProcessResponse): DocBinaryInfoContainer[] => {
+  static fromProcessResponse(input: ProcessResponse, asPlain: true): iDocBinaryInfoContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: false): DocBinaryInfoContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (iDocBinaryInfoContainer | DocBinaryInfoContainer)[] {
     const { ContainerList } = input
 
     if (!ContainerList) {
       return []
     }
 
-    return ContainerList.List.filter((container): container is DocBinaryInfoContainer =>
+    const result = ContainerList.List.filter((container): container is DocBinaryInfoContainer =>
       DocBinaryInfoContainerResultTypes.includes(<tDocBinaryInfoContainerResultType>container.result_type)
     )
+
+    return asPlain
+      ? result.map((container) => instanceToPlain(container) as iDocBinaryInfoContainer)
+      : result
   }
 
   /**

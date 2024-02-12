@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -114,18 +114,27 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   /**
   * Get DocBarCodeInfoContainer from ProcessResponse
   * @param {ProcessResponse} input - ProcessResponse object
-  * @returns {DocBarCodeInfoContainer[]}
+  * @param {boolean} asPlain - return with plain object
+  * @returns {(iDocBarCodeInfoContainer | DocBarCodeInfoContainer)[]}
   */
-  static fromProcessResponse = (input: ProcessResponse): DocBarCodeInfoContainer[] => {
+  static fromProcessResponse (input: ProcessResponse, asPlain: true): iDocBarCodeInfoContainer[];
+  static fromProcessResponse (input: ProcessResponse, asPlain: false): DocBarCodeInfoContainer[];
+  static fromProcessResponse (input: ProcessResponse, asPlain: boolean = false): (iDocBarCodeInfoContainer | DocBarCodeInfoContainer)[] {
     const { ContainerList } = input
 
     if (!ContainerList) {
       return []
     }
 
-    return ContainerList.List.filter((container): container is DocBarCodeInfoContainer =>
+    const result =  ContainerList.List.filter((container): container is DocBarCodeInfoContainer =>
       DocBarCodeInfoContainerResultTypes.includes(<tDocBarCodeInfoContainerResultType>container.result_type)
     )
+
+    if (asPlain) {
+      return result.map((item) => instanceToPlain(item) as iDocBarCodeInfoContainer)
+    }
+
+    return result
   }
 
   /**

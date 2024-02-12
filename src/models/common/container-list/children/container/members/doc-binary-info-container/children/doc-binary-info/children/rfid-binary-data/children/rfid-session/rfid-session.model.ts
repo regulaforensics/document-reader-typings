@@ -210,7 +210,7 @@ export class RfidSession implements iRfidSession {
     eRfidErrorCodes.ERROR_NOT_AVAILABLE,
     eRfidErrorCodes.ERROR_NO_ERROR
   ])
-  @Default(eRfidErrorCodes.ERROR_NO_ERROR)
+  @Default(eRfidErrorCodes.ERROR_NOT_PERFORMED)
   ExtLeSupport: eRfidErrorCodes.ERROR_NOT_PERFORMED | eRfidErrorCodes.ERROR_NOT_AVAILABLE | eRfidErrorCodes.ERROR_NO_ERROR
 
   /**

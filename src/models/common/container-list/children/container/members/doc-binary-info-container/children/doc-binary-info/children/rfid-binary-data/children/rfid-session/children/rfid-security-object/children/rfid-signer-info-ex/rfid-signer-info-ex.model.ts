@@ -179,7 +179,7 @@ export class RfidSignerInfoEx implements iRfidSignerInfoEx {
   @Expose()
   @IsDefined()
   @IsEnum(eRfidErrorCodes)
-  @Default(eRfidErrorCodes.ERROR_NO_ERROR)
+  @Default(eRfidErrorCodes.ERROR_NOT_PERFORMED)
   @IsIn([
     eRfidErrorCodes.ERROR_NOT_PERFORMED,
     eRfidErrorCodes.ERROR_FAILED,

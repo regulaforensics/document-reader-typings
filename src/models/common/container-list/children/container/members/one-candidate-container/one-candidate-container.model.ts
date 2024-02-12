@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -114,14 +114,23 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   /**
   * Get OneCandidateContainer from ProcessResponse
   * @param {ProcessResponse} input - ProcessResponse object
-  * @returns {OneCandidateContainer[]}
+  * @param {boolean} asPlain - return as plain object
+  * @returns {(OneCandidateContainer|iOneCandidateContainer)[]}
   */
-  static fromProcessResponse = (input: ProcessResponse): OneCandidateContainer[] => {
+  static fromProcessResponse(input: ProcessResponse, asPlain: true): iOneCandidateContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: false): OneCandidateContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (OneCandidateContainer|iOneCandidateContainer)[] {
     const { ContainerList } = input
 
-    return ContainerList.List.filter((container): container is OneCandidateContainer =>
+    const result = ContainerList.List.filter((container): container is OneCandidateContainer =>
       OneCandidateContainerResultTypes.includes(<tOneCandidateContainerResultType>container.result_type)
     )
+
+    if (asPlain) {
+      return result.map((container) => instanceToPlain(container) as iOneCandidateContainer)
+    }
+
+    return result
   }
 
   /**
