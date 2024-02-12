@@ -1,5 +1,5 @@
 import { IsBase64, IsDefined, IsEnum, IsIn, IsInt, IsString, validateSync } from 'class-validator'
-import { Expose, plainToClass } from 'class-transformer'
+import { Expose, instanceToPlain, plainToClass } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -113,14 +113,23 @@ export class EncryptedRCLContainer extends aContainer implements iEncryptedRCLCo
   /**
   * Get EncryptedRCLContainer from ProcessResponse
   * @param {ProcessResponse} input - ProcessResponse object
-  * @returns {EncryptedRCLContainer[]}
+  * @param {boolean} asPlain - return as plain object
+  * @returns {(EncryptedRCLContainer|iEncryptedRCLContainer)[]}
   */
-  static fromProcessResponse = (input: ProcessResponse): EncryptedRCLContainer[] => {
+  static fromProcessResponse(input: ProcessResponse, asPlain: true): iEncryptedRCLContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: false): EncryptedRCLContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (EncryptedRCLContainer|iEncryptedRCLContainer)[] {
     const { ContainerList } = input
 
-    return ContainerList.List.filter((container): container is EncryptedRCLContainer =>
+    const result = ContainerList.List.filter((container): container is EncryptedRCLContainer =>
       EncryptedRCLContainerResultTypes.includes(<tEncryptedRCLContainerResultType>container.result_type)
     )
+
+    if (asPlain) {
+      return result.map((container) => instanceToPlain(container) as iEncryptedRCLContainer)
+    }
+
+    return result
   }
 
   /**

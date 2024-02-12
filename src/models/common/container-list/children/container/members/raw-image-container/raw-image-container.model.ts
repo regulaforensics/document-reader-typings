@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -117,14 +117,23 @@ export class RawImageContainer extends aContainer implements iRawImageContainer 
   /**
   * Get RawImageContainer from ProcessResponse
   * @param {ProcessResponse} input - ProcessResponse object
-  * @returns {RawImageContainer[]}
+  * @param {boolean} asPlain - return as plain object
+  * @returns {(iRawImageContainer|RawImageContainer)[]}
   */
-  static fromProcessResponse = (input: ProcessResponse): RawImageContainer[] => {
+  static fromProcessResponse(input: ProcessResponse, asPlain: true): iRawImageContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: false): RawImageContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (iRawImageContainer|RawImageContainer)[] {
     const { ContainerList } = input
 
-    return ContainerList.List.filter((container): container is RawImageContainer =>
+    const result = ContainerList.List.filter((container): container is RawImageContainer =>
       RawImageContainerResultTypes.includes(<tRawImageContainerResultType>container.result_type)
     )
+
+    if (asPlain) {
+      return result.map((container) => instanceToPlain(container) as iRawImageContainer)
+    }
+
+    return result
   }
 
   /**

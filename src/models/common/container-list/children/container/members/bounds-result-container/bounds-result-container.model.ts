@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -116,17 +116,22 @@ export class BoundsResultContainer extends aContainer implements iBoundsResultCo
   /**
   * Get list of BoundsResultContainer from ProcessResponse
   * @param {ProcessResponse} input - ProcessResponse object
-  * @returns {BoundsResultContainer[]}
+  * @param {boolean} asPlain - return as plain object
+  * @returns {(BoundsResultContainer | iBoundsResultContainer)[]}
   */
-  static fromProcessResponse = (input: ProcessResponse): BoundsResultContainer[] => {
+  static fromProcessResponse(input: ProcessResponse, asPlain: true): iBoundsResultContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: false): BoundsResultContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (BoundsResultContainer|iBoundsResultContainer)[] {
     const { ContainerList } = input
 
     if (!Array.isArray(ContainerList)) {
       return []
     }
 
-    return ContainerList.List.filter((container): container is BoundsResultContainer =>
+    const result = ContainerList.List.filter((container): container is BoundsResultContainer =>
       BoundsResultContainerResultTypes.includes(<tBoundsResultContainerResultType>container.result_type))
+
+    return asPlain ? result.map((container) => instanceToPlain(container) as iBoundsResultContainer) : result
   }
 
   /**

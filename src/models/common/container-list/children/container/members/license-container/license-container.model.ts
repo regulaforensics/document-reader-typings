@@ -1,5 +1,5 @@
 import { IsBase64, IsDefined, IsEnum, IsIn, IsInt, IsString, validateSync } from 'class-validator'
-import { Expose, plainToClass } from 'class-transformer'
+import { Expose, instanceToPlain, plainToClass } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -113,14 +113,23 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
   /**
   * Get LicenseContainer from ProcessResponse
   * @param {ProcessResponse} input - ProcessResponse object
-  * @returns {LicenseContainer[]}
+  * @param {boolean} asPlain - return as plain object
+  * @returns {(LicenseContainer|iLicenseContainer)[]}
   */
-  static fromProcessResponse = (input: ProcessResponse): LicenseContainer[] => {
+  static fromProcessResponse(input: ProcessResponse, asPlain: true): iLicenseContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: false): LicenseContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (LicenseContainer|iLicenseContainer)[] {
     const { ContainerList } = input
 
-    return ContainerList.List.filter((container): container is LicenseContainer =>
+    const result = ContainerList.List.filter((container): container is LicenseContainer =>
       LicenseContainerResultTypes.includes(<tLicenseContainerResultType>container.result_type)
     )
+
+    if (asPlain) {
+      return result.map((container) => instanceToPlain(container) as iLicenseContainer)
+    }
+
+    return result
   }
 
   /**

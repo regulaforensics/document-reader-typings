@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -121,14 +121,23 @@ export class DocVisualExtendedInfoContainer extends aContainer implements iDocVi
   /**
   * Get DocVisualExtendedInfoContainer from ProcessResponse
   * @param {ProcessResponse} input - ProcessResponse object
-  * @returns {DocVisualExtendedInfoContainer[]}
+  * @param {boolean} asPlain - return as plain object
+  * @returns {(iDocVisualExtendedInfoContainer | DocVisualExtendedInfoContainer)[]}
   */
-  static fromProcessResponse = (input: ProcessResponse): DocVisualExtendedInfoContainer[] => {
+  static fromProcessResponse(input: ProcessResponse, asPlain: true): iDocVisualExtendedInfoContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: false): DocVisualExtendedInfoContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (iDocVisualExtendedInfoContainer | DocVisualExtendedInfoContainer)[] {
     const { ContainerList } = input
 
-    return ContainerList.List.filter((container): container is DocVisualExtendedInfoContainer =>
+    const result = ContainerList.List.filter((container): container is DocVisualExtendedInfoContainer =>
       DocVisualExtendedInfoContainerResultTypes.includes(<tDocVisualExtendedInfoContainerResultType>container.result_type)
     )
+
+    if (asPlain) {
+      return result.map((container) => instanceToPlain(container) as iDocVisualExtendedInfoContainer)
+    }
+
+    return result
   }
 
   /**

@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -114,14 +114,23 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
   /**
   * Get ImageQualityCheckListContainer from ProcessResponse
   * @param {ProcessResponse} input - ProcessResponse object
-  * @returns {ImageQualityCheckListContainer[]}
+  * @param {boolean} asPlain - return as plain object
+  * @returns {(ImageQualityCheckListContainer|iImageQualityCheckListContainer)[]}
   */
-  static fromProcessResponse = (input: ProcessResponse): ImageQualityCheckListContainer[] => {
+  static fromProcessResponse(input: ProcessResponse, asPlain: true): iImageQualityCheckListContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: false): ImageQualityCheckListContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (ImageQualityCheckListContainer|iImageQualityCheckListContainer)[] {
     const { ContainerList } = input
 
-    return ContainerList.List.filter((container): container is ImageQualityCheckListContainer =>
+    const result = ContainerList.List.filter((container): container is ImageQualityCheckListContainer =>
       ImageQualityCheckListContainerResultTypes.includes(<tImageQualityCheckListContainerResultType>container.result_type)
     )
+
+    if (asPlain) {
+      return result.map((container) => instanceToPlain(container) as iImageQualityCheckListContainer)
+    }
+
+    return result
   }
 
   /**

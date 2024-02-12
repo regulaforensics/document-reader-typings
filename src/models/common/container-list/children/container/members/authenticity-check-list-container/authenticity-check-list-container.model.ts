@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -119,17 +119,26 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   /**
   * Get list of AuthenticityCheckListContainer from ProcessResponse
   * @param {ProcessResponse} input - ProcessResponse with containers
-  * @returns {AuthenticityCheckListContainer[]}
+  * @param {boolean} asPlain - return as plain object
+  * @returns {(AuthenticityCheckListContainer|iAuthenticityCheckListContainer)[]}
   */
-  static fromProcessResponse = (input: ProcessResponse): AuthenticityCheckListContainer[] => {
+  static fromProcessResponse(input: ProcessResponse, asPlain: true): iAuthenticityCheckListContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: false): AuthenticityCheckListContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (AuthenticityCheckListContainer|iAuthenticityCheckListContainer)[] {
     const { ContainerList } = input
 
     if (!ContainerList) {
       return []
     }
 
-    return ContainerList.List.filter((container): container is AuthenticityCheckListContainer =>
+    const result = ContainerList.List.filter((container): container is AuthenticityCheckListContainer =>
       AuthenticityCheckListContainerResultTypes.includes(<tAuthenticityCheckListContainerResultType>container.result_type))
+
+    if (asPlain) {
+      return result.map((container) => instanceToPlain(container) as iAuthenticityCheckListContainer)
+    }
+
+    return result
   }
 
   /**

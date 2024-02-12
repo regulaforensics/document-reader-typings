@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -113,14 +113,23 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   /**
   * Get array of StatusContainer from ProcessResponse
   * @param {ProcessResponse} input - instance of ProcessResponse
-  * @returns {StatusContainer[]}
+  * @param {boolean} asPlain - flag to return plain object instead of class instance
+  * @returns {(StatusContainer | iStatusContainer)[]}
   */
-  static fromProcessResponse = (input: ProcessResponse): StatusContainer[] => {
+  static fromProcessResponse(input: ProcessResponse, asPlain: false): StatusContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: true): iStatusContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (StatusContainer|iStatusContainer)[] {
     const { ContainerList } = input
 
-    return ContainerList.List.filter((container): container is StatusContainer =>
+    const result = ContainerList.List.filter((container): container is StatusContainer =>
       StatusContainerResultTypes.includes(<tStatusContainerResultType>container.result_type)
     )
+
+    if (asPlain) {
+      return result.map((container) => instanceToPlain(container) as iStatusContainer)
+    }
+
+    return result
   }
 
   /**
