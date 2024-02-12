@@ -127,7 +127,7 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
     )
 
     if (asPlain) {
-      return result.map((container) => instanceToPlain(container) as iImageQualityCheckListContainer)
+      return result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iImageQualityCheckListContainer)
     }
 
     return result

@@ -127,7 +127,7 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
     )
 
     if (asPlain) {
-      return result.map((container) => instanceToPlain(container) as iOneCandidateContainer)
+      return result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iOneCandidateContainer)
     }
 
     return result

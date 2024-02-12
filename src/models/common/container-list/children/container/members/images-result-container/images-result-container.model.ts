@@ -127,7 +127,7 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
     )
 
     if (asPlain) {
-      return result.map((container) => instanceToPlain(container) as iImagesResultContainer)
+      return result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iImagesResultContainer)
     }
 
     return result

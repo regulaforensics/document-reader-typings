@@ -134,7 +134,7 @@ export class DocVisualExtendedInfoContainer extends aContainer implements iDocVi
     )
 
     if (asPlain) {
-      return result.map((container) => instanceToPlain(container) as iDocVisualExtendedInfoContainer)
+      return result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iDocVisualExtendedInfoContainer)
     }
 
     return result

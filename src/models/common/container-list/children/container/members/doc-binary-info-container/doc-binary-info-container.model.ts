@@ -131,7 +131,7 @@ export class DocBinaryInfoContainer extends aContainer implements iDocBinaryInfo
     )
 
     return asPlain
-      ? result.map((container) => instanceToPlain(container) as iDocBinaryInfoContainer)
+      ? result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iDocBinaryInfoContainer)
       : result
   }
 

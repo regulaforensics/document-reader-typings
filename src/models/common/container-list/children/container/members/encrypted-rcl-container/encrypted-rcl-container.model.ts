@@ -126,7 +126,7 @@ export class EncryptedRCLContainer extends aContainer implements iEncryptedRCLCo
     )
 
     if (asPlain) {
-      return result.map((container) => instanceToPlain(container) as iEncryptedRCLContainer)
+      return result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iEncryptedRCLContainer)
     }
 
     return result

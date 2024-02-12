@@ -136,7 +136,7 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
     )
 
     return asPlain
-      ? result.map((container) => instanceToPlain(container) as iDocGraphicsInfoContainer)
+      ? result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iDocGraphicsInfoContainer)
       : result
   }
 

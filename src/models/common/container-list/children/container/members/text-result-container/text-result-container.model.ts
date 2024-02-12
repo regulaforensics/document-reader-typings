@@ -127,7 +127,7 @@ export class TextResultContainer extends aContainer implements iTextResultContai
     )
 
     if (asPlain) {
-      return result.map((container) => instanceToPlain(container) as iTextResultContainer)
+      return result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iTextResultContainer)
     }
 
     return result

@@ -135,7 +135,7 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
       AuthenticityCheckListContainerResultTypes.includes(<tAuthenticityCheckListContainerResultType>container.result_type))
 
     if (asPlain) {
-      return result.map((container) => instanceToPlain(container) as iAuthenticityCheckListContainer)
+      return result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iAuthenticityCheckListContainer)
     }
 
     return result

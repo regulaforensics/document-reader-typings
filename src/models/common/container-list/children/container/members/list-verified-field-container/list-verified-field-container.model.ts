@@ -130,7 +130,7 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
       ListVerifiedFieldContainerResultTypes.includes(<tListVerifiedFieldContainerResultType>container.result_type)
     )
 
-    return asPlain ? result.map((container) => instanceToPlain(container) as iListVerifiedFieldContainer) : result
+    return asPlain ? result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iListVerifiedFieldContainer) : result
   }
 
   /**

@@ -131,7 +131,7 @@ export class BoundsResultContainer extends aContainer implements iBoundsResultCo
     const result = ContainerList.List.filter((container): container is BoundsResultContainer =>
       BoundsResultContainerResultTypes.includes(<tBoundsResultContainerResultType>container.result_type))
 
-    return asPlain ? result.map((container) => instanceToPlain(container) as iBoundsResultContainer) : result
+    return asPlain ? result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iBoundsResultContainer) : result
   }
 
   /**

@@ -130,7 +130,7 @@ export class RawImageContainer extends aContainer implements iRawImageContainer 
     )
 
     if (asPlain) {
-      return result.map((container) => instanceToPlain(container) as iRawImageContainer)
+      return result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iRawImageContainer)
     }
 
     return result
