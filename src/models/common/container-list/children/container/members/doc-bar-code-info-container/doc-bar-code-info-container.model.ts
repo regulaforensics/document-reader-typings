@@ -131,7 +131,7 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
     )
 
     if (asPlain) {
-      return result.map((item) => instanceToPlain(item) as iDocBarCodeInfoContainer)
+      return result.map((item) => instanceToPlain(item, { strategy: 'excludeAll' }) as iDocBarCodeInfoContainer)
     }
 
     return result

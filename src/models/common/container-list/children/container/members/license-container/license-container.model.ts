@@ -126,7 +126,7 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
     )
 
     if (asPlain) {
-      return result.map((container) => instanceToPlain(container) as iLicenseContainer)
+      return result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iLicenseContainer)
     }
 
     return result

@@ -126,7 +126,7 @@ export class StatusContainer extends aContainer implements iStatusContainer {
     )
 
     if (asPlain) {
-      return result.map((container) => instanceToPlain(container) as iStatusContainer)
+      return result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iStatusContainer)
     }
 
     return result
