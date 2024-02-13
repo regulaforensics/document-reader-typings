@@ -7,8 +7,15 @@ import { aAuthenticityCheckResult } from '../../authenticity-check-result.abstra
 import { iPhotoIdentResult, PhotoIdentResult } from './children'
 
 
+export type tAuthenticityPhotoIdentCheckResultType = eAuthenticity.IPI | eAuthenticity.IR_PHOTO
+
+export const AuthenticityPhotoIdentCheckResultTypes: tAuthenticityPhotoIdentCheckResultType[] = [
+  eAuthenticity.IPI,
+  eAuthenticity.IR_PHOTO
+]
+
 export interface iAuthenticityPhotoIdentCheckResult extends aAuthenticityCheckResult {
-  Type: eAuthenticity.IPI | eAuthenticity.IR_PHOTO
+  Type: tAuthenticityPhotoIdentCheckResultType
   Result: eCheckResult
   List: iPhotoIdentResult[]
 }
@@ -16,9 +23,9 @@ export interface iAuthenticityPhotoIdentCheckResult extends aAuthenticityCheckRe
 export class AuthenticityPhotoIdentCheckResult extends aAuthenticityCheckResult implements iAuthenticityPhotoIdentCheckResult {
   @Expose()
   @IsDefined()
-  @IsIn([eAuthenticity.IPI, eAuthenticity.IR_PHOTO])
+  @IsIn(AuthenticityPhotoIdentCheckResultTypes)
   @IsEnum(eAuthenticity)
-  Type: eAuthenticity.IPI | eAuthenticity.IR_PHOTO
+  Type: tAuthenticityPhotoIdentCheckResultType
 
   @Expose()
   @IsDefined()
@@ -35,4 +42,12 @@ export class AuthenticityPhotoIdentCheckResult extends aAuthenticityCheckResult 
   List: PhotoIdentResult[]
 
   static fromPlain = (plain: unknown): AuthenticityPhotoIdentCheckResult => plainToClass(AuthenticityPhotoIdentCheckResult, plain)
+
+  /**
+  * Check if the given type belongs to AuthenticityPhotoIdentCheckResult
+  * @param {unknown} type - type to check
+  * @return {type is iAuthenticityPhotoIdentCheckResult} - result
+  */
+  static isBelongs = (type: unknown): type is iAuthenticityPhotoIdentCheckResult =>
+    AuthenticityPhotoIdentCheckResultTypes.includes((type as iAuthenticityPhotoIdentCheckResult)?.Type)
 }

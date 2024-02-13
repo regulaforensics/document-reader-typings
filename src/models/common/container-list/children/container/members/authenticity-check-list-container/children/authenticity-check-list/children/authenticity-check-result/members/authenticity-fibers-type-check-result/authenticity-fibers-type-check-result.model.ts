@@ -8,14 +8,26 @@ import { FibersType, iFibersType } from './children'
 
 
 /**
+* Result type of AuthenticityFibersTypeCheckResult
+*/
+export type tAuthenticityFibersTypeCheckResultType = eAuthenticity.UV_FIBERS
+
+/**
+* Result type of AuthenticityFibersTypeCheckResult
+*/
+export const AuthenticityFibersTypeCheckResultTypes: tAuthenticityFibersTypeCheckResultType[] = [
+  eAuthenticity.UV_FIBERS
+]
+
+/**
 * Container for FibersType
 */
 export interface iAuthenticityFibersTypeCheckResult extends aAuthenticityCheckResult {
   /**
   * Type of the performed check (eAuthenticity)
-  * @type {eAuthenticity.UV_FIBERS}
+  * @type {tAuthenticityFibersTypeCheckResultType}
   */
-  Type: eAuthenticity.UV_FIBERS
+  Type: tAuthenticityFibersTypeCheckResultType
 
   /**
   * Overall checking result
@@ -42,13 +54,13 @@ export interface iAuthenticityFibersTypeCheckResult extends aAuthenticityCheckRe
 export class AuthenticityFibersTypeCheckResult extends aAuthenticityCheckResult implements iAuthenticityFibersTypeCheckResult {
   /**
   * Type of the performed check (eAuthenticity)
-  * @type {eAuthenticity.UV_FIBERS}
+  * @type {tAuthenticityFibersTypeCheckResultType}
   */
   @Expose()
   @IsDefined()
-  @IsIn([eAuthenticity.UV_FIBERS])
+  @IsIn(AuthenticityFibersTypeCheckResultTypes)
   @IsEnum(eAuthenticity)
-  Type: eAuthenticity.UV_FIBERS
+  Type: tAuthenticityFibersTypeCheckResultType
 
   /**
   * Overall checking result
@@ -87,4 +99,15 @@ export class AuthenticityFibersTypeCheckResult extends aAuthenticityCheckResult 
   * @returns {AuthenticityFibersTypeCheckResult} - instance
   */
   static fromPlain = (plain: unknown): AuthenticityFibersTypeCheckResult => plainToClass(AuthenticityFibersTypeCheckResult, plain)
+
+  /**
+  * Check if the given object is an instance of AuthenticityFibersTypeCheckResult
+  * @param {unknown} type - object to check
+  * @returns {type is AuthenticityFibersTypeCheckResult} - result
+  */
+  static isBelongs = (type: unknown): type is AuthenticityFibersTypeCheckResult => {
+    const item = type as AuthenticityFibersTypeCheckResult
+
+    return AuthenticityFibersTypeCheckResultTypes.includes(item?.Type)
+  }
 }

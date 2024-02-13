@@ -8,14 +8,26 @@ import { iOCRSecurityTextResult, OCRSecurityTextResult } from './children'
 
 
 /**
+* Result type of AuthenticityOCRSecurityTextCheckResult
+*/
+export type tAuthenticityOCRSecurityTextCheckResultType = eAuthenticity.OCR_SECURITY_TEXT
+
+/**
+* Result type of AuthenticityOCRSecurityTextCheckResult
+*/
+export const AuthenticityOCRSecurityTextCheckResultTypes: tAuthenticityOCRSecurityTextCheckResultType[] = [
+  eAuthenticity.OCR_SECURITY_TEXT
+]
+
+/**
 * Container for OCRSecurityTextResult
 */
 export interface iAuthenticityOCRSecurityTextCheckResult extends aAuthenticityCheckResult {
   /**
   * Type of the performed check
-  * @type {eAuthenticity.OCR_SECURITY_TEXT}
+  * @type {tAuthenticityOCRSecurityTextCheckResultType}
   */
-  Type: eAuthenticity.OCR_SECURITY_TEXT
+  Type: tAuthenticityOCRSecurityTextCheckResultType
 
   /**
   * Overall checking result
@@ -42,13 +54,13 @@ export interface iAuthenticityOCRSecurityTextCheckResult extends aAuthenticityCh
 export class AuthenticityOCRSecurityTextCheckResult extends aAuthenticityCheckResult implements iAuthenticityOCRSecurityTextCheckResult {
   /**
   * Type of the performed check
-  * @type {eAuthenticity.OCR_SECURITY_TEXT}
+  * @type {tAuthenticityOCRSecurityTextCheckResultType}
   */
   @Expose()
   @IsDefined()
-  @IsIn([eAuthenticity.OCR_SECURITY_TEXT])
+  @IsIn(AuthenticityOCRSecurityTextCheckResultTypes)
   @IsEnum(eAuthenticity)
-  Type: eAuthenticity.OCR_SECURITY_TEXT
+  Type: tAuthenticityOCRSecurityTextCheckResultType
 
   /**
   * Overall checking result
@@ -87,4 +99,12 @@ export class AuthenticityOCRSecurityTextCheckResult extends aAuthenticityCheckRe
   * @return {AuthenticityOCRSecurityTextCheckResult} - new instance
   */
   static fromPlain = (plain: unknown): AuthenticityOCRSecurityTextCheckResult => plainToClass(AuthenticityOCRSecurityTextCheckResult, plain)
+
+  /**
+  * Check if the given type belongs to AuthenticityOCRSecurityTextCheckResultType
+  * @param {unknown} type - type to check
+  * @return {type is tAuthenticityOCRSecurityTextCheckResultType} - result
+  */
+  static isBelongs = (type: unknown): type is tAuthenticityOCRSecurityTextCheckResultType =>
+    AuthenticityOCRSecurityTextCheckResultTypes.includes(type as tAuthenticityOCRSecurityTextCheckResultType)
 }
