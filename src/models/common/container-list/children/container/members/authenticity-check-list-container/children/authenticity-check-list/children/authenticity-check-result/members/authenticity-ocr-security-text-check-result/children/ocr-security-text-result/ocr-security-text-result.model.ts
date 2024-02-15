@@ -12,6 +12,10 @@ import { eAuthenticity, eCheckDiagnose, eCheckResult, eLights, eResultType, eSec
 * fragment
 */
 export interface iOCRSecurityTextResult {
+  /**
+  * Type of the performed check
+  * @type {eAuthenticity.OCR_SECURITY_TEXT}
+  */
   Type: eAuthenticity.OCR_SECURITY_TEXT
 
   /**
@@ -96,6 +100,10 @@ export interface iOCRSecurityTextResult {
 * fragment
 */
 export class OCRSecurityTextResult implements iOCRSecurityTextResult {
+  /**
+  * Type of the performed check
+  * @type {eAuthenticity.OCR_SECURITY_TEXT}
+  */
   @Expose()
   @IsDefined()
   @IsIn([eAuthenticity.OCR_SECURITY_TEXT])

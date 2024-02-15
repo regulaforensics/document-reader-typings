@@ -1,26 +1,49 @@
-import { IsArray, IsInt, IsOptional, ValidateNested } from 'class-validator'
+import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
 import { iImageData, ImageData } from '@/models/common/image-data'
 import { Default } from '@/decorators'
 
 
+/**
+* Container for ImageData
+*/
 export interface iRawImageContainerList {
-  Count?: number
-  Images?: iImageData[]
+  /**
+  * Number of Images
+  * @type {number}
+  */
+  Count: number
+
+  /**
+  * Array of ImageData
+  * @type {iImageData[]}
+  */
+  Images: iImageData[]
 }
 
+/**
+* Container for ImageData
+*/
 export class RawImageContainerList implements iRawImageContainerList {
+  /**
+  * Number of Images
+  * @type {number}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsInt()
-  Count?: number
+  Count: number
 
+  /**
+  * Array of ImageData
+  * @type {ImageData[]}
+  */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => ImageData)
   @Default([])
-  Images?: ImageData[]
+  Images: ImageData[]
 }
