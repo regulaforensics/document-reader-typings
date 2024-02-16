@@ -1,1 +1,1 @@
-export * from './security-feature-result'
+export * from './security-feature-check'

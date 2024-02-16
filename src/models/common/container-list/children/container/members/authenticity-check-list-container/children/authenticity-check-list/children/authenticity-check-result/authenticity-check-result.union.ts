@@ -47,7 +47,7 @@ export namespace uAuthenticityCheckResult {
   * @param {unknown[]} items - list of unknown items
   * @returns {uAuthenticityCheckResult[]} - list of uAuthenticityCheckResult
   */
-  export const transformList = (items: unknown[]) => {
+  export const transformList = (items: unknown[]): uAuthenticityCheckResult[] => {
     const result: uAuthenticityCheckResult[] = []
 
     items.forEach((item) => {

@@ -4,9 +4,12 @@ import { Expose, plainToClass, Type } from 'class-transformer'
 import { eAuthenticity, eCheckResult } from '@/consts'
 import { Default } from '@/decorators'
 import { aAuthenticityCheckResult } from '../../authenticity-check-result.abstract'
-import { iSecurityFeatureResult, SecurityFeatureResult } from './children'
+import { iSecurityFeatureCheck, SecurityFeatureCheck } from './children'
 
 
+/**
+* Result type of AuthenticitySecurityFeatureCheckResult
+*/
 export type tAuthenticitySecurityFeatureCheckResultType =
   eAuthenticity.UV_LUMINESCENCE |
   eAuthenticity.IR_B900 |
@@ -19,6 +22,9 @@ export type tAuthenticitySecurityFeatureCheckResultType =
   eAuthenticity.EXTENDED_MRZ_CHECK |
   eAuthenticity.STATUS_ONLY
 
+/**
+* Result type of AuthenticitySecurityFeatureCheckResult
+*/
 export const AuthenticitySecurityFeatureCheckResultTypes: tAuthenticitySecurityFeatureCheckResultType[] = [
   eAuthenticity.UV_LUMINESCENCE,
   eAuthenticity.IR_B900,
@@ -32,33 +38,70 @@ export const AuthenticitySecurityFeatureCheckResultTypes: tAuthenticitySecurityF
   eAuthenticity.STATUS_ONLY
 ]
 
+/**
+* Container for SecurityFeatureCheck
+*/
 export interface iAuthenticitySecurityFeatureCheckResult extends aAuthenticityCheckResult {
+  /**
+  * Type of the performed check
+  * @type {tAuthenticitySecurityFeatureCheckResultType}
+  */
   Type: tAuthenticitySecurityFeatureCheckResultType
+
+  /**
+  * Overall checking result
+  * @type {eCheckResult}
+  */
   Result: eCheckResult
-  List: iSecurityFeatureResult[]
+
+  /**
+  * Array of results of checks
+  * @type {iSecurityFeatureCheck[]}
+  */
+  List: iSecurityFeatureCheck[]
 }
 
+/**
+* Container for SecurityFeatureCheck
+*/
 export class AuthenticitySecurityFeatureCheckResult extends aAuthenticityCheckResult implements iAuthenticitySecurityFeatureCheckResult {
+  /**
+  * Type of the performed check
+  * @type {tAuthenticitySecurityFeatureCheckResultType}
+  */
   @Expose()
   @IsDefined()
   @IsIn(AuthenticitySecurityFeatureCheckResultTypes)
   @IsEnum(eAuthenticity)
   Type: tAuthenticitySecurityFeatureCheckResultType
 
+  /**
+  * Overall checking result
+  * @type {eCheckResult}
+  */
   @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
   Result: eCheckResult
 
+  /**
+  * Array of results of checks
+  * @type {iSecurityFeatureCheck[]}
+  */
   @Expose()
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })
-  @Type(() => SecurityFeatureResult)
+  @Type(() => SecurityFeatureCheck)
   @Default([])
-  List: SecurityFeatureResult[]
+  List: SecurityFeatureCheck[]
 
+  /**
+  * Create a new instance of AuthenticitySecurityFeatureCheckResult from plain object
+  * @param {unknown} plain - plain object
+  * @return {AuthenticitySecurityFeatureCheckResult} - new instance
+  */
   static fromPlain = (plain: unknown): AuthenticitySecurityFeatureCheckResult => plainToClass(AuthenticitySecurityFeatureCheckResult, plain)
 
   /**
