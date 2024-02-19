@@ -1,3 +1,8 @@
+/**
+* There is no need to cover whole response with types, only the most important parts.
+* This test is disabled.
+* @deprecated
+*/
 import { join } from 'path'
 import { existsSync, readdirSync, readFileSync } from 'fs'
 import { diff } from 'deep-diff'

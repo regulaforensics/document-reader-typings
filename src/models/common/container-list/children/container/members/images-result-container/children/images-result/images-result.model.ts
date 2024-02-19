@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Expose, Transform, Type } from 'class-transformer'
 
 import { Default } from '@/decorators'
 import { iImageField, iImageSource, ImageField, ImageSource } from './children'
@@ -45,6 +45,7 @@ export class ImagesResult implements iImagesResult {
   @Expose()
   @IsDefined()
   @IsInt()
+  @Transform(({ obj }) => obj.fieldList.length, { toClassOnly: true})
   fieldCount: number
 
   /**
@@ -54,6 +55,7 @@ export class ImagesResult implements iImagesResult {
   @Expose()
   @IsDefined()
   @IsInt()
+  @Transform(({ obj }) => obj.availableSourceList.length, { toClassOnly: true})
   availableSourceCount: number
 
   /**

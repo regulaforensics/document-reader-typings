@@ -1,9 +1,10 @@
 import { IsBoolean, IsDefined, IsEnum, IsInt, IsNumber, IsString, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Expose, Transform, Type } from 'class-transformer'
 
 import { eAuthenticity, getAuthenticityArray, getLightsArray, eLights, eRfidPresence } from '@/consts'
-import { Default } from '@/decorators'
+import { Default, ToBoolean } from '@/decorators'
 import { FDSIDList, iFDSIDList } from './children'
+import * as process from 'process'
 
 
 /**
@@ -118,6 +119,7 @@ export class OneCandidate implements iOneCandidate {
   @Expose()
   @IsDefined()
   @IsBoolean()
+  @ToBoolean()
   @Default(false)
   Rotated180: boolean
 

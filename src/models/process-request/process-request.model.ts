@@ -1,9 +1,10 @@
-import { IsDefined, IsOptional, IsString, ValidateNested, validateSync } from 'class-validator'
+import { IsDefined, IsEnum, IsOptional, IsString, ValidateNested, validateSync } from 'class-validator'
 import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { IsStringObjectRecord } from '@/validators'
 import { DocReaderTypeError } from '@/errors'
 import { ContainerList, iContainerList } from '@/models/common'
+import { eLCID } from '@/consts'
 import {
   iProcessParams,
   iProcessRequestImage,
@@ -18,6 +19,12 @@ import {
 * Process request
 */
 export interface iProcessRequest {
+  /**
+  * The list of LCID types to recognize. If empty, values with all LCID types will be extracted. Empty by default.
+  * @type {eLCID[]|undefined}
+  */
+  lcidFilter?: eLCID[]
+
   /**
   * Session id
   * @type {string|undefined}
@@ -69,6 +76,15 @@ export interface iProcessRequest {
 }
 
 export class ProcessRequest implements iProcessRequest {
+  /**
+  * The list of LCID types to recognize. If empty, values with all LCID types will be extracted. Empty by default.
+  * @type {eLCID[]|undefined}
+  */
+  @Expose()
+  @IsOptional()
+  @IsEnum(eLCID, { each: true })
+  lcidFilter?: eLCID[]
+
   /**
   * Session id
   * @type {string|undefined}

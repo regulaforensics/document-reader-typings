@@ -13,10 +13,15 @@ import { aDocVisualExtendedField } from '../../doc-visual-extended-field.abstrac
 */
 export interface iDocVisualExtendedField2 extends aDocVisualExtendedField {
   /**
+  * @internal
+  */
+  FieldType: unknown
+
+  /**
   * Field logical type
   * @type {eVisualFieldType}
   */
-  FieldType: eVisualFieldType
+  wFieldType: eVisualFieldType
 
   /**
   * Data group
@@ -110,13 +115,19 @@ export interface iDocVisualExtendedField2 extends aDocVisualExtendedField {
 */
 export class DocVisualExtendedField2 extends aDocVisualExtendedField implements iDocVisualExtendedField2 {
   /**
+  * @internal
+  */
+  @Expose()
+  FieldType: unknown
+
+  /**
   * Field logical type
   * @type {eVisualFieldType}
   */
   @Expose()
   @IsDefined()
   @IsEnum(eVisualFieldType)
-  FieldType: eVisualFieldType
+  wFieldType: eVisualFieldType
 
   /**
   * Data group

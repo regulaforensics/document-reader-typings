@@ -16,7 +16,8 @@ export type tDocVisualExtendedInfoContainerResultType =
   eResultType.VISUAL_OCR_EXTENDED |
   eResultType.MRZ_OCR_EXTENDED |
   eResultType.BARCODES_TEXT_DATA |
-  eResultType.MAGNETIC_STRIPE_TEXT_DATA
+  eResultType.MAGNETIC_STRIPE_TEXT_DATA |
+  eResultType.RFID_TEXT_DATA
 
 /**
 * Result type of DocVisualExtendedInfoContainer
@@ -27,6 +28,7 @@ export const DocVisualExtendedInfoContainerResultTypes: tDocVisualExtendedInfoCo
   eResultType.MRZ_OCR_EXTENDED,
   eResultType.BARCODES_TEXT_DATA,
   eResultType.MAGNETIC_STRIPE_TEXT_DATA,
+  eResultType.RFID_TEXT_DATA
 ]
 
 /**

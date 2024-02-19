@@ -48,9 +48,9 @@ export interface iFDSIDList {
 
   /**
   * Document description text
-  * @type {string}
+  * @type {string|undefined}
   */
-  dDescription: string
+  dDescription?: string
 
   /**
   * Document issue year
@@ -149,12 +149,12 @@ export class FDSIDList implements iFDSIDList {
 
   /**
   * Document description text
-  * @type {string}
+  * @type {string|undefined}
   */
   @Expose()
-  @IsDefined()
+  @IsOptional()
   @IsString()
-  dDescription: string
+  dDescription?: string
 
   /**
   * Document issue year
