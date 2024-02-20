@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsOptional, IsString, ValidateNested, validateSync } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { IsStringObjectRecord } from '@/validators'
 import { DocReaderTypeError } from '@/errors'
@@ -168,6 +168,13 @@ export class ProcessRequest implements iProcessRequest {
   * @returns {ProcessRequest}
   */
   static fromPlain = (input: unknown): ProcessRequest => plainToClass(ProcessRequest, input)
+
+  /**
+  * Create plain object from ProcessRequest
+  * @param {iProcessRequest} input - instance of ProcessRequest
+  * @returns {ProcessRequest}
+  */
+  static toPlain = (input: ProcessRequest): iProcessRequest => instanceToPlain(input, { excludeExtraneousValues: true }) as iProcessRequest
 
   /**
   * Check if the given instance of ProcessRequest is valid
