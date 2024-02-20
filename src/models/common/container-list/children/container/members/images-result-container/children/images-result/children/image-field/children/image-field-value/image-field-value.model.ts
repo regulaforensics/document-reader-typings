@@ -19,9 +19,9 @@ export interface iImageFieldValue {
 
   /**
   * Original image file in Base64 representation
-  * @type {string}
+  * @type {string|undefined}
   */
-  originalValue: string
+  originalValue?: string
 
   /**
   * Source
@@ -49,9 +49,9 @@ export interface iImageFieldValue {
 
   /**
   * Field rectangular area
-  * @type {iRect}
+  * @type {iRect|undefined}
   */
-  fieldRect: iRect
+  fieldRect?: iRect
 
   /**
   * Field source from electronic document
@@ -82,10 +82,10 @@ export class ImageFieldValue implements iImageFieldValue {
 
   /**
   * Original image file in Base64 representation
-  * @type {string}
+  * @type {string|undefined}
   */
   @Expose()
-  @IsDefined()
+  @IsOptional()
   @IsString()
   @IsBase64()
   originalValue: string
@@ -129,13 +129,13 @@ export class ImageFieldValue implements iImageFieldValue {
 
   /**
   * Field rectangular area
-  * @type {Rect}
+  * @type {iRect|undefined}
   */
   @Expose()
-  @IsDefined()
+  @IsOptional()
   @ValidateNested()
   @Type(() => Rect)
-  fieldRect: Rect
+  fieldRect?: Rect
 
   /**
   * Field source from electronic document

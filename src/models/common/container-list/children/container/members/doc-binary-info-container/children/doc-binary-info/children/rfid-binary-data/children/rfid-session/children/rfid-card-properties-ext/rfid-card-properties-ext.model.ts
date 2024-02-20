@@ -141,7 +141,7 @@ export class RfidCardPropertiesExt implements iRfidCardPropertiesExt {
   */
   @Expose()
   @IsDefined()
-  @IsString()
+  @IsBoolean()
   Support_4: boolean
 
   /**

@@ -33,7 +33,7 @@ export abstract class aContainer {
   /**
   * Get lighting scheme
   *
-  * @param {DocumentPositionContainer|number} input - input
+  * @param {aContainer|number} input - input
   * @returns {eLights[]}
   */
   static getLightingScheme = (input: aContainer | number): eLights[] => {

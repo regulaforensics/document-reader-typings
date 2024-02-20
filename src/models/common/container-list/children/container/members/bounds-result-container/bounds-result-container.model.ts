@@ -1,4 +1,4 @@
-import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
+import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
 import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
@@ -30,9 +30,9 @@ export const BoundsResultContainerResultTypes: tBoundsResultContainerResultType[
 export interface iBoundsResultContainer extends aContainer {
   /**
   * Document position
-  * @type {iBoundsResult}
+  * @type {iBoundsResult|undefined}
   */
-  DocumentPosition: iBoundsResult
+  DocumentPosition?: iBoundsResult
 
   /**
   * Result type stored in this container
@@ -100,10 +100,10 @@ export class BoundsResultContainer extends aContainer implements iBoundsResultCo
   * @type {BoundsResult}
   */
   @Expose()
-  @IsDefined()
+  @IsOptional()
   @ValidateNested()
   @Type(() => BoundsResult)
-  DocumentPosition: BoundsResult
+  DocumentPosition?: BoundsResult
 
   /**
   * Create new instance of BoundsResultContainer from plain object

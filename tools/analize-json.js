@@ -37,7 +37,10 @@ const simplifyErrors = (property, errors) => {
     }
 
     if (errors[i].constraints) {
-      result[fieldPath] = values(merge(errors[i].constraints, result[fieldPath]))
+      result[fieldPath] = {
+        errors: values(merge(errors[i].constraints, result[fieldPath])),
+        value: errors[i].value,
+      }
     }
   }
 
@@ -95,7 +98,7 @@ const parsed = entity.fromPlain(fileContent)
 let isValid = true
 
 try {
-  entity.isValid(parsed)
+  entity.validate(parsed)
 } catch (error) {
   const errors = error.errors
 

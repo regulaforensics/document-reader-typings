@@ -17,7 +17,8 @@ export type tDocGraphicsInfoContainerResultType =
   eResultType.BARCODES_IMAGE_DATA |
   eResultType.LIVE_PORTRAIT |
   eResultType.EXT_PORTRAIT |
-  eResultType.FINGERPRINTS
+  eResultType.FINGERPRINTS |
+  eResultType.RFID_IMAGE_DATA
 
 /**
 * Result type of DocGraphicsInfoContainer
@@ -29,6 +30,7 @@ export const DocGraphicsInfoContainerResultTypes: tDocGraphicsInfoContainerResul
   eResultType.LIVE_PORTRAIT,
   eResultType.EXT_PORTRAIT,
   eResultType.FINGERPRINTS,
+  eResultType.RFID_IMAGE_DATA
 ]
 
 /**

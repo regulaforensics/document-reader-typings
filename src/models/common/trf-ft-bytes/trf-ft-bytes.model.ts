@@ -1,4 +1,4 @@
-import { IsBase64, IsDefined, IsIn, IsInt, IsString } from 'class-validator'
+import { IsBase64, IsDefined, IsIn, IsInt, IsNumber, IsString } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 import { eGraphicFieldType, eLDSParsingErrorCodes, eLDSParsingNotificationCodes, eVisualFieldType } from '@/consts'
@@ -18,9 +18,9 @@ export interface iTrfFtBytes {
   /**
   * Result of logical analysis of compliance of the contents of the field
   * with the requirements of the specification
-  * @type {eLDSParsingNotificationCodes | eLDSParsingErrorCodes.OK}
+  * @type {number}
   */
-  Status: eLDSParsingNotificationCodes | eLDSParsingErrorCodes.OK
+  Status: number
 
   /**
   * Length of Data array
@@ -51,13 +51,13 @@ export class TrfFtBytes implements iTrfFtBytes {
   /**
   * Result of logical analysis of compliance of the contents of the field
   * with the requirements of the specification
-  * @type {eLDSParsingNotificationCodes | eLDSParsingErrorCodes.OK}
+  * @type {number}
   */
   @Expose()
   @IsDefined()
-  @IsIn([...Object.values(eLDSParsingNotificationCodes), eLDSParsingErrorCodes.OK])
-  @Default(eLDSParsingErrorCodes.OK)
-  Status: eLDSParsingNotificationCodes | eLDSParsingErrorCodes.OK
+  @IsNumber()
+  @Default(1)
+  Status: number
 
   /**
   * Length of Data array

@@ -14,16 +14,21 @@ import { aDocVisualExtendedField } from '../../doc-visual-extended-field.abstrac
 */
 export interface iDocVisualExtendedField1 extends aDocVisualExtendedField {
   /**
+  * @internal
+  */
+  FieldType: unknown
+
+  /**
   * Field logical type
   * @type {eVisualFieldType}
   */
-  FieldType: eVisualFieldType
+  wFieldType: eVisualFieldType
 
   /**
   * Field rectangular area coordinates on the image
-  * @type {iRect}
+  * @type {iRect|undefined}
   */
-  FieldRect: iRect
+  FieldRect?: iRect
 
   /**
   * Field symbolic name (null-terminated string)
@@ -93,23 +98,29 @@ export interface iDocVisualExtendedField1 extends aDocVisualExtendedField {
 */
 export class DocVisualExtendedField1 extends aDocVisualExtendedField implements iDocVisualExtendedField1 {
   /**
+  * @internal
+  */
+  @Expose()
+  FieldType: unknown
+
+  /**
   * Field logical type
   * @type {eVisualFieldType}
   */
   @Expose()
   @IsDefined()
   @IsEnum(eVisualFieldType)
-  FieldType: eVisualFieldType
+  wFieldType: eVisualFieldType
 
   /**
   * Field rectangular area coordinates on the image
   * @type {Rect}
   */
   @Expose()
-  @IsDefined()
+  @IsOptional()
   @ValidateNested()
   @Type(() => Rect)
-  FieldRect: Rect
+  FieldRect?: Rect
 
   /**
   * Field symbolic name (null-terminated string)

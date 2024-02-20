@@ -38,4 +38,9 @@ export enum eRfidAccessControlProcedureType {
   * RI
   */
   RI = 6,
+
+  /**
+  * Card info
+  */
+  CARD_INFO = 10
 }

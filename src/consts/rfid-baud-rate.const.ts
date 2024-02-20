@@ -4,6 +4,12 @@
 */
 export enum eRfidBaudRate {
   /**
+  * Unknown
+  * @type {number}
+  */
+  UNKNOWN = 0X00,
+
+  /**
   * 106 bits/s
   */
   RFBR_106 = 0X01,

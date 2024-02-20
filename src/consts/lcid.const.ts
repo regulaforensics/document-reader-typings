@@ -721,5 +721,20 @@ export enum eLCID {
   /**
   * CTC Traditional
   */
-  CTC_TRADITIONAL = 50002
+  CTC_TRADITIONAL = 50002,
+
+  /**
+  * Bengali (Bangladesh)
+  */
+  BENGALI_BANGLADESH = 2117,
+
+  /**
+  * BengaliIndia
+  */
+  BENGALI_INDIA = 1093,
+
+  /**
+  * Assamese
+  */
+  ASSAMESE = 1101
 }

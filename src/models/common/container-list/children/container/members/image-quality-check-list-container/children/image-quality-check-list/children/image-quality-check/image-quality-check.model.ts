@@ -1,4 +1,4 @@
-import { IsDefined, IsEnum, IsInt, IsNumber, ValidateNested } from 'class-validator'
+import { IsDefined, IsEnum, IsInt, IsNumber, IsOptional, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
 import { eCheckResult, eImageQualityCheckType, eSecurityFeatureType } from '@/consts'
@@ -30,9 +30,9 @@ export interface iImageQualityCheck {
 
   /**
   * Anomalous image areas
-  * @type {iAreaArray}
+  * @type {iAreaArray|undefined}
   */
-  areas: iAreaArray
+  areas?: iAreaArray
 
   /**
   * Check mean value
@@ -88,13 +88,13 @@ export class ImageQualityCheck implements iImageQualityCheck {
 
   /**
   * Anomalous image areas
-  * @type {AreaArray}
+  * @type {AreaArray|undefined}
   */
   @Expose()
-  @IsDefined()
+  @IsOptional()
   @ValidateNested()
   @Type(() => AreaArray)
-  areas: AreaArray
+  areas?: AreaArray
 
   /**
   * Check mean value
