@@ -21,6 +21,11 @@ describe('testing ProcessResponse', () => {
 
   files.forEach((file) => {
     const filePath = join(DIRECTORY, file)
+
+    if (!filePath.endsWith('.json')) {
+      return
+    }
+
     const fileContent = readFileSync(filePath, 'utf-8')
 
     let isValidJSON = true
