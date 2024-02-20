@@ -17,6 +17,7 @@ import { Default } from '@/decorators'
 import { DocReaderTypeError } from '@/errors'
 import { ContainerList, iContainerList } from '@/models/common'
 import { iTransactionInfo, TransactionInfo } from './children'
+import { decode } from '@/helpers'
 
 
 export interface iProcessResponse {
@@ -174,4 +175,22 @@ export class ProcessResponse implements iProcessResponse {
 
     return true
   }
+
+  /**
+  * Decode log from base64
+  * @param {string|ProcessResponse} input - base64 encoded log or ProcessResponse
+  * @returns {string} - decoded log
+  */
+  static decodeLog = (input?: string | ProcessResponse): string => {
+    if (typeof input === 'string') {
+      return decode(input)
+    }
+
+    if (!input || !input.log) {
+      return ''
+    }
+
+    return decode(input.log)
+  }
+
 }

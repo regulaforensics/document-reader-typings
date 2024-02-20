@@ -1,5 +1,5 @@
 {
-  "version": "0.0.34",
+  "version": "0.0.35",
   "author": "Regula Forensics, Inc.",
   "name": "@regulaforensics/document-reader-typings",
   "description": "Document Reader API typings",
@@ -12,6 +12,7 @@
   "dependencies": {
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "pako": "^2.1.0",
     "reflect-metadata": "^0.2.1"
   },
   "devDependencies": {
@@ -19,6 +20,7 @@
     "@types/jest": "^29.5.12",
     "@types/lodash": "^4.14.202",
     "@types/node": "^20.11.19",
+    "@types/pako": "^2.0.3",
     "deep-diff": "^1.0.2",
     "dotenv": "^16.4.4",
     "jest": "^29.7.0",
