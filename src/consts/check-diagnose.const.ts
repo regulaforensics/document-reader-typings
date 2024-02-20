@@ -120,6 +120,11 @@ export enum eCheckDiagnose {
   TOO_MUCH_SHIFT = 28,
 
   /**
+  * Contact chip type mismatch
+  */
+  CONTACT_CHIP_TYPE_MISMATCH = 29,
+
+  /**
   * No protective fibers were found in UV
   */
   FIBERS_NOT_FOUND = 30,

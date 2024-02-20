@@ -3136,5 +3136,10 @@ export enum eVisualFieldType {
   /**
   * Building type
   */
-  ADDRESS_BUILDING_TYPE = 680
+  ADDRESS_BUILDING_TYPE = 680,
+
+  /**
+  * Date of Retirement
+  */
+  DATE_OF_RETIREMENT = 681
 }

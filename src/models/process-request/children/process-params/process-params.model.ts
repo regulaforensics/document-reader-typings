@@ -123,6 +123,7 @@ export interface iProcessParams {
   * Russian domestic passport, or some others.
   * Disabled by default.
   * @type {boolean|undefined}
+  * @deprecated
   */
   doublePageSpread?: boolean
 
@@ -220,6 +221,7 @@ export interface iProcessParams {
   * Reduces processing time for specific backgrounds.
   * Enabled by default.
   * @type {boolean|undefined}
+  * @deprecated
   */
   fastDocDetect?: boolean
 
@@ -540,6 +542,7 @@ export class ProcessParams implements iProcessParams {
   * both pages in one go. It makes sense to use it for documents that have meaningful information on both pages, like
   * Russian domestic passport, or some others. Disabled by default.
   * @type {boolean|undefined}
+  * @deprecated
   */
   @Expose()
   @IsOptional()
@@ -674,6 +677,7 @@ export class ProcessParams implements iProcessParams {
   * Reduces processing time for specific backgrounds.
   * Enabled by default.
   * @type {boolean|undefined}
+  * @deprecated
   */
   @Expose()
   @IsOptional()
