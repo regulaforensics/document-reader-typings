@@ -118,7 +118,7 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   * @returns {(ImagesResultContainer|iImagesResultContainer)[]}
   */
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iImagesResultContainer[];
-  static fromProcessResponse(input: ProcessResponse, asPlain: false): ImagesResultContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain?: false): ImagesResultContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (ImagesResultContainer|iImagesResultContainer)[] {
     const { ContainerList } = input
 

@@ -123,7 +123,7 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   * @returns {(AuthenticityCheckListContainer|iAuthenticityCheckListContainer)[]}
   */
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iAuthenticityCheckListContainer[];
-  static fromProcessResponse(input: ProcessResponse, asPlain: false): AuthenticityCheckListContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain?: false): AuthenticityCheckListContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (AuthenticityCheckListContainer|iAuthenticityCheckListContainer)[] {
     const { ContainerList } = input
 

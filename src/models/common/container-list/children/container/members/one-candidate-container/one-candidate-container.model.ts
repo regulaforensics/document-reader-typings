@@ -118,7 +118,7 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   * @returns {(OneCandidateContainer|iOneCandidateContainer)[]}
   */
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iOneCandidateContainer[];
-  static fromProcessResponse(input: ProcessResponse, asPlain: false): OneCandidateContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain?: false): OneCandidateContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (OneCandidateContainer|iOneCandidateContainer)[] {
     const { ContainerList } = input
 

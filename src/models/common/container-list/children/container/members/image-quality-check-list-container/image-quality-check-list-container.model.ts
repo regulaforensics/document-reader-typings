@@ -118,7 +118,7 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
   * @returns {(ImageQualityCheckListContainer|iImageQualityCheckListContainer)[]}
   */
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iImageQualityCheckListContainer[];
-  static fromProcessResponse(input: ProcessResponse, asPlain: false): ImageQualityCheckListContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain?: false): ImageQualityCheckListContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (ImageQualityCheckListContainer|iImageQualityCheckListContainer)[] {
     const { ContainerList } = input
 

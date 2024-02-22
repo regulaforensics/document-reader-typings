@@ -118,7 +118,7 @@ export class DocBinaryInfoContainer extends aContainer implements iDocBinaryInfo
   * @returns {(iDocBinaryInfoContainer | DocBinaryInfoContainer)[]}
   */
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iDocBinaryInfoContainer[];
-  static fromProcessResponse(input: ProcessResponse, asPlain: false): DocBinaryInfoContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain?: false): DocBinaryInfoContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (iDocBinaryInfoContainer | DocBinaryInfoContainer)[] {
     const { ContainerList } = input
 
