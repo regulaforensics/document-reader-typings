@@ -120,7 +120,7 @@ export class BoundsResultContainer extends aContainer implements iBoundsResultCo
   * @returns {(BoundsResultContainer | iBoundsResultContainer)[]}
   */
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iBoundsResultContainer[];
-  static fromProcessResponse(input: ProcessResponse, asPlain: false): BoundsResultContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain?: false): BoundsResultContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (BoundsResultContainer|iBoundsResultContainer)[] {
     const { ContainerList } = input
 

@@ -116,8 +116,8 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   * @param {boolean} asPlain - flag to return plain object instead of class instance
   * @returns {(StatusContainer | iStatusContainer)[]}
   */
-  static fromProcessResponse(input: ProcessResponse, asPlain: false): StatusContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iStatusContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain?: false): StatusContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (StatusContainer|iStatusContainer)[] {
     const { ContainerList } = input
 

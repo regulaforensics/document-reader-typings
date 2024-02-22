@@ -118,7 +118,7 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   * @returns {(iDocBarCodeInfoContainer | DocBarCodeInfoContainer)[]}
   */
   static fromProcessResponse (input: ProcessResponse, asPlain: true): iDocBarCodeInfoContainer[];
-  static fromProcessResponse (input: ProcessResponse, asPlain: false): DocBarCodeInfoContainer[];
+  static fromProcessResponse (input: ProcessResponse, asPlain?: false): DocBarCodeInfoContainer[];
   static fromProcessResponse (input: ProcessResponse, asPlain: boolean = false): (iDocBarCodeInfoContainer | DocBarCodeInfoContainer)[] {
     const { ContainerList } = input
 

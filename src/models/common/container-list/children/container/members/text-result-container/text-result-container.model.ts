@@ -118,7 +118,7 @@ export class TextResultContainer extends aContainer implements iTextResultContai
   * @returns {(TextResultContainer|iTextResultContainer)[]}
   */
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iTextResultContainer[];
-  static fromProcessResponse(input: ProcessResponse, asPlain: false): TextResultContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain?: false): TextResultContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (TextResultContainer|iTextResultContainer)[] {
     const { ContainerList } = input
 

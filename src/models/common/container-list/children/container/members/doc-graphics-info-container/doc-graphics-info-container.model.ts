@@ -129,7 +129,7 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   * @returns {(DocGraphicsInfoContainer | iDocGraphicsInfoContainer)[]}
   */
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iDocGraphicsInfoContainer[];
-  static fromProcessResponse(input: ProcessResponse, asPlain: false): DocGraphicsInfoContainer[];
+  static fromProcessResponse(input: ProcessResponse, asPlain?: false): DocGraphicsInfoContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (DocGraphicsInfoContainer | iDocGraphicsInfoContainer)[] {
     const { ContainerList } = input
 
