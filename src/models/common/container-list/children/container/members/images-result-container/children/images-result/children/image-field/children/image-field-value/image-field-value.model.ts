@@ -1,7 +1,7 @@
 import { IsBase64, IsDefined, IsEnum, IsInt, IsOptional, IsString, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
-import { eLights, eSource } from '@/consts'
+import { eLights, eResultType, eSource } from '@/consts'
 import { iRfidOrigin, RfidOrigin } from '@/models/common/rfid-origin'
 import { iRect, Rect } from '@/models/common/rect'
 import { Default } from '@/decorators'
@@ -31,9 +31,9 @@ export interface iImageFieldValue {
 
   /**
   * Container type
-  * @type {number}
+  * @type {eResultType}
   */
-  containerType: number
+  containerType: eResultType
 
   /**
   * Page index
@@ -101,12 +101,12 @@ export class ImageFieldValue implements iImageFieldValue {
 
   /**
   * Container type
-  * @type {number}
+  * @type {eResultType}
   */
   @Expose()
   @IsDefined()
-  @IsInt()
-  containerType: number
+  @IsEnum(eResultType)
+  containerType: eResultType
 
   /**
   * Page index
