@@ -26,5 +26,10 @@ export enum eSource {
   /**
   * Magnetic
   */
-  MAGNETIC = 'MAGNETIC'
+  MAGNETIC = 'MAGNETIC',
+
+  /**
+  * External
+  */
+  EXTERNAL = 'EXTERNAL'
 }
