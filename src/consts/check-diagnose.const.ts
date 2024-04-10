@@ -207,7 +207,7 @@ export enum eCheckDiagnose {
   /**
   * Invalid params for IPI check
   */
-  FALSE_IP_PARAMETERS = 65,
+  FALSE_IPI_PARAMETERS = 65,
 
   /**
   * IR image too bright
