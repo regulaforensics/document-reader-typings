@@ -60,6 +60,11 @@ export enum eGraphicFieldType {
   STAMP = 211,
 
   /**
+  * Portrait of child
+  */
+  PORTRAIT_OF_CHILD = 212,
+
+  /**
   * Contact chip
   */
   CONTACT_CHIP = 213,
