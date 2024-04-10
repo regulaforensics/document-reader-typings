@@ -164,6 +164,21 @@ export enum eVisualFieldType {
   VISA_SUBCLASS = 31,
 
   /**
+  * @internal
+  */
+  MRZ_STRING_1 = 32,
+
+  /**
+  * @internal
+  */
+  MRZ_STRING_2 = 33,
+
+  /**
+  * @internal
+  */
+  MRZ_STRING_3 = 34,
+
+  /**
   * MRZ type
   */
   MRZ_TYPE = 35,
@@ -3141,5 +3156,10 @@ export enum eVisualFieldType {
   /**
   * Date of Retirement
   */
-  DATE_OF_RETIREMENT = 681
+  DATE_OF_RETIREMENT = 681,
+
+  /**
+  * Document status
+  */
+  DOCUMENT_STATUS = 682
 }
