@@ -1,6 +1,7 @@
-import { IsDefined, ValidateNested } from 'class-validator'
+import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
+import { Default } from '@/decorators'
 import { iRfidDG1, iRfidSession, RfidDG1, RfidSession } from './children'
 
 
@@ -21,6 +22,12 @@ export interface iBinaryData {
   * @type {iRfidSession}
   */
   RFID_Session_Data: iRfidSession
+
+  /**
+  * Indexes of groups that aren't read
+  * @type {number[]}
+  */
+  RFID_ePassp_Directory: number[]
 }
 
 /**
@@ -48,4 +55,15 @@ export class BinaryData implements iBinaryData {
   @ValidateNested()
   @Type(() => RfidSession)
   RFID_Session_Data: RfidSession
+
+  /**
+  * Indexes of groups that aren't read
+  * @type {number[]}
+  */
+  @Expose()
+  @IsDefined()
+  @IsArray()
+  @IsInt({ each: true })
+  @Default([])
+  RFID_ePassp_Directory: number[]
 }
