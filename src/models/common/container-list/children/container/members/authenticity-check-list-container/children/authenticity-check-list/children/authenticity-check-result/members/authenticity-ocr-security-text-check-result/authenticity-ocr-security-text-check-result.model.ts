@@ -106,5 +106,5 @@ export class AuthenticityOCRSecurityTextCheckResult extends aAuthenticityCheckRe
   * @return {type is iAuthenticityOCRSecurityTextCheckResult} - result
   */
   static isBelongs = (type: unknown): type is iAuthenticityOCRSecurityTextCheckResult =>
-    AuthenticityOCRSecurityTextCheckResultTypes.includes(type as tAuthenticityOCRSecurityTextCheckResultType)
+    AuthenticityOCRSecurityTextCheckResultTypes.includes((type as iAuthenticityOCRSecurityTextCheckResult).Type)
 }
