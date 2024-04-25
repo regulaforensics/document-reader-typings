@@ -3,7 +3,15 @@ import { Expose, Type } from 'class-transformer'
 
 import { Default } from '@/decorators'
 import { iRect, Rect } from '@/models/common/rect'
-import { eAuthenticity, eCheckDiagnose, eCheckResult, eLights, eResultType, eSecurityCriticalFlag } from '@/consts'
+import {
+  eAuthenticity,
+  eCheckDiagnose,
+  eCheckResult,
+  eLights,
+  eResultType,
+  eSecurityCriticalFlag,
+  eVisualFieldType
+} from '@/consts'
 
 
 /**
@@ -55,9 +63,10 @@ export interface iOCRSecurityTextResult {
   EtalonResultType: eResultType.MRZ_OCR_EXTENDED | eResultType.VISUAL_OCR_EXTENDED | eResultType.BARCODES_TEXT_DATA
 
   /**
-  * TODO: eRPRMFieldType
+  * Field type
+  * @type {eVisualFieldType}
   */
-  EtalonFieldType: number
+  EtalonFieldType: eVisualFieldType
 
   /**
   * Pattern field light scheme
@@ -170,12 +179,13 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   EtalonResultType: eResultType.MRZ_OCR_EXTENDED | eResultType.VISUAL_OCR_EXTENDED | eResultType.BARCODES_TEXT_DATA
 
   /**
-  * TODO: eRPRMFieldType
+  * Field type
+  * @type {eVisualFieldType}
   */
   @Expose()
   @IsDefined()
-  @IsNumber()
-  EtalonFieldType: number
+  @IsEnum(eVisualFieldType)
+  EtalonFieldType: eVisualFieldType
 
   /**
   * Pattern field light scheme
