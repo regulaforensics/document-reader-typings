@@ -3161,5 +3161,10 @@ export enum eVisualFieldType {
   /**
   * Document status
   */
-  DOCUMENT_STATUS = 682
+  DOCUMENT_STATUS = 682,
+
+  /**
+  * Signature
+  */
+  SIGNATURE = 683
 }

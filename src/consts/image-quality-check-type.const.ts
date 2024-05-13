@@ -46,5 +46,10 @@ export enum eImageQualityCheckType {
   /**
   * If the document contains handwritten text in the scanned fields
   */
-  HANDWRITTEN = 8
+  HANDWRITTEN = 8,
+
+  /**
+  * Signals if the document image is bright enough
+  */
+  BRIGHTNESS = 9
 }

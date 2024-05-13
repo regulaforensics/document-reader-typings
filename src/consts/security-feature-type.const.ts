@@ -194,7 +194,9 @@ export enum eSecurityFeatureType {
   FACE_ABSENCE = 38,
 
   /**
-  * Liveness screen capture
+  * Liveness screen capture.
+  * LIVENESS_ELECTRONIC_DEVICE is used instead.
+  * @deprecated
   */
   LIVENESS_SCREEN_CAPTURE = 39,
 

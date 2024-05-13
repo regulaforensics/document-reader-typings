@@ -1092,4 +1092,24 @@ export enum eLDSParsingNotificationCodes {
   * Auth ML signer info: Certificate signature invalid
   */
   AUTH_ML_SIGNER_INFO_CERTIFICATE_SIGNATURE_INVALID = -1845493479,
+
+  /**
+  * Country Codes from certificate chain don't match
+  */
+  ICAO_CERTIFICATE_CHAIN_COUNTRY_NON_MATCHING = -1879047600,
+
+  /**
+  * Country Codes from certificate and visual MRZ don't match
+  */
+  ICAO_CERTIFICATE_VISUAL_MRZ_COUNTRY_NON_MATCHING = -1879047599,
+
+  /**
+  * Incorrect MRZ, country code doesn't match codes from Visual MRZ
+  */
+  MRZ_COUNTRY_CODE_VISUAL_MRZ_NON_MATCHING = 139289,
+
+  /**
+  * Country Codes from certificate and DG1 MRZ don't match
+  */
+  ICAO_CERTIFICATE_MRZ_COUNTRY_NON_MATCHING = -1879047598
 }
