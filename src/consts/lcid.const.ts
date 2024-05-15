@@ -1,5 +1,7 @@
 /**
-* Locale id. Used to tag same typed fields declared in several languages. For example: name can be provided in both native and latin variants. Based on Microsoft locale id (https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).
+* Locale id. Used to tag same typed fields declared in several languages.
+* For example: name can be provided in both native and latin variants.
+* Based on Microsoft locale id (https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).
 * @enum {number}
 */
 export enum eLCID {
@@ -317,6 +319,11 @@ export enum eLCID {
   * Galician
   */
   GALICIAN = 1110,
+
+  /**
+  * Sinhala
+  */
+  SINHALA = 1115,
 
   /**
   * Georgian
@@ -736,5 +743,95 @@ export enum eLCID {
   /**
   * Assamese
   */
-  ASSAMESE = 1101
+  ASSAMESE = 1101,
+
+  /**
+  * Oriya
+  */
+  ORIYA = 1096,
+
+  /**
+  * Malayalam
+  */
+  MALAYALAM = 1100,
+
+  /**
+  * Lao
+  */
+  LAO = 1108,
+
+  /**
+  * Sindhi (India)
+  */
+  SINDHI_INDIA = 1113,
+
+  /**
+  * Amharic
+  */
+  AMHARIC = 1118,
+
+  /**
+  * Kashmiri
+  */
+  KASHMIRI = 1120,
+
+  /**
+  * Nepali
+  */
+  NEPALI = 1121,
+
+  /**
+  * Pashto
+  */
+  PASHTO = 1123,
+
+  /**
+  * Sindhi
+  */
+  SINDHI = 2137,
+
+  /**
+  * Arabic (World)
+  */
+  ARABIC = 4096,
+
+  /**
+  * Bank Card Number
+  */
+  BANK_CARD_NUMBER = 10000,
+
+  /**
+  * Bank Card Expiry Date
+  */
+  BANK_CARD_EXPIRY_DATE = 10001,
+
+  /**
+  * Bank Card Name
+  */
+  BANK_CARD_NAME = 10002,
+
+  /**
+  * Bank Card
+  */
+  BANK_CARD = 10003,
+
+  /**
+  * Bank Card CVV2
+  */
+  BANK_CARD_CVV2 = 10004,
+
+  /**
+  * Abkhazian (Cyrillic)
+  */
+  ABKHAZIAN = 10011,
+
+  /**
+  * Karakalpak (Latin)
+  */
+  KARAKALPAK = 10012,
+
+  /**
+  * Urdu Detection
+  */
+  URDU_DETECTION = 10560
 }

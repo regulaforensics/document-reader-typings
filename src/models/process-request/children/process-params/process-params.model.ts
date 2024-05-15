@@ -4,7 +4,6 @@ import {
   IsDefined,
   IsEnum,
   IsInt,
-  IsNumber,
   IsOptional,
   IsString,
   Min,
@@ -17,6 +16,7 @@ import {
   eDocType,
   eLogLevel,
   eMeasureSystem,
+  eMRZDetectMode,
   eMRZFormat,
   eResult,
   eScenario,
@@ -274,13 +274,6 @@ export interface iProcessParams {
   noGraphics?: boolean
 
   /**
-  * Specifies minimal area of the image that document should cover to be treated as candidate when locating.
-  * Value should be in range from 0 to 1, where 1 is when document should fully cover the image.
-  * @type {number|undefined}
-  */
-  documentAreaMin?: number
-
-  /**
   * When enabled, all personal data will be forcibly removed from the logs.
   * Disabled by default.
   * @type {boolean|undefined}
@@ -416,6 +409,12 @@ export interface iProcessParams {
   * @type {iProcessParamsRfid|undefined}
   */
   rfid?: iProcessParamsRfid
+
+  /**
+  * Make better MRZ detection on complex noisy backgrounds, like BW photocopy of some documents.
+  * @type {eMRZDetectMode|undefined}
+  */
+  mrzDetectMode?: eMRZDetectMode
 }
 
 /**
@@ -753,16 +752,6 @@ export class ProcessParams implements iProcessParams {
   noGraphics?: boolean
 
   /**
-  * Specifies minimal area of the image that document should cover to be treated as candidate when locating.
-  * Value should be in range from 0 to 1, where 1 is when document should fully cover the image.
-  * @type {number|undefined}
-  */
-  @Expose()
-  @IsOptional()
-  @IsNumber()
-  documentAreaMin?: number
-
-  /**
   * When enabled, all personal data will be forcibly removed from the logs.
   * Disabled by default.
   * @type {boolean|undefined}
@@ -956,4 +945,13 @@ export class ProcessParams implements iProcessParams {
   @ValidateNested()
   @Type(() => ProcessParamsRfid)
   rfid?: ProcessParamsRfid
+
+  /**
+  * Make better MRZ detection on complex noisy backgrounds, like BW photocopy of some documents.
+  * @type {eMRZDetectMode|undefined}
+  */
+  @Expose()
+  @IsOptional()
+  @IsEnum(eMRZDetectMode)
+  mrzDetectMode?: eMRZDetectMode
 }
