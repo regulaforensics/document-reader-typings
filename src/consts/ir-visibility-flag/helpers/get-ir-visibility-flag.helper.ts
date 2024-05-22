@@ -1,24 +1,24 @@
 import { eIRVisibilityFlag } from '../ir-visibility-flag.const'
-import { isIRVisibilityFlag } from './is-ir-visibility-flag.helper'
 
 
 /**
 * Get eIRVisibilityFlag array from value
 * @param {number} value - value
-* @returns {eLights[]}
+* @returns {eIRVisibilityFlag[]}
 */
 export const getIRVisibilityFlagArray = (value: number): eIRVisibilityFlag[] => {
   const result: eIRVisibilityFlag[] = []
 
-  for (const flag in eIRVisibilityFlag) {
-    const index = Number(flag)
+  if (value === 0) {
+    result.push(eIRVisibilityFlag.INVISIBLE)
+    return result
+  }
 
-    if (!isNaN(index)) {
-      const lightValue = eIRVisibilityFlag[index]
+  for (const key in eIRVisibilityFlag) {
+    const enumValue = eIRVisibilityFlag[key as keyof typeof eIRVisibilityFlag]
 
-      if (isIRVisibilityFlag(lightValue) && (value & lightValue) === lightValue) {
-        result.push(lightValue)
-      }
+    if (enumValue !== 0 && (value & enumValue) === enumValue) {
+      result.push(enumValue)
     }
   }
 

@@ -1,5 +1,4 @@
 import { eAuthenticity } from '../authenticity.const'
-import { isAuthenticity } from './is-authenticity.helper'
 
 
 /**
@@ -11,14 +10,16 @@ import { isAuthenticity } from './is-authenticity.helper'
 export const getAuthenticityArray = (value: number): eAuthenticity[] => {
   const result: eAuthenticity[] = []
 
-  for (const authenticity in eAuthenticity) {
-    if (isNaN(Number(authenticity))) {
+  if (value === 0) {
+    result.push(eAuthenticity.NONE)
+    return result
+  }
 
-      const authenticityElement = eAuthenticity[authenticity]
+  for (const key in eAuthenticity) {
+    const enumValue = eAuthenticity[key as keyof typeof eAuthenticity]
 
-      if (isAuthenticity(authenticityElement) && (value & authenticityElement) === authenticityElement) {
-        result.push(authenticityElement)
-      }
+    if (enumValue !== 0 && (value & enumValue) === enumValue) {
+      result.push(enumValue)
     }
   }
 

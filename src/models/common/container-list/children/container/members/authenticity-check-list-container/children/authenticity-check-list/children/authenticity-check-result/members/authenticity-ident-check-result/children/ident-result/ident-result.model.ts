@@ -211,6 +211,8 @@ export class IdentResult implements iIdentResult {
 
   /**
   * Identity percent of the etalon and sample image
+  * If type = eAuthenticity.IR_VISIBILITY then this field contains IR visibility flags
+  * Use getIRVisibilityFlagArray to get array of eIRVisibilityFlag from this field
   * @type {number}
   */
   @Expose()
@@ -227,6 +229,4 @@ export class IdentResult implements iIdentResult {
   @ValidateNested()
   @Type(() => AreaArray)
   AreaList?: AreaArray
-
-
 }
