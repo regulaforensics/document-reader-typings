@@ -1,4 +1,5 @@
 export * from './authenticity'
+export * from './ir-visibility-flag'
 export * from './lights'
 export * from './rfid-terminal-authorization-requirement'
 
@@ -13,7 +14,6 @@ export * from './doc-type.const'
 export * from './field-verification-result.const'
 export * from './graphic-field-type.const'
 export * from './image-quality-check-type.const'
-export * from './ir-visibility-flag.const'
 export * from './lcid.const'
 export * from './lds-parsing-error-codes.const'
 export * from './lds-parsing-notification-codes.const'
