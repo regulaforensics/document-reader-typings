@@ -227,4 +227,6 @@ export class IdentResult implements iIdentResult {
   @ValidateNested()
   @Type(() => AreaArray)
   AreaList?: AreaArray
+
+
 }
