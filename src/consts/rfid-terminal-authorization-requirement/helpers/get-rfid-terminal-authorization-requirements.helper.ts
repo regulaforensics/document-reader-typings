@@ -1,5 +1,4 @@
 import { eRfidTerminalAuthorizationRequirement } from '../rfid-terminal-authorization-requirement.const'
-import { isRfidTerminalAuthorizationRequirement } from './is-rfid-terminal-authorization-requirement.helper'
 
 
 /**
@@ -10,15 +9,11 @@ import { isRfidTerminalAuthorizationRequirement } from './is-rfid-terminal-autho
 export const getRfidTerminalAuthorizationRequirements = (value: number): eRfidTerminalAuthorizationRequirement[] => {
   const result: eRfidTerminalAuthorizationRequirement[] = []
 
-  for (const requirement in eRfidTerminalAuthorizationRequirement) {
-    const index = Number(requirement)
+  for (const key in eRfidTerminalAuthorizationRequirement) {
+    const enumValue = eRfidTerminalAuthorizationRequirement[key as keyof typeof eRfidTerminalAuthorizationRequirement]
 
-    if (!isNaN(index)) {
-      const requirementValue = eRfidTerminalAuthorizationRequirement[index]
-
-      if (isRfidTerminalAuthorizationRequirement(requirementValue) && (value & requirementValue) === requirementValue) {
-        result.push(requirementValue)
-      }
+    if ((value & enumValue) === enumValue) {
+      result.push(enumValue)
     }
   }
 

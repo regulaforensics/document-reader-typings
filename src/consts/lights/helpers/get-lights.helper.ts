@@ -1,5 +1,4 @@
 import { eLights } from '../lights.const'
-import { isLights } from './is-lights.helper'
 
 
 /**
@@ -10,15 +9,16 @@ import { isLights } from './is-lights.helper'
 export const getLightsArray = (value: number): eLights[] => {
   const result: eLights[] = []
 
-  for (const light in eLights) {
-    const index = Number(light)
+  if (value === 0) {
+    result.push(eLights.OFF)
+    return result
+  }
 
-    if (!isNaN(index)) {
-      const lightValue = eLights[index]
+  for (const key in eLights) {
+    const enumValue = eLights[key as keyof typeof eLights]
 
-      if (isLights(lightValue) && (value & lightValue) === lightValue) {
-        result.push(lightValue)
-      }
+    if (enumValue !== 0 && (value & enumValue) === enumValue) {
+      result.push(enumValue)
     }
   }
 
