@@ -3166,5 +3166,45 @@ export enum eVisualFieldType {
   /**
   * Signature
   */
-  SIGNATURE = 683
+  SIGNATURE = 683,
+
+  /**
+  * Unique certificate identifier
+  */
+  UNIQUE_CERTIFICATE_IDENTIFIER = 684,
+
+  /**
+  * Email
+  */
+  EMAIL = 685,
+
+  /**
+  * Date of specimen collection
+  */
+  DATE_OF_SPECIMEN_COLLECTION = 686,
+
+  /**
+  * Type of testing
+  */
+  TYPE_OF_TESTING = 687,
+
+  /**
+  * Result of testing
+  */
+  RESULT_OF_TESTING = 688,
+
+  /**
+  * Method of testing
+  */
+  METHOD_OF_TESTING = 689,
+
+  /**
+  * Digital travel authorization number
+  */
+  DIGITAL_TRAVEL_AUTHORIZATION_NUMBER = 690,
+
+  /**
+  * Date of first positive test result
+  */
+  DATE_OF_FIRST_POSITIVE_TEST_RESULT = 691,
 }

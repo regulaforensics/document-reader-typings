@@ -588,7 +588,7 @@ export enum eCheckDiagnose {
   ICAO_IDB_CERTIFICATE_MUST_NOT_BE_PRESENT = 248,
 
   /**
-  * For internal use
+  * Incorrect object color
   */
-  LAST_DIAGNOSE_VALUE = 250
+  INCORRECT_OBJECT_COLOR = 250
 }
