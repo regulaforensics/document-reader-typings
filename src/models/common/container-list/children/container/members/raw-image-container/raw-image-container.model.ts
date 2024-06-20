@@ -12,13 +12,14 @@ import { ProcessResponse } from '@/models'
 /**
 * Result type of RawImageContainer
 */
-export type tRawImageContainerResultType = eResultType.RAW_UNCROPPED_IMAGE
+export type tRawImageContainerResultType = eResultType.DOCUMENT_IMAGE | eResultType.RAW_UNCROPPED_IMAGE
 
 /**
 * Result type of RawImageContainer
 * @type {tRawImageContainerResultType[]}
 */
 export const RawImageContainerResultTypes: tRawImageContainerResultType[] = [
+  eResultType.DOCUMENT_IMAGE,
   eResultType.RAW_UNCROPPED_IMAGE,
 ]
 
