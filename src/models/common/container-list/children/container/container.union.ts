@@ -264,6 +264,7 @@ export namespace uContainer {
         case eResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE:
           result.push(OneCandidateContainer.fromPlain(item))
           break
+        case eResultType.DOCUMENT_IMAGE:
         case eResultType.RAW_UNCROPPED_IMAGE:
           result.push(RawImageContainer.fromPlain(item))
           break
