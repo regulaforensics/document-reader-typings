@@ -20,7 +20,8 @@ export type tAuthenticityIdentCheckResultType =
   eAuthenticity.LETTER_SCREEN |
   eAuthenticity.HOLOGRAM_DETECTION |
   eAuthenticity.FINGERPRINT_COMPARISON |
-  eAuthenticity.LIVENESS
+  eAuthenticity.LIVENESS |
+  eAuthenticity.ENCRYPTED_IPI
 
 /**
 * Result type of AuthenticityIdentCheckResult
@@ -35,7 +36,8 @@ export const AuthenticityIdentCheckResultTypes: tAuthenticityIdentCheckResultTyp
   eAuthenticity.LETTER_SCREEN,
   eAuthenticity.HOLOGRAM_DETECTION,
   eAuthenticity.FINGERPRINT_COMPARISON,
-  eAuthenticity.LIVENESS
+  eAuthenticity.LIVENESS,
+  eAuthenticity.ENCRYPTED_IPI,
 ]
 
 /**

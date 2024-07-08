@@ -132,5 +132,7 @@ export enum eAuthenticity {
   /**
   * Flag for status-only authenticity
   */
-  STATUS_ONLY = 2147483648
+  STATUS_ONLY = 2147483648,
+
+  ENCRYPTED_IPI = 16777216
 }
