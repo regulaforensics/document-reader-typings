@@ -210,6 +210,16 @@ export enum eCheckDiagnose {
   FALSE_IPI_PARAMETERS = 65,
 
   /**
+  * Information not decoded
+  */
+  ENCRYPTED_IPI_NOT_FOUND = 66,
+
+  /**
+  * Decoded data don't match to other data sources
+  */
+  ENCRYPTED_IPI_DATA_DONT_MATCH = 67,
+
+  /**
   * IR image too bright
   */
   FIELD_POS_CORRECTOR_HIGHLIGHT_IR = 80,

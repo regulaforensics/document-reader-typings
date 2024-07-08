@@ -1,0 +1,8 @@
+transformations:
+  - type: "ts-enum-update"
+    config:
+      enum:
+        path: "./authenticity.const.ts"
+        name: "eAuthenticity"
+      reference:
+        name: "eRPRM_Authenticity"
