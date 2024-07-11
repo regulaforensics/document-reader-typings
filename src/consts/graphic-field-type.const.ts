@@ -37,12 +37,7 @@ export enum eGraphicFieldType {
   /**
   * Cropped and rotated with perspective compensation (front side) of a document. Single input image can contain multiple document side/pages, which will be returned as separated results. Most coordinates in other types defined on that image.
   */
-  DOCUMENT_FRONT = 207,
-
-  /**
-  * Image of the rear side of the document
-  */
-  DOCUMENT_REAR = 208,
+  DOCUMENT_IMAGE = 207,
 
   /**
   * Area with dynamic color change

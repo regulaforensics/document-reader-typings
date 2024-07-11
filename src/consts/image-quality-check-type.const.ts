@@ -34,11 +34,6 @@ export enum eImageQualityCheckType {
   BOUNDS = 5,
 
   /**
-  * If the image is captured from screen
-  */
-  SCREEN_CAPTURE = 6,
-
-  /**
   * If the portrait is present
   */
   PORTRAIT = 7,
