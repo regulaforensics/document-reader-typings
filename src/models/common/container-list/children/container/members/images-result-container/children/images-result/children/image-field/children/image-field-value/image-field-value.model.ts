@@ -13,9 +13,9 @@ import { Default } from '@/decorators'
 export interface iImageFieldValue {
   /**
   * Image file in Base64 representation
-  * @type {string}
+  * @type {string|undefined}
   */
-  value: string
+  value?: string
 
   /**
   * Original image file in Base64 representation
@@ -72,13 +72,13 @@ export interface iImageFieldValue {
 export class ImageFieldValue implements iImageFieldValue {
   /**
   * Image file in Base64 representation
-  * @type {string}
+  * @type {string|undefined}
   */
   @Expose()
-  @IsDefined()
+  @IsOptional()
   @IsString()
   @IsBase64()
-  value: string
+  value?: string
 
   /**
   * Original image file in Base64 representation
