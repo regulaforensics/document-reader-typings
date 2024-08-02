@@ -1,5 +1,5 @@
 {
-  "version": "0.0.55",
+  "version": "0.0.56",
   "author": "Regula Forensics, Inc.",
   "name": "@regulaforensics/document-reader-typings",
   "description": "Document Reader API typings",
@@ -31,7 +31,7 @@
     "typedoc-plugin-coverage": "^3.3.0",
     "typescript": "^5.5.4",
     "vite": "^5.3.4",
-    "vite-plugin-dts": "^2.3.0",
+    "vite-plugin-dts": "^4.0.0-beta.2",
     "yargs": "^17.7.2"
   },
   "source": "src/index.ts",
