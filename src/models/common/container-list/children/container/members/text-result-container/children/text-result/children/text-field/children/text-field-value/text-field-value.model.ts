@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsEnum, IsInt, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Expose, Transform, Type } from 'class-transformer'
 
 import { iRect, Rect } from '@/models/common/rect'
 import { iRfidOrigin, RfidOrigin } from '@/models/common/rfid-origin'
@@ -87,6 +87,7 @@ export class TextFieldValue implements iTextFieldValue {
   @Expose()
   @IsString()
   @IsDefined()
+  @Transform(({ value }) => value ? String(value) : '')
   value: string
 
   /**
