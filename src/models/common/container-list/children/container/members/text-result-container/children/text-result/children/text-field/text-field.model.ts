@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsEnum, IsString, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Expose, Transform, Type } from 'class-transformer'
 
 import { eCheckResult, eLCID, eVisualFieldType } from '@/consts'
 import { TextResultContainer } from '@/models'
@@ -165,6 +165,7 @@ export class TextField implements iTextField {
   @Expose()
   @IsDefined()
   @IsString()
+  @Transform(({ value }) => value ? String(value) : '')
   value: string
 
   /**
