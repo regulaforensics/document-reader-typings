@@ -1,7 +1,8 @@
-import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
+import { IsArray, IsDefined, IsEnum, IsInt, ValidateNested } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
 import { Default } from '@/decorators'
+import { eRfidDataFileType } from '@/consts'
 import { iRfidDG1, iRfidSession, RfidDG1, RfidSession } from './children'
 
 
@@ -58,12 +59,12 @@ export class BinaryData implements iBinaryData {
 
   /**
   * Indexes of groups that aren't read
-  * @type {number[]}
+  * @type {eRfidDataFileType[]}
   */
   @Expose()
   @IsDefined()
   @IsArray()
-  @IsInt({ each: true })
+  @IsEnum(eRfidDataFileType, { each: true })
   @Default([])
-  RFID_ePassp_Directory: number[]
+  RFID_ePassp_Directory: eRfidDataFileType[]
 }
