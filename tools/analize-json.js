@@ -5,6 +5,7 @@ import lodash from 'lodash'
 import { fileURLToPath } from 'url'
 import deepdiff from 'deep-diff'
 import path from 'path'
+import { checkSync } from 'recheck'
 
 import { ProcessResponse } from '../dist/index.js'
 
@@ -21,7 +22,11 @@ const pathsExclusions = fs
   .split('\n')
   .map(line => line.trim())
   .filter(Boolean)
-  .map(exclusion => new RegExp(`^${exclusion.replace(/\*/g, '.*')}$`))
+  .map(exclusion => {
+    const regexPattern = `^${exclusion.replace(/\*/g, '.*')}$`
+    checkSync(regexPattern, '')
+    return new RegExp(regexPattern)
+  })
 
 const isPathExcluded = (path) => !pathsExclusions.every(exclusion => !exclusion.test(path))
 

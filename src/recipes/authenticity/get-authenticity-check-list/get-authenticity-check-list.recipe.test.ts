@@ -12,7 +12,7 @@ describe('getAuthenticityCheckList', () => {
   const files = readdirSync(DIRECTORY)
 
   files.forEach((file) => {
-    const fileName = file.replace(/^(\.\.(\/|\\|$))+/, '');
+    const fileName = file.replace(/^(\.\.(\/|\\|$))+/, '')
     const filePath = join(DIRECTORY, fileName)
 
     if (!filePath.endsWith('.json')) {

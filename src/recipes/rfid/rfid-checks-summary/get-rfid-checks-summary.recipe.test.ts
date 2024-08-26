@@ -12,7 +12,8 @@ describe('getRfidChecksSummary', () => {
   const files = readdirSync(DIRECTORY)
 
   files.forEach(async (file) => {
-    const filePath = join(DIRECTORY, file)
+    const fileName = file.replace(/^(\.\.(\/|\\|$))+/, '')
+    const filePath = join(DIRECTORY, fileName)
 
     if (!filePath.endsWith('.json')) {
       return
