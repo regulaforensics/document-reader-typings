@@ -160,13 +160,13 @@ export const getRfidDataGroupsStatus = (input: ProcessResponse): RRfidDataGroupS
         const indexToFind = getIndex(notReadDg)
         const index = tmp.findIndex((item) => item.index === indexToFind)
 
-        if (index !== -1) {
-          // tmp[index].status = eDataGroupReadStatus.NOT_PERFORMED
-        } else {
-          tmp.push({
-            index: notReadDg,
-            status: eDataGroupReadStatus.NOT_PERFORMED
-          })
+        if (typeof indexToFind !== 'undefined') {
+          if (index < 0) {
+            tmp.push({
+              index: indexToFind,
+              status: eDataGroupReadStatus.NOT_PERFORMED
+            })
+          }
         }
       })
 
