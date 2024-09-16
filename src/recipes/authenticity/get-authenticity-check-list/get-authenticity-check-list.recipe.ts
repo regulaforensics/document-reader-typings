@@ -50,7 +50,7 @@ export const getAuthenticityCheckList = (input: ProcessResponse): RAuthenticityC
           if (groupIndex === -1) {
             current.groups.push(RAuthenticityCheckGroup.fromPlain({
               group: subItem.Type,
-              checkResult: eCheckResult.WAS_NOT_DONE,
+              checkResult: item.Result,
               checks: []
             }))
 
@@ -85,7 +85,7 @@ export const getAuthenticityCheckList = (input: ProcessResponse): RAuthenticityC
           if (groupIndex === -1) {
             current.groups.push(RAuthenticityCheckGroup.fromPlain({
               group: subItem.Type,
-              checkResult: eCheckResult.WAS_NOT_DONE,
+              checkResult: item.Result,
               checks: []
             }))
 
@@ -115,7 +115,7 @@ export const getAuthenticityCheckList = (input: ProcessResponse): RAuthenticityC
           if (groupIndex === -1) {
             current.groups.push(RAuthenticityCheckGroup.fromPlain({
               group: subItem.Type,
-              checkResult: eCheckResult.WAS_NOT_DONE,
+              checkResult: item.Result,
               checks: []
             }))
 
@@ -162,7 +162,7 @@ export const getAuthenticityCheckList = (input: ProcessResponse): RAuthenticityC
             if (groupIndex === -1) {
               current.groups.push(RAuthenticityCheckGroup.fromPlain({
                 group: subItem.Type,
-                checkResult: eCheckResult.WAS_NOT_DONE,
+                checkResult: item.Result,
                 checks: []
               }))
 
@@ -194,7 +194,7 @@ export const getAuthenticityCheckList = (input: ProcessResponse): RAuthenticityC
           if (groupIndex === -1) {
             current.groups.push(RAuthenticityCheckGroup.fromPlain({
               group: subItem.Type,
-              checkResult: eCheckResult.WAS_NOT_DONE,
+              checkResult: item.Result,
               checks: []
             }))
 
@@ -223,21 +223,7 @@ export const getAuthenticityCheckList = (input: ProcessResponse): RAuthenticityC
       }
     })
 
-    current.groups.forEach((group, index) => {
-      group.checks.sort((a, b) => a.checkResult - b.checkResult)
-
-      if (group.checks.every(({ checkResult }) => checkResult === eCheckResult.OK)) {
-        current.groups[index].checkResult = eCheckResult.OK
-        return
-      }
-
-      if (group.checks.some(({ checkResult }) => checkResult === eCheckResult.WAS_NOT_DONE)) {
-        current.groups[index].checkResult = eCheckResult.WAS_NOT_DONE
-        return
-      }
-
-      current.groups[index].checkResult = eCheckResult.ERROR
-    })
+    current.groups.forEach((group) => group.checks.sort((a, b) => a.checkResult - b.checkResult))
 
     const checkResults = current.groups.map(({ checkResult }) => checkResult)
     current.checkResult = mergeStatuses(checkResults)
@@ -247,6 +233,5 @@ export const getAuthenticityCheckList = (input: ProcessResponse): RAuthenticityC
     result.push(current)
   })
 
-  return result
-    .sort((a, b) => a.page - b.page)
+  return result.sort((a, b) => a.page - b.page)
 }
