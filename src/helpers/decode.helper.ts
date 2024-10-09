@@ -6,7 +6,7 @@ import pako from 'pako'
  * @param {string} data - packed data
  * @returns {string} - unpacked data
  */
-const decode = (data: string): string => {
+export const decode = (data: string): string => {
   const decoded = typeof atob !== 'undefined' ? atob(data) : Buffer.from(data, 'base64').toString('binary')
 
   const uintArray = new Uint8Array(decoded.length)
