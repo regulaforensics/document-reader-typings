@@ -2,11 +2,11 @@ import pako from 'pako'
 
 
 /**
-* Decode the packed data
-* @param {string} data - packed data
-* @returns {string} - unpacked data
-*/
-export const decode = (data: string): string => {
+ * Decode the packed data
+ * @param {string} data - packed data
+ * @returns {string} - unpacked data
+ */
+const decode = (data: string): string => {
   const decoded = typeof atob !== 'undefined' ? atob(data) : Buffer.from(data, 'base64').toString('binary')
 
   const uintArray = new Uint8Array(decoded.length)
@@ -14,26 +14,13 @@ export const decode = (data: string): string => {
     uintArray[i] = decoded.charCodeAt(i)
   }
 
-  let dataUintArray
+  let dataUintArray: Uint8Array
 
   try {
-    const currentDataUintArray = pako.inflate(uintArray)
-
-    dataUintArray = currentDataUintArray.length > uintArray.length ? currentDataUintArray : uintArray
+    dataUintArray = pako.inflate(uintArray)
   } catch {
     dataUintArray = uintArray
   }
 
-  const uintArraySize = dataUintArray.length
-  const step = 10000
-  const result = []
-
-  const convertedUnitArray = Array.from(dataUintArray)
-
-  for (let i = 0; i < uintArraySize; i += step) {
-    const chunk = String.fromCharCode.apply(null, convertedUnitArray.slice(i, i + step))
-    result.push(chunk)
-  }
-
-  return result.join('')
+  return new TextDecoder('utf-8').decode(dataUintArray)
 }
