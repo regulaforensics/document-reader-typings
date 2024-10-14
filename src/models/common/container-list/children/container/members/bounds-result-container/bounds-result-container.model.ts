@@ -32,7 +32,7 @@ export interface iBoundsResultContainer extends aContainer {
   * Document position
   * @type {iBoundsResult|undefined}
   */
-  DocumentPosition?: iBoundsResult
+  DocumentPosition: iBoundsResult
 
   /**
   * Result type stored in this container
@@ -100,10 +100,10 @@ export class BoundsResultContainer extends aContainer implements iBoundsResultCo
   * @type {BoundsResult}
   */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @ValidateNested()
   @Type(() => BoundsResult)
-  DocumentPosition?: BoundsResult
+  DocumentPosition: BoundsResult
 
   /**
   * Create new instance of BoundsResultContainer from plain object

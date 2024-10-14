@@ -49,6 +49,16 @@ export interface iDocBarCodeField {
   bcROI_DETECT: iRect
 
   /**
+   * @type {number|undefined}
+   */
+  bcTextDecoderTypes?: number
+
+  /**
+   * @type {number|undefined}
+   */
+  bcTextFieldType?: number
+
+  /**
   * Decoded bar-code type
   * @type {eBarCodeType}
   */
@@ -141,6 +151,22 @@ export class DocBarCodeField implements iDocBarCodeField {
   @ValidateNested()
   @Type(() => Rect)
   bcROI_DETECT: Rect
+
+  /**
+   * @type {number|undefined}
+   */
+  @Expose()
+  @IsOptional()
+  @IsNumber()
+  bcTextDecoderTypes: number
+
+  /**
+   * @type {number|undefined}
+   */
+  @Expose()
+  @IsOptional()
+  @IsNumber()
+  bcTextFieldType: number
 
   /**
   * Decoded bar-code type

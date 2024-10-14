@@ -1,4 +1,4 @@
-import { IsDefined, IsEnum, IsIn, IsOptional, ValidateNested } from 'class-validator'
+import { IsDefined, IsEnum, IsIn, IsOptional, ValidateNested, IsInt, IsArray } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
 import { iRect, Rect } from '@/models/common/rect'
@@ -59,28 +59,38 @@ export interface iPhotoIdentResult {
   * Reserved. Not used.
   * @internal
   */
-  FieldTypesCount?: unknown
+  FieldTypesCount?: number
 
   /**
   * List of the the text fields, which are encoded in the IPI image. Reserved. Not used
   * @internal
   */
-  FieldTypesList?: unknown
+  FieldTypesList?: number[]
+
+  /**
+   * @type {number}
+   */
+  Step?: number
+
+  /**
+   * @type {number}
+   */
+  Angle?: number
 
   /**
   * @internal
   */
-  Reserved1?: unknown
+  Reserved1?: number
 
   /**
   * @internal
   */
-  Reserved2?: unknown
+  Reserved2?: number
 
   /**
   * @internal
   */
-  Reserved3?: unknown
+  Reserved3?: number
 }
 
 /**
@@ -164,7 +174,8 @@ export class PhotoIdentResult implements iPhotoIdentResult {
   */
   @Expose()
   @IsOptional()
-  FieldTypesCount?: unknown
+  @IsInt()
+  FieldTypesCount?: number
 
   /**
   * List of the the text fields, which are encoded in the IPI image. Reserved. Not used
@@ -172,26 +183,46 @@ export class PhotoIdentResult implements iPhotoIdentResult {
   */
   @Expose()
   @IsOptional()
-  FieldTypesList?: unknown
+  @IsArray()
+  FieldTypesList?: number[]
+
+  /**
+   * @type{number}
+   */
+  @Expose()
+  @IsOptional()
+  @IsInt()
+  Step?: number
+
+  /**
+   * @type{number}
+   */
+  @Expose()
+  @IsOptional()
+  @IsInt()
+  Angle?: number
 
   /**
   * @internal
   */
   @Expose()
   @IsOptional()
-  Reserved1?: unknown
+  @IsInt()
+  Reserved1?: number
 
   /**
   * @internal
   */
   @Expose()
   @IsOptional()
-  Reserved2?: unknown
+  @IsInt()
+  Reserved2?: number
 
   /**
   * @internal
   */
   @Expose()
   @IsOptional()
-  Reserved3?: unknown
+  @IsInt()
+  Reserved3?: number
 }

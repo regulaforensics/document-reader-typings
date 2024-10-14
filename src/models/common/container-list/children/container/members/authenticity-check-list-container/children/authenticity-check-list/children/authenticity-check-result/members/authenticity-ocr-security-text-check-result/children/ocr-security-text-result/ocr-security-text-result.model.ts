@@ -1,4 +1,4 @@
-import { IsDefined, IsEnum, IsIn, IsNumber, IsString, ValidateNested } from 'class-validator'
+import { IsDefined, IsEnum, IsIn, IsNumber, IsString, ValidateNested, IsOptional } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
 import { Default } from '@/decorators'
@@ -228,11 +228,13 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   * @internal
   */
   @Expose()
+  @IsOptional()
   Reserved1?: number
 
   /**
   * @internal
   */
   @Expose()
+  @IsOptional()
   Reserved2?: number
 }

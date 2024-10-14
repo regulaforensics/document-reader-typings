@@ -4,9 +4,9 @@ import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
 import { Default } from '@/decorators'
-import { iImageData, ImageData } from '@/models/common/image-data'
 import { aContainer } from '../../container.abstract'
 import { ProcessResponse } from '@/models'
+import { iRawImage, RawImage } from './children/raw-image'
 
 
 /**
@@ -24,7 +24,7 @@ export const RawImageContainerResultTypes: tRawImageContainerResultType[] = [
 ]
 
 /**
-* Container for iImageData
+* Container for iRawImage
 * Contains cropped and rotated with perspective compensation image of document.
 * Single input image can contain multiple document side/pages, which will be returned as separated results.
 * Most of coordinates in other types defined on that image
@@ -32,9 +32,9 @@ export const RawImageContainerResultTypes: tRawImageContainerResultType[] = [
 export interface iRawImageContainer extends aContainer {
   /**
   * Structure is used for storing a graphic image
-  * @type {iImageData}
+  * @type {iRawImage}
   */
-  RawImageContainer: iImageData
+  RawImageContainer: iRawImage
 
   /**
   * Result type stored in this container
@@ -44,7 +44,7 @@ export interface iRawImageContainer extends aContainer {
 }
 
 /**
-* Container for ImageData
+* Container for RawImage
 */
 export class RawImageContainer extends aContainer implements iRawImageContainer {
   /**
@@ -99,13 +99,13 @@ export class RawImageContainer extends aContainer implements iRawImageContainer 
 
   /**
   * Structure is used for storing a graphic image
-  * @type {ImageData}
+  * @type {RawImage}
   */
   @Expose()
   @IsDefined()
   @ValidateNested()
-  @Type(() => ImageData)
-  RawImageContainer: ImageData
+  @Type(() => RawImage)
+  RawImageContainer: RawImage
 
   /**
   * Creates an instance of RawImageContainer from plain object
