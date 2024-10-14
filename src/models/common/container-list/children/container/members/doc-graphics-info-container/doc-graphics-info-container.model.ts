@@ -41,7 +41,7 @@ export interface iDocGraphicsInfoContainer extends aContainer {
   * Model serves for storing graphic results of document filling area and bar-codes reading
   * @type {iDocGraphicsInfo|undefined}
   */
-  DocGraphicsInfo?: iDocGraphicsInfo
+  DocGraphicsInfo: iDocGraphicsInfo
 
   /**
   * Result type stored in this container
@@ -109,10 +109,10 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   * @type {DocGraphicsInfo|undefined}
   */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @ValidateNested()
   @Type(() => DocGraphicsInfo)
-  DocGraphicsInfo?: DocGraphicsInfo
+  DocGraphicsInfo: DocGraphicsInfo
 
   /**
   * Creates an instance of DocGraphicsInfoContainer from plain object

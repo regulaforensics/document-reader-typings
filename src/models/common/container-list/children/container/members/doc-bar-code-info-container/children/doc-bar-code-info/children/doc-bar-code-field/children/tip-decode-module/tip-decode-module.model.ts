@@ -1,4 +1,4 @@
-import { IsDefined, IsEnum, IsNumber, IsString } from 'class-validator'
+import { IsDefined, IsEnum, IsNumber, IsOptional, IsString } from 'class-validator'
 import { Expose } from 'class-transformer'
 
 import { eBarCodeModuleType } from '@/consts'
@@ -23,15 +23,15 @@ export interface iTipDecodeModule {
 
   /**
   * @internal
-  * @type {unknown}
+  * @type {number|undefined}
   */
-  mReserved1?: unknown
+  mReserved1?: number
 
   /**
   * @internal
-  * @type {unknown}
+  * @type {number|undefined}
   */
-  mReserver2?: unknown
+  mReserver2?: number
 
   /**
   * Module type
@@ -64,17 +64,19 @@ export class TipDecodeModule implements iTipDecodeModule {
 
   /**
   * @internal
-  * @type {unknown}
+  * @type {number|undefined}
   */
   @Expose()
-  mReserved1?: unknown
+  @IsOptional()
+  mReserved1?: number
 
   /**
   * @internal
-  * @type {unknown}
+  * @type {number|undefined}
   */
   @Expose()
-  mReserver2?: unknown
+  @IsOptional()
+  mReserver2?: number
 
   /**
   * Module type

@@ -14,6 +14,7 @@ import { Expose, Type } from 'class-transformer'
 import {
   eDocFormat,
   eDocType,
+  eLCID,
   eLogLevel,
   eMeasureSystem,
   eMRZDetectMode,
@@ -32,7 +33,9 @@ import {
   iPerDocumentConfig,
   iProcessParamsRfid,
   PerDocumentConfig,
-  ProcessParamsRfid
+  ProcessParamsRfid,
+  ProcessParamsAuth,
+  iProcessParamsAuth,
 } from './children'
 
 
@@ -43,9 +46,9 @@ export interface iProcessParams {
   /**
   * The list of LCID types to recognize. If empty, values with all LCID types will be extracted.
   * Empty by default.
-  * @type {number[]|undefined}
+  * @type {eLCID[]|undefined}
   */
-  lcidFilter?: number[]
+  lcidFilter?: eLCID[]
 
   /**
   * This parameter is used to enable document liveness check.
@@ -56,9 +59,9 @@ export interface iProcessParams {
   /**
   * The list of LCID types to ignore during the recognition. If empty, values with all LCID types will be extracted.
   * Narrowing down the list can reduce processing time. Empty by default.
-  * @type {number[]|undefined}
+  * @type {eLCID[]|undefined}
   */
-  lcidIgnoreFilter?: number[]
+  lcidIgnoreFilter?: eLCID[]
 
   /**
   * This parameter allows processing an image that contains a person and a document and compare the portrait photo from
@@ -360,7 +363,7 @@ export interface iProcessParams {
   * Empty by default.
   * @type {eDocType[]|undefined}
   */
-  documentGroupFilter?: DocumentType[]
+  documentGroupFilter?: eDocType[]
 
   /**
   * Authenticity checks that should be performed regardless of the document type.
@@ -411,10 +414,30 @@ export interface iProcessParams {
   rfid?: iProcessParamsRfid
 
   /**
+   * This parameter is used to enable authenticity checks
+   * Default true
+   * @type {boolean|undefined}
+   */
+  checkAuth?: boolean
+
+  /**
+   * Authenticity check parameters
+   * @type {iProcessParamsAuth|undefined}
+   */
+  authParams?: iProcessParamsAuth
+
+  /**
   * Make better MRZ detection on complex noisy backgrounds, like BW photocopy of some documents.
   * @type {eMRZDetectMode|undefined}
   */
   mrzDetectMode?: eMRZDetectMode
+
+  /**
+   * This parameter is used to generate numeric representation for issuing state and nationality codes
+   * Default false
+   * @type {boolean|undefined}
+   */
+  generateNumericCodes?: boolean
 }
 
 /**
@@ -424,13 +447,12 @@ export class ProcessParams implements iProcessParams {
   /**
   * The list of LCID types to recognize. If empty, values with all LCID types will be extracted.
   * Empty by default.
-  * @type {number[]|undefined}
+  * @type {eLCID[]|undefined}
   */
   @Expose()
   @IsOptional()
-  @IsInt({ each: true })
-  @IsArray()
-  lcidFilter?: number[]
+  @IsEnum(eLCID, { each: true })
+  lcidFilter?: eLCID[]
 
   /**
   * This parameter is used to enable document liveness check.
@@ -445,13 +467,12 @@ export class ProcessParams implements iProcessParams {
   * The list of LCID types to ignore during the recognition. If empty, values with all LCID types will be extracted.
   * Narrowing down the list can reduce processing time.
   * Empty by default.
-  * @type {number[]|undefined}
+  * @type {eLCID[]|undefined}
   */
   @Expose()
   @IsOptional()
-  @IsInt({ each: true })
-  @IsArray()
-  lcidIgnoreFilter?: number[]
+  @IsEnum(eLCID, { each: true })
+  lcidIgnoreFilter?: eLCID[]
 
   /**
   * This parameter allows processing an image that contains a person and a document and compare the portrait photo from
@@ -874,7 +895,7 @@ export class ProcessParams implements iProcessParams {
   @Expose()
   @IsOptional()
   @IsEnum(eDocType, { each: true })
-  documentGroupFilter?: DocumentType[]
+  documentGroupFilter?: eDocType[]
 
   /**
   * Authenticity checks that should be performed regardless of the document type.
@@ -947,6 +968,26 @@ export class ProcessParams implements iProcessParams {
   rfid?: ProcessParamsRfid
 
   /**
+   * This parameter is used to enable authenticity checks
+   * Default true
+   * @type {boolean|undefined}
+   */
+  @Expose()
+  @IsOptional()
+  @IsBoolean()
+  checkAuth?: boolean
+
+  /**
+   * Authenticity check parameters
+   * @type {ProcessParamsAuth|undefined}
+   */
+  @Expose()
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => ProcessParamsAuth)
+  authParams?: ProcessParamsAuth
+
+  /**
   * Make better MRZ detection on complex noisy backgrounds, like BW photocopy of some documents.
   * @type {eMRZDetectMode|undefined}
   */
@@ -954,4 +995,14 @@ export class ProcessParams implements iProcessParams {
   @IsOptional()
   @IsEnum(eMRZDetectMode)
   mrzDetectMode?: eMRZDetectMode
+
+  /**
+   * This parameter is used to generate numeric representation for issuing state and nationality codes
+   * Default false
+   * @type {boolean|undefined}
+   */
+  @Expose()
+  @IsOptional()
+  @IsBoolean()
+  generateNumericCodes?: boolean
 }

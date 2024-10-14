@@ -1,7 +1,7 @@
 import { IsDefined, IsEnum, IsInt, IsOptional } from 'class-validator'
 import { Expose } from 'class-transformer'
 
-import { eCheckResult, eSource } from '@/consts'
+import {eCheckResult, eResultType, eSource} from '@/consts'
 
 
 /**
@@ -24,7 +24,7 @@ export interface iTextSource {
   * Container type
   * @type {number|undefined}
   */
-  containerType?: number
+  containerType?: eResultType
 }
 
 /**
