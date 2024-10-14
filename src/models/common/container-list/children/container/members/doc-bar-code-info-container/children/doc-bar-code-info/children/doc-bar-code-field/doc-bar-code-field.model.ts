@@ -158,7 +158,7 @@ export class DocBarCodeField implements iDocBarCodeField {
   @Expose()
   @IsOptional()
   @IsNumber()
-  bcTextDecoderTypes: number
+  bcTextDecoderTypes?: number
 
   /**
    * @type {number|undefined}
@@ -166,7 +166,7 @@ export class DocBarCodeField implements iDocBarCodeField {
   @Expose()
   @IsOptional()
   @IsNumber()
-  bcTextFieldType: number
+  bcTextFieldType?: number
 
   /**
   * Decoded bar-code type
