@@ -39,7 +39,7 @@ export interface iDocVisualExtendedInfoContainer extends aContainer {
   * Structure serves for storing text results of MRZ, document filling and bar-codes reading
   * @type {iDocVisualExtendedInfo|undefined}
   */
-  DocVisualExtendedInfo?: iDocVisualExtendedInfo
+  DocVisualExtendedInfo: iDocVisualExtendedInfo
 
   /**
   * Result type stored in this container
@@ -107,10 +107,10 @@ export class DocVisualExtendedInfoContainer extends aContainer implements iDocVi
   * @type {DocVisualExtendedInfo|undefined}
   */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @ValidateNested()
   @Type(() => DocVisualExtendedInfo)
-  DocVisualExtendedInfo?: DocVisualExtendedInfo
+  DocVisualExtendedInfo: DocVisualExtendedInfo
 
   /**
   * Creates an instance of DocVisualExtendedInfoContainer from plain object

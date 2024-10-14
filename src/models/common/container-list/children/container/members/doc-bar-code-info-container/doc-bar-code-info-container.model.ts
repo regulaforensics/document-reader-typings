@@ -31,7 +31,7 @@ export interface iDocBarCodeInfoContainer extends aContainer {
   * scanned document page and their reading in binary non-formatted code.
   * @type {iDocBarCodeInfo|undefined}
   */
-  DocBarCodeInfo?: iDocBarCodeInfo
+  DocBarCodeInfo: iDocBarCodeInfo
 
   /**
   * Result type stored in this container
@@ -98,10 +98,10 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   * @type {DocBarCodeInfo|undefined}
   */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @ValidateNested()
   @Type(() => DocBarCodeInfo)
-  DocBarCodeInfo?: DocBarCodeInfo
+  DocBarCodeInfo: DocBarCodeInfo
 
   /**
   * Creates an instance of DocBarCodeInfoContainer from plain object
