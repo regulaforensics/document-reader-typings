@@ -32,7 +32,7 @@ export interface iListVerifiedFieldContainer extends aContainer {
   * memory (used together with RFID-Chip Reader SDK) and passing it to the user application
   * @type {iListVerifiedFields|undefined}
   */
-  ListVerifiedFields?: iListVerifiedFields
+  ListVerifiedFields: iListVerifiedFields
 
   /**
   * Result type stored in this container
@@ -102,10 +102,10 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   * @type {ListVerifiedFields|undefined}
   */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @ValidateNested()
   @Type(() => ListVerifiedFields)
-  ListVerifiedFields?: ListVerifiedFields
+  ListVerifiedFields: ListVerifiedFields
 
   /**
   * Creates an instance of ListVerifiedFieldContainer from plain

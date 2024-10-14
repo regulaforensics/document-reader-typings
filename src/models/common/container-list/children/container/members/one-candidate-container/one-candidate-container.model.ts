@@ -30,7 +30,7 @@ export interface iOneCandidateContainer extends aContainer {
   * Contains information on one candidate document when determining the document type
   * @type {iOneCandidate|undefined}
   */
-  OneCandidate?: iOneCandidate
+  OneCandidate: iOneCandidate
 
   /**
   * Result type stored in this container
@@ -98,10 +98,10 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   * @type {OneCandidate|undefined}
   */
   @Expose()
-  @IsOptional()
+  @IsDefined()
   @ValidateNested()
   @Type(() => OneCandidate)
-  OneCandidate?: OneCandidate
+  OneCandidate: OneCandidate
 
   /**
   * Creates an instance of OneCandidateContainer from plain object

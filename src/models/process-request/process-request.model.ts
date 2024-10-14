@@ -32,6 +32,18 @@ export interface iProcessRequest {
   tag?: string
 
   /**
+   * Customer name
+   * @type {string|undefined}
+   */
+  tenant?: string
+
+  /**
+   * Environment type
+   * @type {string|undefined}
+   */
+  env?: string
+
+  /**
   * Process params
   * @type {iProcessParams}
   */
@@ -93,6 +105,24 @@ export class ProcessRequest implements iProcessRequest {
   @IsString()
   @IsOptional()
   tag?: string
+
+  /**
+   * Customer name
+   * @type {string|undefined}
+   */
+  @Expose()
+  @IsString()
+  @IsOptional()
+  tenant?: string
+
+  /**
+   * Environment type
+   * @type {string|undefined}
+   */
+  @Expose()
+  @IsString()
+  @IsOptional()
+  env?: string
 
   /**
   * Process params

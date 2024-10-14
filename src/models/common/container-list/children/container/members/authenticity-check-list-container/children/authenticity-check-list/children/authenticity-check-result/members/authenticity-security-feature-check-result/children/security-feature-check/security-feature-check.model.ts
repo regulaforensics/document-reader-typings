@@ -1,4 +1,4 @@
-import { IsDefined, IsEnum, IsIn, ValidateNested } from 'class-validator'
+import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, IsOptional } from 'class-validator'
 import { Expose, Type } from 'class-transformer'
 
 import { iRect, Rect } from '@/models/common/rect'
@@ -10,6 +10,7 @@ import {
   eSecurityCriticalFlag,
   eSecurityFeatureType
 } from '@/consts'
+import { AreaArray } from '@/models'
 import { Default } from '@/decorators'
 
 
@@ -68,6 +69,16 @@ export interface iSecurityFeatureCheck {
   * @type {eSecurityCriticalFlag}
   */
   CriticalFlag: eSecurityCriticalFlag
+
+  /**
+   * @type {AreaArray|undefined}
+   */
+  AreaList?: AreaArray
+
+  /**
+   * @type {number|undefined}
+   */
+  Reserved2?: number
 }
 
 /**
@@ -163,4 +174,21 @@ export class SecurityFeatureCheck implements iSecurityFeatureCheck {
   @IsEnum(eSecurityCriticalFlag)
   @Default(eSecurityCriticalFlag.NOT_CRITICAL)
   CriticalFlag: eSecurityCriticalFlag
+
+  /**
+   * @type {AreaArray}
+   */
+  @Expose()
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => AreaArray)
+  AreaList: AreaArray
+
+  /**
+   * @type {number|undefined}
+   */
+  @Expose()
+  @IsOptional()
+  @IsInt()
+  Reserved2: number
 }
