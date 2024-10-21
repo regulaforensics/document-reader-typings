@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -47,7 +47,6 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(eLights.OFF)
@@ -57,7 +56,6 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -67,7 +65,6 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   * Page index (when working with multi-page document)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -77,7 +74,6 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -87,7 +83,6 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   * Result type stored in this container
   * @type {tImagesResultContainerResultType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eResultType)
   @IsIn(ImagesResultContainerResultTypes)
@@ -97,7 +92,6 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   * Images result
   * @type {ImagesResult}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => ImagesResult)
@@ -127,7 +121,7 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
     )
 
     if (asPlain) {
-      return result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iImagesResultContainer)
+      return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iImagesResultContainer)
     }
 
     return result

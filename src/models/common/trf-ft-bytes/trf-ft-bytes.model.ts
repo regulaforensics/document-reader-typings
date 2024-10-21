@@ -1,7 +1,6 @@
 import { IsBase64, IsDefined, IsIn, IsInt, IsNumber, IsString } from 'class-validator'
-import { Expose } from 'class-transformer'
 
-import { eGraphicFieldType, eLDSParsingErrorCodes, eLDSParsingNotificationCodes, eVisualFieldType } from '@/consts'
+import { eGraphicFieldType, eVisualFieldType } from '@/consts'
 import { Default } from '@/decorators'
 
 
@@ -43,7 +42,6 @@ export class TrfFtBytes implements iTrfFtBytes {
   * Logical type of the field
   * @type {eGraphicFieldType | eVisualFieldType}
   */
-  @Expose()
   @IsDefined()
   @IsIn([...Object.values(eGraphicFieldType), ...Object.values(eVisualFieldType)])
   Type: eGraphicFieldType | eVisualFieldType
@@ -53,7 +51,6 @@ export class TrfFtBytes implements iTrfFtBytes {
   * with the requirements of the specification
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   @Default(1)
@@ -63,7 +60,6 @@ export class TrfFtBytes implements iTrfFtBytes {
   * Length of Data array
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   Length: number
@@ -72,7 +68,6 @@ export class TrfFtBytes implements iTrfFtBytes {
   * Binary data array. Base64 encoded.
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   @IsBase64()

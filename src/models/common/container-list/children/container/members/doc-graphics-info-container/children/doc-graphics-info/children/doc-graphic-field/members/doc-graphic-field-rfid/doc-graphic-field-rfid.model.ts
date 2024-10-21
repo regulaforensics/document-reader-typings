@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsInt, IsString, ValidateNested } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { plainToClass, Type } from 'class-transformer'
 
 import { eGraphicFieldType, eRfidDataGroupTypeTag } from '@/consts'
 import { Default } from '@/decorators'
@@ -45,7 +45,6 @@ export class DocGraphicFieldRfid extends aDocGraphicField implements iDocGraphic
   * Graphic field logical type
   * @type {eGraphicFieldType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eGraphicFieldType)
   @Default(eGraphicFieldType.OTHER)
@@ -55,7 +54,6 @@ export class DocGraphicFieldRfid extends aDocGraphicField implements iDocGraphic
   * Graphic field symbolic name
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   FieldName: string
@@ -64,7 +62,6 @@ export class DocGraphicFieldRfid extends aDocGraphicField implements iDocGraphic
   * Image data
   * @type {ImageData}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => ImageData)
@@ -74,7 +71,6 @@ export class DocGraphicFieldRfid extends aDocGraphicField implements iDocGraphic
   * Data group
   * @type {eRfidDataGroupTypeTag}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidDataGroupTypeTag)
   RFID_OriginDG: eRfidDataGroupTypeTag
@@ -84,7 +80,6 @@ export class DocGraphicFieldRfid extends aDocGraphicField implements iDocGraphic
   * in the datagroup
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   RFID_OriginDGTag: number
@@ -93,7 +88,6 @@ export class DocGraphicFieldRfid extends aDocGraphicField implements iDocGraphic
   * Index of the sample in the biometric data record
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   RFID_OriginTagEntry: number
@@ -102,7 +96,6 @@ export class DocGraphicFieldRfid extends aDocGraphicField implements iDocGraphic
   * Index of the biometric data sample
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   RFID_OriginEntryView: number

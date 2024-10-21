@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
-import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -49,7 +49,6 @@ export class BoundsResultContainer extends aContainer implements iBoundsResultCo
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(eLights.OFF)
@@ -59,7 +58,6 @@ export class BoundsResultContainer extends aContainer implements iBoundsResultCo
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -69,7 +67,6 @@ export class BoundsResultContainer extends aContainer implements iBoundsResultCo
   * Page index (when working with multi-page document)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -79,7 +76,6 @@ export class BoundsResultContainer extends aContainer implements iBoundsResultCo
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -89,7 +85,6 @@ export class BoundsResultContainer extends aContainer implements iBoundsResultCo
   * Result type stored in this container
   * @type {tBoundsResultContainerResultType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eResultType)
   @IsIn(BoundsResultContainerResultTypes)
@@ -99,7 +94,6 @@ export class BoundsResultContainer extends aContainer implements iBoundsResultCo
   * Document position
   * @type {BoundsResult}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => BoundsResult)
@@ -131,7 +125,7 @@ export class BoundsResultContainer extends aContainer implements iBoundsResultCo
     const result = ContainerList.List.filter((container): container is BoundsResultContainer =>
       BoundsResultContainerResultTypes.includes(<tBoundsResultContainerResultType>container.result_type))
 
-    return asPlain ? result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iBoundsResultContainer) : result
+    return asPlain ? result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iBoundsResultContainer) : result
   }
 
   /**

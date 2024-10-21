@@ -1,5 +1,5 @@
 import { IsEnum, IsInt, IsOptional, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { iImageData, ImageData } from '@/models/common'
 import { eLights } from '@/consts'
@@ -36,7 +36,6 @@ export class ProcessRequestImage implements iProcessRequestImage {
   * Image data
   * @type {iImageData}
   */
-  @Expose()
   @ValidateNested()
   @Type(() => ImageData)
   ImageData: ImageData
@@ -45,7 +44,6 @@ export class ProcessRequestImage implements iProcessRequestImage {
   * Lighting scheme code
   * @type {eLights|undefined}
   */
-  @Expose()
   @IsEnum(eLights)
   @IsOptional()
   light?: eLights
@@ -54,7 +52,6 @@ export class ProcessRequestImage implements iProcessRequestImage {
   * Page index (when working with multi-page document)
   * @type {number|undefined}
   */
-  @Expose()
   @IsInt()
   @IsOptional()
   page_idx?: number

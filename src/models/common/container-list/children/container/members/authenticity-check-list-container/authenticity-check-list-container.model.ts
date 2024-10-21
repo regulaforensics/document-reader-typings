@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -53,7 +53,6 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(eLights.OFF)
@@ -62,7 +61,6 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   /**
   * @internal
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -72,7 +70,6 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   * Page index (when working with multi-page document)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -81,7 +78,6 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   /**
   * @internal
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -91,7 +87,6 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   * Result type stored in this container
   * @type {tAuthenticityCheckListContainerResultType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eResultType)
   @IsIn(AuthenticityCheckListContainerResultTypes)
@@ -102,7 +97,6 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   * schemes and passing it to the user application.
   * @type {AuthenticityCheckList}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => AuthenticityCheckList)
@@ -135,7 +129,7 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
       AuthenticityCheckListContainerResultTypes.includes(<tAuthenticityCheckListContainerResultType>container.result_type))
 
     if (asPlain) {
-      return result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iAuthenticityCheckListContainer)
+      return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iAuthenticityCheckListContainer)
     }
 
     return result

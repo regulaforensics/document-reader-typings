@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
-import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -58,7 +58,6 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(eLights.OFF)
@@ -68,7 +67,6 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -78,7 +76,6 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   * Page index (when working with multi-page document)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -88,7 +85,6 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -98,7 +94,6 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   * Result type stored in this container
   * @type {tDocGraphicsInfoContainerResultType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eResultType)
   @IsIn(DocGraphicsInfoContainerResultTypes)
@@ -108,7 +103,6 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   * Model serves for storing graphic results of document filling area and bar-codes reading
   * @type {DocGraphicsInfo|undefined}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => DocGraphicsInfo)
@@ -138,7 +132,7 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
     )
 
     return asPlain
-      ? result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iDocGraphicsInfoContainer)
+      ? result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iDocGraphicsInfoContainer)
       : result
   }
 

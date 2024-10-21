@@ -1,5 +1,4 @@
 import { IsDefined, IsIn, IsNumber } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 import { eGraphicFieldType, eLDSParsingErrorCodes, eLDSParsingNotificationCodes, eVisualFieldType } from '@/consts'
 import { Default } from '@/decorators'
@@ -39,7 +38,6 @@ export class TrfFtNumber implements iTrfFtNumber {
   * Logical type of the field
   * @type {eGraphicFieldType | eVisualFieldType}
   */
-  @Expose()
   @IsDefined()
   @IsIn([...Object.values(eGraphicFieldType), ...Object.values(eVisualFieldType)])
   Type: eGraphicFieldType | eVisualFieldType
@@ -49,7 +47,6 @@ export class TrfFtNumber implements iTrfFtNumber {
   * with the requirements of the specification
   * @type {eLDSParsingNotificationCodes | eLDSParsingErrorCodes.OK}
   */
-  @Expose()
   @IsDefined()
   @IsIn([...Object.values(eLDSParsingNotificationCodes), eLDSParsingErrorCodes.OK])
   @Default(eLDSParsingErrorCodes.OK)
@@ -59,7 +56,6 @@ export class TrfFtNumber implements iTrfFtNumber {
   * Numeric value.
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   Data: number

@@ -1,5 +1,5 @@
 import { IsBoolean, IsOptional, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { iLivenessParams, LivenessParams } from './children'
 
@@ -122,8 +122,7 @@ export class ProcessParamsAuth implements iProcessParamsAuth {
      * Default true
      * @type {boolean|undefined}
      */
-    @Expose()
-    @IsOptional()
+  @IsOptional()
     @IsBoolean()
     checkLiveness?: boolean
 
@@ -131,8 +130,7 @@ export class ProcessParamsAuth implements iProcessParamsAuth {
      * Liveness parameters
      * @type {LivenessParams|undefined}
      */
-    @Expose()
-    @IsOptional()
+  @IsOptional()
     @ValidateNested()
     @Type(() => LivenessParams)
     livenessParams?: LivenessParams
@@ -142,8 +140,7 @@ export class ProcessParamsAuth implements iProcessParamsAuth {
      * Default true
      * @type {boolean|undefined}
      */
-    @Expose()
-    @IsOptional()
+  @IsOptional()
     @IsBoolean()
     checkUVLuminiscence?: boolean
 
@@ -152,8 +149,7 @@ export class ProcessParamsAuth implements iProcessParamsAuth {
      * Default true
      * @type {boolean|undefined}
      */
-    @Expose()
-    @IsOptional()
+  @IsOptional()
     @IsBoolean()
     checkIRB900?: boolean
 
@@ -162,8 +158,7 @@ export class ProcessParamsAuth implements iProcessParamsAuth {
      * Default true
      * @type {boolean|undefined}
      */
-    @Expose()
-    @IsOptional()
+  @IsOptional()
     @IsBoolean()
     checkImagePatterns?: boolean
 
@@ -172,8 +167,7 @@ export class ProcessParamsAuth implements iProcessParamsAuth {
      * Default true
      * @type {boolean|undefined}
      */
-    @Expose()
-    @IsOptional()
+  @IsOptional()
     @IsBoolean()
     checkFibers?: boolean
 
@@ -182,8 +176,7 @@ export class ProcessParamsAuth implements iProcessParamsAuth {
      * Default true
      * @type {boolean|undefined}
      */
-    @Expose()
-    @IsOptional()
+  @IsOptional()
     @IsBoolean()
     checkExtMRZ?: boolean
 
@@ -192,8 +185,7 @@ export class ProcessParamsAuth implements iProcessParamsAuth {
      * Default true
      * @type {boolean|undefined}
      */
-    @Expose()
-    @IsOptional()
+  @IsOptional()
     @IsBoolean()
     checkExtOCR?: boolean
 
@@ -202,8 +194,7 @@ export class ProcessParamsAuth implements iProcessParamsAuth {
      * Default true
      * @type {boolean|undefined}
      */
-    @Expose()
-    @IsOptional()
+  @IsOptional()
     @IsBoolean()
     checkAxial?: boolean
 
@@ -212,8 +203,7 @@ export class ProcessParamsAuth implements iProcessParamsAuth {
      * Default true
      * @type {boolean|undefined}
      */
-    @Expose()
-    @IsOptional()
+  @IsOptional()
     @IsBoolean()
     checkBarcodeFormat?: boolean
 
@@ -222,8 +212,7 @@ export class ProcessParamsAuth implements iProcessParamsAuth {
      * Default true
      * @type {boolean|undefined}
      */
-    @Expose()
-    @IsOptional()
+  @IsOptional()
     @IsBoolean()
     checkIRVisibility?: boolean
 
@@ -232,8 +221,7 @@ export class ProcessParamsAuth implements iProcessParamsAuth {
      * Default true
      * @type {boolean|undefined}
      */
-    @Expose()
-    @IsOptional()
+  @IsOptional()
     @IsBoolean()
     checkIPI?: boolean
 
@@ -242,8 +230,7 @@ export class ProcessParamsAuth implements iProcessParamsAuth {
      * Default true
      * @type {boolean|undefined}
      */
-    @Expose()
-    @IsOptional()
+  @IsOptional()
     @IsBoolean()
     checkPhotoEmbedding?: boolean
 
@@ -252,8 +239,7 @@ export class ProcessParamsAuth implements iProcessParamsAuth {
      * Default true
      * @type {boolean|undefined}
      */
-    @Expose()
-    @IsOptional()
+  @IsOptional()
     @IsBoolean()
     checkPhotoComparison?: boolean
 
@@ -262,8 +248,7 @@ export class ProcessParamsAuth implements iProcessParamsAuth {
      * Default true
      * @type {boolean|undefined}
      */
-    @Expose()
-    @IsOptional()
+  @IsOptional()
     @IsBoolean()
     checkLetterScreen?: boolean
 }

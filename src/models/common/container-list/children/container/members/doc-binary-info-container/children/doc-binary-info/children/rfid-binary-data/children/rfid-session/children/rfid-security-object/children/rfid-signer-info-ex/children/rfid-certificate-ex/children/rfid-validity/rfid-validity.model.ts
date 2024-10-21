@@ -1,5 +1,5 @@
 import { IsDefined, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { iTrfFtString, TrfFtString } from '@/models/common/trf-ft-string'
 
@@ -34,7 +34,6 @@ export class RfidValidity implements iRfidValidity {
   * or YYYYMMDDHHMMSSZ (in the case of GeneralizedTime format).
   * @type {TrfFtString}
   */
-  @Expose()
   @IsDefined()
   @Type(() => TrfFtString)
   @ValidateNested()
@@ -46,7 +45,6 @@ export class RfidValidity implements iRfidValidity {
   * or YYYYMMDDHHMMSSZ (in the case of GeneralizedTime format).
   * @type {TrfFtString}
   */
-  @Expose()
   @IsDefined()
   @Type(() => TrfFtString)
   @ValidateNested()

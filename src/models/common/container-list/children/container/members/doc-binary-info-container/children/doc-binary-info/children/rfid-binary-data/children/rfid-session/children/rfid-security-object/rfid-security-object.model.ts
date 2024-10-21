@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsEnum, IsInt, IsNumber, IsString } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { eLDSParsingErrorCodes } from '@/consts'
 import { Default } from '@/decorators'
@@ -50,7 +50,6 @@ export class RfidSecurityObject implements iRfidSecurityObject {
   * Security object version
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   Version: number
@@ -59,7 +58,6 @@ export class RfidSecurityObject implements iRfidSecurityObject {
   * Identifier of the security object
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   ObjectType: string
@@ -68,7 +66,6 @@ export class RfidSecurityObject implements iRfidSecurityObject {
   * Reference to the source file of the security object data
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   FileReference: number
@@ -77,7 +74,6 @@ export class RfidSecurityObject implements iRfidSecurityObject {
   * List of remarks arisen during the analysis of SO data structure.
   * @type {eLDSParsingErrorCodes[]}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eLDSParsingErrorCodes, { each: true })
   @Default([])
@@ -88,7 +84,6 @@ export class RfidSecurityObject implements iRfidSecurityObject {
   * List of containers to store information about digital signature objects contained in the SO
   * @type {RfidSignerInfoEx[]}
   */
-  @Expose()
   @IsDefined()
   @Type(() => RfidSignerInfoEx)
   @IsArray()

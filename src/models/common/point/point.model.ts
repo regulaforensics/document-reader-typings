@@ -1,5 +1,4 @@
 import { IsDefined, IsNumber, IsOptional } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 import { Default } from '@/decorators'
 
@@ -29,7 +28,6 @@ export class Point implements iPoint {
   * X coordinate
   * @param {number} [x=0]
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   @Default(0)
@@ -39,7 +37,6 @@ export class Point implements iPoint {
   * Y coordinate
   * @param {number} [y=0]
   */
-  @Expose()
   @IsOptional()
   @IsNumber()
   @Default(0)

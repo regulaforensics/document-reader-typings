@@ -1,5 +1,4 @@
 import { IsDefined, IsEnum, IsInt, IsOptional } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 import {eCheckResult, eResultType, eSource} from '@/consts'
 
@@ -35,7 +34,6 @@ export class TextSource implements iTextSource {
   * Source name
   * @type {eSource}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eSource)
   source: eSource
@@ -44,7 +42,6 @@ export class TextSource implements iTextSource {
   * Source validity status
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   validityStatus: eCheckResult
@@ -53,7 +50,6 @@ export class TextSource implements iTextSource {
   * Container type
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsInt()
   containerType?: number

@@ -1,5 +1,4 @@
 import { IsBoolean, IsDefined, IsEnum, IsString } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 import { eRfidAccessControlProcedureType, eRfidPasswordType } from '@/consts'
 import { Default } from '@/decorators'
@@ -44,7 +43,6 @@ export class RfidAccessKey implements iRfidAccessKey {
   * Key contents
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   AccessKey: string
@@ -53,7 +51,6 @@ export class RfidAccessKey implements iRfidAccessKey {
   * Type of the key
   * @type {eRfidPasswordType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidPasswordType)
   @Default(eRfidPasswordType.UNKNOWN)
@@ -63,7 +60,6 @@ export class RfidAccessKey implements iRfidAccessKey {
   * Type of secure data access procedure, for which the key is provided
   * @type {eRfidAccessControlProcedureType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidAccessControlProcedureType)
   @Default(eRfidAccessControlProcedureType.UNDEFINED)
@@ -74,7 +70,6 @@ export class RfidAccessKey implements iRfidAccessKey {
   * contents with the contents of DG1 (MRZ) data group
   * @type {boolean}
   */
-  @Expose()
   @IsDefined()
   @IsBoolean()
   CheckFullKeyMatching: boolean

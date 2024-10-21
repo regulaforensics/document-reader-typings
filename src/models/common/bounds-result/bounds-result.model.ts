@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsInt, IsNumber, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { eDocFormat } from '@/consts'
 import { Point } from '@/models/common/point'
@@ -78,7 +78,6 @@ export class BoundsResult implements iBoundsResult {
   * Document format
   * @type {eDocFormat}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eDocFormat)
   @Default(eDocFormat.UNKNOWN)
@@ -88,7 +87,6 @@ export class BoundsResult implements iBoundsResult {
   * Document width
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   @Default(0)
@@ -98,7 +96,6 @@ export class BoundsResult implements iBoundsResult {
   * Document height
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   @Default(0)
@@ -108,7 +105,6 @@ export class BoundsResult implements iBoundsResult {
   * Document center coordinates
   * @type {Point}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => Point)
@@ -118,7 +114,6 @@ export class BoundsResult implements iBoundsResult {
   * Document rotation angle
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   @Default(0)
@@ -128,7 +123,6 @@ export class BoundsResult implements iBoundsResult {
   * Document left bottom corner coordinates
   * @type {Point}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => Point)
@@ -138,7 +132,6 @@ export class BoundsResult implements iBoundsResult {
   * Document left top corner coordinates
   * @type {Point}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => Point)
@@ -148,7 +141,6 @@ export class BoundsResult implements iBoundsResult {
   * Document right bottom corner coordinates
   * @type {Point}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => Point)
@@ -158,7 +150,6 @@ export class BoundsResult implements iBoundsResult {
   * Document right top corner coordinates
   * @type {Point}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => Point)
@@ -168,7 +159,6 @@ export class BoundsResult implements iBoundsResult {
   * Resolution in dots per inch
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   Dpi: number

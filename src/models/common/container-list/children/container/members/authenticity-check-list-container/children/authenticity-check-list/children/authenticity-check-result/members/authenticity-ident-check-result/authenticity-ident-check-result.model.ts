@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsEnum, IsIn, IsInt, ValidateNested } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { plainToClass, Type } from 'class-transformer'
 
 import { eAuthenticity, eCheckResult } from '@/consts'
 import { Default } from '@/decorators'
@@ -77,7 +77,6 @@ export class AuthenticityIdentCheckResult extends aAuthenticityCheckResult imple
   * Type of the performed check
   * @type {tAuthenticityIdentCheckResultType}
   */
-  @Expose()
   @IsDefined()
   @IsIn(AuthenticityIdentCheckResultTypes)
   @IsEnum(eAuthenticity)
@@ -87,7 +86,6 @@ export class AuthenticityIdentCheckResult extends aAuthenticityCheckResult imple
   * Overall checking result
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
@@ -97,7 +95,6 @@ export class AuthenticityIdentCheckResult extends aAuthenticityCheckResult imple
   * Array of results of checks
   * @type {IdentResult[]}
   */
-  @Expose()
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })
@@ -109,7 +106,6 @@ export class AuthenticityIdentCheckResult extends aAuthenticityCheckResult imple
   * Number of List items
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   Count: number

@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsEnum, IsIn, IsInt, ValidateNested } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { plainToClass, Type } from 'class-transformer'
 
 import { eAuthenticity, eCheckResult } from '@/consts'
 import { Default } from '@/decorators'
@@ -56,7 +56,6 @@ export class AuthenticityFibersTypeCheckResult extends aAuthenticityCheckResult 
   * Type of the performed check (eAuthenticity)
   * @type {tAuthenticityFibersTypeCheckResultType}
   */
-  @Expose()
   @IsDefined()
   @IsIn(AuthenticityFibersTypeCheckResultTypes)
   @IsEnum(eAuthenticity)
@@ -66,7 +65,6 @@ export class AuthenticityFibersTypeCheckResult extends aAuthenticityCheckResult 
   * Overall checking result
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
@@ -76,7 +74,6 @@ export class AuthenticityFibersTypeCheckResult extends aAuthenticityCheckResult 
   * Array of results of checks
   * @type {FibersType[]}
   */
-  @Expose()
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })
@@ -88,7 +85,6 @@ export class AuthenticityFibersTypeCheckResult extends aAuthenticityCheckResult 
   * Number of List items
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   Count: number

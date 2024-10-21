@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -51,7 +51,6 @@ export class RawImageContainer extends aContainer implements iRawImageContainer 
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(eLights.OFF)
@@ -61,7 +60,6 @@ export class RawImageContainer extends aContainer implements iRawImageContainer 
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -71,7 +69,6 @@ export class RawImageContainer extends aContainer implements iRawImageContainer 
   * Page index (when working with multi-page document)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -81,7 +78,6 @@ export class RawImageContainer extends aContainer implements iRawImageContainer 
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -91,7 +87,6 @@ export class RawImageContainer extends aContainer implements iRawImageContainer 
   * Result type stored in this container
   * @type {tRawImageContainerResultType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eResultType)
   @IsIn(RawImageContainerResultTypes)
@@ -101,7 +96,6 @@ export class RawImageContainer extends aContainer implements iRawImageContainer 
   * Structure is used for storing a graphic image
   * @type {RawImage}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => RawImage)
@@ -131,7 +125,7 @@ export class RawImageContainer extends aContainer implements iRawImageContainer 
     )
 
     if (asPlain) {
-      return result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iRawImageContainer)
+      return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iRawImageContainer)
     }
 
     return result

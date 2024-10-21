@@ -1,5 +1,5 @@
-import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
-import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
+import { instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -49,7 +49,6 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(eLights.OFF)
@@ -59,7 +58,6 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -69,7 +67,6 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   * Page index (when working with multi-page document)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -79,7 +76,6 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -89,7 +85,6 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   * Result type stored in this container
   * @type {tListVerifiedFieldContainerResultType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eResultType)
   @IsIn(ListVerifiedFieldContainerResultTypes)
@@ -101,7 +96,6 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   * memory (used together with RFID-Chip Reader SDK) and passing it to the user application
   * @type {ListVerifiedFields|undefined}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => ListVerifiedFields)
@@ -130,7 +124,7 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
       ListVerifiedFieldContainerResultTypes.includes(<tListVerifiedFieldContainerResultType>container.result_type)
     )
 
-    return asPlain ? result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iListVerifiedFieldContainer) : result
+    return asPlain ? result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iListVerifiedFieldContainer) : result
   }
 
   /**
