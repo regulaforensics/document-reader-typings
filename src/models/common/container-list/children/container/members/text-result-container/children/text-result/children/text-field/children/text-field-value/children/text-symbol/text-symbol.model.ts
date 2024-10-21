@@ -1,5 +1,5 @@
 import { IsDefined, IsInt, IsOptional, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { iRect, Rect } from '@/models/common/rect'
 import { Default } from '@/decorators'
@@ -36,7 +36,6 @@ export class TextSymbol implements iTextSymbol {
   * Symbol code
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   code: number
@@ -45,7 +44,6 @@ export class TextSymbol implements iTextSymbol {
   * Recognition probability
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -55,7 +53,6 @@ export class TextSymbol implements iTextSymbol {
   * Symbol rectangular area
   * @type {Rect|undefined}
   */
-  @Expose()
   @IsOptional()
   @ValidateNested()
   @Type(() => Rect)

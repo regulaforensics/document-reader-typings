@@ -9,7 +9,7 @@ import {
   Min,
   ValidateNested
 } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import {
   eDocFormat,
@@ -449,7 +449,6 @@ export class ProcessParams implements iProcessParams {
   * Empty by default.
   * @type {eLCID[]|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsEnum(eLCID, { each: true })
   lcidFilter?: eLCID[]
@@ -458,7 +457,6 @@ export class ProcessParams implements iProcessParams {
   * This parameter is used to enable document liveness check.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   checkLiveness?: boolean
@@ -469,7 +467,6 @@ export class ProcessParams implements iProcessParams {
   * Empty by default.
   * @type {eLCID[]|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsEnum(eLCID, { each: true })
   lcidIgnoreFilter?: eLCID[]
@@ -479,7 +476,6 @@ export class ProcessParams implements iProcessParams {
   * the document with the person's face
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   oneShotIdentification?: boolean
@@ -488,7 +484,6 @@ export class ProcessParams implements iProcessParams {
   * This parameter allows comparing faces on Regula Face Web Service
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   useFaceApi?: boolean
@@ -497,7 +492,6 @@ export class ProcessParams implements iProcessParams {
   * Face API settings
   * @type {FaceApi|undefined}
   */
-  @Expose()
   @IsOptional()
   @ValidateNested()
   @Type(() => FaceApi)
@@ -508,7 +502,6 @@ export class ProcessParams implements iProcessParams {
   * document location and MRZ reading, such as the MrzAndLocate scenario.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   doDetectCan?: boolean
@@ -520,7 +513,6 @@ export class ProcessParams implements iProcessParams {
   * Default 0.
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsInt()
   @Min(0)
@@ -533,7 +525,6 @@ export class ProcessParams implements iProcessParams {
   * Default 0.
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsInt()
   @Min(0)
@@ -543,7 +534,6 @@ export class ProcessParams implements iProcessParams {
   * This parameter allows setting the processing scenario.
   * @type {eScenario}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eScenario)
   scenario: eScenario
@@ -552,7 +542,6 @@ export class ProcessParams implements iProcessParams {
   * Types of results to return in response. See \'Result\' enum for available options
   * @type {Result[]|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsEnum(eResult, { each: true })
   resultTypeOutput?: eResult[]
@@ -564,7 +553,6 @@ export class ProcessParams implements iProcessParams {
   * @type {boolean|undefined}
   * @deprecated
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   doublePageSpread?: boolean
@@ -575,7 +563,6 @@ export class ProcessParams implements iProcessParams {
   * Disabled by default.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   generateDoublePageSpreadImage?: boolean
@@ -586,7 +573,6 @@ export class ProcessParams implements iProcessParams {
   * Empty by default.
   * @type {eVisualFieldType[]|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsEnum(eVisualFieldType, { each: true })
   fieldTypesFilter?: eVisualFieldType[]
@@ -597,7 +583,6 @@ export class ProcessParams implements iProcessParams {
   * '07/09/2020' as a result. By default it is set to system locale default (where the service is running).
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   dateFormat?: string
@@ -606,7 +591,6 @@ export class ProcessParams implements iProcessParams {
   * This option allows you to set measure system to be used for measurements in the result.
   * @type {eMeasureSystem|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsEnum(eMeasureSystem)
   measureSystem?: eMeasureSystem
@@ -617,7 +601,6 @@ export class ProcessParams implements iProcessParams {
   * scenarios except FullAuth. In FullAuth scenario this limit is 1000 dpi by default.
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsInt()
   imageDpiOutMax?: number
@@ -628,7 +611,6 @@ export class ProcessParams implements iProcessParams {
   * Disabled by default.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   alreadyCropped?: boolean
@@ -637,7 +619,6 @@ export class ProcessParams implements iProcessParams {
   * This option allows passing custom processing parameters that can be implemented in future without changing API.
   * @type {Record<string, object>|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsStringObjectRecord()
   customParams?: Record<string, object>
@@ -647,7 +628,6 @@ export class ProcessParams implements iProcessParams {
   * ID specified in config, processing adjusts according to designated configuration.
   * @type {PerDocumentConfig[]|undefined}
   */
-  @Expose()
   @IsOptional()
   @ValidateNested({ each: true })
   @Type(() => PerDocumentConfig)
@@ -657,7 +637,6 @@ export class ProcessParams implements iProcessParams {
   * When enabled, results will contain transaction processing log. Disabled by default
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   log?: boolean
@@ -666,7 +645,6 @@ export class ProcessParams implements iProcessParams {
   * Specifies the level of detail in the transaction processing log.
   * @type {eLogLevel|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsEnum(eLogLevel)
   logLevel?: eLogLevel
@@ -675,7 +653,6 @@ export class ProcessParams implements iProcessParams {
   * Force use of specific template ID and skip document type identification step.
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsInt()
   forceDocID?: number
@@ -687,7 +664,6 @@ export class ProcessParams implements iProcessParams {
   * Enabled by default.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   matchTextFieldMask?: boolean
@@ -699,7 +675,6 @@ export class ProcessParams implements iProcessParams {
   * @type {boolean|undefined}
   * @deprecated
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   fastDocDetect?: boolean
@@ -709,7 +684,6 @@ export class ProcessParams implements iProcessParams {
   * Disabled by default.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   updateOCRValidityByGlare?: boolean
@@ -720,7 +694,6 @@ export class ProcessParams implements iProcessParams {
   * Disabled by default.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   checkRequiredTextFields?: boolean
@@ -730,7 +703,6 @@ export class ProcessParams implements iProcessParams {
   * Disabled by default.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   returnCroppedBarcode?: boolean
@@ -739,7 +711,6 @@ export class ProcessParams implements iProcessParams {
   * Image quality analysis settings
   * @type {ImageQA|undefined}
   */
-  @Expose()
   @IsOptional()
   @ValidateNested()
   imageQa?: ImageQA
@@ -749,7 +720,6 @@ export class ProcessParams implements iProcessParams {
   * Disabled by default.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   respectImageQuality?: boolean
@@ -758,7 +728,6 @@ export class ProcessParams implements iProcessParams {
   * Allows to force document format to be used for processing.
   * @type {eDocFormat|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsEnum(eDocFormat)
   forceDocFormat?: eDocFormat
@@ -767,7 +736,6 @@ export class ProcessParams implements iProcessParams {
   * When enabled, no graphic fields will be cropped from document image. Disabled by default.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   noGraphics?: boolean
@@ -777,7 +745,6 @@ export class ProcessParams implements iProcessParams {
   * Disabled by default.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   depersonalizeLog?: boolean
@@ -787,7 +754,6 @@ export class ProcessParams implements iProcessParams {
   * Disabled by default.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   multiDocOnImage?: boolean
@@ -800,7 +766,6 @@ export class ProcessParams implements iProcessParams {
   * 0 by default
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsInt()
   shiftExpiryDate?: number
@@ -810,7 +775,6 @@ export class ProcessParams implements iProcessParams {
   * to be considered valid.
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsInt()
   @Min(0)
@@ -821,7 +785,6 @@ export class ProcessParams implements iProcessParams {
   * Disabled by default.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   returnUncroppedImage?: boolean
@@ -830,7 +793,6 @@ export class ProcessParams implements iProcessParams {
   * This option allows limiting MRZ formats to be recognized by specifying them in array.
   * @type {eMRZFormat[]|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsEnum(eMRZFormat, { each: true })
   mrzFormatsFilter?: eMRZFormat[]
@@ -842,7 +804,6 @@ export class ProcessParams implements iProcessParams {
   * Disabled by default.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   forceReadMrzBeforeLocate?: boolean
@@ -852,7 +813,6 @@ export class ProcessParams implements iProcessParams {
   * Enabled by default.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   parseBarcodes?: boolean
@@ -861,7 +821,6 @@ export class ProcessParams implements iProcessParams {
   * This option allows to convert text field values to upper or lower case.
   * @type {eTextPostProcessing|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsEnum(eTextPostProcessing)
   convertCase?: eTextPostProcessing
@@ -872,7 +831,6 @@ export class ProcessParams implements iProcessParams {
   * Disabled by default.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   splitNames?: boolean
@@ -881,7 +839,6 @@ export class ProcessParams implements iProcessParams {
   * When enabled, OCR of perforated fields in the document template will not be performed. Disabled by default.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   disablePerforationOCR?: boolean
@@ -892,7 +849,6 @@ export class ProcessParams implements iProcessParams {
   * Empty by default.
   * @type {eDocType[]|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsEnum(eDocType, { each: true })
   documentGroupFilter?: eDocType[]
@@ -903,7 +859,6 @@ export class ProcessParams implements iProcessParams {
   * Note that only supported by your license checks can be added.
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsInt()
   processAuth?: number
@@ -913,7 +868,6 @@ export class ProcessParams implements iProcessParams {
   * Default 0.
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsInt()
   deviceId?: number
@@ -923,7 +877,6 @@ export class ProcessParams implements iProcessParams {
   * Default 0.
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsInt()
   deviceType?: number
@@ -932,7 +885,6 @@ export class ProcessParams implements iProcessParams {
   * This parameter is used to specify the document reader device type from which input images were captured
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   deviceTypeHex?: string
@@ -943,7 +895,6 @@ export class ProcessParams implements iProcessParams {
   * Default false
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   ignoreDeviceIdFromImage?: boolean
@@ -952,7 +903,6 @@ export class ProcessParams implements iProcessParams {
   * List of the document ID's to process. All documents will be processed, if empty.
   * @type {number[]|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsInt({ each: true })
   documentIdList?: number[]
@@ -961,7 +911,6 @@ export class ProcessParams implements iProcessParams {
   * RFID processing parameters
   * @type {ProcessParamsRfid|undefined}
   */
-  @Expose()
   @IsOptional()
   @ValidateNested()
   @Type(() => ProcessParamsRfid)
@@ -972,7 +921,6 @@ export class ProcessParams implements iProcessParams {
    * Default true
    * @type {boolean|undefined}
    */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   checkAuth?: boolean
@@ -981,7 +929,6 @@ export class ProcessParams implements iProcessParams {
    * Authenticity check parameters
    * @type {ProcessParamsAuth|undefined}
    */
-  @Expose()
   @IsOptional()
   @ValidateNested()
   @Type(() => ProcessParamsAuth)
@@ -991,7 +938,6 @@ export class ProcessParams implements iProcessParams {
   * Make better MRZ detection on complex noisy backgrounds, like BW photocopy of some documents.
   * @type {eMRZDetectMode|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsEnum(eMRZDetectMode)
   mrzDetectMode?: eMRZDetectMode
@@ -1001,7 +947,6 @@ export class ProcessParams implements iProcessParams {
    * Default false
    * @type {boolean|undefined}
    */
-  @Expose()
   @IsOptional()
   @IsBoolean()
   generateNumericCodes?: boolean

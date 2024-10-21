@@ -1,5 +1,4 @@
 import { IsDefined, IsEnum, IsNumber, IsOptional, IsString } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 import { eBarCodeModuleType } from '@/consts'
 import { Default } from '@/decorators'
@@ -48,7 +47,6 @@ export class TipDecodeModule implements iTipDecodeModule {
   * Read module data
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   mData: string
@@ -57,7 +55,6 @@ export class TipDecodeModule implements iTipDecodeModule {
   * Number of significant elements of mData
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   mLength: number
@@ -66,7 +63,6 @@ export class TipDecodeModule implements iTipDecodeModule {
   * @internal
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   mReserved1?: number
 
@@ -74,7 +70,6 @@ export class TipDecodeModule implements iTipDecodeModule {
   * @internal
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   mReserver2?: number
 
@@ -82,7 +77,6 @@ export class TipDecodeModule implements iTipDecodeModule {
   * Module type
   * @type {eBarCodeModuleType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eBarCodeModuleType)
   @Default(eBarCodeModuleType.ALL)

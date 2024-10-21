@@ -1,5 +1,4 @@
 import { IsBoolean, IsOptional } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 
 /**
@@ -44,8 +43,7 @@ export class LivenessParams implements iLivenessParams {
      * Default true
      * @type {boolean|undefined}
      */
-    @Expose()
-    @IsOptional()
+  @IsOptional()
     @IsBoolean()
     checkOVI?: boolean
 
@@ -54,8 +52,7 @@ export class LivenessParams implements iLivenessParams {
      * Default true
      * @type {boolean|undefined}
      */
-    @Expose()
-    @IsOptional()
+  @IsOptional()
     @IsBoolean()
     checkMLI?: boolean
 
@@ -64,8 +61,7 @@ export class LivenessParams implements iLivenessParams {
      * Default true
      * @type {boolean|undefined}
      */
-    @Expose()
-    @IsOptional()
+  @IsOptional()
     @IsBoolean()
     checkHolo?: boolean
 
@@ -74,8 +70,7 @@ export class LivenessParams implements iLivenessParams {
      * Default true
      * @type {boolean|undefined}
      */
-    @Expose()
-    @IsOptional()
+  @IsOptional()
     @IsBoolean()
     checkED?: boolean
 }

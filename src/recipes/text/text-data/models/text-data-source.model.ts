@@ -3,7 +3,7 @@ import { IsDefined, IsEnum, IsOptional, IsString, ValidateNested } from 'class-v
 import { eCheckResult, eSource } from '@/consts'
 import { Default } from '@/decorators'
 import { iRRect, RRect } from '@/common-models'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 
 /**
@@ -96,7 +96,6 @@ export class RTextDataSource implements iRTextDataSource {
   * Rect
   * @type {RRect|undefined}
   */
-  @Expose()
   @IsOptional()
   @Type(() => RRect)
   @ValidateNested()

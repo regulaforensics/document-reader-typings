@@ -1,5 +1,5 @@
 import { IsBase64, IsDefined, IsEnum, IsIn, IsInt, IsString, validateSync } from 'class-validator'
-import { Expose, instanceToPlain, plainToClass } from 'class-transformer'
+import { instanceToPlain, plainToClass } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -46,7 +46,6 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(eLights.OFF)
@@ -56,7 +55,6 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -66,7 +64,6 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
   * Page index (when working with multi-page document)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -76,7 +73,6 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -86,7 +82,6 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
   * Result type stored in this container
   * @type {tLicenseContainerResultType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eResultType)
   @IsIn(LicenseContainerResultTypes)
@@ -96,7 +91,6 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
   * License base64 encoded string
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   @IsBase64()
@@ -126,7 +120,7 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
     )
 
     if (asPlain) {
-      return result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iLicenseContainer)
+      return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iLicenseContainer)
     }
 
     return result

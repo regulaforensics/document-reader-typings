@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsEnum, IsIn, IsInt, ValidateNested } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { plainToClass, Type } from 'class-transformer'
 
 import { eAuthenticity, eCheckResult } from '@/consts'
 import { Default } from '@/decorators'
@@ -56,7 +56,6 @@ export class AuthenticityOCRSecurityTextCheckResult extends aAuthenticityCheckRe
   * Type of the performed check
   * @type {tAuthenticityOCRSecurityTextCheckResultType}
   */
-  @Expose()
   @IsDefined()
   @IsIn(AuthenticityOCRSecurityTextCheckResultTypes)
   @IsEnum(eAuthenticity)
@@ -66,7 +65,6 @@ export class AuthenticityOCRSecurityTextCheckResult extends aAuthenticityCheckRe
   * Overall checking result
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
@@ -76,7 +74,6 @@ export class AuthenticityOCRSecurityTextCheckResult extends aAuthenticityCheckRe
   * Array of results of checks
   * @type {OCRSecurityTextResult[]}
   */
-  @Expose()
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })
@@ -88,7 +85,6 @@ export class AuthenticityOCRSecurityTextCheckResult extends aAuthenticityCheckRe
   * Number of List items
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   Count: number

@@ -9,7 +9,7 @@ import {
   ValidateNested,
   validateSync
 } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { plainToClass, Type } from 'class-transformer'
 
 import { iRect, Rect } from '@/models/common/rect'
 import { eAuthenticity, eCheckDiagnose, eCheckResult } from '@/consts'
@@ -92,7 +92,6 @@ export class FibersType implements iFibersType {
   * Type of the performed check
   * @type {eAuthenticity.UV_FIBERS | eAuthenticity.UV_BACKGROUND}
   */
-  @Expose()
   @IsDefined()
   @IsIn([eAuthenticity.UV_FIBERS])
   @IsEnum(eAuthenticity)
@@ -102,7 +101,6 @@ export class FibersType implements iFibersType {
   * Element responsible for the results of the checks
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
@@ -112,7 +110,6 @@ export class FibersType implements iFibersType {
   * Element with which errors are checked
   * @type {eCheckDiagnose}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckDiagnose)
   @Default(eCheckDiagnose.UNKNOWN)
@@ -122,7 +119,6 @@ export class FibersType implements iFibersType {
   * Number of RectArray, Width, Length, Area items
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   RectCount: number
@@ -131,7 +127,6 @@ export class FibersType implements iFibersType {
   * Coordinates of located areas for defined fibers type
   * @type {Rect[]}
   */
-  @Expose()
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })
@@ -143,7 +138,6 @@ export class FibersType implements iFibersType {
   * Fibers’ width value for RectArray areas (in pixels)
   * @type {number[]}
   */
-  @Expose()
   @IsDefined()
   @IsArray()
   @IsInt({ each: true })
@@ -154,7 +148,6 @@ export class FibersType implements iFibersType {
   * Fibers’ length value for RectArray areas (in pixels)
   * @type {number[]}
   */
-  @Expose()
   @IsDefined()
   @IsArray()
   @IsInt({ each: true })
@@ -165,7 +158,6 @@ export class FibersType implements iFibersType {
   * Fibers’ area value for RectArray areas (in pixels)
   * @type {number[]}
   */
-  @Expose()
   @IsDefined()
   @IsArray()
   @IsInt({ each: true })
@@ -176,7 +168,6 @@ export class FibersType implements iFibersType {
   * Fibers’ color (B, G, R)
   * @type {number[]}
   */
-  @Expose()
   @IsDefined()
   @IsArray()
   @ArrayMaxSize(3)
@@ -188,7 +179,6 @@ export class FibersType implements iFibersType {
   * Expected fibers number
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   ExpectedCount: number

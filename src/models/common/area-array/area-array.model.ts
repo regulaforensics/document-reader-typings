@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { iRect, Rect } from '@/models/common/rect'
 import { Default } from '@/decorators'
@@ -37,7 +37,6 @@ export class AreaArray implements iAreaArray {
   * Number of elements in List and Points
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   Count: number
@@ -46,7 +45,6 @@ export class AreaArray implements iAreaArray {
   * Array of areas
   * @type {Rect[]}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested({ each: true })
   @IsArray()
@@ -58,7 +56,6 @@ export class AreaArray implements iAreaArray {
   * Array of points
   * @type {PointArray[]}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested({ each: true })
   @IsArray()

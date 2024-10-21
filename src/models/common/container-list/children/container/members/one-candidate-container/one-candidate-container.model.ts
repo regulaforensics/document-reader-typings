@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
-import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -47,7 +47,6 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(eLights.OFF)
@@ -57,7 +56,6 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -67,7 +65,6 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   * Page index (when working with multi-page document)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -77,7 +74,6 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -87,7 +83,6 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   * Result type stored in this container
   * @type {tOneCandidateContainerResultType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eResultType)
   @IsIn(OneCandidateContainerResultTypes)
@@ -97,7 +92,6 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   * Contains information on one candidate document when determining the document type
   * @type {OneCandidate|undefined}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => OneCandidate)
@@ -127,7 +121,7 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
     )
 
     if (asPlain) {
-      return result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iOneCandidateContainer)
+      return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iOneCandidateContainer)
     }
 
     return result

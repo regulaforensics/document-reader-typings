@@ -1,5 +1,4 @@
 import { IsDefined, IsInt, IsNumber, IsOptional, Max, Min } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 
 /**
@@ -33,7 +32,6 @@ export class SymbolCandidate implements iSymbolCandidate {
   * ASCII symbol code
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   SymbolCode: number
@@ -42,7 +40,6 @@ export class SymbolCandidate implements iSymbolCandidate {
   * Symbol recognition probability (0–100, %)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   @Min(0)
@@ -53,7 +50,6 @@ export class SymbolCandidate implements iSymbolCandidate {
   * @internal
   * @type {unknown}
   */
-  @Expose()
   @IsOptional()
   Reserved?: unknown
 }

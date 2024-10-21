@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsInt, IsNumber, IsOptional, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { eCheckResult, eImageQualityCheckType, eSecurityFeatureType } from '@/consts'
 import { AreaArray, iAreaArray } from '@/models/common/area-array'
@@ -61,7 +61,6 @@ export class ImageQualityCheck implements iImageQualityCheck {
   * Check result type
   * @type {eImageQualityCheckType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eImageQualityCheckType)
   type: eImageQualityCheckType
@@ -70,7 +69,6 @@ export class ImageQualityCheck implements iImageQualityCheck {
   * Check result
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
@@ -80,7 +78,6 @@ export class ImageQualityCheck implements iImageQualityCheck {
   * Security feature type
   * @type {eSecurityFeatureType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eSecurityFeatureType)
   @Default(eSecurityFeatureType.BLANK)
@@ -90,7 +87,6 @@ export class ImageQualityCheck implements iImageQualityCheck {
   * Anomalous image areas
   * @type {AreaArray|undefined}
   */
-  @Expose()
   @IsOptional()
   @ValidateNested()
   @Type(() => AreaArray)
@@ -100,7 +96,6 @@ export class ImageQualityCheck implements iImageQualityCheck {
   * Check mean value
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   mean: number
@@ -109,7 +104,6 @@ export class ImageQualityCheck implements iImageQualityCheck {
   * Check deviation value
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   std_dev: number
@@ -118,7 +112,6 @@ export class ImageQualityCheck implements iImageQualityCheck {
   * Check probability value
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   probability: number

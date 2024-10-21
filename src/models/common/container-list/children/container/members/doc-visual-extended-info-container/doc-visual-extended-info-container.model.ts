@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
-import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -56,7 +56,6 @@ export class DocVisualExtendedInfoContainer extends aContainer implements iDocVi
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(eLights.OFF)
@@ -66,7 +65,6 @@ export class DocVisualExtendedInfoContainer extends aContainer implements iDocVi
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -76,7 +74,6 @@ export class DocVisualExtendedInfoContainer extends aContainer implements iDocVi
   * Page index (when working with multi-page document)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -86,7 +83,6 @@ export class DocVisualExtendedInfoContainer extends aContainer implements iDocVi
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -96,7 +92,6 @@ export class DocVisualExtendedInfoContainer extends aContainer implements iDocVi
   * Result type stored in this container
   * @type {tDocVisualExtendedInfoContainerResultType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eResultType)
   @IsIn(DocVisualExtendedInfoContainerResultTypes)
@@ -106,7 +101,6 @@ export class DocVisualExtendedInfoContainer extends aContainer implements iDocVi
   * Structure serves for storing text results of MRZ, document filling and bar-codes reading
   * @type {DocVisualExtendedInfo|undefined}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => DocVisualExtendedInfo)
@@ -136,7 +130,7 @@ export class DocVisualExtendedInfoContainer extends aContainer implements iDocVi
     )
 
     if (asPlain) {
-      return result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iDocVisualExtendedInfoContainer)
+      return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iDocVisualExtendedInfoContainer)
     }
 
     return result

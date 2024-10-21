@@ -1,5 +1,4 @@
 import { IsDefined, IsNumber, IsOptional } from 'class-validator'
-import { Expose } from 'class-transformer'
 import { Default } from '@/decorators'
 
 
@@ -54,7 +53,6 @@ export class TipPDF417Info implements iTipPDF417Info {
   * Code decoding rotation angle (in radians)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   @Default(0)
@@ -64,7 +62,6 @@ export class TipPDF417Info implements iTipPDF417Info {
   * Number of columns in the bar-code
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   @Default(1)
@@ -74,7 +71,6 @@ export class TipPDF417Info implements iTipPDF417Info {
   * BarCode error correction level
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   @Default(0)
@@ -84,7 +80,6 @@ export class TipPDF417Info implements iTipPDF417Info {
   * Number of rows in a bar-code
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   @Default(1)
@@ -94,7 +89,6 @@ export class TipPDF417Info implements iTipPDF417Info {
   * Width of the minimum bar-code element on the image, in pixels
   * @type {number}
   */
-  @Expose()
   @IsOptional()
   @IsNumber()
   @Default(0)
@@ -104,7 +98,6 @@ export class TipPDF417Info implements iTipPDF417Info {
   * Height of the minimum bar-code element on the image, in pixels
   * @type {number}
   */
-  @Expose()
   @IsOptional()
   @IsNumber()
   @Default(0)

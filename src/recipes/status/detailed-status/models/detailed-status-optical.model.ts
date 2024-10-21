@@ -2,7 +2,6 @@ import { IsDefined, IsEnum } from 'class-validator'
 
 import { eCheckResult } from '@/consts'
 import { eOpticalStatusField } from './consts'
-import { Expose } from 'class-transformer'
 
 
 /**
@@ -55,7 +54,6 @@ export class RDetailedStatusOptical implements iRDetailedStatusOptical {
   * The check status if document type was recognized or not.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   [eOpticalStatusField.DOC_TYPE]: eCheckResult
@@ -64,7 +62,6 @@ export class RDetailedStatusOptical implements iRDetailedStatusOptical {
   * The document validity period verification status.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   [eOpticalStatusField.EXPIRY]: eCheckResult
@@ -73,7 +70,6 @@ export class RDetailedStatusOptical implements iRDetailedStatusOptical {
   * The input images quality verification status.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   [eOpticalStatusField.IMAGE_QA]: eCheckResult
@@ -82,7 +78,6 @@ export class RDetailedStatusOptical implements iRDetailedStatusOptical {
   * MRZ verification: values validity, dates, checkdigits verification.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   [eOpticalStatusField.MRZ]: eCheckResult
@@ -91,7 +86,6 @@ export class RDetailedStatusOptical implements iRDetailedStatusOptical {
   * The authenticity verification status
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   [eOpticalStatusField.SECURITY]: eCheckResult
@@ -101,7 +95,6 @@ export class RDetailedStatusOptical implements iRDetailedStatusOptical {
   * dates & checkdigits verification.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   [eOpticalStatusField.TEXT]: eCheckResult

@@ -1,5 +1,4 @@
 import {IsBase64, IsDefined, IsString } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 import { iImageData } from '@/models'
 
@@ -23,8 +22,7 @@ export class RawImage implements iRawImage {
      * Image format
      * @type {string}
      */
-    @Expose()
-    @IsDefined()
+  @IsDefined()
     @IsString()
     format: string
 
@@ -32,8 +30,7 @@ export class RawImage implements iRawImage {
      * Structure is used for storing a graphic image
      * @type {string}
      */
-    @Expose()
-    @IsString()
+  @IsString()
     @IsDefined()
     @IsBase64()
     image: string

@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsString, ValidateNested } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { plainToClass, Type } from 'class-transformer'
 
 import { eGraphicFieldType } from '@/consts'
 import { Default } from '@/decorators'
@@ -27,7 +27,6 @@ export class DocGraphicFieldRect extends aDocGraphicField implements iDocGraphic
   * Graphic field logical type
   * @type {eGraphicFieldType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eGraphicFieldType)
   @Default(eGraphicFieldType.OTHER)
@@ -37,7 +36,6 @@ export class DocGraphicFieldRect extends aDocGraphicField implements iDocGraphic
   * Graphic field symbolic name
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   FieldName: string
@@ -46,7 +44,6 @@ export class DocGraphicFieldRect extends aDocGraphicField implements iDocGraphic
   * Image data
   * @type {ImageData}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => ImageData)
@@ -56,7 +53,6 @@ export class DocGraphicFieldRect extends aDocGraphicField implements iDocGraphic
   * Field area coordinates on the general image
   * @type {Rect}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => Rect)

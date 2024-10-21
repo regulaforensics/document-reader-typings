@@ -2,7 +2,6 @@ import { IsDefined, IsEnum } from 'class-validator'
 
 import { eCheckResult } from '@/consts'
 import { eSummaryStatusField } from './consts'
-import { Expose } from 'class-transformer'
 
 
 /**
@@ -42,7 +41,6 @@ export class RDetailedStatusSummary implements iRDetailedStatusSummary {
   * The summary of all optical checks.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   [eSummaryStatusField.OPTICAL]: eCheckResult
@@ -51,7 +49,6 @@ export class RDetailedStatusSummary implements iRDetailedStatusSummary {
   * The comparison status for portrait in the document against the live or external image.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   [eSummaryStatusField.PORTRAIT]: eCheckResult
@@ -60,7 +57,6 @@ export class RDetailedStatusSummary implements iRDetailedStatusSummary {
   * The summary of all RFID checks.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   [eSummaryStatusField.RFID]: eCheckResult
@@ -69,7 +65,6 @@ export class RDetailedStatusSummary implements iRDetailedStatusSummary {
   * The verification status for the document data against the database.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   [eSummaryStatusField.STOP_LIST]: eCheckResult

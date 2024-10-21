@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsEnum, IsString, ValidateNested } from 'class-validator'
-import { Expose, Transform, Type } from 'class-transformer'
+import { Transform, Type } from 'class-transformer'
 
 import { eCheckResult, eLCID, eVisualFieldType } from '@/consts'
 import { TextResultContainer } from '@/models'
@@ -93,7 +93,6 @@ export class TextField implements iTextField {
   * Field type
   * @type {eVisualFieldType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eVisualFieldType)
   fieldType: eVisualFieldType
@@ -102,7 +101,6 @@ export class TextField implements iTextField {
   * Field name
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   fieldName: string
@@ -111,7 +109,6 @@ export class TextField implements iTextField {
   * LCID code
   * @type {eLCID}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eLCID)
   @Default(eLCID.LATIN)
@@ -121,7 +118,6 @@ export class TextField implements iTextField {
   * LCID name
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   lcidName: string
@@ -130,7 +126,6 @@ export class TextField implements iTextField {
   * Field status
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
@@ -140,7 +135,6 @@ export class TextField implements iTextField {
   * Comparison status
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
@@ -150,7 +144,6 @@ export class TextField implements iTextField {
   * Comparison results list
   * @type {TextComparison[]}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => TextComparison)
@@ -162,7 +155,6 @@ export class TextField implements iTextField {
   * Field value
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   @Transform(({ value }) => value ? String(value) : '')
@@ -172,7 +164,6 @@ export class TextField implements iTextField {
   * Values list
   * @type {TextFieldValue[]}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => TextFieldValue)
@@ -184,7 +175,6 @@ export class TextField implements iTextField {
   * Validity status
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
@@ -194,7 +184,6 @@ export class TextField implements iTextField {
   * Validity results list
   * @type {TextValidity[]}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => TextValidity)

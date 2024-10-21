@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { Default } from '@/decorators'
 import { iVerifiedFieldMap, VerifiedFieldMap } from './children'
@@ -34,7 +34,6 @@ export class ListVerifiedFields implements iListVerifiedFields {
   * Number of pFieldMaps array elements
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   Count: number
@@ -43,7 +42,6 @@ export class ListVerifiedFields implements iListVerifiedFields {
   * Array of results of document filling text fields’ data analysis
   * @type {VerifiedFieldMap[]}
   */
-  @Expose()
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })

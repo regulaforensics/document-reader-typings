@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsEnum, IsNumber, IsOptional, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { iRect, Rect } from '@/models/common'
 import { Default } from '@/decorators'
@@ -95,7 +95,6 @@ export class DocBarCodeField implements iDocBarCodeField {
   * BarCode rotation angle (in radians)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   @Default(0)
@@ -105,7 +104,6 @@ export class DocBarCodeField implements iDocBarCodeField {
   * BarCode reading result
   * @type {eBarCodeResultCodes}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eBarCodeResultCodes)
   @Default(eBarCodeResultCodes.NO_ERR)
@@ -115,7 +113,6 @@ export class DocBarCodeField implements iDocBarCodeField {
   * Number of read bar-code modules
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   bcCountModule: number
@@ -124,7 +121,6 @@ export class DocBarCodeField implements iDocBarCodeField {
   * Results of reading data from a bar-code modules
   * @type {TipDecodeModule[]}
   */
-  @Expose()
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })
@@ -136,7 +132,6 @@ export class DocBarCodeField implements iDocBarCodeField {
   * Information on PDF417 code parameters (only for PDF417)
   * @type {TipPDF417Info|undefined}
   */
-  @Expose()
   @IsOptional()
   @ValidateNested()
   @Type(() => TipPDF417Info)
@@ -146,7 +141,6 @@ export class DocBarCodeField implements iDocBarCodeField {
   * BarCode area coordinates on the image
   * @type {Rect}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => Rect)
@@ -155,7 +149,6 @@ export class DocBarCodeField implements iDocBarCodeField {
   /**
    * @type {number|undefined}
    */
-  @Expose()
   @IsOptional()
   @IsNumber()
   bcTextDecoderTypes?: number
@@ -163,7 +156,6 @@ export class DocBarCodeField implements iDocBarCodeField {
   /**
    * @type {number|undefined}
    */
-  @Expose()
   @IsOptional()
   @IsNumber()
   bcTextFieldType?: number
@@ -172,7 +164,6 @@ export class DocBarCodeField implements iDocBarCodeField {
   * Decoded bar-code type
   * @type {eBarCodeType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eBarCodeType)
   @Default(eBarCodeType.UNKNOWN)
@@ -182,7 +173,6 @@ export class DocBarCodeField implements iDocBarCodeField {
   * Type of the detected bar-code
   * @type {eBarCodeDetectionType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eBarCodeDetectionType)
   @Default(eBarCodeDetectionType.LINEAR)
@@ -191,21 +181,18 @@ export class DocBarCodeField implements iDocBarCodeField {
   /**
   * @internal
   */
-  @Expose()
   @IsOptional()
   bcReserved1?: unknown
 
   /**
   * @internal
   */
-  @Expose()
   @IsOptional()
   bcReserved2?: unknown
 
   /**
   * @internal
   */
-  @Expose()
   @IsOptional()
   bcReserved3?: unknown
 }

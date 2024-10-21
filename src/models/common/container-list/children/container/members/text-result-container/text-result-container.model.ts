@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -47,7 +47,6 @@ export class TextResultContainer extends aContainer implements iTextResultContai
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(eLights.OFF)
@@ -57,7 +56,6 @@ export class TextResultContainer extends aContainer implements iTextResultContai
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -67,7 +65,6 @@ export class TextResultContainer extends aContainer implements iTextResultContai
   * Page index (when working with multi-page document)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -77,7 +74,6 @@ export class TextResultContainer extends aContainer implements iTextResultContai
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -87,7 +83,6 @@ export class TextResultContainer extends aContainer implements iTextResultContai
   * Result type stored in this container
   * @type {tTextResultContainerResultType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eResultType)
   @IsIn(TextResultContainerResultTypes)
@@ -97,7 +92,6 @@ export class TextResultContainer extends aContainer implements iTextResultContai
   * Text result
   * @type {TextResult}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => TextResult)
@@ -109,7 +103,7 @@ export class TextResultContainer extends aContainer implements iTextResultContai
   * @param {unknown} input - plain object
   * @returns {TextResultContainer}
   */
-  static fromPlain = (input: unknown): TextResultContainer => plainToClass(TextResultContainer, input, { strategy: 'excludeAll' })
+  static fromPlain = (input: unknown): TextResultContainer => plainToClass(TextResultContainer, input, { exposeUnsetFields: false })
 
   /**
   * Get TextResultContainer from ProcessResponse
@@ -127,7 +121,7 @@ export class TextResultContainer extends aContainer implements iTextResultContai
     )
 
     if (asPlain) {
-      return result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iTextResultContainer)
+      return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iTextResultContainer)
     }
 
     return result

@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsEnum, IsIn, ValidateNested } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { plainToClass, Type } from 'class-transformer'
 
 import { eAuthenticity, eCheckResult } from '@/consts'
 import { Default } from '@/decorators'
@@ -69,7 +69,6 @@ export class AuthenticitySecurityFeatureCheckResult extends aAuthenticityCheckRe
   * Type of the performed check
   * @type {tAuthenticitySecurityFeatureCheckResultType}
   */
-  @Expose()
   @IsDefined()
   @IsIn(AuthenticitySecurityFeatureCheckResultTypes)
   @IsEnum(eAuthenticity)
@@ -79,7 +78,6 @@ export class AuthenticitySecurityFeatureCheckResult extends aAuthenticityCheckRe
   * Overall checking result
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
@@ -89,7 +87,6 @@ export class AuthenticitySecurityFeatureCheckResult extends aAuthenticityCheckRe
   * Array of results of checks
   * @type {iSecurityFeatureCheck[]}
   */
-  @Expose()
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })

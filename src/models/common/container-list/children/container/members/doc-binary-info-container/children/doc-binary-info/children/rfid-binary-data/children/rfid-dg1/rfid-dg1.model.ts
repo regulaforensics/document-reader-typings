@@ -1,5 +1,4 @@
 import { IsDefined, IsEnum, IsInt, IsNumber, IsString } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 import { eBarCodeModuleType, eDocFormat, eRfidDataGroupTypeTag } from '@/consts'
 import { Default } from '@/decorators'
@@ -116,7 +115,6 @@ export class RfidDG1 implements iRfidDG1 {
   * Type of informational data group
   * @type {eRfidDataGroupTypeTag}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidDataGroupTypeTag)
   Type: eRfidDataGroupTypeTag
@@ -125,7 +123,6 @@ export class RfidDG1 implements iRfidDG1 {
   * Type of document (classification of document formats – by the ISO/IEC 7810)
   * @type {eDocFormat}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eDocFormat)
   @Default(eDocFormat.UNKNOWN)
@@ -135,7 +132,6 @@ export class RfidDG1 implements iRfidDG1 {
   * Symbolic code of document type;
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   DocumentType: string
@@ -144,7 +140,6 @@ export class RfidDG1 implements iRfidDG1 {
   * Symbolic code of document issuing state
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   State: string
@@ -153,7 +148,6 @@ export class RfidDG1 implements iRfidDG1 {
   * DO’s name and surname
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   Holder: string
@@ -162,7 +156,6 @@ export class RfidDG1 implements iRfidDG1 {
   * Document number
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   DocumentNumber: string
@@ -171,7 +164,6 @@ export class RfidDG1 implements iRfidDG1 {
   * Check digit of document number
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   CheckDigitDocumentNumber: number
@@ -180,7 +172,6 @@ export class RfidDG1 implements iRfidDG1 {
   * Symbolic code of DO’s nationality
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   Nationality: string
@@ -189,7 +180,6 @@ export class RfidDG1 implements iRfidDG1 {
   * DO’s date of birth
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   Birthday: string
@@ -198,7 +188,6 @@ export class RfidDG1 implements iRfidDG1 {
   * Check digit of DO’s date of birth
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   CheckDigitBirthday: number
@@ -207,7 +196,6 @@ export class RfidDG1 implements iRfidDG1 {
   * DO’s sex
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   Sex: string
@@ -216,7 +204,6 @@ export class RfidDG1 implements iRfidDG1 {
   * Term of validity of the document
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   ExpiryDate: string
@@ -225,7 +212,6 @@ export class RfidDG1 implements iRfidDG1 {
   * Check digit of term of validity of the document
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   CheckDigitExpiryDate: number
@@ -234,7 +220,6 @@ export class RfidDG1 implements iRfidDG1 {
   * DO’s personal number or other additional data;
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   OptionalData: string
@@ -243,7 +228,6 @@ export class RfidDG1 implements iRfidDG1 {
   * Check digit of additional data
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   CheckDigitOptionalData: number
@@ -252,7 +236,6 @@ export class RfidDG1 implements iRfidDG1 {
   * General check digit
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   CheckDigitComposite: number

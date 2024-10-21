@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -48,7 +48,6 @@ export class DocBinaryInfoContainer extends aContainer implements iDocBinaryInfo
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(eLights.OFF)
@@ -57,7 +56,6 @@ export class DocBinaryInfoContainer extends aContainer implements iDocBinaryInfo
   /**
   * @internal
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -67,7 +65,6 @@ export class DocBinaryInfoContainer extends aContainer implements iDocBinaryInfo
   * Page index (when working with multi-page document)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -76,7 +73,6 @@ export class DocBinaryInfoContainer extends aContainer implements iDocBinaryInfo
   /**
   * @internal
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -86,7 +82,6 @@ export class DocBinaryInfoContainer extends aContainer implements iDocBinaryInfo
   * Result type stored in this container
   * @type {tDocBinaryInfoContainerResultType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eResultType)
   @IsIn(DocBinaryInfoContainerResultTypes)
@@ -97,7 +92,6 @@ export class DocBinaryInfoContainer extends aContainer implements iDocBinaryInfo
   * a form of a list of the logically separated data groups.
   * @type {DocBinaryInfo}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => DocBinaryInfo)
@@ -131,7 +125,7 @@ export class DocBinaryInfoContainer extends aContainer implements iDocBinaryInfo
     )
 
     return asPlain
-      ? result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iDocBinaryInfoContainer)
+      ? result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iDocBinaryInfoContainer)
       : result
   }
 

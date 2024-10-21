@@ -1,5 +1,4 @@
 import { IsDefined, IsEnum } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 import { eCheckResult, eSource } from '@/consts'
 import { Default } from '@/decorators'
@@ -30,7 +29,6 @@ export class TextValidity implements iTextValidity {
   * Source name
   * @type {eSource}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eSource)
   source: eSource
@@ -39,7 +37,6 @@ export class TextValidity implements iTextValidity {
   * Validity status
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)

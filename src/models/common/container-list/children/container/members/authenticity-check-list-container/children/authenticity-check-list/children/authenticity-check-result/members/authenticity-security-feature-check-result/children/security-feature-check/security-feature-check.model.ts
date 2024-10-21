@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, IsOptional } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { iRect, Rect } from '@/models/common/rect'
 import {
@@ -89,7 +89,6 @@ export class SecurityFeatureCheck implements iSecurityFeatureCheck {
   * Type of the performed check
   * @type {eAuthenticity.UV_LUMINESCENCE | eAuthenticity.IR_B900 | eAuthenticity.AXIAL_PROTECTION | eAuthenticity.PHOTO_EMBED_TYPE | eAuthenticity.HOLOGRAMS | eAuthenticity.PHOTO_AREA | eAuthenticity.BARCODE_FORMAT_CHECK | eAuthenticity.EXTENDED_OCR_CHECK | eAuthenticity.EXTENDED_MRZ_CHECK | eAuthenticity.STATUS_ONLY}
   */
-  @Expose()
   @IsDefined()
   @IsIn([
     eAuthenticity.UV_LUMINESCENCE,
@@ -120,7 +119,6 @@ export class SecurityFeatureCheck implements iSecurityFeatureCheck {
   * Element checking result
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
@@ -130,7 +128,6 @@ export class SecurityFeatureCheck implements iSecurityFeatureCheck {
   * Element with which errors are checked
   * @type {eCheckDiagnose}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckDiagnose)
   @Default(eCheckDiagnose.UNKNOWN)
@@ -140,7 +137,6 @@ export class SecurityFeatureCheck implements iSecurityFeatureCheck {
   * Element type
   * @type {eSecurityFeatureType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eSecurityFeatureType)
   @Default(eSecurityFeatureType.BLANK)
@@ -150,7 +146,6 @@ export class SecurityFeatureCheck implements iSecurityFeatureCheck {
   * Element’s area
   * @type {Rect}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => Rect)
@@ -160,7 +155,6 @@ export class SecurityFeatureCheck implements iSecurityFeatureCheck {
   * Element’s visibility
   * @type {eIRVisibilityFlag}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eIRVisibilityFlag)
   Visibility: eIRVisibilityFlag
@@ -169,7 +163,6 @@ export class SecurityFeatureCheck implements iSecurityFeatureCheck {
   * Flag of element’s importance
   * @type {eSecurityCriticalFlag}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eSecurityCriticalFlag)
   @Default(eSecurityCriticalFlag.NOT_CRITICAL)
@@ -178,7 +171,6 @@ export class SecurityFeatureCheck implements iSecurityFeatureCheck {
   /**
    * @type {AreaArray}
    */
-  @Expose()
   @IsOptional()
   @ValidateNested()
   @Type(() => AreaArray)
@@ -187,7 +179,6 @@ export class SecurityFeatureCheck implements iSecurityFeatureCheck {
   /**
    * @type {number|undefined}
    */
-  @Expose()
   @IsOptional()
   @IsInt()
   Reserved2: number

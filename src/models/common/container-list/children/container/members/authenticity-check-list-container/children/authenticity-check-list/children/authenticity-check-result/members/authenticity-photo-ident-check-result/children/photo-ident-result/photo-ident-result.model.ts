@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsOptional, ValidateNested, IsInt, IsArray } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { iRect, Rect } from '@/models/common/rect'
 import { iImageData, ImageData } from '@/models/common/image-data'
@@ -101,7 +101,6 @@ export class PhotoIdentResult implements iPhotoIdentResult {
   * Type of the performed check
   * @type {eAuthenticity.IPI | eAuthenticity.IR_PHOTO}
   */
-  @Expose()
   @IsDefined()
   @IsIn([eAuthenticity.IPI, eAuthenticity.IR_PHOTO])
   @IsEnum(eAuthenticity)
@@ -111,7 +110,6 @@ export class PhotoIdentResult implements iPhotoIdentResult {
   * Checking result
   * @type {eCheckResult}
   */
-  @Expose()
   @IsOptional()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
@@ -121,7 +119,6 @@ export class PhotoIdentResult implements iPhotoIdentResult {
   * Element with which errors are checked
   * @type {eCheckDiagnose}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckDiagnose)
   @Default(eCheckDiagnose.UNKNOWN)
@@ -131,7 +128,6 @@ export class PhotoIdentResult implements iPhotoIdentResult {
   * Light scheme
   * @type {eLights}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eLights)
   @Default(eLights.OFF)
@@ -141,7 +137,6 @@ export class PhotoIdentResult implements iPhotoIdentResult {
   * Field area’s coordinates
   * @type {Rect}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => Rect)
@@ -151,7 +146,6 @@ export class PhotoIdentResult implements iPhotoIdentResult {
   * Source image
   * @type {ImageData}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => ImageData)
@@ -161,7 +155,6 @@ export class PhotoIdentResult implements iPhotoIdentResult {
   * Array of the output images
   * @type {RawImageContainerList}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => RawImageContainerList)
@@ -172,7 +165,6 @@ export class PhotoIdentResult implements iPhotoIdentResult {
   * Reserved. Not used.
   * @internal
   */
-  @Expose()
   @IsOptional()
   @IsInt()
   FieldTypesCount?: number
@@ -181,7 +173,6 @@ export class PhotoIdentResult implements iPhotoIdentResult {
   * List of the the text fields, which are encoded in the IPI image. Reserved. Not used
   * @internal
   */
-  @Expose()
   @IsOptional()
   @IsArray()
   FieldTypesList?: number[]
@@ -189,7 +180,6 @@ export class PhotoIdentResult implements iPhotoIdentResult {
   /**
    * @type{number}
    */
-  @Expose()
   @IsOptional()
   @IsInt()
   Step?: number
@@ -197,7 +187,6 @@ export class PhotoIdentResult implements iPhotoIdentResult {
   /**
    * @type{number}
    */
-  @Expose()
   @IsOptional()
   @IsInt()
   Angle?: number
@@ -205,7 +194,6 @@ export class PhotoIdentResult implements iPhotoIdentResult {
   /**
   * @internal
   */
-  @Expose()
   @IsOptional()
   @IsInt()
   Reserved1?: number
@@ -213,7 +201,6 @@ export class PhotoIdentResult implements iPhotoIdentResult {
   /**
   * @internal
   */
-  @Expose()
   @IsOptional()
   @IsInt()
   Reserved2?: number
@@ -221,7 +208,6 @@ export class PhotoIdentResult implements iPhotoIdentResult {
   /**
   * @internal
   */
-  @Expose()
   @IsOptional()
   @IsInt()
   Reserved3?: number

@@ -1,5 +1,4 @@
 import { IsDefined, IsNumber } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 
 /**
@@ -39,7 +38,6 @@ export class RfidOrigin implements iRfidOrigin {
   * Data group number
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   dg: number
@@ -48,7 +46,6 @@ export class RfidOrigin implements iRfidOrigin {
   * Data group tag number
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   dgTag: number
@@ -57,7 +54,6 @@ export class RfidOrigin implements iRfidOrigin {
   * Tag entry
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   tagEntry: number
@@ -66,7 +62,6 @@ export class RfidOrigin implements iRfidOrigin {
   * Entry view
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   entryView: number

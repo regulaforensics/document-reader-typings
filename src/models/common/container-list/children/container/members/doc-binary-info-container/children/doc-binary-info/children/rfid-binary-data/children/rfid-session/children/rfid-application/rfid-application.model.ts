@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsString, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { eRfidApplicationType, eRfidErrorCodes } from '@/consts'
 import { Default } from '@/decorators'
@@ -62,7 +62,6 @@ export class RfidApplication implements iRfidApplication {
   * Type of application of electronic document
   * @type {eRfidApplicationType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidApplicationType)
   @Default(eRfidApplicationType.UNSPECIFIED)
@@ -72,7 +71,6 @@ export class RfidApplication implements iRfidApplication {
   * Status of the application selection procedure
   * @type {eRfidErrorCodes}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidErrorCodes)
   @Default(eRfidErrorCodes.ERROR_NOT_PERFORMED)
@@ -82,7 +80,6 @@ export class RfidApplication implements iRfidApplication {
   * Application identifier
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   ApplicationID: string
@@ -91,7 +88,6 @@ export class RfidApplication implements iRfidApplication {
   * Version of the application
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   Version: string
@@ -100,7 +96,6 @@ export class RfidApplication implements iRfidApplication {
   * Unicode version for application
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   UnicodeVersion: string
@@ -109,7 +104,6 @@ export class RfidApplication implements iRfidApplication {
   * Algorithm for calculating hash values for files for the procedure of PA
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   DataHashAlgorithm: string
@@ -118,7 +112,6 @@ export class RfidApplication implements iRfidApplication {
   * List of containers to store information about the read files of the application
   * @type {RfidDataFile[]}
   */
-  @Expose()
   @IsDefined()
   @Type(() => RfidDataFile)
   @ValidateNested({ each: true })

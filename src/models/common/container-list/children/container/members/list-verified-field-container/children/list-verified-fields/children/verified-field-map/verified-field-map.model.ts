@@ -1,5 +1,4 @@
 import { ArrayMaxSize, ArrayMinSize, IsArray, IsDefined, IsEnum, IsOptional, IsString } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 import { eLCID, eVisualFieldType, eFieldVerificationResult } from '@/consts'
 import { Default } from '@/decorators'
@@ -77,7 +76,6 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   * Text field logical type
   * @type {eVisualFieldType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eVisualFieldType)
   @Default(eVisualFieldType.OTHER)
@@ -87,7 +85,6 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   * ID of language-culture to differentiate one field of the same type from another
   * @type {eLCID}
   */
-  @Expose()
   @IsOptional()
   @IsEnum(eLCID)
   @Default(eLCID.LATIN)
@@ -98,7 +95,6 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   * Results of reading of multiline field lines are separated by ‘^’ symbol.
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   Field_MRZ?: string
@@ -108,7 +104,6 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   * Results of reading of multiline field lines are separated by ‘^’ symbol.
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   Field_Visual?: string
@@ -118,7 +113,6 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   * Results of reading of multiline field lines are separated by ‘^’ symbol.
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   Field_Barcode?: string
@@ -128,7 +122,6 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   * Results of reading of multiline field lines are separated by ‘^’ symbol.
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   Field_RFID?: string
@@ -137,7 +130,6 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   * Verification results matrix
   * @type {[eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult]}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eFieldVerificationResult, { each: true })
   @IsArray()
