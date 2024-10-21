@@ -1,5 +1,5 @@
 import { IsArray, IsBase64, IsDefined, IsString, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { Default } from '@/decorators'
 import { iTrfFtString, TrfFtString } from '@/models/common/trf-ft-string'
@@ -36,7 +36,6 @@ export class RfidDistinguishedName implements iRfidDistinguishedName {
   * Contents of the identifier in binary form. Base64 encoded.
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsBase64()
   @IsString()
@@ -46,7 +45,6 @@ export class RfidDistinguishedName implements iRfidDistinguishedName {
   * Text representation of the identifier (UTF8)
   * @type {TrfFtString}
   */
-  @Expose()
   @IsDefined()
   @Type(() => TrfFtString)
   @ValidateNested()
@@ -56,7 +54,6 @@ export class RfidDistinguishedName implements iRfidDistinguishedName {
   * List of individual attributes contained in the identifier
   * @type {iRfidAttributeName[]}
   */
-  @Expose()
   @IsDefined()
   @Type(() => RfidAttributeName)
   @ValidateNested({ each: true })

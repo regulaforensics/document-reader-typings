@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsInt, IsOptional, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { iSymbolResult, SymbolResult } from './children'
 import { Default } from '@/decorators'
@@ -36,7 +36,6 @@ export class StringResultSDK implements iStringResultSDK {
   * Number of StringResult array elements
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   SymbolsCount: number
@@ -45,7 +44,6 @@ export class StringResultSDK implements iStringResultSDK {
   * @internal
   * @type {unknown}
   */
-  @Expose()
   @IsOptional()
   Reserved?: unknown
 
@@ -53,7 +51,6 @@ export class StringResultSDK implements iStringResultSDK {
   * Array of separate characters recognition results
   * @type {SymbolResult[]}
   */
-  @Expose()
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })

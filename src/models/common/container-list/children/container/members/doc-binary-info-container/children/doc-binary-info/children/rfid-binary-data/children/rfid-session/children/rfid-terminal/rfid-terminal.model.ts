@@ -1,5 +1,4 @@
 import { IsDefined, IsEnum, IsInt } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 import {
   eRfidTerminalAuthorizationRequirement,
@@ -43,7 +42,6 @@ export class RfidTerminal implements iRfidTerminal {
   * Terminal type
   * @type {eRfidTerminalType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidTerminalType)
   @Default(eRfidTerminalType.UNDEFINED)
@@ -54,7 +52,6 @@ export class RfidTerminal implements iRfidTerminal {
   * eRfidTerminalAuthorizationRequirement values);
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   AuthReq: number
@@ -64,7 +61,6 @@ export class RfidTerminal implements iRfidTerminal {
   * eRfidTerminalAuthorizationRequirement values);
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   AuthReq2: number

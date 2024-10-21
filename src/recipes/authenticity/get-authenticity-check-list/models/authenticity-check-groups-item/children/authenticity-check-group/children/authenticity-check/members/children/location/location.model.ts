@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsOptional, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { eLights } from '@/consts'
 import { iRRect, RRect } from '@/common-models'
@@ -30,7 +30,6 @@ export class RLocation implements iRLocation {
   * Light
   * @type {eLights}
   */
-  @Expose()
   @IsOptional()
   @IsEnum(eLights)
   light?: eLights
@@ -39,7 +38,6 @@ export class RLocation implements iRLocation {
   * Rect
   * @type {RRect}
   */
-  @Expose()
   @IsDefined()
   @Type(() => RRect)
   @ValidateNested({ each: true })

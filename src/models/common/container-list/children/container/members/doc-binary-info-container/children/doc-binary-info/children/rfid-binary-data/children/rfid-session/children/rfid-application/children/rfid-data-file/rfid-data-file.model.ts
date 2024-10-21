@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, IsString, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import {
   eGraphicFieldType,
@@ -91,7 +91,6 @@ export class RfidDataFile implements iRfidDataFile {
   * Each byte of FileID represented by its hexadecimal value. The individual bytes are separated by spaces (e.g. "01 1E")
   * @type {string|undefined}
   */
-  @Expose()
   @IsString()
   @IsOptional()
   FileID?: string
@@ -100,7 +99,6 @@ export class RfidDataFile implements iRfidDataFile {
   * Type of the file (of the object) of data
   * @type {eRfidDataFileType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidDataFileType)
   Type: eRfidDataFileType
@@ -109,7 +107,6 @@ export class RfidDataFile implements iRfidDataFile {
   * Binary data of the file
   * @type {TrfFtBytes|undefined}
   */
-  @Expose()
   @IsOptional()
   @Type(() => TrfFtBytes)
   @ValidateNested()
@@ -119,7 +116,6 @@ export class RfidDataFile implements iRfidDataFile {
   * Status of the physical file reading
   * @type {eRfidErrorCodes}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidErrorCodes)
   ReadingStatus: eRfidErrorCodes
@@ -128,7 +124,6 @@ export class RfidDataFile implements iRfidDataFile {
   * Time of reading, milliseconds
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -138,7 +133,6 @@ export class RfidDataFile implements iRfidDataFile {
   * Result of the data integrity verification within the context of PA
   * @type {eRfidErrorCodes.ERROR_NOT_PERFORMED | eRfidErrorCodes.ERROR_NOT_AVAILABLE | eRfidErrorCodes.ERROR_NO_ERROR | eRfidErrorCodes.ERROR_FAILED}
   */
-  @Expose()
   @IsDefined()
   @IsIn([
     eRfidErrorCodes.ERROR_NOT_PERFORMED,
@@ -154,7 +148,6 @@ export class RfidDataFile implements iRfidDataFile {
   * the chip and analysing their ASN.1-structure.
   * @type {eLDSParsingErrorCodes[]}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eLDSParsingErrorCodes, { each: true })
   @Default([])
@@ -164,7 +157,6 @@ export class RfidDataFile implements iRfidDataFile {
   * List of document text fields formed on the basis of the file contents
   * @type {eVisualFieldType[]}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eVisualFieldType, { each: true })
   @Default([])
@@ -174,7 +166,6 @@ export class RfidDataFile implements iRfidDataFile {
   * List of document graphic fields formed on the basis of the file contents
   * @type {eGraphicFieldType[]}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eGraphicFieldType, { each: true })
   @Default([])
@@ -185,7 +176,6 @@ export class RfidDataFile implements iRfidDataFile {
   * fields formed on the basis of the file contents
   * @type {eGraphicFieldType[]}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eGraphicFieldType, { each: true })
   @Default([])

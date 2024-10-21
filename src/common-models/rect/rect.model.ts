@@ -1,5 +1,4 @@
 import { IsDefined, IsNumber } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 
 /**
@@ -39,7 +38,6 @@ export class RRect implements iRRect {
   * Left
   * @param {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   left: number
@@ -48,7 +46,6 @@ export class RRect implements iRRect {
   * Top
   * @param {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   top: number
@@ -57,7 +54,6 @@ export class RRect implements iRRect {
   * Right
   * @param {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   right: number
@@ -66,7 +62,6 @@ export class RRect implements iRRect {
   * Bottom
   * @param {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   bottom: number

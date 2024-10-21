@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsEnum, IsInt, IsOptional, IsString, ValidateNested } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { plainToClass, Type } from 'class-transformer'
 
 import { eRfidDataGroupTypeTag, eVisualFieldType } from '@/consts'
 import { Default } from '@/decorators'
@@ -117,14 +117,12 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
   /**
   * @internal
   */
-  @Expose()
   FieldType: unknown
 
   /**
   * Field logical type
   * @type {eVisualFieldType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eVisualFieldType)
   wFieldType: eVisualFieldType
@@ -133,7 +131,6 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
   * Data group
   * @type {eRfidDataGroupTypeTag}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidDataGroupTypeTag)
   RFID_OriginDG: eRfidDataGroupTypeTag
@@ -142,7 +139,6 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
   * @internal
   * @type {unknown}
   */
-  @Expose()
   @IsOptional()
   RFID_OriginDGTag?: unknown
 
@@ -150,7 +146,6 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
   * Record index of the text field source in the data group
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   RFID_OriginTagEntry: number
@@ -159,7 +154,6 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
   * @internal
   * @type {unknown}
   */
-  @Expose()
   @IsOptional()
   RFID_OriginEntryView: number
 
@@ -167,7 +161,6 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
   * Field symbolic name (null-terminated string)
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   FieldName: string
@@ -176,7 +169,6 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
   * Number of StringsResult array elements
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   StringsCount: number
@@ -185,7 +177,6 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
   * Array of separate strings of multiline text field recognition results
   * @type {StringResultSDK[]}
   */
-  @Expose()
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })
@@ -197,7 +188,6 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
   * Buf_Text text string length
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   Buf_Length: number
@@ -207,7 +197,6 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
   * field lines are separated by ‘^’ symbol
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   Buf_Text: string
@@ -216,7 +205,6 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
   * @internal
   * @type {unknown}
   */
-  @Expose()
   @IsOptional()
   FieldMask?: unknown
 
@@ -224,7 +212,6 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
   * @internal
   * @type {unknown}
   */
-  @Expose()
   @IsOptional()
   Validity?: unknown
 
@@ -232,7 +219,6 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
   * @internal
   * @type {unknown}
   */
-  @Expose()
   @IsOptional()
   InComparison?: unknown
 
@@ -240,7 +226,6 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
   * @internal
   * @type {unknown}
   */
-  @Expose()
   @IsOptional()
   Reserved2?: unknown
 
@@ -248,7 +233,6 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
   * @internal
   * @type {unknown}
   */
-  @Expose()
   @IsOptional()
   Reserved3?: unknown
 
@@ -258,5 +242,5 @@ export class DocVisualExtendedField2 extends aDocVisualExtendedField implements 
   * @param {unknown} input - plain object
   * @returns {DocVisualExtendedField2}
   */
-  static fromPlain = (input: unknown): DocVisualExtendedField2 => plainToClass(DocVisualExtendedField2, input, { strategy: 'excludeAll' })
+  static fromPlain = (input: unknown): DocVisualExtendedField2 => plainToClass(DocVisualExtendedField2, input, { exposeUnsetFields: false })
 }

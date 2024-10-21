@@ -1,5 +1,4 @@
 import { IsOptional, IsString } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 
 /**
@@ -39,7 +38,6 @@ export class TransactionInfo implements iTransactionInfo {
   * Name of the computer
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   ComputerName?: string
@@ -48,7 +46,6 @@ export class TransactionInfo implements iTransactionInfo {
   * Date and time of the transaction
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   DateTime?: string
@@ -57,7 +54,6 @@ export class TransactionInfo implements iTransactionInfo {
   * ID of the transaction
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   TransactionID?: string
@@ -66,7 +62,6 @@ export class TransactionInfo implements iTransactionInfo {
   * Name of the user
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   UserName?: string

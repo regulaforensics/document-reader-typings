@@ -1,5 +1,5 @@
 import { IsDefined, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { iBinaryData, BinaryData } from './children'
 
@@ -25,7 +25,6 @@ export class DocBinaryInfo implements iDocBinaryInfo {
   * Structure is used for storing the results of one bar-code module reading.
   * @type {BinaryData}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => BinaryData)

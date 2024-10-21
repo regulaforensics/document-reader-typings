@@ -121,9 +121,9 @@ export const getRfidDataGroupsStatus = (input: ProcessResponse): RRfidDataGroupS
 
   binary.forEach((container) => {
     const sessionData = container.TDocBinaryInfo.RFID_BINARY_DATA.RFID_Session_Data
-    const notRead = container.TDocBinaryInfo.RFID_BINARY_DATA.RFID_ePassp_Directory
+    const notRead = container.TDocBinaryInfo.RFID_BINARY_DATA.RFID_ePassp_Directory || []
 
-    sessionData.Applications.forEach((application, index) => {
+    sessionData?.Applications.forEach((application, index) => {
       const chipType = application.Type
       const tmp: { index: number,  status: eDataGroupReadStatus }[] = []
 

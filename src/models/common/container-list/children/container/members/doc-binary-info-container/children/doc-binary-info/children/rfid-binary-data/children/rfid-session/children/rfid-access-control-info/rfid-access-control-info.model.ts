@@ -1,5 +1,4 @@
 import { IsDefined, IsEnum, IsInt, IsOptional } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 import { eLDSParsingErrorCodes, eRfidAccessControlProcedureType, eRfidErrorCodes } from '@/consts'
 import { Default } from '@/decorators'
@@ -50,7 +49,6 @@ export class RfidAccessControlInfo implements iRfidAccessControlInfo {
   * Procedure type
   * @type {eRfidAccessControlProcedureType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidAccessControlProcedureType)
   @Default(eRfidAccessControlProcedureType.UNDEFINED)
@@ -60,7 +58,6 @@ export class RfidAccessControlInfo implements iRfidAccessControlInfo {
   * Procedure status
   * @type {eRfidErrorCodes}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidErrorCodes)
   @Default(eRfidErrorCodes.ERROR_NOT_PERFORMED)
@@ -70,7 +67,6 @@ export class RfidAccessControlInfo implements iRfidAccessControlInfo {
   * Index of the active variant of the procedure
   * @type {number}
   */
-  @Expose()
   @IsOptional()
   @IsInt()
   ActiveOptionIdx?: number
@@ -79,7 +75,6 @@ export class RfidAccessControlInfo implements iRfidAccessControlInfo {
   * List of remarks arisen during the procedure.
   * @type {eLDSParsingErrorCodes[]}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eLDSParsingErrorCodes, { each: true })
   @Default([])
@@ -90,6 +85,5 @@ export class RfidAccessControlInfo implements iRfidAccessControlInfo {
   * performance within the context of the communication session with electronic document
   * @type {any[]}
   */
-  @Expose()
   AccessControlOptions?: any[]
 }

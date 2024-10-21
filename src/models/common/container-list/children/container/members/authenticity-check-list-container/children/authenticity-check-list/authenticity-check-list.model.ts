@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
-import { Expose, Transform } from 'class-transformer'
+import { Transform } from 'class-transformer'
 
 import { Default } from '@/decorators'
 import { iuAuthenticityCheckResult, uAuthenticityCheckResult } from './children'
@@ -32,7 +32,6 @@ export class AuthenticityCheckList implements iAuthenticityCheckList {
   * Number of elements in the list
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   Count: number
@@ -41,7 +40,6 @@ export class AuthenticityCheckList implements iAuthenticityCheckList {
   * Array of data structures with the results of performing of different document authenticity checks
   * @type {iuAuthenticityCheckResult[]}
   */
-  @Expose()
   @ValidateNested({ each: true })
   @Transform(({ obj }) => uAuthenticityCheckResult.transformList(obj.List), { toClassOnly: true })
   @IsArray()

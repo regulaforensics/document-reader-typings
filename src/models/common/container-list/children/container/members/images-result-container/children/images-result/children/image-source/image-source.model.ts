@@ -1,5 +1,4 @@
 import { IsDefined, IsEnum, IsNumber } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 import { eSource } from '@/consts'
 
@@ -29,7 +28,6 @@ export class ImageSource implements iImageSource {
   * Container type
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   containerType: number
@@ -38,7 +36,6 @@ export class ImageSource implements iImageSource {
   * Source
   * @type {eSource}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eSource)
   source: eSource

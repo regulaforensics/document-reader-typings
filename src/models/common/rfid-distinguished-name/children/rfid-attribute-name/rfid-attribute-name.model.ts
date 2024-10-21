@@ -1,5 +1,5 @@
 import { IsDefined, IsString, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { iTrfFtString, TrfFtString } from '@/models/common/trf-ft-string'
 
@@ -30,7 +30,6 @@ export class RfidAttributeName implements iRfidAttributeName {
   * where S1 – attribute name, S2 – identifier (OID string);
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   Type: string
@@ -39,7 +38,6 @@ export class RfidAttributeName implements iRfidAttributeName {
   * Text value of the attribute (UTF8).
   * @type {TrfFtString}
   */
-  @Expose()
   @IsDefined()
   @Type(() => TrfFtString)
   @ValidateNested()

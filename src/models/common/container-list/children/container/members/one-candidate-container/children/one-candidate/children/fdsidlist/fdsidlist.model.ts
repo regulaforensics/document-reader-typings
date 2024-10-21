@@ -1,5 +1,4 @@
 import { IsArray, IsBoolean, IsDefined, IsEnum, IsInt, IsOptional, IsString, MaxLength } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 import { eDocFormat, eDocType } from '@/consts'
 import { Default } from '@/decorators'
@@ -92,7 +91,6 @@ export class FDSIDList implements iFDSIDList {
   * Document issuing country ICAO code
   * @type {string}
   */
-  @Expose()
   @IsString()
   @MaxLength(4)
   @IsDefined()
@@ -102,7 +100,6 @@ export class FDSIDList implements iFDSIDList {
   * Number of elements in the List
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   Count: number
@@ -111,7 +108,6 @@ export class FDSIDList implements iFDSIDList {
   * Array of IRS document identifiers
   * @type {number[]}
   */
-  @Expose()
   @IsDefined()
   @IsArray()
   @IsInt({ each: true })
@@ -122,7 +118,6 @@ export class FDSIDList implements iFDSIDList {
   * Document type
   * @type {eDocType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eDocType)
   @Default(eDocType.NOT_DEFINED)
@@ -132,7 +127,6 @@ export class FDSIDList implements iFDSIDList {
   * Document format
   * @type {eDocFormat}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eDocFormat)
   dFormat: eDocFormat
@@ -141,7 +135,6 @@ export class FDSIDList implements iFDSIDList {
   * Flag for MRZ presence on document
   * @type {boolean}
   */
-  @Expose()
   @IsDefined()
   @IsBoolean()
   @Default(false)
@@ -151,7 +144,6 @@ export class FDSIDList implements iFDSIDList {
   * Document description text
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   dDescription?: string
@@ -160,7 +152,6 @@ export class FDSIDList implements iFDSIDList {
   * Document issue year
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   dYear: string
@@ -169,7 +160,6 @@ export class FDSIDList implements iFDSIDList {
   * Document issuing country name
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   dCountryName: string
@@ -178,7 +168,6 @@ export class FDSIDList implements iFDSIDList {
   * Document issuing country state code
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   dStateCode?: string
@@ -187,7 +176,6 @@ export class FDSIDList implements iFDSIDList {
   * Document issuing country state name
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   dStateName?: string
@@ -196,7 +184,6 @@ export class FDSIDList implements iFDSIDList {
   * Whether the document is deprecated
   * @type {boolean}
   */
-  @Expose()
   @IsDefined()
   @IsBoolean()
   @Default(false)

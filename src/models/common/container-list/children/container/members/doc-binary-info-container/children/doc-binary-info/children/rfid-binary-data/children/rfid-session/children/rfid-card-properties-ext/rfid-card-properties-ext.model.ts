@@ -1,7 +1,6 @@
 import { IsBoolean, IsDefined, IsEnum, IsInt, IsString } from 'class-validator'
-import { Expose } from 'class-transformer'
 
-import { eRfidAChip, eRfidApplicationType, eRfidBaudRate, eRfidErrorCodes, eRfidType } from '@/consts'
+import { eRfidAChip, eRfidBaudRate, eRfidType } from '@/consts'
 import { Default } from '@/decorators'
 
 /**
@@ -111,7 +110,6 @@ export class RfidCardPropertiesExt implements iRfidCardPropertiesExt {
   * The type of the RFID-chip
   * @type {eRfidType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidType)
   @Default(eRfidType.UNKNOWN)
@@ -121,7 +119,6 @@ export class RfidCardPropertiesExt implements iRfidCardPropertiesExt {
   * Numeric Baudrate1 value in hexadecimal format (e.g. "0x0000000F")
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   Baudrate1: string
@@ -130,7 +127,6 @@ export class RfidCardPropertiesExt implements iRfidCardPropertiesExt {
   * Numeric Baudrate2 value in hexadecimal format
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   Baudrate2: string
@@ -139,7 +135,6 @@ export class RfidCardPropertiesExt implements iRfidCardPropertiesExt {
   * Boolean Support_4 value
   * @type {boolean}
   */
-  @Expose()
   @IsDefined()
   @IsBoolean()
   Support_4: boolean
@@ -148,7 +143,6 @@ export class RfidCardPropertiesExt implements iRfidCardPropertiesExt {
   * RFIDchip from MIFARE® family (for chips of type «A»)
   * @type {eRfidAChip}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidAChip)
   @Default(eRfidAChip.UNKNOWN)
@@ -158,7 +152,6 @@ export class RfidCardPropertiesExt implements iRfidCardPropertiesExt {
   * Sign of support for ISO/IEC 14443-3 data exchange protocol
   * @type {boolean}
   */
-  @Expose()
   @IsDefined()
   @IsBoolean()
   Support_Mifare: boolean
@@ -167,7 +160,6 @@ export class RfidCardPropertiesExt implements iRfidCardPropertiesExt {
   * Amount of operational memory MIFARE® of the chip, kilobytes
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   MifareMemory: number
@@ -177,7 +169,6 @@ export class RfidCardPropertiesExt implements iRfidCardPropertiesExt {
   * by spaces (e.g. "F9 4F 41 60")
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   UID: string
@@ -189,7 +180,6 @@ export class RfidCardPropertiesExt implements iRfidCardPropertiesExt {
   * @type {any}
   * @internal
   */
-  @Expose()
   ATQ_A: any
 
   /**
@@ -198,7 +188,6 @@ export class RfidCardPropertiesExt implements iRfidCardPropertiesExt {
   * @type {any}
   * @internal
   */
-  @Expose()
   SAK: any
 
   /**
@@ -207,14 +196,12 @@ export class RfidCardPropertiesExt implements iRfidCardPropertiesExt {
   * @type {any}
   * @internal
   */
-  @Expose()
   ATQ_B: any
 
   /**
   * Indicating the established rate for data transmitting to the RFID-chip
   * @type {eRfidBaudRate}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidBaudRate)
   BitRateS: eRfidBaudRate
@@ -223,7 +210,6 @@ export class RfidCardPropertiesExt implements iRfidCardPropertiesExt {
   * Indicating the established rate for data receiving from the RFID-chip
   * @type {eRfidBaudRate}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidBaudRate)
   BitRateR: eRfidBaudRate
@@ -232,7 +218,6 @@ export class RfidCardPropertiesExt implements iRfidCardPropertiesExt {
   * ATR-string of RFID-chip
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   ATR: string

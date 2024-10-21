@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -47,7 +47,6 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(eLights.OFF)
@@ -57,7 +56,6 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -67,7 +65,6 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   * Page index (when working with multi-page document)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -77,7 +74,6 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -87,7 +83,6 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   * Result type stored in this container
   * @type {tStatusContainerResultType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eResultType)
   @IsIn(StatusContainerResultTypes)
@@ -97,7 +92,6 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   * Status of the document check.
   * @type {Status}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => Status)
@@ -108,7 +102,7 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   * @param {unknown} input - plain object
   * @returns {StatusContainer}
   */
-  static fromPlain = (input: unknown): StatusContainer => plainToClass(StatusContainer, input, { strategy: 'excludeAll' })
+  static fromPlain = (input: unknown): StatusContainer => plainToClass(StatusContainer, input, { exposeUnsetFields: false })
 
   /**
   * Get array of StatusContainer from ProcessResponse
@@ -126,7 +120,7 @@ export class StatusContainer extends aContainer implements iStatusContainer {
     )
 
     if (asPlain) {
-      return result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iStatusContainer)
+      return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iStatusContainer)
     }
 
     return result

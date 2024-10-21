@@ -1,4 +1,3 @@
-import { Expose } from 'class-transformer'
 import { IsDefined, IsEnum } from 'class-validator'
 
 import { eCheckResult, eSource } from '@/consts'
@@ -35,7 +34,6 @@ export class RTextDataComparison implements iRTextDataComparison {
   * Source left
   * @type {eSource}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eSource)
   sourceLeft: eSource
@@ -44,7 +42,6 @@ export class RTextDataComparison implements iRTextDataComparison {
   * Source right
   * @type {eSource}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eSource)
   sourceRight: eSource
@@ -53,7 +50,6 @@ export class RTextDataComparison implements iRTextDataComparison {
   * Comparison status
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   status: eCheckResult
