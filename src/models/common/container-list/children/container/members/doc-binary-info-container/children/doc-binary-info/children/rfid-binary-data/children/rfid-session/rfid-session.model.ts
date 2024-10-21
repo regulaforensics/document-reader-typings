@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { Default } from '@/decorators'
 import { eRfidAuthenticationProcedureType, eRfidErrorCodes } from '@/consts'
@@ -138,7 +138,6 @@ export class RfidSession implements iRfidSession {
   * @type {any}
   * @internal
   */
-  @Expose()
   VirtualMode: any
 
   /**
@@ -146,7 +145,6 @@ export class RfidSession implements iRfidSession {
   * @type {any}
   * @internal
   */
-  @Expose()
   SDKVersion: any
 
   /**
@@ -154,7 +152,6 @@ export class RfidSession implements iRfidSession {
   * @type {any}
   * @internal
   */
-  @Expose()
   DriverVersion: any
 
   /**
@@ -162,14 +159,12 @@ export class RfidSession implements iRfidSession {
   * @type {any}
   * @internal
   */
-  @Expose()
   FirmwareVersion: any
 
   /**
   * List of containers to store information about the involved applications of electronic document
   * @type {RfidApplication[]}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => RfidApplication)
@@ -181,7 +176,6 @@ export class RfidSession implements iRfidSession {
   * within the context of the session
   * @type {RfidAccessControlInfo[]}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => RfidAccessControlInfo)
@@ -193,7 +187,6 @@ export class RfidSession implements iRfidSession {
   * of the reader
   * @type {RfidCardPropertiesExt}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => RfidCardPropertiesExt)
@@ -203,7 +196,6 @@ export class RfidSession implements iRfidSession {
   * Sign of support of RFID-chip for extended length commands of reading
   * @type {eRfidErrorCodes.ERROR_NOT_PERFORMED | eRfidErrorCodes.ERROR_NOT_AVAILABLE | eRfidErrorCodes.ERROR_NO_ERROR}
   */
-  @Expose()
   @IsDefined()
   @IsIn([
     eRfidErrorCodes.ERROR_NOT_PERFORMED,
@@ -217,7 +209,6 @@ export class RfidSession implements iRfidSession {
   * Time of processing, milliseconds
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   ProcessTime: number
@@ -226,7 +217,6 @@ export class RfidSession implements iRfidSession {
   * List of containers to store information about the read files of the root Master File
   * @type {any[]}
   */
-  @Expose()
   @Default([])
   RootFiles: any[]
 
@@ -234,7 +224,6 @@ export class RfidSession implements iRfidSession {
   * Total number of bytes transmitted to the RFID-chip during the whole session
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   TotalBytesSent: number
@@ -243,7 +232,6 @@ export class RfidSession implements iRfidSession {
   * Total number of bytes received from the RFID-chip during the whole session
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   TotalBytesReceived: number
@@ -252,7 +240,6 @@ export class RfidSession implements iRfidSession {
   * Used secure data access key
   * @type {RfidAccessKey}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => RfidAccessKey)
@@ -262,7 +249,6 @@ export class RfidSession implements iRfidSession {
   * Terminal configuration
   * @type {RfidTerminal}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => RfidTerminal)
@@ -272,7 +258,6 @@ export class RfidSession implements iRfidSession {
   * Type of performed document authentication procedure
   * @type {eRfidAuthenticationProcedureType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidAuthenticationProcedureType)
   @Default(eRfidAuthenticationProcedureType.UNDEFINED)
@@ -282,7 +267,6 @@ export class RfidSession implements iRfidSession {
   * List of containers to store information about the detected document security objects
   * @type {RfidSecurityObject[]}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => RfidSecurityObject)

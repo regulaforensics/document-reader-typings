@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsEnum, IsInt, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
-import { Expose, Transform, Type } from 'class-transformer'
+import { Transform, Type } from 'class-transformer'
 
 import { iRect, Rect } from '@/models/common/rect'
 import { iRfidOrigin, RfidOrigin } from '@/models/common/rfid-origin'
@@ -75,7 +75,6 @@ export class TextFieldValue implements iTextFieldValue {
   * Source
   * @type {eSource}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eSource)
   source: eSource
@@ -84,7 +83,6 @@ export class TextFieldValue implements iTextFieldValue {
   * Field value in current provision of information format
   * @type {string}
   */
-  @Expose()
   @IsString()
   @IsDefined()
   @Transform(({ value }) => value ? String(value) : '')
@@ -94,7 +92,6 @@ export class TextFieldValue implements iTextFieldValue {
   * Field original value
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   originalValue?: string
@@ -103,7 +100,6 @@ export class TextFieldValue implements iTextFieldValue {
   * Original validity
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
@@ -113,7 +109,6 @@ export class TextFieldValue implements iTextFieldValue {
   * Page index
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   pageIndex: number
@@ -122,7 +117,6 @@ export class TextFieldValue implements iTextFieldValue {
   * Field rectangular area
   * @type {Rect|undefined}
   */
-  @Expose()
   @IsOptional()
   @ValidateNested()
   @Type(() => Rect)
@@ -132,7 +126,6 @@ export class TextFieldValue implements iTextFieldValue {
   * Field source from electronic document
   * @type {RfidOrigin|undefined}
   */
-  @Expose()
   @IsOptional()
   @ValidateNested()
   @Type(() => RfidOrigin)
@@ -142,7 +135,6 @@ export class TextFieldValue implements iTextFieldValue {
   * Field recognition probability
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   @Default(0)
@@ -152,7 +144,6 @@ export class TextFieldValue implements iTextFieldValue {
   * Original symbols
   * @type {TextSymbol[]|undefined}
   */
-  @Expose()
   @IsOptional()
   @ValidateNested({ each: true })
   @Type(() => TextSymbol)

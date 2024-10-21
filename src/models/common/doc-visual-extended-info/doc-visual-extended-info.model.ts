@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
-import { Expose, Transform } from 'class-transformer'
+import { Transform } from 'class-transformer'
 
 import { iuDocVisualExtendedField, uDocVisualExtendedField } from './children'
 import { Default } from '@/decorators'
@@ -30,7 +30,6 @@ export class DocVisualExtendedInfo implements iDocVisualExtendedInfo {
   * Number of pArrayFields array elements
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   nFields: number
@@ -39,7 +38,6 @@ export class DocVisualExtendedInfo implements iDocVisualExtendedInfo {
   * Array of structures containing logically divided text data
   * @type {uDocVisualExtendedField[]}
   */
-  @Expose()
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })

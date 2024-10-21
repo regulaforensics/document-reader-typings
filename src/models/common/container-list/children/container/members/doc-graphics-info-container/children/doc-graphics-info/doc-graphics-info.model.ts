@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
-import { Expose, Transform } from 'class-transformer'
+import { Transform } from 'class-transformer'
 
 import { uDocGraphicField, iuDocGraphicField } from './children'
 import { Default } from '@/decorators'
@@ -31,7 +31,6 @@ export class DocGraphicsInfo implements iDocGraphicsInfo {
   * Array of images
   * @type {uDocGraphicField[]}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested({ each: true })
   @Transform(({ obj }) => uDocGraphicField.transformList(obj.pArrayFields), { toClassOnly: true })
@@ -43,7 +42,6 @@ export class DocGraphicsInfo implements iDocGraphicsInfo {
   * Number of pArrayFields array elements
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   nFields: number

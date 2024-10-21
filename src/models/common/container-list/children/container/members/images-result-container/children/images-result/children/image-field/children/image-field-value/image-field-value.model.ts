@@ -1,5 +1,5 @@
 import { IsBase64, IsDefined, IsEnum, IsInt, IsOptional, IsString, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { eLights, eResultType, eSource } from '@/consts'
 import { iRfidOrigin, RfidOrigin } from '@/models/common/rfid-origin'
@@ -74,7 +74,6 @@ export class ImageFieldValue implements iImageFieldValue {
   * Image file in Base64 representation
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   @IsBase64()
@@ -84,7 +83,6 @@ export class ImageFieldValue implements iImageFieldValue {
   * Original image file in Base64 representation
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   @IsBase64()
@@ -94,7 +92,6 @@ export class ImageFieldValue implements iImageFieldValue {
   * Source
   * @type {eSource}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eSource)
   source: eSource
@@ -103,7 +100,6 @@ export class ImageFieldValue implements iImageFieldValue {
   * Container type
   * @type {eResultType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eResultType)
   containerType: eResultType
@@ -112,7 +108,6 @@ export class ImageFieldValue implements iImageFieldValue {
   * Page index
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   pageIndex: number
@@ -121,7 +116,6 @@ export class ImageFieldValue implements iImageFieldValue {
   * Light index
   * @type {eLights}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eLights)
   @Default(eLights.OFF)
@@ -131,7 +125,6 @@ export class ImageFieldValue implements iImageFieldValue {
   * Field rectangular area
   * @type {iRect|undefined}
   */
-  @Expose()
   @IsOptional()
   @ValidateNested()
   @Type(() => Rect)
@@ -141,7 +134,6 @@ export class ImageFieldValue implements iImageFieldValue {
   * Field source from electronic document
   * @type {RfidOrigin|undefined}
   */
-  @Expose()
   @IsOptional()
   @ValidateNested()
   @Type(() => RfidOrigin)
@@ -151,7 +143,6 @@ export class ImageFieldValue implements iImageFieldValue {
   * Original page index
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsInt()
   originalPageIndex?: number

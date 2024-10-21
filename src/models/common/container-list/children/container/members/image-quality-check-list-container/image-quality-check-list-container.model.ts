@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -47,7 +47,6 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(eLights.OFF)
@@ -57,7 +56,6 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -67,7 +65,6 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
   * Page index (when working with multi-page document)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -77,7 +74,6 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
   * @internal
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -87,7 +83,6 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
   * Result type stored in this container
   * @type {tImageQualityCheckListContainerResultType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eResultType)
   @IsIn(ImageQualityCheckListContainerResultTypes)
@@ -97,7 +92,6 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
   * Used for storing input image quality check results list
   * @type {ImageQualityCheckList}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => ImageQualityCheckList)
@@ -127,7 +121,7 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
     )
 
     if (asPlain) {
-      return result.map((container) => instanceToPlain(container, { strategy: 'excludeAll' }) as iImageQualityCheckListContainer)
+      return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iImageQualityCheckListContainer)
     }
 
     return result

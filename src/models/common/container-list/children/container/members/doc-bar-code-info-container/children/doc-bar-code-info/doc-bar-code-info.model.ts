@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsInt, IsOptional, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { iDocBarCodeField, DocBarCodeField } from './children'
 import { Default } from '@/decorators'
@@ -31,7 +31,6 @@ export class DocBarCodeInfo implements iDocBarCodeInfo {
   * Number of pArrayFields array elements
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   nFields: number
@@ -40,7 +39,6 @@ export class DocBarCodeInfo implements iDocBarCodeInfo {
   * Array of separate bar-codes reading results
   * @type {DocBarCodeField[]}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => DocBarCodeField)

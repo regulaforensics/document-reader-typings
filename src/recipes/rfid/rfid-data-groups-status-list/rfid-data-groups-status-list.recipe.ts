@@ -15,7 +15,7 @@ export const getRfidDataGroupsStatusList = (input: ProcessResponse): RRfidDataGr
   binary.forEach((container) => {
     const sessionData = container.TDocBinaryInfo.RFID_BINARY_DATA.RFID_Session_Data
 
-    sessionData.Applications.forEach((application) => {
+    sessionData?.Applications.forEach((application) => {
       application.Files.forEach((file) => {
         const group = file.Type
         let status = eCheckResult.WAS_NOT_DONE

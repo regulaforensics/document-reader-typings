@@ -1,5 +1,5 @@
 import { IsBoolean, IsDefined, IsEnum, IsInt, IsNumber, IsString, ValidateNested } from 'class-validator'
-import { Expose, Transform, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { eAuthenticity, getAuthenticityArray, getLightsArray, eLights, eRfidPresence } from '@/consts'
 import { Default, ToBoolean } from '@/decorators'
@@ -89,7 +89,6 @@ export class OneCandidate implements iOneCandidate {
   * Document name
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   DocumentName: string
@@ -98,7 +97,6 @@ export class OneCandidate implements iOneCandidate {
   * Document type numeric code
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   ID: number
@@ -107,7 +105,6 @@ export class OneCandidate implements iOneCandidate {
   * Estimation of correct recognition probability when analyzing the given document type
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   P: number
@@ -116,7 +113,6 @@ export class OneCandidate implements iOneCandidate {
   * true if the document of the given type is rotated by 180 degrees
   * @type {boolean}
   */
-  @Expose()
   @IsDefined()
   @IsBoolean()
   @ToBoolean()
@@ -127,7 +123,6 @@ export class OneCandidate implements iOneCandidate {
   * Combination of identifiers of necessary lighting schemes to perform OCR for the given document type
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   NecessaryLights: number
@@ -136,7 +131,6 @@ export class OneCandidate implements iOneCandidate {
   * Presence of RFID-chip in the document
   * @type {eRfidPresence}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidPresence)
   @Default(eRfidPresence.NONE)
@@ -146,7 +140,6 @@ export class OneCandidate implements iOneCandidate {
   * Set of authenticity check options provided for the given document type
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -156,7 +149,6 @@ export class OneCandidate implements iOneCandidate {
   * Camera exposure value necessary when obtaining document images of the given type for UV lighting scheme
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   UVExp: number
@@ -165,7 +157,6 @@ export class OneCandidate implements iOneCandidate {
   * Camera exposure value necessary when obtaining document images of the given type for AXIAL lighting scheme
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   OVIExp: number
@@ -176,7 +167,6 @@ export class OneCandidate implements iOneCandidate {
   * given document type
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   AuthenticityNecessaryLights: number
@@ -186,7 +176,6 @@ export class OneCandidate implements iOneCandidate {
   * document information and its link to IRS
   * @type {FDSIDList}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => FDSIDList)

@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsNumber, IsOptional, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { Default } from '@/decorators'
 import { iRect, Rect } from '@/models/common/rect'
@@ -113,7 +113,6 @@ export class IdentResult implements iIdentResult {
   *   eAuthenticity.LIVENESS
   * }
   */
-  @Expose()
   @IsDefined()
   @IsIn([
     eAuthenticity.IMAGE_PATTERN,
@@ -143,7 +142,6 @@ export class IdentResult implements iIdentResult {
   * Element responsible for the results of the checks
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
@@ -153,7 +151,6 @@ export class IdentResult implements iIdentResult {
   * Element with which errors are checked
   * @type {eCheckDiagnose}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckDiagnose)
   @Default(eCheckDiagnose.UNKNOWN)
@@ -163,7 +160,6 @@ export class IdentResult implements iIdentResult {
   * Element with which errors are checked
   * @type {eSecurityFeatureType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eSecurityFeatureType)
   @Default(eSecurityFeatureType.BLANK)
@@ -173,7 +169,6 @@ export class IdentResult implements iIdentResult {
   * Lighting scheme identifier
   * @type {eLights}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eLights)
   @Default(eLights.OFF)
@@ -183,7 +178,6 @@ export class IdentResult implements iIdentResult {
   * Checked fragment area coordinates
   * @type {Rect}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => Rect)
@@ -193,7 +187,6 @@ export class IdentResult implements iIdentResult {
   * Located image fragment
   * @type {ImageData}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => ImageData)
@@ -203,7 +196,6 @@ export class IdentResult implements iIdentResult {
   * Expected image pattern
   * @type {ImageData}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => ImageData)
@@ -215,7 +207,6 @@ export class IdentResult implements iIdentResult {
   * Use getIRVisibilityFlagArray to get array of eIRVisibilityFlag from this field
   * @type {number}
   */
-  @Expose()
   @IsOptional()
   @IsNumber()
   PercentValue: number
@@ -224,7 +215,6 @@ export class IdentResult implements iIdentResult {
   * List of located areas
   * @type {iAreaArray|undefined}
   */
-  @Expose()
   @IsOptional()
   @ValidateNested()
   @Type(() => AreaArray)

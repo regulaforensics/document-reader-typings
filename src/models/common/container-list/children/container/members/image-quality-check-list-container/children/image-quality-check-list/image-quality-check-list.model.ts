@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsEnum, IsInt, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { eCheckResult } from '@/consts'
 import { iImageQualityCheck, ImageQualityCheck } from './children'
@@ -37,7 +37,6 @@ export class ImageQualityCheckList implements iImageQualityCheckList {
   * Overall check result
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   result: eCheckResult
@@ -46,7 +45,6 @@ export class ImageQualityCheckList implements iImageQualityCheckList {
   * Array of single check result pointers
   * @type {ImageQualityCheck[]}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => ImageQualityCheck)
@@ -58,7 +56,6 @@ export class ImageQualityCheckList implements iImageQualityCheckList {
   * Number of List array elements
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   Count: number

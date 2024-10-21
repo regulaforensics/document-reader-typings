@@ -1,5 +1,5 @@
 import { IsArray, IsBase64, IsDefined, IsEnum, IsIn, IsNumber, IsString, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { eLDSParsingErrorCodes, eRfidCertificateOrigin, eRfidCertificateType, eRfidErrorCodes } from '@/consts'
 import { Default } from '@/decorators'
@@ -104,7 +104,6 @@ export class RfidCertificateEx implements iRfidCertificateEx {
   * Version of Certificate ASN.1 structure
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   Version: number
@@ -113,7 +112,6 @@ export class RfidCertificateEx implements iRfidCertificateEx {
   * Certificate serial number. Base64 encoded.
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsBase64()
   @IsString()
@@ -124,7 +122,6 @@ export class RfidCertificateEx implements iRfidCertificateEx {
   * String in the format "S1 (S2)", where S1 – algorithm name, S2 – identifier (OID string).
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   SignatureAlgorithm: string
@@ -133,7 +130,6 @@ export class RfidCertificateEx implements iRfidCertificateEx {
   * Identifier of the certificate issuer
   * @type {RfidDistinguishedName}
   */
-  @Expose()
   @IsDefined()
   @Type(() => RfidDistinguishedName)
   @ValidateNested()
@@ -143,7 +139,6 @@ export class RfidCertificateEx implements iRfidCertificateEx {
   * Certificate validity period
   * @type {RfidValidity}
   */
-  @Expose()
   @IsDefined()
   @Type(() => RfidValidity)
   @ValidateNested()
@@ -153,7 +148,6 @@ export class RfidCertificateEx implements iRfidCertificateEx {
   * Identifier of the signature subject
   * @type {RfidDistinguishedName}
   */
-  @Expose()
   @IsDefined()
   @Type(() => RfidDistinguishedName)
   @ValidateNested()
@@ -164,7 +158,6 @@ export class RfidCertificateEx implements iRfidCertificateEx {
   * String in the format "S1 (S2)", where S1 – algorithm name, S2 – identifier (OID string).
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   SubjectPKAlgorithm: string
@@ -173,7 +166,6 @@ export class RfidCertificateEx implements iRfidCertificateEx {
   * List of the certificate extensions
   * @type {RfidPkiExtension[]}
   */
-  @Expose()
   @IsDefined()
   @Type(() => RfidPkiExtension)
   @ValidateNested({ each: true })
@@ -186,7 +178,6 @@ export class RfidCertificateEx implements iRfidCertificateEx {
   * structure and its validity verification.
   * @type {eLDSParsingErrorCodes[]}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eLDSParsingErrorCodes, { each: true })
   @IsArray()
@@ -197,7 +188,6 @@ export class RfidCertificateEx implements iRfidCertificateEx {
   * Certificate origin
   * @type {eRfidCertificateOrigin}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidCertificateOrigin)
   @Default(eRfidCertificateOrigin.UNDEFINED)
@@ -207,7 +197,6 @@ export class RfidCertificateEx implements iRfidCertificateEx {
   * Certificate type
   * @type {eRfidCertificateType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidCertificateType)
   @Default(eRfidCertificateType.UNDEFINED)
@@ -217,7 +206,6 @@ export class RfidCertificateEx implements iRfidCertificateEx {
   * The name of the certificate source file, if there is one (UTF8 string);
   * @type {TrfFtString}
   */
-  @Expose()
   @IsDefined()
   @Type(() => TrfFtString)
   @ValidateNested()
@@ -227,7 +215,6 @@ export class RfidCertificateEx implements iRfidCertificateEx {
   * Result of the digital signature verification
   * @type {eRfidErrorCodes.ERROR_NOT_PERFORMED | eRfidErrorCodes.ERROR_NO_ERROR | eRfidErrorCodes.ERROR_SESSION_PA_SIGNATURE_CHECK_FAILED }
   */
-  @Expose()
   @IsDefined()
   @IsIn([eRfidErrorCodes.ERROR_NOT_PERFORMED, eRfidErrorCodes.ERROR_NO_ERROR, eRfidErrorCodes.ERROR_SESSION_PA_SIGNATURE_CHECK_FAILED])
   PA_Status: eRfidErrorCodes.ERROR_NOT_PERFORMED | eRfidErrorCodes.ERROR_NO_ERROR | eRfidErrorCodes.ERROR_SESSION_PA_SIGNATURE_CHECK_FAILED

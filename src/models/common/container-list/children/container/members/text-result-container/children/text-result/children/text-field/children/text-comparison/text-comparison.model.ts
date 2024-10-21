@@ -1,5 +1,4 @@
 import { IsDefined, IsEnum } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 import { eCheckResult, eSource } from '@/consts'
 import { Default } from '@/decorators'
@@ -36,7 +35,6 @@ export class TextComparison implements iTextComparison {
   * Source left
   * @type {eSource}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eSource)
   sourceLeft: eSource
@@ -45,7 +43,6 @@ export class TextComparison implements iTextComparison {
   * Source right
   * @type {eSource}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eSource)
   sourceRight: eSource
@@ -54,7 +51,6 @@ export class TextComparison implements iTextComparison {
   * Comparison status
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)

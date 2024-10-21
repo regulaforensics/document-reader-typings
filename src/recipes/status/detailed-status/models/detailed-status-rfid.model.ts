@@ -2,7 +2,6 @@ import { IsDefined, IsEnum } from 'class-validator'
 
 import { eCheckResult } from '@/consts'
 import { eRfidStatusField } from './consts'
-import { Expose } from 'class-transformer'
 
 
 /**
@@ -54,7 +53,6 @@ export class RDetailedStatusRfid implements iRDetailedStatusRfid {
   * The Active Authentication status.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   [eRfidStatusField.AA]: eCheckResult
@@ -63,7 +61,6 @@ export class RDetailedStatusRfid implements iRDetailedStatusRfid {
   * The Basic Access Control status
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   [eRfidStatusField.BAC]: eCheckResult
@@ -72,7 +69,6 @@ export class RDetailedStatusRfid implements iRDetailedStatusRfid {
   * The Chip Authentication status.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   [eRfidStatusField.CA]: eCheckResult
@@ -81,7 +77,6 @@ export class RDetailedStatusRfid implements iRDetailedStatusRfid {
   * The Password Authenticated Connection Establishment status.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   [eRfidStatusField.PACE]: eCheckResult
@@ -90,7 +85,6 @@ export class RDetailedStatusRfid implements iRDetailedStatusRfid {
   * The Passive Authentication status.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   [eRfidStatusField.PA]: eCheckResult
@@ -99,7 +93,6 @@ export class RDetailedStatusRfid implements iRDetailedStatusRfid {
   * The Terminal Authentication status.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   [eRfidStatusField.TA]: eCheckResult

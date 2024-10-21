@@ -9,7 +9,7 @@ import {
   ValidateNested,
   validateSync
 } from 'class-validator'
-import { Expose, plainToClass, Type } from 'class-transformer'
+import { plainToClass, Type } from 'class-transformer'
 
 import { eProcessingStatus, eRfidPresence } from '@/consts'
 import { IsStringObjectRecord } from '@/validators'
@@ -77,7 +77,6 @@ export class ProcessResponse implements iProcessResponse {
   * type recognition, otherwise 1 by default
   * @type {eRfidPresence}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eRfidPresence)
   @Default(eRfidPresence.NONE)
@@ -87,7 +86,6 @@ export class ProcessResponse implements iProcessResponse {
   * Document processing finish status
   * @type {eProcessingStatus}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eProcessingStatus)
   @Default(eProcessingStatus.NOT_FINISHED)
@@ -97,7 +95,6 @@ export class ProcessResponse implements iProcessResponse {
   * List of containers with results
   * @type {ContainerList}
   */
-  @Expose()
   @ValidateNested()
   @Type(() => ContainerList)
   ContainerList: ContainerList
@@ -106,7 +103,6 @@ export class ProcessResponse implements iProcessResponse {
   * Transaction info
   * @type {TransactionInfo}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => TransactionInfo)
@@ -116,7 +112,6 @@ export class ProcessResponse implements iProcessResponse {
   * Base64 encoded transaction processing log
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   @IsBase64()
@@ -126,7 +121,6 @@ export class ProcessResponse implements iProcessResponse {
   * Free-form object provided in request. See passBackObject property of ProcessRequest.
   * @type {Record<string, object>|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsStringObjectRecord()
   passBackObject?: Record<string, object>
@@ -135,7 +129,6 @@ export class ProcessResponse implements iProcessResponse {
   * Indicates how many pages of a document remains to process. Requires Document Type recognition, otherwise 0 by default
   * @type {number}
   */
-  @Expose()
   @IsOptional()
   @IsInt()
   @Min(0)
@@ -146,7 +139,6 @@ export class ProcessResponse implements iProcessResponse {
   * Indicates how much time has been required for document processing, milliseconds
   * @type {number}
   */
-  @Expose()
   @IsOptional()
   @IsInt()
   @Min(0)
@@ -158,7 +150,7 @@ export class ProcessResponse implements iProcessResponse {
   * @param {unknown} input - plain object
   * @returns {ProcessResponse}
   */
-  static fromPlain = (input: unknown): ProcessResponse | never => plainToClass(ProcessResponse, input, { strategy: 'excludeAll' })
+  static fromPlain = (input: unknown): ProcessResponse | never => plainToClass(ProcessResponse, input, { exposeUnsetFields: false })
 
   /**
   * Check if the given instance of ProcessResponse is valid

@@ -1,5 +1,5 @@
 import { IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { FaceApiSearch, iFaceApiSearch } from './children'
 
@@ -68,7 +68,6 @@ export class FaceApi implements iFaceApi {
   * The URL of the Regula Face Web service to be used.
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   url?: string
@@ -77,7 +76,6 @@ export class FaceApi implements iFaceApi {
   * The processing mode: "match" or "match+search"
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   mode?: string
@@ -86,7 +84,6 @@ export class FaceApi implements iFaceApi {
   * Face search filter
   * @type {FaceApiSearch|undefined}
   */
-  @Expose()
   @IsOptional()
   @ValidateNested()
   @Type(() => FaceApiSearch)
@@ -96,7 +93,6 @@ export class FaceApi implements iFaceApi {
   * The similarity threshold, 0-100. Above 75 means that the faces' similarity is verified, below 75 is not.
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsNumber()
   threshold?: number
@@ -105,7 +101,6 @@ export class FaceApi implements iFaceApi {
   * The timeout for the service request, milliseconds
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsNumber()
   serviceTimeout?: number
@@ -115,7 +110,6 @@ export class FaceApi implements iFaceApi {
   * @see {https://curl.se/libcurl/c/CURLOPT_PROXY.html} cURL standard.
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   proxy?: string
@@ -125,7 +119,6 @@ export class FaceApi implements iFaceApi {
   * @see {https://curl.se/libcurl/c/CURLOPT_PROXYUSERPWD.html} cURL standard.
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   proxy_userpwd?: string
@@ -135,7 +128,6 @@ export class FaceApi implements iFaceApi {
   * @see {https://curl.se/libcurl/c/CURLOPT_PROXYTYPE.html} cURL standard.
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsNumber()
   proxy_type?: number

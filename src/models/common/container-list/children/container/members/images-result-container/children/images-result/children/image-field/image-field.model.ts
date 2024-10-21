@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsEnum, IsInt, IsString, ValidateNested } from 'class-validator'
-import { Expose, Transform, Type } from 'class-transformer'
+import { Transform, Type } from 'class-transformer'
 
 import { eGraphicFieldType } from '@/consts'
 import { ImagesResultContainer } from '@/models'
@@ -44,7 +44,6 @@ export class ImageField implements iImageField {
   * Field name
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   fieldName: string
@@ -53,7 +52,6 @@ export class ImageField implements iImageField {
   * Field type
   * @type {eGraphicFieldType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eGraphicFieldType)
   @Default(eGraphicFieldType.OTHER)
@@ -63,7 +61,6 @@ export class ImageField implements iImageField {
   * Field value list
   * @type {ImageFieldValue[]}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => ImageFieldValue)
@@ -75,7 +72,6 @@ export class ImageField implements iImageField {
   * Field value count
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Transform(({ obj }) => obj.valueList.length, { toClassOnly: true })

@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
-import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
 import { eLights, eResultType } from '@/consts'
@@ -48,7 +48,6 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   * Lighting scheme code for the given result (used only for images)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(eLights.OFF)
@@ -57,7 +56,6 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   /**
   * @internal
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -67,7 +65,6 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   * Page index (when working with multi-page document)
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -76,7 +73,6 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   /**
   * @internal
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   @Default(0)
@@ -86,7 +82,6 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   * Result type stored in this container
   * @type {tDocBarCodeInfoContainerResultType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eResultType)
   @IsIn(DocBarCodeInfoContainerResultTypes)
@@ -97,7 +92,6 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   * scanned document page and their reading in binary non-formatted code.
   * @type {DocBarCodeInfo|undefined}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => DocBarCodeInfo)
@@ -131,7 +125,7 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
     )
 
     if (asPlain) {
-      return result.map((item) => instanceToPlain(item, { strategy: 'excludeAll' }) as iDocBarCodeInfoContainer)
+      return result.map((item) => instanceToPlain(item, { exposeUnsetFields: false }) as iDocBarCodeInfoContainer)
     }
 
     return result

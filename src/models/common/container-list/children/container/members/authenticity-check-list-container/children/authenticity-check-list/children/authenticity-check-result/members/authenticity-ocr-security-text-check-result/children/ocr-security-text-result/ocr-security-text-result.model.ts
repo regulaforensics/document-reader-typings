@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsNumber, IsString, ValidateNested, IsOptional } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { Default } from '@/decorators'
 import { iRect, Rect } from '@/models/common/rect'
@@ -113,7 +113,6 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   * Type of the performed check
   * @type {eAuthenticity.OCR_SECURITY_TEXT}
   */
-  @Expose()
   @IsDefined()
   @IsIn([eAuthenticity.OCR_SECURITY_TEXT])
   @IsEnum(eAuthenticity)
@@ -123,7 +122,6 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   * Element responsible for the results of the checks
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
@@ -133,7 +131,6 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   * Element with which errors are checked
   * @type {eCheckDiagnose}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckDiagnose)
   @Default(eCheckDiagnose.UNKNOWN)
@@ -143,7 +140,6 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   * Flag of element’s importance
   * @type {eSecurityCriticalFlag}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eSecurityCriticalFlag)
   @Default(eSecurityCriticalFlag.NOT_CRITICAL)
@@ -153,7 +149,6 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   * Light scheme
   * @type {eLights}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eLights)
   @Default(eLights.OFF)
@@ -163,7 +158,6 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   * Field area’s coordinates
   * @type {Rect}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => Rect)
@@ -173,7 +167,6 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   * Alternative data source; allowed values from
   * @type {eResultType.MRZ_OCR_EXTENDED | eResultType.VISUAL_OCR_EXTENDED | eResultType.BARCODES_TEXT_DATA}
   */
-  @Expose()
   @IsDefined()
   @IsIn([eResultType.MRZ_OCR_EXTENDED, eResultType.VISUAL_OCR_EXTENDED, eResultType.BARCODES_TEXT_DATA])
   EtalonResultType: eResultType.MRZ_OCR_EXTENDED | eResultType.VISUAL_OCR_EXTENDED | eResultType.BARCODES_TEXT_DATA
@@ -182,7 +175,6 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   * Field type
   * @type {eVisualFieldType}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eVisualFieldType)
   EtalonFieldType: eVisualFieldType
@@ -191,7 +183,6 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   * Pattern field light scheme
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsNumber()
   EtalonLightType: number
@@ -200,7 +191,6 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   * Pattern field area’s coordinates
   * @type {Rect}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => Rect)
@@ -210,7 +200,6 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   * Field OCR result
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   SecurityTextResultOCR: string
@@ -219,7 +208,6 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   * Pattern field OCR result
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   EtalonResultOCR: string
@@ -227,14 +215,12 @@ export class OCRSecurityTextResult implements iOCRSecurityTextResult {
   /**
   * @internal
   */
-  @Expose()
   @IsOptional()
   Reserved1?: number
 
   /**
   * @internal
   */
-  @Expose()
   @IsOptional()
   Reserved2?: number
 }

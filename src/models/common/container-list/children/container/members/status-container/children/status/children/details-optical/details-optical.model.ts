@@ -1,5 +1,4 @@
 import { IsDefined, IsEnum, IsInt } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 import { eCheckResult } from '@/consts'
 import { Default } from '@/decorators'
@@ -68,7 +67,6 @@ export class DetailsOptical implements iDetailsOptical {
   * The summary of all optical checks.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
@@ -78,7 +76,6 @@ export class DetailsOptical implements iDetailsOptical {
   * The check status if document type was recognized or not.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
@@ -88,7 +85,6 @@ export class DetailsOptical implements iDetailsOptical {
   * The document validity period verification status.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
@@ -98,7 +94,6 @@ export class DetailsOptical implements iDetailsOptical {
   * The input images quality verification status.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
@@ -108,7 +103,6 @@ export class DetailsOptical implements iDetailsOptical {
   * MRZ verification: values validity, dates, checkdigits verification.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
@@ -118,7 +112,6 @@ export class DetailsOptical implements iDetailsOptical {
   * The number of scanned document pages, integer.
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   pagesCount: number
@@ -127,7 +120,6 @@ export class DetailsOptical implements iDetailsOptical {
   * The authenticity verification status.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
@@ -138,7 +130,6 @@ export class DetailsOptical implements iDetailsOptical {
   * dates & checkdigits verification.
   * @type {eCheckResult}
   */
-  @Expose()
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)

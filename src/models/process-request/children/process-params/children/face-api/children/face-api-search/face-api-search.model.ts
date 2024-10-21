@@ -1,5 +1,4 @@
 import { IsNumber, IsOptional } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 
 /**
@@ -35,7 +34,6 @@ export class FaceApiSearch implements iFaceApiSearch {
   * The maximum number of results to be returned.
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsNumber()
   limit?: number
@@ -44,7 +42,6 @@ export class FaceApiSearch implements iFaceApiSearch {
   * The similarity threshold.
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsNumber()
   threshold?: number
@@ -53,7 +50,6 @@ export class FaceApiSearch implements iFaceApiSearch {
   * The groups where to conduct the search.
   * @type {number[]|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsNumber({}, { each: true })
   group_ids?: number[]

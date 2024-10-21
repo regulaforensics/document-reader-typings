@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsInt, IsOptional, ValidateNested } from 'class-validator'
-import { Expose, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 
 import { iRect, Rect } from '@/models/common/rect'
 import { Default } from '@/decorators'
@@ -44,7 +44,6 @@ export class SymbolResult implements iSymbolResult {
   * Borders of area occupied by the symbol on the image
   * @type {Rect}
   */
-  @Expose()
   @IsDefined()
   @ValidateNested()
   @Type(() => Rect)
@@ -54,7 +53,6 @@ export class SymbolResult implements iSymbolResult {
   * Number of significant elements of ListOfCandidates array
   * @type {number}
   */
-  @Expose()
   @IsDefined()
   @IsInt()
   CandidatesCount: number
@@ -64,7 +62,6 @@ export class SymbolResult implements iSymbolResult {
   * of recognition (the first element has the highest probability)
   * @type {SymbolCandidate[]}
   */
-  @Expose()
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })
@@ -76,7 +73,6 @@ export class SymbolResult implements iSymbolResult {
   * @internal
   * @type {unknown}
   */
-  @Expose()
   @IsOptional()
   Reserved?: unknown
 }

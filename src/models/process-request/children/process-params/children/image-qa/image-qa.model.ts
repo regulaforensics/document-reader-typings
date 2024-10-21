@@ -1,5 +1,4 @@
 import { IsBoolean, IsInt, IsNumber, IsOptional } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 
 /**
@@ -65,7 +64,6 @@ export class ImageQA implements iImageQA {
   * Set the threshold for an actual document brightness below which the check fails
   * @type {number}
   */
-  @Expose()
   @IsOptional()
   @IsNumber()
   brightnessThreshold?: number
@@ -75,7 +73,6 @@ export class ImageQA implements iImageQA {
   * below this threshold, check will fail.
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsInt()
   dpiThreshold?: number
@@ -85,7 +82,6 @@ export class ImageQA implements iImageQA {
   * document perspective angle is above this threshold, check will fail.
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsInt()
   angleThreshold?: number
@@ -94,7 +90,6 @@ export class ImageQA implements iImageQA {
   * This option enables focus check while performing image quality validation.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsBoolean()
   @IsOptional()
   focusCheck?: boolean
@@ -103,7 +98,6 @@ export class ImageQA implements iImageQA {
   * This option enables glares check while performing image quality validation.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsBoolean()
   @IsOptional()
   glaresCheck?: boolean
@@ -112,7 +106,6 @@ export class ImageQA implements iImageQA {
   * This option enables colorness check while performing image quality validation.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsBoolean()
   @IsOptional()
   colornessCheck?: boolean
@@ -121,7 +114,6 @@ export class ImageQA implements iImageQA {
   * This option enables screen capture (moire patterns) check while performing image quality validation.
   * @type {boolean|undefined}
   */
-  @Expose()
   @IsBoolean()
   @IsOptional()
   moireCheck?: boolean
@@ -130,7 +122,6 @@ export class ImageQA implements iImageQA {
   * This parameter specifies the necessary margin. Default 0.
   * @type {number|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsNumber()
   documentPositionIndent?: number

@@ -1,5 +1,4 @@
 import { IsDefined, IsIn, IsString } from 'class-validator'
-import { Expose } from 'class-transformer'
 
 import { eGraphicFieldType, eLDSParsingErrorCodes, eLDSParsingNotificationCodes, eVisualFieldType } from '@/consts'
 import { Default } from '@/decorators'
@@ -45,7 +44,6 @@ export class TrfFtString implements iTrfFtString {
   * Logical type of the field
   * @type {eGraphicFieldType | eVisualFieldType}
   */
-  @Expose()
   @IsDefined()
   @IsIn([...Object.values(eGraphicFieldType), ...Object.values(eVisualFieldType)])
   @Default(eGraphicFieldType.OTHER)
@@ -56,7 +54,6 @@ export class TrfFtString implements iTrfFtString {
   * with the requirements of the specification
   * @type {eLDSParsingNotificationCodes | eLDSParsingErrorCodes.OK}
   */
-  @Expose()
   @IsDefined()
   @IsIn([...Object.values(eLDSParsingNotificationCodes), eLDSParsingErrorCodes.OK])
   @Default(eLDSParsingErrorCodes.OK)
@@ -66,7 +63,6 @@ export class TrfFtString implements iTrfFtString {
   * Mask of format of text information (for example, «YYMMDD» for date of birth)
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   @Default('')
@@ -76,7 +72,6 @@ export class TrfFtString implements iTrfFtString {
   * Numeric value.
   * @type {string}
   */
-  @Expose()
   @IsDefined()
   @IsString()
   @Default('')

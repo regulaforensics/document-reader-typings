@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsOptional, IsString, ValidateNested, validateSync } from 'class-validator'
-import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { IsStringObjectRecord } from '@/validators'
 import { DocReaderTypeError } from '@/errors'
@@ -92,7 +92,6 @@ export class ProcessRequest implements iProcessRequest {
   * The list of LCID types to recognize. If empty, values with all LCID types will be extracted. Empty by default.
   * @type {eLCID[]|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsEnum(eLCID, { each: true })
   lcidFilter?: eLCID[]
@@ -101,7 +100,6 @@ export class ProcessRequest implements iProcessRequest {
   * Session id
   * @type {string|undefined}
   */
-  @Expose()
   @IsString()
   @IsOptional()
   tag?: string
@@ -110,7 +108,6 @@ export class ProcessRequest implements iProcessRequest {
    * Customer name
    * @type {string|undefined}
    */
-  @Expose()
   @IsString()
   @IsOptional()
   tenant?: string
@@ -119,7 +116,6 @@ export class ProcessRequest implements iProcessRequest {
    * Environment type
    * @type {string|undefined}
    */
-  @Expose()
   @IsString()
   @IsOptional()
   env?: string
@@ -128,7 +124,6 @@ export class ProcessRequest implements iProcessRequest {
   * Process params
   * @type {ProcessParams}
   */
-  @Expose()
   @ValidateNested()
   @IsDefined()
   @Type(() => ProcessParams)
@@ -138,7 +133,6 @@ export class ProcessRequest implements iProcessRequest {
   * List of images
   * @type {ProcessRequestImage[]|undefined}
   */
-  @Expose()
   @ValidateNested({ each: true })
   @IsOptional()
   @Type(() => ProcessRequestImage)
@@ -148,7 +142,6 @@ export class ProcessRequest implements iProcessRequest {
   * Live portrait photo
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   livePortrait?: string
@@ -157,7 +150,6 @@ export class ProcessRequest implements iProcessRequest {
   * Portrait photo from an external source
   * @type {string|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsString()
   extPortrait?: string
@@ -166,7 +158,6 @@ export class ProcessRequest implements iProcessRequest {
   * List of containers
   * @type {ContainerList|undefined}
   */
-  @Expose()
   @IsOptional()
   @ValidateNested()
   @Type(() => ContainerList)
@@ -176,7 +167,6 @@ export class ProcessRequest implements iProcessRequest {
   * System info
   * @type {ProcessSystemInfo|undefined}
   */
-  @Expose()
   @IsOptional()
   @ValidateNested()
   @Type(() => ProcessSystemInfo)
@@ -187,7 +177,6 @@ export class ProcessRequest implements iProcessRequest {
   * Do not affect document processing. Use it freely to pass your app params. Stored in process logs.
   * @type {Record<string, object>|undefined}
   */
-  @Expose()
   @IsOptional()
   @IsStringObjectRecord()
   passBackObject?: Record<string, object>
