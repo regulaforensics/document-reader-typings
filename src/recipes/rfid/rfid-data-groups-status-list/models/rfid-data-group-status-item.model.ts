@@ -1,9 +1,6 @@
-import { plainToClass } from 'class-transformer'
-import { IsDefined, IsEnum, validateSync, ValidationError } from 'class-validator'
+import { IsDefined, IsEnum } from 'class-validator'
 
 import { eCheckResult, eRfidDataFileType } from '@/consts'
-
-import { AllowPrimitives } from '@/types'
 
 
 /**
@@ -12,13 +9,13 @@ import { AllowPrimitives } from '@/types'
 export interface iRRfidDataGroupStatusItem {
   /**
   * Data group
-  * @type {eDataGroup}
+  * @type {eRfidDataFileType}
   */
   group: eRfidDataFileType
 
   /**
   * Status
-  * @type {tRfidDataGroupStatus}
+  * @type {eCheckResult}
   */
   status: eCheckResult
 }
@@ -29,7 +26,7 @@ export interface iRRfidDataGroupStatusItem {
 export class RRfidDataGroupStatusItem implements iRRfidDataGroupStatusItem {
   /**
   * Data group
-  * @type {eDataGroup}
+  * @type {eRfidDataFileType}
   */
   @IsDefined()
   @IsEnum(eRfidDataFileType)
@@ -37,23 +34,9 @@ export class RRfidDataGroupStatusItem implements iRRfidDataGroupStatusItem {
 
   /**
   * Status
-  * @type {tRfidDataGroupStatus}
+  * @type {eCheckResult}
   */
   @IsDefined()
   @IsEnum(eCheckResult)
   status: eCheckResult
-
-  /**
-  * Create instance of RRfidDataGroupStatusItem from plain object
-  * @param {AllowPrimitives<iRRfidDataGroupStatusItem>} input - plain object
-  * @returns {RRfidDataGroupStatus}
-  */
-  static fromPlain = (input: AllowPrimitives<iRRfidDataGroupStatusItem>): RRfidDataGroupStatusItem => plainToClass(RRfidDataGroupStatusItem, input)
-
-  /**
-  * Gets validation errors of RRfidDataGroupStatusItem
-  * @param {RRfidDataGroupStatusItem} input - input data
-  * @returns {ValidationError[]} - array of validation errors
-  */
-  static getValidationErrors = (input: RRfidDataGroupStatusItem): ValidationError[] => validateSync(input)
 }
