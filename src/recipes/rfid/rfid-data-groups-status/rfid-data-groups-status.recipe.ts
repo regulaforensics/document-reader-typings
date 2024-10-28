@@ -87,10 +87,12 @@ const getIndex = (dataGroup: eRfidDataFileType): number | undefined => {
       break
     case eRfidDataFileType.ID_DG17:
     case eRfidDataFileType.PASSPORT_DG17:
+    case eRfidDataFileType.DTC_DG17:
       mappedDg = 17
       break
     case eRfidDataFileType.ID_DG18:
     case eRfidDataFileType.PASSPORT_DG18:
+    case eRfidDataFileType.DTC_DG18:
       mappedDg = 18
       break
     case eRfidDataFileType.ID_DG19:
@@ -103,6 +105,15 @@ const getIndex = (dataGroup: eRfidDataFileType): number | undefined => {
       break
     case eRfidDataFileType.ID_DG21:
       mappedDg = 21
+      break
+    case eRfidDataFileType.DTC_DG22:
+      mappedDg = 22
+      break
+    case eRfidDataFileType.DTC_DG23:
+      mappedDg = 23
+      break
+    case eRfidDataFileType.DTC_DG24:
+      mappedDg = 24
       break
   }
 
@@ -123,9 +134,11 @@ export const getRfidDataGroupsStatus = (input: ProcessResponse): RRfidDataGroupS
     const sessionData = container.TDocBinaryInfo.RFID_BINARY_DATA.RFID_Session_Data
     const notRead = container.TDocBinaryInfo.RFID_BINARY_DATA.RFID_ePassp_Directory || []
 
-    sessionData?.Applications.forEach((application, index) => {
+    sessionData?.Applications.forEach((application, _, array) => {
       const chipType = application.Type
       const tmp: { index: number,  status: eDataGroupReadStatus }[] = []
+
+      if (chipType === eRfidApplicationType.eDTC_PC && array.length > 1) return;
 
       application.Files.forEach((file) => {
         const dataGroup = file.Type

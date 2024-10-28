@@ -4,9 +4,8 @@ import { Type } from 'class-transformer'
 import {
   eGraphicFieldType,
   eLDSParsingErrorCodes,
-  eRfidApplicationType,
   eRfidDataFileType,
-  eRfidErrorCodes, eRfidVisualFieldType,
+  eRfidErrorCodes,
   eVisualFieldType
 } from '@/consts'
 import { Default } from '@/decorators'
