@@ -1449,6 +1449,21 @@ export enum eVisualFieldType {
   ISO_ISSUER_ID_NUMBER = 336,
 
   /**
+   * DTC Version
+   */
+  DTC_VERSION = 337,
+
+  /**
+   * DTC ID
+   */
+  DTC_ID = 338,
+
+  /**
+   * DTC Date of expiry
+   */
+  DTC_DATE_OF_EXPIRY = 339,
+
+  /**
   * GNIB number
   */
   GNIB_NUMBER = 340,
@@ -3207,4 +3222,9 @@ export enum eVisualFieldType {
   * Date of first positive test result
   */
   DATE_OF_FIRST_POSITIVE_TEST_RESULT = 691,
+
+  /**
+   * EF card access
+   */
+  EF_CARD_ACCESS = 692,
 }
