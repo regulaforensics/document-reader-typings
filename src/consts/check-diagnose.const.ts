@@ -250,6 +250,11 @@ export enum eCheckDiagnose {
   FIELD_POS_CORRECTOR_FACE_ABSENCE_CHECK_ERROR = 85,
 
   /**
+   * Incorrect head position
+   */
+  FIELD_POS_CORRECTOR_INCORRECT_HEAD_POSITION = 86,
+
+  /**
   * OVI object is not visible in IR
   */
   OVI_IR_INVISIBLE = 90,
@@ -420,6 +425,11 @@ export enum eCheckDiagnose {
   GLARES_IN_BARCODE_AREA = 144,
 
   /**
+   * No certificate for digital signature check
+   */
+  NO_CERTIFICATE_FOR_DIGITAL_SIGNATURE_CHECK = 145,
+
+  /**
   * Portraits differ
   */
   PORTRAIT_COMPARISON_PORTRAITS_DIFFER = 150,
@@ -574,6 +584,11 @@ export enum eCheckDiagnose {
   * @see {https://www.idemia.com/wp-content/uploads/2021/02/lasink-origin-idemia-brochure-202206.pdf}
   */
   LASINK_INVALID_LINES_FREQUENCY = 230,
+
+  /**
+   * Black and white copy detected
+   */
+  DOC_LIVENESS_BLACK_AND_WHITE_COPY_DETECTED = 239,
 
   /**
   * Traces of an electronic device were found in the image
