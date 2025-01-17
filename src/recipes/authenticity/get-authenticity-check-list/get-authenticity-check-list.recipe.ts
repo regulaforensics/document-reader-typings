@@ -102,7 +102,7 @@ export const getAuthenticityCheckList = (input: ProcessResponse): RAuthenticityC
             type: subItem.ElementType,
             location: {
               light,
-              rect: [subItem.Area],
+              rect: subItem.Area ? [subItem.Area] : [],
             }
           }))
         })
@@ -129,7 +129,7 @@ export const getAuthenticityCheckList = (input: ProcessResponse): RAuthenticityC
               result: subItem.SecurityTextResultOCR,
               location: {
                 light: subItem.EtalonLightType,
-                rect: [subItem.EtalonFieldRect],
+                rect: subItem.EtalonFieldRect ? [subItem.EtalonFieldRect] : [],
               }
             },
             checkType: subItem.Type,
@@ -138,7 +138,7 @@ export const getAuthenticityCheckList = (input: ProcessResponse): RAuthenticityC
             diagnose: subItem.ElementDiagnose ?? eCheckDiagnose.UNKNOWN,
             location: {
               light: subItem.LightType,
-              rect: [subItem.FieldRect],
+              rect: subItem.FieldRect ? [subItem.FieldRect] : [],
             }
           }))
         })
@@ -176,7 +176,7 @@ export const getAuthenticityCheckList = (input: ProcessResponse): RAuthenticityC
               image: subItem.ResultImages.Images[0].image,
               location: light === eLights.OFF ? undefined : {
                 light,
-                rect: [subItem.Area],
+                rect: subItem.Area ? [subItem.Area] : [],
               }
             }))
           }
@@ -208,7 +208,7 @@ export const getAuthenticityCheckList = (input: ProcessResponse): RAuthenticityC
             feature: subItem.ElementType ?? eSecurityFeatureType.BLANK,
             location: {
                 light: undefined,
-                rect: [subItem.ElementRect],
+                rect: subItem.ElementRect ? [subItem.ElementRect] : [],
               }
           }))
         })
