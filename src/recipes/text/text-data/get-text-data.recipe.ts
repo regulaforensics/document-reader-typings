@@ -37,17 +37,21 @@ export const getTextData = (input: ProcessResponse): RTextData[] => {
 
       availableSources.forEach((source) => {
         const validity = field.validityList.find(i => i.source === source)
-        const currentSource = new RTextDataSource()
-        const currentSourceValue = field.valueList.find((i) => i.source === source)
+        const sourceDataArray = field.valueList.filter((i) => i.source === source)
 
-        currentSource.checkResult = validity?.status ?? eCheckResult.WAS_NOT_DONE
-        currentSource.source = source
-        currentSource.rect = currentSourceValue?.fieldRect
-        currentSource.value = currentSourceValue?.value ?? ''
-        currentSource.pageIndex = currentSourceValue?.pageIndex ?? 0
-        currentSource.probability = currentSourceValue?.probability ?? 0
+        sourceDataArray.forEach((i) => {
+          const currentSource = new RTextDataSource()
 
-        current.bySource.push(currentSource)
+          currentSource.checkResult = validity?.status ?? eCheckResult.WAS_NOT_DONE
+          currentSource.source = i.source
+          currentSource.rect = i?.fieldRect
+          currentSource.value = i?.value ?? ''
+          currentSource.pageIndex = i?.pageIndex ?? 0
+          currentSource.probability = i?.probability ?? 0
+
+          current.bySource.push(currentSource)
+        })
+
       })
 
       if (current.bySource.length) {
