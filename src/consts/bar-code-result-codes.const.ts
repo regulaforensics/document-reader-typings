@@ -9,6 +9,11 @@ export enum eBarCodeResultCodes {
   NO_ERR = 0,
 
   /**
+   * Invalid result
+   */
+  INVALID_RESULT = 140,
+
+  /**
   * Input argument/parameter is a null pointer error
   */
   NULL_PTR_ERR = -6001,
