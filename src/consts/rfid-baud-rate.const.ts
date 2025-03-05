@@ -28,4 +28,19 @@ export enum eRfidBaudRate {
   * 848 bits/s
   */
   RFBR_848 = 0X08,
+
+  /**
+   * 1695 bits/s
+   */
+  RFBR_1695 = 0X10,
+
+  /**
+   * 3390 bits/s
+   */
+  RFBR_3390 = 0X20,
+
+  /**
+   * 6780 bits/s
+   */
+  RFBR_6780 = 0X40,
 }

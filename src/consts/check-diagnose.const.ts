@@ -586,6 +586,11 @@ export enum eCheckDiagnose {
   LASINK_INVALID_LINES_FREQUENCY = 230,
 
   /**
+   * Document not live
+   */
+  DOC_LIVENESS_DOCUMENT_NOT_LIVE = 238,
+
+  /**
    * Black and white copy detected
    */
   DOC_LIVENESS_BLACK_AND_WHITE_COPY_DETECTED = 239,
