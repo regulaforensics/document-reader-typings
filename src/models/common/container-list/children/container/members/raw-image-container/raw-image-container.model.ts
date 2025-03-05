@@ -118,6 +118,10 @@ export class RawImageContainer extends aContainer implements iRawImageContainer 
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iRawImageContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): RawImageContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (iRawImageContainer|RawImageContainer)[] {
+    if (!ProcessResponse.isValid(input)) {
+      return []
+    }
+
     const { ContainerList } = input
 
     const result = ContainerList.List.filter((container): container is RawImageContainer =>
@@ -139,7 +143,7 @@ export class RawImageContainer extends aContainer implements iRawImageContainer 
   * @returns {true | never}
   */
   static validate = (instance: RawImageContainer): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(RawImageContainer.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('RawImageContainer validation error: the data received does not match model structure!', errors)

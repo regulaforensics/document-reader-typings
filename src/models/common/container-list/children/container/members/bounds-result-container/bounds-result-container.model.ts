@@ -116,6 +116,10 @@ export class BoundsResultContainer extends aContainer implements iBoundsResultCo
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iBoundsResultContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): BoundsResultContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (BoundsResultContainer|iBoundsResultContainer)[] {
+    if (!ProcessResponse.isValid(input)) {
+      return []
+    }
+
     const { ContainerList } = input
 
     if (!Array.isArray(ContainerList)) {
@@ -136,7 +140,7 @@ export class BoundsResultContainer extends aContainer implements iBoundsResultCo
   * @return {true | never} - true if BoundsResultContainer is valid, never otherwise
   */
   static validate = (instance: BoundsResultContainer): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(BoundsResultContainer.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('BoundsResultContainer validation error: the data received does not match model structure!', errors)

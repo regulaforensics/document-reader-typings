@@ -118,6 +118,10 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iListVerifiedFieldContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): ListVerifiedFieldContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (ListVerifiedFieldContainer|iListVerifiedFieldContainer)[] {
+    if (!ProcessResponse.isValid(input)) {
+      return []
+    }
+
     const { ContainerList } = input
 
     const result =  ContainerList.List.filter((container): container is ListVerifiedFieldContainer =>
@@ -135,7 +139,7 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   * @return {true | never} - true if the given instance of LexicalAnalysisContainer is valid
   */
   static validate = (instance: ListVerifiedFieldContainer): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(ListVerifiedFieldContainer.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('ListVerifiedFieldContainer validation error: the data received does not match model structure!', errors)

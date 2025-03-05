@@ -114,6 +114,10 @@ export class DocBinaryInfoContainer extends aContainer implements iDocBinaryInfo
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iDocBinaryInfoContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): DocBinaryInfoContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (iDocBinaryInfoContainer | DocBinaryInfoContainer)[] {
+    if (!ProcessResponse.isValid(input)) {
+      return []
+    }
+
     const { ContainerList } = input
 
     if (!ContainerList) {
@@ -137,7 +141,7 @@ export class DocBinaryInfoContainer extends aContainer implements iDocBinaryInfo
   * @returns {true | never}
   */
   static validate = (instance: DocBinaryInfoContainer): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(DocBinaryInfoContainer.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('DocBinaryInfoContainer validation error: the data received does not match model structure!', errors)

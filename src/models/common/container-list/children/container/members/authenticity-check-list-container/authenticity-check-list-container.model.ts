@@ -119,6 +119,10 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iAuthenticityCheckListContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): AuthenticityCheckListContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (AuthenticityCheckListContainer|iAuthenticityCheckListContainer)[] {
+    if (!ProcessResponse.isValid(input)) {
+      return []
+    }
+
     const { ContainerList } = input
 
     if (!ContainerList) {
@@ -143,7 +147,7 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   * @returns {true | never}
   */
   static validate = (instance: AuthenticityCheckListContainer): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(AuthenticityCheckListContainer.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('AuthenticityContainer validation error: the data received does not match model structure!', errors)
