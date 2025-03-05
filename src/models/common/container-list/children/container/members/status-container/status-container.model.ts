@@ -113,6 +113,10 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iStatusContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): StatusContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (StatusContainer|iStatusContainer)[] {
+    if (!ProcessResponse.isValid(input)) {
+      return []
+    }
+
     const { ContainerList } = input
 
     const result = ContainerList.List.filter((container): container is StatusContainer =>
@@ -133,7 +137,7 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   * @returns {true} if object satisfies StatusContainer schema
   */
   static validate = (instance: StatusContainer): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(StatusContainer.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('StatusContainer validation error: the data received does not match model structure!', errors)

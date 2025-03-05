@@ -123,6 +123,10 @@ export class DocVisualExtendedInfoContainer extends aContainer implements iDocVi
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iDocVisualExtendedInfoContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): DocVisualExtendedInfoContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (iDocVisualExtendedInfoContainer | DocVisualExtendedInfoContainer)[] {
+    if (!ProcessResponse.isValid(input)) {
+      return []
+    }
+
     const { ContainerList } = input
 
     const result = ContainerList.List.filter((container): container is DocVisualExtendedInfoContainer =>
@@ -144,7 +148,7 @@ export class DocVisualExtendedInfoContainer extends aContainer implements iDocVi
   * @returns {true | never}
   */
   static validate = (instance: DocVisualExtendedInfoContainer): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(DocVisualExtendedInfoContainer.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('DocVisualExtendedInfoContainer validation error: the data received does not match model structure!', errors)

@@ -159,13 +159,27 @@ export class ProcessResponse implements iProcessResponse {
   * @returns {true | never}
   */
   static validate = (instance: ProcessResponse): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(ProcessResponse.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('ProcessResponse validation error: the data received does not match model structure!', errors)
     }
 
     return true
+  }
+
+  /**
+  * Check if the given instance is valid ProcessResponse
+  * @param {ProcessResponse} instance - instance to check
+  * @returns {boolean} - true if ProcessResponse is valid
+  */
+  static isValid = (instance: ProcessResponse): boolean => {
+    try {
+      ProcessResponse.validate(instance)
+      return true
+    } catch {
+      return false
+    }
   }
 
   /**

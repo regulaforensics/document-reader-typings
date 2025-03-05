@@ -114,6 +114,10 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   static fromProcessResponse (input: ProcessResponse, asPlain: true): iDocBarCodeInfoContainer[];
   static fromProcessResponse (input: ProcessResponse, asPlain?: false): DocBarCodeInfoContainer[];
   static fromProcessResponse (input: ProcessResponse, asPlain: boolean = false): (iDocBarCodeInfoContainer | DocBarCodeInfoContainer)[] {
+    if (!ProcessResponse.isValid(input)) {
+      return []
+    }
+
     const { ContainerList } = input
 
     if (!ContainerList) {
@@ -139,7 +143,7 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   * @returns {true | never}
   */
   static validate = (instance: DocBarCodeInfoContainer): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(DocBarCodeInfoContainer.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('DocBarCodeInfoContainer validation error: the data received does not match model structure!', errors)

@@ -114,6 +114,10 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iImagesResultContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): ImagesResultContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (ImagesResultContainer|iImagesResultContainer)[] {
+    if (!ProcessResponse.isValid(input)) {
+      return []
+    }
+
     const { ContainerList } = input
 
     const result = ContainerList.List.filter((container): container is ImagesResultContainer =>
@@ -135,7 +139,7 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   * @returns {true | never}
   */
   static validate = (instance: ImagesResultContainer): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(ImagesResultContainer.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('ImagesResultContainer validation error: the data received does not match model structure!', errors)

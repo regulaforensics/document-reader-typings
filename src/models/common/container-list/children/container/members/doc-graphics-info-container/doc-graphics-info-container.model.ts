@@ -125,6 +125,10 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iDocGraphicsInfoContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): DocGraphicsInfoContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (DocGraphicsInfoContainer | iDocGraphicsInfoContainer)[] {
+    if (!ProcessResponse.isValid(input)) {
+      return []
+    }
+
     const { ContainerList } = input
 
     const result =  ContainerList.List.filter((container): container is DocGraphicsInfoContainer =>
@@ -144,7 +148,7 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   * @returns {true | never}
   */
   static validate = (instance: DocGraphicsInfoContainer): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(DocGraphicsInfoContainer.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('DocGraphicsInfoContainer validation error: the data received does not match model structure!', errors)

@@ -114,6 +114,10 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iImageQualityCheckListContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): ImageQualityCheckListContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (ImageQualityCheckListContainer|iImageQualityCheckListContainer)[] {
+    if (!ProcessResponse.isValid(input)) {
+      return []
+    }
+
     const { ContainerList } = input
 
     const result = ContainerList.List.filter((container): container is ImageQualityCheckListContainer =>
@@ -135,7 +139,7 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
   * @returns {true | never}
   */
   static validate = (instance: ImageQualityCheckListContainer): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(ImageQualityCheckListContainer.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('ImageQualityCheckListContainer validation error: the data received does not match model structure!', errors)

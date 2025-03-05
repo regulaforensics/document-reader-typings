@@ -113,6 +113,10 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iLicenseContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): LicenseContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (LicenseContainer|iLicenseContainer)[] {
+    if (!ProcessResponse.isValid(input)) {
+      return []
+    }
+
     const { ContainerList } = input
 
     const result = ContainerList.List.filter((container): container is LicenseContainer =>
@@ -134,7 +138,7 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
   * @returns {true | never} - true if the given instance of LicenseContainer is valid
   */
   static validate = (instance: LicenseContainer): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(LicenseContainer.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('LicenseContainer validation error: the data received does not match model structure!', errors)

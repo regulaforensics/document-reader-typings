@@ -19,7 +19,6 @@ export const getDocumentImages = async (
   const result: RDocumentImage[] = []
 
   const containers = ImagesResultContainer.fromProcessResponse(input)
-  const authenticityContainers = AuthenticityCheckListContainer.fromProcessResponse(input)
 
   if (!containers.length) {
     return result

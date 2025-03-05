@@ -202,7 +202,7 @@ export class ProcessRequest implements iProcessRequest {
   * @returns {true | never}
   */
   static validate = (instance: ProcessRequest): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(ProcessRequest.toPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('ProcessRequest validation error: the data received does not match model structure!', errors)

@@ -114,6 +114,10 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iOneCandidateContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): OneCandidateContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (OneCandidateContainer|iOneCandidateContainer)[] {
+    if (!ProcessResponse.isValid(input)) {
+      return []
+    }
+
     const { ContainerList } = input
 
     const result = ContainerList.List.filter((container): container is OneCandidateContainer =>
@@ -135,7 +139,7 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   * @returns {true | never} - true if OneCandidateContainer is valid
   */
   static validate = (instance: OneCandidateContainer): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(OneCandidateContainer.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('ChosenDocumentTypeContainer validation error: the data received does not match model structure!', errors)
