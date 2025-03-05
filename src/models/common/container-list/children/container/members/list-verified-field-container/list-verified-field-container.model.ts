@@ -118,9 +118,7 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iListVerifiedFieldContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): ListVerifiedFieldContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (ListVerifiedFieldContainer|iListVerifiedFieldContainer)[] {
-    if (!ProcessResponse.isValid(input)) {
-      return []
-    }
+    
 
     const { ContainerList } = input
 

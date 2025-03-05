@@ -113,9 +113,7 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iStatusContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): StatusContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (StatusContainer|iStatusContainer)[] {
-    if (!ProcessResponse.isValid(input)) {
-      return []
-    }
+    
 
     const { ContainerList } = input
 

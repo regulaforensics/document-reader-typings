@@ -119,9 +119,7 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iAuthenticityCheckListContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): AuthenticityCheckListContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (AuthenticityCheckListContainer|iAuthenticityCheckListContainer)[] {
-    if (!ProcessResponse.isValid(input)) {
-      return []
-    }
+    
 
     const { ContainerList } = input
 

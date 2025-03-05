@@ -123,9 +123,7 @@ export class DocVisualExtendedInfoContainer extends aContainer implements iDocVi
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iDocVisualExtendedInfoContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): DocVisualExtendedInfoContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (iDocVisualExtendedInfoContainer | DocVisualExtendedInfoContainer)[] {
-    if (!ProcessResponse.isValid(input)) {
-      return []
-    }
+    
 
     const { ContainerList } = input
 

@@ -113,9 +113,7 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iLicenseContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): LicenseContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (LicenseContainer|iLicenseContainer)[] {
-    if (!ProcessResponse.isValid(input)) {
-      return []
-    }
+    
 
     const { ContainerList } = input
 
