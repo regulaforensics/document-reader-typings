@@ -114,19 +114,21 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iImagesResultContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): ImagesResultContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (ImagesResultContainer|iImagesResultContainer)[] {
-    
+    try {
+      const { ContainerList } = input
 
-    const { ContainerList } = input
+      const result = ContainerList.List.filter((container): container is ImagesResultContainer =>
+        ImagesResultContainerResultTypes.includes(<tImagesResultContainerResultType>container.result_type)
+      )
 
-    const result = ContainerList.List.filter((container): container is ImagesResultContainer =>
-      ImagesResultContainerResultTypes.includes(<tImagesResultContainerResultType>container.result_type)
-    )
+      if (asPlain) {
+        return result.map((container) => instanceToPlain(container, {exposeUnsetFields: false}) as iImagesResultContainer)
+      }
 
-    if (asPlain) {
-      return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iImagesResultContainer)
+      return result
+    } catch (error) {
+      return []
     }
-
-    return result
   }
 
   /**

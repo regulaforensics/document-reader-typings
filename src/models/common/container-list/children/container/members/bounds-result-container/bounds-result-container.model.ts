@@ -116,18 +116,20 @@ export class BoundsResultContainer extends aContainer implements iBoundsResultCo
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iBoundsResultContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): BoundsResultContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (BoundsResultContainer|iBoundsResultContainer)[] {
-    
+    try {
+      const { ContainerList } = input
 
-    const { ContainerList } = input
+      if (!Array.isArray(ContainerList)) {
+        return []
+      }
 
-    if (!Array.isArray(ContainerList)) {
+      const result = ContainerList.List.filter((container): container is BoundsResultContainer =>
+        BoundsResultContainerResultTypes.includes(<tBoundsResultContainerResultType>container.result_type))
+
+      return asPlain ? result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iBoundsResultContainer) : result
+    } catch (error) {
       return []
     }
-
-    const result = ContainerList.List.filter((container): container is BoundsResultContainer =>
-      BoundsResultContainerResultTypes.includes(<tBoundsResultContainerResultType>container.result_type))
-
-    return asPlain ? result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iBoundsResultContainer) : result
   }
 
   /**

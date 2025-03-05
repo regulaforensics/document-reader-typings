@@ -114,23 +114,25 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   static fromProcessResponse (input: ProcessResponse, asPlain: true): iDocBarCodeInfoContainer[];
   static fromProcessResponse (input: ProcessResponse, asPlain?: false): DocBarCodeInfoContainer[];
   static fromProcessResponse (input: ProcessResponse, asPlain: boolean = false): (iDocBarCodeInfoContainer | DocBarCodeInfoContainer)[] {
-    
+    try {
+      const { ContainerList } = input
 
-    const { ContainerList } = input
+      if (!ContainerList) {
+        return []
+      }
 
-    if (!ContainerList) {
+      const result = ContainerList.List.filter((container): container is DocBarCodeInfoContainer =>
+        DocBarCodeInfoContainerResultTypes.includes(<tDocBarCodeInfoContainerResultType>container.result_type)
+      )
+
+      if (asPlain) {
+        return result.map((item) => instanceToPlain(item, {exposeUnsetFields: false}) as iDocBarCodeInfoContainer)
+      }
+
+      return result
+    } catch (error) {
       return []
     }
-
-    const result =  ContainerList.List.filter((container): container is DocBarCodeInfoContainer =>
-      DocBarCodeInfoContainerResultTypes.includes(<tDocBarCodeInfoContainerResultType>container.result_type)
-    )
-
-    if (asPlain) {
-      return result.map((item) => instanceToPlain(item, { exposeUnsetFields: false }) as iDocBarCodeInfoContainer)
-    }
-
-    return result
   }
 
   /**

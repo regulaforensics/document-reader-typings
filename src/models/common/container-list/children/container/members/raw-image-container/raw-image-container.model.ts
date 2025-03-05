@@ -118,19 +118,21 @@ export class RawImageContainer extends aContainer implements iRawImageContainer 
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iRawImageContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): RawImageContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (iRawImageContainer|RawImageContainer)[] {
-    
+    try {
+      const { ContainerList } = input
 
-    const { ContainerList } = input
+      const result = ContainerList.List.filter((container): container is RawImageContainer =>
+        RawImageContainerResultTypes.includes(<tRawImageContainerResultType>container.result_type)
+      )
 
-    const result = ContainerList.List.filter((container): container is RawImageContainer =>
-      RawImageContainerResultTypes.includes(<tRawImageContainerResultType>container.result_type)
-    )
+      if (asPlain) {
+        return result.map((container) => instanceToPlain(container, {exposeUnsetFields: false}) as iRawImageContainer)
+      }
 
-    if (asPlain) {
-      return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iRawImageContainer)
+      return result
+    } catch (error) {
+      return []
     }
-
-    return result
   }
 
   /**
