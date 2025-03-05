@@ -118,9 +118,7 @@ export class RawImageContainer extends aContainer implements iRawImageContainer 
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iRawImageContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): RawImageContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (iRawImageContainer|RawImageContainer)[] {
-    if (!ProcessResponse.isValid(input)) {
-      return []
-    }
+    
 
     const { ContainerList } = input
 

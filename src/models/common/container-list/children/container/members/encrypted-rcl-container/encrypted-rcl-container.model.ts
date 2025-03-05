@@ -113,9 +113,7 @@ export class EncryptedRCLContainer extends aContainer implements iEncryptedRCLCo
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iEncryptedRCLContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): EncryptedRCLContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (EncryptedRCLContainer|iEncryptedRCLContainer)[] {
-    if (!ProcessResponse.isValid(input)) {
-      return []
-    }
+    
 
     const { ContainerList } = input
 

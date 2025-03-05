@@ -116,9 +116,7 @@ export class BoundsResultContainer extends aContainer implements iBoundsResultCo
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iBoundsResultContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): BoundsResultContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (BoundsResultContainer|iBoundsResultContainer)[] {
-    if (!ProcessResponse.isValid(input)) {
-      return []
-    }
+    
 
     const { ContainerList } = input
 
