@@ -125,17 +125,19 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iDocGraphicsInfoContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): DocGraphicsInfoContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (DocGraphicsInfoContainer | iDocGraphicsInfoContainer)[] {
-    
+    try {
+      const { ContainerList } = input
 
-    const { ContainerList } = input
+      const result = ContainerList.List.filter((container): container is DocGraphicsInfoContainer =>
+        DocGraphicsInfoContainerResultTypes.includes(<tDocGraphicsInfoContainerResultType>container.result_type)
+      )
 
-    const result =  ContainerList.List.filter((container): container is DocGraphicsInfoContainer =>
-      DocGraphicsInfoContainerResultTypes.includes(<tDocGraphicsInfoContainerResultType>container.result_type)
-    )
-
-    return asPlain
-      ? result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iDocGraphicsInfoContainer)
-      : result
+      return asPlain
+        ? result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iDocGraphicsInfoContainer)
+        : result
+    } catch (error) {
+      return []
+    }
   }
 
   /**

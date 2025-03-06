@@ -114,19 +114,21 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iOneCandidateContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): OneCandidateContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (OneCandidateContainer|iOneCandidateContainer)[] {
-    
+    try {
+      const { ContainerList } = input
 
-    const { ContainerList } = input
+      const result = ContainerList.List.filter((container): container is OneCandidateContainer =>
+        OneCandidateContainerResultTypes.includes(<tOneCandidateContainerResultType>container.result_type)
+      )
 
-    const result = ContainerList.List.filter((container): container is OneCandidateContainer =>
-      OneCandidateContainerResultTypes.includes(<tOneCandidateContainerResultType>container.result_type)
-    )
+      if (asPlain) {
+        return result.map((container) => instanceToPlain(container, {exposeUnsetFields: false}) as iOneCandidateContainer)
+      }
 
-    if (asPlain) {
-      return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iOneCandidateContainer)
+      return result
+    } catch (error) {
+      return []
     }
-
-    return result
   }
 
   /**

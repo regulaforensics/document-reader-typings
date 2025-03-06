@@ -114,19 +114,21 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iImageQualityCheckListContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): ImageQualityCheckListContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (ImageQualityCheckListContainer|iImageQualityCheckListContainer)[] {
-    
+    try {
+      const { ContainerList } = input
 
-    const { ContainerList } = input
+      const result = ContainerList.List.filter((container): container is ImageQualityCheckListContainer =>
+        ImageQualityCheckListContainerResultTypes.includes(<tImageQualityCheckListContainerResultType>container.result_type)
+      )
 
-    const result = ContainerList.List.filter((container): container is ImageQualityCheckListContainer =>
-      ImageQualityCheckListContainerResultTypes.includes(<tImageQualityCheckListContainerResultType>container.result_type)
-    )
+      if (asPlain) {
+        return result.map((container) => instanceToPlain(container, {exposeUnsetFields: false}) as iImageQualityCheckListContainer)
+      }
 
-    if (asPlain) {
-      return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iImageQualityCheckListContainer)
+      return result
+    } catch (error) {
+      return []
     }
-
-    return result
   }
 
   /**

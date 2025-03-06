@@ -119,22 +119,24 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iAuthenticityCheckListContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): AuthenticityCheckListContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (AuthenticityCheckListContainer|iAuthenticityCheckListContainer)[] {
-    
+    try {
+      const { ContainerList } = input
 
-    const { ContainerList } = input
+      if (!ContainerList) {
+        return []
+      }
 
-    if (!ContainerList) {
+      const result = ContainerList.List.filter((container): container is AuthenticityCheckListContainer =>
+        AuthenticityCheckListContainerResultTypes.includes(<tAuthenticityCheckListContainerResultType>container.result_type))
+
+      if (asPlain) {
+        return result.map((container) => instanceToPlain(container, {exposeUnsetFields: false}) as iAuthenticityCheckListContainer)
+      }
+
+      return result
+    } catch (err) {
       return []
     }
-
-    const result = ContainerList.List.filter((container): container is AuthenticityCheckListContainer =>
-      AuthenticityCheckListContainerResultTypes.includes(<tAuthenticityCheckListContainerResultType>container.result_type))
-
-    if (asPlain) {
-      return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iAuthenticityCheckListContainer)
-    }
-
-    return result
   }
 
   /**

@@ -113,19 +113,21 @@ export class LicenseContainer extends aContainer implements iLicenseContainer {
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iLicenseContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): LicenseContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (LicenseContainer|iLicenseContainer)[] {
-    
+    try {
+      const { ContainerList } = input
 
-    const { ContainerList } = input
+      const result = ContainerList.List.filter((container): container is LicenseContainer =>
+        LicenseContainerResultTypes.includes(<tLicenseContainerResultType>container.result_type)
+      )
 
-    const result = ContainerList.List.filter((container): container is LicenseContainer =>
-      LicenseContainerResultTypes.includes(<tLicenseContainerResultType>container.result_type)
-    )
+      if (asPlain) {
+        return result.map((container) => instanceToPlain(container, {exposeUnsetFields: false}) as iLicenseContainer)
+      }
 
-    if (asPlain) {
-      return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iLicenseContainer)
+      return result
+    } catch (error) {
+      return []
     }
-
-    return result
   }
 
   /**

@@ -114,21 +114,23 @@ export class DocBinaryInfoContainer extends aContainer implements iDocBinaryInfo
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iDocBinaryInfoContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): DocBinaryInfoContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (iDocBinaryInfoContainer | DocBinaryInfoContainer)[] {
-    
+    try {
+      const { ContainerList } = input
 
-    const { ContainerList } = input
+      if (!ContainerList) {
+        return []
+      }
 
-    if (!ContainerList) {
+      const result = ContainerList.List.filter((container): container is DocBinaryInfoContainer =>
+        DocBinaryInfoContainerResultTypes.includes(<tDocBinaryInfoContainerResultType>container.result_type)
+      )
+
+      return asPlain
+        ? result.map((container) => instanceToPlain(container, {exposeUnsetFields: false}) as iDocBinaryInfoContainer)
+        : result
+    } catch (error) {
       return []
     }
-
-    const result = ContainerList.List.filter((container): container is DocBinaryInfoContainer =>
-      DocBinaryInfoContainerResultTypes.includes(<tDocBinaryInfoContainerResultType>container.result_type)
-    )
-
-    return asPlain
-      ? result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iDocBinaryInfoContainer)
-      : result
   }
 
   /**

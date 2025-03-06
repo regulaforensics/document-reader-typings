@@ -123,19 +123,21 @@ export class DocVisualExtendedInfoContainer extends aContainer implements iDocVi
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iDocVisualExtendedInfoContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): DocVisualExtendedInfoContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (iDocVisualExtendedInfoContainer | DocVisualExtendedInfoContainer)[] {
-    
+    try {
+      const { ContainerList } = input
 
-    const { ContainerList } = input
+      const result = ContainerList.List.filter((container): container is DocVisualExtendedInfoContainer =>
+        DocVisualExtendedInfoContainerResultTypes.includes(<tDocVisualExtendedInfoContainerResultType>container.result_type)
+      )
 
-    const result = ContainerList.List.filter((container): container is DocVisualExtendedInfoContainer =>
-      DocVisualExtendedInfoContainerResultTypes.includes(<tDocVisualExtendedInfoContainerResultType>container.result_type)
-    )
+      if (asPlain) {
+        return result.map((container) => instanceToPlain(container, {exposeUnsetFields: false}) as iDocVisualExtendedInfoContainer)
+      }
 
-    if (asPlain) {
-      return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iDocVisualExtendedInfoContainer)
+      return result
+    } catch (error) {
+      return []
     }
-
-    return result
   }
 
   /**

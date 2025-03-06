@@ -7,7 +7,7 @@ import {
   IsString,
   Min,
   ValidateNested,
-  validateSync
+  validateSync, ValidationError
 } from 'class-validator'
 import { plainToClass, Type } from 'class-transformer'
 
@@ -18,6 +18,7 @@ import { DocReaderTypeError } from '@/errors'
 import { ContainerList, iContainerList } from '@/models/common'
 import { iTransactionInfo, TransactionInfo } from './children'
 import { decode } from '@/helpers'
+import { merge, values } from 'lodash'
 
 
 export interface iProcessResponse {
@@ -150,7 +151,13 @@ export class ProcessResponse implements iProcessResponse {
   * @param {unknown} input - plain object
   * @returns {ProcessResponse}
   */
-  static fromPlain = (input: unknown): ProcessResponse | never => plainToClass(ProcessResponse, input, { exposeUnsetFields: false })
+  static fromPlain = (input: unknown): ProcessResponse => {
+    const instance = plainToClass(ProcessResponse, input, { exposeUnsetFields: false })
+
+    ProcessResponse.inform(instance)
+
+    return instance
+  }
 
   /**
   * Check if the given instance of ProcessResponse is valid
@@ -199,4 +206,34 @@ export class ProcessResponse implements iProcessResponse {
     return decode(input.log)
   }
 
+  private static inform = (response: ProcessResponse): void => {
+    const errors = validateSync(response)
+    const simplifiedErrors = ProcessResponse.simplifyErrors('', errors)
+
+    for (const [path, messages] of Object.entries(simplifiedErrors)) {
+      console.info(`Error in ${path}: ${messages.join(', ')}`)
+    }
+  }
+
+  private static simplifyErrors = (
+    property: string,
+    errors: ValidationError[]
+  ): { [path: string]: string[] } => {
+    let result: any = {}
+
+    for (let i: number = 0; i < errors.length; i++) {
+      const subProperty: string = errors[i].property
+      const fieldPath: string = property ? `${property}.${subProperty}` : subProperty
+
+      if (errors[i].children && errors[i].children?.length) {
+        result = merge(result, ProcessResponse.simplifyErrors(fieldPath, errors[i].children!))
+      }
+
+      if (errors[i].constraints) {
+        result[fieldPath] = values(merge(errors[i].constraints, result[fieldPath]))
+      }
+    }
+
+    return result
+  }
 }

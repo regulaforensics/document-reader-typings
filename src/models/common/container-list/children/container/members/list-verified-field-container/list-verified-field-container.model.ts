@@ -118,15 +118,17 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iListVerifiedFieldContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): ListVerifiedFieldContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (ListVerifiedFieldContainer|iListVerifiedFieldContainer)[] {
-    
+    try {
+      const { ContainerList } = input
 
-    const { ContainerList } = input
+      const result = ContainerList.List.filter((container): container is ListVerifiedFieldContainer =>
+        ListVerifiedFieldContainerResultTypes.includes(<tListVerifiedFieldContainerResultType>container.result_type)
+      )
 
-    const result =  ContainerList.List.filter((container): container is ListVerifiedFieldContainer =>
-      ListVerifiedFieldContainerResultTypes.includes(<tListVerifiedFieldContainerResultType>container.result_type)
-    )
-
-    return asPlain ? result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iListVerifiedFieldContainer) : result
+      return asPlain ? result.map((container) => instanceToPlain(container, {exposeUnsetFields: false}) as iListVerifiedFieldContainer) : result
+    } catch (error) {
+      return []
+    }
   }
 
   /**
