@@ -207,6 +207,10 @@ export class ProcessResponse implements iProcessResponse {
   }
 
   private static inform = (response: ProcessResponse): void => {
+    if (!response || !(response instanceof ProcessResponse)) {
+      return
+    }
+
     const errors = validateSync(response)
     const simplifiedErrors = ProcessResponse.simplifyErrors('', errors)
 
