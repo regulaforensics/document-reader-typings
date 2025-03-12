@@ -207,6 +207,12 @@ export class ProcessResponse implements iProcessResponse {
   }
 
   private static inform = (response: ProcessResponse): void => {
+    const LOG_KEY = 'docreader_typings_log'
+
+    if (typeof window === 'undefined' || typeof localStorage === 'undefined' || !localStorage.getItem(LOG_KEY)) {
+      return
+    }
+
     if (!response || !(response instanceof ProcessResponse)) {
       return
     }
