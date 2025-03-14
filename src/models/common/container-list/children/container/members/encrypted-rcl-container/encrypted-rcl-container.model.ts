@@ -113,17 +113,21 @@ export class EncryptedRCLContainer extends aContainer implements iEncryptedRCLCo
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iEncryptedRCLContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): EncryptedRCLContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (EncryptedRCLContainer|iEncryptedRCLContainer)[] {
-    const { ContainerList } = input
+    try {
+      const { ContainerList } = input
 
-    const result = ContainerList.List.filter((container): container is EncryptedRCLContainer =>
-      EncryptedRCLContainerResultTypes.includes(<tEncryptedRCLContainerResultType>container.result_type)
-    )
+      const result = ContainerList.List.filter((container): container is EncryptedRCLContainer =>
+        EncryptedRCLContainerResultTypes.includes(<tEncryptedRCLContainerResultType>container.result_type)
+      )
 
-    if (asPlain) {
-      return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iEncryptedRCLContainer)
+      if (asPlain) {
+        return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iEncryptedRCLContainer)
+      }
+
+      return result
+    } catch (error) {
+      return []
     }
-
-    return result
   }
 
   /**
@@ -134,7 +138,7 @@ export class EncryptedRCLContainer extends aContainer implements iEncryptedRCLCo
   * @returns {true | never}
   */
   static validate = (instance: EncryptedRCLContainer): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(EncryptedRCLContainer.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('EncryptedRCLContainer validation error: the data received does not match model structure!', errors)

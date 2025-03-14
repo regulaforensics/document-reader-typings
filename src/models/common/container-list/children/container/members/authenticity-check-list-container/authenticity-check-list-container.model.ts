@@ -119,20 +119,24 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iAuthenticityCheckListContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): AuthenticityCheckListContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (AuthenticityCheckListContainer|iAuthenticityCheckListContainer)[] {
-    const { ContainerList } = input
+    try {
+      const { ContainerList } = input
 
-    if (!ContainerList) {
+      if (!ContainerList) {
+        return []
+      }
+
+      const result = ContainerList.List.filter((container): container is AuthenticityCheckListContainer =>
+        AuthenticityCheckListContainerResultTypes.includes(<tAuthenticityCheckListContainerResultType>container.result_type))
+
+      if (asPlain) {
+        return result.map((container) => instanceToPlain(container, {exposeUnsetFields: false}) as iAuthenticityCheckListContainer)
+      }
+
+      return result
+    } catch (err) {
       return []
     }
-
-    const result = ContainerList.List.filter((container): container is AuthenticityCheckListContainer =>
-      AuthenticityCheckListContainerResultTypes.includes(<tAuthenticityCheckListContainerResultType>container.result_type))
-
-    if (asPlain) {
-      return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iAuthenticityCheckListContainer)
-    }
-
-    return result
   }
 
   /**
@@ -143,7 +147,7 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   * @returns {true | never}
   */
   static validate = (instance: AuthenticityCheckListContainer): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(AuthenticityCheckListContainer.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('AuthenticityContainer validation error: the data received does not match model structure!', errors)

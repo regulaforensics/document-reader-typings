@@ -833,5 +833,10 @@ export enum eLCID {
   /**
   * Urdu Detection
   */
-  URDU_DETECTION = 10560
+  URDU_DETECTION = 10560,
+
+  /**
+   * Custom
+   */
+  CUSTOM = 9999
 }

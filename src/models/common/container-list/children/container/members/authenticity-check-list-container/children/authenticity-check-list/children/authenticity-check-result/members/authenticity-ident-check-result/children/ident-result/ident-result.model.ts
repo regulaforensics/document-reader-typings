@@ -67,7 +67,7 @@ export interface iIdentResult {
   * Checked fragment area coordinates
   * @type {iRect}
   */
-  Area: iRect
+  Area?: iRect
 
   /**
   * Located image fragment
@@ -178,10 +178,10 @@ export class IdentResult implements iIdentResult {
   * Checked fragment area coordinates
   * @type {Rect}
   */
-  @IsDefined()
+  @IsOptional()
   @ValidateNested()
   @Type(() => Rect)
-  Area: Rect
+  Area?: Rect
 
   /**
   * Located image fragment

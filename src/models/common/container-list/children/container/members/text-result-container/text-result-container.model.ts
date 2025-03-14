@@ -114,17 +114,21 @@ export class TextResultContainer extends aContainer implements iTextResultContai
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iTextResultContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): TextResultContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (TextResultContainer|iTextResultContainer)[] {
-    const { ContainerList } = input
+    try {
+      const { ContainerList } = input
 
-    const result = ContainerList.List.filter((container): container is TextResultContainer =>
-      TextResultContainerResultTypes.includes(<tTextResultContainerResultType>container.result_type)
-    )
+      const result = ContainerList.List.filter((container): container is TextResultContainer =>
+        TextResultContainerResultTypes.includes(<tTextResultContainerResultType>container.result_type)
+      )
 
-    if (asPlain) {
-      return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iTextResultContainer)
+      if (asPlain) {
+        return result.map((container) => instanceToPlain(container, {exposeUnsetFields: false}) as iTextResultContainer)
+      }
+
+      return result
+    } catch (error) {
+      return []
     }
-
-    return result
   }
 
   /**
@@ -135,7 +139,7 @@ export class TextResultContainer extends aContainer implements iTextResultContai
   * @returns {true | never}
   */
   static validate = (instance: TextResultContainer): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(TextResultContainer.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('TextResultContainer validation error: the data received does not match model structure!', errors)

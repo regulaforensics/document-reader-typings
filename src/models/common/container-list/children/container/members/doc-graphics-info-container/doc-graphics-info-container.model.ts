@@ -125,15 +125,19 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iDocGraphicsInfoContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): DocGraphicsInfoContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (DocGraphicsInfoContainer | iDocGraphicsInfoContainer)[] {
-    const { ContainerList } = input
+    try {
+      const { ContainerList } = input
 
-    const result =  ContainerList.List.filter((container): container is DocGraphicsInfoContainer =>
-      DocGraphicsInfoContainerResultTypes.includes(<tDocGraphicsInfoContainerResultType>container.result_type)
-    )
+      const result = ContainerList.List.filter((container): container is DocGraphicsInfoContainer =>
+        DocGraphicsInfoContainerResultTypes.includes(<tDocGraphicsInfoContainerResultType>container.result_type)
+      )
 
-    return asPlain
-      ? result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iDocGraphicsInfoContainer)
-      : result
+      return asPlain
+        ? result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iDocGraphicsInfoContainer)
+        : result
+    } catch (error) {
+      return []
+    }
   }
 
   /**
@@ -144,7 +148,7 @@ export class DocGraphicsInfoContainer extends aContainer implements iDocGraphics
   * @returns {true | never}
   */
   static validate = (instance: DocGraphicsInfoContainer): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(DocGraphicsInfoContainer.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('DocGraphicsInfoContainer validation error: the data received does not match model structure!', errors)

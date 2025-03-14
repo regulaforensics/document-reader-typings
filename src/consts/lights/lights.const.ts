@@ -213,4 +213,34 @@ export enum eLights {
   * for internal use
   */
   WHITE_SPECIAL = 0x00400000,
+
+  /**
+   * White UV
+   */
+  WHITE_UV = WHITE_FULL | UV,
+
+  /**
+   * White full hologram
+   */
+  WHITE_FULL_HOLO = WHITE_FULL | HOLO,
+
+  /**
+   * HR light
+   */
+  HR_LIGHT = 0x40000000,
+
+  /**
+   * HR white
+   */
+  HR_WHITE = HR_LIGHT | WHITE_FULL,
+
+  /**
+   * HR UV
+   */
+  HR_UV = HR_LIGHT | UV,
+
+  /**
+   * HR IR
+   */
+  HR_IR = HR_LIGHT | IR_FULL,
 }

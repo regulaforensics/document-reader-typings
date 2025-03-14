@@ -114,19 +114,23 @@ export class DocBinaryInfoContainer extends aContainer implements iDocBinaryInfo
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iDocBinaryInfoContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): DocBinaryInfoContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (iDocBinaryInfoContainer | DocBinaryInfoContainer)[] {
-    const { ContainerList } = input
+    try {
+      const { ContainerList } = input
 
-    if (!ContainerList) {
+      if (!ContainerList) {
+        return []
+      }
+
+      const result = ContainerList.List.filter((container): container is DocBinaryInfoContainer =>
+        DocBinaryInfoContainerResultTypes.includes(<tDocBinaryInfoContainerResultType>container.result_type)
+      )
+
+      return asPlain
+        ? result.map((container) => instanceToPlain(container, {exposeUnsetFields: false}) as iDocBinaryInfoContainer)
+        : result
+    } catch (error) {
       return []
     }
-
-    const result = ContainerList.List.filter((container): container is DocBinaryInfoContainer =>
-      DocBinaryInfoContainerResultTypes.includes(<tDocBinaryInfoContainerResultType>container.result_type)
-    )
-
-    return asPlain
-      ? result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iDocBinaryInfoContainer)
-      : result
   }
 
   /**
@@ -137,7 +141,7 @@ export class DocBinaryInfoContainer extends aContainer implements iDocBinaryInfo
   * @returns {true | never}
   */
   static validate = (instance: DocBinaryInfoContainer): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(DocBinaryInfoContainer.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('DocBinaryInfoContainer validation error: the data received does not match model structure!', errors)

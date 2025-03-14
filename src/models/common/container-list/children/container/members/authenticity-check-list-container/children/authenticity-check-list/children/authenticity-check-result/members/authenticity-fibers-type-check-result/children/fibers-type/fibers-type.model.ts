@@ -197,7 +197,7 @@ export class FibersType implements iFibersType {
   * @returns {true | never}
   */
   static validate = (input: FibersType): true | never => {
-    const errors = validateSync(input)
+    const errors = validateSync(FibersType.fromPlain(input))
 
     if (errors.length) {
       throw new DocReaderTypeError('FibersTypeElement validation error: the data received does not match model structure!', errors)

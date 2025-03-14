@@ -113,17 +113,21 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   static fromProcessResponse(input: ProcessResponse, asPlain: true): iStatusContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain?: false): StatusContainer[];
   static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (StatusContainer|iStatusContainer)[] {
-    const { ContainerList } = input
+    try {
+      const { ContainerList } = input
 
-    const result = ContainerList.List.filter((container): container is StatusContainer =>
-      StatusContainerResultTypes.includes(<tStatusContainerResultType>container.result_type)
-    )
+      const result = ContainerList.List.filter((container): container is StatusContainer =>
+        StatusContainerResultTypes.includes(<tStatusContainerResultType>container.result_type)
+      )
 
-    if (asPlain) {
-      return result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iStatusContainer)
+      if (asPlain) {
+        return result.map((container) => instanceToPlain(container, {exposeUnsetFields: false}) as iStatusContainer)
+      }
+
+      return result
+    } catch (error) {
+      return []
     }
-
-    return result
   }
 
   /**
@@ -133,7 +137,7 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   * @returns {true} if object satisfies StatusContainer schema
   */
   static validate = (instance: StatusContainer): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(StatusContainer.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('StatusContainer validation error: the data received does not match model structure!', errors)

@@ -114,21 +114,25 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   static fromProcessResponse (input: ProcessResponse, asPlain: true): iDocBarCodeInfoContainer[];
   static fromProcessResponse (input: ProcessResponse, asPlain?: false): DocBarCodeInfoContainer[];
   static fromProcessResponse (input: ProcessResponse, asPlain: boolean = false): (iDocBarCodeInfoContainer | DocBarCodeInfoContainer)[] {
-    const { ContainerList } = input
+    try {
+      const { ContainerList } = input
 
-    if (!ContainerList) {
+      if (!ContainerList) {
+        return []
+      }
+
+      const result = ContainerList.List.filter((container): container is DocBarCodeInfoContainer =>
+        DocBarCodeInfoContainerResultTypes.includes(<tDocBarCodeInfoContainerResultType>container.result_type)
+      )
+
+      if (asPlain) {
+        return result.map((item) => instanceToPlain(item, {exposeUnsetFields: false}) as iDocBarCodeInfoContainer)
+      }
+
+      return result
+    } catch (error) {
       return []
     }
-
-    const result =  ContainerList.List.filter((container): container is DocBarCodeInfoContainer =>
-      DocBarCodeInfoContainerResultTypes.includes(<tDocBarCodeInfoContainerResultType>container.result_type)
-    )
-
-    if (asPlain) {
-      return result.map((item) => instanceToPlain(item, { exposeUnsetFields: false }) as iDocBarCodeInfoContainer)
-    }
-
-    return result
   }
 
   /**
@@ -139,7 +143,7 @@ export class DocBarCodeInfoContainer extends aContainer implements iDocBarCodeIn
   * @returns {true | never}
   */
   static validate = (instance: DocBarCodeInfoContainer): true | never => {
-    const errors = validateSync(instance)
+    const errors = validateSync(DocBarCodeInfoContainer.fromPlain(instance))
 
     if (errors.length) {
       throw new DocReaderTypeError('DocBarCodeInfoContainer validation error: the data received does not match model structure!', errors)
