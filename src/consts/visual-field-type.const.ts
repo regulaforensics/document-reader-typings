@@ -3227,4 +3227,14 @@ export enum eVisualFieldType {
    * EF card access
    */
   EF_CARD_ACCESS = 692,
+
+  /**
+   * Short flight number
+   */
+  SHORT_FLIGHT_NUMBER = 693,
+
+  /**
+   * Airline code
+   */
+  AIRLINE_CODE = 694,
 }
