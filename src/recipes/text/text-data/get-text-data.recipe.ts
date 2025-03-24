@@ -44,10 +44,16 @@ export const getTextData = (input: ProcessResponse): RTextData[] => {
 
           currentSource.checkResult = validity?.status ?? eCheckResult.WAS_NOT_DONE
           currentSource.source = i.source
-          currentSource.rect = i?.fieldRect
           currentSource.value = i?.value ?? ''
           currentSource.pageIndex = i?.pageIndex ?? 0
           currentSource.probability = i?.probability ?? 0
+
+          if (i.fieldRect) {
+            currentSource.rect = i.fieldRect
+          }
+          if (i.rfidOrigin) {
+            currentSource.rfidOrigin = i.rfidOrigin
+          }
 
           current.bySource.push(currentSource)
         })
