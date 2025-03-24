@@ -4,7 +4,7 @@ import { eCheckResult, eSource } from '@/consts'
 import { Default } from '@/decorators'
 import { iRRect, RRect } from '@/common-models'
 import { Type } from 'class-transformer'
-import { RfidOrigin } from '@/models';
+import { iRfidOrigin, RfidOrigin } from '@/models';
 
 
 /**
@@ -46,6 +46,12 @@ export interface iRTextDataSource {
   * @type {RRect|undefined}
   */
   rect?: iRRect
+
+  /**
+   * RFID origin
+   * @type {RfidOrigin|undefined}
+   */
+  rfidOrigin?: iRfidOrigin
 }
 
 /**
