@@ -4,6 +4,7 @@ import { eCheckResult, eSource } from '@/consts'
 import { Default } from '@/decorators'
 import { iRRect, RRect } from '@/common-models'
 import { Type } from 'class-transformer'
+import { RfidOrigin } from '@/models';
 
 
 /**
@@ -100,4 +101,13 @@ export class RTextDataSource implements iRTextDataSource {
   @Type(() => RRect)
   @ValidateNested()
   rect?: RRect
+
+  /**
+   * RFID origin
+   * @type {RfidOrigin|undefined}
+   */
+  @IsOptional()
+  @Type(() => RfidOrigin)
+  @ValidateNested()
+  rfidOrigin?: RfidOrigin
 }
