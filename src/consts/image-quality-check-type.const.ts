@@ -46,5 +46,10 @@ export enum eImageQualityCheckType {
   /**
   * Signals if the document image is bright enough
   */
-  BRIGHTNESS = 9
+  BRIGHTNESS = 9,
+
+  /**
+   * Occlusion
+   */
+  OCCLUSION = 10
 }
