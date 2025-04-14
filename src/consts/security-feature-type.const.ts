@@ -269,4 +269,9 @@ export enum eSecurityFeatureType {
    * Liveness black and white copy check
    */
   LIVENESS_BLACK_AND_WHITE_COPY_CHECK = 53,
+
+  /**
+   * Liveness dynaprint
+   */
+  LIVENESS_DYNAPRINT = 54,
 }
