@@ -274,4 +274,9 @@ export enum eSecurityFeatureType {
    * Liveness dynaprint
    */
   LIVENESS_DYNAPRINT = 54,
+
+  /**
+   * Liveness geometry check
+   */
+  LIVENESS_GEOMETRY_CHECK = 55,
 }
