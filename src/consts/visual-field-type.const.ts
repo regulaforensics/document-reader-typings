@@ -3237,4 +3237,19 @@ export enum eVisualFieldType {
    * Airline code
    */
   AIRLINE_CODE = 694,
+
+  /**
+   * MVC Agency
+   */
+  MVC_AGENCY = 695,
+
+  /**
+   * Issuing state code alpha
+   */
+  ISSUING_STATE_CODE_ALPHA2 = 696,
+
+  /**
+   * Nationality code alpha
+   */
+  NATIONALITY_CODE_ALPHA2 = 697,
 }
