@@ -1111,5 +1111,15 @@ export enum eLDSParsingNotificationCodes {
   /**
   * Country Codes from certificate and DG1 MRZ don't match
   */
-  ICAO_CERTIFICATE_MRZ_COUNTRY_NON_MATCHING = 0x90000252
+  ICAO_CERTIFICATE_MRZ_COUNTRY_NON_MATCHING = 0x90000252,
+
+  /**
+   * ICAO certificate: Issuer country non upper case
+   */
+  ICAO_CERTIFICATE_ISSUER_COUNTRY_NON_UPPER_CASE = 0x90000253,
+
+  /**
+   * ICAO certificate: Subject country non upper case
+   */
+  ICAO_CERTIFICATE_SUBJECT_COUNTRY_NON_UPPER_CASE = 0x90000254
 }
