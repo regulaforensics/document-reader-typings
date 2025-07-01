@@ -7,64 +7,63 @@ import { eAuthenticity, eCheckDiagnose, eCheckResult, eLights } from '@/consts'
 import { Default } from '@/decorators'
 import { iRawImageContainerList, RawImageContainerList } from './children'
 
-
 /**
-* Serves for storing the result of invisible personal information embedded image visualization
-*/
+ * Serves for storing the result of invisible personal information embedded image visualization
+ */
 export interface iPhotoIdentResult {
   /**
-  * Type of the performed check
-  * @type {eAuthenticity.IPI | eAuthenticity.IR_PHOTO}
-  */
+   * Type of the performed check
+   * @type {eAuthenticity.IPI | eAuthenticity.IR_PHOTO}
+   */
   Type: eAuthenticity.IPI | eAuthenticity.IR_PHOTO
 
   /**
-  * Checking result
-  * @type {eCheckResult}
-  */
+   * Checking result
+   * @type {eCheckResult}
+   */
   ElementResult: eCheckResult
 
   /**
-  * Element with which errors are checked
-  * @type {eCheckDiagnose}
-  */
+   * Element with which errors are checked
+   * @type {eCheckDiagnose}
+   */
   ElementDiagnose: eCheckDiagnose
 
   /**
-  * Light scheme
-  * @type {eLights}
-  */
+   * Light scheme
+   * @type {eLights}
+   */
   LightIndex: eLights
 
   /**
-  * Field area’s coordinates
-  * @type {iRect}
-  */
+   * Field area’s coordinates
+   * @type {iRect}
+   */
   Area: iRect
 
   /**
-  * Source image
-  * @type {iImageData}
-  */
+   * Source image
+   * @type {iImageData}
+   */
   SourceImage: iImageData
 
   /**
-  * Array of the output images
-  * @type {iRawImageContainerList}
-  */
+   * Array of the output images
+   * @type {iRawImageContainerList}
+   */
   ResultImages: iRawImageContainerList
 
   /**
-  * Count of the the text fields, which are encoded in the IPI image.
-  * Reserved. Not used.
-  * @internal
-  */
+   * Count of the the text fields, which are encoded in the IPI image.
+   * Reserved. Not used.
+   * @internal
+   */
   FieldTypesCount?: number
 
   /**
-  * List of the the text fields, which are encoded in the IPI image. Reserved. Not used
-  * @internal
-  */
+   * List of the the text fields, which are encoded in the IPI image. Reserved. Not used
+   * @internal
+   */
   FieldTypesList?: number[]
 
   /**
@@ -78,101 +77,101 @@ export interface iPhotoIdentResult {
   Angle?: number
 
   /**
-  * @internal
-  */
+   * @internal
+   */
   Reserved1?: number
 
   /**
-  * @internal
-  */
+   * @internal
+   */
   Reserved2?: number
 
   /**
-  * @internal
-  */
+   * @internal
+   */
   Reserved3?: number
 }
 
 /**
-* Serves for storing the result of invisible personal information embedded image visualization
-*/
+ * Serves for storing the result of invisible personal information embedded image visualization
+ */
 export class PhotoIdentResult implements iPhotoIdentResult {
   /**
-  * Type of the performed check
-  * @type {eAuthenticity.IPI | eAuthenticity.IR_PHOTO}
-  */
+   * Type of the performed check
+   * @type {eAuthenticity.IPI | eAuthenticity.IR_PHOTO}
+   */
   @IsDefined()
   @IsIn([eAuthenticity.IPI, eAuthenticity.IR_PHOTO])
   @IsEnum(eAuthenticity)
   Type: eAuthenticity.IPI | eAuthenticity.IR_PHOTO
 
   /**
-  * Checking result
-  * @type {eCheckResult}
-  */
+   * Checking result
+   * @type {eCheckResult}
+   */
   @IsOptional()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
   ElementResult: eCheckResult
 
   /**
-  * Element with which errors are checked
-  * @type {eCheckDiagnose}
-  */
+   * Element with which errors are checked
+   * @type {eCheckDiagnose}
+   */
   @IsDefined()
   @IsEnum(eCheckDiagnose)
   @Default(eCheckDiagnose.UNKNOWN)
   ElementDiagnose: eCheckDiagnose
 
   /**
-  * Light scheme
-  * @type {eLights}
-  */
+   * Light scheme
+   * @type {eLights}
+   */
   @IsDefined()
   @IsEnum(eLights)
   @Default(eLights.OFF)
   LightIndex: eLights
 
   /**
-  * Field area’s coordinates
-  * @type {Rect}
-  */
+   * Field area’s coordinates
+   * @type {Rect}
+   */
   @IsDefined()
   @ValidateNested()
   @Type(() => Rect)
   Area: Rect
 
   /**
-  * Source image
-  * @type {ImageData}
-  */
+   * Source image
+   * @type {ImageData}
+   */
   @IsDefined()
   @ValidateNested()
   @Type(() => ImageData)
   SourceImage: ImageData
 
   /**
-  * Array of the output images
-  * @type {RawImageContainerList}
-  */
+   * Array of the output images
+   * @type {RawImageContainerList}
+   */
   @IsDefined()
   @ValidateNested()
   @Type(() => RawImageContainerList)
   ResultImages: RawImageContainerList
 
   /**
-  * Count of the the text fields, which are encoded in the IPI image.
-  * Reserved. Not used.
-  * @internal
-  */
+   * Count of the the text fields, which are encoded in the IPI image.
+   * Reserved. Not used.
+   * @internal
+   */
   @IsOptional()
   @IsInt()
   FieldTypesCount?: number
 
   /**
-  * List of the the text fields, which are encoded in the IPI image. Reserved. Not used
-  * @internal
-  */
+   * List of the the text fields, which are encoded in the IPI image. Reserved. Not used
+   * @internal
+   */
   @IsOptional()
   @IsArray()
   FieldTypesList?: number[]
@@ -192,22 +191,22 @@ export class PhotoIdentResult implements iPhotoIdentResult {
   Angle?: number
 
   /**
-  * @internal
-  */
+   * @internal
+   */
   @IsOptional()
   @IsInt()
   Reserved1?: number
 
   /**
-  * @internal
-  */
+   * @internal
+   */
   @IsOptional()
   @IsInt()
   Reserved2?: number
 
   /**
-  * @internal
-  */
+   * @internal
+   */
   @IsOptional()
   @IsInt()
   Reserved3?: number

@@ -11,4 +11,3 @@ export enum ePortraitComparisonSource {
 
   BARCODE = 6,
 }
-

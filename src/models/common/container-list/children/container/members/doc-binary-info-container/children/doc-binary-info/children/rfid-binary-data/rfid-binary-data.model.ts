@@ -3,12 +3,11 @@ import { Type } from 'class-transformer'
 
 import { eRfidDataFileType } from '@/consts'
 import { iRfidDG1, iRfidSession, RfidDG1, RfidSession } from './children'
-import { DetailsRFID } from '@/models';
-
+import { DetailsRFID } from '@/models'
 
 /**
-* Structure is used for storing the results of one bar-code module reading.
-*/
+ * Structure is used for storing the results of one bar-code module reading.
+ */
 export interface iBinaryData {
   /**
    * Structure used to store the contents of Authentication_Info
@@ -35,10 +34,10 @@ export interface iBinaryData {
   RFID_EF_COM?: Record<string, unknown>
 
   /**
-  * Structure used to store the contents of EF.DG1 informational data group of
-  * ePassport application – document MRZ data
-  * @type {iRfidDG1}
-  */
+   * Structure used to store the contents of EF.DG1 informational data group of
+   * ePassport application – document MRZ data
+   * @type {iRfidDG1}
+   */
   RFID_DG1?: iRfidDG1
 
   /**
@@ -378,10 +377,10 @@ export interface iBinaryData {
   Digital_Signature?: Record<string, unknown>
 
   /**
-  * Structure is used to describe the results of work with the SDK within the context of the current communication
-  * session with electronic document
-  * @type {iRfidSession}
-  */
+   * Structure is used to describe the results of work with the SDK within the context of the current communication
+   * session with electronic document
+   * @type {iRfidSession}
+   */
   RFID_Session_Data?: iRfidSession
 
   /**
@@ -391,15 +390,15 @@ export interface iBinaryData {
   RFID_Session_Data_Status?: DetailsRFID
 
   /**
-  * Indexes of groups that aren't read
-  * @type {eRfidDataFileType[]|undefined}
-  */
+   * Indexes of groups that aren't read
+   * @type {eRfidDataFileType[]|undefined}
+   */
   RFID_ePassp_Directory?: eRfidDataFileType[]
 }
 
 /**
-* Structure is used for storing the results of one bar-code module reading.
-*/
+ * Structure is used for storing the results of one bar-code module reading.
+ */
 export class BinaryData implements iBinaryData {
   /**
    * Structure used to store the contents of Authentication_Info
@@ -430,10 +429,10 @@ export class BinaryData implements iBinaryData {
   RFID_EF_COM?: Record<string, unknown>
 
   /**
-  * Structure used to store the contents of EF.DG1 informational data group of
-  * ePassport application – document MRZ data
-  * @type {RfidDG1}
-  */
+   * Structure used to store the contents of EF.DG1 informational data group of
+   * ePassport application – document MRZ data
+   * @type {RfidDG1}
+   */
   @IsOptional()
   @ValidateNested()
   @Type(() => RfidDG1)
@@ -832,10 +831,10 @@ export class BinaryData implements iBinaryData {
   Digital_Signature?: Record<string, unknown>
 
   /**
-  * Structure is used to describe the results of work with the SDK within the context of the current communication
-  * session with electronic document
-  * @type {RfidSession}
-  */
+   * Structure is used to describe the results of work with the SDK within the context of the current communication
+   * session with electronic document
+   * @type {RfidSession}
+   */
   @IsOptional()
   @ValidateNested()
   @Type(() => RfidSession)
@@ -851,9 +850,9 @@ export class BinaryData implements iBinaryData {
   RFID_Session_Data_Status?: DetailsRFID
 
   /**
-  * Indexes of groups that aren't read
-  * @type {eRfidDataFileType[]|undefined}
-  */
+   * Indexes of groups that aren't read
+   * @type {eRfidDataFileType[]|undefined}
+   */
   @IsOptional()
   @IsArray()
   @IsEnum(eRfidDataFileType, { each: true })

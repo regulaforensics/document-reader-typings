@@ -5,46 +5,45 @@ import { iRect, Rect } from '@/models/common/rect'
 import { Default } from '@/decorators'
 import { iPointArray, PointArray } from './children'
 
-
 /**
-* Structure serves for storage areas and contours.
-*/
+ * Structure serves for storage areas and contours.
+ */
 export interface iAreaArray {
   /**
-  * Number of elements in List and Points
-  * @type {number}
-  */
+   * Number of elements in List and Points
+   * @type {number}
+   */
   Count: number
 
   /**
-  * Array of areas
-  * @type {iRect[]}
-  */
+   * Array of areas
+   * @type {iRect[]}
+   */
   List: iRect[]
 
   /**
-  * Array of points
-  * @type {iPointArray[]}
-  */
+   * Array of points
+   * @type {iPointArray[]}
+   */
   Points: iPointArray[]
 }
 
 /**
-* Structure serves for storage areas and contours.
-*/
+ * Structure serves for storage areas and contours.
+ */
 export class AreaArray implements iAreaArray {
   /**
-  * Number of elements in List and Points
-  * @type {number}
-  */
+   * Number of elements in List and Points
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
   Count: number
 
   /**
-  * Array of areas
-  * @type {Rect[]}
-  */
+   * Array of areas
+   * @type {Rect[]}
+   */
   @IsDefined()
   @ValidateNested({ each: true })
   @IsArray()
@@ -53,9 +52,9 @@ export class AreaArray implements iAreaArray {
   List: Rect[]
 
   /**
-  * Array of points
-  * @type {PointArray[]}
-  */
+   * Array of points
+   * @type {PointArray[]}
+   */
   @IsDefined()
   @ValidateNested({ each: true })
   @IsArray()

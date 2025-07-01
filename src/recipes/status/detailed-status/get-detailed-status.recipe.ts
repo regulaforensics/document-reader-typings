@@ -7,9 +7,8 @@ import {
   RDetailedStatus,
   RDetailedStatusOptical,
   RDetailedStatusRfid,
-  RDetailedStatusSummary
+  RDetailedStatusSummary,
 } from './models'
-
 
 export const getDetailedStatus = (input: ProcessResponse): RDetailedStatus => {
   const result = new RDetailedStatus()

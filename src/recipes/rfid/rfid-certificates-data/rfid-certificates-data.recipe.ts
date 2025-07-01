@@ -3,14 +3,16 @@ import { eRfidCertificateType } from '@/consts'
 import { convertGeneralizedDateToLocal } from '@/helpers'
 import { RRfidCertificate } from './models'
 
-
 /**
-* Get Rfid certificates data
-* @param {ProcessResponse} input
-* @param {string} [defaultValue='UNKNOWN'] - default value
-* @returns {RRfidCertificate[]}
-*/
-export const getRfidCertificatesData = (input: ProcessResponse, defaultValue: string = 'UNKNOWN'): RRfidCertificate[] => {
+ * Get Rfid certificates data
+ * @param {ProcessResponse} input
+ * @param {string} [defaultValue='UNKNOWN'] - default value
+ * @returns {RRfidCertificate[]}
+ */
+export const getRfidCertificatesData = (
+  input: ProcessResponse,
+  defaultValue: string = 'UNKNOWN',
+): RRfidCertificate[] => {
   const binary = DocBinaryInfoContainer.fromProcessResponse(input)
   const result: RRfidCertificate[] = []
 

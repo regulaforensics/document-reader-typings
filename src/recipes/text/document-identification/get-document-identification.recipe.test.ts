@@ -6,7 +6,6 @@ import { ProcessResponse } from '@/models'
 import { RDocumentIdentification } from './models'
 import { getDocumentIdentification } from './get-document-identification.recipe'
 
-
 const DIRECTORY = String(process.env.PROCESS_RESPONSE_JSONS_DIR)
 
 describe('getDocumentIdentification', () => {

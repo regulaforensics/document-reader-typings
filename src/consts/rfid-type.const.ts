@@ -1,21 +1,21 @@
 /**
-* Enumeration contains a set of constants specifying the type of the RFID-chip
-* by the physical parameters of connection between antennas of the chip and the reader
-* @enum {number}
-*/
+ * Enumeration contains a set of constants specifying the type of the RFID-chip
+ * by the physical parameters of connection between antennas of the chip and the reader
+ * @enum {number}
+ */
 export enum eRfidType {
   /**
-  * Unknown
-  */
+   * Unknown
+   */
   UNKNOWN = 0,
 
   /**
-  * Type «A»
-  */
+   * Type «A»
+   */
   A = 1,
 
   /**
-  * Type «B»
-  */
+   * Type «B»
+   */
   B = 2,
 }

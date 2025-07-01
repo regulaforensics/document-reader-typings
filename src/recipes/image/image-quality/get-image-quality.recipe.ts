@@ -3,17 +3,15 @@ import { firstBy } from 'thenby'
 
 import { RImageQuality, RImageQualityCheck } from './models'
 
-
 /**
-* Get short version of image quality checks
-* @param {ProcessResponse} input
-* @returns {RImageQuality[]}
-*/
+ * Get short version of image quality checks
+ * @param {ProcessResponse} input
+ * @returns {RImageQuality[]}
+ */
 export const getImageQuality = (input: ProcessResponse): RImageQuality[] => {
   const result: RImageQuality[] = []
 
-  const containers = ImageQualityCheckListContainer.fromProcessResponse(input)
-    .sort(firstBy((i) => i.page_idx))
+  const containers = ImageQualityCheckListContainer.fromProcessResponse(input).sort(firstBy((i) => i.page_idx))
 
   containers.forEach((container) => {
     const current = new RImageQuality()

@@ -3,7 +3,6 @@ import { eCheckResult } from '@/consts'
 
 import { RTextData, RTextDataSource, RTextDataComparison } from './models'
 
-
 export const getTextData = (input: ProcessResponse): RTextData[] => {
   const result: RTextData[] = []
   const containers = TextResultContainer.fromProcessResponse(input)
@@ -13,7 +12,7 @@ export const getTextData = (input: ProcessResponse): RTextData[] => {
   }
 
   containers.forEach((container) => {
-    const availableSources = container.Text.availableSourceList.map(i => i.source)
+    const availableSources = container.Text.availableSourceList.map((i) => i.source)
 
     container.Text.fieldList.forEach((field) => {
       const current = new RTextData()
@@ -23,20 +22,21 @@ export const getTextData = (input: ProcessResponse): RTextData[] => {
       current.lcid = field.lcid
       current.checkResult = field.status
 
-      current.comparisonList = field.comparisonList?.map((i) => {
-        const current =  new RTextDataComparison()
+      current.comparisonList =
+        field.comparisonList?.map((i) => {
+          const current = new RTextDataComparison()
 
-        current.sourceLeft = i.sourceLeft
-        current.sourceRight = i.sourceRight
-        current.status = i.status
+          current.sourceLeft = i.sourceLeft
+          current.sourceRight = i.sourceRight
+          current.status = i.status
 
-        return current
-      }) || []
+          return current
+        }) || []
 
       current.bySource = []
 
       availableSources.forEach((source) => {
-        const validity = field.validityList.find(i => i.source === source)
+        const validity = field.validityList.find((i) => i.source === source)
         const sourceDataArray = field.valueList.filter((i) => i.source === source)
 
         sourceDataArray.forEach((i) => {
@@ -57,7 +57,6 @@ export const getTextData = (input: ProcessResponse): RTextData[] => {
 
           current.bySource.push(currentSource)
         })
-
       })
 
       if (current.bySource.length) {

@@ -1,1 +1,1 @@
-export * from "./trf-ft-bytes.model"
+export * from './trf-ft-bytes.model'

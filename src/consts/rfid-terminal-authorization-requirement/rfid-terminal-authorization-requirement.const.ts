@@ -1,7 +1,7 @@
 /**
-* Enumeration contains a set of constants used in setting the combination of access rights to information and
-* functional capabilities requested from the RFID-chip (or delegated by it)
-*/
+ * Enumeration contains a set of constants used in setting the combination of access rights to information and
+ * functional capabilities requested from the RFID-chip (or delegated by it)
+ */
 export enum eRfidTerminalAuthorizationRequirement {
   IS_E_PASSPORT_DG3 = 0x00000001,
   IS_E_PASSPORT_DG4 = 0x00000002,
@@ -27,13 +27,13 @@ export enum eRfidTerminalAuthorizationRequirement {
   AT_EID_READ_DG19 = 0x00040000,
   AT_EID_READ_DG20 = 0x00080000,
   AT_EID_READ_DG21 = 0x00100000,
-  AT_EID_READ_ALL_DG = 0x001FFFFF,
+  AT_EID_READ_ALL_DG = 0x001fffff,
   AT_EID_WRITE_DG17 = 0x00200000,
   AT_EID_WRITE_DG18 = 0x00400000,
   AT_EID_WRITE_DG19 = 0x00800000,
   AT_EID_WRITE_DG20 = 0x01000000,
   AT_EID_WRITE_DG21 = 0x02000000,
-  AT_EID_WRITE_ALL_DG = 0x03E00000,
+  AT_EID_WRITE_ALL_DG = 0x03e00000,
   AT_FUNC_INSTALL_Q_CERT = 0x00000001,
   AT_FUNC_INSTALL_CERT = 0x00000002,
   AT_FUNC_PIN_MANAGEMENT = 0x00000004,
@@ -42,7 +42,7 @@ export enum eRfidTerminalAuthorizationRequirement {
   AT_FUNC_RESTRICTED_IDENT = 0x00000020,
   AT_FUNC_VERIFY_COMMUNITY_ID = 0x00000040,
   AT_FUNC_VERIFY_AGE = 0x00000080,
-  AT_FUNC_FULL = 0x000000FF,
+  AT_FUNC_FULL = 0x000000ff,
   ST_GEN_QUALIFIED_SIGNATURE = 0x00000001,
   ST_GEN_SIGNATURE = 0x00000002,
   ST_GEN_FULL = 0x00000003,

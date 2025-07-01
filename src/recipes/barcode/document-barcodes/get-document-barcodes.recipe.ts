@@ -2,12 +2,11 @@ import { DocBarCodeInfoContainer, ProcessResponse } from '@/models'
 import { eBarCodeResultCodes, eBarCodeType } from '@/consts'
 import { RDocumentBarcode, RDocumentBarcodeField, RDocumentBarcodeModuleData } from './models'
 
-
 /**
-* Get information about barcodes from the document
-* @param {ProcessResponse} input - ProcessResponse from DocReader
-* @returns {RDocumentBarcode[]} - array of RDocumentBarcode
-*/
+ * Get information about barcodes from the document
+ * @param {ProcessResponse} input - ProcessResponse from DocReader
+ * @returns {RDocumentBarcode[]} - array of RDocumentBarcode
+ */
 export const getDocumentBarcodes = (input: ProcessResponse): RDocumentBarcode[] => {
   const result: RDocumentBarcode[] = []
   const containers = DocBarCodeInfoContainer.fromProcessResponse(input)
@@ -32,9 +31,9 @@ export const getDocumentBarcodes = (input: ProcessResponse): RDocumentBarcode[] 
       // field length
       data.bcDataModule?.map((bcModule) => {
         if (
-          typeof bcModule.mLength === 'undefined'
-          || typeof bcModule.mType === 'undefined'
-          || typeof bcModule.mData === 'undefined'
+          typeof bcModule.mLength === 'undefined' ||
+          typeof bcModule.mType === 'undefined' ||
+          typeof bcModule.mData === 'undefined'
         ) {
           return
         }
@@ -54,5 +53,5 @@ export const getDocumentBarcodes = (input: ProcessResponse): RDocumentBarcode[] 
     result.push(current)
   })
 
-  return result.filter(i => !!i.fields.length)
+  return result.filter((i) => !!i.fields.length)
 }

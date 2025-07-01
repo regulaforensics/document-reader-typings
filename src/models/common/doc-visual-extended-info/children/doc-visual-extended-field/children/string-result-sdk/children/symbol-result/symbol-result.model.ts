@@ -5,63 +5,62 @@ import { iRect, Rect } from '@/models/common/rect'
 import { Default } from '@/decorators'
 import { iSymbolCandidate, SymbolCandidate } from './children'
 
-
 /**
-* Structure describes the recognition result of one character from the document text field
-*/
+ * Structure describes the recognition result of one character from the document text field
+ */
 export interface iSymbolResult {
   /**
-  * Borders of area occupied by the symbol on the image
-  * @type {iRect}
-  */
+   * Borders of area occupied by the symbol on the image
+   * @type {iRect}
+   */
   SymbolRect: iRect
 
   /**
-  * Number of significant elements of ListOfCandidates array
-  * @type {number}
-  */
+   * Number of significant elements of ListOfCandidates array
+   * @type {number}
+   */
   CandidatesCount: number
 
   /**
-  * Array of candidate symbols. Sorted by descending of probability
-  * of recognition (the first element has the highest probability)
-  * @type {iSymbolCandidate[]}
-  */
+   * Array of candidate symbols. Sorted by descending of probability
+   * of recognition (the first element has the highest probability)
+   * @type {iSymbolCandidate[]}
+   */
   ListOfCandidates: iSymbolCandidate[]
 
   /**
-  * @internal
-  * @type {unknown}
-  */
+   * @internal
+   * @type {unknown}
+   */
   Reserved?: unknown
 }
 
 /**
-* Structure describes the recognition result of one character from the document text field
-*/
+ * Structure describes the recognition result of one character from the document text field
+ */
 export class SymbolResult implements iSymbolResult {
   /**
-  * Borders of area occupied by the symbol on the image
-  * @type {Rect}
-  */
+   * Borders of area occupied by the symbol on the image
+   * @type {Rect}
+   */
   @IsDefined()
   @ValidateNested()
   @Type(() => Rect)
   SymbolRect: Rect
 
   /**
-  * Number of significant elements of ListOfCandidates array
-  * @type {number}
-  */
+   * Number of significant elements of ListOfCandidates array
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
   CandidatesCount: number
 
   /**
-  * Array of candidate symbols. Sorted by descending of probability
-  * of recognition (the first element has the highest probability)
-  * @type {SymbolCandidate[]}
-  */
+   * Array of candidate symbols. Sorted by descending of probability
+   * of recognition (the first element has the highest probability)
+   * @type {SymbolCandidate[]}
+   */
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })
@@ -70,9 +69,9 @@ export class SymbolResult implements iSymbolResult {
   ListOfCandidates: SymbolCandidate[]
 
   /**
-  * @internal
-  * @type {unknown}
-  */
+   * @internal
+   * @type {unknown}
+   */
   @IsOptional()
   Reserved?: unknown
 }

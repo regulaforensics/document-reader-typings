@@ -3,10 +3,10 @@ import { eCheckResult, eRfidErrorCodes } from '@/consts'
 import { RRfidApplicationItem, iRRfidApplicationItem } from './models'
 
 /**
-* Data group status
-* @param {ProcessResponse} input
-* @returns {RRfidApplicationItem[]}
-*/
+ * Data group status
+ * @param {ProcessResponse} input
+ * @returns {RRfidApplicationItem[]}
+ */
 export const getRfidDataGroupsStatusList = (input: ProcessResponse): RRfidApplicationItem[] => {
   const binary = DocBinaryInfoContainer.fromProcessResponse(input)
 
@@ -18,7 +18,7 @@ export const getRfidDataGroupsStatusList = (input: ProcessResponse): RRfidApplic
     sessionData?.Applications.forEach((application) => {
       const applicationItem: iRRfidApplicationItem = {
         type: application.Type,
-        groups: []
+        groups: [],
       }
 
       application.Files.forEach((file) => {

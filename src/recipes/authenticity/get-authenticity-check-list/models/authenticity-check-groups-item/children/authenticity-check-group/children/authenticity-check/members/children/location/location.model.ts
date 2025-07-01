@@ -4,40 +4,39 @@ import { Type } from 'class-transformer'
 import { eLights } from '@/consts'
 import { iRRect, RRect } from '@/common-models'
 
-
 /**
-* Location
-*/
+ * Location
+ */
 export interface iRLocation {
   /**
-  * Light
-  * @type {eLights}
-  */
+   * Light
+   * @type {eLights}
+   */
   light?: eLights
 
   /**
-  * Rect
-  * @type {RRect[]}
-  */
+   * Rect
+   * @type {RRect[]}
+   */
   rect: iRRect[]
 }
 
 /**
-* Location
-*/
+ * Location
+ */
 export class RLocation implements iRLocation {
   /**
-  * Light
-  * @type {eLights}
-  */
+   * Light
+   * @type {eLights}
+   */
   @IsOptional()
   @IsEnum(eLights)
   light?: eLights
 
   /**
-  * Rect
-  * @type {RRect}
-  */
+   * Rect
+   * @type {RRect}
+   */
   @IsDefined()
   @Type(() => RRect)
   @ValidateNested({ each: true })

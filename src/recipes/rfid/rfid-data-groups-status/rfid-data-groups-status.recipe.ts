@@ -2,7 +2,6 @@ import { DocBinaryInfoContainer, ProcessResponse } from '@/models'
 import { eRfidApplicationType, eRfidDataFileType, eRfidErrorCodes } from '@/consts'
 import { eDataGroupReadStatus, RRfidDataGroupStatus } from './models'
 
-
 const getIndex = (dataGroup: eRfidDataFileType): number | undefined => {
   let mappedDg: number | undefined
 
@@ -121,10 +120,10 @@ const getIndex = (dataGroup: eRfidDataFileType): number | undefined => {
 }
 
 /**
-* Get Rfid checks summary
-* @param {ProcessResponse} input
-* @returns {RRfidDataGroupStatus[]}
-*/
+ * Get Rfid checks summary
+ * @param {ProcessResponse} input
+ * @returns {RRfidDataGroupStatus[]}
+ */
 export const getRfidDataGroupsStatus = (input: ProcessResponse): RRfidDataGroupStatus[] => {
   const binary = DocBinaryInfoContainer.fromProcessResponse(input)
 
@@ -136,9 +135,9 @@ export const getRfidDataGroupsStatus = (input: ProcessResponse): RRfidDataGroupS
 
     sessionData?.Applications.forEach((application, _, array) => {
       const chipType = application.Type
-      const tmp: { index: number,  status: eDataGroupReadStatus }[] = []
+      const tmp: { index: number; status: eDataGroupReadStatus }[] = []
 
-      if (chipType === eRfidApplicationType.eDTC_PC && array.length > 1) return;
+      if (chipType === eRfidApplicationType.eDTC_PC && array.length > 1) return
 
       application.Files.forEach((file) => {
         const dataGroup = file.Type
@@ -155,7 +154,7 @@ export const getRfidDataGroupsStatus = (input: ProcessResponse): RRfidDataGroupS
             break
           case eRfidErrorCodes.ERROR_NOT_AVAILABLE:
             status = eDataGroupReadStatus.NOT_AVAILABLE
-            break;
+            break
           case eRfidErrorCodes.ERROR_FAILED:
             status = eDataGroupReadStatus.FAILED
             break
@@ -164,7 +163,7 @@ export const getRfidDataGroupsStatus = (input: ProcessResponse): RRfidDataGroupS
         if (mappedDg) {
           tmp.push({
             index: mappedDg,
-            status
+            status,
           })
         }
       })
@@ -177,7 +176,7 @@ export const getRfidDataGroupsStatus = (input: ProcessResponse): RRfidDataGroupS
           if (index < 0) {
             tmp.push({
               index: indexToFind,
-              status: eDataGroupReadStatus.NOT_PERFORMED
+              status: eDataGroupReadStatus.NOT_PERFORMED,
             })
           }
         }
@@ -198,19 +197,26 @@ export const getRfidDataGroupsStatus = (input: ProcessResponse): RRfidDataGroupS
           case eRfidApplicationType.E_DL:
             fillTo = 14
             break
-          default:
+          default: {
             const groups = sorted.map((item) => item.index)
             const max = Math.max(...groups)
 
             if (groups.includes(2) && groups.includes(3) && groups.includes(8) && max <= 8) {
               fillTo = 8
-            } else if (groups.includes(1) && groups.includes(2) && groups.includes(6) && groups.includes(10) && max <= 10) {
+            } else if (
+              groups.includes(1) &&
+              groups.includes(2) &&
+              groups.includes(6) &&
+              groups.includes(10) &&
+              max <= 10
+            ) {
               fillTo = 10
             } else {
               fillTo = max
             }
 
             break
+          }
         }
 
         // fill array with missing data groups
@@ -218,7 +224,7 @@ export const getRfidDataGroupsStatus = (input: ProcessResponse): RRfidDataGroupS
           if (!sorted.find((item) => item.index === i)) {
             sorted.splice(i - 1, 0, {
               index: i,
-              status: eDataGroupReadStatus.NOT_AVAILABLE
+              status: eDataGroupReadStatus.NOT_AVAILABLE,
             })
           }
         }

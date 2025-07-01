@@ -1,6 +1,5 @@
 import { eCheckResult } from '@/consts'
 
-
 export const mergeStatuses = (checks: eCheckResult[]): eCheckResult => {
   let result: eCheckResult = eCheckResult.WAS_NOT_DONE
 

@@ -2,19 +2,18 @@ import { ProcessResponse, TextResultContainer } from '@/models'
 import { eCheckResult, eLCID, eVisualFieldType } from '@/consts'
 import { RNameSurname } from './models'
 
-
 /**
-* Get name, surname and LCID from ProcessResponse
-* @param {ProcessResponse} input - ProcessResponse
-* @param {string} unknownValue - value to return if name and surname not found
-* @returns {RNameSurname}
-*/
+ * Get name, surname and LCID from ProcessResponse
+ * @param {ProcessResponse} input - ProcessResponse
+ * @param {string} unknownValue - value to return if name and surname not found
+ * @returns {RNameSurname}
+ */
 export const getNameSurname = (input: ProcessResponse, unknownValue: string = 'UNKNOWN'): RNameSurname => {
   const containers = TextResultContainer.fromProcessResponse(input)
   const defaultValue = RNameSurname.fromPlain({
     value: unknownValue,
     checkResult: eCheckResult.ERROR,
-    lcid: eLCID.LATIN
+    lcid: eLCID.LATIN,
   })
 
   if (!containers.length) {
@@ -24,7 +23,9 @@ export const getNameSurname = (input: ProcessResponse, unknownValue: string = 'U
   for (let i = 0; i < containers.length; i++) {
     const container = containers[i]
     const { Text } = container
-    const latinIndex = Text.fieldList.findIndex((i) => i.lcid === eLCID.LATIN && i.fieldType === eVisualFieldType.SURNAME_AND_GIVEN_NAMES)
+    const latinIndex = Text.fieldList.findIndex(
+      (i) => i.lcid === eLCID.LATIN && i.fieldType === eVisualFieldType.SURNAME_AND_GIVEN_NAMES,
+    )
 
     if (latinIndex !== -1) {
       const field = Text.fieldList[latinIndex]
@@ -32,7 +33,7 @@ export const getNameSurname = (input: ProcessResponse, unknownValue: string = 'U
       return RNameSurname.fromPlain({
         value: field.value,
         checkResult: field.status,
-        lcid: field.lcid
+        lcid: field.lcid,
       })
     }
   }
@@ -48,7 +49,7 @@ export const getNameSurname = (input: ProcessResponse, unknownValue: string = 'U
         return RNameSurname.fromPlain({
           value: field.value,
           checkResult: field.status,
-          lcid: field.lcid
+          lcid: field.lcid,
         })
       }
     }

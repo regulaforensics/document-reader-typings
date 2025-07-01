@@ -5,7 +5,6 @@ import { eRfidApplicationType } from '@/consts'
 import { iRRfidDataGroupStatusItem, RRfidDataGroupStatusItem } from './rfid-data-group-status-item.model'
 import { AllowPrimitives } from '@/types'
 
-
 /**
  * Rfid application item
  */
@@ -49,7 +48,8 @@ export class RRfidApplicationItem implements iRRfidApplicationItem {
    * @param {AllowPrimitives<iRRfidApplicationItem>} input - plain object
    * @returns {RRfidApplicationItem}
    */
-  static fromPlain = (input: AllowPrimitives<iRRfidApplicationItem>): RRfidApplicationItem => plainToClass(RRfidApplicationItem, input)
+  static fromPlain = (input: AllowPrimitives<iRRfidApplicationItem>): RRfidApplicationItem =>
+    plainToClass(RRfidApplicationItem, input)
 
   /**
    * Gets validation errors of RRfidApplicationItem

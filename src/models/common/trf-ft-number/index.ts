@@ -1,1 +1,1 @@
-export * from "./trf-ft-number.model"
+export * from './trf-ft-number.model'

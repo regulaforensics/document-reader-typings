@@ -1,842 +1,842 @@
 /**
-* Locale id. Used to tag same typed fields declared in several languages.
-* For example: name can be provided in both native and latin variants.
-* Based on Microsoft locale id (https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).
-* @enum {number}
-*/
+ * Locale id. Used to tag same typed fields declared in several languages.
+ * For example: name can be provided in both native and latin variants.
+ * Based on Microsoft locale id (https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).
+ * @enum {number}
+ */
 export enum eLCID {
   /**
-  * Latin
-  */
+   * Latin
+   */
   LATIN = 0,
 
   /**
-  * Afrikaans
-  */
+   * Afrikaans
+   */
   AFRIKAANS = 1078,
 
   /**
-  * Albanian
-  */
+   * Albanian
+   */
   ALBANIAN = 1052,
 
   /**
-  * Arabic (Algeria)
-  */
+   * Arabic (Algeria)
+   */
   ARABIC_ALGERIA = 5121,
 
   /**
-  * Arabic (Bahrain)
-  */
+   * Arabic (Bahrain)
+   */
   ARABIC_BAHRAIN = 15361,
 
   /**
-  * Arabic (Egypt)
-  */
+   * Arabic (Egypt)
+   */
   ARABIC_EGYPT = 3073,
 
   /**
-  * Arabic (Iraq)
-  */
+   * Arabic (Iraq)
+   */
   ARABIC_IRAQ = 2049,
 
   /**
-  * Arabic (Jordan)
-  */
+   * Arabic (Jordan)
+   */
   ARABIC_JORDAN = 11265,
 
   /**
-  * Arabic (Kuwait)
-  */
+   * Arabic (Kuwait)
+   */
   ARABIC_KUWAIT = 13313,
 
   /**
-  * Arabic (Lebanon)
-  */
+   * Arabic (Lebanon)
+   */
   ARABIC_LEBANON = 12289,
 
   /**
-  * Arabic (Libya)
-  */
+   * Arabic (Libya)
+   */
   ARABIC_LIBYA = 4097,
 
   /**
-  * Arabic (Morocco)
-  */
+   * Arabic (Morocco)
+   */
   ARABIC_MOROCCO = 6145,
 
   /**
-  * Arabic (Oman)
-  */
+   * Arabic (Oman)
+   */
   ARABIC_OMAN = 8193,
 
   /**
-  * Arabic (Qatar)
-  */
+   * Arabic (Qatar)
+   */
   ARABIC_QATAR = 16385,
 
   /**
-  * Arabic (Saudi Arabia)
-  */
+   * Arabic (Saudi Arabia)
+   */
   ARABIC_SAUDI_ARABIA = 1025,
 
   /**
-  * Arabic (Syria)
-  */
+   * Arabic (Syria)
+   */
   ARABIC_SYRIA = 10241,
 
   /**
-  * Arabic (Tunisia)
-  */
+   * Arabic (Tunisia)
+   */
   ARABIC_TUNISIA = 7169,
 
   /**
-  * Arabic (U.A.E.)
-  */
+   * Arabic (U.A.E.)
+   */
   ARABIC_UAE = 14337,
 
   /**
-  * Arabic (Yemen)
-  */
+   * Arabic (Yemen)
+   */
   ARABIC_YEMEN = 9217,
 
   /**
-  * Armenian
-  */
+   * Armenian
+   */
   ARABIC_ARMENIAN = 1067,
 
   /**
-  * Azeri (Cyrillic)
-  */
+   * Azeri (Cyrillic)
+   */
   AZERI_CYRILIC = 2092,
 
   /**
-  * Azeri (Latin)
-  */
+   * Azeri (Latin)
+   */
   AZERI_LATIN = 1068,
 
   /**
-  * Basque
-  */
+   * Basque
+   */
   BASQUE = 1069,
 
   /**
-  * Belarusian
-  */
+   * Belarusian
+   */
   BELARUSIAN = 1059,
 
   /**
-  * Bulgarian
-  */
+   * Bulgarian
+   */
   BULGARIAN = 1026,
 
   /**
-  * Burmese
-  */
+   * Burmese
+   */
   BURMESE = 1109,
 
   /**
-  * Catalan
-  */
+   * Catalan
+   */
   CATALAN = 1027,
 
   /**
-  * Chinese (HongKong S.A.R.)
-  */
+   * Chinese (HongKong S.A.R.)
+   */
   CHINESE_HONGKONG_SAR = 3076,
 
   /**
-  * Chinese (Macao S.A.R.)
-  */
+   * Chinese (Macao S.A.R.)
+   */
   CHINESE_MACAO_SAR = 5124,
 
   /**
-  * Chinese
-  */
+   * Chinese
+   */
   CHINESE = 2052,
 
   /**
-  * Chinese (Singapore)
-  */
+   * Chinese (Singapore)
+   */
   CHINESE_SINGAPORE = 4100,
 
   /**
-  * Chinese (Taiwan)
-  */
+   * Chinese (Taiwan)
+   */
   CHINESE_TAIWAN = 1028,
 
   /**
-  * Croatian
-  */
+   * Croatian
+   */
   CROATIAN = 1050,
 
   /**
-  * Czech
-  */
+   * Czech
+   */
   CZECH = 1029,
 
   /**
-  * Danish
-  */
+   * Danish
+   */
   DANISH = 1030,
 
   /**
-  * Divehi
-  */
+   * Divehi
+   */
   DIVEHI = 1125,
 
   /**
-  * Dutch (Belgium)
-  */
+   * Dutch (Belgium)
+   */
   DUTCH_BELGIUM = 2067,
 
   /**
-  * Dutch (Netherlands)
-  */
+   * Dutch (Netherlands)
+   */
   DUTCH_NETHERLANDS = 1043,
 
   /**
-  * English (Australia)
-  */
+   * English (Australia)
+   */
   ENGLISH_AUSTRALIA = 3081,
 
   /**
-  * English (Belize)
-  */
+   * English (Belize)
+   */
   ENGLISH_BELIZE = 10249,
 
   /**
-  * English (Canada)
-  */
+   * English (Canada)
+   */
   ENGLISH_CANADA = 4105,
 
   /**
-  * English (Caribbean)
-  */
+   * English (Caribbean)
+   */
   ENGLISH_CARRIBEAN = 9225,
 
   /**
-  * English (Ireland)
-  */
+   * English (Ireland)
+   */
   ENGLISH_IRELAND = 6153,
 
   /**
-  * English (Jamaica)
-  */
+   * English (Jamaica)
+   */
   ENGLISH_JAMAICA = 8201,
 
   /**
-  * English (New Zealand)
-  */
+   * English (New Zealand)
+   */
   ENGLISH_NEW_ZEALAND = 5129,
 
   /**
-  * English (Philippines)
-  */
+   * English (Philippines)
+   */
   ENGLISH_PHILIPPINES = 13321,
 
   /**
-  * English (South Africa)
-  */
+   * English (South Africa)
+   */
   ENGLISH_SOUTH_AFRICA = 7177,
 
   /**
-  * English (Trinidad)
-  */
+   * English (Trinidad)
+   */
   ENGLISH_TRINIDAD = 11273,
 
   /**
-  * English (United Kingdom)
-  */
+   * English (United Kingdom)
+   */
   ENGLISH_UK = 2057,
 
   /**
-  * English (United States)
-  */
+   * English (United States)
+   */
   ENGLISH_US = 1033,
 
   /**
-  * English (Zimbabwe)
-  */
+   * English (Zimbabwe)
+   */
   ENGLISH_ZIMBABWE = 12297,
 
   /**
-  * Estonian
-  */
+   * Estonian
+   */
   ESTONIAN = 1061,
 
   /**
-  * Faeroese
-  */
+   * Faeroese
+   */
   FAEROESE = 1080,
 
   /**
-  * Farsi
-  */
+   * Farsi
+   */
   FARSI = 1065,
 
   /**
-  * Finnish
-  */
+   * Finnish
+   */
   FINNISH = 1035,
 
   /**
-  * French (Belgium)
-  */
+   * French (Belgium)
+   */
   FRENCH_BELGIUM = 2060,
 
   /**
-  * French (Canada)
-  */
+   * French (Canada)
+   */
   FRENCH_CANADA = 3084,
 
   /**
-  * French (France)
-  */
+   * French (France)
+   */
   FRENCH_FRANCE = 1036,
 
   /**
-  * French (Luxembourg)
-  */
+   * French (Luxembourg)
+   */
   FRENCH_LUXEMBOURG = 5132,
 
   /**
-  * French (Monaco)
-  */
+   * French (Monaco)
+   */
   FRENCH_MONACO = 6156,
 
   /**
-  * French (Switzerland)
-  */
+   * French (Switzerland)
+   */
   FRENCH_SWITZERLAND = 4108,
 
   /**
-  * FYRO Macedonian
-  */
+   * FYRO Macedonian
+   */
   FYRO_MACEDONIAN = 1071,
 
   /**
-  * Galician
-  */
+   * Galician
+   */
   GALICIAN = 1110,
 
   /**
-  * Sinhala
-  */
+   * Sinhala
+   */
   SINHALA = 1115,
 
   /**
-  * Georgian
-  */
+   * Georgian
+   */
   GEORGIAN = 1079,
 
   /**
-  * German (Austria)
-  */
+   * German (Austria)
+   */
   GERMAN_AUSTRIA = 3079,
 
   /**
-  * German (Germany)
-  */
+   * German (Germany)
+   */
   GERMAN_GERMANY = 1031,
 
   /**
-  * German (Liechtenstein)
-  */
+   * German (Liechtenstein)
+   */
   GERMAN_LIECHTENSTEIN = 5127,
 
   /**
-  * German (Luxembourg)
-  */
+   * German (Luxembourg)
+   */
   GERMAN_LUXEMBOURG = 4103,
 
   /**
-  * German (Switzerland)
-  */
+   * German (Switzerland)
+   */
   GERMAN_SWITZERLAND = 2055,
 
   /**
-  * Greek
-  */
+   * Greek
+   */
   GREEK = 1032,
 
   /**
-  * Gujarati
-  */
+   * Gujarati
+   */
   GUJARATI = 1095,
 
   /**
-  * Hebrew
-  */
+   * Hebrew
+   */
   HEBREW = 1037,
 
   /**
-  * Hindi (India)
-  */
+   * Hindi (India)
+   */
   HINDI_INDIA = 1081,
 
   /**
-  * Hungarian
-  */
+   * Hungarian
+   */
   HUNGARIAN = 1038,
 
   /**
-  * Icelandic
-  */
+   * Icelandic
+   */
   ICELANDIC = 1039,
 
   /**
-  * Indonesian
-  */
+   * Indonesian
+   */
   INDONESIAN = 1057,
 
   /**
-  * Italian (Italy)
-  */
+   * Italian (Italy)
+   */
   ITALIAN_ITALY = 1040,
 
   /**
-  * Italian (Switzerland)
-  */
+   * Italian (Switzerland)
+   */
   ITALIAN_SWITZERLAND = 2064,
 
   /**
-  * Japanese
-  */
+   * Japanese
+   */
   JAPANESE = 1041,
 
   /**
-  * Kannada
-  */
+   * Kannada
+   */
   KANNADA = 1099,
 
   /**
-  * Kazakh
-  */
+   * Kazakh
+   */
   KAZAKH = 1087,
 
   /**
-  * Khmer
-  */
+   * Khmer
+   */
   KHMER = 1107,
 
   /**
-  * Konkani
-  */
+   * Konkani
+   */
   KONKANI = 1111,
 
   /**
-  * Korean
-  */
+   * Korean
+   */
   KOREAN = 1042,
 
   /**
-  * Kyrgyz (Cyrillic)
-  */
+   * Kyrgyz (Cyrillic)
+   */
   KYRGYZ_CYRILICK = 1088,
 
   /**
-  * Latvian
-  */
+   * Latvian
+   */
   LATVIAN = 1062,
 
   /**
-  * Lithuanian
-  */
+   * Lithuanian
+   */
   LITHUANIAN = 1063,
 
   /**
-  * Malay (Malaysia)
-  */
+   * Malay (Malaysia)
+   */
   MALAY_MALAYSIA = 1086,
 
   /**
-  * Malay (Brunei Darussalam)
-  */
+   * Malay (Brunei Darussalam)
+   */
   MALAY_BRUNEI_DARUSSALAM = 2110,
 
   /**
-  * Maltese
-  */
+   * Maltese
+   */
   MALTESE = 1082,
 
   /**
-  * Marathi
-  */
+   * Marathi
+   */
   MARATHI = 1102,
 
   /**
-  * Mongolian (Cyrillic)
-  */
+   * Mongolian (Cyrillic)
+   */
   MONGOLIAN_CYRILIC = 1104,
 
   /**
-  * Norwegian (Bokmal)
-  */
+   * Norwegian (Bokmal)
+   */
   NORWEGIAN_BOKMAL = 1044,
 
   /**
-  * Norwegian (Nynorsk)
-  */
+   * Norwegian (Nynorsk)
+   */
   NORWEGIAN_NYORSK = 2068,
 
   /**
-  * Polish
-  */
+   * Polish
+   */
   POLISH = 1045,
 
   /**
-  * Portuguese (Brazil)
-  */
+   * Portuguese (Brazil)
+   */
   PORTUGUESE_BRAZIL = 1046,
 
   /**
-  * Portuguese (Portugal)
-  */
+   * Portuguese (Portugal)
+   */
   PORTUGUESE_PORTUGAL = 2070,
 
   /**
-  * Punjabi
-  */
+   * Punjabi
+   */
   PUNJABI = 1094,
 
   /**
-  * Rhaeto-Romanic
-  */
+   * Rhaeto-Romanic
+   */
   RHAETO_ROMANIC = 1047,
 
   /**
-  * Romanian
-  */
+   * Romanian
+   */
   ROMANIAN = 1048,
 
   /**
-  * Russian
-  */
+   * Russian
+   */
   RUSSIAN = 1049,
 
   /**
-  * Sanskrit
-  */
+   * Sanskrit
+   */
   SANSKRIT = 1103,
 
   /**
-  * Serbian (Cyrillic)
-  */
+   * Serbian (Cyrillic)
+   */
   SERBIAN_CYRILIC = 3098,
 
   /**
-  * Serbian (Latin)
-  */
+   * Serbian (Latin)
+   */
   SERBIAN_LATIN = 2074,
 
   /**
-  * Slovak
-  */
+   * Slovak
+   */
   SLOVAK = 1051,
 
   /**
-  * Slovenian
-  */
+   * Slovenian
+   */
   SLOVENIAN = 1060,
 
   /**
-  * Spanish (Argentina)
-  */
+   * Spanish (Argentina)
+   */
   SPANISH_ARGENTINA = 11274,
 
   /**
-  * Spanish (Bolivia)
-  */
+   * Spanish (Bolivia)
+   */
   SPANISH_BOLIVIA = 16394,
 
   /**
-  * Spanish (Chile)
-  */
+   * Spanish (Chile)
+   */
   SPANISH_CHILE = 13322,
 
   /**
-  * Spanish (Colombia)
-  */
+   * Spanish (Colombia)
+   */
   SPANICH_COLOMBIA = 9226,
 
   /**
-  * Spanish (Costa Rica)
-  */
+   * Spanish (Costa Rica)
+   */
   SPANISH_COSTA_RICA = 5130,
 
   /**
-  * Spanish (Dominican Republic)
-  */
+   * Spanish (Dominican Republic)
+   */
   SPANISH_DOMINICAN_REPUBLIC = 7178,
 
   /**
-  * Spanish (Ecuador)
-  */
+   * Spanish (Ecuador)
+   */
   SPANISH_ECUADOR = 12298,
 
   /**
-  * Spanish (El Salvador)
-  */
+   * Spanish (El Salvador)
+   */
   SPANISH_EL_SALVADOR = 17418,
 
   /**
-  * Spanish (Guatemala)
-  */
+   * Spanish (Guatemala)
+   */
   SPANISH_GUATEMALA = 4106,
 
   /**
-  * Spanish (Honduras)
-  */
+   * Spanish (Honduras)
+   */
   SPANISH_HONDURAS = 18442,
 
   /**
-  * Spanish (Mexico)
-  */
+   * Spanish (Mexico)
+   */
   SPANISH_MEXICO = 2058,
 
   /**
-  * Spanish (Nicaragua)
-  */
+   * Spanish (Nicaragua)
+   */
   SPANISH_NICARAGUA = 19466,
 
   /**
-  * Spanish (Panama)
-  */
+   * Spanish (Panama)
+   */
   SPANISH_PANAMA = 6154,
 
   /**
-  * Spanish (Paraguay)
-  */
+   * Spanish (Paraguay)
+   */
   SPANISH_PARAGUAY = 15370,
 
   /**
-  * Spanish (Peru)
-  */
+   * Spanish (Peru)
+   */
   SPANISH_PERU = 10250,
 
   /**
-  * Spanish (Puerto Rico)
-  */
+   * Spanish (Puerto Rico)
+   */
   SPANISH_PUERTO_RICO = 20490,
 
   /**
-  * Spanish (Traditional Sort)
-  */
+   * Spanish (Traditional Sort)
+   */
   SPANISH_TRADITIONAL_SORT = 1034,
 
   /**
-  * Spanish (International Sort)
-  */
+   * Spanish (International Sort)
+   */
   SPANISH_INTERNATIONAL_SORT = 3082,
 
   /**
-  * Spanish (Uruguay)
-  */
+   * Spanish (Uruguay)
+   */
   SPANISH_URUGUAY = 14346,
 
   /**
-  * Spanish (Venezuela)
-  */
+   * Spanish (Venezuela)
+   */
   SPANISH_VENEZUELA = 8202,
 
   /**
-  * Swahili
-  */
+   * Swahili
+   */
   SWAHILI = 1089,
 
   /**
-  * Swedish
-  */
+   * Swedish
+   */
   SWEDISH = 1053,
 
   /**
-  * Swedish (Finland)
-  */
+   * Swedish (Finland)
+   */
   SWEDISH_FINLAND = 2077,
 
   /**
-  * Syriac
-  */
+   * Syriac
+   */
   SYRIAC = 1114,
 
   /**
-  * Tamil
-  */
+   * Tamil
+   */
   TAMIL = 1097,
 
   /**
-  * Tatar
-  */
+   * Tatar
+   */
   TATAR = 1092,
 
   /**
-  * Telugu
-  */
+   * Telugu
+   */
   TELUGU = 1098,
 
   /**
-  * Thai (Thailand)
-  */
+   * Thai (Thailand)
+   */
   THAI_THAILAND = 1054,
 
   /**
-  * Turkish
-  */
+   * Turkish
+   */
   TURKISH = 1055,
 
   /**
-  * Tajik (Cyrillic)
-  */
+   * Tajik (Cyrillic)
+   */
   TAJIK_CYRILLIC = 1064,
 
   /**
-  * Turkmen
-  */
+   * Turkmen
+   */
   TURKMEN = 1090,
 
   /**
-  * Ukrainian
-  */
+   * Ukrainian
+   */
   UKRAINIAN = 1058,
 
   /**
-  * Urdu
-  */
+   * Urdu
+   */
   URDU = 1056,
 
   /**
-  * Uzbek (Cyrillic)
-  */
+   * Uzbek (Cyrillic)
+   */
   UZBEK_CYRILIC = 2115,
 
   /**
-  * Uzbek (Latin)
-  */
+   * Uzbek (Latin)
+   */
   UZBEK_LATIN = 1091,
 
   /**
-  * Vietnamese
-  */
+   * Vietnamese
+   */
   VIETNAMESE = 1066,
 
   /**
-  * CTC Simplified
-  */
+   * CTC Simplified
+   */
   CTC_SIMPLIFIED = 50001,
 
   /**
-  * CTC Traditional
-  */
+   * CTC Traditional
+   */
   CTC_TRADITIONAL = 50002,
 
   /**
-  * Bengali (Bangladesh)
-  */
+   * Bengali (Bangladesh)
+   */
   BENGALI_BANGLADESH = 2117,
 
   /**
-  * BengaliIndia
-  */
+   * BengaliIndia
+   */
   BENGALI_INDIA = 1093,
 
   /**
-  * Assamese
-  */
+   * Assamese
+   */
   ASSAMESE = 1101,
 
   /**
-  * Oriya
-  */
+   * Oriya
+   */
   ORIYA = 1096,
 
   /**
-  * Malayalam
-  */
+   * Malayalam
+   */
   MALAYALAM = 1100,
 
   /**
-  * Lao
-  */
+   * Lao
+   */
   LAO = 1108,
 
   /**
-  * Sindhi (India)
-  */
+   * Sindhi (India)
+   */
   SINDHI_INDIA = 1113,
 
   /**
-  * Amharic
-  */
+   * Amharic
+   */
   AMHARIC = 1118,
 
   /**
-  * Kashmiri
-  */
+   * Kashmiri
+   */
   KASHMIRI = 1120,
 
   /**
-  * Nepali
-  */
+   * Nepali
+   */
   NEPALI = 1121,
 
   /**
-  * Pashto
-  */
+   * Pashto
+   */
   PASHTO = 1123,
 
   /**
-  * Sindhi
-  */
+   * Sindhi
+   */
   SINDHI = 2137,
 
   /**
-  * Arabic (World)
-  */
+   * Arabic (World)
+   */
   ARABIC = 4096,
 
   /**
-  * Bank Card Number
-  */
+   * Bank Card Number
+   */
   BANK_CARD_NUMBER = 10000,
 
   /**
-  * Bank Card Expiry Date
-  */
+   * Bank Card Expiry Date
+   */
   BANK_CARD_EXPIRY_DATE = 10001,
 
   /**
-  * Bank Card Name
-  */
+   * Bank Card Name
+   */
   BANK_CARD_NAME = 10002,
 
   /**
-  * Bank Card
-  */
+   * Bank Card
+   */
   BANK_CARD = 10003,
 
   /**
-  * Bank Card CVV2
-  */
+   * Bank Card CVV2
+   */
   BANK_CARD_CVV2 = 10004,
 
   /**
-  * Abkhazian (Cyrillic)
-  */
+   * Abkhazian (Cyrillic)
+   */
   ABKHAZIAN = 10011,
 
   /**
-  * Karakalpak (Latin)
-  */
+   * Karakalpak (Latin)
+   */
   KARAKALPAK = 10012,
 
   /**
-  * Urdu Detection
-  */
+   * Urdu Detection
+   */
   URDU_DETECTION = 10560,
 
   /**
    * Custom
    */
-  CUSTOM = 9999
+  CUSTOM = 9999,
 }

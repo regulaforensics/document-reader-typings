@@ -8,121 +8,124 @@ import { aContainer } from '../../container.abstract'
 import { iTextResult, TextResult } from './children'
 import { ProcessResponse } from '@/models'
 
-
 /**
-* Result type of TextResultContainer
-*/
+ * Result type of TextResultContainer
+ */
 export type tTextResultContainerResultType = eResultType.TEXT
 
 /**
-* Result type of TextResultContainer
-* @type {tTextResultContainerResultType[]}
-*/
-export const TextResultContainerResultTypes: tTextResultContainerResultType[] = [
-  eResultType.TEXT,
-]
+ * Result type of TextResultContainer
+ * @type {tTextResultContainerResultType[]}
+ */
+export const TextResultContainerResultTypes: tTextResultContainerResultType[] = [eResultType.TEXT]
 
 /**
-* Container for iTextResult
-*/
+ * Container for iTextResult
+ */
 export interface iTextResultContainer extends aContainer {
   /**
-  * Text result
-  * @type {iTextResult}
-  */
+   * Text result
+   * @type {iTextResult}
+   */
   Text: iTextResult
 
   /**
-  * Result type stored in this container
-  * @type {tTextResultContainerResultType}
-  */
+   * Result type stored in this container
+   * @type {tTextResultContainerResultType}
+   */
   result_type: tTextResultContainerResultType
 }
 
 /**
-* Container for TextResult
-*/
+ * Container for TextResult
+ */
 export class TextResultContainer extends aContainer implements iTextResultContainer {
   /**
-  * Lighting scheme code for the given result (used only for images)
-  * @type {number}
-  */
+   * Lighting scheme code for the given result (used only for images)
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
   @Default(eLights.OFF)
   light: number
 
   /**
-  * @internal
-  * @type {number}
-  */
+   * @internal
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
   @Default(0)
   list_idx: number
 
   /**
-  * Page index (when working with multi-page document)
-  * @type {number}
-  */
+   * Page index (when working with multi-page document)
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
   @Default(0)
   page_idx: number
 
   /**
-  * @internal
-  * @type {number}
-  */
+   * @internal
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
   @Default(0)
   buf_length: number
 
   /**
-  * Result type stored in this container
-  * @type {tTextResultContainerResultType}
-  */
+   * Result type stored in this container
+   * @type {tTextResultContainerResultType}
+   */
   @IsDefined()
   @IsEnum(eResultType)
   @IsIn(TextResultContainerResultTypes)
   result_type: tTextResultContainerResultType
 
   /**
-  * Text result
-  * @type {TextResult}
-  */
+   * Text result
+   * @type {TextResult}
+   */
   @IsDefined()
   @ValidateNested()
   @Type(() => TextResult)
   Text: TextResult
 
   /**
-  * Creates an instance of TextContainer from plain object
-  *
-  * @param {unknown} input - plain object
-  * @returns {TextResultContainer}
-  */
-  static fromPlain = (input: unknown): TextResultContainer => plainToClass(TextResultContainer, input, { exposeUnsetFields: false })
+   * Creates an instance of TextContainer from plain object
+   *
+   * @param {unknown} input - plain object
+   * @returns {TextResultContainer}
+   */
+  static fromPlain = (input: unknown): TextResultContainer =>
+    plainToClass(TextResultContainer, input, { exposeUnsetFields: false })
 
   /**
-  * Get TextResultContainer from ProcessResponse
-  * @param {ProcessResponse} input - ProcessResponse object
-  * @param {boolean} asPlain - if true, returns plain object
-  * @returns {(TextResultContainer|iTextResultContainer)[]}
-  */
-  static fromProcessResponse(input: ProcessResponse, asPlain: true): iTextResultContainer[];
-  static fromProcessResponse(input: ProcessResponse, asPlain?: false): TextResultContainer[];
-  static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (TextResultContainer|iTextResultContainer)[] {
+   * Get TextResultContainer from ProcessResponse
+   * @param {ProcessResponse} input - ProcessResponse object
+   * @param {boolean} asPlain - if true, returns plain object
+   * @returns {(TextResultContainer|iTextResultContainer)[]}
+   */
+  static fromProcessResponse(input: ProcessResponse, asPlain: true): iTextResultContainer[]
+  static fromProcessResponse(input: ProcessResponse, asPlain?: false): TextResultContainer[]
+  static fromProcessResponse(
+    input: ProcessResponse,
+    asPlain: boolean = false,
+  ): (TextResultContainer | iTextResultContainer)[] {
     try {
       const { ContainerList } = input
 
       const result = ContainerList.List.filter((container): container is TextResultContainer =>
-        TextResultContainerResultTypes.includes(<tTextResultContainerResultType>container.result_type)
+        TextResultContainerResultTypes.includes(<tTextResultContainerResultType>container.result_type),
       )
 
       if (asPlain) {
-        return result.map((container) => instanceToPlain(container, {exposeUnsetFields: false}) as iTextResultContainer)
+        return result.map(
+          (container) => instanceToPlain(container, { exposeUnsetFields: false }) as iTextResultContainer,
+        )
       }
 
       return result
@@ -132,17 +135,20 @@ export class TextResultContainer extends aContainer implements iTextResultContai
   }
 
   /**
-  * Check if the given instance of TextContainer is valid
-  *
-  * @param {TextResultContainer} instance - instance of TextContainer to validate
-  * @throws {DocReaderTypeError}
-  * @returns {true | never}
-  */
+   * Check if the given instance of TextContainer is valid
+   *
+   * @param {TextResultContainer} instance - instance of TextContainer to validate
+   * @throws {DocReaderTypeError}
+   * @returns {true | never}
+   */
   static validate = (instance: TextResultContainer): true | never => {
     const errors = validateSync(TextResultContainer.fromPlain(instance))
 
     if (errors.length) {
-      throw new DocReaderTypeError('TextResultContainer validation error: the data received does not match model structure!', errors)
+      throw new DocReaderTypeError(
+        'TextResultContainer validation error: the data received does not match model structure!',
+        errors,
+      )
     }
 
     return true

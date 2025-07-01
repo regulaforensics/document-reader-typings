@@ -6,7 +6,6 @@ import { ProcessResponse } from '@/models'
 import { RTextData } from './models'
 import { getTextData } from './get-text-data.recipe'
 
-
 const DIRECTORY = String(process.env.PROCESS_RESPONSE_JSONS_DIR)
 
 describe('getTextData', () => {

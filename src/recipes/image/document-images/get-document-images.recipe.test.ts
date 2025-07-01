@@ -6,7 +6,6 @@ import { ProcessResponse } from '@/models'
 import { RDocumentImage } from './models'
 import { getDocumentImages } from './get-document-images.recipe'
 
-
 const DIRECTORY = String(process.env.PROCESS_RESPONSE_JSONS_DIR)
 
 describe('getDocumentImage', () => {
@@ -37,8 +36,8 @@ describe('getDocumentImage', () => {
 
     const docReaderResponse = ProcessResponse.fromPlain(response)
 
-    test(`file '${file}': should return non-empty array of images`, async() => {
-      let result: RDocumentImage[] = await getDocumentImages(docReaderResponse)
+    test(`file '${file}': should return non-empty array of images`, async () => {
+      const result: RDocumentImage[] = await getDocumentImages(docReaderResponse)
 
       expect(result.length).toBeGreaterThan(0)
     })

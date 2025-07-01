@@ -1,13 +1,14 @@
-import { parse, format, addMinutes } from 'date-fns'
-
+import { addMinutes } from 'date-fns/addMinutes'
+import { format } from 'date-fns/format'
+import { parse } from 'date-fns/parse'
 
 /**
-* Converts a generalized date string to a local date string.
-* @param {string} dateStr - Generalized date string
-* @returns {string} Local date string
-*/
+ * Converts a generalized date string to a local date string.
+ * @param {string} dateStr - Generalized date string
+ * @returns {string} Local date string
+ */
 export const convertGeneralizedDateToLocal = (dateStr: string): string => {
-  const parsedDate = parse(dateStr, "yyMMddHHmmssX", new Date())
+  const parsedDate = parse(dateStr, 'yyMMddHHmmssX', new Date())
 
   const timeZoneOffsetInMinutes = new Date().getTimezoneOffset()
 

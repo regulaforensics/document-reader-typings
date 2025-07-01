@@ -1,7 +1,6 @@
 import { config } from 'dotenv'
 import { existsSync, readdirSync } from 'fs'
 
-
 const isDirectoryExists = (directory) => existsSync(directory)
 const fileCount = (directory) => {
   try {
@@ -11,10 +10,12 @@ const fileCount = (directory) => {
   }
 }
 
-const forCheck = [{
-  param: 'WHOLE_RESPONSE_JSONS_DIR',
-  answer: 'Directory with whole JSONs',
-}]
+const forCheck = [
+  {
+    param: 'WHOLE_RESPONSE_JSONS_DIR',
+    answer: 'Directory with whole JSONs',
+  },
+]
 
 config()
 

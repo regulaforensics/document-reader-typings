@@ -6,54 +6,54 @@ import { iTrfFtString, TrfFtString } from '@/models/common/trf-ft-string'
 import { iRfidAttributeName, RfidAttributeName } from './children'
 
 /**
-* Structure contains information that serves as the distinguished name (identifier) of an object.
-*/
+ * Structure contains information that serves as the distinguished name (identifier) of an object.
+ */
 export interface iRfidDistinguishedName {
   /**
-  * Contents of the identifier in binary form. Base64 encoded.
-  * @type {string}
-  */
+   * Contents of the identifier in binary form. Base64 encoded.
+   * @type {string}
+   */
   Data: string
 
   /**
-  * Text representation of the identifier (UTF8)
-  * @type {iTrfFtString}
-  */
+   * Text representation of the identifier (UTF8)
+   * @type {iTrfFtString}
+   */
   FriendlyName: iTrfFtString
 
   /**
-  * List of individual attributes contained in the identifier
-  * @type {iRfidAttributeName[]}
-  */
+   * List of individual attributes contained in the identifier
+   * @type {iRfidAttributeName[]}
+   */
   Attributes: iRfidAttributeName[]
 }
 
 /**
-* Structure contains information that serves as the distinguished name (identifier) of an object.
-*/
+ * Structure contains information that serves as the distinguished name (identifier) of an object.
+ */
 export class RfidDistinguishedName implements iRfidDistinguishedName {
   /**
-  * Contents of the identifier in binary form. Base64 encoded.
-  * @type {string}
-  */
+   * Contents of the identifier in binary form. Base64 encoded.
+   * @type {string}
+   */
   @IsDefined()
   @IsBase64()
   @IsString()
   Data: string
 
   /**
-  * Text representation of the identifier (UTF8)
-  * @type {TrfFtString}
-  */
+   * Text representation of the identifier (UTF8)
+   * @type {TrfFtString}
+   */
   @IsDefined()
   @Type(() => TrfFtString)
   @ValidateNested()
   FriendlyName: TrfFtString
 
   /**
-  * List of individual attributes contained in the identifier
-  * @type {iRfidAttributeName[]}
-  */
+   * List of individual attributes contained in the identifier
+   * @type {iRfidAttributeName[]}
+   */
   @IsDefined()
   @Type(() => RfidAttributeName)
   @ValidateNested({ each: true })

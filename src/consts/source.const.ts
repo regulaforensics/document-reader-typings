@@ -1,35 +1,35 @@
 /**
-* Document data sources.
-* @enum {string}
-*/
+ * Document data sources.
+ * @enum {string}
+ */
 export enum eSource {
   /**
-  * Machine readable zone (MRZ)
-  */
+   * Machine readable zone (MRZ)
+   */
   MRZ = 'MRZ',
 
   /**
-  * Visual zone
-  */
+   * Visual zone
+   */
   VISUAL = 'VISUAL',
 
   /**
-  * Barcode
-  */
+   * Barcode
+   */
   BARCODE = 'BARCODE',
 
   /**
-  * RFID
-  */
+   * RFID
+   */
   RFID = 'RFID',
 
   /**
-  * Magnetic
-  */
+   * Magnetic
+   */
   MAGNETIC = 'MAGNETIC',
 
   /**
-  * External
-  */
-  EXTERNAL = 'EXTERNAL'
+   * External
+   */
+  EXTERNAL = 'EXTERNAL',
 }

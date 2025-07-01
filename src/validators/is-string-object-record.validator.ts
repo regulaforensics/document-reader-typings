@@ -2,8 +2,8 @@ import { registerDecorator, ValidationArguments, ValidationOptions } from 'class
 
 import { isObject } from '@/helpers'
 
-
-export const IsStringObjectRecord = (validationOptions?: ValidationOptions): PropertyDecorator =>
+export const IsStringObjectRecord =
+  (validationOptions?: ValidationOptions): PropertyDecorator =>
   (object: Record<string, any>, propertyName: string | symbol): void => {
     registerDecorator({
       name: 'IsStringObjectRecord',
@@ -26,7 +26,7 @@ export const IsStringObjectRecord = (validationOptions?: ValidationOptions): Pro
 
           const keys = Object.keys(value)
 
-          return keys.every(key => {
+          return keys.every((key) => {
             if (typeof key !== 'string') {
               return false
             }

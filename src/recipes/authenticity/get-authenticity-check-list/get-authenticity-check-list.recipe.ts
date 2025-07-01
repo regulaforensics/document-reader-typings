@@ -5,7 +5,7 @@ import {
   AuthenticityOCRSecurityTextCheckResult,
   AuthenticityPhotoIdentCheckResult,
   AuthenticitySecurityFeatureCheckResult,
-  ProcessResponse
+  ProcessResponse,
 } from '@/models'
 import { eCheckDiagnose, eCheckResult, eLights, eSecurityFeatureType } from '@/consts'
 import {
@@ -15,10 +15,9 @@ import {
   RAuthenticityIdentCheck,
   RAuthenticityPhotoIdentCheck,
   RAuthenticitySecurityCheck,
-  RAuthenticityTextCheck
+  RAuthenticityTextCheck,
 } from './models'
 import { mergeStatuses } from '@/helpers'
-
 
 const skipFeatures = [
   eSecurityFeatureType.PORTRAIT_COMPARISON_VS_CAMERA,
@@ -48,27 +47,31 @@ export const getAuthenticityCheckList = (input: ProcessResponse): RAuthenticityC
           let groupIndex = current.groups.findIndex((group) => group.group === subItem.Type)
 
           if (groupIndex === -1) {
-            current.groups.push(RAuthenticityCheckGroup.fromPlain({
-              group: subItem.Type,
-              checkResult: item.Result,
-              checks: []
-            }))
+            current.groups.push(
+              RAuthenticityCheckGroup.fromPlain({
+                group: subItem.Type,
+                checkResult: item.Result,
+                checks: [],
+              }),
+            )
 
             groupIndex = current.groups.length - 1
           }
 
-          current.groups[groupIndex].checks.push(RAuthenticityFibersCheck.fromPlain({
-            colorValues: subItem.ColorValues,
-            rectCount: subItem.RectCount,
-            expectedCount: subItem.ExpectedCount,
-            checkType: subItem.Type,
-            location: {
-              light: undefined,
-              rect: subItem.RectArray,
-            },
-            diagnose: subItem.ElementDiagnose ?? eCheckDiagnose.UNKNOWN,
-            checkResult: subItem.ElementResult ?? eCheckResult.WAS_NOT_DONE,
-          }))
+          current.groups[groupIndex].checks.push(
+            RAuthenticityFibersCheck.fromPlain({
+              colorValues: subItem.ColorValues,
+              rectCount: subItem.RectCount,
+              expectedCount: subItem.ExpectedCount,
+              checkType: subItem.Type,
+              location: {
+                light: undefined,
+                rect: subItem.RectArray,
+              },
+              diagnose: subItem.ElementDiagnose ?? eCheckDiagnose.UNKNOWN,
+              checkResult: subItem.ElementResult ?? eCheckResult.WAS_NOT_DONE,
+            }),
+          )
         })
       }
 
@@ -83,28 +86,32 @@ export const getAuthenticityCheckList = (input: ProcessResponse): RAuthenticityC
           let groupIndex = current.groups.findIndex((group) => group.group === subItem.Type)
 
           if (groupIndex === -1) {
-            current.groups.push(RAuthenticityCheckGroup.fromPlain({
-              group: subItem.Type,
-              checkResult: item.Result,
-              checks: []
-            }))
+            current.groups.push(
+              RAuthenticityCheckGroup.fromPlain({
+                group: subItem.Type,
+                checkResult: item.Result,
+                checks: [],
+              }),
+            )
 
             groupIndex = current.groups.length - 1
           }
 
-          current.groups[groupIndex].checks.push(RAuthenticityIdentCheck.fromPlain({
-            checkType: subItem.Type,
-            checkResult: subItem.ElementResult ?? eCheckResult.WAS_NOT_DONE,
-            diagnose: subItem.ElementDiagnose ?? eCheckDiagnose.UNKNOWN,
-            image: subItem.Image.image,
-            referenceImage: subItem.EtalonImage.image,
-            similarity: subItem.PercentValue ?? 0,
-            type: subItem.ElementType,
-            location: {
-              light,
-              rect: subItem.Area ? [subItem.Area] : [],
-            }
-          }))
+          current.groups[groupIndex].checks.push(
+            RAuthenticityIdentCheck.fromPlain({
+              checkType: subItem.Type,
+              checkResult: subItem.ElementResult ?? eCheckResult.WAS_NOT_DONE,
+              diagnose: subItem.ElementDiagnose ?? eCheckDiagnose.UNKNOWN,
+              image: subItem.Image.image,
+              referenceImage: subItem.EtalonImage.image,
+              similarity: subItem.PercentValue ?? 0,
+              type: subItem.ElementType,
+              location: {
+                light,
+                rect: subItem.Area ? [subItem.Area] : [],
+              },
+            }),
+          )
         })
       }
 
@@ -113,42 +120,48 @@ export const getAuthenticityCheckList = (input: ProcessResponse): RAuthenticityC
 
         item.List.forEach((subItem) => {
           if (groupIndex === -1) {
-            current.groups.push(RAuthenticityCheckGroup.fromPlain({
-              group: subItem.Type,
-              checkResult: item.Result,
-              checks: []
-            }))
+            current.groups.push(
+              RAuthenticityCheckGroup.fromPlain({
+                group: subItem.Type,
+                checkResult: item.Result,
+                checks: [],
+              }),
+            )
 
             groupIndex = current.groups.length - 1
           }
 
-          current.groups[groupIndex].checks.push(RAuthenticityTextCheck.fromPlain({
-            reference: {
-              type: subItem.EtalonResultType,
-              reference: subItem.EtalonResultOCR,
-              result: subItem.SecurityTextResultOCR,
+          current.groups[groupIndex].checks.push(
+            RAuthenticityTextCheck.fromPlain({
+              reference: {
+                type: subItem.EtalonResultType,
+                reference: subItem.EtalonResultOCR,
+                result: subItem.SecurityTextResultOCR,
+                location: {
+                  light: subItem.EtalonLightType,
+                  rect: subItem.EtalonFieldRect ? [subItem.EtalonFieldRect] : [],
+                },
+              },
+              checkType: subItem.Type,
+              checkResult: subItem.ElementResult ?? eCheckResult.WAS_NOT_DONE,
+              type: subItem.EtalonFieldType,
+              diagnose: subItem.ElementDiagnose ?? eCheckDiagnose.UNKNOWN,
               location: {
-                light: subItem.EtalonLightType,
-                rect: subItem.EtalonFieldRect ? [subItem.EtalonFieldRect] : [],
-              }
-            },
-            checkType: subItem.Type,
-            checkResult: subItem.ElementResult ?? eCheckResult.WAS_NOT_DONE,
-            type: subItem.EtalonFieldType,
-            diagnose: subItem.ElementDiagnose ?? eCheckDiagnose.UNKNOWN,
-            location: {
-              light: subItem.LightType,
-              rect: subItem.FieldRect ? [subItem.FieldRect] : [],
-            }
-          }))
+                light: subItem.LightType,
+                rect: subItem.FieldRect ? [subItem.FieldRect] : [],
+              },
+            }),
+          )
         })
 
         if (!item.List?.length) {
-          current.groups.push(RAuthenticityCheckGroup.fromPlain({
-            group: item.Type,
-            checkResult: item.Result,
-            checks: []
-          }))
+          current.groups.push(
+            RAuthenticityCheckGroup.fromPlain({
+              group: item.Type,
+              checkResult: item.Result,
+              checks: [],
+            }),
+          )
         }
       }
 
@@ -160,25 +173,32 @@ export const getAuthenticityCheckList = (input: ProcessResponse): RAuthenticityC
             let groupIndex = current.groups.findIndex((group) => group.group === subItem.Type)
 
             if (groupIndex === -1) {
-              current.groups.push(RAuthenticityCheckGroup.fromPlain({
-                group: subItem.Type,
-                checkResult: item.Result,
-                checks: []
-              }))
+              current.groups.push(
+                RAuthenticityCheckGroup.fromPlain({
+                  group: subItem.Type,
+                  checkResult: item.Result,
+                  checks: [],
+                }),
+              )
 
               groupIndex = current.groups.length - 1
             }
 
-            current.groups[groupIndex].checks.push(RAuthenticityPhotoIdentCheck.fromPlain({
-              checkType: subItem.Type,
-              checkResult: subItem.ElementResult ?? eCheckResult.WAS_NOT_DONE,
-              diagnose: subItem.ElementDiagnose ?? eCheckDiagnose.UNKNOWN,
-              image: subItem.ResultImages.Images[0].image,
-              location: light === eLights.OFF ? undefined : {
-                light,
-                rect: subItem.Area ? [subItem.Area] : [],
-              }
-            }))
+            current.groups[groupIndex].checks.push(
+              RAuthenticityPhotoIdentCheck.fromPlain({
+                checkType: subItem.Type,
+                checkResult: subItem.ElementResult ?? eCheckResult.WAS_NOT_DONE,
+                diagnose: subItem.ElementDiagnose ?? eCheckDiagnose.UNKNOWN,
+                image: subItem.ResultImages.Images[0].image,
+                location:
+                  light === eLights.OFF
+                    ? undefined
+                    : {
+                        light,
+                        rect: subItem.Area ? [subItem.Area] : [],
+                      },
+              }),
+            )
           }
         })
       }
@@ -192,33 +212,39 @@ export const getAuthenticityCheckList = (input: ProcessResponse): RAuthenticityC
           }
 
           if (groupIndex === -1) {
-            current.groups.push(RAuthenticityCheckGroup.fromPlain({
-              group: subItem.Type,
-              checkResult: item.Result,
-              checks: []
-            }))
+            current.groups.push(
+              RAuthenticityCheckGroup.fromPlain({
+                group: subItem.Type,
+                checkResult: item.Result,
+                checks: [],
+              }),
+            )
 
             groupIndex = current.groups.length - 1
           }
 
-          current.groups[groupIndex].checks.push(RAuthenticitySecurityCheck.fromPlain({
-            checkType: subItem.Type,
-            checkResult: subItem.ElementResult ?? eCheckResult.WAS_NOT_DONE,
-            diagnose: subItem.ElementDiagnose ?? eCheckDiagnose.UNKNOWN,
-            feature: subItem.ElementType ?? eSecurityFeatureType.BLANK,
-            location: {
+          current.groups[groupIndex].checks.push(
+            RAuthenticitySecurityCheck.fromPlain({
+              checkType: subItem.Type,
+              checkResult: subItem.ElementResult ?? eCheckResult.WAS_NOT_DONE,
+              diagnose: subItem.ElementDiagnose ?? eCheckDiagnose.UNKNOWN,
+              feature: subItem.ElementType ?? eSecurityFeatureType.BLANK,
+              location: {
                 light: undefined,
                 rect: subItem.ElementRect ? [subItem.ElementRect] : [],
-              }
-          }))
+              },
+            }),
+          )
         })
 
         if (!item.List?.length) {
-          current.groups.push(RAuthenticityCheckGroup.fromPlain({
-            group: item.Type,
-            checkResult: item.Result,
-            checks: []
-          }))
+          current.groups.push(
+            RAuthenticityCheckGroup.fromPlain({
+              group: item.Type,
+              checkResult: item.Result,
+              checks: [],
+            }),
+          )
         }
       }
     })

@@ -3,7 +3,6 @@ import { existsSync, readdirSync, readFileSync } from 'fs'
 
 import { ProcessResponse } from '../src'
 
-
 const DIRECTORY = String(process.env.PROCESS_RESPONSE_JSONS_DIR)
 
 describe('testing ProcessResponse', () => {

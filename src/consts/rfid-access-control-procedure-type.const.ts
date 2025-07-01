@@ -1,46 +1,46 @@
 /**
-* Enumeration contains a set of constants that
-* define the type of authentication or secure data access procedure
-* @enum {number}
-*/
+ * Enumeration contains a set of constants that
+ * define the type of authentication or secure data access procedure
+ * @enum {number}
+ */
 export enum eRfidAccessControlProcedureType {
   /**
-  * Type is not defined
-  */
+   * Type is not defined
+   */
   UNDEFINED = 0,
 
   /**
-  * BAC/BAP
-  */
+   * BAC/BAP
+   */
   BAC = 1,
 
   /**
-  * PACE
-  */
+   * PACE
+   */
   PACE = 2,
 
   /**
-  * CA
-  */
+   * CA
+   */
   CA = 3,
 
   /**
-  * TA
-  */
+   * TA
+   */
   TA = 4,
 
   /**
-  * AA
-  */
+   * AA
+   */
   AA = 5,
 
   /**
-  * RI
-  */
+   * RI
+   */
   RI = 6,
 
   /**
-  * Card info
-  */
-  CARD_INFO = 10
+   * Card info
+   */
+  CARD_INFO = 10,
 }

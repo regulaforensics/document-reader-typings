@@ -1,5 +1,4 @@
-import pako from 'pako'
-
+import { inflate } from 'pako'
 
 /**
  * Decode the packed data
@@ -17,7 +16,7 @@ export const decode = (data: string): string => {
   let dataUintArray: Uint8Array
 
   try {
-    dataUintArray = pako.inflate(uintArray)
+    dataUintArray = inflate(uintArray)
   } catch {
     dataUintArray = uintArray
   }

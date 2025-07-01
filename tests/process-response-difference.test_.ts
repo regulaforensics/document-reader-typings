@@ -1,24 +1,22 @@
 /**
-* There is no need to cover whole response with types, only the most important parts.
-* This test is disabled.
-* @deprecated
-*/
+ * There is no need to cover whole response with types, only the most important parts.
+ * This test is disabled.
+ * @deprecated
+ */
 import { join } from 'path'
 import { existsSync, readdirSync, readFileSync } from 'fs'
 import { diff } from 'deep-diff'
 
 import { ProcessResponse } from '../src'
 
-
 const pathsExclusions = readFileSync(join(__dirname, '..', '.excluded'), 'utf8')
   .trim()
   .split('\n')
-  .map(line => line.trim())
+  .map((line) => line.trim())
   .filter(Boolean)
-  .map(exclusion => new RegExp(`^${exclusion.replace(/\*/g, '.*')}$`))
+  .map((exclusion) => new RegExp(`^${exclusion.replace(/\*/g, '.*')}$`))
 
-const isPathExcluded = (path: string) => !pathsExclusions.every(exclusion => !exclusion.test(path))
-
+const isPathExcluded = (path: string) => !pathsExclusions.every((exclusion) => !exclusion.test(path))
 
 const DIRECTORY = String(process.env.PROCESS_RESPONSE_JSONS_DIR)
 
@@ -58,14 +56,15 @@ describe('testing ProcessResponse diff', () => {
       const differences = diff(response, processResponse) || []
 
       const paths = differences.map((difference) => {
-        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         const { path = [], index = undefined, ...rest } = difference
 
         const pathString = path.join('.')
         return index ? `${pathString}.${index}` : pathString
       })
 
-      const filteredPaths = paths.filter(path => !isPathExcluded(path))
+      const filteredPaths = paths.filter((path) => !isPathExcluded(path))
 
       expect(filteredPaths.length).toEqual(0)
     })

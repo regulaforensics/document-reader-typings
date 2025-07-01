@@ -5,7 +5,6 @@ import { join } from 'path'
 import { ProcessResponse } from '@/models'
 import { getRfidChecksSummary } from './get-rfid-checks-summary.recipe'
 
-
 const DIRECTORY = String(process.env.PROCESS_RESPONSE_JSONS_DIR)
 
 describe('getRfidChecksSummary', () => {

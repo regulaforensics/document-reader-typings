@@ -8,114 +8,119 @@ import { ProcessResponse } from '@/models'
 import { BoundsResult, iBoundsResult } from '@/models/common/bounds-result'
 import { aContainer } from '../../container.abstract'
 
+/**
+ * Result type of BoundsResultContainer
+ */
+export type tBoundsResultContainerResultType =
+  | eResultType.DOCUMENT_POSITION
+  | eResultType.MRZ_POSITION
+  | eResultType.BARCODE_POSITION
 
 /**
-* Result type of BoundsResultContainer
-*/
-export type tBoundsResultContainerResultType = eResultType.DOCUMENT_POSITION | eResultType.MRZ_POSITION | eResultType.BARCODE_POSITION
-
-/**
-* Result type of BoundsResultContainer
-* @type {tBoundsResultContainerResultType[]}
-*/
-export const BoundsResultContainerResultTypes: tBoundsResultContainerResultType[]= [
+ * Result type of BoundsResultContainer
+ * @type {tBoundsResultContainerResultType[]}
+ */
+export const BoundsResultContainerResultTypes: tBoundsResultContainerResultType[] = [
   eResultType.DOCUMENT_POSITION,
   eResultType.MRZ_POSITION,
-  eResultType.BARCODE_POSITION
+  eResultType.BARCODE_POSITION,
 ]
 
 /**
-* Container for iBoundsResult
-*/
+ * Container for iBoundsResult
+ */
 export interface iBoundsResultContainer extends aContainer {
   /**
-  * Document position
-  * @type {iBoundsResult|undefined}
-  */
+   * Document position
+   * @type {iBoundsResult|undefined}
+   */
   DocumentPosition: iBoundsResult
 
   /**
-  * Result type stored in this container
-  * @type {tBoundsResultContainerResultType}
-  */
+   * Result type stored in this container
+   * @type {tBoundsResultContainerResultType}
+   */
   result_type: tBoundsResultContainerResultType
 }
 
 /**
-* Container for BoundsResult
-*/
+ * Container for BoundsResult
+ */
 export class BoundsResultContainer extends aContainer implements iBoundsResultContainer {
   /**
-  * Lighting scheme code for the given result (used only for images)
-  * @type {number}
-  */
+   * Lighting scheme code for the given result (used only for images)
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
   @Default(eLights.OFF)
   light: number
 
   /**
-  * @internal
-  * @type {number}
-  */
+   * @internal
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
   @Default(0)
   list_idx: number
 
   /**
-  * Page index (when working with multi-page document)
-  * @type {number}
-  */
+   * Page index (when working with multi-page document)
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
   @Default(0)
   page_idx: number
 
   /**
-  * @internal
-  * @type {number}
-  */
+   * @internal
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
   @Default(0)
   buf_length: number
 
   /**
-  * Result type stored in this container
-  * @type {tBoundsResultContainerResultType}
-  */
+   * Result type stored in this container
+   * @type {tBoundsResultContainerResultType}
+   */
   @IsDefined()
   @IsEnum(eResultType)
   @IsIn(BoundsResultContainerResultTypes)
   result_type: tBoundsResultContainerResultType
 
   /**
-  * Document position
-  * @type {BoundsResult}
-  */
+   * Document position
+   * @type {BoundsResult}
+   */
   @IsDefined()
   @ValidateNested()
   @Type(() => BoundsResult)
   DocumentPosition: BoundsResult
 
   /**
-  * Create new instance of BoundsResultContainer from plain object
-  *
-  * @param {unknown} input - plain object
-  * @return {BoundsResultContainer}
-  */
+   * Create new instance of BoundsResultContainer from plain object
+   *
+   * @param {unknown} input - plain object
+   * @return {BoundsResultContainer}
+   */
   static fromPlain = (input: unknown): BoundsResultContainer => plainToClass(BoundsResultContainer, input)
 
   /**
-  * Get list of BoundsResultContainer from ProcessResponse
-  * @param {ProcessResponse} input - ProcessResponse object
-  * @param {boolean} asPlain - return as plain object
-  * @returns {(BoundsResultContainer | iBoundsResultContainer)[]}
-  */
-  static fromProcessResponse(input: ProcessResponse, asPlain: true): iBoundsResultContainer[];
-  static fromProcessResponse(input: ProcessResponse, asPlain?: false): BoundsResultContainer[];
-  static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (BoundsResultContainer|iBoundsResultContainer)[] {
+   * Get list of BoundsResultContainer from ProcessResponse
+   * @param {ProcessResponse} input - ProcessResponse object
+   * @param {boolean} asPlain - return as plain object
+   * @returns {(BoundsResultContainer | iBoundsResultContainer)[]}
+   */
+  static fromProcessResponse(input: ProcessResponse, asPlain: true): iBoundsResultContainer[]
+  static fromProcessResponse(input: ProcessResponse, asPlain?: false): BoundsResultContainer[]
+  static fromProcessResponse(
+    input: ProcessResponse,
+    asPlain: boolean = false,
+  ): (BoundsResultContainer | iBoundsResultContainer)[] {
     try {
       const { ContainerList } = input
 
@@ -124,26 +129,32 @@ export class BoundsResultContainer extends aContainer implements iBoundsResultCo
       }
 
       const result = ContainerList.List.filter((container): container is BoundsResultContainer =>
-        BoundsResultContainerResultTypes.includes(<tBoundsResultContainerResultType>container.result_type))
+        BoundsResultContainerResultTypes.includes(<tBoundsResultContainerResultType>container.result_type),
+      )
 
-      return asPlain ? result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iBoundsResultContainer) : result
+      return asPlain
+        ? result.map((container) => instanceToPlain(container, { exposeUnsetFields: false }) as iBoundsResultContainer)
+        : result
     } catch (error) {
       return []
     }
   }
 
   /**
-  * Check if the given instance of BoundsResultContainer is valid
-  *
-  * @param {BoundsResultContainer} instance - instance of BoundsResultContainer to validate
-  * @throws {DocReaderTypeError} - if BoundsResultContainer is not valid
-  * @return {true | never} - true if BoundsResultContainer is valid, never otherwise
-  */
+   * Check if the given instance of BoundsResultContainer is valid
+   *
+   * @param {BoundsResultContainer} instance - instance of BoundsResultContainer to validate
+   * @throws {DocReaderTypeError} - if BoundsResultContainer is not valid
+   * @return {true | never} - true if BoundsResultContainer is valid, never otherwise
+   */
   static validate = (instance: BoundsResultContainer): true | never => {
     const errors = validateSync(BoundsResultContainer.fromPlain(instance))
 
     if (errors.length) {
-      throw new DocReaderTypeError('BoundsResultContainer validation error: the data received does not match model structure!', errors)
+      throw new DocReaderTypeError(
+        'BoundsResultContainer validation error: the data received does not match model structure!',
+        errors,
+      )
     }
 
     return true

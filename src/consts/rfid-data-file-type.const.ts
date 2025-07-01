@@ -1,9 +1,9 @@
 /**
-* Enumeration contains a set of constants that define the file type
-* (or logical belonging of the data object) within the context of the communication session
-* with electronic document
-* @type {eRfidDataFileType}
-*/
+ * Enumeration contains a set of constants that define the file type
+ * (or logical belonging of the data object) within the context of the communication session
+ * with electronic document
+ * @type {eRfidDataFileType}
+ */
 export enum eRfidDataFileType {
   UNSPECIFIED = 0,
   PASSPORT_DG1 = 1,

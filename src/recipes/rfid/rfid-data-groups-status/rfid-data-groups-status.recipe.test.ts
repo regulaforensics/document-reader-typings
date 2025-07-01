@@ -5,7 +5,6 @@ import { join } from 'path'
 import { ProcessResponse } from '@/models'
 import { getRfidDataGroupsStatus } from './rfid-data-groups-status.recipe'
 
-
 const DIRECTORY = String(process.env.PROCESS_RESPONSE_JSONS_DIR)
 
 describe('getRfidDataGroupsStatus', () => {

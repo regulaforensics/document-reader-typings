@@ -1,47 +1,46 @@
 import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
 import { Transform } from 'class-transformer'
 
-import { iuDocVisualExtendedField, uDocVisualExtendedField } from './children'
+import { iuDocVisualExtendedField, uDocVisualExtendedField, transformToDocVisualExtendedFieldList } from './children'
 import { Default } from '@/decorators'
 
-
 /**
-* Structure serves for storing text results of MRZ, document filling and bar-codes reading
-*/
+ * Structure serves for storing text results of MRZ, document filling and bar-codes reading
+ */
 export interface iDocVisualExtendedInfo {
   /**
-  * Number of pArrayFields array elements
-  * @type {number}
-  */
+   * Number of pArrayFields array elements
+   * @type {number}
+   */
   nFields: number
 
   /**
-  * Array of structures containing logically divided text data
-  * @type {iuDocVisualExtendedField[]}
-  */
+   * Array of structures containing logically divided text data
+   * @type {iuDocVisualExtendedField[]}
+   */
   pArrayFields: iuDocVisualExtendedField[]
 }
 
 /**
-* Structure serves for storing text results of MRZ, document filling and bar-codes reading
-*/
+ * Structure serves for storing text results of MRZ, document filling and bar-codes reading
+ */
 export class DocVisualExtendedInfo implements iDocVisualExtendedInfo {
   /**
-  * Number of pArrayFields array elements
-  * @type {number}
-  */
+   * Number of pArrayFields array elements
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
   nFields: number
 
   /**
-  * Array of structures containing logically divided text data
-  * @type {uDocVisualExtendedField[]}
-  */
+   * Array of structures containing logically divided text data
+   * @type {uDocVisualExtendedField[]}
+   */
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })
-  @Transform(({ obj }) => uDocVisualExtendedField.transformList(obj.pArrayFields), { toClassOnly: true })
+  @Transform(({ obj }) => transformToDocVisualExtendedFieldList(obj.pArrayFields), { toClassOnly: true })
   @Default([])
   pArrayFields: uDocVisualExtendedField[]
 }

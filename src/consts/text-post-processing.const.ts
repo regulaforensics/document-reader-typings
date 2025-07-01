@@ -1,25 +1,25 @@
 /**
-* Text post processing
-* @enum {number}
-*/
+ * Text post processing
+ * @enum {number}
+ */
 export enum eTextPostProcessing {
   /**
-  * Do not change
-  */
+   * Do not change
+   */
   NO_CHANGE = 0,
 
   /**
-  * Uppercase
-  */
+   * Uppercase
+   */
   UPPERCASE = 1,
 
   /**
-  * Lowercase
-  */
+   * Lowercase
+   */
   LOWERCASE = 2,
 
   /**
-  * Capital
-  */
-  CAPITAL = 3
+   * Capital
+   */
+  CAPITAL = 3,
 }

@@ -1,6 +1,5 @@
 import { ValidationError } from 'class-validator'
 
-
 export class DocReaderTypeError extends TypeError {
   errors: ValidationError[]
 

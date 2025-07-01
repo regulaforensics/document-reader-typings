@@ -6,74 +6,76 @@ import { Default } from '@/decorators'
 import { aAuthenticityCheckResult } from '../../authenticity-check-result.abstract'
 import { iOCRSecurityTextResult, OCRSecurityTextResult } from './children'
 
-
 /**
-* Result type of AuthenticityOCRSecurityTextCheckResult
-*/
+ * Result type of AuthenticityOCRSecurityTextCheckResult
+ */
 export type tAuthenticityOCRSecurityTextCheckResultType = eAuthenticity.OCR_SECURITY_TEXT
 
 /**
-* Result type of AuthenticityOCRSecurityTextCheckResult
-*/
+ * Result type of AuthenticityOCRSecurityTextCheckResult
+ */
 export const AuthenticityOCRSecurityTextCheckResultTypes: tAuthenticityOCRSecurityTextCheckResultType[] = [
-  eAuthenticity.OCR_SECURITY_TEXT
+  eAuthenticity.OCR_SECURITY_TEXT,
 ]
 
 /**
-* Container for OCRSecurityTextResult
-*/
+ * Container for OCRSecurityTextResult
+ */
 export interface iAuthenticityOCRSecurityTextCheckResult extends aAuthenticityCheckResult {
   /**
-  * Type of the performed check
-  * @type {tAuthenticityOCRSecurityTextCheckResultType}
-  */
+   * Type of the performed check
+   * @type {tAuthenticityOCRSecurityTextCheckResultType}
+   */
   Type: tAuthenticityOCRSecurityTextCheckResultType
 
   /**
-  * Overall checking result
-  * @type {eCheckResult}
-  */
+   * Overall checking result
+   * @type {eCheckResult}
+   */
   Result: eCheckResult
 
   /**
-  * Array of results of checks
-  * @type {iOCRSecurityTextResult[]}
-  */
+   * Array of results of checks
+   * @type {iOCRSecurityTextResult[]}
+   */
   List: iOCRSecurityTextResult[]
 
   /**
-  * Number of List items
-  * @type {number}
-  */
+   * Number of List items
+   * @type {number}
+   */
   Count: number
 }
 
 /**
-* Container for OCRSecurityTextResult
-*/
-export class AuthenticityOCRSecurityTextCheckResult extends aAuthenticityCheckResult implements iAuthenticityOCRSecurityTextCheckResult {
+ * Container for OCRSecurityTextResult
+ */
+export class AuthenticityOCRSecurityTextCheckResult
+  extends aAuthenticityCheckResult
+  implements iAuthenticityOCRSecurityTextCheckResult
+{
   /**
-  * Type of the performed check
-  * @type {tAuthenticityOCRSecurityTextCheckResultType}
-  */
+   * Type of the performed check
+   * @type {tAuthenticityOCRSecurityTextCheckResultType}
+   */
   @IsDefined()
   @IsIn(AuthenticityOCRSecurityTextCheckResultTypes)
   @IsEnum(eAuthenticity)
   Type: tAuthenticityOCRSecurityTextCheckResultType
 
   /**
-  * Overall checking result
-  * @type {eCheckResult}
-  */
+   * Overall checking result
+   * @type {eCheckResult}
+   */
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
   Result: eCheckResult
 
   /**
-  * Array of results of checks
-  * @type {OCRSecurityTextResult[]}
-  */
+   * Array of results of checks
+   * @type {OCRSecurityTextResult[]}
+   */
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })
@@ -82,25 +84,26 @@ export class AuthenticityOCRSecurityTextCheckResult extends aAuthenticityCheckRe
   List: OCRSecurityTextResult[]
 
   /**
-  * Number of List items
-  * @type {number}
-  */
+   * Number of List items
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
   Count: number
 
   /**
-  * Create a AuthenticityOCRSecurityTextCheckResult instance from a plain object
-  * @param {unknown} plain - plain object
-  * @return {AuthenticityOCRSecurityTextCheckResult} - new instance
-  */
-  static fromPlain = (plain: unknown): AuthenticityOCRSecurityTextCheckResult => plainToClass(AuthenticityOCRSecurityTextCheckResult, plain)
+   * Create a AuthenticityOCRSecurityTextCheckResult instance from a plain object
+   * @param {unknown} plain - plain object
+   * @return {AuthenticityOCRSecurityTextCheckResult} - new instance
+   */
+  static fromPlain = (plain: unknown): AuthenticityOCRSecurityTextCheckResult =>
+    plainToClass(AuthenticityOCRSecurityTextCheckResult, plain)
 
   /**
-  * Check if the given type belongs to AuthenticityOCRSecurityTextCheckResultType
-  * @param {unknown} type - type to check
-  * @return {type is iAuthenticityOCRSecurityTextCheckResult} - result
-  */
+   * Check if the given type belongs to AuthenticityOCRSecurityTextCheckResultType
+   * @param {unknown} type - type to check
+   * @return {type is iAuthenticityOCRSecurityTextCheckResult} - result
+   */
   static isBelongs = (type: unknown): type is iAuthenticityOCRSecurityTextCheckResult =>
     AuthenticityOCRSecurityTextCheckResultTypes.includes((type as iAuthenticityOCRSecurityTextCheckResult).Type)
 }

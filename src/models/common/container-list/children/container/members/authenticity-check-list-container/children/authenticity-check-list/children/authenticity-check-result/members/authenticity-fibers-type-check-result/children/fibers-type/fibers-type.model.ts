@@ -7,7 +7,7 @@ import {
   IsIn,
   IsInt,
   ValidateNested,
-  validateSync
+  validateSync,
 } from 'class-validator'
 import { plainToClass, Type } from 'class-transformer'
 
@@ -16,117 +16,116 @@ import { eAuthenticity, eCheckDiagnose, eCheckResult } from '@/consts'
 import { Default } from '@/decorators'
 import { DocReaderTypeError } from '@/errors'
 
-
 /**
-* Structure serves for storing the result of checking of one fluorescent fibers
-* type for UV light image. When there is no error.
-*/
+ * Structure serves for storing the result of checking of one fluorescent fibers
+ * type for UV light image. When there is no error.
+ */
 export interface iFibersType {
   /**
-  * Type of the performed check
-  * @type {eAuthenticity.UV_FIBERS}
-  */
+   * Type of the performed check
+   * @type {eAuthenticity.UV_FIBERS}
+   */
   Type: eAuthenticity.UV_FIBERS
 
   /**
-  * Element responsible for the results of the checks
-  * @type {eCheckResult}
-  */
+   * Element responsible for the results of the checks
+   * @type {eCheckResult}
+   */
   ElementResult: eCheckResult
 
   /**
-  * Element with which errors are checked
-  * @type {eCheckDiagnose}
-  */
+   * Element with which errors are checked
+   * @type {eCheckDiagnose}
+   */
   ElementDiagnose: eCheckDiagnose
 
   /**
-  * Number of RectArray, Width, Length, Area items
-  * @type {number}
-  */
+   * Number of RectArray, Width, Length, Area items
+   * @type {number}
+   */
   RectCount: number
 
   /**
-  * Coordinates of located areas for defined fibers type
-  * @type {iRect[]}
-  */
+   * Coordinates of located areas for defined fibers type
+   * @type {iRect[]}
+   */
   RectArray: iRect[]
 
   /**
-  * Fibers’ width value for RectArray areas (in pixels)
-  * @type {number[]}
-  */
+   * Fibers’ width value for RectArray areas (in pixels)
+   * @type {number[]}
+   */
   Width: number[]
 
   /**
-  * Fibers’ length value for RectArray areas (in pixels)
-  * @type {number[]}
-  */
+   * Fibers’ length value for RectArray areas (in pixels)
+   * @type {number[]}
+   */
   Length: number[]
 
   /**
-  * Fibers’ area value for RectArray areas (in pixels)
-  * @type {number[]}
-  */
+   * Fibers’ area value for RectArray areas (in pixels)
+   * @type {number[]}
+   */
   Area: number[]
 
   /**
-  * Fibers’ color (B, G, R)
-  * @type {number[]}
-  */
+   * Fibers’ color (B, G, R)
+   * @type {number[]}
+   */
   ColorValues: number[]
 
   /**
-  * Expected fibers number
-  * @type {number}
-  */
+   * Expected fibers number
+   * @type {number}
+   */
   ExpectedCount: number
 }
 
 /**
-* Structure serves for storing the result of checking of one fluorescent fibers
-* type for UV light image. When there is no error.
-*/
+ * Structure serves for storing the result of checking of one fluorescent fibers
+ * type for UV light image. When there is no error.
+ */
 export class FibersType implements iFibersType {
   /**
-  * Type of the performed check
-  * @type {eAuthenticity.UV_FIBERS | eAuthenticity.UV_BACKGROUND}
-  */
+   * Type of the performed check
+   * @type {eAuthenticity.UV_FIBERS | eAuthenticity.UV_BACKGROUND}
+   */
   @IsDefined()
   @IsIn([eAuthenticity.UV_FIBERS])
   @IsEnum(eAuthenticity)
   Type: eAuthenticity.UV_FIBERS
 
   /**
-  * Element responsible for the results of the checks
-  * @type {eCheckResult}
-  */
+   * Element responsible for the results of the checks
+   * @type {eCheckResult}
+   */
   @IsDefined()
   @IsEnum(eCheckResult)
   @Default(eCheckResult.WAS_NOT_DONE)
   ElementResult: eCheckResult
 
   /**
-  * Element with which errors are checked
-  * @type {eCheckDiagnose}
-  */
+   * Element with which errors are checked
+   * @type {eCheckDiagnose}
+   */
   @IsDefined()
   @IsEnum(eCheckDiagnose)
   @Default(eCheckDiagnose.UNKNOWN)
   ElementDiagnose: eCheckDiagnose
 
   /**
-  * Number of RectArray, Width, Length, Area items
-  * @type {number}
-  */
+   * Number of RectArray, Width, Length, Area items
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
   RectCount: number
 
   /**
-  * Coordinates of located areas for defined fibers type
-  * @type {Rect[]}
-  */
+   * Coordinates of located areas for defined fibers type
+   * @type {Rect[]}
+   */
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })
@@ -135,9 +134,9 @@ export class FibersType implements iFibersType {
   RectArray: Rect[]
 
   /**
-  * Fibers’ width value for RectArray areas (in pixels)
-  * @type {number[]}
-  */
+   * Fibers’ width value for RectArray areas (in pixels)
+   * @type {number[]}
+   */
   @IsDefined()
   @IsArray()
   @IsInt({ each: true })
@@ -145,9 +144,9 @@ export class FibersType implements iFibersType {
   Width: number[]
 
   /**
-  * Fibers’ length value for RectArray areas (in pixels)
-  * @type {number[]}
-  */
+   * Fibers’ length value for RectArray areas (in pixels)
+   * @type {number[]}
+   */
   @IsDefined()
   @IsArray()
   @IsInt({ each: true })
@@ -155,9 +154,9 @@ export class FibersType implements iFibersType {
   Length: number[]
 
   /**
-  * Fibers’ area value for RectArray areas (in pixels)
-  * @type {number[]}
-  */
+   * Fibers’ area value for RectArray areas (in pixels)
+   * @type {number[]}
+   */
   @IsDefined()
   @IsArray()
   @IsInt({ each: true })
@@ -165,9 +164,9 @@ export class FibersType implements iFibersType {
   Area: number[]
 
   /**
-  * Fibers’ color (B, G, R)
-  * @type {number[]}
-  */
+   * Fibers’ color (B, G, R)
+   * @type {number[]}
+   */
   @IsDefined()
   @IsArray()
   @ArrayMaxSize(3)
@@ -176,31 +175,34 @@ export class FibersType implements iFibersType {
   ColorValues: number[]
 
   /**
-  * Expected fibers number
-  * @type {number}
-  */
+   * Expected fibers number
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
   ExpectedCount: number
 
   /**
-  * Creates an instance of FibersTypeElement.
-  * @param {iFibersType} input - plain object
-  * @returns {FibersType}
-  */
+   * Creates an instance of FibersTypeElement.
+   * @param {iFibersType} input - plain object
+   * @returns {FibersType}
+   */
   static fromPlain = (input: unknown): FibersType => plainToClass(FibersType, input)
 
   /**
-  * Check if the given instance of FibersTypeElement is valid
-  * @throws {DocReaderTypeError}
-  * @param {FibersType} input - instance of FibersTypeElement to be checked
-  * @returns {true | never}
-  */
+   * Check if the given instance of FibersTypeElement is valid
+   * @throws {DocReaderTypeError}
+   * @param {FibersType} input - instance of FibersTypeElement to be checked
+   * @returns {true | never}
+   */
   static validate = (input: FibersType): true | never => {
     const errors = validateSync(FibersType.fromPlain(input))
 
     if (errors.length) {
-      throw new DocReaderTypeError('FibersTypeElement validation error: the data received does not match model structure!', errors)
+      throw new DocReaderTypeError(
+        'FibersTypeElement validation error: the data received does not match model structure!',
+        errors,
+      )
     }
 
     return true

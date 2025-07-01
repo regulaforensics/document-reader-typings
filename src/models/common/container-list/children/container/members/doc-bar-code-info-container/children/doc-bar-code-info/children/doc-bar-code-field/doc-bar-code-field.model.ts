@@ -6,46 +6,45 @@ import { Default } from '@/decorators'
 import { eBarCodeDetectionType, eBarCodeResultCodes, eBarCodeType } from '@/consts'
 import { TipPDF417Info, TipDecodeModule, iTipPDF417Info, iTipDecodeModule } from './children'
 
-
 /**
-* Structure is a basic containing structure for iDocBarCodeInfo list
-* and contains bar-code reading data
-*/
+ * Structure is a basic containing structure for iDocBarCodeInfo list
+ * and contains bar-code reading data
+ */
 export interface iDocBarCodeField {
   /**
-  * BarCode rotation angle (in radians)
-  * @type {number}
-  */
+   * BarCode rotation angle (in radians)
+   * @type {number}
+   */
   bcAngle_DETECT: number
 
   /**
-  * BarCode reading result
-  * @type {eBarCodeResultCodes}
-  */
+   * BarCode reading result
+   * @type {eBarCodeResultCodes}
+   */
   bcCodeResult: eBarCodeResultCodes
 
   /**
-  * Number of read bar-code modules
-  * @type {number}
-  */
+   * Number of read bar-code modules
+   * @type {number}
+   */
   bcCountModule: number
 
   /**
-  * Results of reading data from a bar-code modules
-  * @type {iTipDecodeModule[]}
-  */
+   * Results of reading data from a bar-code modules
+   * @type {iTipDecodeModule[]}
+   */
   bcDataModule: iTipDecodeModule[]
 
   /**
-  * Information on PDF417 code parameters (only for PDF417)
-  * @type {iTipPDF417Info|undefined}
-  */
+   * Information on PDF417 code parameters (only for PDF417)
+   * @type {iTipPDF417Info|undefined}
+   */
   bcPDF417INFO?: iTipPDF417Info
 
   /**
-  * BarCode area coordinates on the image
-  * @type {iRect}
-  */
+   * BarCode area coordinates on the image
+   * @type {iRect}
+   */
   bcROI_DETECT: iRect
 
   /**
@@ -59,68 +58,68 @@ export interface iDocBarCodeField {
   bcTextFieldType?: number
 
   /**
-  * Decoded bar-code type
-  * @type {eBarCodeType}
-  */
+   * Decoded bar-code type
+   * @type {eBarCodeType}
+   */
   bcType_DECODE: eBarCodeType
 
   /**
-  * Type of the detected bar-code
-  * @type {eBarCodeDetectionType}
-  */
+   * Type of the detected bar-code
+   * @type {eBarCodeDetectionType}
+   */
   bcType_DETECT: eBarCodeDetectionType
 
   /**
-  * @internal
-  */
+   * @internal
+   */
   bcReserved1?: unknown
 
   /**
-  * @internal
-  */
+   * @internal
+   */
   bcReserved2?: unknown
 
   /**
-  * @internal
-  */
+   * @internal
+   */
   bcReserved3?: unknown
 }
 
 /**
-* Structure is a basic containing structure for DocBarCodeInfo list
-* and contains bar-code reading data
-*/
+ * Structure is a basic containing structure for DocBarCodeInfo list
+ * and contains bar-code reading data
+ */
 export class DocBarCodeField implements iDocBarCodeField {
   /**
-  * BarCode rotation angle (in radians)
-  * @type {number}
-  */
+   * BarCode rotation angle (in radians)
+   * @type {number}
+   */
   @IsDefined()
   @IsNumber()
   @Default(0)
   bcAngle_DETECT: number
 
   /**
-  * BarCode reading result
-  * @type {eBarCodeResultCodes}
-  */
+   * BarCode reading result
+   * @type {eBarCodeResultCodes}
+   */
   @IsDefined()
   @IsEnum(eBarCodeResultCodes)
   @Default(eBarCodeResultCodes.NO_ERR)
   bcCodeResult: eBarCodeResultCodes
 
   /**
-  * Number of read bar-code modules
-  * @type {number}
-  */
+   * Number of read bar-code modules
+   * @type {number}
+   */
   @IsDefined()
   @IsNumber()
   bcCountModule: number
 
   /**
-  * Results of reading data from a bar-code modules
-  * @type {TipDecodeModule[]}
-  */
+   * Results of reading data from a bar-code modules
+   * @type {TipDecodeModule[]}
+   */
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })
@@ -129,18 +128,18 @@ export class DocBarCodeField implements iDocBarCodeField {
   bcDataModule: TipDecodeModule[]
 
   /**
-  * Information on PDF417 code parameters (only for PDF417)
-  * @type {TipPDF417Info|undefined}
-  */
+   * Information on PDF417 code parameters (only for PDF417)
+   * @type {TipPDF417Info|undefined}
+   */
   @IsOptional()
   @ValidateNested()
   @Type(() => TipPDF417Info)
   bcPDF417INFO?: TipPDF417Info
 
   /**
-  * BarCode area coordinates on the image
-  * @type {Rect}
-  */
+   * BarCode area coordinates on the image
+   * @type {Rect}
+   */
   @IsDefined()
   @ValidateNested()
   @Type(() => Rect)
@@ -161,38 +160,38 @@ export class DocBarCodeField implements iDocBarCodeField {
   bcTextFieldType?: number
 
   /**
-  * Decoded bar-code type
-  * @type {eBarCodeType}
-  */
+   * Decoded bar-code type
+   * @type {eBarCodeType}
+   */
   @IsDefined()
   @IsEnum(eBarCodeType)
   @Default(eBarCodeType.UNKNOWN)
   bcType_DECODE: eBarCodeType
 
   /**
-  * Type of the detected bar-code
-  * @type {eBarCodeDetectionType}
-  */
+   * Type of the detected bar-code
+   * @type {eBarCodeDetectionType}
+   */
   @IsDefined()
   @IsEnum(eBarCodeDetectionType)
   @Default(eBarCodeDetectionType.LINEAR)
   bcType_DETECT: eBarCodeDetectionType
 
   /**
-  * @internal
-  */
+   * @internal
+   */
   @IsOptional()
   bcReserved1?: unknown
 
   /**
-  * @internal
-  */
+   * @internal
+   */
   @IsOptional()
   bcReserved2?: unknown
 
   /**
-  * @internal
-  */
+   * @internal
+   */
   @IsOptional()
   bcReserved3?: unknown
 }
