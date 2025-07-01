@@ -1,12 +1,11 @@
 import { DetailsRFID, ProcessResponse, StatusContainer } from '@/models'
 import { eCheckResult } from '@/consts'
 
-
 /**
-* Get Rfid checks summary
-* @param {ProcessResponse} input
-* @returns {DetailsRFID}
-*/
+ * Get Rfid checks summary
+ * @param {ProcessResponse} input
+ * @returns {DetailsRFID}
+ */
 export const getRfidChecksSummary = (input: ProcessResponse): DetailsRFID => {
   const status = StatusContainer.fromProcessResponse(input)
   const candidates: DetailsRFID[] = []

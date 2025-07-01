@@ -7,7 +7,6 @@ import { eVisualFieldType } from '@/consts'
 import { RTextFieldValue } from './models'
 import { getTextFieldValue } from './get-text-field-value.recipe'
 
-
 const DIRECTORY = String(process.env.PROCESS_RESPONSE_JSONS_DIR)
 
 describe('getTextFieldValue', () => {

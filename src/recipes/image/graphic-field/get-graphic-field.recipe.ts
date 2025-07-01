@@ -3,18 +3,17 @@ import { eGraphicFieldType, eLights } from '@/consts'
 import { getImageDimensions } from '@/helpers'
 import { RGraphicField } from './models'
 
-
-const DEFAULT_IMAGE = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAoMBgDTD2qgAAAAASUVORK5CYII='
-
+const DEFAULT_IMAGE =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAoMBgDTD2qgAAAAASUVORK5CYII='
 
 /**
-* Get graphic field
-* @param {ProcessResponse} input - DocumentReader response
-* @param {eGraphicFieldType} fieldType - Field type
-* @param {true} allowDefaultImage - Allow default image if no image found
-* @param {eLights[]} lights - Light indexes
-* @returns {Promise<RGraphicField}
-*/
+ * Get graphic field
+ * @param {ProcessResponse} input - DocumentReader response
+ * @param {eGraphicFieldType} fieldType - Field type
+ * @param {true} allowDefaultImage - Allow default image if no image found
+ * @param {eLights[]} lights - Light indexes
+ * @returns {Promise<RGraphicField}
+ */
 export async function getGraphicField(
   input: ProcessResponse,
   fieldType: eGraphicFieldType,
@@ -23,13 +22,13 @@ export async function getGraphicField(
 ): Promise<RGraphicField>
 
 /**
-* Get graphic field
-* @param {ProcessResponse} input - DocumentReader response
-* @param {eGraphicFieldType} fieldType - Field type
-* @param {false} allowDefaultImage - Allow default image if no image found
-* @param {eLights[]} lights - Light indexes
-* @returns {Promise<RGraphicField | undefined>}
-*/
+ * Get graphic field
+ * @param {ProcessResponse} input - DocumentReader response
+ * @param {eGraphicFieldType} fieldType - Field type
+ * @param {false} allowDefaultImage - Allow default image if no image found
+ * @param {eLights[]} lights - Light indexes
+ * @returns {Promise<RGraphicField | undefined>}
+ */
 export async function getGraphicField(
   input: ProcessResponse,
   fieldType: eGraphicFieldType,
@@ -38,13 +37,13 @@ export async function getGraphicField(
 ): Promise<RGraphicField | undefined>
 
 /**
-* Get graphic field
-* @param {ProcessResponse} input - DocumentReader response
-* @param {eGraphicFieldType} fieldType - Field type
-* @param {boolean} allowDefaultImage - Allow default image if no image found
-* @param {eLights[]} lights - Light indexes
-* @returns {Promise<RGraphicField | undefined>}
-*/
+ * Get graphic field
+ * @param {ProcessResponse} input - DocumentReader response
+ * @param {eGraphicFieldType} fieldType - Field type
+ * @param {boolean} allowDefaultImage - Allow default image if no image found
+ * @param {eLights[]} lights - Light indexes
+ * @returns {Promise<RGraphicField | undefined>}
+ */
 export async function getGraphicField(
   input: ProcessResponse,
   fieldType: eGraphicFieldType,
@@ -79,7 +78,7 @@ export async function getGraphicField(
       for (let j = 0; j < current.valueList.length; j++) {
         const image = current.valueList[j]
 
-        if ((lights && lights.includes(image.lightIndex)) || (!lights)) {
+        if ((lights && lights.includes(image.lightIndex)) || !lights) {
           candidate = image.value
 
           break
@@ -103,13 +102,13 @@ export async function getGraphicField(
 }
 
 /**
-* Get graphic field (sync version - without image dimensions)
-* @param {ProcessResponse} input - DocumentReader response
-* @param {eGraphicFieldType} fieldType - Field type
-* @param {true} allowDefaultImage - Allow default image if no image found
-* @param {eLights[]} lights - Light indexes
-* @returns {RGraphicField}
-*/
+ * Get graphic field (sync version - without image dimensions)
+ * @param {ProcessResponse} input - DocumentReader response
+ * @param {eGraphicFieldType} fieldType - Field type
+ * @param {true} allowDefaultImage - Allow default image if no image found
+ * @param {eLights[]} lights - Light indexes
+ * @returns {RGraphicField}
+ */
 export function getGraphicFieldSync(
   input: ProcessResponse,
   fieldType: eGraphicFieldType,
@@ -118,13 +117,13 @@ export function getGraphicFieldSync(
 ): RGraphicField
 
 /**
-* Get graphic field (sync version - without image dimensions)
-* @param {ProcessResponse} input - DocumentReader response
-* @param {eGraphicFieldType} fieldType - Field type
-* @param {false} allowDefaultImage - Allow default image if no image found
-* @param {eLights[]} lights - Light indexes
-* @returns {RGraphicField | undefined}
-*/
+ * Get graphic field (sync version - without image dimensions)
+ * @param {ProcessResponse} input - DocumentReader response
+ * @param {eGraphicFieldType} fieldType - Field type
+ * @param {false} allowDefaultImage - Allow default image if no image found
+ * @param {eLights[]} lights - Light indexes
+ * @returns {RGraphicField | undefined}
+ */
 export function getGraphicFieldSync(
   input: ProcessResponse,
   fieldType: eGraphicFieldType,
@@ -133,13 +132,13 @@ export function getGraphicFieldSync(
 ): RGraphicField | undefined
 
 /**
-* Get graphic field (sync version - without image dimensions)
-* @param {ProcessResponse} input - DocumentReader response
-* @param {eGraphicFieldType} fieldType - Field type
-* @param {boolean} allowDefaultImage - Allow default image if no image found
-* @param {eLights[]} lights - Light indexes
-* @returns {RGraphicField | undefined}
-*/
+ * Get graphic field (sync version - without image dimensions)
+ * @param {ProcessResponse} input - DocumentReader response
+ * @param {eGraphicFieldType} fieldType - Field type
+ * @param {boolean} allowDefaultImage - Allow default image if no image found
+ * @param {eLights[]} lights - Light indexes
+ * @returns {RGraphicField | undefined}
+ */
 export function getGraphicFieldSync(
   input: ProcessResponse,
   fieldType: eGraphicFieldType,
@@ -174,7 +173,7 @@ export function getGraphicFieldSync(
       for (let j = 0; j < current.valueList.length; j++) {
         const image = current.valueList[j]
 
-        if ((lights && lights.includes(image.lightIndex)) || (!lights)) {
+        if ((lights && lights.includes(image.lightIndex)) || !lights) {
           candidate = image.value
 
           break

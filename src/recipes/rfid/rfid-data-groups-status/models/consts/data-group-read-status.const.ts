@@ -1,24 +1,23 @@
 import { eRfidErrorCodes } from '@/consts'
 
-
 export enum eDataGroupReadStatus {
   /**
-  * Group exists but not read
-  */
+   * Group exists but not read
+   */
   NOT_PERFORMED = eRfidErrorCodes.ERROR_NOT_PERFORMED,
 
   /**
-  * Group not exists
-  */
+   * Group not exists
+   */
   NOT_AVAILABLE = eRfidErrorCodes.ERROR_NOT_AVAILABLE,
 
   /**
-  * Read without errors
-  */
+   * Read without errors
+   */
   NO_ERROR = eRfidErrorCodes.ERROR_NO_ERROR,
 
   /**
-  * Read with errors
-  */
-  FAILED = eRfidErrorCodes.ERROR_FAILED
+   * Read with errors
+   */
+  FAILED = eRfidErrorCodes.ERROR_FAILED,
 }

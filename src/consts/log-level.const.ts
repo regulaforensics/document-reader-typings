@@ -1,30 +1,30 @@
 /**
-* Enumeration contains identificators which determinate the level of logs detalization.
-* @enum {string}
-*/
+ * Enumeration contains identificators which determinate the level of logs detalization.
+ * @enum {string}
+ */
 export enum eLogLevel {
   /**
-  * Fatal error
-  */
+   * Fatal error
+   */
   FATAL_ERROR = 'FatalError',
 
   /**
-  * Error
-  */
+   * Error
+   */
   ERROR = 'Error',
 
   /**
-  * Warning
-  */
+   * Warning
+   */
   WARNING = 'Warning',
 
   /**
-  * Info
-  */
+   * Info
+   */
   INFO = 'Info',
 
   /**
-  * Debug
-  */
-  DEBUG = 'Debug'
+   * Debug
+   */
+  DEBUG = 'Debug',
 }

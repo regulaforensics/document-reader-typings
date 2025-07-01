@@ -7,9 +7,8 @@ import {
   RDetailedStatus,
   RDetailedStatusOptical,
   RDetailedStatusRfid,
-  RDetailedStatusSummary
+  RDetailedStatusSummary,
 } from './models'
-
 
 const mergeStatus = (statuses: RDetailedStatus[], getter: (item: RDetailedStatus) => eCheckResult): eCheckResult => {
   return statuses.reduce((acc: eCheckResult, status) => {
@@ -35,12 +34,24 @@ export const mergeDetailedStatus = (statuses: RDetailedStatus[]): RDetailedStatu
   result.overallStatus = mergeStatus(statuses, (status) => status.overallStatus)
 
   result.optical = new RDetailedStatusOptical()
-  result.optical[eOpticalStatusField.DOC_TYPE] = mergeStatus(statuses, (status) => status.optical[eOpticalStatusField.DOC_TYPE])
+  result.optical[eOpticalStatusField.DOC_TYPE] = mergeStatus(
+    statuses,
+    (status) => status.optical[eOpticalStatusField.DOC_TYPE],
+  )
   result.optical[eOpticalStatusField.TEXT] = mergeStatus(statuses, (status) => status.optical[eOpticalStatusField.TEXT])
-  result.optical[eOpticalStatusField.SECURITY] = mergeStatus(statuses, (status) => status.optical[eOpticalStatusField.SECURITY])
+  result.optical[eOpticalStatusField.SECURITY] = mergeStatus(
+    statuses,
+    (status) => status.optical[eOpticalStatusField.SECURITY],
+  )
   result.optical[eOpticalStatusField.MRZ] = mergeStatus(statuses, (status) => status.optical[eOpticalStatusField.MRZ])
-  result.optical[eOpticalStatusField.IMAGE_QA] = mergeStatus(statuses, (status) => status.optical[eOpticalStatusField.IMAGE_QA])
-  result.optical[eOpticalStatusField.EXPIRY] = mergeStatus(statuses, (status) => status.optical[eOpticalStatusField.EXPIRY])
+  result.optical[eOpticalStatusField.IMAGE_QA] = mergeStatus(
+    statuses,
+    (status) => status.optical[eOpticalStatusField.IMAGE_QA],
+  )
+  result.optical[eOpticalStatusField.EXPIRY] = mergeStatus(
+    statuses,
+    (status) => status.optical[eOpticalStatusField.EXPIRY],
+  )
 
   result.rfId = new RDetailedStatusRfid()
   result.rfId[eRfidStatusField.AA] = mergeStatus(statuses, (status) => status.rfId[eRfidStatusField.AA])
@@ -51,10 +62,19 @@ export const mergeDetailedStatus = (statuses: RDetailedStatus[]): RDetailedStatu
   result.rfId[eRfidStatusField.TA] = mergeStatus(statuses, (status) => status.rfId[eRfidStatusField.TA])
 
   result.summary = new RDetailedStatusSummary()
-  result.summary[eSummaryStatusField.OPTICAL] = mergeStatus(statuses, (status) => status.summary[eSummaryStatusField.OPTICAL])
-  result.summary[eSummaryStatusField.PORTRAIT] = mergeStatus(statuses, (status) => status.summary[eSummaryStatusField.PORTRAIT])
+  result.summary[eSummaryStatusField.OPTICAL] = mergeStatus(
+    statuses,
+    (status) => status.summary[eSummaryStatusField.OPTICAL],
+  )
+  result.summary[eSummaryStatusField.PORTRAIT] = mergeStatus(
+    statuses,
+    (status) => status.summary[eSummaryStatusField.PORTRAIT],
+  )
   result.summary[eSummaryStatusField.RFID] = mergeStatus(statuses, (status) => status.summary[eSummaryStatusField.RFID])
-  result.summary[eSummaryStatusField.STOP_LIST] = mergeStatus(statuses, (status) => status.summary[eSummaryStatusField.STOP_LIST])
+  result.summary[eSummaryStatusField.STOP_LIST] = mergeStatus(
+    statuses,
+    (status) => status.summary[eSummaryStatusField.STOP_LIST],
+  )
 
   return result
 }

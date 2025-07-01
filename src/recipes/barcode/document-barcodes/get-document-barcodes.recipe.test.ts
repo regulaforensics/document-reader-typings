@@ -6,7 +6,6 @@ import { ProcessResponse } from '@/models'
 import { RDocumentBarcode } from './models'
 import { getDocumentBarcodes } from './get-document-barcodes.recipe'
 
-
 const DIRECTORY = String(process.env.PROCESS_RESPONSE_JSONS_DIR)
 
 describe('getDocumentBarcodes', () => {
@@ -34,7 +33,6 @@ describe('getDocumentBarcodes', () => {
     test(`file '${file}': should be a valid JSON`, () => {
       expect(isValidJSON).toBe(true)
     })
-
 
     const docReaderResponse = ProcessResponse.fromPlain(response)
     const result = getDocumentBarcodes(docReaderResponse)

@@ -5,7 +5,6 @@ import { join } from 'path'
 import { ProcessResponse } from '@/models'
 import { getAuthenticityCheckList } from './get-authenticity-check-list.recipe'
 
-
 const DIRECTORY = String(process.env.PROCESS_RESPONSE_JSONS_DIR)
 
 describe('getAuthenticityCheckList', () => {
@@ -35,7 +34,6 @@ describe('getAuthenticityCheckList', () => {
     })
 
     const docReaderResponse = ProcessResponse.fromPlain(response)
-
 
     test(`file '${file}': should return authenticity check list`, () => {
       const result = getAuthenticityCheckList(docReaderResponse)

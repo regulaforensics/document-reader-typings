@@ -4,62 +4,61 @@ import { Transform, Type } from 'class-transformer'
 import { Default } from '@/decorators'
 import { iImageField, iImageSource, ImageField, ImageSource } from './children'
 
-
 /**
-* Structure is used for representation of all graphic results
-*/
+ * Structure is used for representation of all graphic results
+ */
 export interface iImagesResult {
   /**
-  * Fields count
-  * @type {number}
-  */
+   * Fields count
+   * @type {number}
+   */
   fieldCount: number
 
   /**
-  * Available sources count
-  * @type {number}
-  */
+   * Available sources count
+   * @type {number}
+   */
   availableSourceCount: number
 
   /**
-  * Available sources list
-  * @type {iImageSource[]}
-  */
+   * Available sources list
+   * @type {iImageSource[]}
+   */
   availableSourceList: iImageSource[]
 
   /**
-  * Fields list
-  * @type {iImageField[]}
-  */
+   * Fields list
+   * @type {iImageField[]}
+   */
   fieldList: iImageField[]
 }
 
 /**
-* Structure is used for representation of all graphic results
-*/
+ * Structure is used for representation of all graphic results
+ */
 export class ImagesResult implements iImagesResult {
   /**
-  * Fields count
-  * @type {number}
-  */
+   * Fields count
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
-  @Transform(({ obj }) => obj.fieldList.length, { toClassOnly: true})
+  @Transform(({ obj }) => obj.fieldList.length, { toClassOnly: true })
   fieldCount: number
 
   /**
-  * Available sources count
-  * @type {number}
-  */
+   * Available sources count
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
-  @Transform(({ obj }) => obj.availableSourceList.length, { toClassOnly: true})
+  @Transform(({ obj }) => obj.availableSourceList.length, { toClassOnly: true })
   availableSourceCount: number
 
   /**
-  * Available sources list
-  * @type {ImageSource[]}
-  */
+   * Available sources list
+   * @type {ImageSource[]}
+   */
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => ImageSource)
@@ -68,9 +67,9 @@ export class ImagesResult implements iImagesResult {
   availableSourceList: ImageSource[]
 
   /**
-  * Fields list
-  * @type {ImageField[]}
-  */
+   * Fields list
+   * @type {ImageField[]}
+   */
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => ImageField)

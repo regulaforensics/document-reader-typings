@@ -5,167 +5,169 @@ import { eLDSParsingErrorCodes, eRfidCertificateOrigin, eRfidCertificateType, eR
 import { Default } from '@/decorators'
 import { iRfidDistinguishedName, RfidDistinguishedName } from '@/models/common/rfid-distinguished-name'
 import { iTrfFtString, TrfFtString } from '@/models/common/trf-ft-string'
-import { iRfidPkiExtension, iRfidValidity, RfidPkiExtension, RfidValidity, } from './children'
-
+import { iRfidPkiExtension, iRfidValidity, RfidPkiExtension, RfidValidity } from './children'
 
 /**
-* Structure is used to describe the certificate contents used for the digital signature verification
-* of the document security object within the context of the communication session with electronic document.
-*/
+ * Structure is used to describe the certificate contents used for the digital signature verification
+ * of the document security object within the context of the communication session with electronic document.
+ */
 export interface iRfidCertificateEx {
   /**
-  * Version of Certificate ASN.1 structure
-  * @type {number}
-  */
+   * Version of Certificate ASN.1 structure
+   * @type {number}
+   */
   Version: number
 
   /**
-  * Certificate serial number. Base64 encoded.
-  * @type {string}
-  */
+   * Certificate serial number. Base64 encoded.
+   * @type {string}
+   */
   SerialNumber: string
 
   /**
-  * Certificate digital signature algorithm identifier (OID);
-  * String in the format "S1 (S2)", where S1 – algorithm name, S2 – identifier (OID string).
-  * @type {string}
-  */
+   * Certificate digital signature algorithm identifier (OID);
+   * String in the format "S1 (S2)", where S1 – algorithm name, S2 – identifier (OID string).
+   * @type {string}
+   */
   SignatureAlgorithm: string
 
   /**
-  * Identifier of the certificate issuer
-  * @type {iRfidDistinguishedName}
-  */
+   * Identifier of the certificate issuer
+   * @type {iRfidDistinguishedName}
+   */
   Issuer: iRfidDistinguishedName
 
   /**
-  * Certificate validity period
-  * @type {iRfidValidity}
-  */
+   * Certificate validity period
+   * @type {iRfidValidity}
+   */
   Validity: iRfidValidity
 
   /**
-  * Identifier of the signature subject
-  * @type {iRfidDistinguishedName}
-  */
+   * Identifier of the signature subject
+   * @type {iRfidDistinguishedName}
+   */
   Subject: iRfidDistinguishedName
 
   /**
-  * Certificate public key algorithm identifier (OID);
-  * String in the format "S1 (S2)", where S1 – algorithm name, S2 – identifier (OID string).
-  * @type {string}
-  */
+   * Certificate public key algorithm identifier (OID);
+   * String in the format "S1 (S2)", where S1 – algorithm name, S2 – identifier (OID string).
+   * @type {string}
+   */
   SubjectPKAlgorithm: string
 
   /**
-  * List of the certificate extensions
-  * @type {iRfidPkiExtension[]}
-  */
+   * List of the certificate extensions
+   * @type {iRfidPkiExtension[]}
+   */
   Extensions: iRfidPkiExtension[]
 
   /**
-  * List of remarks arisen during the analysis of the certificate data
-  * structure and its validity verification.
-  * @type {eLDSParsingErrorCodes[]}
-  */
+   * List of remarks arisen during the analysis of the certificate data
+   * structure and its validity verification.
+   * @type {eLDSParsingErrorCodes[]}
+   */
   Notifications: eLDSParsingErrorCodes[]
 
   /**
-  * Certificate origin
-  * @type {eRfidCertificateOrigin}
-  */
+   * Certificate origin
+   * @type {eRfidCertificateOrigin}
+   */
   Origin: eRfidCertificateOrigin
 
   /**
-  * Certificate type
-  * @type {eRfidCertificateType}
-  */
+   * Certificate type
+   * @type {eRfidCertificateType}
+   */
   Type: eRfidCertificateType
 
   /**
-  * The name of the certificate source file, if there is one (UTF8 string);
-  * @type {iTrfFtString}
-  */
+   * The name of the certificate source file, if there is one (UTF8 string);
+   * @type {iTrfFtString}
+   */
   FileName: iTrfFtString
 
   /**
-  * Result of the digital signature verification
-  * @type {eRfidErrorCodes.ERROR_NOT_PERFORMED | eRfidErrorCodes.ERROR_NO_ERROR | eRfidErrorCodes.ERROR_SESSION_PA_SIGNATURE_CHECK_FAILED }
-  */
-  PA_Status: eRfidErrorCodes.ERROR_NOT_PERFORMED | eRfidErrorCodes.ERROR_NO_ERROR | eRfidErrorCodes.ERROR_SESSION_PA_SIGNATURE_CHECK_FAILED
+   * Result of the digital signature verification
+   * @type {eRfidErrorCodes.ERROR_NOT_PERFORMED | eRfidErrorCodes.ERROR_NO_ERROR | eRfidErrorCodes.ERROR_SESSION_PA_SIGNATURE_CHECK_FAILED }
+   */
+  PA_Status:
+    | eRfidErrorCodes.ERROR_NOT_PERFORMED
+    | eRfidErrorCodes.ERROR_NO_ERROR
+    | eRfidErrorCodes.ERROR_SESSION_PA_SIGNATURE_CHECK_FAILED
 }
 
 /**
-* Structure is used to describe the certificate contents used for the digital signature verification
-* of the document security object within the context of the communication session with electronic document.
-*/
+ * Structure is used to describe the certificate contents used for the digital signature verification
+ * of the document security object within the context of the communication session with electronic document.
+ */
 export class RfidCertificateEx implements iRfidCertificateEx {
   /**
-  * Version of Certificate ASN.1 structure
-  * @type {number}
-  */
+   * Version of Certificate ASN.1 structure
+   * @type {number}
+   */
   @IsDefined()
   @IsNumber()
   Version: number
 
   /**
-  * Certificate serial number. Base64 encoded.
-  * @type {string}
-  */
+   * Certificate serial number. Base64 encoded.
+   * @type {string}
+   */
   @IsDefined()
   @IsBase64()
   @IsString()
   SerialNumber: string
 
   /**
-  * Certificate digital signature algorithm identifier (OID);
-  * String in the format "S1 (S2)", where S1 – algorithm name, S2 – identifier (OID string).
-  * @type {string}
-  */
+   * Certificate digital signature algorithm identifier (OID);
+   * String in the format "S1 (S2)", where S1 – algorithm name, S2 – identifier (OID string).
+   * @type {string}
+   */
   @IsDefined()
   @IsString()
   SignatureAlgorithm: string
 
   /**
-  * Identifier of the certificate issuer
-  * @type {RfidDistinguishedName}
-  */
+   * Identifier of the certificate issuer
+   * @type {RfidDistinguishedName}
+   */
   @IsDefined()
   @Type(() => RfidDistinguishedName)
   @ValidateNested()
   Issuer: RfidDistinguishedName
 
   /**
-  * Certificate validity period
-  * @type {RfidValidity}
-  */
+   * Certificate validity period
+   * @type {RfidValidity}
+   */
   @IsDefined()
   @Type(() => RfidValidity)
   @ValidateNested()
   Validity: RfidValidity
 
   /**
-  * Identifier of the signature subject
-  * @type {RfidDistinguishedName}
-  */
+   * Identifier of the signature subject
+   * @type {RfidDistinguishedName}
+   */
   @IsDefined()
   @Type(() => RfidDistinguishedName)
   @ValidateNested()
   Subject: RfidDistinguishedName
 
   /**
-  * Certificate public key algorithm identifier (OID);
-  * String in the format "S1 (S2)", where S1 – algorithm name, S2 – identifier (OID string).
-  * @type {string}
-  */
+   * Certificate public key algorithm identifier (OID);
+   * String in the format "S1 (S2)", where S1 – algorithm name, S2 – identifier (OID string).
+   * @type {string}
+   */
   @IsDefined()
   @IsString()
   SubjectPKAlgorithm: string
 
   /**
-  * List of the certificate extensions
-  * @type {RfidPkiExtension[]}
-  */
+   * List of the certificate extensions
+   * @type {RfidPkiExtension[]}
+   */
   @IsDefined()
   @Type(() => RfidPkiExtension)
   @ValidateNested({ each: true })
@@ -174,10 +176,10 @@ export class RfidCertificateEx implements iRfidCertificateEx {
   Extensions: RfidPkiExtension[]
 
   /**
-  * List of remarks arisen during the analysis of the certificate data
-  * structure and its validity verification.
-  * @type {eLDSParsingErrorCodes[]}
-  */
+   * List of remarks arisen during the analysis of the certificate data
+   * structure and its validity verification.
+   * @type {eLDSParsingErrorCodes[]}
+   */
   @IsDefined()
   @IsEnum(eLDSParsingErrorCodes, { each: true })
   @IsArray()
@@ -185,37 +187,44 @@ export class RfidCertificateEx implements iRfidCertificateEx {
   Notifications: eLDSParsingErrorCodes[]
 
   /**
-  * Certificate origin
-  * @type {eRfidCertificateOrigin}
-  */
+   * Certificate origin
+   * @type {eRfidCertificateOrigin}
+   */
   @IsDefined()
   @IsEnum(eRfidCertificateOrigin)
   @Default(eRfidCertificateOrigin.UNDEFINED)
   Origin: eRfidCertificateOrigin
 
   /**
-  * Certificate type
-  * @type {eRfidCertificateType}
-  */
+   * Certificate type
+   * @type {eRfidCertificateType}
+   */
   @IsDefined()
   @IsEnum(eRfidCertificateType)
   @Default(eRfidCertificateType.UNDEFINED)
   Type: eRfidCertificateType
 
   /**
-  * The name of the certificate source file, if there is one (UTF8 string);
-  * @type {TrfFtString}
-  */
+   * The name of the certificate source file, if there is one (UTF8 string);
+   * @type {TrfFtString}
+   */
   @IsDefined()
   @Type(() => TrfFtString)
   @ValidateNested()
   FileName: TrfFtString
 
   /**
-  * Result of the digital signature verification
-  * @type {eRfidErrorCodes.ERROR_NOT_PERFORMED | eRfidErrorCodes.ERROR_NO_ERROR | eRfidErrorCodes.ERROR_SESSION_PA_SIGNATURE_CHECK_FAILED }
-  */
+   * Result of the digital signature verification
+   * @type {eRfidErrorCodes.ERROR_NOT_PERFORMED | eRfidErrorCodes.ERROR_NO_ERROR | eRfidErrorCodes.ERROR_SESSION_PA_SIGNATURE_CHECK_FAILED }
+   */
   @IsDefined()
-  @IsIn([eRfidErrorCodes.ERROR_NOT_PERFORMED, eRfidErrorCodes.ERROR_NO_ERROR, eRfidErrorCodes.ERROR_SESSION_PA_SIGNATURE_CHECK_FAILED])
-  PA_Status: eRfidErrorCodes.ERROR_NOT_PERFORMED | eRfidErrorCodes.ERROR_NO_ERROR | eRfidErrorCodes.ERROR_SESSION_PA_SIGNATURE_CHECK_FAILED
+  @IsIn([
+    eRfidErrorCodes.ERROR_NOT_PERFORMED,
+    eRfidErrorCodes.ERROR_NO_ERROR,
+    eRfidErrorCodes.ERROR_SESSION_PA_SIGNATURE_CHECK_FAILED,
+  ])
+  PA_Status:
+    | eRfidErrorCodes.ERROR_NOT_PERFORMED
+    | eRfidErrorCodes.ERROR_NO_ERROR
+    | eRfidErrorCodes.ERROR_SESSION_PA_SIGNATURE_CHECK_FAILED
 }

@@ -1,41 +1,41 @@
 /**
-* Enumeration contains a set of constants that define the type of
-* key to access the protected data
-* @enum {number}
-*/
+ * Enumeration contains a set of constants that define the type of
+ * key to access the protected data
+ * @enum {number}
+ */
 export enum eRfidPasswordType {
   /**
-  * Unknown type
-  */
+   * Unknown type
+   */
   UNKNOWN = 0,
 
   /**
-  * MRZ
-  */
+   * MRZ
+   */
   MRZ = 1,
 
   /**
-  * CAN
-  */
+   * CAN
+   */
   CAN = 2,
 
   /**
-  * PIN
-  */
+   * PIN
+   */
   PIN = 3,
 
   /**
-  * PUK
-  */
+   * PUK
+   */
   PUK = 4,
 
   /**
-  * eSign-PIN
-  */
+   * eSign-PIN
+   */
   PIN_E_SIGN = 5,
 
   /**
-  * Scanning Area Identifier (for eDL application)
-  */
+   * Scanning Area Identifier (for eDL application)
+   */
   SAI = 6,
 }

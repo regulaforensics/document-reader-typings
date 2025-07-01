@@ -1,7 +1,6 @@
 import { AuthenticityCheckListContainer, AuthenticityIdentCheckResult, ProcessResponse } from '@/models'
 import { eAuthenticity, eSecurityFeatureType } from '@/consts'
-import { ePortraitComparisonSource, RPortraitComparisonComparable, RPortraitsComparison, } from './models'
-
+import { ePortraitComparisonSource, RPortraitComparisonComparable, RPortraitsComparison } from './models'
 
 export const getPortraitsComparison = (input: ProcessResponse): RPortraitsComparison[] => {
   const containers = AuthenticityCheckListContainer.fromProcessResponse(input)
@@ -17,15 +16,17 @@ export const getPortraitsComparison = (input: ProcessResponse): RPortraitsCompar
         }
 
         item.List.forEach((subItem) => {
-          if (![
-            eSecurityFeatureType.PORTRAIT_COMPARISON_VS_CAMERA,
-            eSecurityFeatureType.PORTRAIT_COMPARISON_RFID_VS_CAMERA,
-            eSecurityFeatureType.PORTRAIT_COMPARISON_EXT_VS_VISUAL,
-            eSecurityFeatureType.PORTRAIT_COMPARISON_EXT_VS_RFID,
-            eSecurityFeatureType.PORTRAIT_COMPARISON_EXT_VS_CAMERA,
-            eSecurityFeatureType.PORTRAIT_COMPARISON_EXT_VS_BARCODE,
-            eSecurityFeatureType.PORTRAIT_COMPARISON_BARCODE_VS_CAMERA,
-          ].includes(subItem.ElementType)) {
+          if (
+            ![
+              eSecurityFeatureType.PORTRAIT_COMPARISON_VS_CAMERA,
+              eSecurityFeatureType.PORTRAIT_COMPARISON_RFID_VS_CAMERA,
+              eSecurityFeatureType.PORTRAIT_COMPARISON_EXT_VS_VISUAL,
+              eSecurityFeatureType.PORTRAIT_COMPARISON_EXT_VS_RFID,
+              eSecurityFeatureType.PORTRAIT_COMPARISON_EXT_VS_CAMERA,
+              eSecurityFeatureType.PORTRAIT_COMPARISON_EXT_VS_BARCODE,
+              eSecurityFeatureType.PORTRAIT_COMPARISON_BARCODE_VS_CAMERA,
+            ].includes(subItem.ElementType)
+          ) {
             return
           }
 
@@ -66,19 +67,19 @@ export const getPortraitsComparison = (input: ProcessResponse): RPortraitsCompar
           const isReversed = [
             eSecurityFeatureType.PORTRAIT_COMPARISON_VS_CAMERA,
             eSecurityFeatureType.PORTRAIT_COMPARISON_RFID_VS_CAMERA,
-            eSecurityFeatureType.PORTRAIT_COMPARISON_BARCODE_VS_CAMERA
+            eSecurityFeatureType.PORTRAIT_COMPARISON_BARCODE_VS_CAMERA,
           ].includes(subItem.ElementType)
 
-          let index = result.findIndex((item) => isReversed ? item.source === right : item.source === left)
+          let index = result.findIndex((item) => (isReversed ? item.source === right : item.source === left))
 
           if (index === -1) {
-            result.push(RPortraitsComparison.fromPlain({
-              source: isReversed ? right : left,
-              comparable: [],
-              image: isReversed
-                ? subItem.Image.image
-                : subItem.EtalonImage.image
-            }))
+            result.push(
+              RPortraitsComparison.fromPlain({
+                source: isReversed ? right : left,
+                comparable: [],
+                image: isReversed ? subItem.Image.image : subItem.EtalonImage.image,
+              }),
+            )
 
             index = result.length - 1
           }
@@ -88,10 +89,8 @@ export const getPortraitsComparison = (input: ProcessResponse): RPortraitsCompar
               source: isReversed ? left : right,
               checkResult: subItem.ElementResult,
               similarity: subItem.PercentValue,
-              image: isReversed
-                ? subItem.EtalonImage.image
-                : subItem.Image.image
-            })
+              image: isReversed ? subItem.EtalonImage.image : subItem.Image.image,
+            }),
           )
         })
       }

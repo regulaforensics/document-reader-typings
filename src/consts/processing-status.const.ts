@@ -1,23 +1,20 @@
 /**
-* Enumeration contains a set of constants that define scanning process completion status.
-* @enum {number}
-*/
+ * Enumeration contains a set of constants that define scanning process completion status.
+ * @enum {number}
+ */
 export enum eProcessingStatus {
   /**
-  * Processing was not finished
-  */
+   * Processing was not finished
+   */
   NOT_FINISHED = 0,
 
   /**
-  * Processing finished
-  */
+   * Processing finished
+   */
   FINISHED = 1,
 
   /**
-  * Processing finished by timeout
-  */
-  TIMEOUT = 2
+   * Processing finished by timeout
+   */
+  TIMEOUT = 2,
 }
-
-
-

@@ -1,47 +1,46 @@
 import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
 import { Transform } from 'class-transformer'
 
-import { uDocGraphicField, iuDocGraphicField } from './children'
+import { uDocGraphicField, iuDocGraphicField, transformToDocGraphicFieldList } from './children'
 import { Default } from '@/decorators'
 
-
 /**
-* Model serves for storing graphic results of document filling area and bar-codes reading
-*/
+ * Model serves for storing graphic results of document filling area and bar-codes reading
+ */
 export interface iDocGraphicsInfo {
   /**
-  * Array of images
-  * @type {iuDocGraphicField[]}
-  */
+   * Array of images
+   * @type {iuDocGraphicField[]}
+   */
   pArrayFields: iuDocGraphicField[]
 
   /**
-  * Number of pArrayFields array elements
-  * @type {number}
-  */
+   * Number of pArrayFields array elements
+   * @type {number}
+   */
   nFields: number
 }
 
 /**
-* Model serves for storing graphic results of document filling area
-* and bar-codes reading
-*/
+ * Model serves for storing graphic results of document filling area
+ * and bar-codes reading
+ */
 export class DocGraphicsInfo implements iDocGraphicsInfo {
   /**
-  * Array of images
-  * @type {uDocGraphicField[]}
-  */
+   * Array of images
+   * @type {uDocGraphicField[]}
+   */
   @IsDefined()
   @ValidateNested({ each: true })
-  @Transform(({ obj }) => uDocGraphicField.transformList(obj.pArrayFields), { toClassOnly: true })
+  @Transform(({ obj }) => transformToDocGraphicFieldList(obj.pArrayFields), { toClassOnly: true })
   @IsArray()
   @Default([])
   pArrayFields: uDocGraphicField[]
 
   /**
-  * Number of pArrayFields array elements
-  * @type {number}
-  */
+   * Number of pArrayFields array elements
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
   nFields: number

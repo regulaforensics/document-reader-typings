@@ -1,6 +1,5 @@
 import pako from 'pako'
 
-
 /**
  * Decode the packed data
  * @param {string} data - packed data

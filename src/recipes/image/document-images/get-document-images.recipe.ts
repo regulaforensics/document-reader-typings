@@ -3,18 +3,17 @@ import { eGraphicFieldType, eResultType } from '@/consts'
 import { getImageDimensions } from '@/helpers'
 import { RDocumentImage, RDocumentImagePage } from './models'
 
-
 /**
-* Get document images
-* @param {ProcessResponse} input
-* @param {eGraphicFieldType[]|undefined} fieldTypes
-* @param {eResultType[]|undefined} containerTypes
-* @returns {Promise<RDocumentImage[]>}
-*/
+ * Get document images
+ * @param {ProcessResponse} input
+ * @param {eGraphicFieldType[]|undefined} fieldTypes
+ * @param {eResultType[]|undefined} containerTypes
+ * @returns {Promise<RDocumentImage[]>}
+ */
 export const getDocumentImages = async (
   input: ProcessResponse,
   fieldTypes?: eGraphicFieldType[],
-  containerTypes?: eResultType[]
+  containerTypes?: eResultType[],
 ): Promise<RDocumentImage[]> => {
   const result: RDocumentImage[] = []
 
@@ -74,16 +73,16 @@ export const getDocumentImages = async (
 }
 
 /**
-* Get document images (synchronous version - without image dimensions)
-* @param {ProcessResponse} input
-* @param {eGraphicFieldType[]|undefined} fieldTypes
-* @param {eResultType[]|undefined} containerTypes
-* @returns {Promise<RDocumentImage[]>}
-*/
+ * Get document images (synchronous version - without image dimensions)
+ * @param {ProcessResponse} input
+ * @param {eGraphicFieldType[]|undefined} fieldTypes
+ * @param {eResultType[]|undefined} containerTypes
+ * @returns {Promise<RDocumentImage[]>}
+ */
 export const getDocumentImagesSync = (
   input: ProcessResponse,
   fieldTypes?: eGraphicFieldType[],
-  containerTypes?: eResultType[]
+  containerTypes?: eResultType[],
 ): RDocumentImage[] => {
   const result: RDocumentImage[] = []
 

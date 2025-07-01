@@ -4,47 +4,46 @@ import { eCheckResult, eSource } from '@/consts'
 import { Default } from '@/decorators'
 import { iRRect, RRect } from '@/common-models'
 import { Type } from 'class-transformer'
-import { iRfidOrigin, RfidOrigin } from '@/models';
-
+import { iRfidOrigin, RfidOrigin } from '@/models'
 
 /**
-* Source, value and check result of a text data field
-*/
+ * Source, value and check result of a text data field
+ */
 export interface iRTextDataSource {
   /**
-  * Source of the text data field
-  * @type {eSource}
-  */
+   * Source of the text data field
+   * @type {eSource}
+   */
   source: eSource
 
   /**
-  * Check result of the text data field
-  * @type {eCheckResult}
-  */
+   * Check result of the text data field
+   * @type {eCheckResult}
+   */
   checkResult: eCheckResult
 
   /**
-  * Value of the text data field
-  * @type {string}
-  */
+   * Value of the text data field
+   * @type {string}
+   */
   value: string
 
   /**
-  * Field recognition probability
-  * @type {number}
-  */
+   * Field recognition probability
+   * @type {number}
+   */
   probability: number
 
   /**
-  * Page index
-  * @type {number}
-  */
+   * Page index
+   * @type {number}
+   */
   pageIndex: number
 
   /**
-  * Rect
-  * @type {RRect|undefined}
-  */
+   * Rect
+   * @type {RRect|undefined}
+   */
   rect?: iRRect
 
   /**
@@ -55,54 +54,54 @@ export interface iRTextDataSource {
 }
 
 /**
-* Source, value and check result of a text data field
-*/
+ * Source, value and check result of a text data field
+ */
 export class RTextDataSource implements iRTextDataSource {
   /**
-  * Source of the text data field
-  * @type {eSource}
-  */
+   * Source of the text data field
+   * @type {eSource}
+   */
   @IsDefined()
   @IsEnum(eSource)
   source: eSource
 
   /**
-  * Check result of the text data field
-  * @type {eCheckResult}
-  */
+   * Check result of the text data field
+   * @type {eCheckResult}
+   */
   @IsDefined()
   @IsEnum(eCheckResult)
   checkResult: eCheckResult
 
   /**
-  * Value of the text data field
-  * @type {string}
-  */
+   * Value of the text data field
+   * @type {string}
+   */
   @IsDefined()
   @IsString()
   @Default('')
   value: string
 
   /**
-  * Field recognition probability
-  * @type {number}
-  */
+   * Field recognition probability
+   * @type {number}
+   */
   @IsDefined()
   @Default(0)
   probability: number
 
   /**
-  * Page index
-  * @type {number}
-  */
+   * Page index
+   * @type {number}
+   */
   @IsDefined()
   @Default(0)
   pageIndex: number
 
   /**
-  * Rect
-  * @type {RRect|undefined}
-  */
+   * Rect
+   * @type {RRect|undefined}
+   */
   @IsOptional()
   @Type(() => RRect)
   @ValidateNested()

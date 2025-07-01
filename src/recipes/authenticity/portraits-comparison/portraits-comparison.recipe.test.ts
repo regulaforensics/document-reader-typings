@@ -5,7 +5,6 @@ import { join } from 'path'
 import { ProcessResponse } from '@/models'
 import { getPortraitsComparison } from './get-portraits-comparison.recipe'
 
-
 const DIRECTORY = String(process.env.PROCESS_RESPONSE_JSONS_DIR)
 
 describe('getPortraitsComparison', () => {
@@ -35,7 +34,6 @@ describe('getPortraitsComparison', () => {
     })
 
     const docReaderResponse = ProcessResponse.fromPlain(response)
-
 
     test(`file '${file}': should return authenticity check list`, () => {
       const result = getPortraitsComparison(docReaderResponse)

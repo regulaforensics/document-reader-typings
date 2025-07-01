@@ -1,30 +1,30 @@
 /**
-* Enumeration contains identifiers determining verification and comparison of text fields.
-* @enum {number}
-*/
+ * Enumeration contains identifiers determining verification and comparison of text fields.
+ * @enum {number}
+ */
 export enum eFieldVerificationResult {
   /**
-  * Comparison result unknown
-  */
+   * Comparison result unknown
+   */
   DISABLED = 0,
 
   /**
-  * Verification passed
-  */
+   * Verification passed
+   */
   VERIFIED = 1,
 
   /**
-  * Verification failed
-  */
+   * Verification failed
+   */
   NOT_VERIFIED = 2,
 
   /**
-  * Positive comparison result
-  */
+   * Positive comparison result
+   */
   COMPARE_TRUE = 3,
 
   /**
-  * Negative comparison result
-  */
-  COMPARE_FALSE = 4
+   * Negative comparison result
+   */
+  COMPARE_FALSE = 4,
 }

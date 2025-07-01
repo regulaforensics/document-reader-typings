@@ -1,11 +1,13 @@
 import { IsDefined, IsEnum, IsIn, IsString, ValidateNested } from 'class-validator'
 import { Type } from 'class-transformer'
 
-import { eResultType, } from '@/consts'
+import { eResultType } from '@/consts'
 import { iRLocation, RLocation } from '../location'
 
-
-export type tAuthenticityTextCheckReferenceType = eResultType.MRZ_OCR_EXTENDED | eResultType.VISUAL_OCR_EXTENDED | eResultType.BARCODES_TEXT_DATA
+export type tAuthenticityTextCheckReferenceType =
+  | eResultType.MRZ_OCR_EXTENDED
+  | eResultType.VISUAL_OCR_EXTENDED
+  | eResultType.BARCODES_TEXT_DATA
 
 export const AuthenticityTextCheckReferenceTypes: tAuthenticityTextCheckReferenceType[] = [
   eResultType.MRZ_OCR_EXTENDED,
@@ -38,9 +40,9 @@ export class RAuthenticityTextCheckReference implements iRAuthenticityTextCheckR
   result: string
 
   /**
-  * Area location
-  * @type {RLocation}
-  */
+   * Area location
+   * @type {RLocation}
+   */
   @IsDefined()
   @ValidateNested()
   @Type(() => RLocation)

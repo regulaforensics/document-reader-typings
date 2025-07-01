@@ -1,11 +1,10 @@
 import { eLights } from '../lights.const'
 
-
 /**
-* Get lights array from value
-* @param {number} value - value
-* @returns {eLights[]}
-*/
+ * Get lights array from value
+ * @param {number} value - value
+ * @returns {eLights[]}
+ */
 export const getLightsArray = (value: number): eLights[] => {
   const result: eLights[] = []
 

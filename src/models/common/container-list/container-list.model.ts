@@ -2,20 +2,19 @@ import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
 import { Transform } from 'class-transformer'
 
 import { Default } from '@/decorators'
-import { iuContainer, uContainer } from './children'
-
+import { iuContainer, uContainer, transformToContainerList } from './children'
 
 export interface iContainerList {
   /**
-  * Number of containers with results
-  * @type {number}
-  */
+   * Number of containers with results
+   * @type {number}
+   */
   Count: number
 
   /**
-  * List of containers with results
-  * @type {iuContainer[]}
-  */
+   * List of containers with results
+   * @type {iuContainer[]}
+   */
   List: iuContainer[]
 }
 
@@ -25,13 +24,13 @@ export class ContainerList implements iContainerList {
   Count: number
 
   /**
-  * List of containers with results
-  * @type {uContainer[]}
-  */
+   * List of containers with results
+   * @type {uContainer[]}
+   */
   @IsDefined()
   @IsArray()
   @ValidateNested({ each: true })
-  @Transform(({ obj }) => uContainer.transformList(obj.List), { toClassOnly: true })
+  @Transform(({ obj }) => transformToContainerList(obj.List), { toClassOnly: true })
   @Default([])
   List: uContainer[]
 }

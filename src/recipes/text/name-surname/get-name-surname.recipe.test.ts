@@ -6,7 +6,6 @@ import { ProcessResponse } from '@/models'
 import { RNameSurname } from './models'
 import { getNameSurname } from './get-name-surname.recipe'
 
-
 const DIRECTORY = String(process.env.PROCESS_RESPONSE_JSONS_DIR)
 
 describe('getNameSurname', () => {

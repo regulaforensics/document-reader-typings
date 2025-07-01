@@ -8,121 +8,128 @@ import { aContainer } from '../../container.abstract'
 import { iImageQualityCheckList, ImageQualityCheckList } from './children'
 import { ProcessResponse } from '@/models'
 
-
 /**
-* Result type of ImageQualityCheckListContainer
-*/
+ * Result type of ImageQualityCheckListContainer
+ */
 export type tImageQualityCheckListContainerResultType = eResultType.INPUT_IMAGE_QUALITY
 
 /**
-* Result type of ImageQualityCheckListContainer
-* @type {tImageQualityCheckListContainerResultType[]}
-*/
+ * Result type of ImageQualityCheckListContainer
+ * @type {tImageQualityCheckListContainerResultType[]}
+ */
 export const ImageQualityCheckListContainerResultTypes: tImageQualityCheckListContainerResultType[] = [
   eResultType.INPUT_IMAGE_QUALITY,
 ]
 
 /**
-* Container for iImageQualityCheckList
-*/
+ * Container for iImageQualityCheckList
+ */
 export interface iImageQualityCheckListContainer extends aContainer {
   /**
-  * Used for storing input image quality check results list
-  * @type {iImageQualityCheckList}
-  */
+   * Used for storing input image quality check results list
+   * @type {iImageQualityCheckList}
+   */
   ImageQualityCheckList: iImageQualityCheckList
 
   /**
-  * Result type stored in this container
-  * @type {tImageQualityCheckListContainerResultType}
-  */
+   * Result type stored in this container
+   * @type {tImageQualityCheckListContainerResultType}
+   */
   result_type: tImageQualityCheckListContainerResultType
 }
 
 /**
-* Container for ImageQualityCheckList
-*/
+ * Container for ImageQualityCheckList
+ */
 export class ImageQualityCheckListContainer extends aContainer implements iImageQualityCheckListContainer {
   /**
-  * Lighting scheme code for the given result (used only for images)
-  * @type {number}
-  */
+   * Lighting scheme code for the given result (used only for images)
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
   @Default(eLights.OFF)
   light: number
 
   /**
-  * @internal
-  * @type {number}
-  */
+   * @internal
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
   @Default(0)
   list_idx: number
 
   /**
-  * Page index (when working with multi-page document)
-  * @type {number}
-  */
+   * Page index (when working with multi-page document)
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
   @Default(0)
   page_idx: number
 
   /**
-  * @internal
-  * @type {number}
-  */
+   * @internal
+   * @type {number}
+   */
   @IsDefined()
   @IsInt()
   @Default(0)
   buf_length: number
 
   /**
-  * Result type stored in this container
-  * @type {tImageQualityCheckListContainerResultType}
-  */
+   * Result type stored in this container
+   * @type {tImageQualityCheckListContainerResultType}
+   */
   @IsDefined()
   @IsEnum(eResultType)
   @IsIn(ImageQualityCheckListContainerResultTypes)
   result_type: tImageQualityCheckListContainerResultType
 
   /**
-  * Used for storing input image quality check results list
-  * @type {ImageQualityCheckList}
-  */
+   * Used for storing input image quality check results list
+   * @type {ImageQualityCheckList}
+   */
   @IsDefined()
   @ValidateNested()
   @Type(() => ImageQualityCheckList)
   ImageQualityCheckList: ImageQualityCheckList
 
   /**
-  * Creates an instance of ImageQualityCheckListContainer from plain object
-  *
-  * @param {unknown} input - plain object
-  * @returns {ImageQualityCheckListContainer}
-  */
-  static fromPlain = (input: unknown): ImageQualityCheckListContainer => plainToClass(ImageQualityCheckListContainer, input)
+   * Creates an instance of ImageQualityCheckListContainer from plain object
+   *
+   * @param {unknown} input - plain object
+   * @returns {ImageQualityCheckListContainer}
+   */
+  static fromPlain = (input: unknown): ImageQualityCheckListContainer =>
+    plainToClass(ImageQualityCheckListContainer, input)
 
   /**
-  * Get ImageQualityCheckListContainer from ProcessResponse
-  * @param {ProcessResponse} input - ProcessResponse object
-  * @param {boolean} asPlain - return as plain object
-  * @returns {(ImageQualityCheckListContainer|iImageQualityCheckListContainer)[]}
-  */
-  static fromProcessResponse(input: ProcessResponse, asPlain: true): iImageQualityCheckListContainer[];
-  static fromProcessResponse(input: ProcessResponse, asPlain?: false): ImageQualityCheckListContainer[];
-  static fromProcessResponse(input: ProcessResponse, asPlain: boolean = false): (ImageQualityCheckListContainer|iImageQualityCheckListContainer)[] {
+   * Get ImageQualityCheckListContainer from ProcessResponse
+   * @param {ProcessResponse} input - ProcessResponse object
+   * @param {boolean} asPlain - return as plain object
+   * @returns {(ImageQualityCheckListContainer|iImageQualityCheckListContainer)[]}
+   */
+  static fromProcessResponse(input: ProcessResponse, asPlain: true): iImageQualityCheckListContainer[]
+  static fromProcessResponse(input: ProcessResponse, asPlain?: false): ImageQualityCheckListContainer[]
+  static fromProcessResponse(
+    input: ProcessResponse,
+    asPlain: boolean = false,
+  ): (ImageQualityCheckListContainer | iImageQualityCheckListContainer)[] {
     try {
       const { ContainerList } = input
 
       const result = ContainerList.List.filter((container): container is ImageQualityCheckListContainer =>
-        ImageQualityCheckListContainerResultTypes.includes(<tImageQualityCheckListContainerResultType>container.result_type)
+        ImageQualityCheckListContainerResultTypes.includes(
+          <tImageQualityCheckListContainerResultType>container.result_type,
+        ),
       )
 
       if (asPlain) {
-        return result.map((container) => instanceToPlain(container, {exposeUnsetFields: false}) as iImageQualityCheckListContainer)
+        return result.map(
+          (container) => instanceToPlain(container, { exposeUnsetFields: false }) as iImageQualityCheckListContainer,
+        )
       }
 
       return result
@@ -132,17 +139,20 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
   }
 
   /**
-  * Check if the given instance of ImageQualityCheckListContainer is valid
-  *
-  * @param {ImageQualityCheckListContainer} instance - instance of ImageQualityCheckListContainer to be checked
-  * @throws {DocReaderTypeError}
-  * @returns {true | never}
-  */
+   * Check if the given instance of ImageQualityCheckListContainer is valid
+   *
+   * @param {ImageQualityCheckListContainer} instance - instance of ImageQualityCheckListContainer to be checked
+   * @throws {DocReaderTypeError}
+   * @returns {true | never}
+   */
   static validate = (instance: ImageQualityCheckListContainer): true | never => {
     const errors = validateSync(ImageQualityCheckListContainer.fromPlain(instance))
 
     if (errors.length) {
-      throw new DocReaderTypeError('ImageQualityCheckListContainer validation error: the data received does not match model structure!', errors)
+      throw new DocReaderTypeError(
+        'ImageQualityCheckListContainer validation error: the data received does not match model structure!',
+        errors,
+      )
     }
 
     return true

@@ -1,12 +1,11 @@
 import { eAuthenticity } from '../authenticity.const'
 
-
 /**
-* Get Authenticity array from value.
-*
-* @param {number} value - value
-* @returns {eAuthenticity[]}
-*/
+ * Get Authenticity array from value.
+ *
+ * @param {number} value - value
+ * @returns {eAuthenticity[]}
+ */
 export const getAuthenticityArray = (value: number): eAuthenticity[] => {
   const result: eAuthenticity[] = []
 

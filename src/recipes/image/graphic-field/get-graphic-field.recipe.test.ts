@@ -7,7 +7,6 @@ import { eGraphicFieldType, eLights } from '@/consts'
 import { RGraphicField } from './models'
 import { getGraphicField } from './get-graphic-field.recipe'
 
-
 const DIRECTORY = String(process.env.PROCESS_RESPONSE_JSONS_DIR)
 
 describe('getGraphicField', () => {

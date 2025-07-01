@@ -1,11 +1,10 @@
 import { eIRVisibilityFlag } from '../ir-visibility-flag.const'
 
-
 /**
-* Get eIRVisibilityFlag array from value
-* @param {number} value - value
-* @returns {eIRVisibilityFlag[]}
-*/
+ * Get eIRVisibilityFlag array from value
+ * @param {number} value - value
+ * @returns {eIRVisibilityFlag[]}
+ */
 export const getIRVisibilityFlagArray = (value: number): eIRVisibilityFlag[] => {
   const result: eIRVisibilityFlag[] = []
 

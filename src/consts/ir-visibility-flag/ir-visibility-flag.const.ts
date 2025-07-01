@@ -1,30 +1,30 @@
 /**
-* Enumeration contains a flag of visibility of the security element in IR range.
-* @enum {number}
-*/
+ * Enumeration contains a flag of visibility of the security element in IR range.
+ * @enum {number}
+ */
 export enum eIRVisibilityFlag {
   /**
-  * Invisible
-  */
+   * Invisible
+   */
   INVISIBLE = 0,
 
   /**
-  * Visible
-  */
+   * Visible
+   */
   VISIBLE = 1,
 
   /**
-  * Colored
-  */
+   * Colored
+   */
   COLORED = 2,
 
   /**
-  * Grayscale
-  */
+   * Grayscale
+   */
   GRAYSCALE = 4,
 
   /**
-  * Visible vs IR match
-  */
-  WHITE_IR_MATCHING = 8
+   * Visible vs IR match
+   */
+  WHITE_IR_MATCHING = 8,
 }

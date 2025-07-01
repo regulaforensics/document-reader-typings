@@ -8,7 +8,6 @@ import path from 'path'
 
 import { ProcessResponse } from '../dist/index.js'
 
-
 const { merge, values } = lodash
 const { diff } = deepdiff
 
@@ -19,14 +18,14 @@ const pathsExclusions = fs
   .readFileSync(path.join(__dirname, '..', '.excluded'), 'utf8')
   .trim()
   .split('\n')
-  .map(line => line.trim())
+  .map((line) => line.trim())
   .filter(Boolean)
-  .map(exclusion => new RegExp(`^${exclusion.replace(/\*/g, '.*')}$`))
+  .map((exclusion) => new RegExp(`^${exclusion.replace(/\*/g, '.*')}$`))
 
-const isPathExcluded = (path) => !pathsExclusions.every(exclusion => !exclusion.test(path))
+const isPathExcluded = (path) => !pathsExclusions.every((exclusion) => !exclusion.test(path))
 
 const simplifyErrors = (property, errors) => {
-  let result= {}
+  let result = {}
 
   for (let i = 0; i < errors.length; i++) {
     const subProperty = errors[i].property
@@ -47,28 +46,26 @@ const simplifyErrors = (property, errors) => {
   return result
 }
 
-const argv = yargs(hideBin(process.argv))
-  .options({
-    file: {
-      alias: 'f',
-      describe: 'File path',
-      demandOption: true,
-      type: 'string',
-    },
-    fileType: {
-      alias: 't',
-      describe: 'File type',
-      default: 'Not specified',
-      type: 'string',
-    },
-    analyzeDifference: {
-      alias: 'd',
-      describe: 'Analyze difference between parsed and original file',
-      default: false,
-      type: 'boolean',
-    }
-  })
-  .argv
+const argv = yargs(hideBin(process.argv)).options({
+  file: {
+    alias: 'f',
+    describe: 'File path',
+    demandOption: true,
+    type: 'string',
+  },
+  fileType: {
+    alias: 't',
+    describe: 'File type',
+    default: 'Not specified',
+    type: 'string',
+  },
+  analyzeDifference: {
+    alias: 'd',
+    describe: 'Analyze difference between parsed and original file',
+    default: false,
+    type: 'boolean',
+  },
+}).argv
 
 const { file, fileType, analyzeDifference } = argv
 let fileContent = ''
@@ -90,9 +87,8 @@ try {
 const entity = ProcessResponse
 
 // todo: add more file types
-switch (fileType) {
-
-}
+// switch (fileType) {
+// }
 
 const parsed = entity.fromPlain(fileContent)
 let isValid = true
@@ -129,8 +125,7 @@ if (analyzeDifference) {
     }
   })
 
-  differences = differences.filter(difference => !isPathExcluded(difference.path))
-
+  differences = differences.filter((difference) => !isPathExcluded(difference.path))
 
   differences = differences.map((difference) => {
     const { kind, ...rest } = difference
@@ -139,7 +134,7 @@ if (analyzeDifference) {
     switch (kind) {
       case 'N':
         kindValue = 'newly added property/element'
-      break
+        break
       case 'D':
         kindValue = 'property/element was deleted'
         break
@@ -150,7 +145,6 @@ if (analyzeDifference) {
         kindValue = 'change occurred within an array'
         break
     }
-
 
     return {
       kind: kindValue,

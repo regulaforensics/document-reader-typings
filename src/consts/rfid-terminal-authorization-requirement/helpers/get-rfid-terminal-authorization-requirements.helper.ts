@@ -1,11 +1,10 @@
 import { eRfidTerminalAuthorizationRequirement } from '../rfid-terminal-authorization-requirement.const'
 
-
 /**
-* Get array of eRfidTerminalAuthorizationRequirement from value
-* @param {number} value - value
-* @returns {eRfidTerminalAuthorizationRequirement[]}
-*/
+ * Get array of eRfidTerminalAuthorizationRequirement from value
+ * @param {number} value - value
+ * @returns {eRfidTerminalAuthorizationRequirement[]}
+ */
 export const getRfidTerminalAuthorizationRequirements = (value: number): eRfidTerminalAuthorizationRequirement[] => {
   const result: eRfidTerminalAuthorizationRequirement[] = []
 

@@ -5,7 +5,6 @@ import { getImageQuality } from './get-image-quality.recipe'
 import { readdirSync, readFileSync } from 'fs'
 import { join } from 'path'
 
-
 const DIRECTORY = String(process.env.PROCESS_RESPONSE_JSONS_DIR)
 
 describe('getImageQuality', () => {

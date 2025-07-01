@@ -2,7 +2,6 @@ import { ProcessResponse, TextResultContainer } from '@/models'
 import { eVisualFieldType } from '@/consts'
 import { RTextFieldValue } from './models'
 
-
 export function getTextFieldValue(input: ProcessResponse, fieldType: eVisualFieldType): RTextFieldValue[] {
   const containers = TextResultContainer.fromProcessResponse(input)
   const result: RTextFieldValue[] = []
@@ -15,11 +14,13 @@ export function getTextFieldValue(input: ProcessResponse, fieldType: eVisualFiel
         return
       }
 
-      result.push(RTextFieldValue.fromPlain({
-        value: field.value,
-        status: field.status,
-        lcid: field.lcid,
-      }))
+      result.push(
+        RTextFieldValue.fromPlain({
+          value: field.value,
+          status: field.status,
+          lcid: field.lcid,
+        }),
+      )
     })
   }
 
