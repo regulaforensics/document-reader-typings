@@ -1,14 +1,14 @@
 import fs from 'fs'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
-import lodash from 'lodash'
 import { fileURLToPath } from 'url'
 import deepdiff from 'deep-diff'
 import path from 'path'
+import merge from 'lodash/merge'
+import values from 'lodash/values'
 
 import { ProcessResponse } from '../dist/index.js'
 
-const { merge, values } = lodash
 const { diff } = deepdiff
 
 const __filename = fileURLToPath(import.meta.url)

@@ -19,7 +19,8 @@ import { DocReaderTypeError } from '@/errors'
 import { ContainerList, iContainerList } from '@/models/common'
 import { iTransactionInfo, TransactionInfo } from './children'
 import { decode } from '@/helpers'
-import { merge, values } from 'lodash'
+import merge from 'lodash/merge'
+import values from 'lodash/values'
 
 export interface iProcessResponse {
   /**

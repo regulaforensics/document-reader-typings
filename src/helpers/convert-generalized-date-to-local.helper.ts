@@ -1,4 +1,6 @@
-import { parse, format, addMinutes } from 'date-fns'
+import { addMinutes } from 'date-fns/addMinutes'
+import { format } from 'date-fns/format'
+import { parse } from 'date-fns/parse'
 
 /**
  * Converts a generalized date string to a local date string.
