@@ -1,14 +1,4 @@
-import {
-  IsArray,
-  IsBoolean,
-  IsDefined,
-  IsEnum,
-  IsInt,
-  IsOptional,
-  IsString,
-  Min,
-  ValidateNested,
-} from 'class-validator'
+import { IsBoolean, IsDefined, IsEnum, IsInt, IsOptional, IsString, Min, ValidateNested } from 'class-validator'
 import { Type } from 'class-transformer'
 
 import {
@@ -437,6 +427,12 @@ export interface iProcessParams {
    * @type {boolean|undefined}
    */
   generateNumericCodes?: boolean
+
+  /**
+   * When enabled, this parameter marks security checks that don’t meet minimum requirements as 'Failed' (instead of 'WasNotDone'), which causes the overall security status to be 'Failed'.
+   * @type {boolean|undefined}
+   */
+  strictSecurityChecks?: boolean
 }
 
 /**
@@ -949,4 +945,12 @@ export class ProcessParams implements iProcessParams {
   @IsOptional()
   @IsBoolean()
   generateNumericCodes?: boolean
+
+  /**
+   * When enabled, this parameter marks security checks that don’t meet minimum requirements as 'Failed' (instead of 'WasNotDone'), which causes the overall security status to be 'Failed'.
+   * @type {boolean|undefined}
+   */
+  @IsOptional()
+  @IsBoolean()
+  strictSecurityChecks?: boolean
 }
