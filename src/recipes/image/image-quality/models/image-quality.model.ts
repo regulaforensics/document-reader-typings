@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsNumber, ValidateNested, validateSync, ValidationError } from 'class-validator'
-import { plainToClass, Type } from 'class-transformer'
+import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { AllowPrimitives } from '@/types'
 import { iRImageQualityCheck, RImageQualityCheck } from './image-quality-check.model'
@@ -31,6 +31,7 @@ export interface iRImageQuality {
 /**
  * Short version of structure which is used for storing input image quality check results list
  */
+@Expose()
 export class RImageQuality implements iRImageQuality {
   /**
    * Page index (when working with multi-page document)

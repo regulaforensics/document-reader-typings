@@ -1,12 +1,11 @@
-import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { IsDefined, IsEnum, IsIn, ValidateNested, validateSync } from 'class-validator'
+import { TextItem } from '@regulaforensics/document-reader-webclient'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { eLights, eResultType } from '@/consts'
-import { Default } from '@/decorators'
+import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
-import { iTextResult, TextResult } from './children'
-import { ProcessResponse } from '@/models'
+import { ProcessResponse, iTextResult, TextResult } from '@/models'
 
 /**
  * Result type of TextResultContainer
@@ -22,7 +21,7 @@ export const TextResultContainerResultTypes: tTextResultContainerResultType[] = 
 /**
  * Container for iTextResult
  */
-export interface iTextResultContainer extends aContainer {
+export interface iTextResultContainer extends aContainer, TextItem {
   /**
    * Text result
    * @type {iTextResult}
@@ -39,42 +38,16 @@ export interface iTextResultContainer extends aContainer {
 /**
  * Container for TextResult
  */
+@Expose()
 export class TextResultContainer extends aContainer implements iTextResultContainer {
   /**
-   * Lighting scheme code for the given result (used only for images)
-   * @type {number}
+   * Text result
+   * @type {TextResult}
    */
   @IsDefined()
-  @IsInt()
-  @Default(eLights.OFF)
-  light: number
-
-  /**
-   * @internal
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  list_idx: number
-
-  /**
-   * Page index (when working with multi-page document)
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  page_idx: number
-
-  /**
-   * @internal
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  buf_length: number
+  @ValidateNested()
+  @Type(() => TextResult)
+  Text: TextResult
 
   /**
    * Result type stored in this container
@@ -84,15 +57,6 @@ export class TextResultContainer extends aContainer implements iTextResultContai
   @IsEnum(eResultType)
   @IsIn(TextResultContainerResultTypes)
   result_type: tTextResultContainerResultType
-
-  /**
-   * Text result
-   * @type {TextResult}
-   */
-  @IsDefined()
-  @ValidateNested()
-  @Type(() => TextResult)
-  Text: TextResult
 
   /**
    * Creates an instance of TextContainer from plain object

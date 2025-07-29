@@ -1,9 +1,9 @@
-import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { IsDefined, IsEnum, IsIn, ValidateNested, validateSync } from 'class-validator'
+import { ListVerifiedFieldsItem } from '@regulaforensics/document-reader-webclient'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { eLights, eResultType } from '@/consts'
-import { Default } from '@/decorators'
+import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
 import { iListVerifiedFields, ListVerifiedFields } from './children'
 import { ProcessResponse } from '@/models'
@@ -24,7 +24,7 @@ export const ListVerifiedFieldContainerResultTypes: tListVerifiedFieldContainerR
 /**
  * Container for iListVerifiedFields
  */
-export interface iListVerifiedFieldContainer extends aContainer {
+export interface iListVerifiedFieldContainer extends aContainer, ListVerifiedFieldsItem {
   /**
    * Structure serves for storing the results of comparing the MRZ
    * text data, document filling area data, bar-codes data and data retrieved from RFID-chip
@@ -43,52 +43,8 @@ export interface iListVerifiedFieldContainer extends aContainer {
 /**
  * Container for ListVerifiedFields
  */
+@Expose()
 export class ListVerifiedFieldContainer extends aContainer implements iListVerifiedFieldContainer {
-  /**
-   * Lighting scheme code for the given result (used only for images)
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(eLights.OFF)
-  light: number
-
-  /**
-   * @internal
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  list_idx: number
-
-  /**
-   * Page index (when working with multi-page document)
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  page_idx: number
-
-  /**
-   * @internal
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  buf_length: number
-
-  /**
-   * Result type stored in this container
-   * @type {tListVerifiedFieldContainerResultType}
-   */
-  @IsDefined()
-  @IsEnum(eResultType)
-  @IsIn(ListVerifiedFieldContainerResultTypes)
-  result_type: tListVerifiedFieldContainerResultType
-
   /**
    * Structure serves for storing the results of comparing the MRZ
    * text data, document filling area data, bar-codes data and data retrieved from RFID-chip
@@ -99,6 +55,15 @@ export class ListVerifiedFieldContainer extends aContainer implements iListVerif
   @ValidateNested()
   @Type(() => ListVerifiedFields)
   ListVerifiedFields: ListVerifiedFields
+
+  /**
+   * Result type stored in this container
+   * @type {tListVerifiedFieldContainerResultType}
+   */
+  @IsDefined()
+  @IsEnum(eResultType)
+  @IsIn(ListVerifiedFieldContainerResultTypes)
+  result_type: tListVerifiedFieldContainerResultType
 
   /**
    * Creates an instance of ListVerifiedFieldContainer from plain

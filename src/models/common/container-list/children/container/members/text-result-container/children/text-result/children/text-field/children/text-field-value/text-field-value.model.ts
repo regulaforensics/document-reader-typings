@@ -1,70 +1,11 @@
 import { IsArray, IsDefined, IsEnum, IsInt, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
+import { TextFieldValue as iTextFieldValue } from '@regulaforensics/document-reader-webclient'
 import { Transform, Type } from 'class-transformer'
 
-import { iRect, Rect } from '@/models/common/rect'
-import { iRfidOrigin, RfidOrigin } from '@/models/common/rfid-origin'
+import { Rect } from '@/models/common/rect'
+import { RfidOrigin } from '@/models/common/rfid-origin'
 import { eCheckResult, eSource } from '@/consts'
-import { Default } from '@/decorators'
-import { iTextSymbol, TextSymbol } from './children'
-
-/**
- * Used for storing text field values
- */
-export interface iTextFieldValue {
-  /**
-   * Source
-   * @type {eSource}
-   */
-  source: eSource
-
-  /**
-   * Field value in current provision of information format
-   * @type {string}
-   */
-  value: string
-
-  /**
-   * Field original value
-   * @type {string|undefined}
-   */
-  originalValue?: string
-
-  /**
-   * Original validity
-   * @type {eCheckResult}
-   */
-  originalValidity: eCheckResult
-
-  /**
-   * Page index
-   * @type {number}
-   */
-  pageIndex: number
-
-  /**
-   * Field rectangular area
-   * @type {iRect|undefined}
-   */
-  fieldRect?: iRect
-
-  /**
-   * Field source from electronic document
-   * @type {iRfidOrigin|undefined}
-   */
-  rfidOrigin?: iRfidOrigin
-
-  /**
-   * Field recognition probability
-   * @type {number}
-   */
-  probability: number
-
-  /**
-   * Original symbols
-   * @type {iTextSymbol[]|undefined}
-   */
-  originalSymbols?: iTextSymbol[]
-}
+import { TextSymbol } from './children'
 
 /**
  * Used for storing text field values
@@ -101,8 +42,17 @@ export class TextFieldValue implements iTextFieldValue {
    */
   @IsDefined()
   @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
   originalValidity: eCheckResult
+
+  /**
+   * Original symbols
+   * @type {TextSymbol[]|undefined}
+   */
+  @IsOptional()
+  @ValidateNested({ each: true })
+  @Type(() => TextSymbol)
+  @IsArray()
+  originalSymbols?: TextSymbol[]
 
   /**
    * Page index
@@ -111,6 +61,14 @@ export class TextFieldValue implements iTextFieldValue {
   @IsDefined()
   @IsInt()
   pageIndex: number
+
+  /**
+   * Field recognition probability
+   * @type {number}
+   */
+  @IsDefined()
+  @IsNumber()
+  probability: number
 
   /**
    * Field rectangular area
@@ -131,21 +89,12 @@ export class TextFieldValue implements iTextFieldValue {
   rfidOrigin?: RfidOrigin
 
   /**
-   * Field recognition probability
-   * @type {number}
-   */
-  @IsDefined()
-  @IsNumber()
-  @Default(0)
-  probability: number
-
-  /**
-   * Original symbols
-   * @type {TextSymbol[]|undefined}
+   * Same as Result type, but used for safe parsing of not-described values. See Result type.
+   * @type {number|undefined}
    */
   @IsOptional()
-  @ValidateNested({ each: true })
-  @Type(() => TextSymbol)
-  @IsArray()
-  originalSymbols?: TextSymbol[]
+  @IsInt()
+  containerType?: number
 }
+
+export type { iTextFieldValue }

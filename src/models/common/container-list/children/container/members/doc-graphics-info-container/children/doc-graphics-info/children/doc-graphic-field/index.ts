@@ -1,2 +1,1 @@
-export * from './members'
-export * from './doc-graphic-field.union'
+export * from './doc-graphic-field.model'

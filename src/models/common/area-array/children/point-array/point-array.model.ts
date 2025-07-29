@@ -1,19 +1,8 @@
 import { IsArray, IsDefined, ValidateNested } from 'class-validator'
+import { PointsContainer as iPointArray } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
-import { iPoint, Point } from '@/models/common/point'
-import { Default } from '@/decorators'
-
-/**
- * Structure serves for storage areas
- */
-export interface iPointArray {
-  /**
-   * Array of coordinates of points
-   * @type {iPoint[]}
-   */
-  PointsList: iPoint[]
-}
+import { Point } from '@/models/common/point'
 
 /**
  * Structure serves for storage areas
@@ -27,6 +16,7 @@ export class PointArray implements iPointArray {
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => Point)
-  @Default([])
   PointsList: Point[]
 }
+
+export type { iPointArray }

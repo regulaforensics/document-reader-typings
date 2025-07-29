@@ -1,4 +1,5 @@
 import 'reflect-metadata'
+import { describe, test, expect } from 'vitest'
 import { readdirSync, readFileSync } from 'fs'
 import { join } from 'path'
 
@@ -40,7 +41,7 @@ describe('getGraphicField', () => {
     let result: RGraphicField
 
     test(`file '${file}': should be defined`, async () => {
-      result = await getGraphicField(docReaderResponse, eGraphicFieldType.DOCUMENT_IMAGE)
+      result = await getGraphicField(docReaderResponse, eGraphicFieldType.DOCUMENT_FRONT)
 
       expect(result).toBeDefined()
     })
@@ -50,13 +51,15 @@ describe('getGraphicField', () => {
     })
 
     test(`file '${file}': should be able to return default image`, async () => {
-      const result = await getGraphicField(docReaderResponse, eGraphicFieldType.DOCUMENT_IMAGE, true, [eLights.HOLO])
+      const result = await getGraphicField(docReaderResponse, eGraphicFieldType.DOCUMENT_FRONT, true, [
+        eLights.AXIAL_WHITE,
+      ])
 
       expect(result.src).toMatch(/^data:image\/png;base64/)
     })
 
     test(`file '${file}': should return undefined if no image found`, async () => {
-      const result = await getGraphicField(docReaderResponse, eGraphicFieldType.PORTRAIT, false, [eLights.HOLO])
+      const result = await getGraphicField(docReaderResponse, eGraphicFieldType.PORTRAIT, false, [eLights.AXIAL_WHITE])
 
       expect(result).toBeUndefined()
     })

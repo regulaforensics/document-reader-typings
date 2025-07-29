@@ -1,8 +1,7 @@
-import { IsArray, IsDefined, IsEnum, IsIn, IsInt, ValidateNested } from 'class-validator'
-import { plainToClass, Type } from 'class-transformer'
+import { IsArray, IsDefined, IsEnum, IsIn, ValidateNested } from 'class-validator'
+import { plainToClass, Type, Expose } from 'class-transformer'
 
-import { eAuthenticity, eCheckResult } from '@/consts'
-import { Default } from '@/decorators'
+import { eAuthenticity } from '@/consts'
 import { aAuthenticityCheckResult } from '../../authenticity-check-result.abstract'
 import { FibersType, iFibersType } from './children'
 
@@ -29,27 +28,16 @@ export interface iAuthenticityFibersTypeCheckResult extends aAuthenticityCheckRe
   Type: tAuthenticityFibersTypeCheckResultType
 
   /**
-   * Overall checking result
-   * @type {eCheckResult}
-   */
-  Result: eCheckResult
-
-  /**
    * Array of results of checks
    * @type {iFibersType[]}
    */
   List: iFibersType[]
-
-  /**
-   * Number of List items
-   * @type {number}
-   */
-  Count: number
 }
 
 /**
  * Container for FibersType
  */
+@Expose()
 export class AuthenticityFibersTypeCheckResult
   extends aAuthenticityCheckResult
   implements iAuthenticityFibersTypeCheckResult
@@ -64,15 +52,6 @@ export class AuthenticityFibersTypeCheckResult
   Type: tAuthenticityFibersTypeCheckResultType
 
   /**
-   * Overall checking result
-   * @type {eCheckResult}
-   */
-  @IsDefined()
-  @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
-  Result: eCheckResult
-
-  /**
    * Array of results of checks
    * @type {FibersType[]}
    */
@@ -80,16 +59,7 @@ export class AuthenticityFibersTypeCheckResult
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => FibersType)
-  @Default([])
   List: FibersType[]
-
-  /**
-   * Number of List items
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  Count: number
 
   /**
    * Convert plain object to AuthenticityFibersTypeCheckResult instance

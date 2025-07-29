@@ -1,4 +1,5 @@
 import 'reflect-metadata'
+import { describe, test, expect } from 'vitest'
 import { join } from 'path'
 import { readdirSync, readFileSync } from 'fs'
 

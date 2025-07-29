@@ -1,4 +1,4 @@
-import { AuthenticityCheckListContainer, ImageField, ImagesResultContainer, ProcessResponse } from '@/models'
+import { ImageField, ImagesResultContainer, ProcessResponse } from '@/models'
 import { eGraphicFieldType, eResultType } from '@/consts'
 import { getImageDimensions } from '@/helpers'
 import { RDocumentImage, RDocumentImagePage } from './models'

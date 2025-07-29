@@ -1,30 +1,28 @@
-import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
-import { instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { IsDefined, IsEnum, IsIn, IsOptional, IsString, ValidateNested, validateSync } from 'class-validator'
+import { OneCandidateItem } from '@regulaforensics/document-reader-webclient'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { eLights, eResultType } from '@/consts'
-import { Default } from '@/decorators'
-import { iOneCandidate, OneCandidate } from './children'
+import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
 import { ProcessResponse } from '@/models'
+import { iOneCandidate, OneCandidate } from '../../../../../one-candidate'
 
 /**
  * Result type of OneCandidateContainer
  */
-export type tOneCandidateContainerResultType = eResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE
+export type tOneCandidateContainerResultType = eResultType.DOCUMENT_TYPE
 
 /**
  * Result type of OneCandidateContainer
  * @type {tOneCandidateContainerResultType[]}
  */
-export const OneCandidateContainerResultTypes: tOneCandidateContainerResultType[] = [
-  eResultType.CHOSEN_DOCUMENT_TYPE_CANDIDATE,
-]
+export const OneCandidateContainerResultTypes: tOneCandidateContainerResultType[] = [eResultType.DOCUMENT_TYPE]
 
 /**
  * Container for iOneCandidate
  */
-export interface iOneCandidateContainer extends aContainer {
+export interface iOneCandidateContainer extends aContainer, OneCandidateItem {
   /**
    * Contains information on one candidate document when determining the document type
    * @type {iOneCandidate|undefined}
@@ -41,42 +39,23 @@ export interface iOneCandidateContainer extends aContainer {
 /**
  * Container for OneCandidate
  */
+@Expose()
 export class OneCandidateContainer extends aContainer implements iOneCandidateContainer {
   /**
-   * Lighting scheme code for the given result (used only for images)
-   * @type {number}
+   * Contains information on one candidate document when determining the document type
+   * @type {OneCandidate|undefined}
    */
   @IsDefined()
-  @IsInt()
-  @Default(eLights.OFF)
-  light: number
+  @ValidateNested()
+  @Type(() => OneCandidate)
+  OneCandidate: OneCandidate
 
   /**
-   * @internal
-   * @type {number}
+   * @type {string}
    */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  list_idx: number
-
-  /**
-   * Page index (when working with multi-page document)
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  page_idx: number
-
-  /**
-   * @internal
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  buf_length: number
+  @IsOptional()
+  @IsString()
+  XML_buffer?: string
 
   /**
    * Result type stored in this container
@@ -86,15 +65,6 @@ export class OneCandidateContainer extends aContainer implements iOneCandidateCo
   @IsEnum(eResultType)
   @IsIn(OneCandidateContainerResultTypes)
   result_type: tOneCandidateContainerResultType
-
-  /**
-   * Contains information on one candidate document when determining the document type
-   * @type {OneCandidate|undefined}
-   */
-  @IsDefined()
-  @ValidateNested()
-  @Type(() => OneCandidate)
-  OneCandidate: OneCandidate
 
   /**
    * Creates an instance of OneCandidateContainer from plain object

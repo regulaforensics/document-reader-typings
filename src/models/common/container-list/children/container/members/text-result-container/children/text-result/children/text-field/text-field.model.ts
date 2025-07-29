@@ -1,88 +1,9 @@
-import { IsArray, IsDefined, IsEnum, IsString, ValidateNested } from 'class-validator'
+import { IsArray, IsDefined, IsEnum, IsOptional, IsString, ValidateNested } from 'class-validator'
+import { TextField as iTextField } from '@regulaforensics/document-reader-webclient'
 import { Transform, Type } from 'class-transformer'
 
 import { eCheckResult, eLCID, eVisualFieldType } from '@/consts'
-import { TextResultContainer } from '@/models'
-import { Default } from '@/decorators'
-import {
-  iTextComparison,
-  iTextFieldValue,
-  iTextValidity,
-  TextComparison,
-  TextFieldValue,
-  TextValidity,
-} from './children'
-
-/**
- * Used for storing text field.
- */
-export interface iTextField {
-  /**
-   * Field type
-   * @type {eVisualFieldType}
-   */
-  fieldType: eVisualFieldType
-
-  /**
-   * Field name
-   * @type {string}
-   */
-  fieldName: string
-
-  /**
-   * LCID code
-   * @type {eLCID}
-   */
-  lcid: eLCID
-
-  /**
-   * LCID name
-   * @type {string}
-   */
-  lcidName: string
-
-  /**
-   * Field status
-   * @type {eCheckResult}
-   */
-  status: eCheckResult
-
-  /**
-   * Comparison status
-   * @type {eCheckResult}
-   */
-  comparisonStatus: eCheckResult
-
-  /**
-   * Comparison results list
-   * @type {iTextComparison[]}
-   */
-  comparisonList: iTextComparison[]
-
-  /**
-   * Field value
-   * @type {string}
-   */
-  value: string
-
-  /**
-   * Values list
-   * @type {iTextFieldValue[]}
-   */
-  valueList: iTextFieldValue[]
-
-  /**
-   * Validity status
-   * @type {eCheckResult}
-   */
-  validityStatus: eCheckResult
-
-  /**
-   * Validity results list
-   * @type {iTextValidity[]}
-   */
-  validityList: iTextValidity[]
-}
+import { TextResultContainer, TextComparison, TextFieldValue, TextValidity } from '@/models'
 
 /**
  * Used for storing text field.
@@ -110,16 +31,15 @@ export class TextField implements iTextField {
    */
   @IsDefined()
   @IsEnum(eLCID)
-  @Default(eLCID.LATIN)
   lcid: eLCID
 
   /**
    * LCID name
-   * @type {string}
+   * @type {string|undefined}
    */
-  @IsDefined()
+  @IsOptional()
   @IsString()
-  lcidName: string
+  lcidName?: string
 
   /**
    * Field status
@@ -127,8 +47,15 @@ export class TextField implements iTextField {
    */
   @IsDefined()
   @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
   status: eCheckResult
+
+  /**
+   * Validity status
+   * @type {eCheckResult}
+   */
+  @IsDefined()
+  @IsEnum(eCheckResult)
+  validityStatus: eCheckResult
 
   /**
    * Comparison status
@@ -136,19 +63,7 @@ export class TextField implements iTextField {
    */
   @IsDefined()
   @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
   comparisonStatus: eCheckResult
-
-  /**
-   * Comparison results list
-   * @type {TextComparison[]}
-   */
-  @IsDefined()
-  @ValidateNested({ each: true })
-  @Type(() => TextComparison)
-  @Default([])
-  @IsArray()
-  comparisonList: TextComparison[]
 
   /**
    * Field value
@@ -166,18 +81,8 @@ export class TextField implements iTextField {
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => TextFieldValue)
-  @Default([])
   @IsArray()
   valueList: TextFieldValue[]
-
-  /**
-   * Validity status
-   * @type {eCheckResult}
-   */
-  @IsDefined()
-  @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
-  validityStatus: eCheckResult
 
   /**
    * Validity results list
@@ -186,9 +91,18 @@ export class TextField implements iTextField {
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => TextValidity)
-  @Default([])
   @IsArray()
   validityList: TextValidity[]
+
+  /**
+   * Comparison results list
+   * @type {TextComparison[]}
+   */
+  @IsDefined()
+  @ValidateNested({ each: true })
+  @Type(() => TextComparison)
+  @IsArray()
+  comparisonList: TextComparison[]
 
   /**
    * Get text fields from containers

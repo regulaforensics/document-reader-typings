@@ -1,11 +1,11 @@
-import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
-import { instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { IsDefined, IsEnum, IsIn, ValidateNested, validateSync } from 'class-validator'
+import { DocumentPositionItem } from '@regulaforensics/document-reader-webclient'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { eLights, eResultType } from '@/consts'
-import { Default } from '@/decorators'
+import { eResultType } from '@/consts'
 import { ProcessResponse } from '@/models'
-import { BoundsResult, iBoundsResult } from '@/models/common/bounds-result'
+import { BoundsResult } from '@/models/common/bounds-result'
 import { aContainer } from '../../container.abstract'
 
 /**
@@ -29,13 +29,7 @@ export const BoundsResultContainerResultTypes: tBoundsResultContainerResultType[
 /**
  * Container for iBoundsResult
  */
-export interface iBoundsResultContainer extends aContainer {
-  /**
-   * Document position
-   * @type {iBoundsResult|undefined}
-   */
-  DocumentPosition: iBoundsResult
-
+export interface iBoundsResultContainer extends aContainer, DocumentPositionItem {
   /**
    * Result type stored in this container
    * @type {tBoundsResultContainerResultType}
@@ -46,42 +40,16 @@ export interface iBoundsResultContainer extends aContainer {
 /**
  * Container for BoundsResult
  */
+@Expose()
 export class BoundsResultContainer extends aContainer implements iBoundsResultContainer {
   /**
-   * Lighting scheme code for the given result (used only for images)
-   * @type {number}
+   * Document position
+   * @type {BoundsResult}
    */
   @IsDefined()
-  @IsInt()
-  @Default(eLights.OFF)
-  light: number
-
-  /**
-   * @internal
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  list_idx: number
-
-  /**
-   * Page index (when working with multi-page document)
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  page_idx: number
-
-  /**
-   * @internal
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  buf_length: number
+  @ValidateNested()
+  @Type(() => BoundsResult)
+  DocumentPosition: BoundsResult
 
   /**
    * Result type stored in this container
@@ -91,15 +59,6 @@ export class BoundsResultContainer extends aContainer implements iBoundsResultCo
   @IsEnum(eResultType)
   @IsIn(BoundsResultContainerResultTypes)
   result_type: tBoundsResultContainerResultType
-
-  /**
-   * Document position
-   * @type {BoundsResult}
-   */
-  @IsDefined()
-  @ValidateNested()
-  @Type(() => BoundsResult)
-  DocumentPosition: BoundsResult
 
   /**
    * Create new instance of BoundsResultContainer from plain object

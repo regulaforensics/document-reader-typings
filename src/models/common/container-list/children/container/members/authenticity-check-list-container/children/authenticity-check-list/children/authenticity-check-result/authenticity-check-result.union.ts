@@ -45,24 +45,19 @@ export const transformToAuthenticityCheckResultList = (items: unknown[]): uAuthe
   const result: uAuthenticityCheckResult[] = []
 
   items.forEach((item) => {
-    if (!isObject(item) || !Object.prototype.hasOwnProperty.call(item, 'Type')) {
+    if (!isObject(item) || !('Type' in item)) {
       return
     }
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
     const { Type } = item
 
     switch (Type) {
       case eAuthenticity.UV_FIBERS:
-      case eAuthenticity.UV_BACKGROUND:
         result.push(AuthenticityFibersTypeCheckResult.fromPlain(item))
         break
-
       case eAuthenticity.IMAGE_PATTERN:
       case eAuthenticity.IR_VISIBILITY:
       case eAuthenticity.OVI:
-      case eAuthenticity.IR_LUMINESCENCE:
       case eAuthenticity.PORTRAIT_COMPARISON:
       case eAuthenticity.KINEGRAM:
       case eAuthenticity.LETTER_SCREEN:
@@ -71,16 +66,13 @@ export const transformToAuthenticityCheckResultList = (items: unknown[]): uAuthe
       case eAuthenticity.LIVENESS:
         result.push(AuthenticityIdentCheckResult.fromPlain(item))
         break
-
       case eAuthenticity.OCR_SECURITY_TEXT:
+      case eAuthenticity.ENCRYPTED_IPI:
         result.push(AuthenticityOCRSecurityTextCheckResult.fromPlain(item))
         break
-
       case eAuthenticity.IPI:
-      case eAuthenticity.IR_PHOTO:
         result.push(AuthenticityPhotoIdentCheckResult.fromPlain(item))
         break
-
       case eAuthenticity.UV_LUMINESCENCE:
       case eAuthenticity.IR_B900:
       case eAuthenticity.AXIAL_PROTECTION:
@@ -90,7 +82,6 @@ export const transformToAuthenticityCheckResultList = (items: unknown[]): uAuthe
       case eAuthenticity.BARCODE_FORMAT_CHECK:
       case eAuthenticity.EXTENDED_OCR_CHECK:
       case eAuthenticity.EXTENDED_MRZ_CHECK:
-      case eAuthenticity.STATUS_ONLY:
         result.push(AuthenticitySecurityFeatureCheckResult.fromPlain(item))
         break
     }

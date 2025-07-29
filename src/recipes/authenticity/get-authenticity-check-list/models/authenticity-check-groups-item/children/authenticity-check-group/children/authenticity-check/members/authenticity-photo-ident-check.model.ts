@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsOptional, IsString, ValidateNested } from 'class-validator'
-import { plainToInstance, Type } from 'class-transformer'
+import { Expose, plainToInstance, Type } from 'class-transformer'
 
 import { AuthenticityPhotoIdentCheckResultTypes, type tAuthenticityPhotoIdentCheckResultType } from '@/models'
 import { eCheckDiagnose, eCheckResult } from '@/consts'
@@ -44,6 +44,7 @@ export interface iRAuthenticityPhotoIdentCheck extends aAuthenticityCheck {
 /**
  * Authenticity IPI check list item
  */
+@Expose()
 export class RAuthenticityPhotoIdentCheck extends aAuthenticityCheck implements iRAuthenticityPhotoIdentCheck {
   /**
    * Feature type

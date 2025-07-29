@@ -130,8 +130,8 @@ export const getRfidDataGroupsStatus = (input: ProcessResponse): RRfidDataGroupS
   let result: RRfidDataGroupStatus[] = []
 
   binary.forEach((container) => {
-    const sessionData = container.TDocBinaryInfo.RFID_BINARY_DATA.RFID_Session_Data
-    const notRead = container.TDocBinaryInfo.RFID_BINARY_DATA.RFID_ePassp_Directory || []
+    const sessionData = container.TDocBinaryInfo.RFID_BINARY_DATA?.RFID_Session_Data
+    const notRead = container.TDocBinaryInfo.RFID_BINARY_DATA?.RFID_ePassp_Directory || []
 
     sessionData?.Applications.forEach((application, _, array) => {
       const chipType = application.Type
@@ -146,16 +146,16 @@ export const getRfidDataGroupsStatus = (input: ProcessResponse): RRfidDataGroupS
         let status: eDataGroupReadStatus = eDataGroupReadStatus.NOT_AVAILABLE
 
         switch (file.PA_Status) {
-          case eRfidErrorCodes.ERROR_NO_ERROR:
+          case eRfidErrorCodes.RFID_Error_NoError:
             status = eDataGroupReadStatus.NO_ERROR
             break
-          case eRfidErrorCodes.ERROR_NOT_PERFORMED:
+          case eRfidErrorCodes.RFID_Error_NotPerformed:
             status = eDataGroupReadStatus.NOT_PERFORMED
             break
-          case eRfidErrorCodes.ERROR_NOT_AVAILABLE:
+          case eRfidErrorCodes.RFID_Error_NotAvailable:
             status = eDataGroupReadStatus.NOT_AVAILABLE
             break
-          case eRfidErrorCodes.ERROR_FAILED:
+          case eRfidErrorCodes.RFID_Error_Failed:
             status = eDataGroupReadStatus.FAILED
             break
         }

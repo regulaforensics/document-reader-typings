@@ -16,7 +16,7 @@
     "forceConsistentCasingInFileNames": true,
     "strictNullChecks": true,
     "removeComments": false,
-    "noUnusedLocals": false,
+    "noUnusedLocals": true,
     "noUnusedParameters": false,
     "useDefineForClassFields": false,
     "isolatedModules": true,

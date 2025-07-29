@@ -1,9 +1,9 @@
-import { IsBase64, IsDefined, IsEnum, IsIn, IsInt, IsString, validateSync } from 'class-validator'
-import { instanceToPlain, plainToClass } from 'class-transformer'
+import { IsBase64, IsDefined, IsEnum, IsIn, IsString, validateSync } from 'class-validator'
+import { EncryptedRCLItem } from '@regulaforensics/document-reader-webclient'
+import { Expose, instanceToPlain, plainToClass } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { eLights, eResultType } from '@/consts'
-import { Default } from '@/decorators'
+import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
 import { ProcessResponse } from '@/models'
 
@@ -21,7 +21,7 @@ export const EncryptedRCLContainerResultTypes: tEncryptedRCLContainerResultType[
 /**
  * Container for EncryptedRCL base64 string
  */
-export interface iEncryptedRCLContainer extends aContainer {
+export interface iEncryptedRCLContainer extends aContainer, EncryptedRCLItem {
   /**
    * EncryptedRCL base64 string
    * @type {string}
@@ -38,42 +38,16 @@ export interface iEncryptedRCLContainer extends aContainer {
 /**
  * Container for EncryptedRCL
  */
+@Expose()
 export class EncryptedRCLContainer extends aContainer implements iEncryptedRCLContainer {
   /**
-   * Lighting scheme code for the given result (used only for images)
-   * @type {number}
+   * EncryptedRCL base64 string
+   * @type {string}
    */
   @IsDefined()
-  @IsInt()
-  @Default(eLights.OFF)
-  light: number
-
-  /**
-   * @internal
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  list_idx: number
-
-  /**
-   * Page index (when working with multi-page document)
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  page_idx: number
-
-  /**
-   * @internal
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  buf_length: number
+  @IsString()
+  @IsBase64()
+  EncryptedRCL: string
 
   /**
    * Result type stored in this container
@@ -83,15 +57,6 @@ export class EncryptedRCLContainer extends aContainer implements iEncryptedRCLCo
   @IsEnum(eResultType)
   @IsIn(EncryptedRCLContainerResultTypes)
   result_type: tEncryptedRCLContainerResultType
-
-  /**
-   * EncryptedRCL base64 string
-   * @type {string}
-   */
-  @IsDefined()
-  @IsString()
-  @IsBase64()
-  EncryptedRCL: string
 
   /**
    * Creates an instance of EncryptedRCLContainer from plain

@@ -1,124 +1,14 @@
-import { IsDefined, IsEnum, IsOptional, IsString, ValidateNested, validateSync } from 'class-validator'
-import { instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { IsArray, IsDefined, IsInt, IsOptional, IsString, ValidateNested, validateSync } from 'class-validator'
+import { ProcessRequest as iProcessRequest } from '@regulaforensics/document-reader-webclient'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { IsStringObjectRecord } from '@/validators'
 import { DocReaderTypeError } from '@/errors'
-import { ContainerList, iContainerList } from '@/models/common'
-import { eLCID } from '@/consts'
-import {
-  iProcessParams,
-  iProcessRequestImage,
-  iProcessSystemInfo,
-  ProcessParams,
-  ProcessRequestImage,
-  ProcessSystemInfo,
-} from './children'
+import { ContainerList } from '@/models/common'
+import { ProcessParams, ProcessRequestImage, ProcessSystemInfo } from './children'
 
-/**
- * Process request
- */
-export interface iProcessRequest {
-  /**
-   * The list of LCID types to recognize. If empty, values with all LCID types will be extracted. Empty by default.
-   * @type {eLCID[]|undefined}
-   */
-  lcidFilter?: eLCID[]
-
-  /**
-   * Session id
-   * @type {string|undefined}
-   */
-  tag?: string
-
-  /**
-   * Customer name
-   * @type {string|undefined}
-   */
-  tenant?: string
-
-  /**
-   * Environment type
-   * @type {string|undefined}
-   */
-  env?: string
-
-  /**
-   * Process params
-   * @type {iProcessParams}
-   */
-  processParam: iProcessParams
-
-  /**
-   * List of images
-   * @type {iProcessRequestImage[]|undefined}
-   */
-  List?: iProcessRequestImage[]
-
-  /**
-   * Live portrait photo
-   * @type {string|undefined}
-   */
-  livePortrait?: string
-
-  /**
-   * Portrait photo from an external source
-   * @type {string|undefined}
-   */
-  extPortrait?: string
-
-  /**
-   * List of containers
-   * @type {iContainerList|undefined}
-   */
-  ContainerList?: iContainerList
-
-  /**
-   * System info
-   * @type {iProcessSystemInfo|undefined}
-   */
-  systemInfo?: iProcessSystemInfo
-
-  /**
-   * Free-form object to be included in response. Must be object, not list or simple value.
-   * Do not affect document processing. Use it freely to pass your app params. Stored in process logs.
-   * @type {Record<string, object>|undefined}
-   */
-  passBackObject?: Record<string, object>
-}
-
+@Expose()
 export class ProcessRequest implements iProcessRequest {
-  /**
-   * The list of LCID types to recognize. If empty, values with all LCID types will be extracted. Empty by default.
-   * @type {eLCID[]|undefined}
-   */
-  @IsOptional()
-  @IsEnum(eLCID, { each: true })
-  lcidFilter?: eLCID[]
-
-  /**
-   * Session id
-   * @type {string|undefined}
-   */
-  @IsString()
-  @IsOptional()
-  tag?: string
-
-  /**
-   * Customer name
-   * @type {string|undefined}
-   */
-  @IsString()
-  @IsOptional()
-  tenant?: string
-
-  /**
-   * Environment type
-   * @type {string|undefined}
-   */
-  @IsString()
-  @IsOptional()
-  env?: string
-
   /**
    * Process params
    * @type {ProcessParams}
@@ -136,6 +26,30 @@ export class ProcessRequest implements iProcessRequest {
   @IsOptional()
   @Type(() => ProcessRequestImage)
   List?: ProcessRequestImage[]
+
+  /**
+   * Session id
+   * @type {string|undefined}
+   */
+  @IsString()
+  @IsOptional()
+  tag?: string
+
+  /**
+   * Customer name
+   * @type {string|undefined}
+   */
+  @IsString()
+  @IsOptional()
+  tenant?: string
+
+  /**
+   * Environment type
+   * @type {string|undefined}
+   */
+  @IsString()
+  @IsOptional()
+  env?: string
 
   /**
    * Live portrait photo
@@ -181,6 +95,23 @@ export class ProcessRequest implements iProcessRequest {
   passBackObject?: Record<string, object>
 
   /**
+   * Portrait photo from an external source
+   * @type {string|undefined}
+   */
+  @IsOptional()
+  @IsString()
+  dtc?: string
+
+  /**
+   * URLs to the document images for processing.
+   * @type {string[]|undefined}
+   */
+  @IsOptional()
+  @IsArray()
+  @IsInt({ each: true })
+  ImageUrls?: string[]
+
+  /**
    * Creates an instance of ProcessRequest from plain object
    * @param {unknown} input - plain object
    * @returns {ProcessRequest}
@@ -214,3 +145,5 @@ export class ProcessRequest implements iProcessRequest {
     return true
   }
 }
+
+export type { iProcessRequest }

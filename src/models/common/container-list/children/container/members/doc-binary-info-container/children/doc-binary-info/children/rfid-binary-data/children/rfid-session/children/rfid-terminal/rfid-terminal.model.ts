@@ -1,37 +1,11 @@
 import { IsDefined, IsEnum, IsInt } from 'class-validator'
+import { RfidTerminal as iRfidTerminal } from '@regulaforensics/document-reader-webclient'
 
 import {
   eRfidTerminalAuthorizationRequirement,
   eRfidTerminalType,
   getRfidTerminalAuthorizationRequirements,
 } from '@/consts'
-import { Default } from '@/decorators'
-
-/**
- * Structure is used to describe the terminal type within the context of the
- * communication session with electronic document
- */
-export interface iRfidTerminal {
-  /**
-   * Terminal type
-   * @type {eRfidTerminalType}
-   */
-  TermType: eRfidTerminalType
-
-  /**
-   * Declared (set) combination of flags of access rights to the functionality of the document (combination of
-   * eRfidTerminalAuthorizationRequirement values);
-   * @type {number}
-   */
-  AuthReq: number
-
-  /**
-   * Declared (set) combination of flags of access rights to the functionality of the document (combination of
-   * eRfidTerminalAuthorizationRequirement values);
-   * @type {number}
-   */
-  AuthReq2: number
-}
 
 /**
  * Structure is used to describe the terminal type within the context of the
@@ -44,7 +18,6 @@ export class RfidTerminal implements iRfidTerminal {
    */
   @IsDefined()
   @IsEnum(eRfidTerminalType)
-  @Default(eRfidTerminalType.UNDEFINED)
   TermType: eRfidTerminalType
 
   /**
@@ -91,3 +64,5 @@ export class RfidTerminal implements iRfidTerminal {
     return getRfidTerminalAuthorizationRequirements(input.AuthReq2)
   }
 }
+
+export type { iRfidTerminal }

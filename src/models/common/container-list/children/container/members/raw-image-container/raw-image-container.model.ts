@@ -1,12 +1,11 @@
-import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { IsDefined, IsEnum, IsIn, ValidateNested, validateSync } from 'class-validator'
+import { RawImageContainerItem } from '@regulaforensics/document-reader-webclient'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { eLights, eResultType } from '@/consts'
-import { Default } from '@/decorators'
+import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
-import { ProcessResponse } from '@/models'
-import { iRawImage, RawImage } from './children/raw-image'
+import { ImageData, ProcessResponse, iImageData } from '@/models'
 
 /**
  * Result type of RawImageContainer
@@ -28,12 +27,12 @@ export const RawImageContainerResultTypes: tRawImageContainerResultType[] = [
  * Single input image can contain multiple document side/pages, which will be returned as separated results.
  * Most of coordinates in other types defined on that image
  */
-export interface iRawImageContainer extends aContainer {
+export interface iRawImageContainer extends aContainer, RawImageContainerItem {
   /**
    * Structure is used for storing a graphic image
-   * @type {iRawImage}
+   * @type {iImageData}
    */
-  RawImageContainer: iRawImage
+  RawImageContainer: iImageData
 
   /**
    * Result type stored in this container
@@ -45,42 +44,16 @@ export interface iRawImageContainer extends aContainer {
 /**
  * Container for RawImage
  */
+@Expose()
 export class RawImageContainer extends aContainer implements iRawImageContainer {
   /**
-   * Lighting scheme code for the given result (used only for images)
-   * @type {number}
+   * Structure is used for storing a graphic image
+   * @type {ImageData}
    */
   @IsDefined()
-  @IsInt()
-  @Default(eLights.OFF)
-  light: number
-
-  /**
-   * @internal
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  list_idx: number
-
-  /**
-   * Page index (when working with multi-page document)
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  page_idx: number
-
-  /**
-   * @internal
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  buf_length: number
+  @ValidateNested()
+  @Type(() => ImageData)
+  RawImageContainer: ImageData
 
   /**
    * Result type stored in this container
@@ -90,15 +63,6 @@ export class RawImageContainer extends aContainer implements iRawImageContainer 
   @IsEnum(eResultType)
   @IsIn(RawImageContainerResultTypes)
   result_type: tRawImageContainerResultType
-
-  /**
-   * Structure is used for storing a graphic image
-   * @type {RawImage}
-   */
-  @IsDefined()
-  @ValidateNested()
-  @Type(() => RawImage)
-  RawImageContainer: RawImage
 
   /**
    * Creates an instance of RawImageContainer from plain object

@@ -1,9 +1,8 @@
 import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested } from 'class-validator'
-import { plainToInstance, Type } from 'class-transformer'
+import { Expose, plainToInstance, Type } from 'class-transformer'
 
 import { eCheckDiagnose, eCheckResult } from '@/consts'
 import { AuthenticityFibersTypeCheckResultTypes, type tAuthenticityFibersTypeCheckResultType } from '@/models'
-import { Default } from '@/decorators'
 import { aAuthenticityCheck } from '../authenticity-check.abstract'
 import { iRLocation, RLocation } from './children'
 
@@ -51,6 +50,7 @@ export interface iRAuthenticityFibersCheck extends aAuthenticityCheck {
   expectedCount: number
 }
 
+@Expose()
 export class RAuthenticityFibersCheck extends aAuthenticityCheck implements iRAuthenticityFibersCheck {
   /**
    * Feature type
@@ -90,7 +90,6 @@ export class RAuthenticityFibersCheck extends aAuthenticityCheck implements iRAu
    * @type {number[]}
    */
   @IsDefined()
-  @Default([0, 0, 0])
   @IsInt({ each: true })
   colorValues: number[]
 
@@ -99,7 +98,6 @@ export class RAuthenticityFibersCheck extends aAuthenticityCheck implements iRAu
    * @type {number}
    */
   @IsDefined()
-  @Default(0)
   @IsInt()
   rectCount: number
 
@@ -108,7 +106,6 @@ export class RAuthenticityFibersCheck extends aAuthenticityCheck implements iRAu
    * @type {number}
    */
   @IsDefined()
-  @Default(0)
   @IsInt()
   expectedCount: number
 

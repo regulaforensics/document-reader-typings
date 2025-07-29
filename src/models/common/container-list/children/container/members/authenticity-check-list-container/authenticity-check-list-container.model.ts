@@ -1,19 +1,18 @@
-import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { IsDefined, IsEnum, IsIn, ValidateNested, validateSync } from 'class-validator'
+import { AuthenticityCheckListItem } from '@regulaforensics/document-reader-webclient'
+import { instanceToPlain, plainToClass, Type, Expose } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { eLights, eResultType } from '@/consts'
-import { Default } from '@/decorators'
+import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
-import { ProcessResponse } from '@/models'
-import { AuthenticityCheckList, iAuthenticityCheckList } from './children'
+import { ProcessResponse, AuthenticityCheckList } from '@/models'
 
 /**
  * Result type of AuthenticityCheckListContainer
  */
 export type tAuthenticityCheckListContainerResultType =
   | eResultType.AUTHENTICITY
-  | eResultType.FINGER_PRINT_COMPARISON
+  | eResultType.FINGERPRINT_COMPARISON
   | eResultType.PORTRAIT_COMPARISON
 
 /**
@@ -22,75 +21,22 @@ export type tAuthenticityCheckListContainerResultType =
  */
 export const AuthenticityCheckListContainerResultTypes: tAuthenticityCheckListContainerResultType[] = [
   eResultType.AUTHENTICITY,
-  eResultType.FINGER_PRINT_COMPARISON,
+  eResultType.FINGERPRINT_COMPARISON,
   eResultType.PORTRAIT_COMPARISON,
 ]
 
 /**
  * Container for iAuthenticityCheckList
  */
-export interface iAuthenticityCheckListContainer extends aContainer {
-  /**
-   * Structure serves for storing the result of document authenticity check using the images for different lighting
-   * schemes and passing it to the user application.
-   * @type {iAuthenticityCheckList}
-   */
-  AuthenticityCheckList: iAuthenticityCheckList
-
-  /**
-   * Result type stored in this container
-   * @type {tAuthenticityCheckListContainerResultType}
-   */
+export interface iAuthenticityCheckListContainer extends aContainer, AuthenticityCheckListItem {
   result_type: tAuthenticityCheckListContainerResultType
 }
 
 /**
  * Container for iAuthenticityCheckList
  */
+@Expose()
 export class AuthenticityCheckListContainer extends aContainer implements iAuthenticityCheckListContainer {
-  /**
-   * Lighting scheme code for the given result (used only for images)
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(eLights.OFF)
-  light: number
-
-  /**
-   * @internal
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  list_idx: number
-
-  /**
-   * Page index (when working with multi-page document)
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  page_idx: number
-
-  /**
-   * @internal
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  buf_length: number
-
-  /**
-   * Result type stored in this container
-   * @type {tAuthenticityCheckListContainerResultType}
-   */
-  @IsDefined()
-  @IsEnum(eResultType)
-  @IsIn(AuthenticityCheckListContainerResultTypes)
-  result_type: tAuthenticityCheckListContainerResultType
-
   /**
    * Structure serves for storing the result of document authenticity check using the images for different lighting
    * schemes and passing it to the user application.
@@ -100,6 +46,15 @@ export class AuthenticityCheckListContainer extends aContainer implements iAuthe
   @ValidateNested()
   @Type(() => AuthenticityCheckList)
   AuthenticityCheckList: AuthenticityCheckList
+
+  /**
+   * Result type stored in this container
+   * @type {tAuthenticityCheckListContainerResultType}
+   */
+  @IsDefined()
+  @IsEnum(eResultType)
+  @IsIn(AuthenticityCheckListContainerResultTypes)
+  result_type: tAuthenticityCheckListContainerResultType
 
   /**
    * Create new instance of AuthenticityCheckListContainer from plain object

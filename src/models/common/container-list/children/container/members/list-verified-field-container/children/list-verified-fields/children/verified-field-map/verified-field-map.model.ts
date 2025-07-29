@@ -1,70 +1,7 @@
 import { ArrayMaxSize, ArrayMinSize, IsArray, IsDefined, IsEnum, IsOptional, IsString } from 'class-validator'
+import { VerifiedFieldMap as iVerifiedFieldMap } from '@regulaforensics/document-reader-webclient'
 
 import { eLCID, eVisualFieldType, eFieldVerificationResult } from '@/consts'
-import { Default } from '@/decorators'
-
-/**
- * Contains information on results of comparing data obtained from different sources for
- * the same logical type of field
- */
-export interface iVerifiedFieldMap {
-  /**
-   * Text field logical type
-   * @type {eVisualFieldType}
-   */
-  wFieldType: eVisualFieldType
-
-  /**
-   * ID of language-culture to differentiate one field of the same type from another
-   * @type {eLCID}
-   */
-  wLCID: eLCID
-
-  /**
-   * Field data obtained through MRZ reading
-   * Results of reading of multiline field lines are separated by ‘^’ symbol.
-   * @type {string|undefined}
-   */
-  Field_MRZ?: string
-
-  /**
-   * Field data obtained through document filling text fields reading
-   * Results of reading of multiline field lines are separated by ‘^’ symbol.
-   * @type {string|undefined}
-   */
-  Field_Visual?: string
-
-  /**
-   * Field data obtained through bar-codes reading
-   * Results of reading of multiline field lines are separated by ‘^’ symbol.
-   * @type {string|undefined}
-   */
-  Field_Barcode?: string
-
-  /**
-   * Field data obtained through RFID-chip memory reading
-   * Results of reading of multiline field lines are separated by ‘^’ symbol.
-   * @type {string|undefined}
-   */
-  Field_RFID?: string
-
-  /**
-   * Verification results matrix
-   * @type {[eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult, eFieldVerificationResult]}
-   */
-  Matrix: [
-    eFieldVerificationResult, // MRZ data verification result
-    eFieldVerificationResult, // RFID-chip data verification result
-    eFieldVerificationResult, // Document filling text fields data verification result
-    eFieldVerificationResult, // Bar-codes data verification result
-    eFieldVerificationResult, // MRZ and RFID-chip data comparing result
-    eFieldVerificationResult, // MRZ and document filling text fields data comparing result
-    eFieldVerificationResult, // MRZ and bar-codes data comparing result
-    eFieldVerificationResult, // Document filling text fields and RFID-chip data comparing result
-    eFieldVerificationResult, // Document filling text fields and bar-codes data comparing result
-    eFieldVerificationResult, // RFID-chip and bar-codes data comparing result
-  ]
-}
 
 /**
  * Contains information on results of comparing data obtained from different sources for
@@ -77,7 +14,6 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
    */
   @IsDefined()
   @IsEnum(eVisualFieldType)
-  @Default(eVisualFieldType.OTHER)
   wFieldType: eVisualFieldType
 
   /**
@@ -86,7 +22,6 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
    */
   @IsOptional()
   @IsEnum(eLCID)
-  @Default(eLCID.LATIN)
   wLCID: eLCID
 
   /**
@@ -134,18 +69,7 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   @IsArray()
   @ArrayMinSize(10)
   @ArrayMaxSize(10)
-  Matrix: [
-    eFieldVerificationResult, // MRZ data verification result
-    eFieldVerificationResult, // RFID-chip data verification result
-    eFieldVerificationResult, // Document filling text fields data verification result
-    eFieldVerificationResult, // Bar-codes data verification result
-    eFieldVerificationResult, // MRZ and RFID-chip data comparing result
-    eFieldVerificationResult, // MRZ and document filling text fields data comparing result
-    eFieldVerificationResult, // MRZ and bar-codes data comparing result
-    eFieldVerificationResult, // Document filling text fields and RFID-chip data comparing result
-    eFieldVerificationResult, // Document filling text fields and bar-codes data comparing result
-    eFieldVerificationResult, // RFID-chip and bar-codes data comparing result
-  ]
+  Matrix: eFieldVerificationResult[]
 
   /**
    * Get MRZ data verification result
@@ -222,3 +146,5 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
   static getRFIDAndBarcodeDataComparingResult = (instance: VerifiedFieldMap): eFieldVerificationResult =>
     instance.Matrix[9]
 }
+
+export type { iVerifiedFieldMap }

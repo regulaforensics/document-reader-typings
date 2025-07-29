@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, ValidateNested } from 'class-validator'
-import { plainToInstance, Type } from 'class-transformer'
+import { Expose, plainToInstance, Type } from 'class-transformer'
 
 import { AuthenticityOCRSecurityTextCheckResultTypes, type tAuthenticityOCRSecurityTextCheckResultType } from '@/models'
 import { eCheckDiagnose, eCheckResult, eVisualFieldType } from '@/consts'
@@ -46,6 +46,7 @@ export interface iRAuthenticityTextCheck extends aAuthenticityCheck {
 /**
  * Authenticity text check result type
  */
+@Expose()
 export class RAuthenticityTextCheck extends aAuthenticityCheck implements iRAuthenticityTextCheck {
   @IsDefined()
   @ValidateNested()

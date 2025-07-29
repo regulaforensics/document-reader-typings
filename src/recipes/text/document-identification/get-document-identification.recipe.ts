@@ -18,10 +18,10 @@ export function getDocumentIdentification(input: ProcessResponse): RDocumentIden
         RDocumentIdentification.fromPlain({
           documentName: container.OneCandidate.DocumentName,
           pageIndex: container.page_idx ?? 0,
-          isDeprecated: container.OneCandidate.FDSIDList.isDeprecated,
+          isDeprecated: container.OneCandidate.FDSIDList?.isDeprecated,
           documentId: container.OneCandidate.ID,
           probability: container.OneCandidate.P,
-          documentCategory: container.OneCandidate.FDSIDList.dDescription,
+          documentCategory: container.OneCandidate.FDSIDList?.dDescription,
         }),
       )
     }

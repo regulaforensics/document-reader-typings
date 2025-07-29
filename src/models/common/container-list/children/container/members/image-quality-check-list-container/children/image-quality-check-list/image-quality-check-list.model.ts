@@ -1,32 +1,9 @@
 import { IsArray, IsDefined, IsEnum, IsInt, ValidateNested } from 'class-validator'
+import { ImageQualityCheckList as iImageQualityCheckList } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eCheckResult } from '@/consts'
-import { iImageQualityCheck, ImageQualityCheck } from './children'
-import { Default } from '@/decorators'
-
-/**
- * Structure is used for storing input image quality check results list
- */
-export interface iImageQualityCheckList {
-  /**
-   * Overall check result
-   * @type {eCheckResult}
-   */
-  result: eCheckResult
-
-  /**
-   * Array of single check result pointers
-   * @type {iImageQualityCheck[]}
-   */
-  List: iImageQualityCheck[]
-
-  /**
-   * Number of List array elements
-   * @type {number}
-   */
-  Count: number
-}
+import { ImageQualityCheck } from './children'
 
 /**
  * Structure is used for storing input image quality check results list
@@ -48,7 +25,6 @@ export class ImageQualityCheckList implements iImageQualityCheckList {
   @ValidateNested({ each: true })
   @Type(() => ImageQualityCheck)
   @IsArray()
-  @Default([])
   List: ImageQualityCheck[]
 
   /**
@@ -59,3 +35,5 @@ export class ImageQualityCheckList implements iImageQualityCheckList {
   @IsInt()
   Count: number
 }
+
+export type { iImageQualityCheckList }

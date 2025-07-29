@@ -1,57 +1,9 @@
 import { IsDefined, IsEnum, IsOptional, ValidateNested } from 'class-validator'
+import { Status as iStatus } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eCheckResult } from '@/consts'
-import { Default } from '@/decorators'
-import { DetailsRFID, iDetailsRFID, DetailsOptical, iDetailsOptical } from './children'
-
-/**
- * Interface for Status.
- * Status of the document check.
- */
-export interface iStatus {
-  /**
-   * The summary of all checks, one of the CheckResult enumeration values.
-   * @type {eCheckResult}
-   */
-  overallStatus: eCheckResult
-
-  /**
-   * The summary of all optical checks.
-   * @type {eCheckResult}
-   */
-  optical: eCheckResult
-
-  /**
-   * The comparison status for portrait in the document against the live or external image.
-   * @type {eCheckResult}
-   */
-  portrait: eCheckResult
-
-  /**
-   * The summary of all RFID checks.
-   * @type {eCheckResult}
-   */
-  rfid: eCheckResult
-
-  /**
-   * The verification status for the document data against the database.
-   * @type {eCheckResult}
-   */
-  stopList: eCheckResult
-
-  /**
-   * Details of RFID check.
-   * @type {iDetailsRFID|undefined}
-   */
-  detailsRFID?: iDetailsRFID
-
-  /**
-   * Details of optical check.
-   * @type {iDetailsOptical}
-   */
-  detailsOptical: iDetailsOptical
-}
+import { DetailsRFID, DetailsOptical } from './children'
 
 /**
  * Status of the document check.
@@ -63,7 +15,6 @@ export class Status implements iStatus {
    */
   @IsDefined()
   @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
   overallStatus: eCheckResult
 
   /**
@@ -72,7 +23,6 @@ export class Status implements iStatus {
    */
   @IsDefined()
   @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
   optical: eCheckResult
 
   /**
@@ -81,7 +31,6 @@ export class Status implements iStatus {
    */
   @IsDefined()
   @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
   portrait: eCheckResult
 
   /**
@@ -90,7 +39,6 @@ export class Status implements iStatus {
    */
   @IsDefined()
   @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
   rfid: eCheckResult
 
   /**
@@ -99,7 +47,6 @@ export class Status implements iStatus {
    */
   @IsDefined()
   @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
   stopList: eCheckResult
 
   /**
@@ -120,3 +67,5 @@ export class Status implements iStatus {
   @Type(() => DetailsOptical)
   detailsOptical: DetailsOptical
 }
+
+export type { iStatus }

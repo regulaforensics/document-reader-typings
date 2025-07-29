@@ -1,45 +1,38 @@
-import { IsDefined, IsEnum, IsIn, IsInt, IsOptional, ValidateNested, validateSync } from 'class-validator'
-import { instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { IsDefined, IsEnum, IsIn, ValidateNested, validateSync } from 'class-validator'
+import { DocVisualExtendedInfoItem } from '@regulaforensics/document-reader-webclient'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { eLights, eResultType } from '@/consts'
-import { Default } from '@/decorators'
-import { DocVisualExtendedInfo, iDocVisualExtendedInfo } from '@/models/common/doc-visual-extended-info'
+import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
-import { ProcessResponse } from '@/models'
+import { ProcessResponse, DocVisualExtendedInfo } from '@/models'
 
 /**
  * Result type of DocVisualExtendedInfoContainer
  */
 export type tDocVisualExtendedInfoContainerResultType =
-  | eResultType.VISUAL_OCR_EXTENDED
-  | eResultType.MRZ_OCR_EXTENDED
-  | eResultType.BARCODES_TEXT_DATA
+  | eResultType.VISUAL_TEXT
+  | eResultType.MRZ_TEXT
+  | eResultType.BARCODE_TEXT
   | eResultType.MAGNETIC_STRIPE_TEXT_DATA
-  | eResultType.RFID_TEXT_DATA
+  | eResultType.RFID_TEXT
 
 /**
  * Result type of DocVisualExtendedInfoContainer
  * @type {tDocVisualExtendedInfoContainerResultType[]}
  */
 export const DocVisualExtendedInfoContainerResultTypes: tDocVisualExtendedInfoContainerResultType[] = [
-  eResultType.VISUAL_OCR_EXTENDED,
-  eResultType.MRZ_OCR_EXTENDED,
-  eResultType.BARCODES_TEXT_DATA,
+  eResultType.VISUAL_TEXT,
+  eResultType.MRZ_TEXT,
+  eResultType.BARCODE_TEXT,
   eResultType.MAGNETIC_STRIPE_TEXT_DATA,
-  eResultType.RFID_TEXT_DATA,
+  eResultType.RFID_TEXT,
 ]
 
 /**
  * Container for iDocVisualExtendedInfo
  */
-export interface iDocVisualExtendedInfoContainer extends aContainer {
-  /**
-   * Structure serves for storing text results of MRZ, document filling and bar-codes reading
-   * @type {iDocVisualExtendedInfo|undefined}
-   */
-  DocVisualExtendedInfo: iDocVisualExtendedInfo
-
+export interface iDocVisualExtendedInfoContainer extends aContainer, DocVisualExtendedInfoItem {
   /**
    * Result type stored in this container
    * @type {tDocVisualExtendedInfoContainerResultType}
@@ -50,42 +43,16 @@ export interface iDocVisualExtendedInfoContainer extends aContainer {
 /**
  * Container for DocVisualExtendedInfo
  */
+@Expose()
 export class DocVisualExtendedInfoContainer extends aContainer implements iDocVisualExtendedInfoContainer {
   /**
-   * Lighting scheme code for the given result (used only for images)
-   * @type {number}
+   * Structure serves for storing text results of MRZ, document filling and bar-codes reading
+   * @type {DocVisualExtendedInfo|undefined}
    */
   @IsDefined()
-  @IsInt()
-  @Default(eLights.OFF)
-  light: number
-
-  /**
-   * @internal
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  list_idx: number
-
-  /**
-   * Page index (when working with multi-page document)
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  page_idx: number
-
-  /**
-   * @internal
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  buf_length: number
+  @ValidateNested()
+  @Type(() => DocVisualExtendedInfo)
+  DocVisualExtendedInfo: DocVisualExtendedInfo
 
   /**
    * Result type stored in this container
@@ -95,15 +62,6 @@ export class DocVisualExtendedInfoContainer extends aContainer implements iDocVi
   @IsEnum(eResultType)
   @IsIn(DocVisualExtendedInfoContainerResultTypes)
   result_type: tDocVisualExtendedInfoContainerResultType
-
-  /**
-   * Structure serves for storing text results of MRZ, document filling and bar-codes reading
-   * @type {DocVisualExtendedInfo|undefined}
-   */
-  @IsDefined()
-  @ValidateNested()
-  @Type(() => DocVisualExtendedInfo)
-  DocVisualExtendedInfo: DocVisualExtendedInfo
 
   /**
    * Creates an instance of DocVisualExtendedInfoContainer from plain object

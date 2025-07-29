@@ -2,7 +2,7 @@ import { IsDefined, IsEnum, IsOptional, ValidateNested } from 'class-validator'
 import { Type } from 'class-transformer'
 
 import { eLights } from '@/consts'
-import { iRRect, RRect } from '@/common-models'
+import { iRect, Rect } from '@/models'
 
 /**
  * Location
@@ -16,9 +16,9 @@ export interface iRLocation {
 
   /**
    * Rect
-   * @type {RRect[]}
+   * @type {iRect[]}
    */
-  rect: iRRect[]
+  rect: iRect[]
 }
 
 /**
@@ -35,10 +35,10 @@ export class RLocation implements iRLocation {
 
   /**
    * Rect
-   * @type {RRect}
+   * @type {Rect}
    */
   @IsDefined()
-  @Type(() => RRect)
+  @Type(() => Rect)
   @ValidateNested({ each: true })
-  rect: RRect[]
+  rect: Rect[]
 }

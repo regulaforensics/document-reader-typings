@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsOptional, ValidateNested } from 'class-validator'
-import { plainToInstance, Type } from 'class-transformer'
+import { Expose, plainToInstance, Type } from 'class-transformer'
 
 import type { tAuthenticitySecurityFeatureCheckResultType } from '@/models'
 import { AuthenticitySecurityFeatureCheckResultTypes } from '@/models'
@@ -45,6 +45,7 @@ export interface iRAuthenticitySecurityCheck extends aAuthenticityCheck {
 /**
  * Authenticity Barcode check list item
  */
+@Expose()
 export class RAuthenticitySecurityCheck extends aAuthenticityCheck implements iRAuthenticitySecurityCheck {
   /**
    * Feature type

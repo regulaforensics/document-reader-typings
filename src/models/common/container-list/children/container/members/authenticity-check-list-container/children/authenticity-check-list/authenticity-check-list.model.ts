@@ -1,20 +1,14 @@
 import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
+import { AuthenticityCheckList as cAuthenticityCheckList } from '@regulaforensics/document-reader-webclient'
 import { Transform } from 'class-transformer'
 
-import { Default } from '@/decorators'
 import { iuAuthenticityCheckResult, uAuthenticityCheckResult, transformToAuthenticityCheckResultList } from './children'
 
 /**
  * Structure serves for storing the result of document authenticity check using the images for different lighting
  * schemes and passing it to the user application.
  */
-export interface iAuthenticityCheckList {
-  /**
-   * Number of elements in the list
-   * @type {number}
-   */
-  Count: number
-
+export interface iAuthenticityCheckList extends cAuthenticityCheckList {
   /**
    * Array of data structures with the results of performing of different document authenticity checks
    * @type {iuAuthenticityCheckResult[]}
@@ -42,6 +36,5 @@ export class AuthenticityCheckList implements iAuthenticityCheckList {
   @ValidateNested({ each: true })
   @Transform(({ obj }) => transformToAuthenticityCheckResultList(obj.List), { toClassOnly: true })
   @IsArray()
-  @Default([])
   List: uAuthenticityCheckResult[]
 }

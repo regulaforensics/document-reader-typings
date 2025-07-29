@@ -2,7 +2,7 @@ import { IsDefined, IsEnum, IsNumber, IsString } from 'class-validator'
 
 import { eCheckResult } from '@/consts'
 import { ePortraitComparisonSource } from './consts'
-import { plainToClass } from 'class-transformer'
+import { Expose, plainToClass } from 'class-transformer'
 
 /**
  * Interface for portraits comparison comparable
@@ -36,6 +36,7 @@ export interface iRPortraitComparisonComparable {
 /**
  * Authenticity image check list item
  */
+@Expose()
 export class RPortraitComparisonComparable implements iRPortraitComparisonComparable {
   /**
    * Portraits comparison source

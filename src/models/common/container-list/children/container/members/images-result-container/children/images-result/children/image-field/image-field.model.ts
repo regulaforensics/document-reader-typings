@@ -1,39 +1,10 @@
-import { IsArray, IsDefined, IsEnum, IsInt, IsString, ValidateNested } from 'class-validator'
+import { IsArray, IsDefined, IsEnum, IsInt, IsOptional, IsString, ValidateNested } from 'class-validator'
+import { ImagesField as iImageField } from '@regulaforensics/document-reader-webclient'
 import { Transform, Type } from 'class-transformer'
 
 import { eGraphicFieldType } from '@/consts'
 import { ImagesResultContainer } from '@/models'
-import { Default } from '@/decorators'
-import { iImageFieldValue, ImageFieldValue } from './children'
-
-/**
- * Used for provision of one image or graphic field
- */
-export interface iImageField {
-  /**
-   * Field name
-   * @type {string}
-   */
-  fieldName: string
-
-  /**
-   * Field type
-   * @type {eGraphicFieldType}
-   */
-  fieldType: eGraphicFieldType
-
-  /**
-   * Field value list
-   * @type {iImageFieldValue[]}
-   */
-  valueList: iImageFieldValue[]
-
-  /**
-   * Field value count
-   * @type {number}
-   */
-  valueCount: number
-}
+import { ImageFieldValue } from './children'
 
 /**
  * Used for provision of one image or graphic field
@@ -53,7 +24,6 @@ export class ImageField implements iImageField {
    */
   @IsDefined()
   @IsEnum(eGraphicFieldType)
-  @Default(eGraphicFieldType.OTHER)
   fieldType: eGraphicFieldType
 
   /**
@@ -64,17 +34,16 @@ export class ImageField implements iImageField {
   @ValidateNested({ each: true })
   @Type(() => ImageFieldValue)
   @IsArray()
-  @Default([])
   valueList: ImageFieldValue[]
 
   /**
    * Field value count
    * @type {number}
    */
-  @IsDefined()
+  @IsOptional()
   @IsInt()
   @Transform(({ obj }) => obj.valueList.length, { toClassOnly: true })
-  valueCount: number
+  valueCount?: number
 
   /**
    * Get field from containers
@@ -104,3 +73,5 @@ export class ImageField implements iImageField {
     return result
   }
 }
+
+export type { iImageField }

@@ -1,21 +1,21 @@
-import { IsArray, IsDefined, IsEnum, IsIn, IsInt, ValidateNested } from 'class-validator'
-import { plainToClass, Type } from 'class-transformer'
+import { IsArray, IsDefined, IsEnum, IsIn, ValidateNested } from 'class-validator'
+import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { eAuthenticity, eCheckResult } from '@/consts'
-import { Default } from '@/decorators'
+import { eAuthenticity } from '@/consts'
 import { aAuthenticityCheckResult } from '../../authenticity-check-result.abstract'
 import { iOCRSecurityTextResult, OCRSecurityTextResult } from './children'
 
 /**
  * Result type of AuthenticityOCRSecurityTextCheckResult
  */
-export type tAuthenticityOCRSecurityTextCheckResultType = eAuthenticity.OCR_SECURITY_TEXT
+export type tAuthenticityOCRSecurityTextCheckResultType = eAuthenticity.OCR_SECURITY_TEXT | eAuthenticity.ENCRYPTED_IPI
 
 /**
  * Result type of AuthenticityOCRSecurityTextCheckResult
  */
 export const AuthenticityOCRSecurityTextCheckResultTypes: tAuthenticityOCRSecurityTextCheckResultType[] = [
   eAuthenticity.OCR_SECURITY_TEXT,
+  eAuthenticity.ENCRYPTED_IPI,
 ]
 
 /**
@@ -29,27 +29,16 @@ export interface iAuthenticityOCRSecurityTextCheckResult extends aAuthenticityCh
   Type: tAuthenticityOCRSecurityTextCheckResultType
 
   /**
-   * Overall checking result
-   * @type {eCheckResult}
-   */
-  Result: eCheckResult
-
-  /**
    * Array of results of checks
    * @type {iOCRSecurityTextResult[]}
    */
   List: iOCRSecurityTextResult[]
-
-  /**
-   * Number of List items
-   * @type {number}
-   */
-  Count: number
 }
 
 /**
  * Container for OCRSecurityTextResult
  */
+@Expose()
 export class AuthenticityOCRSecurityTextCheckResult
   extends aAuthenticityCheckResult
   implements iAuthenticityOCRSecurityTextCheckResult
@@ -64,15 +53,6 @@ export class AuthenticityOCRSecurityTextCheckResult
   Type: tAuthenticityOCRSecurityTextCheckResultType
 
   /**
-   * Overall checking result
-   * @type {eCheckResult}
-   */
-  @IsDefined()
-  @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
-  Result: eCheckResult
-
-  /**
    * Array of results of checks
    * @type {OCRSecurityTextResult[]}
    */
@@ -80,16 +60,7 @@ export class AuthenticityOCRSecurityTextCheckResult
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => OCRSecurityTextResult)
-  @Default([])
   List: OCRSecurityTextResult[]
-
-  /**
-   * Number of List items
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  Count: number
 
   /**
    * Create a AuthenticityOCRSecurityTextCheckResult instance from a plain object

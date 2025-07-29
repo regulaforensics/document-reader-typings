@@ -1,25 +1,8 @@
 import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
+import { RawImageContainerList as iRawImageContainerList } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
-import { iImageData, ImageData } from '@/models/common/image-data'
-import { Default } from '@/decorators'
-
-/**
- * Container for ImageData
- */
-export interface iRawImageContainerList {
-  /**
-   * Number of Images
-   * @type {number}
-   */
-  Count: number
-
-  /**
-   * Array of ImageData
-   * @type {iImageData[]}
-   */
-  Images: iImageData[]
-}
+import { ImageData } from '@/models/common/image-data'
 
 /**
  * Container for ImageData
@@ -41,6 +24,7 @@ export class RawImageContainerList implements iRawImageContainerList {
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => ImageData)
-  @Default([])
   Images: ImageData[]
 }
+
+export type { iRawImageContainerList }

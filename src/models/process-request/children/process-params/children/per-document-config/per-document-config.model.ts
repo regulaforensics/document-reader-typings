@@ -1,21 +1,5 @@
 import { IsArray, IsInt, IsOptional } from 'class-validator'
-
-/**
- * Specific configuration for each document
- */
-export interface iPerDocumentConfig {
-  /**
-   * Specific template IDs, for which apply current custom configuration
-   * @type {number[]|undefined}
-   */
-  docID?: number[]
-
-  /**
-   * Contains items from eAuthenticity as sum via OR operation
-   * @type {number|undefined}
-   */
-  excludeAuthChecks?: number
-}
+import { PerDocumentConfig as iPerDocumentConfig } from '@regulaforensics/document-reader-webclient'
 
 /**
  * Specific configuration for each document
@@ -38,3 +22,5 @@ export class PerDocumentConfig implements iPerDocumentConfig {
   @IsInt()
   excludeAuthChecks?: number
 }
+
+export type { iPerDocumentConfig }

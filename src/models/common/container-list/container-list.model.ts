@@ -1,27 +1,17 @@
-import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
+import { IsArray, IsOptional, IsDefined, IsInt, ValidateNested } from 'class-validator'
+import { ContainerList as iContainerList } from '@regulaforensics/document-reader-webclient'
 import { Transform } from 'class-transformer'
 
-import { Default } from '@/decorators'
-import { iuContainer, uContainer, transformToContainerList } from './children'
-
-export interface iContainerList {
-  /**
-   * Number of containers with results
-   * @type {number}
-   */
-  Count: number
-
-  /**
-   * List of containers with results
-   * @type {iuContainer[]}
-   */
-  List: iuContainer[]
-}
+import { transformToContainerList, uContainer } from './children'
 
 export class ContainerList implements iContainerList {
-  @IsDefined()
+  /**
+   * Length of list (Count for items)
+   * @type {number|undefined}
+   */
+  @IsOptional()
   @IsInt()
-  Count: number
+  Count?: number
 
   /**
    * List of containers with results
@@ -31,6 +21,7 @@ export class ContainerList implements iContainerList {
   @IsArray()
   @ValidateNested({ each: true })
   @Transform(({ obj }) => transformToContainerList(obj.List), { toClassOnly: true })
-  @Default([])
   List: uContainer[]
 }
+
+export type { iContainerList }

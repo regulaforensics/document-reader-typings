@@ -1,24 +1,7 @@
 import { IsDefined, IsEnum } from 'class-validator'
+import { SourceValidity as iTextValidity } from '@regulaforensics/document-reader-webclient'
 
 import { eCheckResult, eSource } from '@/consts'
-import { Default } from '@/decorators'
-
-/**
- * Structure is used for storing specified source text field validity results
- */
-export interface iTextValidity {
-  /**
-   * Source name
-   * @type {eSource}
-   */
-  source: eSource
-
-  /**
-   * Validity status
-   * @type {eCheckResult}
-   */
-  status: eCheckResult
-}
 
 /**
  * Structure is used for storing specified source text field validity results
@@ -38,6 +21,7 @@ export class TextValidity implements iTextValidity {
    */
   @IsDefined()
   @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
   status: eCheckResult
 }
+
+export type { iTextValidity }

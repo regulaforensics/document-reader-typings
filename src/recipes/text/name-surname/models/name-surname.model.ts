@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsString, validateSync, ValidationError } from 'class-validator'
-import { plainToClass } from 'class-transformer'
+import { Expose, plainToClass } from 'class-transformer'
 
 import { eCheckResult, eLCID } from '@/consts'
 import { AllowPrimitives } from '@/types'
@@ -32,6 +32,7 @@ export interface iRNameSurname {
  * Name and surname, LCID and check result
  * If check result is ERROR - value will be UNKNOWN and LCID will be 1033 (English - United States)
  */
+@Expose()
 export class RNameSurname implements iRNameSurname {
   /**
    * Name and surname

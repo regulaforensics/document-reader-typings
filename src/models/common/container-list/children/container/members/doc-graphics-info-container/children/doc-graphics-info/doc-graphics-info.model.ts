@@ -1,25 +1,8 @@
-import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
-import { Transform } from 'class-transformer'
+import { IsDefined, IsInt, ValidateNested } from 'class-validator'
+import { GraphicFieldsList as iDocGraphicsInfo } from '@regulaforensics/document-reader-webclient'
+import { Type } from 'class-transformer'
 
-import { uDocGraphicField, iuDocGraphicField, transformToDocGraphicFieldList } from './children'
-import { Default } from '@/decorators'
-
-/**
- * Model serves for storing graphic results of document filling area and bar-codes reading
- */
-export interface iDocGraphicsInfo {
-  /**
-   * Array of images
-   * @type {iuDocGraphicField[]}
-   */
-  pArrayFields: iuDocGraphicField[]
-
-  /**
-   * Number of pArrayFields array elements
-   * @type {number}
-   */
-  nFields: number
-}
+import { DocGraphicField } from './children'
 
 /**
  * Model serves for storing graphic results of document filling area
@@ -28,14 +11,12 @@ export interface iDocGraphicsInfo {
 export class DocGraphicsInfo implements iDocGraphicsInfo {
   /**
    * Array of images
-   * @type {uDocGraphicField[]}
+   * @type {DocGraphicField[]}
    */
   @IsDefined()
-  @ValidateNested({ each: true })
-  @Transform(({ obj }) => transformToDocGraphicFieldList(obj.pArrayFields), { toClassOnly: true })
-  @IsArray()
-  @Default([])
-  pArrayFields: uDocGraphicField[]
+  @ValidateNested()
+  @Type(() => DocGraphicField)
+  pArrayFields: DocGraphicField[]
 
   /**
    * Number of pArrayFields array elements
@@ -45,3 +26,5 @@ export class DocGraphicsInfo implements iDocGraphicsInfo {
   @IsInt()
   nFields: number
 }
+
+export type { iDocGraphicsInfo }

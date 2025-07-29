@@ -1,135 +1,34 @@
 import { IsDefined, IsEnum, IsIn, IsOptional, ValidateNested, IsInt, IsArray } from 'class-validator'
+import { PhotoIdentItem } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
-import { iRect, Rect } from '@/models/common/rect'
-import { iImageData, ImageData } from '@/models/common/image-data'
-import { eAuthenticity, eCheckDiagnose, eCheckResult, eLights } from '@/consts'
-import { Default } from '@/decorators'
-import { iRawImageContainerList, RawImageContainerList } from './children'
+import { Rect } from '@/models/common/rect'
+import { ImageData } from '@/models/common/image-data'
+import { eAuthenticity, eLights } from '@/consts'
+import { RawImageContainerList } from './children'
+import { aAuthenticityCheckResultItem } from '../../../../authenticity-check-result-item.abstract'
 
 /**
  * Serves for storing the result of invisible personal information embedded image visualization
  */
-export interface iPhotoIdentResult {
+export interface iPhotoIdentResult extends aAuthenticityCheckResultItem, PhotoIdentItem {
   /**
    * Type of the performed check
-   * @type {eAuthenticity.IPI | eAuthenticity.IR_PHOTO}
+   * @type {eAuthenticity.IPI}
    */
-  Type: eAuthenticity.IPI | eAuthenticity.IR_PHOTO
-
-  /**
-   * Checking result
-   * @type {eCheckResult}
-   */
-  ElementResult: eCheckResult
-
-  /**
-   * Element with which errors are checked
-   * @type {eCheckDiagnose}
-   */
-  ElementDiagnose: eCheckDiagnose
-
-  /**
-   * Light scheme
-   * @type {eLights}
-   */
-  LightIndex: eLights
-
-  /**
-   * Field area’s coordinates
-   * @type {iRect}
-   */
-  Area: iRect
-
-  /**
-   * Source image
-   * @type {iImageData}
-   */
-  SourceImage: iImageData
-
-  /**
-   * Array of the output images
-   * @type {iRawImageContainerList}
-   */
-  ResultImages: iRawImageContainerList
-
-  /**
-   * Count of the the text fields, which are encoded in the IPI image.
-   * Reserved. Not used.
-   * @internal
-   */
-  FieldTypesCount?: number
-
-  /**
-   * List of the the text fields, which are encoded in the IPI image. Reserved. Not used
-   * @internal
-   */
-  FieldTypesList?: number[]
-
-  /**
-   * @type {number}
-   */
-  Step?: number
-
-  /**
-   * @type {number}
-   */
-  Angle?: number
-
-  /**
-   * @internal
-   */
-  Reserved1?: number
-
-  /**
-   * @internal
-   */
-  Reserved2?: number
-
-  /**
-   * @internal
-   */
-  Reserved3?: number
+  Type: eAuthenticity.IPI
 }
 
 /**
  * Serves for storing the result of invisible personal information embedded image visualization
  */
-export class PhotoIdentResult implements iPhotoIdentResult {
-  /**
-   * Type of the performed check
-   * @type {eAuthenticity.IPI | eAuthenticity.IR_PHOTO}
-   */
-  @IsDefined()
-  @IsIn([eAuthenticity.IPI, eAuthenticity.IR_PHOTO])
-  @IsEnum(eAuthenticity)
-  Type: eAuthenticity.IPI | eAuthenticity.IR_PHOTO
-
-  /**
-   * Checking result
-   * @type {eCheckResult}
-   */
-  @IsOptional()
-  @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
-  ElementResult: eCheckResult
-
-  /**
-   * Element with which errors are checked
-   * @type {eCheckDiagnose}
-   */
-  @IsDefined()
-  @IsEnum(eCheckDiagnose)
-  @Default(eCheckDiagnose.UNKNOWN)
-  ElementDiagnose: eCheckDiagnose
-
+export class PhotoIdentResult extends aAuthenticityCheckResultItem implements iPhotoIdentResult {
   /**
    * Light scheme
    * @type {eLights}
    */
   @IsDefined()
   @IsEnum(eLights)
-  @Default(eLights.OFF)
   LightIndex: eLights
 
   /**
@@ -174,6 +73,7 @@ export class PhotoIdentResult implements iPhotoIdentResult {
    */
   @IsOptional()
   @IsArray()
+  @IsInt({ each: true })
   FieldTypesList?: number[]
 
   /**
@@ -195,19 +95,14 @@ export class PhotoIdentResult implements iPhotoIdentResult {
    */
   @IsOptional()
   @IsInt()
-  Reserved1?: number
-
-  /**
-   * @internal
-   */
-  @IsOptional()
-  @IsInt()
-  Reserved2?: number
-
-  /**
-   * @internal
-   */
-  @IsOptional()
-  @IsInt()
   Reserved3?: number
+
+  /**
+   * Type of the performed check
+   * @type {eAuthenticity.IPI}
+   */
+  @IsDefined()
+  @IsIn([eAuthenticity.IPI])
+  @IsEnum(eAuthenticity)
+  Type: eAuthenticity.IPI
 }

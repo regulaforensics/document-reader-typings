@@ -46,12 +46,10 @@ export const transformToRAuthenticityCheckList = (items: unknown[]): uRAuthentic
   const result: uRAuthenticityCheck[] = []
 
   items.forEach((item) => {
-    if (!isObject(item) || !Object.prototype.hasOwnProperty.call(item, 'checkType')) {
+    if (!isObject(item) || !('checkType' in item)) {
       return
     }
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
     const { checkType } = item
 
     switch (checkType) {
@@ -62,7 +60,6 @@ export const transformToRAuthenticityCheckList = (items: unknown[]): uRAuthentic
       case eAuthenticity.IMAGE_PATTERN:
       case eAuthenticity.IR_VISIBILITY:
       case eAuthenticity.OVI:
-      case eAuthenticity.IR_LUMINESCENCE:
       case eAuthenticity.PORTRAIT_COMPARISON:
       case eAuthenticity.KINEGRAM:
       case eAuthenticity.LETTER_SCREEN:
@@ -73,11 +70,11 @@ export const transformToRAuthenticityCheckList = (items: unknown[]): uRAuthentic
         break
 
       case eAuthenticity.OCR_SECURITY_TEXT:
+      case eAuthenticity.ENCRYPTED_IPI:
         result.push(RAuthenticityTextCheck.fromPlain(item))
         break
 
       case eAuthenticity.IPI:
-      case eAuthenticity.IR_PHOTO:
         result.push(RAuthenticityPhotoIdentCheck.fromPlain(item))
         break
 
@@ -90,7 +87,6 @@ export const transformToRAuthenticityCheckList = (items: unknown[]): uRAuthentic
       case eAuthenticity.BARCODE_FORMAT_CHECK:
       case eAuthenticity.EXTENDED_OCR_CHECK:
       case eAuthenticity.EXTENDED_MRZ_CHECK:
-      case eAuthenticity.STATUS_ONLY:
         result.push(RAuthenticitySecurityCheck.fromPlain(item))
         break
     }

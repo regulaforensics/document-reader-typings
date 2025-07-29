@@ -1,4 +1,4 @@
-import { plainToClass } from 'class-transformer'
+import { Expose, plainToClass } from 'class-transformer'
 import { IsDefined, IsEnum, IsString, validateSync, ValidationError } from 'class-validator'
 
 import { eRfidCertificateType } from '@/consts'
@@ -54,6 +54,7 @@ export interface iRRfidCertificate {
 /**
  * Rfid certificates data
  */
+@Expose()
 export class RRfidCertificate implements iRRfidCertificate {
   /**
    * Certificate type

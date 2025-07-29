@@ -1,4 +1,4 @@
-import { plainToClass, Type } from 'class-transformer'
+import { Expose, plainToClass, Type } from 'class-transformer'
 import { IsDefined, IsEnum, validateSync, ValidationError, ValidateNested } from 'class-validator'
 
 import { eRfidApplicationType } from '@/consts'
@@ -25,6 +25,7 @@ export interface iRRfidApplicationItem {
 /**
  * Rfid application item
  */
+@Expose()
 export class RRfidApplicationItem implements iRRfidApplicationItem {
   /**
    * Application type

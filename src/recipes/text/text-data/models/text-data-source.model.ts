@@ -1,10 +1,8 @@
 import { IsDefined, IsEnum, IsOptional, IsString, ValidateNested } from 'class-validator'
 
 import { eCheckResult, eSource } from '@/consts'
-import { Default } from '@/decorators'
-import { iRRect, RRect } from '@/common-models'
 import { Type } from 'class-transformer'
-import { iRfidOrigin, RfidOrigin } from '@/models'
+import { iRfidOrigin, RfidOrigin, iRect, Rect } from '@/models'
 
 /**
  * Source, value and check result of a text data field
@@ -42,9 +40,9 @@ export interface iRTextDataSource {
 
   /**
    * Rect
-   * @type {RRect|undefined}
+   * @type {iRect|undefined}
    */
-  rect?: iRRect
+  rect?: iRect
 
   /**
    * RFID origin
@@ -79,7 +77,6 @@ export class RTextDataSource implements iRTextDataSource {
    */
   @IsDefined()
   @IsString()
-  @Default('')
   value: string
 
   /**
@@ -87,7 +84,6 @@ export class RTextDataSource implements iRTextDataSource {
    * @type {number}
    */
   @IsDefined()
-  @Default(0)
   probability: number
 
   /**
@@ -95,17 +91,16 @@ export class RTextDataSource implements iRTextDataSource {
    * @type {number}
    */
   @IsDefined()
-  @Default(0)
   pageIndex: number
 
   /**
    * Rect
-   * @type {RRect|undefined}
+   * @type {Rect|undefined}
    */
   @IsOptional()
-  @Type(() => RRect)
+  @Type(() => Rect)
   @ValidateNested()
-  rect?: RRect
+  rect?: Rect
 
   /**
    * RFID origin

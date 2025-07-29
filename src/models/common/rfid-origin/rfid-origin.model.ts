@@ -1,33 +1,5 @@
 import { IsDefined, IsNumber } from 'class-validator'
-
-/**
- * Structure is used for electronic document data source description
- */
-export interface iRfidOrigin {
-  /**
-   * Data group number
-   * @type {number}
-   */
-  dg: number
-
-  /**
-   * Data group tag number
-   * @type {number}
-   */
-  dgTag: number
-
-  /**
-   * Tag entry
-   * @type {number}
-   */
-  tagEntry: number
-
-  /**
-   * Entry view
-   * @type {number}
-   */
-  entryView: number
-}
+import { RfidOrigin as iRfidOrigin } from '@regulaforensics/document-reader-webclient'
 
 /**
  * Structure is used for electronic document data source description
@@ -65,3 +37,5 @@ export class RfidOrigin implements iRfidOrigin {
   @IsNumber()
   entryView: number
 }
+
+export type { iRfidOrigin }
