@@ -1,56 +1,9 @@
 import { IsDefined, IsEnum, IsInt, IsNumber, IsOptional, ValidateNested } from 'class-validator'
+import { ImageQualityCheck as iImageQualityCheck } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eCheckResult, eImageQualityCheckType, eSecurityFeatureType } from '@/consts'
-import { AreaArray, iAreaArray } from '@/models/common/area-array'
-import { Default } from '@/decorators'
-
-/**
- * Structure is used for storing input image quality check result
- */
-export interface iImageQualityCheck {
-  /**
-   * Check result type
-   * @type {eImageQualityCheckType}
-   */
-  type: eImageQualityCheckType
-
-  /**
-   * Check result
-   * @type {eCheckResult}
-   */
-  result: eCheckResult
-
-  /**
-   * Security feature type
-   * @type {eSecurityFeatureType}
-   */
-  featureType: eSecurityFeatureType
-
-  /**
-   * Anomalous image areas
-   * @type {iAreaArray|undefined}
-   */
-  areas?: iAreaArray
-
-  /**
-   * Check mean value
-   * @type {number}
-   */
-  mean: number
-
-  /**
-   * Check deviation value
-   * @type {number}
-   */
-  std_dev: number
-
-  /**
-   * Check probability value
-   * @type {number}
-   */
-  probability: number
-}
+import { AreaArray } from '@/models/common/area-array'
 
 /**
  * Structure is used for storing input image quality check result
@@ -70,7 +23,6 @@ export class ImageQualityCheck implements iImageQualityCheck {
    */
   @IsDefined()
   @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
   result: eCheckResult
 
   /**
@@ -79,7 +31,6 @@ export class ImageQualityCheck implements iImageQualityCheck {
    */
   @IsDefined()
   @IsEnum(eSecurityFeatureType)
-  @Default(eSecurityFeatureType.BLANK)
   featureType: eSecurityFeatureType
 
   /**
@@ -115,3 +66,5 @@ export class ImageQualityCheck implements iImageQualityCheck {
   @IsInt()
   probability: number
 }
+
+export type { iImageQualityCheck }

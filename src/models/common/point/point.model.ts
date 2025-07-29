@@ -1,23 +1,5 @@
 import { IsDefined, IsNumber, IsOptional } from 'class-validator'
-
-import { Default } from '@/decorators'
-
-/**
- * Point coordinates
- */
-export interface iPoint {
-  /**
-   * X coordinate
-   * @type {number}
-   */
-  x: number
-
-  /**
-   * Y coordinate
-   * @type {number}
-   */
-  y: number
-}
+import { Point as iPoint } from '@regulaforensics/document-reader-webclient'
 
 /**
  * Point coordinates
@@ -29,7 +11,6 @@ export class Point implements iPoint {
    */
   @IsDefined()
   @IsNumber()
-  @Default(0)
   x: number
 
   /**
@@ -38,6 +19,7 @@ export class Point implements iPoint {
    */
   @IsOptional()
   @IsNumber()
-  @Default(0)
   y: number
 }
+
+export type { iPoint }

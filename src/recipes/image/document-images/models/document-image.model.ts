@@ -1,4 +1,4 @@
-import { plainToClass, Type } from 'class-transformer'
+import { Expose, plainToClass, Type } from 'class-transformer'
 import { IsDefined, IsEnum, IsString, ValidateNested, validateSync, ValidationError } from 'class-validator'
 
 import { eGraphicFieldType, eLights } from '@/consts'
@@ -37,6 +37,7 @@ export interface iRDocumentImage {
 /**
  * Short version of image representation
  */
+@Expose()
 export class RDocumentImage implements iRDocumentImage {
   /**
    * Lighting scheme used to capture the image

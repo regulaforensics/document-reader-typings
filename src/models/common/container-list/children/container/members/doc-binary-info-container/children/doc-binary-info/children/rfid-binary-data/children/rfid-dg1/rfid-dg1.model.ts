@@ -1,109 +1,7 @@
-import { IsDefined, IsEnum, IsInt, IsNumber, IsString } from 'class-validator'
+import { IsDefined, IsEnum, IsInt, IsString } from 'class-validator'
+import { RfidDG1 as iRfidDG1 } from '@regulaforensics/document-reader-webclient'
 
-import { eBarCodeModuleType, eDocFormat, eRfidDataGroupTypeTag } from '@/consts'
-import { Default } from '@/decorators'
-
-/**
- * Structure used to store the contents of EF.DG1 informational data group of
- * ePassport application – document MRZ data.
- */
-export interface iRfidDG1 {
-  /**
-   * Type of informational data group
-   * @type {eRfidDataGroupTypeTag}
-   */
-  Type: eRfidDataGroupTypeTag
-
-  /**
-   * Type of document (classification of document formats – by the ISO/IEC 7810)
-   * @type {eDocFormat}
-   */
-  DocumentID: eDocFormat
-
-  /**
-   * Symbolic code of document type;
-   * @type {string}
-   */
-  DocumentType: string
-
-  /**
-   * Symbolic code of document issuing state
-   * @type {string}
-   */
-  State: string
-
-  /**
-   * DO’s name and surname
-   * @type {string}
-   */
-  Holder: string
-
-  /**
-   * Document number
-   * @type {string}
-   */
-  DocumentNumber: string
-
-  /**
-   * Check digit of document number
-   * @type {number}
-   */
-  CheckDigitDocumentNumber: number
-
-  /**
-   * Symbolic code of DO’s nationality
-   * @type {string}
-   */
-  Nationality: string
-
-  /**
-   * DO’s date of birth
-   * @type {string}
-   */
-  Birthday: string
-
-  /**
-   * Check digit of DO’s date of birth
-   * @type {number}
-   */
-  CheckDigitBirthday: number
-
-  /**
-   * DO’s sex
-   * @type {string}
-   */
-  Sex: string
-
-  /**
-   * Term of validity of the document
-   * @type {string}
-   */
-  ExpiryDate: string
-
-  /**
-   * Check digit of term of validity of the document
-   * @type {number}
-   */
-  CheckDigitExpiryDate: number
-
-  /**
-   * DO’s personal number or other additional data;
-   * @type {string}
-   */
-  OptionalData: string
-
-  /**
-   * Check digit of additional data
-   * @type {number}
-   */
-  CheckDigitOptionalData: number
-
-  /**
-   * General check digit
-   * @type {number}
-   */
-  CheckDigitComposite: number
-}
+import { eDocFormat, eRfidDataGroupTypeTag } from '@/consts'
 
 /**
  * Structure used to store the contents of EF.DG1 informational data group of
@@ -124,7 +22,6 @@ export class RfidDG1 implements iRfidDG1 {
    */
   @IsDefined()
   @IsEnum(eDocFormat)
-  @Default(eDocFormat.UNKNOWN)
   DocumentID: eDocFormat
 
   /**
@@ -239,3 +136,5 @@ export class RfidDG1 implements iRfidDG1 {
   @IsInt()
   CheckDigitComposite: number
 }
+
+export type { iRfidDG1 }

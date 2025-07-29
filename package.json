@@ -4,12 +4,11 @@
   "name": "@regulaforensics/document-reader-typings",
   "description": "Document Reader API typings",
   "license": "MIT",
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "dist/types/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "exports": {
-    "types": "./dist/types/index.d.ts",
+    "types": "./dist/index.d.ts",
     "import": "./dist/index.js",
     "require": "./dist/index.cjs"
   },
@@ -35,7 +34,7 @@
   "scripts": {
     "check-types": "tsc --noEmit --skipLibCheck",
     "build": "npm run check-types && vite build",
-    "test": "jest",
+    "test": "vitest run",
     "docs": "typedoc --out docs src",
     "prepare": "husky"
   },
@@ -43,6 +42,7 @@
     "*.{js,ts}": "eslint --fix"
   },
   "dependencies": {
+    "@regulaforensics/document-reader-webclient": "^8.2.466",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.2",
     "date-fns": "^4.1.0",
@@ -51,30 +51,28 @@
     "thenby": "^1.3.4"
   },
   "devDependencies": {
-    "@eslint/js": "^9.30.0",
+    "@eslint/js": "^9.32.0",
     "@types/deep-diff": "^1.0.5",
-    "@types/jest": "^30.0.0",
-    "@types/lodash": "^4.17.19",
-    "@types/node": "^24.0.8",
+    "@types/lodash": "^4.17.20",
+    "@types/node": "^24.1.0",
     "@types/pako": "^2.0.3",
     "deep-diff": "^1.0.2",
-    "dotenv": "^17.0.0",
-    "eslint": "^9.30.0",
-    "eslint-config-prettier": "^10.1.5",
-    "eslint-plugin-prettier": "^5.5.1",
+    "dotenv": "^17.2.1",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.3",
     "globals": "^16.3.0",
     "husky": "^9.1.7",
-    "jest": "^30.0.3",
     "lint-staged": "^16.1.2",
     "lodash": "^4.17.21",
     "prettier": "^3.6.2",
-    "ts-jest": "^29.4.0",
-    "typedoc": "^0.28.7",
+    "typedoc": "^0.28.8",
     "typedoc-plugin-coverage": "^4.0.1",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.35.1",
+    "typescript-eslint": "^8.38.0",
     "vite": "^6.3.5",
     "vite-plugin-dts": "^4.5.4",
+    "vitest": "^3.2.4",
     "yargs": "^18.0.0"
   }
 }

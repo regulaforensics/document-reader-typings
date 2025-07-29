@@ -1,9 +1,9 @@
-import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { IsDefined, IsEnum, IsIn, ValidateNested, validateSync } from 'class-validator'
+import { ImageQualityCheckListItem } from '@regulaforensics/document-reader-webclient'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { eLights, eResultType } from '@/consts'
-import { Default } from '@/decorators'
+import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
 import { iImageQualityCheckList, ImageQualityCheckList } from './children'
 import { ProcessResponse } from '@/models'
@@ -11,20 +11,20 @@ import { ProcessResponse } from '@/models'
 /**
  * Result type of ImageQualityCheckListContainer
  */
-export type tImageQualityCheckListContainerResultType = eResultType.INPUT_IMAGE_QUALITY
+export type tImageQualityCheckListContainerResultType = eResultType.IMAGE_QUALITY
 
 /**
  * Result type of ImageQualityCheckListContainer
  * @type {tImageQualityCheckListContainerResultType[]}
  */
 export const ImageQualityCheckListContainerResultTypes: tImageQualityCheckListContainerResultType[] = [
-  eResultType.INPUT_IMAGE_QUALITY,
+  eResultType.IMAGE_QUALITY,
 ]
 
 /**
  * Container for iImageQualityCheckList
  */
-export interface iImageQualityCheckListContainer extends aContainer {
+export interface iImageQualityCheckListContainer extends aContainer, ImageQualityCheckListItem {
   /**
    * Used for storing input image quality check results list
    * @type {iImageQualityCheckList}
@@ -41,42 +41,16 @@ export interface iImageQualityCheckListContainer extends aContainer {
 /**
  * Container for ImageQualityCheckList
  */
+@Expose()
 export class ImageQualityCheckListContainer extends aContainer implements iImageQualityCheckListContainer {
   /**
-   * Lighting scheme code for the given result (used only for images)
-   * @type {number}
+   * Used for storing input image quality check results list
+   * @type {ImageQualityCheckList}
    */
   @IsDefined()
-  @IsInt()
-  @Default(eLights.OFF)
-  light: number
-
-  /**
-   * @internal
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  list_idx: number
-
-  /**
-   * Page index (when working with multi-page document)
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  page_idx: number
-
-  /**
-   * @internal
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  buf_length: number
+  @ValidateNested()
+  @Type(() => ImageQualityCheckList)
+  ImageQualityCheckList: ImageQualityCheckList
 
   /**
    * Result type stored in this container
@@ -86,15 +60,6 @@ export class ImageQualityCheckListContainer extends aContainer implements iImage
   @IsEnum(eResultType)
   @IsIn(ImageQualityCheckListContainerResultTypes)
   result_type: tImageQualityCheckListContainerResultType
-
-  /**
-   * Used for storing input image quality check results list
-   * @type {ImageQualityCheckList}
-   */
-  @IsDefined()
-  @ValidateNested()
-  @Type(() => ImageQualityCheckList)
-  ImageQualityCheckList: ImageQualityCheckList
 
   /**
    * Creates an instance of ImageQualityCheckListContainer from plain object

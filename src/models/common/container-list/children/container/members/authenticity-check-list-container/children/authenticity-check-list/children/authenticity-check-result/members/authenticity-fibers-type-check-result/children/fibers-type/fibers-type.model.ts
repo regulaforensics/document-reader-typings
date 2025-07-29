@@ -6,114 +6,36 @@ import {
   IsEnum,
   IsIn,
   IsInt,
+  IsOptional,
   ValidateNested,
   validateSync,
 } from 'class-validator'
-import { plainToClass, Type } from 'class-transformer'
+import { FiberResult } from '@regulaforensics/document-reader-webclient'
+import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { iRect, Rect } from '@/models/common/rect'
-import { eAuthenticity, eCheckDiagnose, eCheckResult } from '@/consts'
-import { Default } from '@/decorators'
+import { Rect } from '@/models/common/rect'
+import { eAuthenticity, eLights } from '@/consts'
 import { DocReaderTypeError } from '@/errors'
+import { aAuthenticityCheckResultItem } from '../../../../authenticity-check-result-item.abstract'
 
 /**
  * Structure serves for storing the result of checking of one fluorescent fibers
  * type for UV light image. When there is no error.
  */
-export interface iFibersType {
+export interface iFibersType extends aAuthenticityCheckResultItem, FiberResult {
   /**
    * Type of the performed check
    * @type {eAuthenticity.UV_FIBERS}
    */
   Type: eAuthenticity.UV_FIBERS
-
-  /**
-   * Element responsible for the results of the checks
-   * @type {eCheckResult}
-   */
-  ElementResult: eCheckResult
-
-  /**
-   * Element with which errors are checked
-   * @type {eCheckDiagnose}
-   */
-  ElementDiagnose: eCheckDiagnose
-
-  /**
-   * Number of RectArray, Width, Length, Area items
-   * @type {number}
-   */
-  RectCount: number
-
-  /**
-   * Coordinates of located areas for defined fibers type
-   * @type {iRect[]}
-   */
-  RectArray: iRect[]
-
-  /**
-   * Fibers’ width value for RectArray areas (in pixels)
-   * @type {number[]}
-   */
-  Width: number[]
-
-  /**
-   * Fibers’ length value for RectArray areas (in pixels)
-   * @type {number[]}
-   */
-  Length: number[]
-
-  /**
-   * Fibers’ area value for RectArray areas (in pixels)
-   * @type {number[]}
-   */
-  Area: number[]
-
-  /**
-   * Fibers’ color (B, G, R)
-   * @type {number[]}
-   */
-  ColorValues: number[]
-
-  /**
-   * Expected fibers number
-   * @type {number}
-   */
-  ExpectedCount: number
 }
 
 /**
  * Structure serves for storing the result of checking of one fluorescent fibers
  * type for UV light image. When there is no error.
  */
-export class FibersType implements iFibersType {
-  /**
-   * Type of the performed check
-   * @type {eAuthenticity.UV_FIBERS | eAuthenticity.UV_BACKGROUND}
-   */
-  @IsDefined()
-  @IsIn([eAuthenticity.UV_FIBERS])
-  @IsEnum(eAuthenticity)
-  Type: eAuthenticity.UV_FIBERS
-
-  /**
-   * Element responsible for the results of the checks
-   * @type {eCheckResult}
-   */
-  @IsDefined()
-  @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
-  ElementResult: eCheckResult
-
-  /**
-   * Element with which errors are checked
-   * @type {eCheckDiagnose}
-   */
-  @IsDefined()
-  @IsEnum(eCheckDiagnose)
-  @Default(eCheckDiagnose.UNKNOWN)
-  ElementDiagnose: eCheckDiagnose
-
+@Expose()
+export class FibersType extends aAuthenticityCheckResultItem implements iFibersType {
   /**
    * Number of RectArray, Width, Length, Area items
    * @type {number}
@@ -123,6 +45,29 @@ export class FibersType implements iFibersType {
   RectCount: number
 
   /**
+   * Expected fibers number
+   * @type {number}
+   */
+  @IsDefined()
+  @IsInt()
+  ExpectedCount: number
+
+  /**
+   * @type {eLights}
+   */
+  @IsOptional()
+  @IsEnum(eLights)
+  LightValue?: eLights
+
+  /**
+   * For UV_Background authentication result type
+   * @type {number}
+   */
+  @IsOptional()
+  @IsInt()
+  LightDisp?: number
+
+  /**
    * Coordinates of located areas for defined fibers type
    * @type {Rect[]}
    */
@@ -130,7 +75,6 @@ export class FibersType implements iFibersType {
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => Rect)
-  @Default([])
   RectArray: Rect[]
 
   /**
@@ -140,7 +84,6 @@ export class FibersType implements iFibersType {
   @IsDefined()
   @IsArray()
   @IsInt({ each: true })
-  @Default([])
   Width: number[]
 
   /**
@@ -150,7 +93,6 @@ export class FibersType implements iFibersType {
   @IsDefined()
   @IsArray()
   @IsInt({ each: true })
-  @Default([])
   Length: number[]
 
   /**
@@ -160,7 +102,6 @@ export class FibersType implements iFibersType {
   @IsDefined()
   @IsArray()
   @IsInt({ each: true })
-  @Default([])
   Area: number[]
 
   /**
@@ -175,12 +116,13 @@ export class FibersType implements iFibersType {
   ColorValues: number[]
 
   /**
-   * Expected fibers number
-   * @type {number}
+   * Type of the performed check
+   * @type {eAuthenticity.UV_FIBERS}
    */
   @IsDefined()
-  @IsInt()
-  ExpectedCount: number
+  @IsIn([eAuthenticity.UV_FIBERS])
+  @IsEnum(eAuthenticity)
+  Type: eAuthenticity.UV_FIBERS
 
   /**
    * Creates an instance of FibersTypeElement.

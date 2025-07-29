@@ -1,45 +1,58 @@
+import { ResultItem, Light } from '@regulaforensics/document-reader-webclient'
+import { IsDefined, IsEnum, IsInt, IsOptional } from 'class-validator'
+
 import { getLightsArray, eLights, eResultType } from '@/consts'
 
-export abstract class aContainer {
+export abstract class aContainer implements ResultItem {
+  /**
+   * @internal
+   */
+  @IsOptional()
+  @IsInt()
+  buf_length?: number
+
   /**
    * Lighting scheme code for the given result (used only for images)
-   * @type {number}
+   * @type {eLights|undefined}
    */
-  light: number
+  @IsOptional()
+  @IsEnum(eLights)
+  light?: eLights
 
   /**
    * @internal
    */
-  list_idx: number
+  @IsOptional()
+  @IsInt()
+  list_idx?: number
 
   /**
    * Page index (when working with multi-page document)
-   * @type {number}
+   * @type {number|undefined}
    */
-  page_idx: number
+  @IsOptional()
+  @IsInt()
+  page_idx?: number
 
   /**
-   * @internal
-   */
-  buf_length: number
-
-  /**
-   * Result type stored in this container (one of ResultType identifiers)
+   * Result type stored in the container
    * @type {eResultType}
    */
+  @IsDefined()
+  @IsEnum(eResultType)
   result_type: eResultType
 
   /**
    * Get lighting scheme
    *
    * @param {aContainer|number} input - input
-   * @returns {eLights[]}
+   * @returns {Light[]}
    */
-  static getLightingScheme = (input: aContainer | number): eLights[] => {
+  static getLightingScheme = (input: ResultItem | number): Light[] => {
     if (typeof input === 'number') {
       return getLightsArray(input)
     }
 
-    return getLightsArray(input.light)
+    return getLightsArray(input?.light ?? Light.OFF)
   }
 }

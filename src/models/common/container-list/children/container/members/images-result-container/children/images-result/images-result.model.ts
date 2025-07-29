@@ -1,37 +1,8 @@
-import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
+import { IsArray, IsDefined, IsInt, IsOptional, ValidateNested } from 'class-validator'
+import { Images as iImagesResult } from '@regulaforensics/document-reader-webclient'
 import { Transform, Type } from 'class-transformer'
 
-import { Default } from '@/decorators'
-import { iImageField, iImageSource, ImageField, ImageSource } from './children'
-
-/**
- * Structure is used for representation of all graphic results
- */
-export interface iImagesResult {
-  /**
-   * Fields count
-   * @type {number}
-   */
-  fieldCount: number
-
-  /**
-   * Available sources count
-   * @type {number}
-   */
-  availableSourceCount: number
-
-  /**
-   * Available sources list
-   * @type {iImageSource[]}
-   */
-  availableSourceList: iImageSource[]
-
-  /**
-   * Fields list
-   * @type {iImageField[]}
-   */
-  fieldList: iImageField[]
-}
+import { ImageField, ImageSource } from './children'
 
 /**
  * Structure is used for representation of all graphic results
@@ -41,19 +12,19 @@ export class ImagesResult implements iImagesResult {
    * Fields count
    * @type {number}
    */
-  @IsDefined()
+  @IsOptional()
   @IsInt()
   @Transform(({ obj }) => obj.fieldList.length, { toClassOnly: true })
-  fieldCount: number
+  fieldCount?: number
 
   /**
    * Available sources count
    * @type {number}
    */
-  @IsDefined()
+  @IsOptional()
   @IsInt()
   @Transform(({ obj }) => obj.availableSourceList.length, { toClassOnly: true })
-  availableSourceCount: number
+  availableSourceCount?: number
 
   /**
    * Available sources list
@@ -63,7 +34,6 @@ export class ImagesResult implements iImagesResult {
   @ValidateNested({ each: true })
   @Type(() => ImageSource)
   @IsArray()
-  @Default([])
   availableSourceList: ImageSource[]
 
   /**
@@ -74,6 +44,7 @@ export class ImagesResult implements iImagesResult {
   @ValidateNested({ each: true })
   @Type(() => ImageField)
   @IsArray()
-  @Default([])
   fieldList: ImageField[]
 }
+
+export type { iImagesResult }

@@ -4,20 +4,20 @@ export enum eDataGroupReadStatus {
   /**
    * Group exists but not read
    */
-  NOT_PERFORMED = eRfidErrorCodes.ERROR_NOT_PERFORMED,
+  NOT_PERFORMED = eRfidErrorCodes.RFID_Error_NotPerformed,
 
   /**
    * Group not exists
    */
-  NOT_AVAILABLE = eRfidErrorCodes.ERROR_NOT_AVAILABLE,
+  NOT_AVAILABLE = eRfidErrorCodes.RFID_Error_NotAvailable,
 
   /**
    * Read without errors
    */
-  NO_ERROR = eRfidErrorCodes.ERROR_NO_ERROR,
+  NO_ERROR = eRfidErrorCodes.RFID_Error_NoError,
 
   /**
    * Read with errors
    */
-  FAILED = eRfidErrorCodes.ERROR_FAILED,
+  FAILED = eRfidErrorCodes.RFID_Error_Failed,
 }

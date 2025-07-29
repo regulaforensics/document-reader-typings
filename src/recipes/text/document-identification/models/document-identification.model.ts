@@ -1,5 +1,5 @@
 import { IsBoolean, IsDefined, IsNumber, IsOptional, IsString, validateSync, ValidationError } from 'class-validator'
-import { plainToClass } from 'class-transformer'
+import { Expose, plainToClass } from 'class-transformer'
 
 import { AllowPrimitives } from '@/types'
 
@@ -47,6 +47,7 @@ export interface iRDocumentIdentification {
 /**
  * Document identification
  */
+@Expose()
 export class RDocumentIdentification implements iRDocumentIdentification {
   /**
    * Page index

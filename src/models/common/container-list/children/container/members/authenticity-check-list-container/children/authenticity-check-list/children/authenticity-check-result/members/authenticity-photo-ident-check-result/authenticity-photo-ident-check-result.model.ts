@@ -1,23 +1,19 @@
 import { IsArray, IsDefined, IsEnum, IsIn, ValidateNested } from 'class-validator'
-import { plainToClass, Type } from 'class-transformer'
+import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { eAuthenticity, eCheckResult } from '@/consts'
-import { Default } from '@/decorators'
+import { eAuthenticity } from '@/consts'
 import { aAuthenticityCheckResult } from '../../authenticity-check-result.abstract'
 import { iPhotoIdentResult, PhotoIdentResult } from './children'
 
 /**
  * Result type of AuthenticityPhotoIdentCheckResult
  */
-export type tAuthenticityPhotoIdentCheckResultType = eAuthenticity.IPI | eAuthenticity.IR_PHOTO
+export type tAuthenticityPhotoIdentCheckResultType = eAuthenticity.IPI
 
 /**
  * Result type of AuthenticityPhotoIdentCheckResult
  */
-export const AuthenticityPhotoIdentCheckResultTypes: tAuthenticityPhotoIdentCheckResultType[] = [
-  eAuthenticity.IPI,
-  eAuthenticity.IR_PHOTO,
-]
+export const AuthenticityPhotoIdentCheckResultTypes: tAuthenticityPhotoIdentCheckResultType[] = [eAuthenticity.IPI]
 
 /**
  * Container for PhotoIdentResult
@@ -30,12 +26,6 @@ export interface iAuthenticityPhotoIdentCheckResult extends aAuthenticityCheckRe
   Type: tAuthenticityPhotoIdentCheckResultType
 
   /**
-   * Overall checking result
-   * @type {eCheckResult}
-   */
-  Result: eCheckResult
-
-  /**
    * Array of results of checks
    * @type {iPhotoIdentResult[]}
    */
@@ -45,6 +35,7 @@ export interface iAuthenticityPhotoIdentCheckResult extends aAuthenticityCheckRe
 /**
  * Container for PhotoIdentResult
  */
+@Expose()
 export class AuthenticityPhotoIdentCheckResult
   extends aAuthenticityCheckResult
   implements iAuthenticityPhotoIdentCheckResult
@@ -59,15 +50,6 @@ export class AuthenticityPhotoIdentCheckResult
   Type: tAuthenticityPhotoIdentCheckResultType
 
   /**
-   * Overall checking result
-   * @type {eCheckResult}
-   */
-  @IsDefined()
-  @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
-  Result: eCheckResult
-
-  /**
    * Array of results of checks
    * @type {iPhotoIdentResult[]}
    */
@@ -75,7 +57,6 @@ export class AuthenticityPhotoIdentCheckResult
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => PhotoIdentResult)
-  @Default([])
   List: PhotoIdentResult[]
 
   /**

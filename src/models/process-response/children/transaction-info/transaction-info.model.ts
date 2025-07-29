@@ -1,33 +1,8 @@
-import { IsOptional, IsString } from 'class-validator'
+import { TransactionInfo as iTransactionInfo } from '@regulaforensics/document-reader-webclient'
+import { IsOptional, IsString, ValidateNested } from 'class-validator'
 
-/**
- * Transaction info
- */
-export interface iTransactionInfo {
-  /**
-   * Name of the computer
-   * @type {string|undefined}
-   */
-  ComputerName?: string
-
-  /**
-   * Date and time of the transaction
-   * @type {string|undefined}
-   */
-  DateTime?: string
-
-  /**
-   * ID of the transaction
-   * @type {string|undefined}
-   */
-  TransactionID?: string
-
-  /**
-   * Name of the user
-   * @type {string|undefined}
-   */
-  UserName?: string
-}
+import { DocumentsDatabase } from './children'
+import { Type } from 'class-transformer'
 
 /**
  * Transaction info
@@ -50,6 +25,31 @@ export class TransactionInfo implements iTransactionInfo {
   DateTime?: string
 
   /**
+   * Document database information
+   * @type {DocumentsDatabase}
+   */
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => DocumentsDatabase)
+  DocumentsDatabase?: DocumentsDatabase
+
+  /**
+   * System information
+   * @type {string|undefined}
+   */
+  @IsOptional()
+  @IsString()
+  SystemInfo?: string
+
+  /**
+   * Transaction tag
+   * @type {string|undefined}
+   */
+  @IsOptional()
+  @IsString()
+  Tag?: string
+
+  /**
    * ID of the transaction
    * @type {string|undefined}
    */
@@ -64,4 +64,14 @@ export class TransactionInfo implements iTransactionInfo {
   @IsOptional()
   @IsString()
   UserName?: string
+
+  /**
+   * SDK version
+   * @type {string|undefined}
+   */
+  @IsOptional()
+  @IsString()
+  Version?: string
 }
+
+export type { iTransactionInfo }

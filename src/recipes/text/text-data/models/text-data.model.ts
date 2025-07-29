@@ -1,8 +1,7 @@
 import { IsDefined, IsEnum, IsString, ValidateNested, validateSync, ValidationError } from 'class-validator'
-import { plainToClass, Type } from 'class-transformer'
+import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { eCheckResult, eLCID, eVisualFieldType } from '@/consts'
-import { Default } from '@/decorators'
 import { AllowPrimitives } from '@/types'
 import { iRTextDataSource, RTextDataSource } from './text-data-source.model'
 import { iRTextDataComparison, RTextDataComparison } from './text-data-comparison.model'
@@ -50,6 +49,7 @@ export interface iRTextData {
 /**
  * Text data field with values by source
  */
+@Expose()
 export class RTextData implements iRTextData {
   /**
    * Type of the text data field
@@ -80,7 +80,6 @@ export class RTextData implements iRTextData {
    */
   @IsDefined()
   @IsEnum(eLCID)
-  @Default(eLCID.ENGLISH_US)
   lcid: eLCID
 
   /**

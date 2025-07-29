@@ -1,4 +1,4 @@
-import { plainToClass } from 'class-transformer'
+import { Expose, plainToClass } from 'class-transformer'
 import { IsDefined, IsEnum, IsInt, validateSync, ValidationError } from 'class-validator'
 
 import { AllowPrimitives } from '@/types'
@@ -24,6 +24,7 @@ export interface iRRfidDataGroupStatus {
 /**
  * Rfid data group status
  */
+@Expose()
 export class RRfidDataGroupStatus implements iRRfidDataGroupStatus {
   /**
    * Data group

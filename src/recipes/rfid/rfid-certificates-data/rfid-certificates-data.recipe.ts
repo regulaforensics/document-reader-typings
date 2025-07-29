@@ -17,7 +17,7 @@ export const getRfidCertificatesData = (
   const result: RRfidCertificate[] = []
 
   binary.forEach((container) => {
-    const sessionData = container.TDocBinaryInfo.RFID_BINARY_DATA.RFID_Session_Data
+    const sessionData = container.TDocBinaryInfo.RFID_BINARY_DATA?.RFID_Session_Data
 
     sessionData?.SecurityObjects.forEach((securityObject) => {
       securityObject.SignerInfos.forEach((signerInfo) => {

@@ -1,4 +1,4 @@
-import { plainToClass, Type } from 'class-transformer'
+import { Expose, plainToClass, Type } from 'class-transformer'
 import { IsDefined, IsEnum, IsInt, ValidateNested, validateSync, ValidationError } from 'class-validator'
 
 import { eCheckResult } from '@/consts'
@@ -27,6 +27,7 @@ export interface iRAuthenticityCheckGroupsItem {
 /**
  * Authenticity check list groups item
  */
+@Expose()
 export class RAuthenticityCheckGroupsItem implements iRAuthenticityCheckGroupsItem {
   /**
    * Page

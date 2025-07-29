@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsIn, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
-import { plainToInstance, Type } from 'class-transformer'
+import { Expose, plainToInstance, Type } from 'class-transformer'
 
 import { AuthenticityIdentCheckResultTypes, type tAuthenticityIdentCheckResultType } from '@/models'
 import { eCheckDiagnose, eCheckResult, eSecurityFeatureType } from '@/consts'
@@ -62,6 +62,7 @@ export interface iRAuthenticityIdentCheck extends aAuthenticityCheck {
 /**
  * Authenticity image check list item
  */
+@Expose()
 export class RAuthenticityIdentCheck extends aAuthenticityCheck implements iRAuthenticityIdentCheck {
   /**
    * Feature type

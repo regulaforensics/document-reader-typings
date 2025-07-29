@@ -10,69 +10,19 @@ import {
   validateSync,
   ValidationError,
 } from 'class-validator'
-import { plainToClass, Type } from 'class-transformer'
+import { plainToClass, Type, Expose } from 'class-transformer'
+import { ProcessResponse as iProcessResponse } from '@regulaforensics/document-reader-webclient'
 
 import { eProcessingStatus, eRfidPresence } from '@/consts'
 import { IsStringObjectRecord } from '@/validators'
-import { Default } from '@/decorators'
 import { DocReaderTypeError } from '@/errors'
-import { ContainerList, iContainerList } from '@/models/common'
-import { iTransactionInfo, TransactionInfo } from './children'
+import { ContainerList } from '@/models/common'
+import { TransactionInfo } from './children'
 import { decode } from '@/helpers'
 import merge from 'lodash/merge'
 import values from 'lodash/values'
 
-export interface iProcessResponse {
-  /**
-   * Indicates which page of the document contains an RFID chip (0 if there’s no page containing it). Requires document
-   * type recognition, otherwise 1 by default
-   * @type {eRfidPresence}
-   */
-  ChipPage: eRfidPresence
-
-  /**
-   * Document processing finish status
-   * @type {eProcessingStatus}
-   */
-  ProcessingFinished: eProcessingStatus
-
-  /**
-   * List of containers with results
-   * @type {iContainerList}
-   */
-  ContainerList: iContainerList
-
-  /**
-   * Transaction info
-   * @type {iTransactionInfo}
-   */
-  TransactionInfo: iTransactionInfo
-
-  /**
-   * Base64 encoded transaction processing log
-   * @type {string|undefined}
-   */
-  log?: string
-
-  /**
-   * Free-form object provided in request. See passBackObject property of ProcessRequest.
-   * @type {Record<string, object>|undefined}
-   */
-  passBackObject?: Record<string, object>
-
-  /**
-   * Indicates how many pages of a document remains to process. Requires Document Type recognition, otherwise 0 by default
-   * @type {number}
-   */
-  morePagesAvailable: number
-
-  /**
-   * Indicates how much time has been required for document processing, milliseconds
-   * @type {number}
-   */
-  elapsedTime: number
-}
-
+@Expose()
 export class ProcessResponse implements iProcessResponse {
   /**
    * Indicates which page of the document contains an RFID chip (0 if there’s no page containing it). Requires document
@@ -81,8 +31,15 @@ export class ProcessResponse implements iProcessResponse {
    */
   @IsDefined()
   @IsEnum(eRfidPresence)
-  @Default(eRfidPresence.NONE)
   ChipPage: eRfidPresence
+
+  /**
+   * Core library result code
+   * @type {number}
+   */
+  @IsOptional()
+  @IsInt()
+  CoreLibResultCode?: number
 
   /**
    * Document processing finish status
@@ -90,7 +47,6 @@ export class ProcessResponse implements iProcessResponse {
    */
   @IsDefined()
   @IsEnum(eProcessingStatus)
-  @Default(eProcessingStatus.NOT_FINISHED)
   ProcessingFinished: eProcessingStatus
 
   /**
@@ -121,11 +77,11 @@ export class ProcessResponse implements iProcessResponse {
 
   /**
    * Free-form object provided in request. See passBackObject property of ProcessRequest.
-   * @type {Record<string, object>|undefined}
+   * @type {Record<string, any>|undefined}
    */
   @IsOptional()
   @IsStringObjectRecord()
-  passBackObject?: Record<string, object>
+  passBackObject?: Record<string, any>
 
   /**
    * Indicates how many pages of a document remains to process. Requires Document Type recognition, otherwise 0 by default
@@ -134,7 +90,6 @@ export class ProcessResponse implements iProcessResponse {
   @IsOptional()
   @IsInt()
   @Min(0)
-  @Default(0)
   morePagesAvailable: number
 
   /**
@@ -144,8 +99,15 @@ export class ProcessResponse implements iProcessResponse {
   @IsOptional()
   @IsInt()
   @Min(0)
-  @Default(0)
   elapsedTime: number
+
+  /**
+   * Metadata.
+   * @type {Record<string, any>|undefined}
+   */
+  @IsOptional()
+  @IsStringObjectRecord()
+  metadata?: Record<string, any>
 
   /**
    * Creates an instance of ProcessResponse from plain object
@@ -168,7 +130,7 @@ export class ProcessResponse implements iProcessResponse {
    */
   static validate = (instance: ProcessResponse): true | never => {
     const errors = validateSync(ProcessResponse.fromPlain(instance))
-
+    console.log(errors)
     if (errors.length) {
       throw new DocReaderTypeError(
         'ProcessResponse validation error: the data received does not match model structure!',
@@ -248,3 +210,5 @@ export class ProcessResponse implements iProcessResponse {
     return result
   }
 }
+
+export type { iProcessResponse }

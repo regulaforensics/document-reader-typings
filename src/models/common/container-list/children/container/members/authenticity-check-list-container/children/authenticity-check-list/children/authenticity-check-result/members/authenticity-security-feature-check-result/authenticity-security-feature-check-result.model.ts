@@ -1,8 +1,7 @@
 import { IsArray, IsDefined, IsEnum, IsIn, ValidateNested } from 'class-validator'
-import { plainToClass, Type } from 'class-transformer'
+import { Expose, plainToClass, Type } from 'class-transformer'
 
-import { eAuthenticity, eCheckResult } from '@/consts'
-import { Default } from '@/decorators'
+import { eAuthenticity } from '@/consts'
 import { aAuthenticityCheckResult } from '../../authenticity-check-result.abstract'
 import { iSecurityFeatureCheck, SecurityFeatureCheck } from './children'
 
@@ -19,7 +18,6 @@ export type tAuthenticitySecurityFeatureCheckResultType =
   | eAuthenticity.BARCODE_FORMAT_CHECK
   | eAuthenticity.EXTENDED_OCR_CHECK
   | eAuthenticity.EXTENDED_MRZ_CHECK
-  | eAuthenticity.STATUS_ONLY
 
 /**
  * Result type of AuthenticitySecurityFeatureCheckResult
@@ -34,7 +32,6 @@ export const AuthenticitySecurityFeatureCheckResultTypes: tAuthenticitySecurityF
   eAuthenticity.BARCODE_FORMAT_CHECK,
   eAuthenticity.EXTENDED_OCR_CHECK,
   eAuthenticity.EXTENDED_MRZ_CHECK,
-  eAuthenticity.STATUS_ONLY,
 ]
 
 /**
@@ -48,12 +45,6 @@ export interface iAuthenticitySecurityFeatureCheckResult extends aAuthenticityCh
   Type: tAuthenticitySecurityFeatureCheckResultType
 
   /**
-   * Overall checking result
-   * @type {eCheckResult}
-   */
-  Result: eCheckResult
-
-  /**
    * Array of results of checks
    * @type {iSecurityFeatureCheck[]}
    */
@@ -63,6 +54,7 @@ export interface iAuthenticitySecurityFeatureCheckResult extends aAuthenticityCh
 /**
  * Container for SecurityFeatureCheck
  */
+@Expose()
 export class AuthenticitySecurityFeatureCheckResult
   extends aAuthenticityCheckResult
   implements iAuthenticitySecurityFeatureCheckResult
@@ -77,15 +69,6 @@ export class AuthenticitySecurityFeatureCheckResult
   Type: tAuthenticitySecurityFeatureCheckResultType
 
   /**
-   * Overall checking result
-   * @type {eCheckResult}
-   */
-  @IsDefined()
-  @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
-  Result: eCheckResult
-
-  /**
    * Array of results of checks
    * @type {iSecurityFeatureCheck[]}
    */
@@ -93,7 +76,6 @@ export class AuthenticitySecurityFeatureCheckResult
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => SecurityFeatureCheck)
-  @Default([])
   List: SecurityFeatureCheck[]
 
   /**

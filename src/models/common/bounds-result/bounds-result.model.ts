@@ -1,74 +1,9 @@
-import { IsDefined, IsEnum, IsInt, IsNumber, ValidateNested } from 'class-validator'
+import { IsDefined, IsEnum, IsInt, IsNumber, IsOptional, ValidateNested } from 'class-validator'
+import { DocumentPosition as iBoundsResult } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eDocFormat } from '@/consts'
 import { Point } from '@/models/common/point'
-import { Default } from '@/decorators'
-
-/**
- * Structure is used for storing document bounds detection result
- */
-export interface iBoundsResult {
-  /**
-   * Document format
-   * @type {eDocFormat}
-   */
-  docFormat: eDocFormat
-
-  /**
-   * Document width
-   * @type {number}
-   */
-  Width: number
-
-  /**
-   * Document height
-   * @type {number}
-   */
-  Height: number
-
-  /**
-   * Document center coordinates
-   * @type {Point}
-   */
-  Center: Point
-
-  /**
-   * Document rotation angle
-   * @type {number}
-   */
-  Angle: number
-
-  /**
-   * Document left bottom corner coordinates
-   * @type {Point}
-   */
-  LeftBottom: Point
-
-  /**
-   * Document left top corner coordinates
-   * @type {Point}
-   */
-  LeftTop: Point
-
-  /**
-   * Document right bottom corner coordinates
-   * @type {Point}
-   */
-  RightBottom: Point
-
-  /**
-   * Document right top corner coordinates
-   * @type {Point}
-   */
-  RightTop: Point
-
-  /**
-   * Resolution in dots per inch
-   * @type {number}
-   */
-  Dpi: number
-}
 
 /**
  * This model is used for storing document bounds detection result
@@ -80,8 +15,15 @@ export class BoundsResult implements iBoundsResult {
    */
   @IsDefined()
   @IsEnum(eDocFormat)
-  @Default(eDocFormat.UNKNOWN)
   docFormat: eDocFormat
+
+  /**
+   * Document rotation angle
+   * @type {number}
+   */
+  @IsDefined()
+  @IsNumber()
+  Angle: number
 
   /**
    * Document width
@@ -89,7 +31,6 @@ export class BoundsResult implements iBoundsResult {
    */
   @IsDefined()
   @IsNumber()
-  @Default(0)
   Width: number
 
   /**
@@ -98,7 +39,6 @@ export class BoundsResult implements iBoundsResult {
    */
   @IsDefined()
   @IsNumber()
-  @Default(0)
   Height: number
 
   /**
@@ -109,15 +49,6 @@ export class BoundsResult implements iBoundsResult {
   @ValidateNested()
   @Type(() => Point)
   Center: Point
-
-  /**
-   * Document rotation angle
-   * @type {number}
-   */
-  @IsDefined()
-  @IsNumber()
-  @Default(0)
-  Angle: number
 
   /**
    * Document left bottom corner coordinates
@@ -162,4 +93,41 @@ export class BoundsResult implements iBoundsResult {
   @IsDefined()
   @IsInt()
   Dpi: number
+
+  /**
+   * @type {number|undefined}
+   */
+  @IsOptional()
+  @IsInt()
+  Inverse?: number
+
+  /**
+   * @type {number|undefined}
+   */
+  @IsOptional()
+  @IsInt()
+  ObjArea?: number
+
+  /**
+   * @type {number|undefined}
+   */
+  @IsOptional()
+  @IsInt()
+  ObjIntAngleDev?: number
+
+  /**
+   * @type {number|undefined}
+   */
+  @IsOptional()
+  @IsInt()
+  PerspectiveTr?: number
+
+  /**
+   * @type {number|undefined}
+   */
+  @IsOptional()
+  @IsInt()
+  ResultStatus?: number
 }
+
+export type { iBoundsResult }

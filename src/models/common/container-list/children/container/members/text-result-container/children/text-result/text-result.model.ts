@@ -1,50 +1,9 @@
 import { IsArray, IsDefined, IsEnum, IsString, ValidateNested } from 'class-validator'
+import { Text as iTextResult } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eCheckResult } from '@/consts'
-import { Default } from '@/decorators'
-import { iTextField, iTextSource, TextField, TextSource } from './children'
-
-/**
- * Used for storing text result
- */
-export interface iTextResult {
-  /**
-   * Status
-   * @type {eCheckResult}
-   */
-  status: eCheckResult
-
-  /**
-   * Validity status
-   * @type {eCheckResult}
-   */
-  validityStatus: eCheckResult
-
-  /**
-   * Comparison status
-   * @type {eCheckResult}
-   */
-  comparisonStatus: eCheckResult
-
-  /**
-   * Date format
-   * @type {string}
-   */
-  dateFormat: string
-
-  /**
-   * Fields list
-   * @type {iTextField[]}
-   */
-  fieldList: iTextField[]
-
-  /**
-   * Sources list
-   * @type {iTextSource[]}
-   */
-  availableSourceList: iTextSource[]
-}
+import { TextField, TextSource } from './children'
 
 /**
  * Used for storing text result
@@ -56,7 +15,6 @@ export class TextResult implements iTextResult {
    */
   @IsDefined()
   @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
   status: eCheckResult
 
   /**
@@ -65,7 +23,6 @@ export class TextResult implements iTextResult {
    */
   @IsDefined()
   @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
   validityStatus: eCheckResult
 
   /**
@@ -74,7 +31,6 @@ export class TextResult implements iTextResult {
    */
   @IsDefined()
   @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
   comparisonStatus: eCheckResult
 
   /**
@@ -92,7 +48,6 @@ export class TextResult implements iTextResult {
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => TextField)
-  @Default([])
   @IsArray()
   fieldList: TextField[]
 
@@ -103,7 +58,8 @@ export class TextResult implements iTextResult {
   @IsDefined()
   @ValidateNested({ each: true })
   @Type(() => TextSource)
-  @Default([])
   @IsArray()
   availableSourceList: TextSource[]
 }
+
+export type { iTextResult }

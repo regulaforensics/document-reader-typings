@@ -1,9 +1,9 @@
-import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { IsDefined, IsEnum, IsIn, ValidateNested, validateSync } from 'class-validator'
+import { ImagesItem } from '@regulaforensics/document-reader-webclient'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { eLights, eResultType } from '@/consts'
-import { Default } from '@/decorators'
+import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
 import { iImagesResult, ImagesResult } from './children'
 import { ProcessResponse } from '@/models'
@@ -22,7 +22,7 @@ export const ImagesResultContainerResultTypes: tImagesResultContainerResultType[
 /**
  * Container for iImagesResult
  */
-export interface iImagesResultContainer extends aContainer {
+export interface iImagesResultContainer extends aContainer, ImagesItem {
   /**
    * Used for representation of all graphic results
    * @type {iImagesResult}
@@ -39,42 +39,16 @@ export interface iImagesResultContainer extends aContainer {
 /**
  * Container for ImagesResult
  */
+@Expose()
 export class ImagesResultContainer extends aContainer implements iImagesResultContainer {
   /**
-   * Lighting scheme code for the given result (used only for images)
-   * @type {number}
+   * Images result
+   * @type {ImagesResult}
    */
   @IsDefined()
-  @IsInt()
-  @Default(eLights.OFF)
-  light: number
-
-  /**
-   * @internal
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  list_idx: number
-
-  /**
-   * Page index (when working with multi-page document)
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  page_idx: number
-
-  /**
-   * @internal
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  buf_length: number
+  @ValidateNested()
+  @Type(() => ImagesResult)
+  Images: ImagesResult
 
   /**
    * Result type stored in this container
@@ -84,15 +58,6 @@ export class ImagesResultContainer extends aContainer implements iImagesResultCo
   @IsEnum(eResultType)
   @IsIn(ImagesResultContainerResultTypes)
   result_type: tImagesResultContainerResultType
-
-  /**
-   * Images result
-   * @type {ImagesResult}
-   */
-  @IsDefined()
-  @ValidateNested()
-  @Type(() => ImagesResult)
-  Images: ImagesResult
 
   /**
    * Create new instance of ImagesResultContainer from plain object

@@ -1,20 +1,20 @@
-import { eLights } from '../lights.const'
+import { Light } from '@regulaforensics/document-reader-webclient'
 
 /**
  * Get lights array from value
  * @param {number} value - value
- * @returns {eLights[]}
+ * @returns {Light[]}
  */
-export const getLightsArray = (value: number): eLights[] => {
-  const result: eLights[] = []
+export const getLightsArray = (value: number): Light[] => {
+  const result: Light[] = []
 
   if (value === 0) {
-    result.push(eLights.OFF)
+    result.push(Light.OFF)
     return result
   }
 
-  for (const key in eLights) {
-    const enumValue = eLights[key as keyof typeof eLights]
+  for (const key in Light) {
+    const enumValue = Light[key as keyof typeof Light]
 
     if (enumValue !== 0 && (value & enumValue) === enumValue) {
       result.push(enumValue)

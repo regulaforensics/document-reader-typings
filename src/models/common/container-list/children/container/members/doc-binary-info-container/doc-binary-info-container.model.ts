@@ -1,35 +1,30 @@
-import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { IsDefined, IsEnum, IsIn, ValidateNested, validateSync } from 'class-validator'
+import { TDocBinaryInfoItem } from '@regulaforensics/document-reader-webclient'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { eLights, eResultType } from '@/consts'
-import { Default } from '@/decorators'
-import { ProcessResponse } from '@/models'
+import { eResultType } from '@/consts'
+import { ProcessResponse, DocBinaryInfo } from '@/models'
 import { aContainer } from '../../container.abstract'
-import { DocBinaryInfo, iDocBinaryInfo } from './children'
 
 /**
  * Result type of DocBinaryInfoContainer
  */
-export type tDocBinaryInfoContainerResultType = eResultType.RFID_BINARY_DATA
+export type tDocBinaryInfoContainerResultType = eResultType.RFID_BINARY_DATA | eResultType.RFID_RAW_DATA
 
 /**
  * Result type of DocBinaryInfoContainer
  * @type {tDocBinaryInfoContainerResultType[]}
  */
-export const DocBinaryInfoContainerResultTypes: tDocBinaryInfoContainerResultType[] = [eResultType.RFID_BINARY_DATA]
+export const DocBinaryInfoContainerResultTypes: tDocBinaryInfoContainerResultType[] = [
+  eResultType.RFID_BINARY_DATA,
+  eResultType.RFID_RAW_DATA,
+]
 
 /**
  * Container for iDocBinaryInfo
  */
-export interface iDocBinaryInfoContainer extends aContainer {
-  /**
-   * Structure is used to store the data reading results from the RFID-chip in
-   * a form of a list of the logically separated data groups.
-   * @type {iDocBinaryInfo}
-   */
-  TDocBinaryInfo: iDocBinaryInfo
-
+export interface iDocBinaryInfoContainer extends aContainer, TDocBinaryInfoItem {
   /**
    * Result type stored in this container
    * @type {tDocBinaryInfoContainerResultType}
@@ -40,50 +35,8 @@ export interface iDocBinaryInfoContainer extends aContainer {
 /**
  * Container for DocBarCodeInfo
  */
+@Expose()
 export class DocBinaryInfoContainer extends aContainer implements iDocBinaryInfoContainer {
-  /**
-   * Lighting scheme code for the given result (used only for images)
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(eLights.OFF)
-  light: number
-
-  /**
-   * @internal
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  list_idx: number
-
-  /**
-   * Page index (when working with multi-page document)
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  page_idx: number
-
-  /**
-   * @internal
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  buf_length: number
-
-  /**
-   * Result type stored in this container
-   * @type {tDocBinaryInfoContainerResultType}
-   */
-  @IsDefined()
-  @IsEnum(eResultType)
-  @IsIn(DocBinaryInfoContainerResultTypes)
-  result_type: tDocBinaryInfoContainerResultType
-
   /**
    * Structure is used to store the data reading results from the RFID-chip in
    * a form of a list of the logically separated data groups.
@@ -93,6 +46,15 @@ export class DocBinaryInfoContainer extends aContainer implements iDocBinaryInfo
   @ValidateNested()
   @Type(() => DocBinaryInfo)
   TDocBinaryInfo: DocBinaryInfo
+
+  /**
+   * Result type stored in this container
+   * @type {tDocBinaryInfoContainerResultType}
+   */
+  @IsDefined()
+  @IsEnum(eResultType)
+  @IsIn(DocBinaryInfoContainerResultTypes)
+  result_type: tDocBinaryInfoContainerResultType
 
   /**
    * Creates an instance of DocBinaryInfoContainer from plain object

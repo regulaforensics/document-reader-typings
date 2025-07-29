@@ -1,31 +1,8 @@
 import { IsDefined, IsInt, IsOptional, ValidateNested } from 'class-validator'
+import { OriginalSymbol as iTextSymbol } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
-import { iRect, Rect } from '@/models/common/rect'
-import { Default } from '@/decorators'
-
-/**
- * Used for storing symbol reading result
- */
-export interface iTextSymbol {
-  /**
-   * Symbol code
-   * @type {number}
-   */
-  code: number
-
-  /**
-   * Recognition probability
-   * @type {number}
-   */
-  probability: number
-
-  /**
-   * Symbol rectangular area
-   * @type {iRect|undefined}
-   */
-  rect?: iRect
-}
+import { Rect } from '@/models/common/rect'
 
 /**
  * Used for storing symbol reading result
@@ -45,7 +22,6 @@ export class TextSymbol implements iTextSymbol {
    */
   @IsDefined()
   @IsInt()
-  @Default(0)
   probability: number
 
   /**
@@ -57,3 +33,5 @@ export class TextSymbol implements iTextSymbol {
   @Type(() => Rect)
   rect?: Rect
 }
+
+export type { iTextSymbol }

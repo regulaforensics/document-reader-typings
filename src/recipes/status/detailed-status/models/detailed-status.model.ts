@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, ValidateNested, validateSync, ValidationError } from 'class-validator'
-import { plainToClass, Type } from 'class-transformer'
+import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { eCheckResult } from '@/consts'
 import { AllowPrimitives } from '@/types'
@@ -39,6 +39,7 @@ export interface iRDetailedStatus {
 /**
  * Get detailed status of a document processing
  */
+@Expose()
 export class RDetailedStatus implements iRDetailedStatus {
   /**
    * Overall status

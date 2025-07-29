@@ -1,8 +1,7 @@
 import { IsDefined, IsEnum, IsString, validateSync, ValidationError } from 'class-validator'
-import { plainToClass } from 'class-transformer'
+import { Expose, plainToClass } from 'class-transformer'
 
 import { eCheckResult, eLCID } from '@/consts'
-import { Default } from '@/decorators'
 import { AllowPrimitives } from '@/types'
 
 /**
@@ -31,6 +30,7 @@ export interface iRTextFieldValue {
 /**
  * Single text field value with check result
  */
+@Expose()
 export class RTextFieldValue implements iRTextFieldValue {
   /**
    * Value of the text field
@@ -38,7 +38,6 @@ export class RTextFieldValue implements iRTextFieldValue {
    */
   @IsDefined()
   @IsString()
-  @Default('')
   value: string
 
   /**
@@ -47,12 +46,10 @@ export class RTextFieldValue implements iRTextFieldValue {
    */
   @IsDefined()
   @IsEnum(eCheckResult)
-  @Default(eCheckResult.WAS_NOT_DONE)
   status: eCheckResult
 
   @IsDefined()
   @IsEnum(eLCID)
-  @Default(eLCID.LATIN)
   lcid: eLCID
 
   /**

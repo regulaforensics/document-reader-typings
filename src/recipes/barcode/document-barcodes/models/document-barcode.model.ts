@@ -1,5 +1,5 @@
 import { IsDefined, IsNumber, ValidateNested, validateSync, ValidationError } from 'class-validator'
-import { plainToClass, Type } from 'class-transformer'
+import { Expose, plainToClass, Type } from 'class-transformer'
 
 import { AllowPrimitives } from '@/types'
 import { iRDocumentBarcodeField, RDocumentBarcodeField } from './document-barcode-field.model'
@@ -24,6 +24,7 @@ export interface iRDocumentBarcode {
 /**
  * Used for storing document barcode.
  */
+@Expose()
 export class RDocumentBarcode implements iRDocumentBarcode {
   /**
    * Page index of the document where the barcode was found

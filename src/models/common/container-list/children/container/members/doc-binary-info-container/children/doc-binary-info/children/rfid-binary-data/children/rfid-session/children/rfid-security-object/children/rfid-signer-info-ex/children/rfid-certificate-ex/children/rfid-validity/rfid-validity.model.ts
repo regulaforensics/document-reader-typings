@@ -1,28 +1,8 @@
 import { IsDefined, ValidateNested } from 'class-validator'
+import { RfidValidity as iRfidValidity } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
-import { iTrfFtString, TrfFtString } from '@/models/common/trf-ft-string'
-
-/**
- * Structure contains information on a certificate validity.
- */
-export interface iRfidValidity {
-  /**
-   * String of the start date.
-   * Format can be YYMMDDHHMMSSZ (in the case of using UTCTime format)
-   * or YYYYMMDDHHMMSSZ (in the case of GeneralizedTime format).
-   * @type {iTrfFtString}
-   */
-  NotBefore: iTrfFtString
-
-  /**
-   * String of the expiration date.
-   * Format can be YYMMDDHHMMSSZ (in the case of using UTCTime format)
-   * or YYYYMMDDHHMMSSZ (in the case of GeneralizedTime format).
-   * @type {iTrfFtString}
-   */
-  NotAfter: iTrfFtString
-}
+import { TrfFtString } from '@/models/common/trf-ft-string'
 
 /**
  * Structure contains information on a certificate validity.
@@ -50,3 +30,5 @@ export class RfidValidity implements iRfidValidity {
   @ValidateNested()
   NotAfter: TrfFtString
 }
+
+export type { iRfidValidity }

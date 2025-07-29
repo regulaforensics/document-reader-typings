@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsString, ValidateNested } from 'class-validator'
-import { plainToInstance, Type } from 'class-transformer'
+import { Expose, plainToInstance, Type } from 'class-transformer'
 
 import { ePortraitComparisonSource, iRPortraitComparisonComparable, RPortraitComparisonComparable } from './children'
 
@@ -29,6 +29,7 @@ export interface iRPortraitsComparison {
 /**
  * Portraits comparison item
  */
+@Expose()
 export class RPortraitsComparison implements iRPortraitsComparison {
   /**
    * Reference image

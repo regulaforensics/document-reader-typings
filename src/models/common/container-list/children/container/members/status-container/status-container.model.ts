@@ -1,9 +1,9 @@
-import { IsDefined, IsEnum, IsIn, IsInt, ValidateNested, validateSync } from 'class-validator'
-import { instanceToPlain, plainToClass, Type } from 'class-transformer'
+import { IsDefined, IsEnum, IsIn, ValidateNested, validateSync } from 'class-validator'
+import { StatusItem } from '@regulaforensics/document-reader-webclient'
+import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { DocReaderTypeError } from '@/errors'
-import { eLights, eResultType } from '@/consts'
-import { Default } from '@/decorators'
+import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
 import { iStatus, Status } from './children'
 import { ProcessResponse } from '@/models'
@@ -22,7 +22,7 @@ export const StatusContainerResultTypes: tStatusContainerResultType[] = [eResult
 /**
  * Container for iStatus
  */
-export interface iStatusContainer extends aContainer {
+export interface iStatusContainer extends aContainer, StatusItem {
   /**
    * Status of the document check.
    * @type {iStatus}
@@ -39,42 +39,16 @@ export interface iStatusContainer extends aContainer {
 /**
  * Container for Status
  */
+@Expose()
 export class StatusContainer extends aContainer implements iStatusContainer {
   /**
-   * Lighting scheme code for the given result (used only for images)
-   * @type {number}
+   * Status of the document check.
+   * @type {Status}
    */
   @IsDefined()
-  @IsInt()
-  @Default(eLights.OFF)
-  light: number
-
-  /**
-   * @internal
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  list_idx: number
-
-  /**
-   * Page index (when working with multi-page document)
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  page_idx: number
-
-  /**
-   * @internal
-   * @type {number}
-   */
-  @IsDefined()
-  @IsInt()
-  @Default(0)
-  buf_length: number
+  @ValidateNested()
+  @Type(() => Status)
+  Status: Status
 
   /**
    * Result type stored in this container
@@ -84,15 +58,6 @@ export class StatusContainer extends aContainer implements iStatusContainer {
   @IsEnum(eResultType)
   @IsIn(StatusContainerResultTypes)
   result_type: tStatusContainerResultType
-
-  /**
-   * Status of the document check.
-   * @type {Status}
-   */
-  @IsDefined()
-  @ValidateNested()
-  @Type(() => Status)
-  Status: Status
 
   /**
    * Transform plain object to StatusContainer instance.

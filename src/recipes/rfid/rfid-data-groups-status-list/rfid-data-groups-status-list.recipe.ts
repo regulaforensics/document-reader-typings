@@ -13,7 +13,7 @@ export const getRfidDataGroupsStatusList = (input: ProcessResponse): RRfidApplic
   const result: RRfidApplicationItem[] = []
 
   binary.forEach((container) => {
-    const sessionData = container.TDocBinaryInfo.RFID_BINARY_DATA.RFID_Session_Data
+    const sessionData = container.TDocBinaryInfo.RFID_BINARY_DATA?.RFID_Session_Data
 
     sessionData?.Applications.forEach((application) => {
       const applicationItem: iRRfidApplicationItem = {
@@ -26,11 +26,11 @@ export const getRfidDataGroupsStatusList = (input: ProcessResponse): RRfidApplic
         let status = eCheckResult.WAS_NOT_DONE
 
         switch (file.PA_Status) {
-          case eRfidErrorCodes.ERROR_NOT_PERFORMED:
-          case eRfidErrorCodes.ERROR_NOT_AVAILABLE:
+          case eRfidErrorCodes.RFID_Error_NotPerformed:
+          case eRfidErrorCodes.RFID_Error_NotAvailable:
             status = eCheckResult.WAS_NOT_DONE
             break
-          case eRfidErrorCodes.ERROR_NO_ERROR:
+          case eRfidErrorCodes.RFID_Error_NoError:
             status = eCheckResult.OK
             break
           default:

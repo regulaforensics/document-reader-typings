@@ -1,9 +1,8 @@
 import { IsArray, IsDefined, IsEnum, ValidateNested } from 'class-validator'
-import { plainToInstance, Transform } from 'class-transformer'
+import { Expose, plainToInstance, Transform } from 'class-transformer'
 
 import { eAuthenticity, eCheckResult } from '@/consts'
 import { uRAuthenticityCheck, transformToRAuthenticityCheckList } from './children'
-import { Default } from '@/decorators'
 
 export interface iRAuthenticityCheckGroup {
   group: eAuthenticity
@@ -13,6 +12,7 @@ export interface iRAuthenticityCheckGroup {
   checks: uRAuthenticityCheck[]
 }
 
+@Expose()
 export class RAuthenticityCheckGroup implements iRAuthenticityCheckGroup {
   @IsDefined()
   @IsEnum(eAuthenticity)
@@ -25,7 +25,6 @@ export class RAuthenticityCheckGroup implements iRAuthenticityCheckGroup {
   @ValidateNested({ each: true })
   @Transform(({ obj }) => transformToRAuthenticityCheckList(obj.checks), { toClassOnly: true })
   @IsArray()
-  @Default([])
   checks: uRAuthenticityCheck[]
 
   /**

@@ -1,5 +1,5 @@
 import { IsDefined, IsInt, IsString, validateSync, ValidationError } from 'class-validator'
-import { plainToClass } from 'class-transformer'
+import { Expose, plainToClass } from 'class-transformer'
 
 import { AllowPrimitives } from '@/types'
 
@@ -29,6 +29,7 @@ export interface iRGraphicField {
 /**
  * Short version of graphic field representation
  */
+@Expose()
 export class RGraphicField implements iRGraphicField {
   /**
    * Image file in base64 url representation
