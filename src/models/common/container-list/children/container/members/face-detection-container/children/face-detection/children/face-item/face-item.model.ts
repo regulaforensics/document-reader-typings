@@ -1,11 +1,11 @@
 import { IsArray, IsDefined, IsEnum, IsInt, ValidateNested } from 'class-validator'
-import { FaceItem as iFaceItem } from '@regulaforensics/document-reader-webclient'
+import { FaceItem as cFaceItem } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eLights } from '@/consts'
 import { Rect, Point } from '@/models'
 
-export class FaceItem implements iFaceItem {
+export class FaceItem implements cFaceItem {
   /**
    * @type {number}
    */
@@ -67,4 +67,4 @@ export class FaceItem implements iFaceItem {
   Probability: number
 }
 
-export type { iFaceItem }
+export type { FaceItem as iFaceItem }

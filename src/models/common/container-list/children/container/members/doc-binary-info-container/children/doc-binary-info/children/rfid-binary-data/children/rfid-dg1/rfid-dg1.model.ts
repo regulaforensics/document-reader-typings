@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsInt, IsString } from 'class-validator'
-import { RfidDG1 as iRfidDG1 } from '@regulaforensics/document-reader-webclient'
+import { RfidDG1 as cRfidDG1 } from '@regulaforensics/document-reader-webclient'
 
 import { eDocFormat, eRfidDataGroupTypeTag } from '@/consts'
 
@@ -7,7 +7,7 @@ import { eDocFormat, eRfidDataGroupTypeTag } from '@/consts'
  * Structure used to store the contents of EF.DG1 informational data group of
  * ePassport application – document MRZ data.
  */
-export class RfidDG1 implements iRfidDG1 {
+export class RfidDG1 implements cRfidDG1 {
   /**
    * Type of informational data group
    * @type {eRfidDataGroupTypeTag}
@@ -137,4 +137,4 @@ export class RfidDG1 implements iRfidDG1 {
   CheckDigitComposite: number
 }
 
-export type { iRfidDG1 }
+export type { RfidDG1 as iRfidDG1 }

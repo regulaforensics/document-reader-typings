@@ -1,5 +1,5 @@
 import { IsDefined, IsOptional, IsEnum, IsInt, ValidateNested, IsBoolean, IsString } from 'class-validator'
-import { RfidSessionData as iRfidSession } from '@regulaforensics/document-reader-webclient'
+import { RfidSessionData } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eRfidAuthenticationProcedureType, eRfidErrorCodes } from '@/consts'
@@ -16,7 +16,7 @@ import {
  * Structure is used to describe the results of work with the SDK within the context of the current communication
  * session with electronic document
  */
-export class RfidSession implements iRfidSession {
+export class RfidSession implements RfidSessionData {
   /**
    * Sign of virtual session when working with loaded data from a previous communication session
    * with the electronic document
@@ -157,4 +157,4 @@ export class RfidSession implements iRfidSession {
   SecurityObjects: RfidSecurityObject[]
 }
 
-export type { iRfidSession }
+export type { RfidSession as iRfidSession }

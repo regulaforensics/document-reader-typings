@@ -1,12 +1,12 @@
 import { IsDefined, IsEnum, IsInt, IsOptional } from 'class-validator'
-import { TextAvailableSource as iTextSource } from '@regulaforensics/document-reader-webclient'
+import { TextAvailableSource } from '@regulaforensics/document-reader-webclient'
 
 import { eCheckResult, eSource } from '@/consts'
 
 /**
  * Used for description of text data source
  */
-export class TextSource implements iTextSource {
+export class TextSource implements TextAvailableSource {
   /**
    * Source name
    * @type {eSource}
@@ -32,4 +32,4 @@ export class TextSource implements iTextSource {
   containerType?: number
 }
 
-export type { iTextSource }
+export type { TextSource as iTextSource }

@@ -1,10 +1,10 @@
 import { IsDefined, IsInt, IsOptional, IsString, ValidateNested } from 'class-validator'
-import { StringRecognitionResult as iStringRecognitionResult } from '@regulaforensics/document-reader-webclient'
+import { StringRecognitionResult as cStringRecognitionResult } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { SymbolRecognitionResult } from './children'
 
-export class StringRecognitionResult implements StringRecognitionResult {
+export class StringRecognitionResult implements cStringRecognitionResult {
   /**
    * Number of StringResult array elements
    * @type {number}
@@ -46,4 +46,4 @@ export class StringRecognitionResult implements StringRecognitionResult {
   Reserved?: number
 }
 
-export type { iStringRecognitionResult }
+export type { StringRecognitionResult as iStringRecognitionResult }

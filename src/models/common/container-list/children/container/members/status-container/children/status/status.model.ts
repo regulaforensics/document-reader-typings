@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsOptional, ValidateNested } from 'class-validator'
-import { Status as iStatus } from '@regulaforensics/document-reader-webclient'
+import { Status as cStatus } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eCheckResult } from '@/consts'
@@ -8,7 +8,7 @@ import { DetailsRFID, DetailsOptical } from './children'
 /**
  * Status of the document check.
  */
-export class Status implements iStatus {
+export class Status implements cStatus {
   /**
    * The summary of all checks, one of the CheckResult enumeration values.
    * @type {eCheckResult}
@@ -68,4 +68,4 @@ export class Status implements iStatus {
   detailsOptical: DetailsOptical
 }
 
-export type { iStatus }
+export type { Status as iStatus }

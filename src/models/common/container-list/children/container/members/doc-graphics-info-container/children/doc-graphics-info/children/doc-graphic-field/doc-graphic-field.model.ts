@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsString, ValidateNested } from 'class-validator'
-import { GraphicField as iDocGraphicField } from '@regulaforensics/document-reader-webclient'
+import { GraphicField } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { Rect, ImageData } from '@/models'
@@ -8,7 +8,7 @@ import { eGraphicFieldType } from '@/consts'
 /**
  * Information about one graphic field - abstract class
  */
-export class DocGraphicField implements iDocGraphicField {
+export class DocGraphicField implements GraphicField {
   /**
    * @type {Rect}
    */
@@ -41,4 +41,4 @@ export class DocGraphicField implements iDocGraphicField {
   image: ImageData
 }
 
-export type { iDocGraphicField }
+export type { DocGraphicField as iDocGraphicField }

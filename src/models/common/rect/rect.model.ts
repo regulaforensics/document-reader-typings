@@ -1,10 +1,10 @@
-import { RectangleCoordinates as iRect } from '@regulaforensics/document-reader-webclient'
+import { RectangleCoordinates } from '@regulaforensics/document-reader-webclient'
 import { IsDefined, IsNumber } from 'class-validator'
 
 /**
  * Rectangle coordinates
  */
-export class Rect implements iRect {
+export class Rect implements RectangleCoordinates {
   /**
    * Left
    * @param {number}
@@ -38,4 +38,4 @@ export class Rect implements iRect {
   bottom: number
 }
 
-export type { iRect }
+export type { Rect as iRect }

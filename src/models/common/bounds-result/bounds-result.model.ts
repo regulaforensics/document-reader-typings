@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsInt, IsNumber, IsOptional, ValidateNested } from 'class-validator'
-import { DocumentPosition as iBoundsResult } from '@regulaforensics/document-reader-webclient'
+import { DocumentPosition } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eDocFormat } from '@/consts'
@@ -8,7 +8,7 @@ import { Point } from '@/models/common/point'
 /**
  * This model is used for storing document bounds detection result
  */
-export class BoundsResult implements iBoundsResult {
+export class BoundsResult implements DocumentPosition {
   /**
    * Document format
    * @type {eDocFormat}
@@ -130,4 +130,4 @@ export class BoundsResult implements iBoundsResult {
   ResultStatus?: number
 }
 
-export type { iBoundsResult }
+export type { BoundsResult as iBoundsResult }

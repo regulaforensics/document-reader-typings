@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsInt } from 'class-validator'
-import { RfidTerminal as iRfidTerminal } from '@regulaforensics/document-reader-webclient'
+import { RfidTerminal as cRfidTerminal } from '@regulaforensics/document-reader-webclient'
 
 import {
   eRfidTerminalAuthorizationRequirement,
@@ -11,7 +11,7 @@ import {
  * Structure is used to describe the terminal type within the context of the
  * communication session with electronic document
  */
-export class RfidTerminal implements iRfidTerminal {
+export class RfidTerminal implements cRfidTerminal {
   /**
    * Terminal type
    * @type {eRfidTerminalType}
@@ -65,4 +65,4 @@ export class RfidTerminal implements iRfidTerminal {
   }
 }
 
-export type { iRfidTerminal }
+export type { RfidTerminal as iRfidTerminal }

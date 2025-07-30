@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsEnum, IsInt, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
-import { TextFieldValue as iTextFieldValue } from '@regulaforensics/document-reader-webclient'
+import { TextFieldValue as cTextFieldValue } from '@regulaforensics/document-reader-webclient'
 import { Transform, Type } from 'class-transformer'
 
 import { Rect } from '@/models/common/rect'
@@ -10,7 +10,7 @@ import { TextSymbol } from './children'
 /**
  * Used for storing text field values
  */
-export class TextFieldValue implements iTextFieldValue {
+export class TextFieldValue implements cTextFieldValue {
   /**
    * Source
    * @type {eSource}
@@ -97,4 +97,4 @@ export class TextFieldValue implements iTextFieldValue {
   containerType?: number
 }
 
-export type { iTextFieldValue }
+export type { TextFieldValue as iTextFieldValue }

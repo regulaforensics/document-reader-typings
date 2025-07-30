@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsEnum, IsInt, IsOptional, IsString, ValidateNested } from 'class-validator'
-import { ImagesField as iImageField } from '@regulaforensics/document-reader-webclient'
+import { ImagesField } from '@regulaforensics/document-reader-webclient'
 import { Transform, Type } from 'class-transformer'
 
 import { eGraphicFieldType } from '@/consts'
@@ -9,7 +9,7 @@ import { ImageFieldValue } from './children'
 /**
  * Used for provision of one image or graphic field
  */
-export class ImageField implements iImageField {
+export class ImageField implements ImagesField {
   /**
    * Field name
    * @type {string}
@@ -74,4 +74,4 @@ export class ImageField implements iImageField {
   }
 }
 
-export type { iImageField }
+export type { ImageField as iImageField }

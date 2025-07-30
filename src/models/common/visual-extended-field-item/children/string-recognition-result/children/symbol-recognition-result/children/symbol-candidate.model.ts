@@ -1,7 +1,7 @@
-import { SymbolCandidate as iSymbolCandidate } from '@regulaforensics/document-reader-webclient'
+import { SymbolCandidate as cSymbolCandidate } from '@regulaforensics/document-reader-webclient'
 import { IsDefined, IsInt, IsOptional } from 'class-validator'
 
-export class SymbolCandidate {
+export class SymbolCandidate implements cSymbolCandidate {
   /**
    * Unicode symbol code
    * @type {number}
@@ -33,4 +33,4 @@ export class SymbolCandidate {
   SubClass?: number
 }
 
-export type { iSymbolCandidate }
+export type { SymbolCandidate as iSymbolCandidate }

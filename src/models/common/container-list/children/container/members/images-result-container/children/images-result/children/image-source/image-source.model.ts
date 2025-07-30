@@ -1,12 +1,12 @@
 import { IsDefined, IsEnum, IsNumber } from 'class-validator'
-import { ImagesAvailableSource as iImageSource } from '@regulaforensics/document-reader-webclient'
+import { ImagesAvailableSource } from '@regulaforensics/document-reader-webclient'
 
 import { eSource } from '@/consts'
 
 /**
  * Used for graphic information source description
  */
-export class ImageSource implements iImageSource {
+export class ImageSource implements ImagesAvailableSource {
   /**
    * Container type
    * @type {number}
@@ -24,4 +24,4 @@ export class ImageSource implements iImageSource {
   source: eSource
 }
 
-export type { iImageSource }
+export type { ImageSource as iImageSource }

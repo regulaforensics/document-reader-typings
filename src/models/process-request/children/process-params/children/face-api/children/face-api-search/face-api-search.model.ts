@@ -1,11 +1,11 @@
-import { FaceApiSearch as iFaceApiSearch } from '@regulaforensics/document-reader-webclient'
+import { FaceApiSearch as cFaceApiSearch } from '@regulaforensics/document-reader-webclient'
 import { IsNumber, IsOptional } from 'class-validator'
 
 /**
  * A search filter that can be applied if the "match+search" mode is enabled. May include limit, threshold, group_ids.
  * If the group_ids are specified, the search is performed only in these groups.
  */
-export class FaceApiSearch implements iFaceApiSearch {
+export class FaceApiSearch implements cFaceApiSearch {
   /**
    * The maximum number of results to be returned.
    * @type {number|undefined}
@@ -31,4 +31,4 @@ export class FaceApiSearch implements iFaceApiSearch {
   group_ids?: number[]
 }
 
-export type { iFaceApiSearch }
+export type { FaceApiSearch as iFaceApiSearch }

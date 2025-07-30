@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsInt, IsOptional, ValidateNested } from 'class-validator'
-import { Images as iImagesResult } from '@regulaforensics/document-reader-webclient'
+import { Images } from '@regulaforensics/document-reader-webclient'
 import { Transform, Type } from 'class-transformer'
 
 import { ImageField, ImageSource } from './children'
@@ -7,7 +7,7 @@ import { ImageField, ImageSource } from './children'
 /**
  * Structure is used for representation of all graphic results
  */
-export class ImagesResult implements iImagesResult {
+export class ImagesResult implements Images {
   /**
    * Fields count
    * @type {number}
@@ -47,4 +47,4 @@ export class ImagesResult implements iImagesResult {
   fieldList: ImageField[]
 }
 
-export type { iImagesResult }
+export type { ImagesResult as iImagesResult }

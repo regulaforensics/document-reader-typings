@@ -1,5 +1,5 @@
 import { IsArray, IsBoolean, IsDefined, IsEnum, IsInt, IsOptional, IsString, MaxLength } from 'class-validator'
-import { FDSIDList as iFDSIDList } from '@regulaforensics/document-reader-webclient'
+import { FDSIDList as cFDSIDList } from '@regulaforensics/document-reader-webclient'
 
 import { eDocFormat, eDocType } from '@/consts'
 
@@ -7,7 +7,7 @@ import { eDocFormat, eDocType } from '@/consts'
  * Structure serves for storing additional document information and its link to
  * IRS document or documents
  */
-export class FDSIDList implements iFDSIDList {
+export class FDSIDList implements cFDSIDList {
   /**
    * Document issuing country ICAO code
    * @type {string}
@@ -107,4 +107,4 @@ export class FDSIDList implements iFDSIDList {
   isDeprecated: boolean // todo: should be optional?
 }
 
-export type { iFDSIDList }
+export type { FDSIDList as iFDSIDList }

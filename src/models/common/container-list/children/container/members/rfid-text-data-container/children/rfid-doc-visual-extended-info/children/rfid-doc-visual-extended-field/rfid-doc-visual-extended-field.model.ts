@@ -1,9 +1,9 @@
-import { RFIDDocVisualExtendedField as iRFIDDocVisualExtendedField } from '@regulaforensics/document-reader-webclient'
+import { RFIDDocVisualExtendedField as cRFIDDocVisualExtendedField } from '@regulaforensics/document-reader-webclient'
 
 import { aVisualExtendedFieldItem } from '../../../../../../../../../visual-extended-field-item'
 import { IsDefined, IsInt, IsOptional } from 'class-validator'
 
-export class RFIDDocVisualExtendedField extends aVisualExtendedFieldItem implements iRFIDDocVisualExtendedField {
+export class RFIDDocVisualExtendedField extends aVisualExtendedFieldItem implements cRFIDDocVisualExtendedField {
   /**
    * @type {number}
    */
@@ -34,4 +34,4 @@ export class RFIDDocVisualExtendedField extends aVisualExtendedFieldItem impleme
   OriginEntryView?: number
 }
 
-export type { iRFIDDocVisualExtendedField }
+export type { RFIDDocVisualExtendedField as iRFIDDocVisualExtendedField }

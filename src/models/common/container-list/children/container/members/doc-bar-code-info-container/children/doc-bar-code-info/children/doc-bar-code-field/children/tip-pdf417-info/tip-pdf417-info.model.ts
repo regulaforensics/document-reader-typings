@@ -1,11 +1,11 @@
 import { IsDefined, IsNumber, IsOptional } from 'class-validator'
-import { BcPDF417INFO as iTipPDF417Info } from '@regulaforensics/document-reader-webclient'
+import { BcPDF417INFO } from '@regulaforensics/document-reader-webclient'
 
 /**
  * Structure is used for storing additional information on parameters
  * of PDF417 format bar-codes
  */
-export class TipPDF417Info implements iTipPDF417Info {
+export class TipPDF417Info implements BcPDF417INFO {
   /**
    * Code decoding rotation angle (in radians)
    * @type {number}
@@ -55,4 +55,4 @@ export class TipPDF417Info implements iTipPDF417Info {
   minY: number
 }
 
-export type { iTipPDF417Info }
+export type { TipPDF417Info as iTipPDF417Info }

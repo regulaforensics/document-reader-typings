@@ -1,5 +1,5 @@
 import { IsBase64, IsDefined, IsEnum, IsInt, IsOptional, IsString, ValidateNested } from 'class-validator'
-import { ImagesFieldValue as iImageFieldValue } from '@regulaforensics/document-reader-webclient'
+import { ImagesFieldValue } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eLights, eSource } from '@/consts'
@@ -9,7 +9,7 @@ import { Rect } from '@/models/common/rect'
 /**
  * Image representation
  */
-export class ImageFieldValue implements iImageFieldValue {
+export class ImageFieldValue implements ImagesFieldValue {
   /**
    * Source
    * @type {eSource}
@@ -87,4 +87,4 @@ export class ImageFieldValue implements iImageFieldValue {
   rfidOrigin?: RfidOrigin
 }
 
-export type { iImageFieldValue }
+export type { ImageFieldValue as iImageFieldValue }

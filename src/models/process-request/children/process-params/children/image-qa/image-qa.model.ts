@@ -1,12 +1,12 @@
 import { IsArray, IsBoolean, IsEnum, IsInt, IsNumber, IsOptional } from 'class-validator'
-import { ImageQA as iImageQA } from '@regulaforensics/document-reader-webclient'
+import { ImageQA as cImageQA } from '@regulaforensics/document-reader-webclient'
 
 import { eInputImageQualityChecks } from '@/consts'
 
 /**
  * Image QA check parameters
  */
-export class ImageQA implements iImageQA {
+export class ImageQA implements cImageQA {
   /**
    * Set the threshold for an actual document brightness below which the check fails
    * @type {number}
@@ -83,4 +83,4 @@ export class ImageQA implements iImageQA {
   expectedPass?: eInputImageQualityChecks[]
 }
 
-export type { iImageQA }
+export type { ImageQA as iImageQA }

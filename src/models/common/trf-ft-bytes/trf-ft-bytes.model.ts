@@ -1,10 +1,10 @@
 import { IsDefined, IsInt, IsNumber } from 'class-validator'
-import { TrfFtBytes as iTrfFtBytes } from '@regulaforensics/document-reader-webclient'
+import { TrfFtBytes as cTrfFtBytes } from '@regulaforensics/document-reader-webclient'
 
 /**
  * Structure is used to store an array of binary information that is a part of one of the informational data groups
  */
-export class TrfFtBytes implements iTrfFtBytes {
+export class TrfFtBytes implements cTrfFtBytes {
   /**
    * Logical type of the field
    * @type {number}
@@ -38,4 +38,4 @@ export class TrfFtBytes implements iTrfFtBytes {
   Data: string | null
 }
 
-export type { iTrfFtBytes }
+export type { TrfFtBytes as iTrfFtBytes }

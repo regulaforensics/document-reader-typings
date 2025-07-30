@@ -1,12 +1,12 @@
 import { IsArray, IsDefined, IsEnum, IsInt, IsOptional, ValidateNested } from 'class-validator'
-import { StringItem as iStringItem } from '@regulaforensics/document-reader-webclient'
+import { StringItem as cStringItem } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eCheckResult } from '@/consts'
 import { Rect } from '@/models'
 import { ErrorCoordinates, FieldItem, SymbolEstimationItem } from './children'
 
-export class StringItem implements iStringItem {
+export class StringItem implements cStringItem {
   /**
    * @type {eCheckResult}
    */
@@ -133,4 +133,4 @@ export class StringItem implements iStringItem {
   SymbolsEstimations: SymbolEstimationItem[]
 }
 
-export type { iStringItem }
+export type { StringItem as iStringItem }

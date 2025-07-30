@@ -1,5 +1,5 @@
 import { IsOptional, ValidateNested } from 'class-validator'
-import { SecurityObjectCertificates as iSecurityObjectCertificates } from '@regulaforensics/document-reader-webclient'
+import { SecurityObjectCertificates } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { CertificateData } from './children'
@@ -7,7 +7,7 @@ import { CertificateData } from './children'
 /**
  * Security object certificates
  */
-export class RfidSecurityObjectCertificates implements iSecurityObjectCertificates {
+export class RfidSecurityObjectCertificates implements SecurityObjectCertificates {
   /**
    * @type {CertificateData}
    */
@@ -17,4 +17,4 @@ export class RfidSecurityObjectCertificates implements iSecurityObjectCertificat
   Certificate_Data?: CertificateData
 }
 
-export type { iSecurityObjectCertificates }
+export type { RfidSecurityObjectCertificates as iSecurityObjectCertificates }

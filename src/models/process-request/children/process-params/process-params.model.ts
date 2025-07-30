@@ -10,7 +10,7 @@ import {
   Min,
   ValidateNested,
 } from 'class-validator'
-import { ProcessParams as iProcessParams } from '@regulaforensics/document-reader-webclient'
+import { ProcessParams as cProcessParams } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import {
@@ -33,7 +33,7 @@ import { FaceApi, ImageQA, PerDocumentConfig, ProcessParamsRfid, ProcessParamsAu
 /**
  * Processing parameters
  */
-export class ProcessParams implements iProcessParams {
+export class ProcessParams implements cProcessParams {
   /**
    * This parameter is used to generate separate DTC-VC data container from RFID session data.
    * @type {boolean|undefined}
@@ -615,4 +615,4 @@ export class ProcessParams implements iProcessParams {
   disableAuthResolutionFilter?: boolean
 }
 
-export type { iProcessParams }
+export type { ProcessParams as iProcessParams }

@@ -1,10 +1,10 @@
 import { IsDefined, IsInt, ValidateNested } from 'class-validator'
-import { GraphData as iGraphData } from '@regulaforensics/document-reader-webclient'
+import { GraphData as cGraphData } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { FileImage } from './children'
 
-export class GraphData implements iGraphData {
+export class GraphData implements cGraphData {
   /**
    * @type {number}
    */
@@ -56,4 +56,4 @@ export class GraphData implements iGraphData {
   OriginTagEntry: number
 }
 
-export type { iGraphData }
+export type { GraphData as iGraphData }

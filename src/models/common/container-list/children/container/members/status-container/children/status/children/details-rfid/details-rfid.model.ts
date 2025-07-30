@@ -1,12 +1,12 @@
 import { IsDefined, IsEnum } from 'class-validator'
-import { DetailsRFID as iDetailsRFID } from '@regulaforensics/document-reader-webclient'
+import { DetailsRFID as cDetailsRFID } from '@regulaforensics/document-reader-webclient'
 
 import { eCheckResult } from '@/consts'
 
 /**
  * The summary of all RFID checks.
  */
-export class DetailsRFID implements iDetailsRFID {
+export class DetailsRFID implements cDetailsRFID {
   /**
    * The summary of all RFID checks.
    * @type {eCheckResult}
@@ -69,4 +69,4 @@ export class DetailsRFID implements iDetailsRFID {
   TA: eCheckResult
 }
 
-export type { iDetailsRFID }
+export type { DetailsRFID as iDetailsRFID }

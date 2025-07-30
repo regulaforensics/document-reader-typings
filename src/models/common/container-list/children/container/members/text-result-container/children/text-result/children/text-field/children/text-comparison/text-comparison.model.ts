@@ -1,12 +1,12 @@
 import { IsDefined, IsEnum } from 'class-validator'
-import { CrossSourceValueComparison as iTextComparison } from '@regulaforensics/document-reader-webclient'
+import { CrossSourceValueComparison } from '@regulaforensics/document-reader-webclient'
 
 import { eCheckResult, eSource } from '@/consts'
 
 /**
  * Used for comparison of text results
  */
-export class TextComparison implements iTextComparison {
+export class TextComparison implements CrossSourceValueComparison {
   /**
    * Source left
    * @type {eSource}
@@ -32,4 +32,4 @@ export class TextComparison implements iTextComparison {
   status: eCheckResult
 }
 
-export type { iTextComparison }
+export type { TextComparison as iTextComparison }

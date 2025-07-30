@@ -1,5 +1,5 @@
 import { IsDefined, ValidateNested } from 'class-validator'
-import { RfidValidity as iRfidValidity } from '@regulaforensics/document-reader-webclient'
+import { RfidValidity as cRfidValidity } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { TrfFtString } from '@/models/common/trf-ft-string'
@@ -7,7 +7,7 @@ import { TrfFtString } from '@/models/common/trf-ft-string'
 /**
  * Structure contains information on a certificate validity.
  */
-export class RfidValidity implements iRfidValidity {
+export class RfidValidity implements cRfidValidity {
   /**
    * String of the start date.
    * Format can be YYMMDDHHMMSSZ (in the case of using UTCTime format)
@@ -31,4 +31,4 @@ export class RfidValidity implements iRfidValidity {
   NotAfter: TrfFtString
 }
 
-export type { iRfidValidity }
+export type { RfidValidity as iRfidValidity }

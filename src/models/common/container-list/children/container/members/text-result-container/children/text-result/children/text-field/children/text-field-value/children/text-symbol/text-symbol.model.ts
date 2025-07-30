@@ -1,5 +1,5 @@
 import { IsDefined, IsInt, IsOptional, ValidateNested } from 'class-validator'
-import { OriginalSymbol as iTextSymbol } from '@regulaforensics/document-reader-webclient'
+import { OriginalSymbol } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { Rect } from '@/models/common/rect'
@@ -7,7 +7,7 @@ import { Rect } from '@/models/common/rect'
 /**
  * Used for storing symbol reading result
  */
-export class TextSymbol implements iTextSymbol {
+export class TextSymbol implements OriginalSymbol {
   /**
    * Symbol code
    * @type {number}
@@ -34,4 +34,4 @@ export class TextSymbol implements iTextSymbol {
   rect?: Rect
 }
 
-export type { iTextSymbol }
+export type { TextSymbol as iTextSymbol }

@@ -1,10 +1,10 @@
-import { DocumentsDatabase as iDocumentsDatabase } from '@regulaforensics/document-reader-webclient'
+import { DocumentsDatabase as cDocumentsDatabase } from '@regulaforensics/document-reader-webclient'
 import { IsOptional, IsString } from 'class-validator'
 
 /**
  * Document database information
  */
-export class DocumentsDatabase implements iDocumentsDatabase {
+export class DocumentsDatabase implements cDocumentsDatabase {
   /**
    * Document database description
    * @type {string|undefined}
@@ -38,4 +38,4 @@ export class DocumentsDatabase implements iDocumentsDatabase {
   Version?: string
 }
 
-export type { iDocumentsDatabase }
+export type { DocumentsDatabase as iDocumentsDatabase }

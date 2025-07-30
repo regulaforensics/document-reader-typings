@@ -1,5 +1,5 @@
 import { IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
-import { FaceApi as iFaceApi } from '@regulaforensics/document-reader-webclient'
+import { FaceApi as cFaceApi } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { FaceApiSearch } from './children'
@@ -7,7 +7,7 @@ import { FaceApiSearch } from './children'
 /**
  * Face API parameters
  */
-export class FaceApi implements iFaceApi {
+export class FaceApi implements cFaceApi {
   /**
    * The URL of the Regula Face Web service to be used.
    * @type {string|undefined}
@@ -93,4 +93,4 @@ export class FaceApi implements iFaceApi {
   childDocValidityYears?: number
 }
 
-export type { iFaceApi }
+export type { FaceApi as iFaceApi }

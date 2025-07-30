@@ -1,7 +1,7 @@
 import { IsInt, IsOptional } from 'class-validator'
-import { ErrorCoordinates as iErrorCoordinates } from '@regulaforensics/document-reader-webclient'
+import { ErrorCoordinates as cErrorCoordinates } from '@regulaforensics/document-reader-webclient'
 
-export class ErrorCoordinates implements iErrorCoordinates {
+export class ErrorCoordinates implements cErrorCoordinates {
   /**
    * @type {number}
    */
@@ -31,4 +31,4 @@ export class ErrorCoordinates implements iErrorCoordinates {
   Bottom?: number
 }
 
-export type { iErrorCoordinates }
+export type { ErrorCoordinates as iErrorCoordinates }

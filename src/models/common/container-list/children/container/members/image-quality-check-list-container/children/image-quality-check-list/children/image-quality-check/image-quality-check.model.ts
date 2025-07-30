@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsInt, IsNumber, IsOptional, ValidateNested } from 'class-validator'
-import { ImageQualityCheck as iImageQualityCheck } from '@regulaforensics/document-reader-webclient'
+import { ImageQualityCheck as cImageQualityCheck } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eCheckResult, eImageQualityCheckType, eSecurityFeatureType } from '@/consts'
@@ -8,7 +8,7 @@ import { AreaArray } from '@/models/common/area-array'
 /**
  * Structure is used for storing input image quality check result
  */
-export class ImageQualityCheck implements iImageQualityCheck {
+export class ImageQualityCheck implements cImageQualityCheck {
   /**
    * Check result type
    * @type {eImageQualityCheckType}
@@ -67,4 +67,4 @@ export class ImageQualityCheck implements iImageQualityCheck {
   probability: number
 }
 
-export type { iImageQualityCheck }
+export type { ImageQualityCheck as iImageQualityCheck }

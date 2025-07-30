@@ -1,7 +1,7 @@
 import { IsArray, IsDefined, IsInt } from 'class-validator'
-import { Symbol as iSymbol } from '@regulaforensics/document-reader-webclient'
+import { Symbol as cSymbol } from '@regulaforensics/document-reader-webclient'
 
-export class Symbol implements iSymbol {
+export class Symbol implements cSymbol {
   /**
    * @type {number[]}
    */
@@ -11,4 +11,4 @@ export class Symbol implements iSymbol {
   boundingRect: number[]
 }
 
-export type { iSymbol }
+export type { Symbol as iSymbol }

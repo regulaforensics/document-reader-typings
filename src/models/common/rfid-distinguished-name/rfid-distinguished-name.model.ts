@@ -1,5 +1,5 @@
 import { IsArray, IsBase64, IsDefined, IsString, ValidateNested } from 'class-validator'
-import { RfidDistinguishedName as iRfidDistinguishedName } from '@regulaforensics/document-reader-webclient'
+import { RfidDistinguishedName as cRfidDistinguishedName } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { TrfFtString } from '@/models/common/trf-ft-string'
@@ -8,7 +8,7 @@ import { iRfidAttributeName, RfidAttributeName } from './children'
 /**
  * Structure contains information that serves as the distinguished name (identifier) of an object.
  */
-export class RfidDistinguishedName implements iRfidDistinguishedName {
+export class RfidDistinguishedName implements cRfidDistinguishedName {
   /**
    * Contents of the identifier in binary form. Base64 encoded.
    * @type {string}
@@ -38,4 +38,4 @@ export class RfidDistinguishedName implements iRfidDistinguishedName {
   Attributes: iRfidAttributeName[]
 }
 
-export type { iRfidDistinguishedName }
+export type { RfidDistinguishedName as iRfidDistinguishedName }

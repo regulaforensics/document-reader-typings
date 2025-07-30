@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsEnum, IsInt, IsOptional, IsString, ValidateNested } from 'class-validator'
-import { RfidDataFile as iRfidDataFile } from '@regulaforensics/document-reader-webclient'
+import { RfidDataFile as cRfidDataFile } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eGraphicFieldType, eRfidDataFileType, eRfidErrorCodes, eVisualFieldType } from '@/consts'
@@ -9,7 +9,7 @@ import { RfidParsedData, TrfFtBytes, RfidSecurityObjectCertificates } from '@/mo
  * Structure is used to describe the contents of a single file of the LDS of electronic document and the analysis
  * of its contents within the context of the communication session with electronic document
  */
-export class RfidDataFile implements iRfidDataFile {
+export class RfidDataFile implements cRfidDataFile {
   /**
    * File identifier.
    * Each byte of FileID represented by its hexadecimal value. The individual bytes are separated by spaces (e.g. "01 1E")
@@ -112,4 +112,4 @@ export class RfidDataFile implements iRfidDataFile {
   SecurityObject_Certificates?: RfidSecurityObjectCertificates
 }
 
-export type { iRfidDataFile }
+export type { RfidDataFile as iRfidDataFile }

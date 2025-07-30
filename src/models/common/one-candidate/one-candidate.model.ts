@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsInt, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
-import { OneCandidate as iOneCandidate } from '@regulaforensics/document-reader-webclient'
+import { OneCandidate as cOneCandidate } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eAuthenticity, getAuthenticityArray, getLightsArray, eLights, eRfidPresence } from '@/consts'
@@ -8,7 +8,7 @@ import { FDSIDList } from './children'
 /**
  * Contains information on one candidate document when determining the document type
  */
-export class OneCandidate implements iOneCandidate {
+export class OneCandidate implements cOneCandidate {
   /**
    * Document name
    * @type {string}
@@ -151,4 +151,4 @@ export class OneCandidate implements iOneCandidate {
   }
 }
 
-export type { iOneCandidate }
+export type { OneCandidate as iOneCandidate }
