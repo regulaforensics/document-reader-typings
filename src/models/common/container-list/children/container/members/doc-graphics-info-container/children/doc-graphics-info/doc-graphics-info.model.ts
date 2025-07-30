@@ -1,5 +1,5 @@
 import { IsDefined, IsInt, ValidateNested } from 'class-validator'
-import { GraphicFieldsList as iDocGraphicsInfo } from '@regulaforensics/document-reader-webclient'
+import { GraphicFieldsList } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { DocGraphicField } from './children'
@@ -8,7 +8,7 @@ import { DocGraphicField } from './children'
  * Model serves for storing graphic results of document filling area
  * and bar-codes reading
  */
-export class DocGraphicsInfo implements iDocGraphicsInfo {
+export class DocGraphicsInfo implements GraphicFieldsList {
   /**
    * Array of images
    * @type {DocGraphicField[]}
@@ -27,4 +27,4 @@ export class DocGraphicsInfo implements iDocGraphicsInfo {
   nFields: number
 }
 
-export type { iDocGraphicsInfo }
+export type { DocGraphicsInfo as iDocGraphicsInfo }

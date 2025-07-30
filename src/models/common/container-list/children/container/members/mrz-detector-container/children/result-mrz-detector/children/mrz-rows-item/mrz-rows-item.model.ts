@@ -1,10 +1,10 @@
 import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
-import { MRZRowsItem as iMrzRowsItem } from '@regulaforensics/document-reader-webclient'
+import { MRZRowsItem as cMrzRowsItem } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { Symbol } from './children'
 
-export class MRZRowsItem implements iMrzRowsItem {
+export class MRZRowsItem implements cMrzRowsItem {
   /**
    * @type {number}
    */
@@ -29,4 +29,4 @@ export class MRZRowsItem implements iMrzRowsItem {
   symbols: Symbol[]
 }
 
-export type { iMrzRowsItem }
+export type { MRZRowsItem as iMrzRowsItem }

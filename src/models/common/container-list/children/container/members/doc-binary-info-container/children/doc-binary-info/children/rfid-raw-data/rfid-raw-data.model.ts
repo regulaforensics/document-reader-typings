@@ -1,10 +1,10 @@
 import { IsDefined, IsNumber, IsString } from 'class-validator'
-import { RfidRawData as iRfidRawData } from '@regulaforensics/document-reader-webclient'
+import { RfidRawData as cRfidRawData } from '@regulaforensics/document-reader-webclient'
 
 /**
  * RFID raw data
  */
-export class RfidRawData implements iRfidRawData {
+export class RfidRawData implements cRfidRawData {
   /**
    * @type {string}
    */
@@ -20,4 +20,4 @@ export class RfidRawData implements iRfidRawData {
   FieldType: number
 }
 
-export type { iRfidRawData }
+export type { RfidRawData as iRfidRawData }

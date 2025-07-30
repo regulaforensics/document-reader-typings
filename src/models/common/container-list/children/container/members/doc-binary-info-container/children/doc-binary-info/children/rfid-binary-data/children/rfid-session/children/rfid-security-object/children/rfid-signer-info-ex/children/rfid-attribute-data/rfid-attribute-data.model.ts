@@ -1,10 +1,10 @@
 import { IsBase64, IsDefined, IsString } from 'class-validator'
-import { RfidAttributeData as iRfidAttributeData } from '@regulaforensics/document-reader-webclient'
+import { RfidAttributeData as cRfidAttributeData } from '@regulaforensics/document-reader-webclient'
 
 /**
  * Structure contains the data of one attribute of the digital signature object.
  */
-export class RfidAttributeData implements iRfidAttributeData {
+export class RfidAttributeData implements cRfidAttributeData {
   /**
    * Contents of the identifier in the format "S1 (S2)", where S1 – attribute name, S2 – identifier (OID string);
    * @type {string}
@@ -23,4 +23,4 @@ export class RfidAttributeData implements iRfidAttributeData {
   Data: string
 }
 
-export type { iRfidAttributeData }
+export type { RfidAttributeData as iRfidAttributeData }

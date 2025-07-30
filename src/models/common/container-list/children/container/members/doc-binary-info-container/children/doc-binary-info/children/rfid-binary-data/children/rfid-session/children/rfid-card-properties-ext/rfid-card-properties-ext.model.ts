@@ -1,5 +1,5 @@
 import { IsBoolean, IsDefined, IsEnum, IsInt, IsString } from 'class-validator'
-import { RfidCardPropertiesExt as iRfidCardPropertiesExt } from '@regulaforensics/document-reader-webclient'
+import { RfidCardPropertiesExt as cRfidCardPropertiesExt } from '@regulaforensics/document-reader-webclient'
 
 import { eRfidAChip, eRfidBaudRate, eRfidType } from '@/consts'
 
@@ -7,7 +7,7 @@ import { eRfidAChip, eRfidBaudRate, eRfidType } from '@/consts'
  * Structure is used to store extended information about the
  * characteristics of the RFID-chip located in the scope of the reader
  */
-export class RfidCardPropertiesExt implements iRfidCardPropertiesExt {
+export class RfidCardPropertiesExt implements cRfidCardPropertiesExt {
   /**
    * The type of the RFID-chip
    * @type {eRfidType}
@@ -126,4 +126,4 @@ export class RfidCardPropertiesExt implements iRfidCardPropertiesExt {
   ATR: string
 }
 
-export type { iRfidCardPropertiesExt }
+export type { RfidCardPropertiesExt as iRfidCardPropertiesExt }

@@ -1,7 +1,7 @@
 import { IsDefined, IsInt } from 'class-validator'
-import { FieldItem as iFieldItem } from '@regulaforensics/document-reader-webclient'
+import { FieldItem as cFieldItem } from '@regulaforensics/document-reader-webclient'
 
-export class FieldItem implements iFieldItem {
+export class FieldItem implements cFieldItem {
   /**
    * @type {number}
    */
@@ -45,4 +45,4 @@ export class FieldItem implements iFieldItem {
   reserved: number
 }
 
-export type { iFieldItem }
+export type { FieldItem as iFieldItem }

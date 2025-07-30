@@ -1,10 +1,10 @@
 import { IsDefined, IsInt, ValidateNested } from 'class-validator'
-import { SymbolEstimationItem as iSymbolEstimationItem } from '@regulaforensics/document-reader-webclient'
+import { SymbolEstimationItem as cSymbolEstimationItem } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { Rect } from '@/models'
 
-export class SymbolEstimationItem implements iSymbolEstimationItem {
+export class SymbolEstimationItem implements cSymbolEstimationItem {
   /**
    * @type {number}
    */
@@ -126,4 +126,4 @@ export class SymbolEstimationItem implements iSymbolEstimationItem {
   SymbolBounds: Rect
 }
 
-export type { iSymbolEstimationItem }
+export type { SymbolEstimationItem as iSymbolEstimationItem }

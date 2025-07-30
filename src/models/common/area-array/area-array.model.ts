@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsInt, ValidateNested } from 'class-validator'
-import { AreaContainer as iAreaArray } from '@regulaforensics/document-reader-webclient'
+import { AreaContainer } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { Rect } from '@/models/common/rect'
@@ -8,7 +8,7 @@ import { PointArray } from './children'
 /**
  * Structure serves for storage areas and contours.
  */
-export class AreaArray implements iAreaArray {
+export class AreaArray implements AreaContainer {
   /**
    * Number of elements in List and Points
    * @type {number}
@@ -38,4 +38,4 @@ export class AreaArray implements iAreaArray {
   Points: PointArray[]
 }
 
-export type { iAreaArray }
+export type { AreaArray as iAreaArray }

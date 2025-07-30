@@ -1,11 +1,11 @@
 import { IsDefined, IsEnum, IsInt, ValidateNested } from 'class-validator'
-import { MRZTestQuality as iMRZTestQuality } from '@regulaforensics/document-reader-webclient'
+import { MRZTestQuality as cMRZTestQuality } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eCheckResult } from '@/consts'
 import { StringItem } from './children'
 
-export class MRZTestQuality implements iMRZTestQuality {
+export class MRZTestQuality implements cMRZTestQuality {
   /**
    * @type {eCheckResult}
    */
@@ -78,4 +78,4 @@ export class MRZTestQuality implements iMRZTestQuality {
   TEXTUAL_FILLING: eCheckResult
 }
 
-export type { iMRZTestQuality }
+export type { MRZTestQuality as iMRZTestQuality }

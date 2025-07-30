@@ -1,5 +1,5 @@
 import { IsArray, IsBase64, IsDefined, IsEnum, IsInt, IsNumber, IsString, ValidateNested } from 'class-validator'
-import { RfidCertificateEx as iRfidCertificateEx } from '@regulaforensics/document-reader-webclient'
+import { RfidCertificateEx as cRfidCertificateEx } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eRfidCertificateOrigin, eRfidCertificateType, eRfidErrorCodes } from '@/consts'
@@ -11,7 +11,7 @@ import { RfidPkiExtension, RfidValidity } from './children'
  * Structure is used to describe the certificate contents used for the digital signature verification
  * of the document security object within the context of the communication session with electronic document.
  */
-export class RfidCertificateEx implements iRfidCertificateEx {
+export class RfidCertificateEx implements cRfidCertificateEx {
   /**
    * Version of Certificate ASN.1 structure
    * @type {number}
@@ -128,4 +128,4 @@ export class RfidCertificateEx implements iRfidCertificateEx {
   PA_Status: eRfidErrorCodes
 }
 
-export type { iRfidCertificateEx }
+export type { RfidCertificateEx as iRfidCertificateEx }

@@ -1,10 +1,10 @@
 import { IsArray, IsOptional, IsDefined, IsInt, ValidateNested } from 'class-validator'
-import { ContainerList as iContainerList } from '@regulaforensics/document-reader-webclient'
+import { ContainerList as cContainerList } from '@regulaforensics/document-reader-webclient'
 import { Transform } from 'class-transformer'
 
 import { transformToContainerList, uContainer } from './children'
 
-export class ContainerList implements iContainerList {
+export class ContainerList implements cContainerList {
   /**
    * Length of list (Count for items)
    * @type {number|undefined}
@@ -24,4 +24,4 @@ export class ContainerList implements iContainerList {
   List: uContainer[]
 }
 
-export type { iContainerList }
+export type { ContainerList as iContainerList }

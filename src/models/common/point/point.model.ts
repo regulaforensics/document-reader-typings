@@ -1,10 +1,10 @@
 import { IsDefined, IsNumber, IsOptional } from 'class-validator'
-import { Point as iPoint } from '@regulaforensics/document-reader-webclient'
+import { Point as cPoint } from '@regulaforensics/document-reader-webclient'
 
 /**
  * Point coordinates
  */
-export class Point implements iPoint {
+export class Point implements cPoint {
   /**
    * X coordinate
    * @param {number} [x=0]
@@ -22,4 +22,4 @@ export class Point implements iPoint {
   y: number
 }
 
-export type { iPoint }
+export type { Point as iPoint }

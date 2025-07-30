@@ -1,10 +1,10 @@
 import { IsArray, IsDefined, ValidateNested } from 'class-validator'
-import { TOriginalRFIDGraphicsInfo as iTOriginalRFIDGraphicsInfo } from '@regulaforensics/document-reader-webclient'
+import { TOriginalRFIDGraphicsInfo as cTOriginalRFIDGraphicsInfo } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { GraphData } from './children'
 
-export class TOriginalRFIDGraphicsInfo implements iTOriginalRFIDGraphicsInfo {
+export class TOriginalRFIDGraphicsInfo implements cTOriginalRFIDGraphicsInfo {
   /**
    * @type {GraphData[]}
    */
@@ -15,4 +15,4 @@ export class TOriginalRFIDGraphicsInfo implements iTOriginalRFIDGraphicsInfo {
   RFID_ORIGINAL_GRAPH_DATA: GraphData[]
 }
 
-export type { iTOriginalRFIDGraphicsInfo }
+export type { TOriginalRFIDGraphicsInfo as iTOriginalRFIDGraphicsInfo }

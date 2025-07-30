@@ -1,9 +1,9 @@
 import { IsArray, IsDefined, IsInt } from 'class-validator'
-import { ResultMRZDetector as iResultMRZDetector } from '@regulaforensics/document-reader-webclient'
+import { ResultMRZDetector as cResultMRZDetector } from '@regulaforensics/document-reader-webclient'
 
 import { MRZRowsItem } from './children'
 
-export class ResultMRZDetector implements iResultMRZDetector {
+export class ResultMRZDetector implements cResultMRZDetector {
   /**
    * @type {number}
    */
@@ -32,4 +32,4 @@ export class ResultMRZDetector implements iResultMRZDetector {
   boundingQuadrangle: number[]
 }
 
-export type { iResultMRZDetector }
+export type { ResultMRZDetector as iResultMRZDetector }

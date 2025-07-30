@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsInt, IsNumber, IsString } from 'class-validator'
-import { RfidSecurityObject as iRfidSecurityObject } from '@regulaforensics/document-reader-webclient'
+import { RfidSecurityObject as cRfidSecurityObject } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { RfidSignerInfoEx } from './children'
@@ -8,7 +8,7 @@ import { RfidSignerInfoEx } from './children'
  * Structure is used to describe the contents of a single document security object (SO) and the results of its check
  * within the context of the communication session with electronic document
  */
-export class RfidSecurityObject implements iRfidSecurityObject {
+export class RfidSecurityObject implements cRfidSecurityObject {
   /**
    * Security object version
    * @type {number}
@@ -52,4 +52,4 @@ export class RfidSecurityObject implements iRfidSecurityObject {
   SignerInfos: RfidSignerInfoEx[]
 }
 
-export type { iRfidSecurityObject }
+export type { RfidSecurityObject as iRfidSecurityObject }

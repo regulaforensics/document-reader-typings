@@ -1,5 +1,5 @@
 import { IsArray, IsBase64, IsDefined, IsEnum, IsInt, IsNumber, IsString, ValidateNested } from 'class-validator'
-import { RfidSignerInfoEx as iRfidSignerInfoEx } from '@regulaforensics/document-reader-webclient'
+import { RfidSignerInfoEx as cRfidSignerInfoEx } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eRfidErrorCodes } from '@/consts'
@@ -12,7 +12,7 @@ import { RfidAttributeData, RfidCertificateEx } from './children'
  * digital signature of the document security object and the results of its check within the
  * context of the communication session with electronic document
  */
-export class RfidSignerInfoEx implements iRfidSignerInfoEx {
+export class RfidSignerInfoEx implements cRfidSignerInfoEx {
   /**
    * Version of SignerInfo ASN.1 structure
    * @type {number}
@@ -121,4 +121,4 @@ export class RfidSignerInfoEx implements iRfidSignerInfoEx {
   Notifications: number[]
 }
 
-export type { iRfidSignerInfoEx }
+export type { RfidSignerInfoEx as iRfidSignerInfoEx }

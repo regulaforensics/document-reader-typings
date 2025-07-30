@@ -1,5 +1,5 @@
 import { IsArray, IsEnum, IsOptional, ValidateNested } from 'class-validator'
-import { BinaryData as iBinaryData } from '@regulaforensics/document-reader-webclient'
+import { BinaryData as cBinaryData } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eRfidDataFileType } from '@/consts'
@@ -9,7 +9,7 @@ import { DetailsRFID } from '@/models'
 /**
  * Structure is used for storing the results of one bar-code module reading.
  */
-export class BinaryData implements iBinaryData {
+export class BinaryData implements cBinaryData {
   /**
    * Structure used to store the contents of Authentication_Info
    * @type {Record<string, unknown>|undefined}
@@ -469,4 +469,4 @@ export class BinaryData implements iBinaryData {
   RFID_ePassp_Directory?: eRfidDataFileType[]
 }
 
-export type { iBinaryData }
+export type { BinaryData as iBinaryData }

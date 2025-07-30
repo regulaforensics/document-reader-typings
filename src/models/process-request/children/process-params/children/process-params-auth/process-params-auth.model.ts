@@ -1,5 +1,5 @@
 import { IsBoolean, IsOptional, ValidateNested } from 'class-validator'
-import { AuthParams as iProcessParamsAuth } from '@regulaforensics/document-reader-webclient'
+import { AuthParams } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { LivenessParams } from './children'
@@ -7,7 +7,7 @@ import { LivenessParams } from './children'
 /**
  * Params for the RFID chip data reprocessing
  */
-export class ProcessParamsAuth implements iProcessParamsAuth {
+export class ProcessParamsAuth implements AuthParams {
   /**
    * This parameter is used to enable document liveness check
    * Default true
@@ -152,4 +152,4 @@ export class ProcessParamsAuth implements iProcessParamsAuth {
   checkSecurityText?: boolean
 }
 
-export type { iProcessParamsAuth }
+export type { ProcessParamsAuth as iProcessParamsAuth }

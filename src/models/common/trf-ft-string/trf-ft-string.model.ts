@@ -1,11 +1,11 @@
 import { IsDefined, IsNumber, IsOptional, IsString } from 'class-validator'
-import { TrfFtString as iTrfFtString } from '@regulaforensics/document-reader-webclient'
+import { TrfFtString as cTrfFtString } from '@regulaforensics/document-reader-webclient'
 
 /**
  * Structure is used to store information about the numeric field (4 bytes) that is a part of one of the informational
  * data groups.
  */
-export class TrfFtString implements iTrfFtString {
+export class TrfFtString implements cTrfFtString {
   /**
    * Logical type of the field
    * @type {number}
@@ -40,4 +40,4 @@ export class TrfFtString implements iTrfFtString {
   Data: string
 }
 
-export type { iTrfFtString }
+export type { TrfFtString as iTrfFtString }

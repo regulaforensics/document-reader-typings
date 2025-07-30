@@ -1,7 +1,7 @@
-import { FileImage as iFileImage } from '@regulaforensics/document-reader-webclient'
+import { FileImage as cFileImage } from '@regulaforensics/document-reader-webclient'
 import { IsDefined, IsInt, IsString } from 'class-validator'
 
-export class FileImage implements iFileImage {
+export class FileImage implements cFileImage {
   /**
    * @type {string}
    */
@@ -17,4 +17,4 @@ export class FileImage implements iFileImage {
   Length: number
 }
 
-export type { iFileImage }
+export type { FileImage as iFileImage }

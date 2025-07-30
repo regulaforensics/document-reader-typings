@@ -1,4 +1,4 @@
-import { TransactionInfo as iTransactionInfo } from '@regulaforensics/document-reader-webclient'
+import { TransactionInfo as cTransactionInfo } from '@regulaforensics/document-reader-webclient'
 import { IsOptional, IsString, ValidateNested } from 'class-validator'
 
 import { DocumentsDatabase } from './children'
@@ -7,7 +7,7 @@ import { Type } from 'class-transformer'
 /**
  * Transaction info
  */
-export class TransactionInfo implements iTransactionInfo {
+export class TransactionInfo implements cTransactionInfo {
   /**
    * Name of the computer
    * @type {string|undefined}
@@ -74,4 +74,4 @@ export class TransactionInfo implements iTransactionInfo {
   Version?: string
 }
 
-export type { iTransactionInfo }
+export type { TransactionInfo as iTransactionInfo }

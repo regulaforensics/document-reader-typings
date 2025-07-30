@@ -1,5 +1,5 @@
 import { IsBoolean, IsDefined, IsEnum, IsString } from 'class-validator'
-import { RfidAccessKey as iRfidAccessKey } from '@regulaforensics/document-reader-webclient'
+import { RfidAccessKey as cRfidAccessKey } from '@regulaforensics/document-reader-webclient'
 
 import { eRfidAccessControlProcedureType, eRfidPasswordType } from '@/consts'
 
@@ -7,7 +7,7 @@ import { eRfidAccessControlProcedureType, eRfidPasswordType } from '@/consts'
  * Structure is used to describe the contents of secure data access key within
  * the context of the communication session with electronic document
  */
-export class RfidAccessKey implements iRfidAccessKey {
+export class RfidAccessKey implements cRfidAccessKey {
   /**
    * Key contents
    * @type {string}
@@ -42,4 +42,4 @@ export class RfidAccessKey implements iRfidAccessKey {
   CheckFullKeyMatching: boolean
 }
 
-export type { iRfidAccessKey }
+export type { RfidAccessKey as iRfidAccessKey }

@@ -1,5 +1,5 @@
 import { ArrayMaxSize, ArrayMinSize, IsArray, IsDefined, IsEnum, IsOptional, IsString } from 'class-validator'
-import { VerifiedFieldMap as iVerifiedFieldMap } from '@regulaforensics/document-reader-webclient'
+import { VerifiedFieldMap as cVerifiedFieldMap } from '@regulaforensics/document-reader-webclient'
 
 import { eLCID, eVisualFieldType, eFieldVerificationResult } from '@/consts'
 
@@ -7,7 +7,7 @@ import { eLCID, eVisualFieldType, eFieldVerificationResult } from '@/consts'
  * Contains information on results of comparing data obtained from different sources for
  * the same logical type of field
  */
-export class VerifiedFieldMap implements iVerifiedFieldMap {
+export class VerifiedFieldMap implements cVerifiedFieldMap {
   /**
    * Text field logical type
    * @type {eVisualFieldType}
@@ -147,4 +147,4 @@ export class VerifiedFieldMap implements iVerifiedFieldMap {
     instance.Matrix[9]
 }
 
-export type { iVerifiedFieldMap }
+export type { VerifiedFieldMap as iVerifiedFieldMap }

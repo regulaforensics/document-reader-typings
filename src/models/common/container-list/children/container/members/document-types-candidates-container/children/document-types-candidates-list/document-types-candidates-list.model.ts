@@ -1,11 +1,11 @@
 import { IsArray, IsEnum, IsOptional, ValidateNested } from 'class-validator'
-import { DocumentTypesCandidatesList as iDocumentTypesCandidatesList } from '@regulaforensics/document-reader-webclient'
+import { DocumentTypesCandidatesList as cDocumentTypesCandidatesList } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eDocumentTypeRecognitionResult } from '@/consts'
 import { OneCandidate } from '../../../../../../../one-candidate'
 
-export class DocumentTypesCandidatesList implements iDocumentTypesCandidatesList {
+export class DocumentTypesCandidatesList implements cDocumentTypesCandidatesList {
   /**
    * @type {eDocumentTypeRecognitionResult}
    */
@@ -23,4 +23,4 @@ export class DocumentTypesCandidatesList implements iDocumentTypesCandidatesList
   Candidates?: OneCandidate[]
 }
 
-export type { iDocumentTypesCandidatesList }
+export type { DocumentTypesCandidatesList as iDocumentTypesCandidatesList }

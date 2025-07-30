@@ -11,7 +11,7 @@ import {
   ValidationError,
 } from 'class-validator'
 import { plainToClass, Type, Expose } from 'class-transformer'
-import { ProcessResponse as iProcessResponse } from '@regulaforensics/document-reader-webclient'
+import { ProcessResponse as cProcessResponse } from '@regulaforensics/document-reader-webclient'
 
 import { eProcessingStatus, eRfidPresence } from '@/consts'
 import { IsStringObjectRecord } from '@/validators'
@@ -23,7 +23,7 @@ import merge from 'lodash/merge'
 import values from 'lodash/values'
 
 @Expose()
-export class ProcessResponse implements iProcessResponse {
+export class ProcessResponse implements cProcessResponse {
   /**
    * Indicates which page of the document contains an RFID chip (0 if there’s no page containing it). Requires document
    * type recognition, otherwise 1 by default
@@ -130,7 +130,7 @@ export class ProcessResponse implements iProcessResponse {
    */
   static validate = (instance: ProcessResponse): true | never => {
     const errors = validateSync(ProcessResponse.fromPlain(instance))
-    console.log(errors)
+
     if (errors.length) {
       throw new DocReaderTypeError(
         'ProcessResponse validation error: the data received does not match model structure!',
@@ -211,4 +211,4 @@ export class ProcessResponse implements iProcessResponse {
   }
 }
 
-export type { iProcessResponse }
+export type { ProcessResponse as iProcessResponse }

@@ -1,10 +1,10 @@
 import { IsDefined, IsNumber } from 'class-validator'
-import { RfidOrigin as iRfidOrigin } from '@regulaforensics/document-reader-webclient'
+import { RfidOrigin as cRfidOrigin } from '@regulaforensics/document-reader-webclient'
 
 /**
  * Structure is used for electronic document data source description
  */
-export class RfidOrigin implements iRfidOrigin {
+export class RfidOrigin implements cRfidOrigin {
   /**
    * Data group number
    * @type {number}
@@ -38,4 +38,4 @@ export class RfidOrigin implements iRfidOrigin {
   entryView: number
 }
 
-export type { iRfidOrigin }
+export type { RfidOrigin as iRfidOrigin }

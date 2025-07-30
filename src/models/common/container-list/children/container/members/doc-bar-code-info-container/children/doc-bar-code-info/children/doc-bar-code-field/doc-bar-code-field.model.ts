@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsEnum, IsNumber, IsOptional, ValidateNested } from 'class-validator'
-import { PArrayField as iDocBarCodeField } from '@regulaforensics/document-reader-webclient'
+import { PArrayField } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { Rect } from '@/models/common'
@@ -10,7 +10,7 @@ import { TipPDF417Info, TipDecodeModule } from './children'
  * Structure is a basic containing structure for DocBarCodeInfo list
  * and contains bar-code reading data
  */
-export class DocBarCodeField implements iDocBarCodeField {
+export class DocBarCodeField implements PArrayField {
   /**
    * BarCode rotation angle (in radians)
    * @type {number}
@@ -94,4 +94,4 @@ export class DocBarCodeField implements iDocBarCodeField {
   bcType_DETECT: number
 }
 
-export type { iDocBarCodeField }
+export type { DocBarCodeField as iDocBarCodeField }

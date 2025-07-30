@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsEnum, IsInt, IsOptional } from 'class-validator'
-import { RfidAccessControlInfo as iRfidAccessControlInfo } from '@regulaforensics/document-reader-webclient'
+import { RfidAccessControlInfo as cRfidAccessControlInfo } from '@regulaforensics/document-reader-webclient'
 
 import { eRfidAccessControlProcedureType, eRfidErrorCodes } from '@/consts'
 
@@ -7,7 +7,7 @@ import { eRfidAccessControlProcedureType, eRfidErrorCodes } from '@/consts'
  * Structure is used to describe the results of a single authentication procedure or a procedure of secure data access
  * within the context of the communication session with electronic document
  */
-export class RfidAccessControlInfo implements iRfidAccessControlInfo {
+export class RfidAccessControlInfo implements cRfidAccessControlInfo {
   /**
    * Procedure type
    * @type {eRfidAccessControlProcedureType}
@@ -51,4 +51,4 @@ export class RfidAccessControlInfo implements iRfidAccessControlInfo {
   AccessControlOptions?: any[]
 }
 
-export type { iRfidAccessControlInfo }
+export type { RfidAccessControlInfo as iRfidAccessControlInfo }

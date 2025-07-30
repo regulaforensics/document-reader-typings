@@ -1,10 +1,10 @@
 import { IsArray, IsDefined, IsInt, IsOptional, ValidateNested } from 'class-validator'
-import { FaceDetection as iFaceDetection } from '@regulaforensics/document-reader-webclient'
+import { FaceDetection as cFaceDetection } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { FaceItem } from './children'
 
-export class FaceDetection implements iFaceDetection {
+export class FaceDetection implements cFaceDetection {
   /**
    * @type {number}
    */
@@ -43,4 +43,4 @@ export class FaceDetection implements iFaceDetection {
   Reserved2?: number
 }
 
-export type { iFaceDetection }
+export type { FaceDetection as iFaceDetection }

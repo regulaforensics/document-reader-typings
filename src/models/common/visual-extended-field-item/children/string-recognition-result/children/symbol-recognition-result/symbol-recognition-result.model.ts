@@ -1,11 +1,11 @@
 import { IsDefined, IsInt, IsOptional, ValidateNested } from 'class-validator'
-import { SymbolRecognitionResult as iSymbolRecognitionResult } from '@regulaforensics/document-reader-webclient'
+import { SymbolRecognitionResult as cSymbolRecognitionResult } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { Rect } from '@/models'
 import { SymbolCandidate } from './children'
 
-export class SymbolRecognitionResult {
+export class SymbolRecognitionResult implements cSymbolRecognitionResult {
   /**
    * @type {Rect}
    */
@@ -46,4 +46,4 @@ export class SymbolRecognitionResult {
   BaseLineTop?: number
 }
 
-export type { iSymbolRecognitionResult }
+export type { SymbolRecognitionResult as iSymbolRecognitionResult }

@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsInt, IsOptional, IsString, ValidateNested, validateSync } from 'class-validator'
-import { ProcessRequest as iProcessRequest } from '@regulaforensics/document-reader-webclient'
+import { ProcessRequest as cProcessRequest } from '@regulaforensics/document-reader-webclient'
 import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 
 import { IsStringObjectRecord } from '@/validators'
@@ -7,8 +7,10 @@ import { DocReaderTypeError } from '@/errors'
 import { ContainerList } from '@/models/common'
 import { ProcessParams, ProcessRequestImage, ProcessSystemInfo } from './children'
 
+export type iProcessRequest = ProcessRequest
+
 @Expose()
-export class ProcessRequest implements iProcessRequest {
+export class ProcessRequest implements cProcessRequest {
   /**
    * Process params
    * @type {ProcessParams}
@@ -145,5 +147,3 @@ export class ProcessRequest implements iProcessRequest {
     return true
   }
 }
-
-export type { iProcessRequest }

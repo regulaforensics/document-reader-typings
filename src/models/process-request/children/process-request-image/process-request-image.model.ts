@@ -1,5 +1,5 @@
 import { IsEnum, IsInt, IsOptional, ValidateNested } from 'class-validator'
-import { ProcessRequestImage as iProcessRequestImage } from '@regulaforensics/document-reader-webclient'
+import { ProcessRequestImage as cProcessRequestImage } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { ImageData } from '@/models/common'
@@ -8,7 +8,7 @@ import { eLights } from '@/consts'
 /**
  * Image data
  */
-export class ProcessRequestImage implements iProcessRequestImage {
+export class ProcessRequestImage implements cProcessRequestImage {
   /**
    * Image data
    * @type {iImageData}
@@ -34,4 +34,4 @@ export class ProcessRequestImage implements iProcessRequestImage {
   page_idx?: number
 }
 
-export type { iProcessRequestImage }
+export type { ProcessRequestImage as iProcessRequestImage }

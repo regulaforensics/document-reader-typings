@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsString, ValidateNested } from 'class-validator'
-import { RfidApplication as iRfidApplication } from '@regulaforensics/document-reader-webclient'
+import { RfidApplication as cRfidApplication } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eRfidApplicationType, eRfidErrorCodes } from '@/consts'
@@ -9,7 +9,7 @@ import { RfidDataFile } from './children'
  * Structure is used to describe the contents of a single LDS application and their analysis within the context
  * of the communication session with electronic document
  */
-export class RfidApplication implements iRfidApplication {
+export class RfidApplication implements cRfidApplication {
   /**
    * Type of application of electronic document
    * @type {eRfidApplicationType}
@@ -68,4 +68,4 @@ export class RfidApplication implements iRfidApplication {
   Files: RfidDataFile[]
 }
 
-export type { iRfidApplication }
+export type { RfidApplication as iRfidApplication }

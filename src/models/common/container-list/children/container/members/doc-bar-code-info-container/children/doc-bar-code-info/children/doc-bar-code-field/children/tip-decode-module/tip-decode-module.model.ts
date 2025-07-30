@@ -1,12 +1,12 @@
 import { IsDefined, IsEnum, IsNumber, IsOptional, IsString } from 'class-validator'
-import { DataModule as iTipDecodeModule } from '@regulaforensics/document-reader-webclient'
+import { DataModule } from '@regulaforensics/document-reader-webclient'
 
 import { eBarCodeModuleType } from '@/consts'
 
 /**
  * Structure is used for storing the results of one bar-code module reading.
  */
-export class TipDecodeModule implements iTipDecodeModule {
+export class TipDecodeModule implements DataModule {
   /**
    * Read module data
    * @type {string}
@@ -46,4 +46,4 @@ export class TipDecodeModule implements iTipDecodeModule {
   mType: eBarCodeModuleType
 }
 
-export type { iTipDecodeModule }
+export type { TipDecodeModule as iTipDecodeModule }

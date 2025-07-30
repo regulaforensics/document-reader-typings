@@ -1,10 +1,10 @@
-import { ImageData as iImageData } from '@regulaforensics/document-reader-webclient'
 import { IsBase64, IsString, IsOptional } from 'class-validator'
+import { ImageData as cImageData } from '@regulaforensics/document-reader-webclient'
 
 /**
  * Image data in base64 format
  */
-export class ImageData implements iImageData {
+export class ImageData implements cImageData {
   /**
    * Image data in base64 format
    * @type {string}
@@ -23,4 +23,4 @@ export class ImageData implements iImageData {
   format?: string
 }
 
-export type { iImageData }
+export type { ImageData as iImageData }

@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsInt, IsOptional, IsString, ValidateNested } from 'class-validator'
-import { ListVerifiedFields as iListVerifiedFields } from '@regulaforensics/document-reader-webclient'
+import { ListVerifiedFields as cListVerifiedFields } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { VerifiedFieldMap } from './children'
@@ -9,7 +9,7 @@ import { VerifiedFieldMap } from './children'
  * text data, document filling area data, bar-codes data and data retrieved from RFID-chip
  * memory (used together with RFID-Chip Reader SDK) and passing it to the user application
  */
-export class ListVerifiedFields implements iListVerifiedFields {
+export class ListVerifiedFields implements cListVerifiedFields {
   /**
    * Number of pFieldMaps array elements
    * @type {number}
@@ -36,4 +36,4 @@ export class ListVerifiedFields implements iListVerifiedFields {
   pDateFormat?: string
 }
 
-export type { iListVerifiedFields }
+export type { ListVerifiedFields as iListVerifiedFields }

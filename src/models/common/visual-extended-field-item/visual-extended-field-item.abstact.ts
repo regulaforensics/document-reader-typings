@@ -1,11 +1,11 @@
 import { IsDefined, IsEnum, IsInt, IsOptional, IsString, ValidateNested } from 'class-validator'
-import { VisualExtendedFieldItem as iVisualExtendedFieldItem } from '@regulaforensics/document-reader-webclient'
+import { VisualExtendedFieldItem as cVisualExtendedFieldItem } from '@regulaforensics/document-reader-webclient'
 
 import { eLCID, eVisualFieldType } from '@/consts'
 import { Type } from 'class-transformer'
 import { StringRecognitionResult } from './children'
 
-export abstract class aVisualExtendedFieldItem implements iVisualExtendedFieldItem {
+export abstract class aVisualExtendedFieldItem implements cVisualExtendedFieldItem {
   /**
    * @type {eVisualFieldType}
    */
@@ -97,4 +97,4 @@ export abstract class aVisualExtendedFieldItem implements iVisualExtendedFieldIt
   Reserved3?: number
 }
 
-export type { iVisualExtendedFieldItem }
+export type { aVisualExtendedFieldItem as iVisualExtendedFieldItem }

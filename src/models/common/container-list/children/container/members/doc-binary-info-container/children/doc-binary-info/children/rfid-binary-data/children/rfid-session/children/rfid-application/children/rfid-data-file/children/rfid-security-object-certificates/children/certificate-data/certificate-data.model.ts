@@ -1,10 +1,10 @@
 import { IsDefined, IsNumber, IsString } from 'class-validator'
-import { CertificateData as iCertificateData } from '@regulaforensics/document-reader-webclient'
+import { CertificateData as cCertificateData } from '@regulaforensics/document-reader-webclient'
 
 /**
  * Certificate data
  */
-export class CertificateData implements iCertificateData {
+export class CertificateData implements cCertificateData {
   /**
    * @type {string}
    */
@@ -20,4 +20,4 @@ export class CertificateData implements iCertificateData {
   Length: number
 }
 
-export type { iCertificateData }
+export type { CertificateData as iCertificateData }

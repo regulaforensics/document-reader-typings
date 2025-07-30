@@ -1,10 +1,10 @@
 import { IsBoolean, IsOptional } from 'class-validator'
-import { LivenessParams as iLivenessParams } from '@regulaforensics/document-reader-webclient'
+import { LivenessParams as cLivenessParams } from '@regulaforensics/document-reader-webclient'
 
 /**
  * Params for the RFID chip data reprocessing
  */
-export class LivenessParams implements iLivenessParams {
+export class LivenessParams implements cLivenessParams {
   /**
    * This parameter is used to enable OVI check
    * Default true
@@ -66,4 +66,4 @@ export class LivenessParams implements iLivenessParams {
   checkGeometry?: boolean
 }
 
-export type { iLivenessParams }
+export type { LivenessParams as iLivenessParams }

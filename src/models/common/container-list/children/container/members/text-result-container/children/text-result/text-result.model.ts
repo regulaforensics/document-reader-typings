@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsEnum, IsString, ValidateNested } from 'class-validator'
-import { Text as iTextResult } from '@regulaforensics/document-reader-webclient'
+import { Text } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eCheckResult } from '@/consts'
@@ -8,7 +8,7 @@ import { TextField, TextSource } from './children'
 /**
  * Used for storing text result
  */
-export class TextResult implements iTextResult {
+export class TextResult implements Text {
   /**
    * Status
    * @type {eCheckResult}
@@ -62,4 +62,4 @@ export class TextResult implements iTextResult {
   availableSourceList: TextSource[]
 }
 
-export type { iTextResult }
+export type { TextResult as iTextResult }

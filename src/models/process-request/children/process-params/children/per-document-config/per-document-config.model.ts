@@ -1,10 +1,10 @@
 import { IsArray, IsInt, IsOptional } from 'class-validator'
-import { PerDocumentConfig as iPerDocumentConfig } from '@regulaforensics/document-reader-webclient'
+import { PerDocumentConfig as cPerDocumentConfig } from '@regulaforensics/document-reader-webclient'
 
 /**
  * Specific configuration for each document
  */
-export class PerDocumentConfig implements iPerDocumentConfig {
+export class PerDocumentConfig implements cPerDocumentConfig {
   /**
    * Specific template IDs, for which apply current custom configuration
    * @type {number[]|undefined}
@@ -23,4 +23,4 @@ export class PerDocumentConfig implements iPerDocumentConfig {
   excludeAuthChecks?: number
 }
 
-export type { iPerDocumentConfig }
+export type { PerDocumentConfig as iPerDocumentConfig }

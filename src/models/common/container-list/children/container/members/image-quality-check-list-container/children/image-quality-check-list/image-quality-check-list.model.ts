@@ -1,5 +1,5 @@
 import { IsArray, IsDefined, IsEnum, IsInt, ValidateNested } from 'class-validator'
-import { ImageQualityCheckList as iImageQualityCheckList } from '@regulaforensics/document-reader-webclient'
+import { ImageQualityCheckList as cImageQualityCheckList } from '@regulaforensics/document-reader-webclient'
 import { Type } from 'class-transformer'
 
 import { eCheckResult } from '@/consts'
@@ -8,7 +8,7 @@ import { ImageQualityCheck } from './children'
 /**
  * Structure is used for storing input image quality check results list
  */
-export class ImageQualityCheckList implements iImageQualityCheckList {
+export class ImageQualityCheckList implements cImageQualityCheckList {
   /**
    * Overall check result
    * @type {eCheckResult}
@@ -36,4 +36,4 @@ export class ImageQualityCheckList implements iImageQualityCheckList {
   Count: number
 }
 
-export type { iImageQualityCheckList }
+export type { ImageQualityCheckList as iImageQualityCheckList }
