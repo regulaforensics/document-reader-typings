@@ -23,5 +23,3 @@ export class RfidPkiExtension implements cRfidPkiExtension {
   @IsBase64()
   Data: string
 }
-
-export type { RfidPkiExtension as iRfidPkiExtension }

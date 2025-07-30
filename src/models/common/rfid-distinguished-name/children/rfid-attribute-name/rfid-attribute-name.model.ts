@@ -26,5 +26,3 @@ export class RfidAttributeName implements cRfidAttributeName {
   @ValidateNested()
   Value: TrfFtString
 }
-
-export type { RfidAttributeName as iRfidAttributeName }

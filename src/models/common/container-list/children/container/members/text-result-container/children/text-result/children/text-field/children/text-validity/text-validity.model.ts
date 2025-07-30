@@ -23,5 +23,3 @@ export class TextValidity implements SourceValidity {
   @IsEnum(eCheckResult)
   status: eCheckResult
 }
-
-export type { TextValidity as iTextValidity }

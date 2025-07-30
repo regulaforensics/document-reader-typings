@@ -22,5 +22,3 @@ export class PerDocumentConfig implements cPerDocumentConfig {
   @IsInt()
   excludeAuthChecks?: number
 }
-
-export type { PerDocumentConfig as iPerDocumentConfig }

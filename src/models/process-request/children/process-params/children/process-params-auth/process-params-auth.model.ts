@@ -151,5 +151,3 @@ export class ProcessParamsAuth implements AuthParams {
   @IsBoolean()
   checkSecurityText?: boolean
 }
-
-export type { ProcessParamsAuth as iProcessParamsAuth }

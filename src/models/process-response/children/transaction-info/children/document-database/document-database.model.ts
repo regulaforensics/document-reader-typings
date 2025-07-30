@@ -37,5 +37,3 @@ export class DocumentsDatabase implements cDocumentsDatabase {
   @IsString()
   Version?: string
 }
-
-export type { DocumentsDatabase as iDocumentsDatabase }

@@ -146,5 +146,3 @@ export class VerifiedFieldMap implements cVerifiedFieldMap {
   static getRFIDAndBarcodeDataComparingResult = (instance: VerifiedFieldMap): eFieldVerificationResult =>
     instance.Matrix[9]
 }
-
-export type { VerifiedFieldMap as iVerifiedFieldMap }

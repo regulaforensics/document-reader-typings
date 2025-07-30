@@ -93,5 +93,3 @@ export class DocBarCodeField implements PArrayField {
   @IsNumber()
   bcType_DETECT: number
 }
-
-export type { DocBarCodeField as iDocBarCodeField }

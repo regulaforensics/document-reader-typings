@@ -2,11 +2,6 @@ import { eAuthenticity } from '@/consts'
 import { isObject } from '@/helpers'
 
 import {
-  iRAuthenticityFibersCheck,
-  iRAuthenticityIdentCheck,
-  iRAuthenticityPhotoIdentCheck,
-  iRAuthenticitySecurityCheck,
-  iRAuthenticityTextCheck,
   RAuthenticityFibersCheck,
   RAuthenticityIdentCheck,
   RAuthenticityPhotoIdentCheck,
@@ -24,17 +19,6 @@ export type uRAuthenticityCheck =
   | RAuthenticityPhotoIdentCheck
   | RAuthenticitySecurityCheck
   | RAuthenticityTextCheck
-
-/**
- * Structure serves for storing the results of a single type
- * document authenticity check
- */
-export type iuRAuthenticityCheck =
-  | iRAuthenticityFibersCheck
-  | iRAuthenticityIdentCheck
-  | iRAuthenticityPhotoIdentCheck
-  | iRAuthenticitySecurityCheck
-  | iRAuthenticityTextCheck
 
 /**
  * Transform list of unknown items to list of uAuthenticityCheckResult

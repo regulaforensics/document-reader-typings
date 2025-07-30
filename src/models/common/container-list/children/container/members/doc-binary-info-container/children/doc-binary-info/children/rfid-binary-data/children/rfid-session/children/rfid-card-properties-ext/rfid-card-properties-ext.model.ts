@@ -125,5 +125,3 @@ export class RfidCardPropertiesExt implements cRfidCardPropertiesExt {
   @IsString()
   ATR: string
 }
-
-export type { RfidCardPropertiesExt as iRfidCardPropertiesExt }

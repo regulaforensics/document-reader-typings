@@ -31,5 +31,3 @@ export class TextComparison implements CrossSourceValueComparison {
   @IsEnum(eCheckResult)
   status: eCheckResult
 }
-
-export type { TextComparison as iTextComparison }

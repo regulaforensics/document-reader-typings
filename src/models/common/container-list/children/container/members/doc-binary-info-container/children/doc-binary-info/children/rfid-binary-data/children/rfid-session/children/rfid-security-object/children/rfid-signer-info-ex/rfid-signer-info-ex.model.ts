@@ -120,5 +120,3 @@ export class RfidSignerInfoEx implements cRfidSignerInfoEx {
   @IsInt({ each: true })
   Notifications: number[]
 }
-
-export type { RfidSignerInfoEx as iRfidSignerInfoEx }

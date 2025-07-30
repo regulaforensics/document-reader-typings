@@ -96,5 +96,3 @@ export class TextFieldValue implements cTextFieldValue {
   @IsInt()
   containerType?: number
 }
-
-export type { TextFieldValue as iTextFieldValue }

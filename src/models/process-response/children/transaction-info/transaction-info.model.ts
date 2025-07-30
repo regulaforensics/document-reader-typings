@@ -73,5 +73,3 @@ export class TransactionInfo implements cTransactionInfo {
   @IsString()
   Version?: string
 }
-
-export type { TransactionInfo as iTransactionInfo }

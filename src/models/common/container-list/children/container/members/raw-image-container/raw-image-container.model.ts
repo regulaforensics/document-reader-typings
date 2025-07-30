@@ -5,7 +5,7 @@ import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 import { DocReaderTypeError } from '@/errors'
 import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
-import { ImageData, ProcessResponse, iImageData } from '@/models'
+import { ImageData, ProcessResponse } from '@/models'
 
 /**
  * Result type of RawImageContainer
@@ -30,9 +30,9 @@ export const RawImageContainerResultTypes: tRawImageContainerResultType[] = [
 export interface iRawImageContainer extends aContainer, RawImageContainerItem {
   /**
    * Structure is used for storing a graphic image
-   * @type {iImageData}
+   * @type {ImageData}
    */
-  RawImageContainer: iImageData
+  RawImageContainer: ImageData
 
   /**
    * Result type stored in this container

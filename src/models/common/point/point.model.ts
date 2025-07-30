@@ -21,5 +21,3 @@ export class Point implements cPoint {
   @IsNumber()
   y: number
 }
-
-export type { Point as iPoint }

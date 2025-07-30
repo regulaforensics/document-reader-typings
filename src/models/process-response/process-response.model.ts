@@ -210,5 +210,3 @@ export class ProcessResponse implements cProcessResponse {
     return result
   }
 }
-
-export type { ProcessResponse as iProcessResponse }

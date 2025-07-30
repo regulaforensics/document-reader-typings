@@ -111,5 +111,3 @@ export class RfidDataFile implements cRfidDataFile {
   @ValidateNested()
   SecurityObject_Certificates?: RfidSecurityObjectCertificates
 }
-
-export type { RfidDataFile as iRfidDataFile }

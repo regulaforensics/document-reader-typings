@@ -5,7 +5,7 @@ import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 import { DocReaderTypeError } from '@/errors'
 import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
-import { iListVerifiedFields, ListVerifiedFields } from './children'
+import { ListVerifiedFields } from './children'
 import { ProcessResponse } from '@/models'
 
 /**
@@ -29,9 +29,9 @@ export interface iListVerifiedFieldContainer extends aContainer, ListVerifiedFie
    * Structure serves for storing the results of comparing the MRZ
    * text data, document filling area data, bar-codes data and data retrieved from RFID-chip
    * memory (used together with RFID-Chip Reader SDK) and passing it to the user application
-   * @type {iListVerifiedFields|undefined}
+   * @type {ListVerifiedFields|undefined}
    */
-  ListVerifiedFields: iListVerifiedFields
+  ListVerifiedFields: ListVerifiedFields
 
   /**
    * Result type stored in this container

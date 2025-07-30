@@ -22,5 +22,3 @@ export class ImageData implements cImageData {
   @IsOptional()
   format?: string
 }
-
-export type { ImageData as iImageData }

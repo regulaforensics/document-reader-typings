@@ -127,5 +127,3 @@ export class RfidCertificateEx implements cRfidCertificateEx {
   @IsEnum(eRfidErrorCodes)
   PA_Status: eRfidErrorCodes
 }
-
-export type { RfidCertificateEx as iRfidCertificateEx }

@@ -22,5 +22,3 @@ export class DocumentTypesCandidatesList implements cDocumentTypesCandidatesList
   @IsArray()
   Candidates?: OneCandidate[]
 }
-
-export type { DocumentTypesCandidatesList as iDocumentTypesCandidatesList }

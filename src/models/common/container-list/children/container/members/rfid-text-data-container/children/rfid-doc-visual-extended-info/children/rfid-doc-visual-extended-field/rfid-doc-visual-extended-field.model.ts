@@ -33,5 +33,3 @@ export class RFIDDocVisualExtendedField extends aVisualExtendedFieldItem impleme
   @IsInt()
   OriginEntryView?: number
 }
-
-export type { RFIDDocVisualExtendedField as iRFIDDocVisualExtendedField }

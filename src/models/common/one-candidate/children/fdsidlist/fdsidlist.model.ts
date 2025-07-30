@@ -106,5 +106,3 @@ export class FDSIDList implements cFDSIDList {
   @IsBoolean()
   isDeprecated: boolean // todo: should be optional?
 }
-
-export type { FDSIDList as iFDSIDList }

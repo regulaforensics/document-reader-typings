@@ -41,5 +41,3 @@ export class RfidAccessKey implements cRfidAccessKey {
   @IsBoolean()
   CheckFullKeyMatching: boolean
 }
-
-export type { RfidAccessKey as iRfidAccessKey }

@@ -156,5 +156,3 @@ export class RfidSession implements RfidSessionData {
   @Type(() => RfidSecurityObject)
   SecurityObjects: RfidSecurityObject[]
 }
-
-export type { RfidSession as iRfidSession }

@@ -55,5 +55,3 @@ export class GraphData implements cGraphData {
   @IsInt()
   OriginTagEntry: number
 }
-
-export type { GraphData as iGraphData }

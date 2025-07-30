@@ -66,5 +66,3 @@ export class FaceItem implements cFaceItem {
   @IsInt()
   Probability: number
 }
-
-export type { FaceItem as iFaceItem }

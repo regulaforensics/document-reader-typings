@@ -35,5 +35,3 @@ export class ListVerifiedFields implements cListVerifiedFields {
   @IsString()
   pDateFormat?: string
 }
-
-export type { ListVerifiedFields as iListVerifiedFields }

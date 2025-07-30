@@ -19,5 +19,3 @@ export class CertificateData implements cCertificateData {
   @IsNumber()
   Length: number
 }
-
-export type { CertificateData as iCertificateData }

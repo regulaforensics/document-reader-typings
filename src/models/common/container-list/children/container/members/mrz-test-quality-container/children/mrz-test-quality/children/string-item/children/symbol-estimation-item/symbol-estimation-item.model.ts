@@ -125,5 +125,3 @@ export class SymbolEstimationItem implements cSymbolEstimationItem {
   @Type(() => Rect)
   SymbolBounds: Rect
 }
-
-export type { SymbolEstimationItem as iSymbolEstimationItem }

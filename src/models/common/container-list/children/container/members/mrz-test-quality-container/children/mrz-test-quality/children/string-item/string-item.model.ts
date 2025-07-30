@@ -132,5 +132,3 @@ export class StringItem implements cStringItem {
   @Type(() => SymbolEstimationItem)
   SymbolsEstimations: SymbolEstimationItem[]
 }
-
-export type { StringItem as iStringItem }

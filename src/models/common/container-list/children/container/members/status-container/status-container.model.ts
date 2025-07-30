@@ -5,7 +5,7 @@ import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 import { DocReaderTypeError } from '@/errors'
 import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
-import { iStatus, Status } from './children'
+import { Status } from './children'
 import { ProcessResponse } from '@/models'
 
 /**
@@ -25,9 +25,9 @@ export const StatusContainerResultTypes: tStatusContainerResultType[] = [eResult
 export interface iStatusContainer extends aContainer, StatusItem {
   /**
    * Status of the document check.
-   * @type {iStatus}
+   * @type {Status}
    */
-  Status: iStatus
+  Status: Status
 
   /**
    * Result type stored in this container

@@ -6,11 +6,6 @@ import {
   AuthenticityOCRSecurityTextCheckResult,
   AuthenticityPhotoIdentCheckResult,
   AuthenticitySecurityFeatureCheckResult,
-  iAuthenticityFibersTypeCheckResult,
-  iAuthenticityIdentCheckResult,
-  iAuthenticityOCRSecurityTextCheckResult,
-  iAuthenticityPhotoIdentCheckResult,
-  iAuthenticitySecurityFeatureCheckResult,
 } from './members'
 
 /**
@@ -23,17 +18,6 @@ export type uAuthenticityCheckResult =
   | AuthenticityOCRSecurityTextCheckResult
   | AuthenticityPhotoIdentCheckResult
   | AuthenticitySecurityFeatureCheckResult
-
-/**
- * Structure serves for storing the results of a single type
- * document authenticity check
- */
-export type iuAuthenticityCheckResult =
-  | iAuthenticityFibersTypeCheckResult
-  | iAuthenticityIdentCheckResult
-  | iAuthenticityOCRSecurityTextCheckResult
-  | iAuthenticityPhotoIdentCheckResult
-  | iAuthenticitySecurityFeatureCheckResult
 
 /**
  * Transform list of unknown items to list of uAuthenticityCheckResult

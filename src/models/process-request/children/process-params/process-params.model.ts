@@ -614,5 +614,3 @@ export class ProcessParams implements cProcessParams {
   @IsBoolean()
   disableAuthResolutionFilter?: boolean
 }
-
-export type { ProcessParams as iProcessParams }

@@ -11,7 +11,7 @@ import { eLights } from '@/consts'
 export class ProcessRequestImage implements cProcessRequestImage {
   /**
    * Image data
-   * @type {iImageData}
+   * @type {ImageData}
    */
   @ValidateNested()
   @Type(() => ImageData)
@@ -33,5 +33,3 @@ export class ProcessRequestImage implements cProcessRequestImage {
   @IsOptional()
   page_idx?: number
 }
-
-export type { ProcessRequestImage as iProcessRequestImage }

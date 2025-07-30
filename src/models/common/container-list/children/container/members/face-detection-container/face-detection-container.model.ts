@@ -6,7 +6,7 @@ import { DocReaderTypeError } from '@/errors'
 import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
 import { ProcessResponse } from '@/models'
-import { iFaceDetection, FaceDetection } from './children'
+import { FaceDetection } from './children'
 
 /**
  * Result type of FaceDetectionContainer
@@ -24,9 +24,9 @@ export const FaceDetectionContainerResultTypes: tFaceDetectionContainerResultTyp
  */
 export interface iFaceDetectionContainer extends aContainer, FaceDetectionItem {
   /**
-   * @type {iFaceDetection}
+   * @type {FaceDetection}
    */
-  FaceDetection?: iFaceDetection
+  FaceDetection?: FaceDetection
 
   /**
    * Result type stored in this container

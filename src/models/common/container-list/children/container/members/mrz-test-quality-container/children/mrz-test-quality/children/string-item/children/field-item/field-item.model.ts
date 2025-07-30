@@ -44,5 +44,3 @@ export class FieldItem implements cFieldItem {
   @IsInt()
   reserved: number
 }
-
-export type { FieldItem as iFieldItem }

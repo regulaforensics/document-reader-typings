@@ -3,7 +3,7 @@ import { RfidDistinguishedName as cRfidDistinguishedName } from '@regulaforensic
 import { Type } from 'class-transformer'
 
 import { TrfFtString } from '@/models/common/trf-ft-string'
-import { iRfidAttributeName, RfidAttributeName } from './children'
+import { RfidAttributeName } from './children'
 
 /**
  * Structure contains information that serves as the distinguished name (identifier) of an object.
@@ -29,13 +29,11 @@ export class RfidDistinguishedName implements cRfidDistinguishedName {
 
   /**
    * List of individual attributes contained in the identifier
-   * @type {iRfidAttributeName[]}
+   * @type {RfidAttributeName[]}
    */
   @IsDefined()
   @Type(() => RfidAttributeName)
   @ValidateNested({ each: true })
   @IsArray()
-  Attributes: iRfidAttributeName[]
+  Attributes: RfidAttributeName[]
 }
-
-export type { RfidDistinguishedName as iRfidDistinguishedName }

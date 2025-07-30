@@ -37,5 +37,3 @@ export class TrfFtBytes implements cTrfFtBytes {
   @IsDefined()
   Data: string | null
 }
-
-export type { TrfFtBytes as iTrfFtBytes }

@@ -70,7 +70,7 @@ export class AuthenticitySecurityFeatureCheckResult
 
   /**
    * Array of results of checks
-   * @type {iSecurityFeatureCheck[]}
+   * @type {SecurityFeatureCheck[]}
    */
   @IsDefined()
   @IsArray()

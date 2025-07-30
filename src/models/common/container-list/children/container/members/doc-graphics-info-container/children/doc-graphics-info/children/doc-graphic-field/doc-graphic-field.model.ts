@@ -40,5 +40,3 @@ export class DocGraphicField implements GraphicField {
   @Type(() => ImageData)
   image: ImageData
 }
-
-export type { DocGraphicField as iDocGraphicField }

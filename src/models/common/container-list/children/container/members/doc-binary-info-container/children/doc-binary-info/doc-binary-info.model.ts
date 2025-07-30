@@ -27,5 +27,3 @@ export class DocBinaryInfo implements TDocBinaryInfo {
   @Type(() => RfidRawData)
   RFID_RAW_DATA?: RfidRawData[]
 }
-
-export type { DocBinaryInfo as iDocBinaryInfo }

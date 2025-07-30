@@ -5,7 +5,7 @@ import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 import { DocReaderTypeError } from '@/errors'
 import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
-import { ProcessResponse, BoundsResult, iBoundsResult } from '@/models'
+import { ProcessResponse, BoundsResult } from '@/models'
 
 /**
  * Result type of MRZPositionContainer
@@ -23,9 +23,9 @@ export const MRZPositionContainerResultTypes: tMRZPositionContainerResultType[] 
  */
 export interface iMRZPositionContainer extends aContainer, MrzPositionItem {
   /**
-   * @type {iBoundsResult}
+   * @type {BoundsResult}
    */
-  MrzPosition: iBoundsResult
+  MrzPosition: BoundsResult
 
   /**
    * Result type stored in this container

@@ -30,5 +30,3 @@ export class ErrorCoordinates implements cErrorCoordinates {
   @IsInt()
   Bottom?: number
 }
-
-export type { ErrorCoordinates as iErrorCoordinates }

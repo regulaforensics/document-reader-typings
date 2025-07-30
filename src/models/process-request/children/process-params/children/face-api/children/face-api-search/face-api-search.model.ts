@@ -30,5 +30,3 @@ export class FaceApiSearch implements cFaceApiSearch {
   @IsNumber({}, { each: true })
   group_ids?: number[]
 }
-
-export type { FaceApiSearch as iFaceApiSearch }

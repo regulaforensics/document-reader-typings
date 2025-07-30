@@ -37,5 +37,3 @@ export class Rect implements RectangleCoordinates {
   @IsNumber()
   bottom: number
 }
-
-export type { Rect as iRect }

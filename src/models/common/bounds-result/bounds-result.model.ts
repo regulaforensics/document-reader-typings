@@ -129,5 +129,3 @@ export class BoundsResult implements DocumentPosition {
   @IsInt()
   ResultStatus?: number
 }
-
-export type { BoundsResult as iBoundsResult }

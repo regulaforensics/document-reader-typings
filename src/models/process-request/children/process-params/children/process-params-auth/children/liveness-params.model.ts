@@ -65,5 +65,3 @@ export class LivenessParams implements cLivenessParams {
   @IsBoolean()
   checkGeometry?: boolean
 }
-
-export type { LivenessParams as iLivenessParams }

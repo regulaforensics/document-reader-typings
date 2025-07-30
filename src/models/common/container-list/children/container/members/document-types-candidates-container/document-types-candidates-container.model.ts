@@ -6,7 +6,7 @@ import { DocReaderTypeError } from '@/errors'
 import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
 import { ProcessResponse } from '@/models'
-import { iDocumentTypesCandidatesList, DocumentTypesCandidatesList } from './children'
+import { DocumentTypesCandidatesList } from './children'
 
 /**
  * Result type of DocumentTypesCandidatesContainer
@@ -26,9 +26,9 @@ export const DocumentTypesCandidatesContainerResultTypes: tDocumentTypesCandidat
  */
 export interface iDocumentTypesCandidatesContainer extends aContainer, CandidatesListItem {
   /**
-   * @type {iDocumentTypesCandidatesList}
+   * @type {DocumentTypesCandidatesList}
    */
-  CandidatesList?: iDocumentTypesCandidatesList
+  CandidatesList?: DocumentTypesCandidatesList
 
   /**
    * Result type stored in this container

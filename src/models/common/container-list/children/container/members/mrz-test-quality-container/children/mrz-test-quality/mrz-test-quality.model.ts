@@ -77,5 +77,3 @@ export class MRZTestQuality implements cMRZTestQuality {
   @IsEnum(eCheckResult)
   TEXTUAL_FILLING: eCheckResult
 }
-
-export type { MRZTestQuality as iMRZTestQuality }

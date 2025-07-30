@@ -73,5 +73,3 @@ export class ImageField implements ImagesField {
     return result
   }
 }
-
-export type { ImageField as iImageField }

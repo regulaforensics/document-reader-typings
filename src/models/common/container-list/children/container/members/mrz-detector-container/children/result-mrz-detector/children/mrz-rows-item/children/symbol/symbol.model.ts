@@ -10,5 +10,3 @@ export class Symbol implements cSymbol {
   @IsInt({ each: true })
   boundingRect: number[]
 }
-
-export type { Symbol as iSymbol }

@@ -14,5 +14,3 @@ export class DocVisualExtendedField extends aVisualExtendedFieldItem implements 
   @Type(() => Rect)
   FieldRect: Rect
 }
-
-export type { DocVisualExtendedField as iDocVisualExtendedField }

@@ -82,5 +82,3 @@ export class ImageQA implements cImageQA {
   @IsEnum(eInputImageQualityChecks, { each: true })
   expectedPass?: eInputImageQualityChecks[]
 }
-
-export type { ImageQA as iImageQA }
