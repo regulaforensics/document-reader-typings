@@ -68,5 +68,3 @@ export class DetailsRFID implements cDetailsRFID {
   @IsEnum(eCheckResult)
   TA: eCheckResult
 }
-
-export type { DetailsRFID as iDetailsRFID }

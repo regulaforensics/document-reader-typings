@@ -67,5 +67,3 @@ export class Status implements cStatus {
   @Type(() => DetailsOptical)
   detailsOptical: DetailsOptical
 }
-
-export type { Status as iStatus }

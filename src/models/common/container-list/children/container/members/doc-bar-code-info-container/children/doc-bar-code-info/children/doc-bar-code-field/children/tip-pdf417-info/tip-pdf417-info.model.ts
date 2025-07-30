@@ -54,5 +54,3 @@ export class TipPDF417Info implements BcPDF417INFO {
   @IsNumber()
   minY: number
 }
-
-export type { TipPDF417Info as iTipPDF417Info }

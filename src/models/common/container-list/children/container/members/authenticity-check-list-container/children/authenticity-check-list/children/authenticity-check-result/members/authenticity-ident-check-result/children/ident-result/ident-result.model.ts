@@ -77,7 +77,7 @@ export class IdentResult extends aAuthenticityCheckResultItem implements iIdentR
 
   /**
    * List of located areas
-   * @type {iAreaArray|undefined}
+   * @type {AreaArray|undefined}
    */
   @IsOptional()
   @ValidateNested()

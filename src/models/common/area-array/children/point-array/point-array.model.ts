@@ -18,5 +18,3 @@ export class PointArray implements PointsContainer {
   @Type(() => Point)
   PointsList: Point[]
 }
-
-export type { PointArray as iPointArray }

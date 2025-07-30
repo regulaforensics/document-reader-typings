@@ -22,5 +22,3 @@ export class RfidAttributeData implements cRfidAttributeData {
   @IsBase64()
   Data: string
 }
-
-export type { RfidAttributeData as iRfidAttributeData }

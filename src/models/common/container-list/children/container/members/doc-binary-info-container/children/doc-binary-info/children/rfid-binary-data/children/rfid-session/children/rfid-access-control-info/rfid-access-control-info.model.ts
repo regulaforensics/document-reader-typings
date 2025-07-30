@@ -50,5 +50,3 @@ export class RfidAccessControlInfo implements cRfidAccessControlInfo {
   @IsArray()
   AccessControlOptions?: any[]
 }
-
-export type { RfidAccessControlInfo as iRfidAccessControlInfo }

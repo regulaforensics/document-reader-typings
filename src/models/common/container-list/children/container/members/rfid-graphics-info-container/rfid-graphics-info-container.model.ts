@@ -6,7 +6,7 @@ import { DocReaderTypeError } from '@/errors'
 import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
 import { ProcessResponse } from '@/models'
-import { iTOriginalRFIDGraphicsInfo, TOriginalRFIDGraphicsInfo } from './children'
+import { TOriginalRFIDGraphicsInfo } from './children'
 
 /**
  * Result type of RFIDGraphicsInfoContainer
@@ -26,9 +26,9 @@ export const RFIDGraphicsInfoContainerResultTypes: tRFIDGraphicsInfoContainerRes
  */
 export interface iRFIDGraphicsInfoContainer extends aContainer, TOriginalRFIDGraphicsInfoItem {
   /**
-   * @type {iTOriginalRFIDGraphicsInfo}
+   * @type {TOriginalRFIDGraphicsInfo}
    */
-  TOriginalRFIDGraphicsInfo: iTOriginalRFIDGraphicsInfo
+  TOriginalRFIDGraphicsInfo: TOriginalRFIDGraphicsInfo
 
   /**
    * Result type stored in this container

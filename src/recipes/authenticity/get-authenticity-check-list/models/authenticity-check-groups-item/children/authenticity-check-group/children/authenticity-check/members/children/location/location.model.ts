@@ -2,7 +2,7 @@ import { IsDefined, IsEnum, IsOptional, ValidateNested } from 'class-validator'
 import { Type } from 'class-transformer'
 
 import { eLights } from '@/consts'
-import { iRect, Rect } from '@/models'
+import { Rect } from '@/models'
 
 /**
  * Location
@@ -16,9 +16,9 @@ export interface iRLocation {
 
   /**
    * Rect
-   * @type {iRect[]}
+   * @type {Rect[]}
    */
-  rect: iRect[]
+  rect: Rect[]
 }
 
 /**

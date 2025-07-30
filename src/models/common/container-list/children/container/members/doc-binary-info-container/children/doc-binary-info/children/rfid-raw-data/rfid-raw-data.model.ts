@@ -19,5 +19,3 @@ export class RfidRawData implements cRfidRawData {
   @IsNumber()
   FieldType: number
 }
-
-export type { RfidRawData as iRfidRawData }

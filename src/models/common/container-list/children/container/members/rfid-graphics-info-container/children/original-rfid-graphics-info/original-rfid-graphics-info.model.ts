@@ -14,5 +14,3 @@ export class TOriginalRFIDGraphicsInfo implements cTOriginalRFIDGraphicsInfo {
   @IsArray()
   RFID_ORIGINAL_GRAPH_DATA: GraphData[]
 }
-
-export type { TOriginalRFIDGraphicsInfo as iTOriginalRFIDGraphicsInfo }

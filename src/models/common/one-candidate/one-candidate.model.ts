@@ -150,5 +150,3 @@ export class OneCandidate implements cOneCandidate {
     return getLightsArray(instance.AuthenticityNecessaryLights)
   }
 }
-
-export type { OneCandidate as iOneCandidate }

@@ -92,5 +92,3 @@ export class FaceApi implements cFaceApi {
   @IsNumber()
   childDocValidityYears?: number
 }
-
-export type { FaceApi as iFaceApi }

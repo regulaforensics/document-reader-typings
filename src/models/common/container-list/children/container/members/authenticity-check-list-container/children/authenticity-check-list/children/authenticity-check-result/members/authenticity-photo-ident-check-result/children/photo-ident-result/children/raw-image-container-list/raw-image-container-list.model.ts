@@ -26,5 +26,3 @@ export class RawImageContainerList implements cRawImageContainerList {
   @Type(() => ImageData)
   Images: ImageData[]
 }
-
-export type { RawImageContainerList as iRawImageContainerList }

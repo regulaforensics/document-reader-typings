@@ -27,5 +27,3 @@ export class DocBarCodeInfo implements DocBarCodeInfoFieldsList {
   @IsArray()
   pArrayFields: DocBarCodeField[]
 }
-
-export type { DocBarCodeInfo as iDocBarCodeInfo }

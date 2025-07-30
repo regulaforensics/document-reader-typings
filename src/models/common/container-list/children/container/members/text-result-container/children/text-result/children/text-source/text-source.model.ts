@@ -31,5 +31,3 @@ export class TextSource implements TextAvailableSource {
   @IsInt()
   containerType?: number
 }
-
-export type { TextSource as iTextSource }

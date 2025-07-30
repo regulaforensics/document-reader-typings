@@ -96,5 +96,3 @@ export abstract class aVisualExtendedFieldItem implements cVisualExtendedFieldIt
   @IsInt()
   Reserved3?: number
 }
-
-export type { aVisualExtendedFieldItem as iVisualExtendedFieldItem }

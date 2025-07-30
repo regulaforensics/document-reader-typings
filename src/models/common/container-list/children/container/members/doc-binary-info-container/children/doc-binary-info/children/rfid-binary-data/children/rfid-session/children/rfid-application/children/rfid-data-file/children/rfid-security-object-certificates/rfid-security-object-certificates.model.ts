@@ -16,5 +16,3 @@ export class RfidSecurityObjectCertificates implements SecurityObjectCertificate
   @ValidateNested()
   Certificate_Data?: CertificateData
 }
-
-export type { RfidSecurityObjectCertificates as iSecurityObjectCertificates }

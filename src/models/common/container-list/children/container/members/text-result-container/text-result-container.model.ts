@@ -5,7 +5,7 @@ import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 import { DocReaderTypeError } from '@/errors'
 import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
-import { ProcessResponse, iTextResult, TextResult } from '@/models'
+import { ProcessResponse, TextResult } from '@/models'
 
 /**
  * Result type of TextResultContainer
@@ -24,9 +24,9 @@ export const TextResultContainerResultTypes: tTextResultContainerResultType[] = 
 export interface iTextResultContainer extends aContainer, TextItem {
   /**
    * Text result
-   * @type {iTextResult}
+   * @type {TextResult}
    */
-  Text: iTextResult
+  Text: TextResult
 
   /**
    * Result type stored in this container

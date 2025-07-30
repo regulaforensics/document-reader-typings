@@ -45,5 +45,3 @@ export class SymbolRecognitionResult implements cSymbolRecognitionResult {
   @IsInt()
   BaseLineTop?: number
 }
-
-export type { SymbolRecognitionResult as iSymbolRecognitionResult }

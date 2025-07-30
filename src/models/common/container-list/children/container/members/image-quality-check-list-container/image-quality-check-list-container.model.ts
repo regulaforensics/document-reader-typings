@@ -5,7 +5,7 @@ import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 import { DocReaderTypeError } from '@/errors'
 import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
-import { iImageQualityCheckList, ImageQualityCheckList } from './children'
+import { ImageQualityCheckList } from './children'
 import { ProcessResponse } from '@/models'
 
 /**
@@ -27,9 +27,9 @@ export const ImageQualityCheckListContainerResultTypes: tImageQualityCheckListCo
 export interface iImageQualityCheckListContainer extends aContainer, ImageQualityCheckListItem {
   /**
    * Used for storing input image quality check results list
-   * @type {iImageQualityCheckList}
+   * @type {ImageQualityCheckList}
    */
-  ImageQualityCheckList: iImageQualityCheckList
+  ImageQualityCheckList: ImageQualityCheckList
 
   /**
    * Result type stored in this container

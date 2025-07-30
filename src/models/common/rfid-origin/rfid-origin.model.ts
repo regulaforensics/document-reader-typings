@@ -37,5 +37,3 @@ export class RfidOrigin implements cRfidOrigin {
   @IsNumber()
   entryView: number
 }
-
-export type { RfidOrigin as iRfidOrigin }

@@ -32,5 +32,3 @@ export class SymbolCandidate implements cSymbolCandidate {
   @IsInt()
   SubClass?: number
 }
-
-export type { SymbolCandidate as iSymbolCandidate }

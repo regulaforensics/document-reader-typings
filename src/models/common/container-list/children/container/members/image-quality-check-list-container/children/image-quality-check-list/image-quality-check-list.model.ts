@@ -35,5 +35,3 @@ export class ImageQualityCheckList implements cImageQualityCheckList {
   @IsInt()
   Count: number
 }
-
-export type { ImageQualityCheckList as iImageQualityCheckList }

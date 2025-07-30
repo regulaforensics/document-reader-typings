@@ -64,5 +64,3 @@ export class RfidTerminal implements cRfidTerminal {
     return getRfidTerminalAuthorizationRequirements(input.AuthReq2)
   }
 }
-
-export type { RfidTerminal as iRfidTerminal }

@@ -16,5 +16,3 @@ export class FileImage implements cFileImage {
   @IsInt()
   Length: number
 }
-
-export type { FileImage as iFileImage }

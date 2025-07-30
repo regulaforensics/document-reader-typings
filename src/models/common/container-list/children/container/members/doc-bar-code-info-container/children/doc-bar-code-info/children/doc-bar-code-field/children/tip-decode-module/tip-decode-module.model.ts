@@ -45,5 +45,3 @@ export class TipDecodeModule implements DataModule {
   @IsEnum(eBarCodeModuleType)
   mType: eBarCodeModuleType
 }
-
-export type { TipDecodeModule as iTipDecodeModule }

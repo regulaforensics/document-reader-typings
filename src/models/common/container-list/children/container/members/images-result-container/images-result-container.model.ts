@@ -5,7 +5,7 @@ import { Expose, instanceToPlain, plainToClass, Type } from 'class-transformer'
 import { DocReaderTypeError } from '@/errors'
 import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
-import { iImagesResult, ImagesResult } from './children'
+import { ImagesResult } from './children'
 import { ProcessResponse } from '@/models'
 
 /**
@@ -25,9 +25,9 @@ export const ImagesResultContainerResultTypes: tImagesResultContainerResultType[
 export interface iImagesResultContainer extends aContainer, ImagesItem {
   /**
    * Used for representation of all graphic results
-   * @type {iImagesResult}
+   * @type {ImagesResult}
    */
-  Images: iImagesResult
+  Images: ImagesResult
 
   /**
    * Result type stored in this container

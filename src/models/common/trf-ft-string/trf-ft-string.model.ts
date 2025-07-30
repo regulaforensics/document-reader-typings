@@ -39,5 +39,3 @@ export class TrfFtString implements cTrfFtString {
   @IsString()
   Data: string
 }
-
-export type { TrfFtString as iTrfFtString }

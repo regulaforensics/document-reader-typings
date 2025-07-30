@@ -61,5 +61,3 @@ export class TextResult implements Text {
   @IsArray()
   availableSourceList: TextSource[]
 }
-
-export type { TextResult as iTextResult }

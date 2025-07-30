@@ -23,5 +23,3 @@ export class ContainerList implements cContainerList {
   @Transform(({ obj }) => transformToContainerList(obj.List), { toClassOnly: true })
   List: uContainer[]
 }
-
-export type { ContainerList as iContainerList }

@@ -136,5 +136,3 @@ export class RfidDG1 implements cRfidDG1 {
   @IsInt()
   CheckDigitComposite: number
 }
-
-export type { RfidDG1 as iRfidDG1 }

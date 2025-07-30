@@ -21,5 +21,3 @@ export class RFIDDocVisualExtendedInfo implements cRFIDDocVisualExtendedInfo {
   @Type(() => RFIDDocVisualExtendedField)
   pArrayFields: RFIDDocVisualExtendedField[]
 }
-
-export type { RFIDDocVisualExtendedInfo as iRFIDDocVisualExtendedInfo }

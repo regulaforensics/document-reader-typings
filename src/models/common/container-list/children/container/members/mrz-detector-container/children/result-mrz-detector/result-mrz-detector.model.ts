@@ -31,5 +31,3 @@ export class ResultMRZDetector implements cResultMRZDetector {
   @IsInt({ each: true })
   boundingQuadrangle: number[]
 }
-
-export type { ResultMRZDetector as iResultMRZDetector }

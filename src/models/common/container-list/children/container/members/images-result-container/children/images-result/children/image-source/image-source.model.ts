@@ -23,5 +23,3 @@ export class ImageSource implements ImagesAvailableSource {
   @IsEnum(eSource)
   source: eSource
 }
-
-export type { ImageSource as iImageSource }

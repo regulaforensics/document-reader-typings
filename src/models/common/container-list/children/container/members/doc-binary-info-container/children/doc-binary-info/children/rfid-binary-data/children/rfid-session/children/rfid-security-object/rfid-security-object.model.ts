@@ -51,5 +51,3 @@ export class RfidSecurityObject implements cRfidSecurityObject {
   @IsArray()
   SignerInfos: RfidSignerInfoEx[]
 }
-
-export type { RfidSecurityObject as iRfidSecurityObject }

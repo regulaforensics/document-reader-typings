@@ -37,5 +37,3 @@ export class AreaArray implements AreaContainer {
   @Type(() => PointArray)
   Points: PointArray[]
 }
-
-export type { AreaArray as iAreaArray }

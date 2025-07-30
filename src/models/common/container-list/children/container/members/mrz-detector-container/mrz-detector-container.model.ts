@@ -6,7 +6,7 @@ import { DocReaderTypeError } from '@/errors'
 import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
 import { ProcessResponse } from '@/models'
-import { iResultMRZDetector, ResultMRZDetector } from './children'
+import { ResultMRZDetector } from './children'
 
 /**
  * Result type of MRZDetectorContainer
@@ -24,9 +24,9 @@ export const MRZDetectorContainerResultTypes: tMRZDetectorContainerResultType[] 
  */
 export interface iMRZDetectorContainer extends aContainer, ResultMRZDetectorItem {
   /**
-   * @type {iResultMRZDetector}
+   * @type {ResultMRZDetector}
    */
-  ResultMRZDetector: iResultMRZDetector
+  ResultMRZDetector: ResultMRZDetector
 
   /**
    * Result type stored in this container

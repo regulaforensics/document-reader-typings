@@ -30,5 +30,3 @@ export class RfidValidity implements cRfidValidity {
   @ValidateNested()
   NotAfter: TrfFtString
 }
-
-export type { RfidValidity as iRfidValidity }

@@ -2,7 +2,7 @@ import { IsDefined, IsEnum, IsOptional, IsString, ValidateNested } from 'class-v
 
 import { eCheckResult, eSource } from '@/consts'
 import { Type } from 'class-transformer'
-import { iRfidOrigin, RfidOrigin, iRect, Rect } from '@/models'
+import { RfidOrigin, Rect } from '@/models'
 
 /**
  * Source, value and check result of a text data field
@@ -40,15 +40,15 @@ export interface iRTextDataSource {
 
   /**
    * Rect
-   * @type {iRect|undefined}
+   * @type {Rect|undefined}
    */
-  rect?: iRect
+  rect?: Rect
 
   /**
    * RFID origin
    * @type {RfidOrigin|undefined}
    */
-  rfidOrigin?: iRfidOrigin
+  rfidOrigin?: RfidOrigin
 }
 
 /**

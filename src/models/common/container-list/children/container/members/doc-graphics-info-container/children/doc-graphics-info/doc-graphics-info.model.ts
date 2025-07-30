@@ -26,5 +26,3 @@ export class DocGraphicsInfo implements GraphicFieldsList {
   @IsInt()
   nFields: number
 }
-
-export type { DocGraphicsInfo as iDocGraphicsInfo }

@@ -6,7 +6,7 @@ import { DocReaderTypeError } from '@/errors'
 import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
 import { ProcessResponse } from '@/models'
-import { iOneCandidate, OneCandidate } from '../../../../../one-candidate'
+import { OneCandidate } from '../../../../../one-candidate'
 
 /**
  * Result type of OneCandidateContainer
@@ -25,9 +25,9 @@ export const OneCandidateContainerResultTypes: tOneCandidateContainerResultType[
 export interface iOneCandidateContainer extends aContainer, OneCandidateItem {
   /**
    * Contains information on one candidate document when determining the document type
-   * @type {iOneCandidate|undefined}
+   * @type {OneCandidate|undefined}
    */
-  OneCandidate: iOneCandidate
+  OneCandidate: OneCandidate
 
   /**
    * Result type stored in this container

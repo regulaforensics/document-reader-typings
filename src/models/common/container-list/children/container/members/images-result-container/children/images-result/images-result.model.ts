@@ -46,5 +46,3 @@ export class ImagesResult implements Images {
   @IsArray()
   fieldList: ImageField[]
 }
-
-export type { ImagesResult as iImagesResult }

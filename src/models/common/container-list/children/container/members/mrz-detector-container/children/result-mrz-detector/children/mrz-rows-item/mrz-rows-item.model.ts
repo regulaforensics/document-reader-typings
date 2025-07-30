@@ -28,5 +28,3 @@ export class MRZRowsItem implements cMrzRowsItem {
   @IsArray()
   symbols: Symbol[]
 }
-
-export type { MRZRowsItem as iMrzRowsItem }

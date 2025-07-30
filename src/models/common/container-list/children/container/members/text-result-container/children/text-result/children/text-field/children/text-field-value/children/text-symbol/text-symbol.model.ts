@@ -33,5 +33,3 @@ export class TextSymbol implements OriginalSymbol {
   @Type(() => Rect)
   rect?: Rect
 }
-
-export type { TextSymbol as iTextSymbol }

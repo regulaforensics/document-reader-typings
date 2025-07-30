@@ -6,7 +6,7 @@ import { DocReaderTypeError } from '@/errors'
 import { eResultType } from '@/consts'
 import { aContainer } from '../../container.abstract'
 import { ProcessResponse } from '@/models'
-import { iMRZTestQuality, MRZTestQuality } from './children'
+import { MRZTestQuality } from './children'
 
 /**
  * Result type of MRZTestQualityContainer
@@ -24,9 +24,9 @@ export const MRZTestQualityContainerResultTypes: tMRZTestQualityContainerResultT
  */
 export interface iMRZTestQualityContainer extends aContainer, MRZTestQualityItem {
   /**
-   * @type {iMRZTestQuality}
+   * @type {MRZTestQuality}
    */
-  MRZTestQuality: iMRZTestQuality
+  MRZTestQuality: MRZTestQuality
 
   /**
    * Result type stored in this container

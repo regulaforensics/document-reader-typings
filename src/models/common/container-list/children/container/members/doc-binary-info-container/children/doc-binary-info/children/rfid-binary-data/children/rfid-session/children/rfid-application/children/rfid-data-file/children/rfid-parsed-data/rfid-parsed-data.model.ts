@@ -15,5 +15,3 @@ export class RfidParsedData implements ParsedData {
   @IsEnum(eLDSParsingNotificationCodes, { each: true })
   ParsingNotifications?: eLDSParsingNotificationCodes[]
 }
-
-export type { RfidParsedData as iRfidParsedData }

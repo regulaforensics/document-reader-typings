@@ -66,5 +66,3 @@ export class ImageQualityCheck implements cImageQualityCheck {
   @IsInt()
   probability: number
 }
-
-export type { ImageQualityCheck as iImageQualityCheck }

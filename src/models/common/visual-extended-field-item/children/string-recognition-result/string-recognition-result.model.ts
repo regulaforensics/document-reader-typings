@@ -45,5 +45,3 @@ export class StringRecognitionResult implements cStringRecognitionResult {
   @IsInt()
   Reserved?: number
 }
-
-export type { StringRecognitionResult as iStringRecognitionResult }

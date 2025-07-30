@@ -67,5 +67,3 @@ export class RfidApplication implements cRfidApplication {
   @ValidateNested({ each: true })
   Files: RfidDataFile[]
 }
-
-export type { RfidApplication as iRfidApplication }

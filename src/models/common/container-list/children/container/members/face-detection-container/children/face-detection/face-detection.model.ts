@@ -42,5 +42,3 @@ export class FaceDetection implements cFaceDetection {
   @IsInt()
   Reserved2?: number
 }
-
-export type { FaceDetection as iFaceDetection }

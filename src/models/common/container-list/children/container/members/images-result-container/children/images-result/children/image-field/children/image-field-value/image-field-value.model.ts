@@ -70,7 +70,7 @@ export class ImageFieldValue implements ImagesFieldValue {
 
   /**
    * Field rectangular area
-   * @type {iRect|undefined}
+   * @type {Rect|undefined}
    */
   @IsOptional()
   @ValidateNested()
@@ -86,5 +86,3 @@ export class ImageFieldValue implements ImagesFieldValue {
   @Type(() => RfidOrigin)
   rfidOrigin?: RfidOrigin
 }
-
-export type { ImageFieldValue as iImageFieldValue }
