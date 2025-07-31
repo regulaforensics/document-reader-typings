@@ -11,9 +11,7 @@ export const getPortraitsComparison = (input: ProcessResponse): RPortraitsCompar
 
     list.forEach((item) => {
       if (AuthenticityIdentCheckResult.isBelongs(item)) {
-        if (item.Type !== eAuthenticity.PORTRAIT_COMPARISON) {
-          return
-        }
+        if (item.Type !== eAuthenticity.PORTRAIT_COMPARISON) return
 
         item.List.forEach((subItem) => {
           if (
@@ -75,6 +73,7 @@ export const getPortraitsComparison = (input: ProcessResponse): RPortraitsCompar
           if (index === -1) {
             result.push(
               RPortraitsComparison.fromPlain({
+                diagnose: subItem.ElementDiagnose,
                 source: isReversed ? right : left,
                 comparable: [],
                 image: isReversed ? subItem.Image.image : subItem.EtalonImage.image,

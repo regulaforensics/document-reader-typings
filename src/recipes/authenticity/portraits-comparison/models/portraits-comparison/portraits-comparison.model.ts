@@ -1,6 +1,7 @@
 import { IsDefined, IsEnum, IsString, ValidateNested } from 'class-validator'
 import { Expose, plainToInstance, Type } from 'class-transformer'
 
+import { eCheckDiagnose } from '@/consts'
 import { ePortraitComparisonSource, iRPortraitComparisonComparable, RPortraitComparisonComparable } from './children'
 
 /**
@@ -24,6 +25,12 @@ export interface iRPortraitsComparison {
    * @type {iRPortraitComparisonComparable[]}
    */
   comparable: iRPortraitComparisonComparable[]
+
+  /**
+   * Element with which errors are checked
+   * @type {eCheckDiagnose}
+   */
+  diagnose: eCheckDiagnose
 }
 
 /**
@@ -55,6 +62,14 @@ export class RPortraitsComparison implements iRPortraitsComparison {
   @ValidateNested({ each: true })
   @Type(() => RPortraitComparisonComparable)
   comparable: RPortraitComparisonComparable[]
+
+  /**
+   * Element with which errors are checked
+   * @type {eCheckDiagnose}
+   */
+  @IsDefined()
+  @IsEnum(eCheckDiagnose)
+  diagnose: eCheckDiagnose
 
   /**
    * Create instance of RPortraitsComparison from plain object
