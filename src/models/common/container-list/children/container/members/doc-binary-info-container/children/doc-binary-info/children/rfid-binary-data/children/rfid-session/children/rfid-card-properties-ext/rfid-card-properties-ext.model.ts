@@ -78,7 +78,6 @@ export class RfidCardPropertiesExt implements cRfidCardPropertiesExt {
    * protocol (Answer To Request, Type A – ATQA) – for the internal use by
    * the main control library
    * @type {any}
-   * @internal
    */
   @IsDefined()
   ATQ_A: any
@@ -87,7 +86,6 @@ export class RfidCardPropertiesExt implements cRfidCardPropertiesExt {
    * Response of type-A RFID-chip to SELECT command of ISO/IEC 14443-
    * 3 protocol (Select Acknowledge, SAK).
    * @type {any}
-   * @internal
    */
   @IsDefined()
   SAK: any
@@ -96,7 +94,6 @@ export class RfidCardPropertiesExt implements cRfidCardPropertiesExt {
    * ATQ_B contents in text format. Each byte is represented by its hexadecimal value. The individual bytes are
    * separated by spaces (e.g. "50 F9 4F 41 60 00 00 00 00 77 81 81")
    * @type {any}
-   * @internal
    */
   @IsDefined()
   ATQ_B: any
