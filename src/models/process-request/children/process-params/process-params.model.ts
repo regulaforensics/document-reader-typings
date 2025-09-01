@@ -613,4 +613,12 @@ export class ProcessParams implements cProcessParams {
   @IsOptional()
   @IsBoolean()
   disableAuthResolutionFilter?: boolean
+
+  /**
+   * When enabled, this parameter marks security checks that don’t meet minimum requirements as 'Failed' (instead of 'WasNotDone'), which causes the overall security status to be 'Failed'.
+   * @type {boolean|undefined}
+   */
+  @IsOptional()
+  @IsBoolean()
+  strictSecurityChecks?: boolean
 }
