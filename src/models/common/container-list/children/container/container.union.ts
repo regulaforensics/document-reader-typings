@@ -2,6 +2,7 @@ import { eResultType } from '@/consts'
 import {
   AuthenticityCheckListContainer,
   BoundsResultContainer,
+  BarcodeBoundsResultContainer,
   DocBarCodeInfoContainer,
   DocBinaryInfoContainer,
   DocGraphicsInfoContainer,
@@ -59,6 +60,11 @@ export type uContainer =
    * Document position on the image
    */
   | BoundsResultContainer
+
+  /**
+   * Barcode position on the image
+   */
+  | BarcodeBoundsResultContainer
 
   /**
    * Encrypted RCL container
@@ -178,6 +184,8 @@ export const transformToContainerList = (items: unknown[]) => {
         result.push(AuthenticityCheckListContainer.fromPlain(item))
         break
       case eResultType.BARCODE_POSITION:
+        result.push(BarcodeBoundsResultContainer.fromPlain(item))
+        break
       case eResultType.DOCUMENT_POSITION:
         result.push(BoundsResultContainer.fromPlain(item))
         break

@@ -42,7 +42,7 @@
     "*.{js,ts}": "eslint --fix"
   },
   "dependencies": {
-    "@regulaforensics/document-reader-webclient": "^8.3.500-nightly",
+    "@regulaforensics/document-reader-webclient": "^8.3.518-nightly",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.2",
     "date-fns": "^4.1.0",
