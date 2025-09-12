@@ -11,20 +11,13 @@ import { aContainer } from '../../container.abstract'
 /**
  * Result type of BoundsResultContainer
  */
-export type tBoundsResultContainerResultType =
-  | eResultType.DOCUMENT_POSITION
-  | eResultType.MRZ_POSITION
-  | eResultType.BARCODE_POSITION
+export type tBoundsResultContainerResultType = eResultType.DOCUMENT_POSITION
 
 /**
  * Result type of BoundsResultContainer
  * @type {tBoundsResultContainerResultType[]}
  */
-export const BoundsResultContainerResultTypes: tBoundsResultContainerResultType[] = [
-  eResultType.DOCUMENT_POSITION,
-  eResultType.MRZ_POSITION,
-  eResultType.BARCODE_POSITION,
-]
+export const BoundsResultContainerResultTypes: tBoundsResultContainerResultType[] = [eResultType.DOCUMENT_POSITION]
 
 /**
  * Container for iBoundsResult
