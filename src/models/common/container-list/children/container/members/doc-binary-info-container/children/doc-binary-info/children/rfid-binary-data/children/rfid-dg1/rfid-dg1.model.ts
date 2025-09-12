@@ -1,7 +1,7 @@
 import { IsDefined, IsEnum, IsInt, IsString } from 'class-validator'
 import { RfidDG1 as cRfidDG1 } from '@regulaforensics/document-reader-webclient'
 
-import { eDocFormat, eRfidDataGroupTypeTag } from '@/consts'
+import { eDocFormat } from '@/consts'
 
 /**
  * Structure used to store the contents of EF.DG1 informational data group of
@@ -10,11 +10,11 @@ import { eDocFormat, eRfidDataGroupTypeTag } from '@/consts'
 export class RfidDG1 implements cRfidDG1 {
   /**
    * Type of informational data group
-   * @type {eRfidDataGroupTypeTag}
+   * @type {number}
    */
   @IsDefined()
-  @IsEnum(eRfidDataGroupTypeTag)
-  Type: eRfidDataGroupTypeTag
+  @IsInt()
+  Type: number
 
   /**
    * Type of document (classification of document formats – by the ISO/IEC 7810)
