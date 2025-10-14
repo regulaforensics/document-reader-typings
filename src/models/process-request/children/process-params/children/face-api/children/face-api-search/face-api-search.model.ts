@@ -28,5 +28,5 @@ export class FaceApiSearch implements cFaceApiSearch {
    */
   @IsOptional()
   @IsNumber({}, { each: true })
-  group_ids?: number[]
+  group_ids?: string[]
 }
